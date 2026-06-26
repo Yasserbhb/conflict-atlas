@@ -91,12 +91,12 @@ export default function TimelineView() {
                 y={VB_H - h}
                 width={Math.max(barW * 0.9, 0.6)}
                 height={h}
-                fill={isCurrent ? '#60a5fa' : '#334a6b'}
+                fill={isCurrent ? '#6ee7b7' : '#2a4a42'}
               />
             );
           })}
           {/* current-year cursor */}
-          <line x1={cursorX} y1={0} x2={cursorX} y2={VB_H} stroke="#60a5fa" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+          <line x1={cursorX} y1={0} x2={cursorX} y2={VB_H} stroke="#34d399" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         </svg>
         {/* axis labels */}
         <div className={styles.axis}>

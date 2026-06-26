@@ -2,7 +2,7 @@
   flex: 1;
   min-width: 0;
   overflow-y: auto;
-  background: #0b1220;
+  background: #0a120f;
 }
 
 .inner {
@@ -27,7 +27,7 @@
 
 .section {
   margin-top: 28px;
-  border-top: 1px solid #1e3a5f;
+  border-top: 1px solid var(--glass-border);
   padding-top: 18px;
 }
 
@@ -51,8 +51,8 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  background: #0c1524;
-  border: 1px solid #1e3a5f;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 12px 14px;
   margin-bottom: 8px;
@@ -62,7 +62,7 @@
 }
 
 .modeCard strong { color: #e2e8f0; }
-.modeCard em { color: #93c5fd; font-style: normal; }
+.modeCard em { color: var(--accent-light); font-style: normal; }
 
 .modeDot {
   width: 12px;

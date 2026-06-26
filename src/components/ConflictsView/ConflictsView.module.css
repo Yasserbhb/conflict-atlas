@@ -3,15 +3,15 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #0b1220;
+  background: #0a120f;
   overflow: hidden;
 }
 
 .toolbar {
   flex-shrink: 0;
   padding: 16px 20px 12px;
-  border-bottom: 1px solid #1e3a5f;
-  background: #0c1524;
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(10, 18, 16, 0.55);
 }
 
 .toolbarTop {
@@ -43,8 +43,8 @@
 .search {
   flex: 1;
   min-width: 180px;
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
   color: #e2e8f0;
   font-size: 13px;
@@ -52,12 +52,12 @@
   outline: none;
 }
 
-.search:focus { border-color: #3b82f6; }
+.search:focus { border-color: var(--accent); }
 .search::placeholder { color: #475569; }
 
 .select {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
   color: #e2e8f0;
   font-size: 12px;
@@ -66,7 +66,7 @@
   cursor: pointer;
 }
 
-.select:focus { border-color: #3b82f6; }
+.select:focus { border-color: var(--accent); }
 
 .checkbox {
   display: flex;
@@ -100,8 +100,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  background: #0f1e30;
-  border: 1px solid #1e3a5f;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   border-left: 3px solid #94a3b8;
   border-radius: 6px;
   padding: 9px 12px;
@@ -112,8 +112,8 @@
 }
 
 .row:hover {
-  background: #15263c;
-  border-color: #334155;
+  background: rgba(52, 211, 153, 0.1);
+  border-color: var(--glass-border);
 }
 
 .rowMain {

@@ -2,6 +2,16 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.4.0 — 2026-06-27
+
+Full visual redesign — "green glass."
+
+- Theme shifted from navy/blue to a **greener-dark base with an acid-green accent**, frosted-glass surfaces (backdrop-blur), hairline borders, and slightly sharper corners throughout.
+- **Side-panel conflict cards redesigned**: type glyph in a tinted square, country **flag chips**, a role pill, a segmented severity gauge, hover lift.
+- Restyled every surface — nav, top bar, View/Edit toggle, search, timeline slider, the Conflicts/Stats/Timeline/Help views, the map filter bar/legend/zoom controls, and all modals (edit form, graph, data).
+- **Map recolored**: deep green-black ocean and greenish calm-land instead of navy blue; data colors (severity, type, role) unchanged since they encode meaning.
+- Added a flags utility (ISO-2 → emoji) and per-type glyphs.
+
 ## v1.3.0 — 2026-06-26
 
 Turned the single-map page into a real multi-section app.

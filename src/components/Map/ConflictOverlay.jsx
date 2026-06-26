@@ -92,8 +92,8 @@ export default function ConflictOverlay({ activeConflicts, centroids, selectedCo
 
       // Color by the selected country's role in this conflict
       const color = conflictColorForCountry(conflict, selectedCountryId);
-      const opacity = 0.85;
-      const width = Math.max(0.7, conflict.severity * 0.3);
+      const opacity = 0.9;
+      const width = Math.max(1.2, conflict.severity * 0.5);
 
       const edges = buildDirectedEdges(conflict, centroids)
         .filter((e) => e.from === selectedCountryId || e.to === selectedCountryId);

@@ -2,8 +2,20 @@ import { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { getNotesByCountry } from '../../db/queries';
 import { useCountryConflicts } from '../../hooks/useConflictFilter';
-import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor } from '../../utils/conflictColors';
+import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor, severityColor } from '../../utils/conflictColors';
 import { formatDateRange, applyConflictFilters } from '../../utils/dateUtils';
+import { flagEmoji, TYPE_GLYPH } from '../../utils/flags';
+
+function SeverityGauge({ severity }) {
+  const color = severityColor(severity);
+  return (
+    <span className={styles.gauge} title={`Severity ${severity}`}>
+      {[1, 2, 3, 4, 5].map((s) => (
+        <span key={s} className={styles.gaugeSeg} style={{ background: s <= severity ? color : undefined }} />
+      ))}
+    </span>
+  );
+}
 import styles from './SidePanel.module.css';
 
 const TABS = ['Conflicts', 'Territories', 'Notes'];
@@ -206,48 +218,40 @@ function ConflictCard({ conflict, role, mode, onEdit, countries, selectedId, isF
   const typeColor = TYPE_COLORS[conflict.type] || '#94a3b8';
 
   return (
-    <div
-      className={styles.card}
-      style={{
-        borderLeftColor: rColor,
-        outline: isFocused ? `1px solid ${rColor}` : 'none',
-        background: isFocused ? `${rColor}0d` : undefined,
-      }}
-    >
+    <div className={`${styles.card} ${isFocused ? styles.cardFocused : ''}`} style={{ '--accent': rColor }}>
+      <div className={styles.cardAccent} style={{ background: `linear-gradient(90deg, ${rColor}, transparent)` }} />
       <div className={styles.cardHeader} onClick={() => setExpanded((v) => !v)}>
         <div className={styles.cardTitleRow}>
-          <div className={styles.cardTitle}>{conflict.title}</div>
+          <span className={styles.glyph} style={{ background: typeColor + '22', color: typeColor }}>
+            {TYPE_GLYPH[conflict.type] || '•'}
+          </span>
+          <div className={styles.titleCol}>
+            <div className={styles.cardTitle}>{conflict.title}</div>
+            <div className={styles.cardSub}>
+              <span style={{ color: typeColor }}>{TYPE_LABELS[conflict.type] || conflict.type}</span>
+              <span className={styles.dot}>·</span>
+              <span>{formatDateRange(conflict.startDate, conflict.endDate, conflict.ongoing)}</span>
+            </div>
+          </div>
           <button
             className={`${styles.focusBtn} ${isFocused ? styles.focusBtnActive : ''}`}
             title={isFocused ? 'Show all conflicts' : 'Isolate this conflict on map'}
             onClick={(e) => { e.stopPropagation(); onFocus(); }}
             style={isFocused ? { color: rColor, borderColor: rColor } : {}}
           >
-            {isFocused ? '✕' : '⊙'}
+            {isFocused ? '✕' : '◎'}
           </button>
         </div>
 
-        {/* Role badge — most prominent, this is what matters in context */}
-        {roleKey && (
-          <div
-            className={styles.roleBadge}
-            style={{ background: rColor + '22', borderColor: rColor, color: rColor }}
-          >
-            {ROLE_LABELS[roleKey] || roleKey}
-          </div>
-        )}
-
         <div className={styles.cardMeta}>
-          {/* Conflict type is secondary context — shown smaller */}
-          <span className={styles.type} style={{ color: typeColor }}>
-            {TYPE_LABELS[conflict.type] || conflict.type}
-          </span>
-          <span className={styles.dates}>{formatDateRange(conflict.startDate, conflict.endDate, conflict.ongoing)}</span>
-          {conflict.ongoing && <span className={styles.ongoingBadge}>ONGOING</span>}
-        </div>
-
-        <div className={styles.roleRow}>
-          <span className={styles.severity}>{'◆'.repeat(conflict.severity)}</span>
+          {roleKey && (
+            <span className={styles.roleBadge} style={{ background: rColor + '22', borderColor: rColor + '66', color: rColor }}>
+              {ROLE_LABELS[roleKey] || roleKey}
+            </span>
+          )}
+          {conflict.ongoing && <span className={styles.ongoingBadge}>● live</span>}
+          <span className={styles.metaSpacer} />
+          <SeverityGauge severity={conflict.severity} />
         </div>
       </div>
 
@@ -258,16 +262,16 @@ function ConflictCard({ conflict, role, mode, onEdit, countries, selectedId, isF
             {conflict.parties?.map((p) => {
               const c = countries.find((x) => x.id === p.countryId);
               const pRoleColor = roleColor(p.role);
+              const isSel = p.countryId === selectedId;
               return (
                 <span
                   key={p.countryId}
-                  className={`${styles.partyTag} ${p.countryId === selectedId ? styles.partySelected : ''}`}
-                  style={p.countryId === selectedId
-                    ? { borderColor: rColor, color: rColor, background: rColor + '15' }
-                    : {}}
+                  className={`${styles.partyChip} ${isSel ? styles.partySelected : ''}`}
+                  style={isSel ? { borderColor: rColor + '88', background: rColor + '1a' } : {}}
                 >
+                  <span className={styles.chipFlag}>{c?.iso2 ? flagEmoji(c.iso2) : '🏳'}</span>
                   {c?.name || p.countryId}
-                  <em style={{ color: pRoleColor }}> {ROLE_LABELS[p.role] || p.role}</em>
+                  <em style={{ color: pRoleColor }}>{ROLE_LABELS[p.role] || p.role}</em>
                 </span>
               );
             })}

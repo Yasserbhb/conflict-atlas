@@ -22,8 +22,8 @@
 .field input,
 .field select,
 .field textarea {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
   color: #e2e8f0;
   font-size: 13px;
@@ -36,7 +36,7 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: #3b82f6;
+  border-color: var(--accent);
 }
 
 .field textarea {
@@ -47,7 +47,7 @@
 .field input[type="range"] {
   padding: 0;
   height: 4px;
-  background: #1e3a5f;
+  background: var(--glass-border);
   cursor: pointer;
 }
 
@@ -100,10 +100,10 @@
 }
 
 .addPartyBtn {
-  background: #1e3a5f;
-  border: 1px solid #334155;
+  background: var(--glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: 4px;
-  color: #60a5fa;
+  color: var(--accent-light);
   font-size: 11px;
   padding: 3px 8px;
   cursor: pointer;
@@ -111,7 +111,7 @@
 }
 
 .addPartyBtn:hover {
-  background: #1d4ed8;
+  background: rgba(52, 211, 153, 0.28);
 }
 
 .partyRow {
@@ -122,8 +122,8 @@
 
 .partyRow select {
   flex: 1;
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
   color: #e2e8f0;
   font-size: 12px;
@@ -133,7 +133,7 @@
 }
 
 .partyRow select:focus {
-  border-color: #3b82f6;
+  border-color: var(--accent);
 }
 
 .removeBtn {
@@ -156,28 +156,28 @@
   gap: 8px;
   justify-content: flex-end;
   padding-top: 8px;
-  border-top: 1px solid #1e3a5f;
+  border-top: 1px solid var(--glass-border);
 }
 
 .saveBtn {
-  background: #1d4ed8;
+  background: var(--accent);
   border: none;
-  border-radius: 6px;
-  color: white;
+  border-radius: 8px;
+  color: #042b20;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 8px 18px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: filter 0.15s;
 }
 
 .saveBtn:hover {
-  background: #2563eb;
+  filter: brightness(1.1);
 }
 
 .cancelBtn {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
   color: #94a3b8;
   font-size: 13px;
@@ -187,7 +187,7 @@
 }
 
 .cancelBtn:hover {
-  background: #334155;
+  background: var(--glass-border);
 }
 
 .deleteBtn {

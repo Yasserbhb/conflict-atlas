@@ -3,7 +3,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  background: #0b1220;
+  background: #0a120f;
   overflow: hidden;
   padding: 20px 24px 0;
 }
@@ -52,8 +52,8 @@
   height: 150px;
   display: block;
   cursor: crosshair;
-  background: #0c1524;
-  border: 1px solid #1e3a5f;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
 }
 
@@ -73,7 +73,7 @@
 .slider {
   width: 100%;
   margin: 12px 0 6px;
-  accent-color: #3b82f6;
+  accent-color: #34d399;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -86,7 +86,7 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 8px 0 6px;
-  border-bottom: 1px solid #1e3a5f;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .list {
@@ -111,8 +111,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  background: #0f1e30;
-  border: 1px solid #1e3a5f;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   border-left: 3px solid #94a3b8;
   border-radius: 6px;
   padding: 9px 12px;
@@ -123,8 +123,8 @@
 }
 
 .row:hover {
-  background: #15263c;
-  border-color: #334155;
+  background: rgba(52, 211, 153, 0.1);
+  border-color: var(--glass-border);
 }
 
 .rowMain { min-width: 0; flex: 1; }

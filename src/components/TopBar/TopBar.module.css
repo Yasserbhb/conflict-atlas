@@ -4,8 +4,10 @@
   gap: 16px;
   padding: 0 16px;
   height: 52px;
-  background: #0c1524;
-  border-bottom: 1px solid #1e3a5f;
+  background: rgba(10, 18, 16, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--glass-border);
   flex-shrink: 0;
   z-index: 10;
 }
@@ -29,9 +31,9 @@
 
 .logoText {
   font-size: 14px;
-  font-weight: 700;
-  color: #e2e8f0;
-  letter-spacing: 0.02em;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: 0.01em;
   white-space: nowrap;
 }
 
@@ -67,10 +69,10 @@
 }
 
 .iconBtn {
-  background: #1e3a5f;
-  color: #94a3b8;
-  border: 1px solid #334155;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
   width: 30px;
   height: 30px;
   font-size: 14px;
@@ -82,6 +84,6 @@
 }
 
 .iconBtn:hover {
-  background: #1e40af;
-  color: #e2e8f0;
+  background: var(--accent-dim);
+  color: var(--accent-light);
 }

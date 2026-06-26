@@ -162,7 +162,7 @@ export default function WorldMap() {
         className={styles.mapSvg}
         preserveAspectRatio="xMidYMid meet"
       >
-        <rect width={WIDTH} height={HEIGHT} fill="#0f172a" />
+        <rect width={WIDTH} height={HEIGHT} fill="#0a1310" />
         {/* Everything that should zoom/pan together */}
         <g transform={gTransform}>
           {countryPaths.map(({ numId, alpha3, d }) => {
@@ -176,26 +176,26 @@ export default function WorldMap() {
             if (focusedConflict) {
               if (roleFill) {
                 fill = roleFill;
-                stroke = isSelected ? '#ffffff' : '#0b1220';
+                stroke = isSelected ? '#ffffff' : '#0a1310';
                 strokeWidth = isSelected ? 1.6 : 0.6;
               } else {
-                fill = '#172033';
-                stroke = '#0f172a';
+                fill = '#111c18';
+                stroke = '#0a1310';
                 strokeWidth = 0.4;
               }
             } else if (isSelected) {
               // keep the country's real severity color; mark THE selected one with a bold BLUE outline
-              fill = hasSev ? severityColor(severity) : '#253347';
+              fill = hasSev ? severityColor(severity) : '#1a2823';
               stroke = '#38bdf8';
               strokeWidth = 2.6;
             } else if (isRelated) {
               // its connections get a thinner white outline (clearly different from the blue selected one)
-              fill = hasSev ? severityColor(severity) : '#253347';
+              fill = hasSev ? severityColor(severity) : '#1a2823';
               stroke = '#ffffff';
               strokeWidth = 1.3;
             } else {
-              fill = hasSev ? severityColor(severity) : '#253347';
-              stroke = '#0f172a';
+              fill = hasSev ? severityColor(severity) : '#1a2823';
+              stroke = '#0a1310';
               strokeWidth = 0.4;
             }
 
@@ -233,7 +233,7 @@ export default function WorldMap() {
               width={Math.min(tooltip.name.length * 7 + 16, 220)}
               height={22}
               rx={4}
-              fill="#1e293b"
+              fill="#15211f"
               opacity={0.92}
             />
             <text x={tooltip.x + 16} y={tooltip.y - 6} fill="#f1f5f9" fontSize={12} fontFamily="system-ui, sans-serif">

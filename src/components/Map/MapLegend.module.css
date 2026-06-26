@@ -5,8 +5,10 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  background: rgba(12, 21, 36, 0.94);
-  border: 1px solid #1e3a5f;
+  background: rgba(10, 18, 16, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
   border-radius: 10px;
   overflow: hidden;
   pointer-events: none;
@@ -18,7 +20,7 @@
 .banner {
   position: relative;
   padding: 10px 14px 11px 18px;
-  border-bottom: 1px solid #1e3a5f;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .banner::before {
@@ -118,7 +120,7 @@
 .lineStyleNote {
   margin-top: 6px;
   padding-top: 6px;
-  border-top: 1px solid #1e3a5f;
+  border-top: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
   gap: 4px;
