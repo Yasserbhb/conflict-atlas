@@ -1,0 +1,29 @@
+.toggle {
+  display: flex;
+  background: #1e293b;
+  border-radius: 6px;
+  padding: 2px;
+  border: 1px solid #334155;
+}
+
+.btn {
+  padding: 3px 10px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.active {
+  background: #1d4ed8;
+  color: #e2e8f0;
+}
+
+.activeEdit {
+  background: #dc2626;
+  color: #e2e8f0;
+}

@@ -1,0 +1,3001 @@
+{
+  "version": "2.1.0",
+  "countries": [
+    {"id":"AFG","iso2":"AF","name":"Afghanistan","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
+    {"id":"ALB","iso2":"AL","name":"Albania","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
+    {"id":"DZA","iso2":"DZ","name":"Algeria","region":"Africa","subregion":"Northern Africa","aliases":[],"notes":""},
+    {"id":"AGO","iso2":"AO","name":"Angola","region":"Africa","subregion":"Middle Africa","aliases":[],"notes":""},
+    {"id":"ARG","iso2":"AR","name":"Argentina","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"ARM","iso2":"AM","name":"Armenia","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"AUS","iso2":"AU","name":"Australia","region":"Oceania","subregion":"Australia and New Zealand","aliases":[],"notes":""},
+    {"id":"AUT","iso2":"AT","name":"Austria","region":"Europe","subregion":"Western Europe","aliases":[],"notes":""},
+    {"id":"AZE","iso2":"AZ","name":"Azerbaijan","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"BGD","iso2":"BD","name":"Bangladesh","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
+    {"id":"BLR","iso2":"BY","name":"Belarus","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""},
+    {"id":"BEL","iso2":"BE","name":"Belgium","region":"Europe","subregion":"Western Europe","aliases":[],"notes":""},
+    {"id":"BFA","iso2":"BF","name":"Burkina Faso","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"BDI","iso2":"BI","name":"Burundi","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"KHM","iso2":"KH","name":"Cambodia","region":"Asia","subregion":"South-Eastern Asia","aliases":["Kampuchea"],"notes":""},
+    {"id":"CMR","iso2":"CM","name":"Cameroon","region":"Africa","subregion":"Middle Africa","aliases":[],"notes":""},
+    {"id":"CAN","iso2":"CA","name":"Canada","region":"Americas","subregion":"Northern America","aliases":[],"notes":""},
+    {"id":"CAF","iso2":"CF","name":"Central African Republic","region":"Africa","subregion":"Middle Africa","aliases":[],"notes":""},
+    {"id":"TCD","iso2":"TD","name":"Chad","region":"Africa","subregion":"Middle Africa","aliases":[],"notes":""},
+    {"id":"CHL","iso2":"CL","name":"Chile","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"CHN","iso2":"CN","name":"China","region":"Asia","subregion":"Eastern Asia","aliases":["PRC","People's Republic of China"],"notes":""},
+    {"id":"COL","iso2":"CO","name":"Colombia","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"COD","iso2":"CD","name":"DR Congo","region":"Africa","subregion":"Middle Africa","aliases":["DRC","Zaire","Congo-Kinshasa"],"notes":""},
+    {"id":"COG","iso2":"CG","name":"Republic of Congo","region":"Africa","subregion":"Middle Africa","aliases":["Congo-Brazzaville"],"notes":""},
+    {"id":"HRV","iso2":"HR","name":"Croatia","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
+    {"id":"CUB","iso2":"CU","name":"Cuba","region":"Americas","subregion":"Caribbean","aliases":[],"notes":""},
+    {"id":"CZE","iso2":"CZ","name":"Czech Republic","region":"Europe","subregion":"Eastern Europe","aliases":["Czechia"],"notes":""},
+    {"id":"DNK","iso2":"DK","name":"Denmark","region":"Europe","subregion":"Northern Europe","aliases":[],"notes":""},
+    {"id":"EGY","iso2":"EG","name":"Egypt","region":"Africa","subregion":"Northern Africa","aliases":["UAR"],"notes":""},
+    {"id":"SLV","iso2":"SV","name":"El Salvador","region":"Americas","subregion":"Central America","aliases":[],"notes":""},
+    {"id":"ERI","iso2":"ER","name":"Eritrea","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"ETH","iso2":"ET","name":"Ethiopia","region":"Africa","subregion":"Eastern Africa","aliases":["Abyssinia"],"notes":""},
+    {"id":"FIN","iso2":"FI","name":"Finland","region":"Europe","subregion":"Northern Europe","aliases":[],"notes":""},
+    {"id":"FRA","iso2":"FR","name":"France","region":"Europe","subregion":"Western Europe","aliases":[],"notes":""},
+    {"id":"DEU","iso2":"DE","name":"Germany","region":"Europe","subregion":"Western Europe","aliases":["West Germany","East Germany","German Empire","Third Reich","Nazi Germany"],"notes":""},
+    {"id":"GHA","iso2":"GH","name":"Ghana","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"GRC","iso2":"GR","name":"Greece","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
+    {"id":"GTM","iso2":"GT","name":"Guatemala","region":"Americas","subregion":"Central America","aliases":[],"notes":""},
+    {"id":"GIN","iso2":"GN","name":"Guinea","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"HTI","iso2":"HT","name":"Haiti","region":"Americas","subregion":"Caribbean","aliases":[],"notes":""},
+    {"id":"HND","iso2":"HN","name":"Honduras","region":"Americas","subregion":"Central America","aliases":[],"notes":""},
+    {"id":"HUN","iso2":"HU","name":"Hungary","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""},
+    {"id":"IND","iso2":"IN","name":"India","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
+    {"id":"IDN","iso2":"ID","name":"Indonesia","region":"Asia","subregion":"South-Eastern Asia","aliases":[],"notes":""},
+    {"id":"IRN","iso2":"IR","name":"Iran","region":"Asia","subregion":"Southern Asia","aliases":["Persia","Islamic Republic of Iran"],"notes":""},
+    {"id":"IRQ","iso2":"IQ","name":"Iraq","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"IRL","iso2":"IE","name":"Ireland","region":"Europe","subregion":"Northern Europe","aliases":[],"notes":""},
+    {"id":"ISR","iso2":"IL","name":"Israel","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"ITA","iso2":"IT","name":"Italy","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
+    {"id":"JPN","iso2":"JP","name":"Japan","region":"Asia","subregion":"Eastern Asia","aliases":[],"notes":""},
+    {"id":"JOR","iso2":"JO","name":"Jordan","region":"Asia","subregion":"Western Asia","aliases":["Transjordan"],"notes":""},
+    {"id":"KAZ","iso2":"KZ","name":"Kazakhstan","region":"Asia","subregion":"Central Asia","aliases":[],"notes":""},
+    {"id":"KEN","iso2":"KE","name":"Kenya","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"PRK","iso2":"KP","name":"North Korea","region":"Asia","subregion":"Eastern Asia","aliases":["DPRK"],"notes":""},
+    {"id":"KOR","iso2":"KR","name":"South Korea","region":"Asia","subregion":"Eastern Asia","aliases":[],"notes":""},
+    {"id":"KWT","iso2":"KW","name":"Kuwait","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"LBN","iso2":"LB","name":"Lebanon","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"LBY","iso2":"LY","name":"Libya","region":"Africa","subregion":"Northern Africa","aliases":[],"notes":""},
+    {"id":"MLI","iso2":"ML","name":"Mali","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"MAR","iso2":"MA","name":"Morocco","region":"Africa","subregion":"Northern Africa","aliases":[],"notes":""},
+    {"id":"MOZ","iso2":"MZ","name":"Mozambique","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"MMR","iso2":"MM","name":"Myanmar","region":"Asia","subregion":"South-Eastern Asia","aliases":["Burma"],"notes":""},
+    {"id":"NAM","iso2":"NA","name":"Namibia","region":"Africa","subregion":"Southern Africa","aliases":["German South West Africa","South West Africa"],"notes":""},
+    {"id":"NPL","iso2":"NP","name":"Nepal","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
+    {"id":"NLD","iso2":"NL","name":"Netherlands","region":"Europe","subregion":"Western Europe","aliases":["Holland"],"notes":""},
+    {"id":"NZL","iso2":"NZ","name":"New Zealand","region":"Oceania","subregion":"Australia and New Zealand","aliases":[],"notes":""},
+    {"id":"NIC","iso2":"NI","name":"Nicaragua","region":"Americas","subregion":"Central America","aliases":[],"notes":""},
+    {"id":"NER","iso2":"NE","name":"Niger","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"NGA","iso2":"NG","name":"Nigeria","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"NOR","iso2":"NO","name":"Norway","region":"Europe","subregion":"Northern Europe","aliases":[],"notes":""},
+    {"id":"PAK","iso2":"PK","name":"Pakistan","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
+    {"id":"PAN","iso2":"PA","name":"Panama","region":"Americas","subregion":"Central America","aliases":[],"notes":""},
+    {"id":"PRY","iso2":"PY","name":"Paraguay","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"PER","iso2":"PE","name":"Peru","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"PHL","iso2":"PH","name":"Philippines","region":"Asia","subregion":"South-Eastern Asia","aliases":[],"notes":""},
+    {"id":"POL","iso2":"PL","name":"Poland","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""},
+    {"id":"PRT","iso2":"PT","name":"Portugal","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
+    {"id":"PSE","iso2":"PS","name":"Palestine","region":"Asia","subregion":"Western Asia","aliases":["Gaza","West Bank","Palestinian Territories"],"notes":""},
+    {"id":"QAT","iso2":"QA","name":"Qatar","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"ROU","iso2":"RO","name":"Romania","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""},
+    {"id":"RUS","iso2":"RU","name":"Russia","region":"Europe","subregion":"Eastern Europe","aliases":["Soviet Union","USSR","SUN"],"notes":""},
+    {"id":"RWA","iso2":"RW","name":"Rwanda","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"SAU","iso2":"SA","name":"Saudi Arabia","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"SRB","iso2":"RS","name":"Serbia","region":"Europe","subregion":"Southern Europe","aliases":["Yugoslavia","FRY"],"notes":""},
+    {"id":"SLE","iso2":"SL","name":"Sierra Leone","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"SOM","iso2":"SO","name":"Somalia","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"ZAF","iso2":"ZA","name":"South Africa","region":"Africa","subregion":"Southern Africa","aliases":[],"notes":""},
+    {"id":"SSD","iso2":"SS","name":"South Sudan","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"ESP","iso2":"ES","name":"Spain","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
+    {"id":"SDN","iso2":"SD","name":"Sudan","region":"Africa","subregion":"Northern Africa","aliases":[],"notes":""},
+    {"id":"SWE","iso2":"SE","name":"Sweden","region":"Europe","subregion":"Northern Europe","aliases":[],"notes":""},
+    {"id":"CHE","iso2":"CH","name":"Switzerland","region":"Europe","subregion":"Western Europe","aliases":[],"notes":""},
+    {"id":"SYR","iso2":"SY","name":"Syria","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"TJK","iso2":"TJ","name":"Tajikistan","region":"Asia","subregion":"Central Asia","aliases":[],"notes":""},
+    {"id":"THA","iso2":"TH","name":"Thailand","region":"Asia","subregion":"South-Eastern Asia","aliases":[],"notes":""},
+    {"id":"TLS","iso2":"TL","name":"Timor-Leste","region":"Asia","subregion":"South-Eastern Asia","aliases":["East Timor"],"notes":""},
+    {"id":"TGO","iso2":"TG","name":"Togo","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"TTO","iso2":"TT","name":"Trinidad and Tobago","region":"Americas","subregion":"Caribbean","aliases":[],"notes":""},
+    {"id":"TUN","iso2":"TN","name":"Tunisia","region":"Africa","subregion":"Northern Africa","aliases":[],"notes":""},
+    {"id":"TUR","iso2":"TR","name":"Turkey","region":"Asia","subregion":"Western Asia","aliases":["Ottoman Empire","Türkiye"],"notes":""},
+    {"id":"UGA","iso2":"UG","name":"Uganda","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"UKR","iso2":"UA","name":"Ukraine","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""},
+    {"id":"ARE","iso2":"AE","name":"UAE","region":"Asia","subregion":"Western Asia","aliases":["United Arab Emirates"],"notes":""},
+    {"id":"GBR","iso2":"GB","name":"United Kingdom","region":"Europe","subregion":"Northern Europe","aliases":["Britain","England","UK"],"notes":""},
+    {"id":"USA","iso2":"US","name":"United States","region":"Americas","subregion":"Northern America","aliases":["America","US"],"notes":""},
+    {"id":"URY","iso2":"UY","name":"Uruguay","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"UZB","iso2":"UZ","name":"Uzbekistan","region":"Asia","subregion":"Central Asia","aliases":[],"notes":""},
+    {"id":"VEN","iso2":"VE","name":"Venezuela","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"VNM","iso2":"VN","name":"Vietnam","region":"Asia","subregion":"South-Eastern Asia","aliases":["North Vietnam","South Vietnam"],"notes":""},
+    {"id":"ESH","iso2":"EH","name":"Western Sahara","region":"Africa","subregion":"Northern Africa","aliases":["SADR"],"notes":""},
+    {"id":"YEM","iso2":"YE","name":"Yemen","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"ZMB","iso2":"ZM","name":"Zambia","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"ZWE","iso2":"ZW","name":"Zimbabwe","region":"Africa","subregion":"Eastern Africa","aliases":["Rhodesia"],"notes":""},
+    {"id":"BIH","iso2":"BA","name":"Bosnia and Herzegovina","region":"Europe","subregion":"Southern Europe","aliases":["Bosnia"],"notes":""},
+    {"id":"MKD","iso2":"MK","name":"North Macedonia","region":"Europe","subregion":"Southern Europe","aliases":["Macedonia"],"notes":""},
+    {"id":"MYS","iso2":"MY","name":"Malaysia","region":"Asia","subregion":"South-Eastern Asia","aliases":[],"notes":""},
+    {"id":"MEX","iso2":"MX","name":"Mexico","region":"Americas","subregion":"Central America","aliases":[],"notes":""},
+    {"id":"BRA","iso2":"BR","name":"Brazil","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"BOL","iso2":"BO","name":"Bolivia","region":"Americas","subregion":"South America","aliases":[],"notes":""},
+    {"id":"LKA","iso2":"LK","name":"Sri Lanka","region":"Asia","subregion":"Southern Asia","aliases":["Ceylon"],"notes":""},
+    {"id":"LBR","iso2":"LR","name":"Liberia","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"CYP","iso2":"CY","name":"Cyprus","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"GAB","iso2":"GA","name":"Gabon","region":"Africa","subregion":"Middle Africa","aliases":[],"notes":""},
+    {"id":"SEN","iso2":"SN","name":"Senegal","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"GEO","iso2":"GE","name":"Georgia","region":"Asia","subregion":"Western Asia","aliases":[],"notes":""},
+    {"id":"TZA","iso2":"TZ","name":"Tanzania","region":"Africa","subregion":"Eastern Africa","aliases":["German East Africa","Tanganyika"],"notes":""},
+    {"id":"LAO","iso2":"LA","name":"Laos","region":"Asia","subregion":"South-Eastern Asia","aliases":[],"notes":""},
+    {"id":"MDG","iso2":"MG","name":"Madagascar","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
+    {"id":"MDA","iso2":"MD","name":"Moldova","region":"Europe","subregion":"Eastern Europe","aliases":["Transnistria"],"notes":""},
+    {"id":"BGR","iso2":"BG","name":"Bulgaria","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""}
+  ],
+  "conflicts": [
+    {
+      "id": "seed_herero_genocide",
+      "title": "Herero & Nama Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1904",
+      "endDate": "1908",
+      "ongoing": false,
+      "description": "The first genocide of the 20th century. German colonial forces under General Lothar von Trotha systematically exterminated the Herero and Nama peoples of German South West Africa (today Namibia), killing an estimated 65,000–80,000 Herero and 10,000 Nama. Survivors were driven into the desert and placed in concentration camps. Germany officially recognized it as genocide in 2021.",
+      "parties": [
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "NAM", "role": "victim"}
+      ],
+      "involvedCountries": ["DEU","NAM"],
+      "tags": ["colonial","genocide","africa","concentration camps"],
+      "sources": []
+    },
+    {
+      "id": "seed_ww1",
+      "title": "World War I",
+      "type": "war",
+      "severity": 5,
+      "startDate": "1914",
+      "endDate": "1918",
+      "ongoing": false,
+      "description": "The Great War. Triggered by the assassination of Archduke Franz Ferdinand, it drew in most of the world's powers. The Allied Powers (France, UK, Russia, Italy, USA) fought the Central Powers (Germany, Austria-Hungary, Ottoman Empire). An estimated 20 million died. Led directly to the collapse of four empires and set the conditions for WW2.",
+      "parties": [
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "TUR", "role": "aggressor"},
+        {"countryId": "FRA", "role": "defender"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "RUS", "role": "defender"},
+        {"countryId": "USA", "role": "defender"},
+        {"countryId": "ITA", "role": "defender"},
+        {"countryId": "BEL", "role": "victim"}
+      ],
+      "involvedCountries": ["DEU","TUR","FRA","GBR","RUS","USA","ITA","BEL"],
+      "tags": ["world war","europe","empire","trench warfare"],
+      "sources": []
+    },
+    {
+      "id": "seed_armenian_genocide",
+      "title": "Armenian Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1915",
+      "endDate": "1923",
+      "ongoing": false,
+      "description": "The Ottoman Empire systematically deported and massacred its Armenian, Assyrian, and Greek Christian minorities during and after WW1. An estimated 1–1.5 million Armenians were killed through mass shootings, death marches through the Syrian desert, and starvation. Turkey still officially denies the genocide.",
+      "parties": [
+        {"countryId": "TUR", "role": "aggressor"},
+        {"countryId": "ARM", "role": "victim"}
+      ],
+      "involvedCountries": ["TUR","ARM"],
+      "tags": ["genocide","ottoman","christians","denial"],
+      "sources": []
+    },
+    {
+      "id": "seed_ww2",
+      "title": "World War II",
+      "type": "war",
+      "severity": 5,
+      "startDate": "1939",
+      "endDate": "1945",
+      "ongoing": false,
+      "description": "The deadliest conflict in human history, killing 70–85 million people including 6 million Jews in the Holocaust. Nazi Germany under Hitler invaded Europe; Imperial Japan seized Asia-Pacific. The Allied Powers (UK, USA, USSR, France, China) defeated the Axis (Germany, Italy, Japan). Ended with atomic bombings of Hiroshima and Nagasaki.",
+      "parties": [
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "ITA", "role": "aggressor"},
+        {"countryId": "JPN", "role": "aggressor"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "FRA", "role": "defender"},
+        {"countryId": "USA", "role": "defender"},
+        {"countryId": "RUS", "role": "defender"},
+        {"countryId": "CHN", "role": "defender"},
+        {"countryId": "POL", "role": "victim"},
+        {"countryId": "BEL", "role": "victim"},
+        {"countryId": "NLD", "role": "victim"}
+      ],
+      "involvedCountries": ["DEU","ITA","JPN","GBR","FRA","USA","RUS","CHN","POL","BEL","NLD"],
+      "tags": ["world war","fascism","axis","allies","atomic bomb"],
+      "sources": []
+    },
+    {
+      "id": "seed_holocaust",
+      "title": "The Holocaust",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1941",
+      "endDate": "1945",
+      "ongoing": false,
+      "description": "Nazi Germany's systematic state-sponsored murder of six million Jews and millions of others (Roma, disabled people, LGBTQ+, political prisoners, Slavs). Carried out through mass shootings, gas chambers at extermination camps (Auschwitz, Treblinka, Sobibor), and death marches. The most documented genocide in history.",
+      "parties": [
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "POL", "role": "victim"},
+        {"countryId": "RUS", "role": "victim"},
+        {"countryId": "HUN", "role": "victim"},
+        {"countryId": "ROU", "role": "victim"}
+      ],
+      "involvedCountries": ["DEU","POL","RUS","HUN","ROU"],
+      "tags": ["genocide","nazi","jewish","extermination camps","antisemitism"],
+      "sources": []
+    },
+    {
+      "id": "seed_nakba",
+      "title": "Nakba & 1948 Arab-Israeli War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1948",
+      "endDate": "1949",
+      "ongoing": false,
+      "description": "Following the declaration of the State of Israel, Arab armies from Egypt, Jordan, Syria, Iraq, and Lebanon attacked. The war resulted in Israel's establishment and the expulsion or flight of approximately 700,000 Palestinians — the Nakba ('catastrophe'). Palestinian villages were depopulated and destroyed; refugees were barred from returning.",
+      "parties": [
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "PSE", "role": "victim"},
+        {"countryId": "EGY", "role": "aggressor"},
+        {"countryId": "JOR", "role": "aggressor"},
+        {"countryId": "SYR", "role": "aggressor"},
+        {"countryId": "IRQ", "role": "aggressor"}
+      ],
+      "involvedCountries": ["ISR","PSE","EGY","JOR","SYR","IRQ"],
+      "tags": ["palestine","nakba","refugees","ethnic cleansing"],
+      "sources": []
+    },
+    {
+      "id": "seed_korean_war",
+      "title": "Korean War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1950",
+      "endDate": "1953",
+      "ongoing": false,
+      "description": "North Korea, backed by China and the USSR, invaded South Korea in June 1950. The UN, led by the USA, intervened. The war ended in an armistice (not a peace treaty) restoring roughly the original border. An estimated 3–5 million died. Korea remains technically at war.",
+      "parties": [
+        {"countryId": "PRK", "role": "aggressor"},
+        {"countryId": "CHN", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "KOR", "role": "defender"},
+        {"countryId": "USA", "role": "defender"}
+      ],
+      "involvedCountries": ["PRK","CHN","RUS","KOR","USA"],
+      "tags": ["cold war","korea","ceasefire"],
+      "sources": []
+    },
+    {
+      "id": "seed_vietnam_war",
+      "title": "Vietnam War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1955",
+      "endDate": "1975",
+      "ongoing": false,
+      "description": "The communist North Vietnam, backed by China and USSR, fought to reunify Vietnam against South Vietnam and its primary ally the USA. The US deployed over 500,000 troops and dropped more bombs than in all of WW2. An estimated 3.5 million Vietnamese died (military and civilian). The US withdrew in 1973; Vietnam reunified under communist rule in 1975.",
+      "parties": [
+        {"countryId": "VNM", "role": "aggressor"},
+        {"countryId": "CHN", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "KOR", "role": "defender"},
+        {"countryId": "AUS", "role": "defender"}
+      ],
+      "involvedCountries": ["VNM","CHN","RUS","USA","KOR","AUS"],
+      "tags": ["cold war","imperialism","napalm","agent orange"],
+      "sources": []
+    },
+    {
+      "id": "seed_guatemalan_genocide",
+      "title": "Guatemalan Civil War & Genocide",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1960",
+      "endDate": "1996",
+      "ongoing": false,
+      "description": "The Guatemalan military, backed by the USA (CIA-backed 1954 coup installed the regime), conducted a systematic genocide against indigenous Mayan communities during the civil war. Over 200,000 people were killed, 45,000 disappeared, and 626 villages were destroyed. General Ríos Montt was convicted of genocide in 2013 (later overturned).",
+      "parties": [
+        {"countryId": "GTM", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["GTM","USA"],
+      "tags": ["genocide","indigenous","latin america","CIA","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_cambodian_genocide",
+      "title": "Cambodian Genocide (Khmer Rouge)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1975",
+      "endDate": "1979",
+      "ongoing": false,
+      "description": "The Khmer Rouge under Pol Pot seized power and carried out one of the most extreme genocides of the 20th century, killing approximately 1.5–2 million people (25% of Cambodia's population) through executions, forced labor, starvation, and disease. Intellectuals, ethnic Vietnamese, Chinese, and Cham Muslims were especially targeted. Vietnam invaded and ended the regime in 1979.",
+      "parties": [
+        {"countryId": "KHM", "role": "aggressor"},
+        {"countryId": "CHN", "role": "funder"},
+        {"countryId": "VNM", "role": "defender"}
+      ],
+      "involvedCountries": ["KHM","CHN","VNM"],
+      "tags": ["genocide","khmer rouge","pol pot","year zero"],
+      "sources": []
+    },
+    {
+      "id": "seed_soviet_afghan_war",
+      "title": "Soviet-Afghan War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1979",
+      "endDate": "1989",
+      "ongoing": false,
+      "description": "The USSR invaded Afghanistan to support the communist government against Mujahideen rebels. The USA, Saudi Arabia, and Pakistan funded and armed the rebels (Operation Cyclone) to bleed the Soviets. An estimated 1–2 million Afghans died; 5–6 million became refugees. The Soviet withdrawal helped trigger the USSR's collapse. The Mujahideen later became the Taliban and Al-Qaeda.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "AFG", "role": "victim"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "SAU", "role": "funder"},
+        {"countryId": "PAK", "role": "funder"}
+      ],
+      "involvedCountries": ["RUS","AFG","USA","SAU","PAK"],
+      "tags": ["cold war","mujahideen","proxy war","islam","soviet"],
+      "sources": []
+    },
+    {
+      "id": "seed_iran_iraq_war",
+      "title": "Iran-Iraq War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1980",
+      "endDate": "1988",
+      "ongoing": false,
+      "description": "Iraq under Saddam Hussein invaded Iran following the Iranian Revolution, fearing Shia Islamic revolution spreading. The war lasted 8 years with an estimated 500,000–1 million dead. Iraq used chemical weapons against Iranian forces and Kurdish civilians. The USA supported Iraq with intelligence and weapons. Ended with a UN-brokered ceasefire with no territorial changes.",
+      "parties": [
+        {"countryId": "IRQ", "role": "aggressor"},
+        {"countryId": "IRN", "role": "defender"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "SAU", "role": "funder"},
+        {"countryId": "ARE", "role": "funder"}
+      ],
+      "involvedCountries": ["IRQ","IRN","USA","SAU","ARE"],
+      "tags": ["chemical weapons","middle east","saddam","khomeini"],
+      "sources": []
+    },
+    {
+      "id": "seed_gulf_war",
+      "title": "Gulf War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1990",
+      "endDate": "1991",
+      "ongoing": false,
+      "description": "Iraq invaded and annexed Kuwait in August 1990, citing disputed oil fields. A US-led coalition of 35 nations launched Operation Desert Storm, defeating Iraq in 100 hours of ground war. An estimated 100,000–200,000 Iraqi soldiers died plus civilian casualties. Iraq was expelled from Kuwait but Saddam Hussein remained in power.",
+      "parties": [
+        {"countryId": "IRQ", "role": "aggressor"},
+        {"countryId": "KWT", "role": "victim"},
+        {"countryId": "USA", "role": "defender"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "FRA", "role": "defender"},
+        {"countryId": "SAU", "role": "defender"}
+      ],
+      "involvedCountries": ["IRQ","KWT","USA","GBR","FRA","SAU"],
+      "tags": ["oil","middle east","coalition","saddam"],
+      "sources": []
+    },
+    {
+      "id": "seed_bosnian_war",
+      "title": "Bosnian War & Srebrenica Massacre",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1992",
+      "endDate": "1995",
+      "ongoing": false,
+      "description": "Following Yugoslavia's breakup, Bosnian Serb forces (backed by Serbia) conducted ethnic cleansing of Bosniak Muslims and Croats. The Srebrenica massacre in July 1995 saw the systematic execution of ~8,000 Bosniak men and boys — Europe's worst genocide since WW2. The UN had declared Srebrenica a 'safe area' but Dutch peacekeepers failed to prevent the massacre. The war ended with the Dayton Agreement.",
+      "parties": [
+        {"countryId": "SRB", "role": "aggressor"},
+        {"countryId": "BIH", "role": "victim"},
+        {"countryId": "HRV", "role": "aggressor"},
+        {"countryId": "USA", "role": "mediator"},
+        {"countryId": "NLD", "role": "mediator"}
+      ],
+      "involvedCountries": ["SRB","BIH","HRV","USA","NLD"],
+      "tags": ["genocide","srebrenica","ethnic cleansing","yugoslavia","balkans"],
+      "sources": []
+    },
+    {
+      "id": "seed_rwandan_genocide",
+      "title": "Rwandan Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1994-04-07",
+      "endDate": "1994-07-15",
+      "ongoing": false,
+      "description": "In 100 days, Hutu extremists massacred approximately 800,000–1,000,000 Tutsi and moderate Hutu — about 70% of the Tutsi population. The killings were organized by the government, incited by radio broadcasts (Radio Mille Collines), and carried out largely with machetes by ordinary citizens. The UN and international community failed to intervene despite clear warnings. France has acknowledged complicity.",
+      "parties": [
+        {"countryId": "RWA", "role": "aggressor"},
+        {"countryId": "FRA", "role": "funder"},
+        {"countryId": "BEL", "role": "mediator"}
+      ],
+      "involvedCountries": ["RWA","FRA","BEL"],
+      "tags": ["genocide","africa","tutsi","hutu","machete","100 days"],
+      "sources": []
+    },
+    {
+      "id": "seed_congo_wars",
+      "title": "First & Second Congo Wars",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1996",
+      "endDate": "2003",
+      "ongoing": false,
+      "description": "Africa's 'World War' involved nine African nations and dozens of armed groups fighting in DR Congo. Triggered by Rwandan Hutu génocidaires fleeing into eastern Congo. An estimated 5.4 million people died, mostly from disease and famine. The conflict was driven by vast mineral wealth (coltan, gold, diamonds). Left eastern Congo in permanent instability.",
+      "parties": [
+        {"countryId": "COD", "role": "victim"},
+        {"countryId": "RWA", "role": "aggressor"},
+        {"countryId": "UGA", "role": "aggressor"},
+        {"countryId": "ZWE", "role": "defender"},
+        {"countryId": "AGO", "role": "defender"}
+      ],
+      "involvedCountries": ["COD","RWA","UGA","ZWE","AGO"],
+      "tags": ["minerals","africa","proxy","coltan","world war africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_kosovo_war",
+      "title": "Kosovo War & NATO Bombing",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1998",
+      "endDate": "1999",
+      "ongoing": false,
+      "description": "Serbian forces under Milosevic conducted ethnic cleansing against Kosovo Albanians, displacing ~1 million people. NATO launched a 78-day bombing campaign against Yugoslavia without UN authorization. Serbia withdrew; Kosovo declared independence in 2008, recognized by 100+ countries but not by Serbia or Russia.",
+      "parties": [
+        {"countryId": "SRB", "role": "aggressor"},
+        {"countryId": "USA", "role": "defender"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "FRA", "role": "defender"},
+        {"countryId": "DEU", "role": "defender"}
+      ],
+      "involvedCountries": ["SRB","USA","GBR","FRA","DEU"],
+      "tags": ["nato","balkans","ethnic cleansing","bombing"],
+      "sources": []
+    },
+    {
+      "id": "seed_darfur_genocide",
+      "title": "Darfur Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "2003",
+      "endDate": null,
+      "ongoing": true,
+      "description": "The Sudanese government and Arab Janjaweed militias (later reconstituted as the RSF) attacked Black African communities in Darfur, killing 200,000–400,000 and displacing millions. ICC issued an arrest warrant for President Omar al-Bashir for genocide. The conflict continues intermittently and has merged with the broader 2023 Sudan Civil War.",
+      "parties": [
+        {"countryId": "SDN", "role": "aggressor"},
+        {"countryId": "CHN", "role": "funder"}
+      ],
+      "involvedCountries": ["SDN","CHN"],
+      "tags": ["genocide","africa","janjaweed","RSF","ICC","oil"],
+      "sources": []
+    },
+    {
+      "id": "seed_iraq_war",
+      "title": "Iraq War (War on Terror)",
+      "type": "war",
+      "severity": 4,
+      "startDate": "2003",
+      "endDate": "2011",
+      "ongoing": false,
+      "description": "The USA and UK invaded Iraq claiming Saddam Hussein had weapons of mass destruction (WMD) — a claim later proven false. Saddam was toppled and executed. The invasion destabilized Iraq, fueled an insurgency, and created the conditions for ISIS. An estimated 500,000+ Iraqis died. The Chilcot Inquiry (UK) found the invasion was not justified.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IRQ", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","GBR","IRQ"],
+      "tags": ["WMD","oil","saddam","isis","war on terror","imperialism"],
+      "sources": []
+    },
+    {
+      "id": "seed_palestine_occupation",
+      "title": "Palestinian Occupation",
+      "type": "occupation",
+      "severity": 4,
+      "startDate": "1967",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Since the 1967 Six-Day War, Israel has occupied the West Bank and Gaza Strip, home to ~5 million Palestinians. The occupation includes illegal settlements (700,000+ settlers), military checkpoints, land confiscation, collective punishment, and blockade of Gaza. The ICJ ruled in 2024 that the occupation is unlawful and must end. The USA consistently vetoes UN Security Council resolutions against Israel.",
+      "parties": [
+        {"countryId": "ISR", "role": "occupier"},
+        {"countryId": "PSE", "role": "victim"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "GBR", "role": "funder"}
+      ],
+      "involvedCountries": ["ISR","PSE","USA","GBR"],
+      "tags": ["occupation","settlements","apartheid","blockade","ICJ"],
+      "sources": []
+    },
+    {
+      "id": "seed_syrian_civil_war",
+      "title": "Syrian Civil War",
+      "type": "civil_war",
+      "severity": 5,
+      "startDate": "2011",
+      "endDate": "2024-12-08",
+      "ongoing": false,
+      "description": "The Assad government's brutal crackdown on Arab Spring protests evolved into a devastating civil war. Russia and Iran backed Assad; the USA, Turkey, Qatar, and Saudi Arabia backed various rebel factions. ISIS emerged and controlled large swaths of Syria and Iraq. Over 500,000 killed; 13+ million displaced — the world's largest refugee crisis. The Assad regime collapsed on 8 December 2024 when an HTS-led offensive captured Damascus; Bashar al-Assad fled to Russia. Ahmed al-Sharaa became interim president in January 2025.",
+      "parties": [
+        {"countryId": "SYR", "role": "aggressor"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "IRN", "role": "funder"},
+        {"countryId": "TUR", "role": "funder"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "QAT", "role": "funder"},
+        {"countryId": "SAU", "role": "funder"}
+      ],
+      "involvedCountries": ["SYR","RUS","IRN","TUR","USA","QAT","SAU"],
+      "tags": ["civil war","refugees","isis","chemical weapons","barrel bombs"],
+      "sources": []
+    },
+    {
+      "id": "seed_crimea_annexation",
+      "title": "Russian Annexation of Crimea",
+      "type": "occupation",
+      "severity": 4,
+      "startDate": "2014",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Following the Euromaidan revolution in Ukraine, Russia annexed Crimea in March 2014 and backed separatists in Donbas (Luhansk and Donetsk). Crimea had been part of Ukraine since 1954. The UN General Assembly voted 100-11 against the annexation. Crimea is internationally recognized as Ukraine but administered by Russia.",
+      "parties": [
+        {"countryId": "RUS", "role": "occupier"},
+        {"countryId": "UKR", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","UKR"],
+      "tags": ["annexation","occupation","nato","donbas","euromaidan"],
+      "sources": []
+    },
+    {
+      "id": "seed_yemen_war",
+      "title": "Yemen War",
+      "type": "war",
+      "severity": 5,
+      "startDate": "2015",
+      "endDate": null,
+      "ongoing": true,
+      "description": "A Saudi Arabia-led coalition (backed by the USA and UK with weapons and intelligence) intervened against the Houthi movement in Yemen. The war has created one of the world's worst humanitarian catastrophes: 377,000+ deaths (mostly from famine and disease), 21 million in need of humanitarian aid. The Saudi coalition has blockaded ports and bombed hospitals, schools, and weddings. Iran backs the Houthis. A ceasefire in 2022 is fragile.",
+      "parties": [
+        {"countryId": "SAU", "role": "aggressor"},
+        {"countryId": "ARE", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "IRN", "role": "funder"},
+        {"countryId": "YEM", "role": "victim"}
+      ],
+      "involvedCountries": ["SAU","ARE","USA","GBR","IRN","YEM"],
+      "tags": ["blockade","famine","houthis","arms sales","humanitarian catastrophe"],
+      "sources": []
+    },
+    {
+      "id": "seed_rohingya_genocide",
+      "title": "Rohingya Genocide (Myanmar)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "2016",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Myanmar's military (Tatmadaw) launched a 'clearance operation' against the Rohingya Muslim minority in Rakhine State, involving mass killings, rape, and burning of villages. Over 700,000 Rohingya fled to Bangladesh in 2017 alone. The UN Fact-Finding Mission concluded the military carried out genocide, crimes against humanity, and war crimes. The ICJ case against Myanmar is ongoing.",
+      "parties": [
+        {"countryId": "MMR", "role": "aggressor"},
+        {"countryId": "CHN", "role": "funder"},
+        {"countryId": "BGD", "role": "mediator"}
+      ],
+      "involvedCountries": ["MMR","CHN","BGD"],
+      "tags": ["genocide","rohingya","muslim","military","ethnic cleansing","ICJ"],
+      "sources": []
+    },
+    {
+      "id": "seed_tigray_war",
+      "title": "Tigray War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "2020",
+      "endDate": "2022",
+      "ongoing": false,
+      "description": "Ethiopia's federal government and Eritrea fought against the Tigray People's Liberation Front (TPLF) in northern Ethiopia. The conflict involved mass atrocities, widespread sexual violence used as a weapon of war, and a deliberate blockade of humanitarian aid to Tigray causing famine. An estimated 300,000–500,000 died — one of the deadliest wars of the 21st century. A peace deal was signed in November 2022.",
+      "parties": [
+        {"countryId": "ETH", "role": "aggressor"},
+        {"countryId": "ERI", "role": "aggressor"}
+      ],
+      "involvedCountries": ["ETH","ERI"],
+      "tags": ["famine","sexual violence","blockade","africa","atrocities"],
+      "sources": []
+    },
+    {
+      "id": "seed_ukraine_war",
+      "title": "Russia's Invasion of Ukraine",
+      "type": "war",
+      "severity": 5,
+      "startDate": "2022-02-24",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Russia launched a full-scale invasion of Ukraine on February 24, 2022, the largest military attack in Europe since WW2. Russia aimed to capture Kyiv and replace the government. Ukraine, backed by NATO weapons and Western sanctions against Russia, repelled the initial assault. The war has caused 200,000+ military deaths, 10,000+ civilian deaths, and 8+ million Ukrainian refugees in Europe. Russia has committed war crimes including targeting of civilian infrastructure.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "UKR", "role": "defender"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "DEU", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"},
+        {"countryId": "PRK", "role": "funder"},
+        {"countryId": "IRN", "role": "funder"},
+        {"countryId": "CHN", "role": "funder"}
+      ],
+      "involvedCountries": ["RUS","UKR","USA","GBR","DEU","FRA","PRK","IRN","CHN"],
+      "tags": ["nato","war crimes","nuclear","europe","invasion","sanctions"],
+      "sources": []
+    },
+    {
+      "id": "seed_drc_m23",
+      "title": "DRC / M23 Conflict",
+      "type": "proxy_war",
+      "severity": 4,
+      "startDate": "2022",
+      "endDate": null,
+      "ongoing": true,
+      "description": "The M23 rebel group, backed by Rwanda (which denies it), seized large parts of eastern DR Congo including Goma (Jan 2025) and pushed toward Uvira in South Kivu. Rwanda profits from Congolese minerals smuggled through its territory. A US-brokered DRC–Rwanda peace agreement was signed in Washington on 27 June 2025, but M23 (excluded from the talks) kept advancing; the US sanctioned the Rwandan military in March 2026 for violations. An estimated 7 million are internally displaced.",
+      "parties": [
+        {"countryId": "COD", "role": "victim"},
+        {"countryId": "RWA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["COD","RWA"],
+      "tags": ["minerals","M23","coltan","proxy","africa","displacement"],
+      "sources": []
+    },
+    {
+      "id": "seed_sudan_civil_war",
+      "title": "Sudan Civil War (SAF vs RSF)",
+      "type": "civil_war",
+      "severity": 5,
+      "startDate": "2023-04-15",
+      "endDate": null,
+      "ongoing": true,
+      "description": "War between Sudan's national army (SAF) and the Rapid Support Forces (RSF) — the reconstituted Janjaweed militia. The UAE covertly funds and supplies the RSF with weapons. The RSF has committed mass atrocities, including the 2025 fall and massacres in El Fasher (Darfur). Sudan has the world's largest displacement crisis: ~12 million displaced. The army retook Khartoum in 2025 but the country is effectively partitioned. An estimated 150,000+ dead and famine declared in multiple regions.",
+      "parties": [
+        {"countryId": "SDN", "role": "victim"},
+        {"countryId": "ARE", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "EGY", "role": "funder"}
+      ],
+      "involvedCountries": ["SDN","ARE","RUS","EGY"],
+      "tags": ["RSF","janjaweed","darfur","UAE","famine","displacement","atrocities"],
+      "sources": []
+    },
+    {
+      "id": "seed_gaza_war",
+      "title": "Gaza War",
+      "type": "war",
+      "severity": 5,
+      "startDate": "2023-10-07",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Following Hamas's October 7 attack killing ~1,200 Israelis, Israel launched a devastating two-year military campaign on Gaza. Over 72,000 Palestinians were killed (majority women and children), 90%+ of Gaza's buildings destroyed, famine induced through blockade, and nearly all 2 million people displaced. The ICJ found plausible evidence of genocide; South Africa led the case against Israel. A ceasefire took effect 10 October 2025, but Israel retained control of ~50% of Gaza and over 1,000 Palestinians were killed in violations through mid-2026. The USA, UK, and Germany supplied weapons throughout.",
+      "parties": [
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "PSE", "role": "victim"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "DEU", "role": "funder"},
+        {"countryId": "IRN", "role": "funder"},
+        {"countryId": "ZAF", "role": "mediator"}
+      ],
+      "involvedCountries": ["ISR","PSE","USA","GBR","DEU","IRN","ZAF"],
+      "tags": ["genocide","famine","blockade","ICJ","war crimes","ethnic cleansing"],
+      "sources": []
+    },
+    {
+      "id": "seed_western_sahara",
+      "title": "Western Sahara Occupation",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1975",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Morocco invaded and annexed Western Sahara in 1975 following Spain's withdrawal. The Sahrawi people, represented by the Polisario Front (backed by Algeria), have been fighting for independence. The UN considers Western Sahara a non-self-governing territory; Morocco controls most of it. A promised UN referendum on self-determination has never been held.",
+      "parties": [
+        {"countryId": "MAR", "role": "occupier"},
+        {"countryId": "ESH", "role": "victim"},
+        {"countryId": "DZA", "role": "funder"}
+      ],
+      "involvedCountries": ["MAR","ESH","DZA"],
+      "tags": ["occupation","self-determination","sahara","polisario","decolonization"],
+      "sources": []
+    },
+    {
+      "id": "seed_kashmir",
+      "title": "Kashmir Conflict",
+      "type": "disputed_territory",
+      "severity": 3,
+      "startDate": "1947",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Kashmir has been disputed between India, Pakistan, and China since the 1947 partition of British India. India administers Jammu & Kashmir; Pakistan administers Azad Kashmir and Gilgit-Baltistan; China administers Aksai Chin. Multiple wars have been fought (1947, 1965, 1971, 1999 Kargil). India revoked Jammu & Kashmir's special status in 2019. Both India and Pakistan have nuclear weapons.",
+      "parties": [
+        {"countryId": "IND", "role": "occupier"},
+        {"countryId": "PAK", "role": "aggressor"},
+        {"countryId": "CHN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["IND","PAK","CHN"],
+      "tags": ["nuclear","partition","disputed","south asia","british colonialism"],
+      "sources": []
+    },
+    {
+      "id": "seed_south_china_sea",
+      "title": "South China Sea Disputes",
+      "type": "disputed_territory",
+      "severity": 3,
+      "startDate": "2009",
+      "endDate": null,
+      "ongoing": true,
+      "description": "China claims approximately 90% of the South China Sea via the 'nine-dash line,' overlapping with the claims of Vietnam, Philippines, Malaysia, Brunei, and Taiwan. China has built artificial islands and militarized them. The ICJ ruled China's claims have no legal basis (2016), which China rejected. The Philippines and Vietnam have faced maritime harassment. The US Navy conducts freedom of navigation operations.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"},
+        {"countryId": "PHL", "role": "victim"},
+        {"countryId": "VNM", "role": "victim"},
+        {"countryId": "MYS", "role": "victim"},
+        {"countryId": "USA", "role": "mediator"}
+      ],
+      "involvedCountries": ["CHN","PHL","VNM","MYS","USA"],
+      "tags": ["territorial","maritime","islands","nine dash line","ICJ"],
+      "sources": []
+    },
+    {
+      "id": "seed_nagorno_karabakh",
+      "title": "Nagorno-Karabakh War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1988",
+      "endDate": "2023",
+      "ongoing": false,
+      "description": "A disputed region between Armenia and Azerbaijan with an Armenian majority. Armenia controlled it after the 1990s war. Azerbaijan, backed by Turkey and Israeli weapons, launched a 44-day war in 2020 and recaptured most of the territory. In September 2023, Azerbaijan launched a military operation; 100,000 Armenians fled in 24 hours — effectively an ethnic cleansing. The region is now under Azerbaijani control.",
+      "parties": [
+        {"countryId": "AZE", "role": "aggressor"},
+        {"countryId": "ARM", "role": "victim"},
+        {"countryId": "TUR", "role": "funder"},
+        {"countryId": "ISR", "role": "funder"}
+      ],
+      "involvedCountries": ["AZE","ARM","TUR","ISR"],
+      "tags": ["ethnic cleansing","armenian","caucasus","disputed","drone warfare"],
+      "sources": []
+    },
+    {
+      "id": "seed_sahel_insurgency",
+      "title": "Sahel Jihadist Insurgency",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2012",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Jihadist groups (Al-Qaeda-affiliated JNIM, ISIS-GS) have destabilized Mali, Burkina Faso, and Niger. Military coups in all three countries expelled French forces; Russia's Wagner Group (now Africa Corps) filled the vacuum. Mass atrocities against civilians are committed by both jihadists and military forces. An estimated 10,000+ die per year; millions displaced. The conflict is spreading to coastal West Africa (Togo, Benin, Ghana).",
+      "parties": [
+        {"countryId": "MLI", "role": "victim"},
+        {"countryId": "BFA", "role": "victim"},
+        {"countryId": "NER", "role": "victim"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "FRA", "role": "mediator"}
+      ],
+      "involvedCountries": ["MLI","BFA","NER","RUS","FRA"],
+      "tags": ["jihad","wagner","coup","africa","al-qaeda","france","sahara"],
+      "sources": []
+    },
+    {
+      "id": "seed_algerian_war",
+      "title": "Algerian War of Independence",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1954",
+      "endDate": "1962",
+      "ongoing": false,
+      "description": "France's brutal counterinsurgency war to hold onto its colony Algeria. The French military tortured prisoners systematically, massacred civilians (Sétif 1945 killed up to 45,000), and used napalm. Over 1 million Algerians died. France only acknowledged the use of torture in 2018. Algeria gained independence in 1962 after 132 years of French colonial rule.",
+      "parties": [
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "DZA", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","DZA"],
+      "tags": ["colonial","independence","torture","napalm","setif","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_france_rwanda",
+      "title": "France's Role in Rwandan Genocide",
+      "type": "proxy_war",
+      "severity": 5,
+      "startDate": "1990",
+      "endDate": "1994",
+      "ongoing": false,
+      "description": "France armed and trained the Rwandan Hutu government and military (FAR) before and during the 1994 genocide. Operation Turquoise (June 1994) sent French troops to Rwanda but protected Hutu génocidaires from advancing Tutsi forces rather than stopping the killing. A 2021 French inquiry found France bore 'heavy and overwhelming' responsibility. Many perpetrators fled through French-protected zones.",
+      "parties": [
+        {"countryId": "FRA", "role": "funder"},
+        {"countryId": "RWA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["FRA","RWA"],
+      "tags": ["genocide","complicity","francafrique","rwanda","africa","arms"],
+      "sources": []
+    },
+    {
+      "id": "seed_francafrique",
+      "title": "Françafrique — France's Post-Colonial Interference",
+      "type": "proxy_war",
+      "severity": 3,
+      "startDate": "1960",
+      "endDate": null,
+      "ongoing": true,
+      "description": "France's system of political, military, and economic control over its former African colonies (Gabon, Cameroon, Chad, Togo, Côte d'Ivoire, etc.). Includes backing coups, assassinating inconvenient leaders (Sylvanus Olympio of Togo, 1963), propping up corrupt dictators (Omar Bongo, Idriss Déby), and using the CFA franc to keep African economies dependent on France. French military has intervened militarily in Africa 50+ times since 1960.",
+      "parties": [
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "TGO", "role": "victim"},
+        {"countryId": "CMR", "role": "victim"},
+        {"countryId": "TCD", "role": "victim"},
+        {"countryId": "GAB", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","TGO","CMR","TCD","GAB"],
+      "tags": ["francafrique","colonial","neocolonialism","coup","africa","CFA franc"],
+      "sources": []
+    },
+    {
+      "id": "seed_kenya_mau_mau",
+      "title": "Kenya Mau Mau Uprising & British Repression",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1952",
+      "endDate": "1960",
+      "ongoing": false,
+      "description": "The British colonial government in Kenya declared a state of emergency and systematically tortured, castrated, and killed thousands of Kikuyu people during the Mau Mau uprising. An estimated 1.5 million Kenyans were forced into concentration camps (called 'villagization'). The UK government destroyed incriminating documents. In 2013, the UK acknowledged the torture and paid £19.9 million in compensation to 5,228 survivors.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "KEN", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","KEN"],
+      "tags": ["colonial","torture","concentration camps","africa","kenya","british empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_uk_balfour",
+      "title": "British Mandate Palestine & Balfour Declaration",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1917",
+      "endDate": "1948",
+      "ongoing": false,
+      "description": "The 1917 Balfour Declaration committed Britain to establishing a Jewish homeland in Palestine — without consulting the Palestinian Arab majority. During the Mandate (1920–1948), Britain facilitated Jewish immigration while suppressing Arab revolts (the 1936–39 Arab Revolt killed thousands). Britain ultimately handed the problem to the UN and withdrew, enabling the 1948 Nakba. The UK bears foundational responsibility for the Palestinian conflict.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "PSE", "role": "victim"},
+        {"countryId": "ISR", "role": "funder"}
+      ],
+      "involvedCountries": ["GBR","PSE","ISR"],
+      "tags": ["colonial","mandate","balfour","palestine","zionism","british empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_uk_nigeria_biafra",
+      "title": "Nigerian Civil War / Biafra",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1967",
+      "endDate": "1970",
+      "ongoing": false,
+      "description": "The Igbo-majority southeastern region of Nigeria declared independence as Biafra. The Nigerian federal government (backed by Britain and the USSR) blockaded Biafra, causing a famine that killed an estimated 1–3 million people, mostly children — shown in shocking photographs worldwide. The UK supplied weapons and diplomatic support to Nigeria throughout. France backed Biafra. The famine was used as a deliberate weapon of war.",
+      "parties": [
+        {"countryId": "NGA", "role": "aggressor"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"}
+      ],
+      "involvedCountries": ["NGA","GBR","RUS","FRA"],
+      "tags": ["famine","africa","colonial","secession","biafra","starvation","arms"],
+      "sources": []
+    },
+    {
+      "id": "seed_uk_iraq_mandate",
+      "title": "British Colonialism in Iraq & Chemical Weapons",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1920",
+      "endDate": "1932",
+      "ongoing": false,
+      "description": "Britain occupied Mesopotamia (Iraq) after WW1 and drew the borders of the modern Iraqi state. Winston Churchill approved the use of chemical weapons against Kurdish and Arab rebels in 1920 ('I am strongly in favour of using poisoned gas against uncivilised tribes'). The RAF bombed civilians to suppress the 1920 revolt. Britain installed the Hashemite monarchy. The borders drawn by Britain directly caused subsequent conflicts.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "IRQ", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IRQ"],
+      "tags": ["colonial","chemical weapons","churchill","mandate","borders","kurds"],
+      "sources": []
+    },
+    {
+      "id": "seed_congo_free_state",
+      "title": "Congo Free State (Leopold II's Genocide)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1885",
+      "endDate": "1908",
+      "ongoing": false,
+      "description": "King Leopold II of Belgium ran the Congo as his private property (the 'Congo Free State'). His agents enslaved the population to harvest rubber, cutting off hands as punishment for failing quotas and killing anyone who resisted. An estimated 10 million Congolese died — half the population. This was one of the first mass atrocities documented by international journalism and human rights campaigns. Belgium only apologized in 2021.",
+      "parties": [
+        {"countryId": "BEL", "role": "aggressor"},
+        {"countryId": "COD", "role": "victim"}
+      ],
+      "involvedCountries": ["BEL","COD"],
+      "tags": ["colonial","genocide","leopold","rubber","hands","africa","belgian congo"],
+      "sources": []
+    },
+    {
+      "id": "seed_transatlantic_slave_trade",
+      "title": "Transatlantic Slave Trade",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1500",
+      "endDate": "1888",
+      "ongoing": false,
+      "description": "European powers — primarily Portugal, Britain, France, Spain, and the Netherlands — transported approximately 12.5 million enslaved Africans to the Americas. An estimated 1.8 million died during the Middle Passage alone. Slavery fueled the economic development of Europe and the Americas. Britain transported 3.1 million Africans (before abolishing the trade in 1807 while keeping slavery legal until 1833). Reparations campaigns continue today.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "PRT", "role": "aggressor"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "ESP", "role": "aggressor"},
+        {"countryId": "NLD", "role": "aggressor"},
+        {"countryId": "NGA", "role": "victim"},
+        {"countryId": "GHA", "role": "victim"},
+        {"countryId": "SEN", "role": "victim"},
+        {"countryId": "AGO", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","PRT","FRA","ESP","NLD","NGA","GHA","SEN","AGO"],
+      "tags": ["slavery","colonial","africa","americas","middle passage","reparations"],
+      "sources": []
+    },
+    {
+      "id": "seed_haiti_debt",
+      "title": "Haiti's Independence Debt to France",
+      "type": "sanctions",
+      "severity": 3,
+      "startDate": "1825",
+      "endDate": "1947",
+      "ongoing": false,
+      "description": "After Haiti became the first Black republic to win independence (1804), France forced Haiti to pay 150 million gold francs (equivalent to ~$21 billion today) as 'reparations' to former slave owners — or face military blockade. Haiti borrowed from French and US banks to pay this debt, which it finished paying only in 1947. This debt directly caused Haiti's poverty and underdevelopment. France has never apologized or offered restitution.",
+      "parties": [
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "HTI", "role": "victim"},
+        {"countryId": "USA", "role": "sanctioner"}
+      ],
+      "involvedCountries": ["FRA","HTI","USA"],
+      "tags": ["slavery","reparations","debt","colonialism","caribbean","france","haiti"],
+      "sources": []
+    },
+    {
+      "id": "seed_spanish_conquest",
+      "title": "Spanish Conquest of the Americas",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1492",
+      "endDate": "1600",
+      "ongoing": false,
+      "description": "Spain's conquest of the Americas destroyed the Aztec, Inca, and Maya civilizations and devastated indigenous populations through massacre, enslavement (the encomienda system), and Old World diseases. The indigenous population of the Americas collapsed by an estimated 90% (tens of millions dead) within a century — one of the largest demographic catastrophes in history. Vast silver and gold wealth was extracted to Spain.",
+      "parties": [
+        {"countryId": "ESP", "role": "occupier"},
+        {"countryId": "MEX", "role": "victim"},
+        {"countryId": "PER", "role": "victim"},
+        {"countryId": "BOL", "role": "victim"}
+      ],
+      "involvedCountries": ["ESP","MEX","PER","BOL"],
+      "tags": ["colonial","genocide","indigenous","conquistadors","silver","disease"],
+      "sources": []
+    },
+    {
+      "id": "seed_algeria_occupation",
+      "title": "French Colonization of Algeria",
+      "type": "occupation",
+      "severity": 5,
+      "startDate": "1830",
+      "endDate": "1962",
+      "ongoing": false,
+      "description": "France invaded Algeria in 1830 and ruled it for 132 years as a settler colony, seizing land for European colonists and killing an estimated hundreds of thousands to over a million Algerians during the conquest alone (some historians describe the early conquest as genocidal). Algerians were treated as colonial subjects without citizenship. The occupation only ended after the brutal 1954–1962 War of Independence.",
+      "parties": [
+        {"countryId": "FRA", "role": "occupier"},
+        {"countryId": "DZA", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","DZA"],
+      "tags": ["colonial","occupation","settler colonialism","africa","france","land seizure"],
+      "sources": []
+    },
+    {
+      "id": "seed_british_raj",
+      "title": "British Colonial Rule in India",
+      "type": "occupation",
+      "severity": 5,
+      "startDate": "1757",
+      "endDate": "1947",
+      "ongoing": false,
+      "description": "Britain ruled the Indian subcontinent (today India, Pakistan, Bangladesh) for nearly two centuries, first through the East India Company then the Crown. British policies caused repeated famines killing tens of millions, deindustrialized India's economy, and extracted an estimated $45 trillion in wealth (by some calculations). Independence in 1947 came with the catastrophic Partition.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "IND", "role": "victim"},
+        {"countryId": "PAK", "role": "victim"},
+        {"countryId": "BGD", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IND","PAK","BGD"],
+      "tags": ["colonial","occupation","british empire","famine","wealth extraction","south asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_native_american_genocide",
+      "title": "Genocide of Native Americans",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1830",
+      "endDate": "1890",
+      "ongoing": false,
+      "description": "The United States systematically dispossessed, forcibly removed, and killed Native American peoples as it expanded westward. The Indian Removal Act (1830) drove the Trail of Tears; massacres (Sand Creek 1864, Wounded Knee 1890), broken treaties, deliberate destruction of the bison, and forced assimilation devastated indigenous nations. The pre-Columbian population of millions was reduced to around 250,000 by 1900.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["USA"],
+      "tags": ["genocide","indigenous","trail of tears","settler colonialism","wounded knee"],
+      "sources": []
+    },
+    {
+      "id": "seed_aboriginal_genocide",
+      "title": "Genocide of Aboriginal Australians",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1788",
+      "endDate": "1934",
+      "ongoing": false,
+      "description": "British colonization of Australia killed the vast majority of the Aboriginal population through frontier massacres, introduced disease, and dispossession. The Aboriginal population fell from an estimated 750,000+ to around 75,000 by the 1930s. The 'Stolen Generations' — forced removal of Aboriginal children — continued into the 1970s. Australia has never made full reparation.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "AUS", "role": "aggressor"}
+      ],
+      "involvedCountries": ["GBR","AUS"],
+      "tags": ["genocide","colonial","indigenous","frontier wars","stolen generations"],
+      "sources": []
+    },
+    {
+      "id": "seed_opium_wars",
+      "title": "Opium Wars",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1839",
+      "endDate": "1860",
+      "ongoing": false,
+      "description": "Britain (joined by France in the second war) waged war on China to force it to accept British opium imports, which were addicting millions of Chinese. Britain seized Hong Kong and imposed the 'unequal treaties.' The wars began China's 'Century of Humiliation' and the looting and burning of the Old Summer Palace in Beijing (1860).",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "CHN", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","FRA","CHN"],
+      "tags": ["colonial","opium","hong kong","unequal treaties","century of humiliation"],
+      "sources": []
+    },
+    {
+      "id": "seed_irish_famine",
+      "title": "Great Irish Famine",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1845",
+      "endDate": "1852",
+      "ongoing": false,
+      "description": "During a potato blight, around one million Irish died of starvation and disease and two million emigrated, while British-ruled Ireland continued to export food to Britain throughout. British laissez-faire policy and indifference turned a crop failure into a catastrophe that cut Ireland's population by a quarter. Many historians argue British policy made it a man-made famine.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IRL", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IRL"],
+      "tags": ["famine","colonial","british empire","starvation","emigration"],
+      "sources": []
+    },
+    {
+      "id": "seed_philippine_american_war",
+      "title": "Philippine–American War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1899",
+      "endDate": "1902",
+      "ongoing": false,
+      "description": "After buying the Philippines from Spain, the USA crushed the Filipino independence movement in a brutal colonial war. American forces used concentration camps, torture (the 'water cure'), and scorched-earth tactics. An estimated 200,000–1,000,000 Filipinos died, many from war-induced famine and disease. The USA ruled the Philippines until 1946.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "PHL", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","PHL"],
+      "tags": ["colonial","imperialism","concentration camps","torture","independence"],
+      "sources": []
+    },
+    {
+      "id": "seed_maji_maji",
+      "title": "Maji Maji Rebellion",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1905",
+      "endDate": "1907",
+      "ongoing": false,
+      "description": "When the people of German East Africa (today Tanzania) rose against forced cotton labour, Germany responded with a scorched-earth campaign, deliberately creating famine by destroying crops and villages. An estimated 200,000–300,000 Africans died, mostly from the engineered starvation. It was one of the deadliest anti-colonial repressions in African history.",
+      "parties": [
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "TZA", "role": "victim"}
+      ],
+      "involvedCountries": ["DEU","TZA"],
+      "tags": ["colonial","famine","scorched earth","africa","german empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_italian_libya",
+      "title": "Italian Colonization & Genocide in Libya",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1911",
+      "endDate": "1943",
+      "ongoing": false,
+      "description": "Italy invaded Ottoman Libya in 1911 and, under Mussolini, crushed Libyan resistance with concentration camps that killed an estimated 80,000–125,000 people (up to a quarter of Cyrenaica's population). Resistance leader Omar al-Mukhtar was executed in 1931. Italy used poison gas against civilians. The colony ended only with Italy's WW2 defeat.",
+      "parties": [
+        {"countryId": "ITA", "role": "occupier"},
+        {"countryId": "LBY", "role": "victim"}
+      ],
+      "involvedCountries": ["ITA","LBY"],
+      "tags": ["colonial","genocide","concentration camps","fascism","poison gas","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_russian_civil_war",
+      "title": "Russian Revolution & Civil War",
+      "type": "civil_war",
+      "severity": 5,
+      "startDate": "1917",
+      "endDate": "1923",
+      "ongoing": false,
+      "description": "Following the 1917 Bolshevik Revolution, the Red Army fought the White movement and foreign interventionists. An estimated 7–12 million died, mostly civilians from famine, disease, and Red and White terror. Foreign powers (Britain, France, USA, Japan) intervened in support of the Whites. The war established the Soviet Union and Bolshevik dictatorship.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "JPN", "role": "funder"}
+      ],
+      "involvedCountries": ["RUS","GBR","FRA","USA","JPN"],
+      "tags": ["revolution","civil war","bolshevik","famine","red terror","intervention"],
+      "sources": []
+    },
+    {
+      "id": "seed_irish_independence",
+      "title": "Irish War of Independence",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1919",
+      "endDate": "1921",
+      "ongoing": false,
+      "description": "Irish republicans fought a guerrilla war against British rule. Britain deployed the notorious 'Black and Tans,' who carried out reprisals against civilians. The war ended with the Anglo-Irish Treaty creating the Irish Free State, but partitioned the island — leaving Northern Ireland under British rule and sowing the seeds of the later Troubles.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "IRL", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IRL"],
+      "tags": ["colonial","independence","black and tans","partition","british empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_rif_war",
+      "title": "Rif War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1921",
+      "endDate": "1926",
+      "ongoing": false,
+      "description": "Berber Rif rebels under Abd el-Krim defeated Spain at Annual (1921) before Spain and France jointly crushed the short-lived Rif Republic. Spain and France dropped chemical weapons (mustard gas) on Moroccan civilians and villages — one of the first aerial chemical bombing campaigns against a civilian population.",
+      "parties": [
+        {"countryId": "ESP", "role": "aggressor"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "MAR", "role": "victim"}
+      ],
+      "involvedCountries": ["ESP","FRA","MAR"],
+      "tags": ["colonial","chemical weapons","mustard gas","africa","berber"],
+      "sources": []
+    },
+    {
+      "id": "seed_holodomor",
+      "title": "Holodomor (Ukrainian Famine-Genocide)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1932",
+      "endDate": "1933",
+      "ongoing": false,
+      "description": "Stalin's Soviet regime engineered a famine in Ukraine by forcibly confiscating grain and sealing borders to trap starving peasants, during the campaign against Ukrainian peasantry and national identity. An estimated 3.5–5 million Ukrainians starved to death. Many countries now recognize the Holodomor as a genocide; Russia continues to deny it.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "UKR", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","UKR"],
+      "tags": ["genocide","famine","stalin","soviet","ukraine","denial"],
+      "sources": []
+    },
+    {
+      "id": "seed_great_purge",
+      "title": "Stalin's Great Purge & Gulag",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1936",
+      "endDate": "1938",
+      "ongoing": false,
+      "description": "Stalin's regime executed an estimated 700,000–1.2 million people and sent millions more to the Gulag labour camps during the Great Terror. Targets included political rivals, military officers, intellectuals, and entire ethnic groups. The broader Soviet repression and Gulag system killed millions over decades.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"}
+      ],
+      "involvedCountries": ["RUS"],
+      "tags": ["stalin","gulag","purge","soviet","political terror"],
+      "sources": []
+    },
+    {
+      "id": "seed_italo_ethiopian",
+      "title": "Italian Invasion of Ethiopia",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1935",
+      "endDate": "1937",
+      "ongoing": false,
+      "description": "Mussolini's Italy invaded Ethiopia, one of Africa's only independent states, using poison gas against soldiers and civilians and bombing Red Cross hospitals. The League of Nations failed to stop it. Italy's occupation included the 1937 Yekatit 12 massacre in Addis Ababa, which killed tens of thousands.",
+      "parties": [
+        {"countryId": "ITA", "role": "aggressor"},
+        {"countryId": "ETH", "role": "victim"}
+      ],
+      "involvedCountries": ["ITA","ETH"],
+      "tags": ["fascism","colonial","poison gas","africa","league of nations"],
+      "sources": []
+    },
+    {
+      "id": "seed_spanish_civil_war",
+      "title": "Spanish Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1936",
+      "endDate": "1939",
+      "ongoing": false,
+      "description": "Franco's Nationalist rebels, backed militarily by Nazi Germany and Fascist Italy, overthrew the elected Republic. Germany's bombing of Guernica became a symbol of terror against civilians. Around 500,000 died; Franco's subsequent dictatorship and 'White Terror' killed tens of thousands more. The Soviet Union backed the Republic.",
+      "parties": [
+        {"countryId": "ESP", "role": "aggressor"},
+        {"countryId": "DEU", "role": "funder"},
+        {"countryId": "ITA", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["ESP","DEU","ITA","RUS"],
+      "tags": ["fascism","franco","guernica","civil war","white terror"],
+      "sources": []
+    },
+    {
+      "id": "seed_nanjing_sino_japanese",
+      "title": "Second Sino-Japanese War & Nanjing Massacre",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1937",
+      "endDate": "1945",
+      "ongoing": false,
+      "description": "Imperial Japan's invasion of China killed an estimated 15–20 million Chinese, mostly civilians. The Nanjing Massacre (1937–38) saw Japanese troops murder up to 300,000 people and commit mass rape. Japan's Unit 731 conducted lethal human biological-weapons experiments. Japan has never fully reckoned with these crimes.",
+      "parties": [
+        {"countryId": "JPN", "role": "aggressor"},
+        {"countryId": "CHN", "role": "victim"}
+      ],
+      "involvedCountries": ["JPN","CHN"],
+      "tags": ["genocide","nanjing","unit 731","imperial japan","mass rape","wwii"],
+      "sources": []
+    },
+    {
+      "id": "seed_bengal_famine",
+      "title": "Bengal Famine of 1943",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1943",
+      "endDate": "1944",
+      "ongoing": false,
+      "description": "An estimated 2–3 million people died in British-ruled Bengal as wartime policies diverted food and Winston Churchill's government refused to divert shipping for relief, instead continuing food exports. Churchill blamed Indians for 'breeding like rabbits.' Many historians consider it a man-made famine and a crime of the British Empire.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IND", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IND"],
+      "tags": ["famine","colonial","churchill","british empire","starvation","wwii"],
+      "sources": []
+    },
+    {
+      "id": "seed_partition_india",
+      "title": "Partition of India",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1947",
+      "endDate": "1948",
+      "ongoing": false,
+      "description": "Britain's hasty 1947 partition of India into India and Pakistan triggered one of history's largest forced migrations — about 15 million people — and communal massacres between Hindus, Muslims, and Sikhs that killed an estimated 1–2 million. Mass rape and abduction of women were widespread. The hastily drawn Radcliffe Line also seeded the Kashmir conflict.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "IND", "role": "victim"},
+        {"countryId": "PAK", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IND","PAK"],
+      "tags": ["partition","colonial","communal violence","migration","british empire","kashmir"],
+      "sources": []
+    },
+    {
+      "id": "seed_indonesian_revolution",
+      "title": "Indonesian National Revolution",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1945",
+      "endDate": "1949",
+      "ongoing": false,
+      "description": "After declaring independence in 1945, Indonesia fought a four-year war against the returning Dutch colonizers. The Netherlands conducted 'police actions' and committed atrocities including summary executions (the Rawagede and South Sulawesi massacres). International pressure forced the Dutch to recognize Indonesian independence in 1949.",
+      "parties": [
+        {"countryId": "NLD", "role": "occupier"},
+        {"countryId": "IDN", "role": "victim"}
+      ],
+      "involvedCountries": ["NLD","IDN"],
+      "tags": ["colonial","independence","dutch","massacres","decolonization"],
+      "sources": []
+    },
+    {
+      "id": "seed_first_indochina",
+      "title": "First Indochina War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1946",
+      "endDate": "1954",
+      "ongoing": false,
+      "description": "France fought to keep its colony in Indochina (Vietnam, Laos, Cambodia) against the Viet Minh independence movement. The USA funded up to 80% of France's war effort. France's defeat at Dien Bien Phu (1954) ended the colony and split Vietnam — setting the stage for the American Vietnam War.",
+      "parties": [
+        {"countryId": "FRA", "role": "occupier"},
+        {"countryId": "VNM", "role": "victim"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["FRA","VNM","USA"],
+      "tags": ["colonial","independence","dien bien phu","indochina","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_greek_civil_war",
+      "title": "Greek Civil War",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1946",
+      "endDate": "1949",
+      "ongoing": false,
+      "description": "One of the first proxy conflicts of the Cold War: the Western-backed Greek government fought communist insurgents. Britain and then the USA (under the Truman Doctrine) armed and funded the government. The war killed around 150,000 and displaced hundreds of thousands, keeping Greece in the Western bloc.",
+      "parties": [
+        {"countryId": "GRC", "role": "aggressor"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["GRC","GBR","USA"],
+      "tags": ["cold war","truman doctrine","communism","proxy war"],
+      "sources": []
+    },
+    {
+      "id": "seed_tibet",
+      "title": "Chinese Annexation of Tibet",
+      "type": "occupation",
+      "severity": 4,
+      "startDate": "1950",
+      "endDate": null,
+      "ongoing": true,
+      "description": "China invaded and annexed Tibet in 1950. A 1959 uprising was crushed and the Dalai Lama fled into exile. Tens of thousands died in the conquest and subsequent famine; monasteries were destroyed during the Cultural Revolution. China has since suppressed Tibetan religion, language, and identity, and resettled Han Chinese — what Tibetans and rights groups call a cultural genocide.",
+      "parties": [
+        {"countryId": "CHN", "role": "occupier"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["occupation","tibet","cultural genocide","dalai lama","china"],
+      "sources": []
+    },
+    {
+      "id": "seed_suez_crisis",
+      "title": "Suez Crisis",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1956",
+      "endDate": "1956",
+      "ongoing": false,
+      "description": "After Egypt nationalized the Suez Canal, Britain, France, and Israel secretly colluded to invade. US and Soviet pressure forced a humiliating withdrawal, marking the end of Britain and France as first-rank global powers and a turning point in decolonization.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "EGY", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","FRA","ISR","EGY"],
+      "tags": ["colonial","suez canal","cold war","decolonization","nasser"],
+      "sources": []
+    },
+    {
+      "id": "seed_hungarian_revolution",
+      "title": "Hungarian Revolution",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1956",
+      "endDate": "1956",
+      "ongoing": false,
+      "description": "When Hungarians rose up against Soviet domination and Stalinist rule, the USSR sent in tanks, crushing the revolution. Around 2,500 Hungarians were killed and 200,000 fled. The brutal repression exposed the reality of Soviet control over Eastern Europe.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "HUN", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","HUN"],
+      "tags": ["cold war","soviet","uprising","eastern europe","repression"],
+      "sources": []
+    },
+    {
+      "id": "seed_great_leap_famine",
+      "title": "Great Leap Forward Famine",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1959",
+      "endDate": "1961",
+      "ongoing": false,
+      "description": "Mao Zedong's forced collectivization and industrialization campaign caused the deadliest famine in human history. An estimated 15–55 million Chinese (commonly cited as ~30 million) starved to death while the state exported grain and denied the catastrophe. It stands as one of the largest man-made disasters ever.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["famine","mao","communism","collectivization","man-made"],
+      "sources": []
+    },
+    {
+      "id": "seed_congo_crisis",
+      "title": "Congo Crisis & Lumumba's Assassination",
+      "type": "proxy_war",
+      "severity": 4,
+      "startDate": "1960",
+      "endDate": "1965",
+      "ongoing": false,
+      "description": "Soon after independence, Congo's first elected PM Patrice Lumumba was overthrown and assassinated in 1961 with Belgian and CIA involvement. The crisis ended with the US- and Belgian-backed dictator Mobutu seizing power, ruling kleptocratically for 32 years. It set the stage for decades of Congolese instability.",
+      "parties": [
+        {"countryId": "COD", "role": "victim"},
+        {"countryId": "BEL", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["COD","BEL","USA"],
+      "tags": ["cold war","assassination","lumumba","mobutu","cia","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_indonesian_killings",
+      "title": "Indonesian Mass Killings of 1965–66",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1965",
+      "endDate": "1966",
+      "ongoing": false,
+      "description": "The Indonesian military under Suharto orchestrated the mass killing of an estimated 500,000–1,000,000 alleged communists, ethnic Chinese, and leftists. The US and UK provided lists of targets and diplomatic backing. The slaughter brought Suharto's 32-year US-aligned dictatorship to power.",
+      "parties": [
+        {"countryId": "IDN", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "GBR", "role": "funder"}
+      ],
+      "involvedCountries": ["IDN","USA","GBR"],
+      "tags": ["genocide","anti-communist","suharto","cold war","cia"],
+      "sources": []
+    },
+    {
+      "id": "seed_cultural_revolution",
+      "title": "Chinese Cultural Revolution",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1966",
+      "endDate": "1976",
+      "ongoing": false,
+      "description": "Mao's decade-long campaign to purge 'counter-revolutionaries' unleashed mass persecution, public humiliations, torture, and killings by Red Guards. An estimated 500,000–2 million people died, intellectuals were destroyed, and cultural heritage was obliterated across China.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["mao","red guards","purge","communism","persecution"],
+      "sources": []
+    },
+    {
+      "id": "seed_six_day_war",
+      "title": "Six-Day War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1967",
+      "endDate": "1967",
+      "ongoing": false,
+      "description": "Israel launched a pre-emptive strike on Egypt, then defeated Egypt, Jordan, and Syria in six days, seizing the West Bank, Gaza, East Jerusalem, the Sinai, and the Golan Heights. This began the ongoing occupation of Palestinian territory and reshaped the Middle East.",
+      "parties": [
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "EGY", "role": "defender"},
+        {"countryId": "JOR", "role": "defender"},
+        {"countryId": "SYR", "role": "defender"},
+        {"countryId": "PSE", "role": "victim"}
+      ],
+      "involvedCountries": ["ISR","EGY","JOR","SYR","PSE"],
+      "tags": ["middle east","occupation","west bank","golan","six day war"],
+      "sources": []
+    },
+    {
+      "id": "seed_bangladesh_genocide",
+      "title": "Bangladesh Genocide & Liberation War",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1971",
+      "endDate": "1971",
+      "ongoing": false,
+      "description": "The Pakistani military launched Operation Searchlight against the Bengali population of East Pakistan, killing an estimated 300,000–3 million people and raping 200,000–400,000 women in a deliberate genocide. India intervened militarily, leading to the creation of independent Bangladesh. The US backed Pakistan despite its own diplomats' genocide warnings.",
+      "parties": [
+        {"countryId": "PAK", "role": "aggressor"},
+        {"countryId": "BGD", "role": "victim"},
+        {"countryId": "IND", "role": "defender"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["PAK","BGD","IND","USA"],
+      "tags": ["genocide","mass rape","liberation war","operation searchlight","south asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_yom_kippur",
+      "title": "Yom Kippur War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1973",
+      "endDate": "1973",
+      "ongoing": false,
+      "description": "Egypt and Syria launched a surprise attack on Israel to recover territory lost in 1967. The USA airlifted arms to Israel while the USSR resupplied the Arab states, nearly triggering a superpower confrontation. The war led to the OPEC oil embargo and eventually the Camp David peace between Egypt and Israel.",
+      "parties": [
+        {"countryId": "EGY", "role": "aggressor"},
+        {"countryId": "SYR", "role": "aggressor"},
+        {"countryId": "ISR", "role": "defender"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["EGY","SYR","ISR","USA","RUS"],
+      "tags": ["middle east","oil embargo","cold war","camp david"],
+      "sources": []
+    },
+    {
+      "id": "seed_chile_pinochet",
+      "title": "Chilean Coup & Pinochet Dictatorship",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1973",
+      "endDate": "1990",
+      "ongoing": false,
+      "description": "The CIA backed the 1973 coup that overthrew Chile's elected socialist president Salvador Allende and installed General Pinochet. His dictatorship tortured tens of thousands and killed or disappeared over 3,000 political opponents. It became a laboratory for neoliberal economics imposed under terror.",
+      "parties": [
+        {"countryId": "CHL", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["CHL","USA"],
+      "tags": ["coup","cia","pinochet","allende","disappearances","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_argentine_dirty_war",
+      "title": "Argentine Dirty War",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1976",
+      "endDate": "1983",
+      "ongoing": false,
+      "description": "Argentina's US-backed military junta 'disappeared' an estimated 30,000 people — leftists, students, journalists, and activists — through torture, death flights (drugging victims and dropping them into the sea), and the theft of their babies. The Mothers of the Plaza de Mayo still seek the missing.",
+      "parties": [
+        {"countryId": "ARG", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["ARG","USA"],
+      "tags": ["disappearances","junta","death flights","cold war","stolen babies"],
+      "sources": []
+    },
+    {
+      "id": "seed_operation_condor",
+      "title": "Operation Condor",
+      "type": "proxy_war",
+      "severity": 4,
+      "startDate": "1975",
+      "endDate": "1983",
+      "ongoing": false,
+      "description": "A US-backed campaign of political repression coordinated among South America's right-wing dictatorships (Chile, Argentina, Brazil, Uruguay, Paraguay, Bolivia). They shared intelligence and assassinated dissidents across borders, killing an estimated 60,000 people and disappearing tens of thousands more.",
+      "parties": [
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "CHL", "role": "aggressor"},
+        {"countryId": "ARG", "role": "aggressor"},
+        {"countryId": "BRA", "role": "aggressor"},
+        {"countryId": "URY", "role": "aggressor"},
+        {"countryId": "PRY", "role": "aggressor"},
+        {"countryId": "BOL", "role": "aggressor"}
+      ],
+      "involvedCountries": ["USA","CHL","ARG","BRA","URY","PRY","BOL"],
+      "tags": ["cold war","cia","dictatorship","assassination","south america","disappearances"],
+      "sources": []
+    },
+    {
+      "id": "seed_lebanese_civil_war",
+      "title": "Lebanese Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1975",
+      "endDate": "1990",
+      "ongoing": false,
+      "description": "A 15-year sectarian civil war devastated Lebanon, killing an estimated 150,000. Syria and Israel both invaded and occupied parts of the country. Israel's 1982 invasion enabled the Sabra and Shatila massacre of Palestinian refugees by allied militias, killing up to 3,500 civilians.",
+      "parties": [
+        {"countryId": "LBN", "role": "victim"},
+        {"countryId": "SYR", "role": "occupier"},
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "PSE", "role": "proxy"}
+      ],
+      "involvedCountries": ["LBN","SYR","ISR","PSE"],
+      "tags": ["civil war","sectarian","sabra shatila","occupation","middle east"],
+      "sources": []
+    },
+    {
+      "id": "seed_angolan_civil_war",
+      "title": "Angolan Civil War",
+      "type": "proxy_war",
+      "severity": 4,
+      "startDate": "1975",
+      "endDate": "2002",
+      "ongoing": false,
+      "description": "One of the Cold War's largest proxy wars. The Soviet- and Cuban-backed MPLA government fought the US- and apartheid-South-Africa-backed UNITA rebels. Around 500,000+ died over 27 years. Cuba sent tens of thousands of troops; the conflict became entangled with Namibia's independence and the fight against apartheid.",
+      "parties": [
+        {"countryId": "AGO", "role": "victim"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "CUB", "role": "proxy"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "ZAF", "role": "aggressor"}
+      ],
+      "involvedCountries": ["AGO","RUS","CUB","USA","ZAF"],
+      "tags": ["cold war","proxy war","cuba","apartheid","africa","unita"],
+      "sources": []
+    },
+    {
+      "id": "seed_cyprus_invasion",
+      "title": "Turkish Invasion of Cyprus",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1974",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Following a Greek-backed coup, Turkey invaded and occupied the northern third of Cyprus, displacing around 200,000 Greek Cypriots. Turkey still occupies the north as the self-declared 'Turkish Republic of Northern Cyprus,' recognized by no country but Turkey. The island remains divided.",
+      "parties": [
+        {"countryId": "TUR", "role": "occupier"},
+        {"countryId": "CYP", "role": "victim"},
+        {"countryId": "GRC", "role": "defender"}
+      ],
+      "involvedCountries": ["TUR","CYP","GRC"],
+      "tags": ["occupation","partition","cyprus","displacement","mediterranean"],
+      "sources": []
+    },
+    {
+      "id": "seed_troubles",
+      "title": "The Troubles (Northern Ireland)",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1968",
+      "endDate": "1998",
+      "ongoing": false,
+      "description": "A three-decade conflict over Northern Ireland's status between Irish republicans (mostly Catholic) and unionists (mostly Protestant), with the British Army deployed throughout. Around 3,500 died, including civilians killed by paramilitaries and by British forces (e.g. Bloody Sunday, 1972). The 1998 Good Friday Agreement largely ended it.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IRL", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IRL"],
+      "tags": ["sectarian","bloody sunday","ira","good friday agreement","northern ireland"],
+      "sources": []
+    },
+    {
+      "id": "seed_apartheid",
+      "title": "Apartheid in South Africa",
+      "type": "occupation",
+      "severity": 4,
+      "startDate": "1948",
+      "endDate": "1994",
+      "ongoing": false,
+      "description": "South Africa's white-minority government enforced a brutal system of racial segregation and oppression against the Black majority for 46 years. It included forced removals, the Sharpeville (1960) and Soweto (1976) massacres, detention without trial, and torture. International boycotts and internal resistance led by the ANC eventually ended it; Nelson Mandela became president in 1994.",
+      "parties": [
+        {"countryId": "ZAF", "role": "aggressor"}
+      ],
+      "involvedCountries": ["ZAF"],
+      "tags": ["apartheid","racial segregation","mandela","sharpeville","soweto","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_anfal",
+      "title": "Anfal Genocide (Iraqi Kurds)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1986",
+      "endDate": "1989",
+      "ongoing": false,
+      "description": "Saddam Hussein's regime carried out a genocidal campaign against Iraqi Kurds, killing an estimated 50,000–182,000. The 1988 Halabja chemical attack alone killed up to 5,000 civilians with poison gas. Western states, then aligned with Iraq against Iran, largely stayed silent.",
+      "parties": [
+        {"countryId": "IRQ", "role": "aggressor"}
+      ],
+      "involvedCountries": ["IRQ"],
+      "tags": ["genocide","kurds","halabja","chemical weapons","saddam"],
+      "sources": []
+    },
+    {
+      "id": "seed_sri_lanka_war",
+      "title": "Sri Lankan Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1983",
+      "endDate": "2009",
+      "ongoing": false,
+      "description": "A 26-year war between the Sinhalese-dominated government and the Tamil Tiger separatists (LTTE). The war ended in 2009 with the government's Mullivaikkal offensive, in which an estimated 40,000–70,000 Tamil civilians were killed in a few months — widely condemned as war crimes. Up to 100,000 died over the full conflict.",
+      "parties": [
+        {"countryId": "LKA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["LKA"],
+      "tags": ["civil war","tamil","ltte","mullivaikkal","war crimes","south asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_second_sudanese_war",
+      "title": "Second Sudanese Civil War",
+      "type": "civil_war",
+      "severity": 5,
+      "startDate": "1983",
+      "endDate": "2005",
+      "ongoing": false,
+      "description": "One of the deadliest wars since WW2: around 2 million people died, mostly southern Sudanese civilians from war-induced famine and disease, and 4 million were displaced. The war pitted the Arab-Muslim north against the largely Christian and animist south. It ended in 2005 and led to South Sudan's independence in 2011.",
+      "parties": [
+        {"countryId": "SDN", "role": "aggressor"},
+        {"countryId": "SSD", "role": "victim"}
+      ],
+      "involvedCountries": ["SDN","SSD"],
+      "tags": ["civil war","famine","africa","secession","oil"],
+      "sources": []
+    },
+    {
+      "id": "seed_chechen_wars",
+      "title": "Chechen Wars",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1994",
+      "endDate": "2009",
+      "ongoing": false,
+      "description": "Russia fought two wars to crush Chechnya's bid for independence. The capital Grozny was flattened by bombardment — the UN called it the most destroyed city on Earth. An estimated 100,000–300,000 died, many of them civilians, with widespread atrocities, 'filtration camps,' and disappearances. Russia installed the Kadyrov dynasty to rule the republic.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"}
+      ],
+      "involvedCountries": ["RUS"],
+      "tags": ["grozny","separatism","atrocities","caucasus","russia"],
+      "sources": []
+    },
+    {
+      "id": "seed_somali_civil_war",
+      "title": "Somali Civil War & Al-Shabaab",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1991",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Somalia collapsed into civil war after 1991 and has had no stable central government since. The US intervention ended after 'Black Hawk Down' (1993). Ethiopia invaded in 2006; the jihadist group al-Shabaab continues a deadly insurgency. Repeated famines, most severely in 2011, have killed hundreds of thousands.",
+      "parties": [
+        {"countryId": "SOM", "role": "victim"},
+        {"countryId": "ETH", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["SOM","ETH","USA"],
+      "tags": ["civil war","al-shabaab","famine","black hawk down","jihad","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_sierra_leone",
+      "title": "Sierra Leone Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1991",
+      "endDate": "2002",
+      "ongoing": false,
+      "description": "A brutal war funded by 'blood diamonds,' infamous for mass amputations of civilians' limbs and the widespread use of child soldiers by the RUF rebels. Around 50,000–70,000 died. Neighbouring Liberia's Charles Taylor armed the rebels in exchange for diamonds; he was later convicted of war crimes.",
+      "parties": [
+        {"countryId": "SLE", "role": "victim"},
+        {"countryId": "LBR", "role": "funder"}
+      ],
+      "involvedCountries": ["SLE","LBR"],
+      "tags": ["blood diamonds","child soldiers","amputations","ruf","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_liberian_wars",
+      "title": "Liberian Civil Wars",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1989",
+      "endDate": "2003",
+      "ongoing": false,
+      "description": "Two civil wars killed an estimated 250,000 Liberians and used tens of thousands of child soldiers. Warlord Charles Taylor's rule and the regional spread of conflict devastated the country. Taylor was later convicted by an international court for crimes in Sierra Leone.",
+      "parties": [
+        {"countryId": "LBR", "role": "victim"}
+      ],
+      "involvedCountries": ["LBR"],
+      "tags": ["civil war","child soldiers","charles taylor","warlords","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_eritrea_ethiopia",
+      "title": "Eritrean–Ethiopian War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1998",
+      "endDate": "2000",
+      "ongoing": false,
+      "description": "A devastating border war between the two Horn of Africa neighbours killed an estimated 70,000–100,000 over a barren strip of disputed territory. Tens of thousands of people were deported on both sides. The conflict froze into a tense stalemate until a 2018 peace deal.",
+      "parties": [
+        {"countryId": "ERI", "role": "aggressor"},
+        {"countryId": "ETH", "role": "aggressor"}
+      ],
+      "involvedCountries": ["ERI","ETH"],
+      "tags": ["border war","horn of africa","disputed territory","badme"],
+      "sources": []
+    },
+    {
+      "id": "seed_algerian_civil_war",
+      "title": "Algerian Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1991",
+      "endDate": "2002",
+      "ongoing": false,
+      "description": "After the military cancelled elections an Islamist party was set to win, Algeria descended into a decade of civil war between the state and Islamist insurgents. An estimated 150,000–200,000 died, with massacres of entire villages and tens of thousands of disappearances — known as the 'Black Decade.'",
+      "parties": [
+        {"countryId": "DZA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["DZA"],
+      "tags": ["civil war","islamist","black decade","massacres","north africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_afghanistan_us_war",
+      "title": "US War in Afghanistan",
+      "type": "war",
+      "severity": 4,
+      "startDate": "2001",
+      "endDate": "2021",
+      "ongoing": false,
+      "description": "After 9/11, the US and NATO invaded Afghanistan to topple the Taliban and hunt al-Qaeda. America's longest war (20 years) killed an estimated 176,000+ people, including 46,000+ civilians. Despite trillions spent, the Taliban retook the country within weeks of the chaotic 2021 US withdrawal.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "AFG", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","GBR","AFG"],
+      "tags": ["war on terror","taliban","al-qaeda","9/11","nato","occupation"],
+      "sources": []
+    },
+    {
+      "id": "seed_russia_georgia",
+      "title": "Russo-Georgian War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "2008",
+      "endDate": "2008",
+      "ongoing": false,
+      "description": "A five-day war in which Russia invaded Georgia over the breakaway regions of South Ossetia and Abkhazia. Russia has occupied roughly 20% of Georgian territory ever since, recognizing the two regions as independent. It was a precursor to Russia's later interventions in Ukraine.",
+      "parties": [
+        {"countryId": "RUS", "role": "occupier"},
+        {"countryId": "GEO", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","GEO"],
+      "tags": ["occupation","south ossetia","abkhazia","caucasus","russia"],
+      "sources": []
+    },
+    {
+      "id": "seed_mexican_drug_war",
+      "title": "Mexican Drug War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2006",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Since Mexico militarized its fight against drug cartels in 2006, an estimated 350,000+ people have been killed and over 100,000 forcibly disappeared. Cartels, fueled by US drug demand and US-sourced weapons, control swaths of territory. The Ayotzinapa disappearance of 43 students (2014) symbolized state-cartel collusion.",
+      "parties": [
+        {"countryId": "MEX", "role": "victim"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["MEX","USA"],
+      "tags": ["cartels","drug war","disappearances","ayotzinapa","weapons"],
+      "sources": []
+    },
+    {
+      "id": "seed_libyan_civil_war",
+      "title": "Libyan Civil War & NATO Intervention",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2011",
+      "endDate": "2020",
+      "ongoing": false,
+      "description": "A NATO bombing campaign (led by France, the UK and the US) helped overthrow and kill Gaddafi in 2011. Libya then collapsed into a second civil war, open slave markets for migrants, and a proxy battleground: Turkey and Qatar backed the Tripoli government, while the UAE, Egypt and Russia (Wagner) backed General Haftar. The country remains split.",
+      "parties": [
+        {"countryId": "LBY", "role": "victim"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "TUR", "role": "funder"},
+        {"countryId": "ARE", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "EGY", "role": "funder"}
+      ],
+      "involvedCountries": ["LBY","FRA","GBR","USA","TUR","ARE","RUS","EGY"],
+      "tags": ["nato","gaddafi","proxy war","wagner","slave markets","north africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_south_sudan_war",
+      "title": "South Sudan Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2013",
+      "endDate": "2020",
+      "ongoing": false,
+      "description": "Just two years after independence, the world's newest country collapsed into civil war between factions loyal to President Kiir and VP Machar, along ethnic Dinka–Nuer lines. An estimated 400,000 died and millions were displaced, with famine and ethnic massacres. Uganda backed the government militarily.",
+      "parties": [
+        {"countryId": "SSD", "role": "aggressor"},
+        {"countryId": "UGA", "role": "funder"}
+      ],
+      "involvedCountries": ["SSD","UGA"],
+      "tags": ["civil war","ethnic","famine","dinka","nuer","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_boko_haram",
+      "title": "Boko Haram Insurgency",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2009",
+      "endDate": null,
+      "ongoing": true,
+      "description": "The jihadist group Boko Haram (later split with an ISIS affiliate) has waged a brutal insurgency across the Lake Chad basin — Nigeria, Niger, Chad and Cameroon. It is infamous for the 2014 abduction of 276 Chibok schoolgirls and mass killings. The conflict has killed an estimated 350,000 (including indirect deaths) and displaced millions.",
+      "parties": [
+        {"countryId": "NGA", "role": "victim"},
+        {"countryId": "NER", "role": "victim"},
+        {"countryId": "TCD", "role": "victim"},
+        {"countryId": "CMR", "role": "victim"}
+      ],
+      "involvedCountries": ["NGA","NER","TCD","CMR"],
+      "tags": ["jihad","boko haram","chibok","lake chad","isis","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_isis_yazidi",
+      "title": "ISIS Caliphate & Yazidi Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "2014",
+      "endDate": "2019",
+      "ongoing": false,
+      "description": "ISIS seized a third of Iraq and Syria and declared a 'caliphate,' committing genocide against the Yazidis (mass killings, and enslavement of thousands of women and girls), beheadings, and mass executions. A US-led coalition, along with Russia, Iran, and Kurdish forces, fought to destroy it; the territorial caliphate fell in 2019.",
+      "parties": [
+        {"countryId": "IRQ", "role": "victim"},
+        {"countryId": "SYR", "role": "victim"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "IRN", "role": "funder"}
+      ],
+      "involvedCountries": ["IRQ","SYR","USA","GBR","FRA","RUS","IRN"],
+      "tags": ["genocide","isis","yazidi","caliphate","slavery","terrorism"],
+      "sources": []
+    },
+    {
+      "id": "seed_uyghur_genocide",
+      "title": "Uyghur Genocide (Xinjiang)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "2014",
+      "endDate": null,
+      "ongoing": true,
+      "description": "China has detained an estimated 1+ million Uyghurs and other Muslims in 'reeducation' camps in Xinjiang since around 2017, alongside forced labour, mass surveillance, forced sterilization, family separation, and the suppression of Uyghur culture and religion. Several governments and parliaments have formally declared it a genocide; China denies it.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["genocide","uyghur","xinjiang","camps","forced labour","surveillance"],
+      "sources": []
+    },
+    {
+      "id": "seed_syria_transition",
+      "title": "Syria After Assad (Transition)",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "2024-12",
+      "endDate": null,
+      "ongoing": true,
+      "description": "After the fall of Assad in December 2024, Syria's HTS-led transitional government under Ahmed al-Sharaa has struggled to stabilize the country. Sectarian massacres of Alawite and Druze civilians occurred in 2025, clashes with the Kurdish-led SDF escalated in Aleppo in January 2026, and Israel has carried out hundreds of airstrikes on Syrian military sites.",
+      "parties": [
+        {"countryId": "SYR", "role": "aggressor"},
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "TUR", "role": "funder"}
+      ],
+      "involvedCountries": ["SYR","ISR","TUR"],
+      "tags": ["transition","hts","sectarian","sdf","airstrikes","post-assad"],
+      "sources": []
+    },
+    {
+      "id": "seed_lebanon_war_2024",
+      "title": "Israel–Hezbollah War (Lebanon)",
+      "type": "war",
+      "severity": 4,
+      "startDate": "2024",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Israel and Hezbollah escalated from cross-border exchanges (tied to the Gaza war) into full war in 2024, including Israel's pager-explosion attack, the killing of Hezbollah leader Hassan Nasrallah, and a ground invasion of southern Lebanon. A November 2024 ceasefire was repeatedly violated; renewed fighting and fresh US-brokered ceasefires followed in 2026. Iran backs Hezbollah.",
+      "parties": [
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "LBN", "role": "victim"},
+        {"countryId": "IRN", "role": "funder"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["ISR","LBN","IRN","USA"],
+      "tags": ["hezbollah","nasrallah","ceasefire","middle east","invasion"],
+      "sources": []
+    },
+    {
+      "id": "seed_israel_iran_war",
+      "title": "Israel–Iran War",
+      "type": "war",
+      "severity": 5,
+      "startDate": "2025-06",
+      "endDate": "2026-06",
+      "ongoing": false,
+      "description": "After the 12-Day War of June 2025, in which Israel struck Iran's nuclear and military infrastructure, open war broke out again from February 2026 when US and Israeli airstrikes killed Iranian officials and Supreme Leader Ali Khamenei. The US joined Israel directly against Iran and its allies; after five weeks, a US–Iran ceasefire (including Israel) was reached in mid-June 2026.",
+      "parties": [
+        {"countryId": "ISR", "role": "aggressor"},
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "IRN", "role": "victim"}
+      ],
+      "involvedCountries": ["ISR","USA","IRN"],
+      "tags": ["nuclear","khamenei","12-day war","airstrikes","middle east","ceasefire"],
+      "sources": []
+    },
+    {
+      "id": "seed_us_venezuela",
+      "title": "US Intervention in Venezuela & Capture of Maduro",
+      "type": "war",
+      "severity": 4,
+      "startDate": "2025-09",
+      "endDate": "2026-01",
+      "ongoing": false,
+      "description": "After months of a Caribbean military buildup and strikes on alleged drug-trafficking boats, the US launched 'Operation Absolute Resolve' on 3 January 2026, bombing northern Venezuela and capturing President Nicolás Maduro, who was flown to New York to face narcotrafficking charges. At least 23 Venezuelan and 32 Cuban security personnel were killed. The UN and many states condemned it as a violation of sovereignty and international law.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "VEN", "role": "victim"},
+        {"countryId": "CUB", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","VEN","CUB"],
+      "tags": ["regime change","maduro","intervention","drug war","sovereignty","caribbean"],
+      "sources": []
+    },
+    {
+      "id": "seed_venezuela_crisis",
+      "title": "Venezuelan Crisis & US Sanctions",
+      "type": "sanctions",
+      "severity": 3,
+      "startDate": "2014",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Venezuela's economy collapsed under Maduro amid hyperinflation, shortages, and authoritarian rule, driving over 7 million people to flee — one of the largest displacement crises in the world. The US imposed crushing sanctions (especially on oil) from 2017, which critics say deepened civilian suffering, while backing opposition claims to the presidency.",
+      "parties": [
+        {"countryId": "VEN", "role": "victim"},
+        {"countryId": "USA", "role": "sanctioner"}
+      ],
+      "involvedCountries": ["VEN","USA"],
+      "tags": ["sanctions","hyperinflation","refugees","maduro","oil"],
+      "sources": []
+    },
+    {
+      "id": "seed_cuba_embargo",
+      "title": "US Embargo & Bay of Pigs (Cuba)",
+      "type": "sanctions",
+      "severity": 3,
+      "startDate": "1960",
+      "endDate": null,
+      "ongoing": true,
+      "description": "After Cuba's 1959 revolution, the US imposed a comprehensive economic embargo (still in place after 60+ years) and backed the failed 1961 Bay of Pigs invasion by exiles. The 1962 Cuban Missile Crisis brought the world to the brink of nuclear war. The UN General Assembly has voted overwhelmingly against the embargo every year.",
+      "parties": [
+        {"countryId": "USA", "role": "sanctioner"},
+        {"countryId": "CUB", "role": "sanctioned"}
+      ],
+      "involvedCountries": ["USA","CUB"],
+      "tags": ["embargo","bay of pigs","missile crisis","cold war","caribbean"],
+      "sources": []
+    },
+    {
+      "id": "seed_colombian_conflict",
+      "title": "Colombian Armed Conflict (FARC)",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1964",
+      "endDate": "2016",
+      "ongoing": false,
+      "description": "A six-decade war between the Colombian state, leftist guerrillas (FARC, ELN), and right-wing paramilitaries, fueled by the cocaine trade. The US funded the government heavily through 'Plan Colombia.' Around 260,000 died and over 7 million were displaced before the 2016 peace deal with the FARC; the ELN conflict continues.",
+      "parties": [
+        {"countryId": "COL", "role": "victim"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["COL","USA"],
+      "tags": ["farc","cocaine","plan colombia","paramilitaries","displacement"],
+      "sources": []
+    },
+    {
+      "id": "seed_salvadoran_civil_war",
+      "title": "Salvadoran Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1979",
+      "endDate": "1992",
+      "ongoing": false,
+      "description": "A US-backed military government fought leftist FMLN guerrillas, killing around 75,000 — mostly civilians murdered by army death squads. Atrocities included the assassination of Archbishop Óscar Romero (1980) and the El Mozote massacre (1981), in which the US-trained Atlácatl Battalion killed around 1,000 villagers.",
+      "parties": [
+        {"countryId": "SLV", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["SLV","USA"],
+      "tags": ["death squads","el mozote","romero","cold war","central america"],
+      "sources": []
+    },
+    {
+      "id": "seed_nicaragua_contras",
+      "title": "Nicaraguan Contra War",
+      "type": "proxy_war",
+      "severity": 3,
+      "startDate": "1981",
+      "endDate": "1990",
+      "ongoing": false,
+      "description": "The US covertly armed and funded the 'Contra' rebels against Nicaragua's leftist Sandinista government, including through the illegal Iran-Contra scheme. The CIA mined Nicaragua's harbours; the World Court ruled against the US in 1986. Around 30,000 died.",
+      "parties": [
+        {"countryId": "NIC", "role": "victim"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["NIC","USA"],
+      "tags": ["contras","iran-contra","cia","cold war","central america"],
+      "sources": []
+    },
+    {
+      "id": "seed_us_panama",
+      "title": "US Invasion of Panama",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1989",
+      "endDate": "1990",
+      "ongoing": false,
+      "description": "The US invaded Panama to depose its former CIA-asset dictator Manuel Noriega on drug charges. Hundreds to possibly thousands of Panamanian civilians died, and the poor El Chorrillo neighbourhood was devastated. The UN General Assembly condemned the invasion as a violation of international law.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "PAN", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","PAN"],
+      "tags": ["noriega","regime change","drug war","intervention","central america"],
+      "sources": []
+    },
+    {
+      "id": "seed_us_haiti_occupation",
+      "title": "US Occupation of Haiti",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1915",
+      "endDate": "1934",
+      "ongoing": false,
+      "description": "The US militarily occupied Haiti for 19 years, seizing control of its finances, rewriting its constitution to allow foreign land ownership, and reinstating forced-labour ('corvée') road-building. US Marines killed thousands suppressing the Caco rebellion. It was part of a wider pattern of US interventions across the Caribbean.",
+      "parties": [
+        {"countryId": "USA", "role": "occupier"},
+        {"countryId": "HTI", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","HTI"],
+      "tags": ["occupation","marines","corvée","caribbean","imperialism"],
+      "sources": []
+    },
+    {
+      "id": "seed_paraguayan_war",
+      "title": "Paraguayan War (Triple Alliance)",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1864",
+      "endDate": "1870",
+      "ongoing": false,
+      "description": "The deadliest interstate war in Latin American history. Brazil, Argentina, and Uruguay crushed Paraguay, which lost an estimated 60–70% of its population (and up to 90% of its adult men) to combat, disease, and famine. Paraguay was left devastated and stripped of territory.",
+      "parties": [
+        {"countryId": "BRA", "role": "aggressor"},
+        {"countryId": "ARG", "role": "aggressor"},
+        {"countryId": "URY", "role": "aggressor"},
+        {"countryId": "PRY", "role": "victim"}
+      ],
+      "involvedCountries": ["BRA","ARG","URY","PRY"],
+      "tags": ["south america","triple alliance","demographic catastrophe"],
+      "sources": []
+    },
+    {
+      "id": "seed_war_of_pacific",
+      "title": "War of the Pacific",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1879",
+      "endDate": "1884",
+      "ongoing": false,
+      "description": "Chile defeated Peru and Bolivia in a war over nitrate-rich Atacama territory. Chile annexed land that left Bolivia permanently landlocked — a grievance Bolivia still raises today. It reshaped the borders and economies of the southern Andes.",
+      "parties": [
+        {"countryId": "CHL", "role": "aggressor"},
+        {"countryId": "PER", "role": "victim"},
+        {"countryId": "BOL", "role": "victim"}
+      ],
+      "involvedCountries": ["CHL","PER","BOL"],
+      "tags": ["nitrate","atacama","landlocked","south america","borders"],
+      "sources": []
+    },
+    {
+      "id": "seed_mexican_revolution",
+      "title": "Mexican Revolution",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1910",
+      "endDate": "1920",
+      "ongoing": false,
+      "description": "A decade of revolution and civil war that overthrew the Díaz dictatorship and reshaped Mexico, with figures like Zapata and Pancho Villa. An estimated 1–2 million people died. The US intervened militarily several times during the upheaval.",
+      "parties": [
+        {"countryId": "MEX", "role": "victim"},
+        {"countryId": "USA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["MEX","USA"],
+      "tags": ["revolution","zapata","pancho villa","latin america"],
+      "sources": []
+    },
+    {
+      "id": "seed_peru_shining_path",
+      "title": "Peru — Shining Path Conflict",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1980",
+      "endDate": "2000",
+      "ongoing": false,
+      "description": "The Maoist Shining Path insurgency and the state's counterinsurgency killed an estimated 70,000 Peruvians, most of them indigenous Quechua-speaking peasants caught between both sides. A truth commission documented massacres and forced disappearances by both the guerrillas and the military.",
+      "parties": [
+        {"countryId": "PER", "role": "victim"}
+      ],
+      "involvedCountries": ["PER"],
+      "tags": ["shining path","maoist","indigenous","andes","insurgency"],
+      "sources": []
+    },
+    {
+      "id": "seed_brazil_dictatorship",
+      "title": "Brazilian Military Dictatorship",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1964",
+      "endDate": "1985",
+      "ongoing": false,
+      "description": "A US-backed military coup overthrew Brazil's elected government, ushering in 21 years of dictatorship that tortured tens of thousands and killed or disappeared hundreds of opponents. It was a pillar of the regional Operation Condor network.",
+      "parties": [
+        {"countryId": "BRA", "role": "aggressor"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["BRA","USA"],
+      "tags": ["coup","dictatorship","torture","cold war","condor"],
+      "sources": []
+    },
+    {
+      "id": "seed_taiping_rebellion",
+      "title": "Taiping Rebellion",
+      "type": "civil_war",
+      "severity": 5,
+      "startDate": "1850",
+      "endDate": "1864",
+      "ongoing": false,
+      "description": "A massive civil war in Qing China led by a millenarian movement that established a rival kingdom. It is one of the deadliest conflicts in all of human history, with an estimated 20–30 million dead, mostly from famine and disease. Britain and France ultimately backed the Qing to crush it.",
+      "parties": [
+        {"countryId": "CHN", "role": "victim"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"}
+      ],
+      "involvedCountries": ["CHN","GBR","FRA"],
+      "tags": ["china","qing","civil war","deadliest","famine"],
+      "sources": []
+    },
+    {
+      "id": "seed_first_sino_japanese",
+      "title": "First Sino-Japanese War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1894",
+      "endDate": "1895",
+      "ongoing": false,
+      "description": "Japan defeated Qing China, seizing Taiwan and dominance over Korea. The war announced Japan's arrival as an imperial power and accelerated the decline of imperial China, feeding into its 'Century of Humiliation.'",
+      "parties": [
+        {"countryId": "JPN", "role": "aggressor"},
+        {"countryId": "CHN", "role": "victim"}
+      ],
+      "involvedCountries": ["JPN","CHN"],
+      "tags": ["imperial japan","taiwan","korea","qing"],
+      "sources": []
+    },
+    {
+      "id": "seed_boxer_rebellion",
+      "title": "Boxer Rebellion & Eight-Nation Intervention",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1899",
+      "endDate": "1901",
+      "ongoing": false,
+      "description": "An anti-foreign, anti-Christian uprising in China was crushed by an Eight-Nation Alliance (Britain, France, Germany, Russia, Japan, the US, Italy, Austria-Hungary), which looted Beijing and imposed a crushing indemnity on China. It deepened foreign domination of China.",
+      "parties": [
+        {"countryId": "CHN", "role": "victim"},
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "JPN", "role": "aggressor"},
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "ITA", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CHN","GBR","FRA","DEU","RUS","JPN","USA","ITA"],
+      "tags": ["china","imperialism","eight-nation alliance","indemnity","looting"],
+      "sources": []
+    },
+    {
+      "id": "seed_japan_korea_annexation",
+      "title": "Japanese Colonization of Korea",
+      "type": "occupation",
+      "severity": 4,
+      "startDate": "1910",
+      "endDate": "1945",
+      "ongoing": false,
+      "description": "Japan annexed and ruled Korea for 35 years, suppressing Korean language and culture, conscripting forced labour, and forcing up to 200,000 women (mostly Korean) into sexual slavery as wartime 'comfort women.' The legacy still poisons Japan–Korea relations.",
+      "parties": [
+        {"countryId": "JPN", "role": "occupier"},
+        {"countryId": "KOR", "role": "victim"},
+        {"countryId": "PRK", "role": "victim"}
+      ],
+      "involvedCountries": ["JPN","KOR","PRK"],
+      "tags": ["colonial","comfort women","forced labour","imperial japan","korea"],
+      "sources": []
+    },
+    {
+      "id": "seed_chinese_civil_war",
+      "title": "Chinese Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1927",
+      "endDate": "1949",
+      "ongoing": false,
+      "description": "The war between Mao's Communists and Chiang Kai-shek's Nationalists (paused to fight Japan) killed several million. The Communist victory in 1949 founded the People's Republic of China; the Nationalists fled to Taiwan, creating the still-unresolved cross-strait division.",
+      "parties": [
+        {"countryId": "CHN", "role": "victim"},
+        {"countryId": "USA", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["CHN","USA","RUS"],
+      "tags": ["mao","chiang kai-shek","communism","taiwan","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_tiananmen",
+      "title": "Tiananmen Square Massacre",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "1989",
+      "endDate": "1989",
+      "ongoing": false,
+      "description": "The Chinese military crushed peaceful pro-democracy protests in Beijing, killing hundreds to possibly thousands of demonstrators. China censors all mention of it to this day. The 'Tank Man' image became a global symbol of defiance.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["china","massacre","pro-democracy","censorship","tank man"],
+      "sources": []
+    },
+    {
+      "id": "seed_laos_secret_war",
+      "title": "Laotian Civil War (US Secret War)",
+      "type": "proxy_war",
+      "severity": 4,
+      "startDate": "1959",
+      "endDate": "1975",
+      "ongoing": false,
+      "description": "During the Vietnam War the US dropped over 2 million tons of bombs on Laos — making it the most heavily bombed country per capita in history. Vast unexploded ordnance still kills and maims Laotians decades later. The CIA ran a 'secret army' of Hmong fighters.",
+      "parties": [
+        {"countryId": "LAO", "role": "victim"},
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "VNM", "role": "aggressor"}
+      ],
+      "involvedCountries": ["LAO","USA","VNM"],
+      "tags": ["secret war","bombing","cia","hmong","unexploded ordnance","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_malayan_emergency",
+      "title": "Malayan Emergency",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1948",
+      "endDate": "1960",
+      "ongoing": false,
+      "description": "Britain fought communist insurgents in colonial Malaya, pioneering counterinsurgency tactics including the forced resettlement of 500,000 people into guarded 'new villages.' British forces committed atrocities such as the Batang Kali massacre (1948).",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "MYS", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","MYS"],
+      "tags": ["colonial","counterinsurgency","communism","resettlement","batang kali"],
+      "sources": []
+    },
+    {
+      "id": "seed_myanmar_civil_war",
+      "title": "Myanmar Civil War (Post-Coup)",
+      "type": "civil_war",
+      "severity": 5,
+      "startDate": "2021",
+      "endDate": null,
+      "ongoing": true,
+      "description": "After the military (Tatmadaw) seized power in a February 2021 coup, mass protests were met with lethal force, igniting a nationwide civil war. The junta has conducted airstrikes, mass killings, and village burnings; thousands are dead and millions displaced. Ethnic armed groups and a resistance movement control much of the country.",
+      "parties": [
+        {"countryId": "MMR", "role": "aggressor"}
+      ],
+      "involvedCountries": ["MMR"],
+      "tags": ["coup","junta","tatmadaw","airstrikes","resistance","civil war"],
+      "sources": []
+    },
+    {
+      "id": "seed_iran_1953_coup",
+      "title": "1953 Iranian Coup (Mossadegh)",
+      "type": "proxy_war",
+      "severity": 3,
+      "startDate": "1953",
+      "endDate": "1953",
+      "ongoing": false,
+      "description": "The CIA and British MI6 orchestrated a coup that overthrew Iran's elected PM Mohammad Mossadegh after he nationalized the British-controlled oil industry. They reinstalled the autocratic Shah, whose repressive rule fed the 1979 revolution and lasting Iranian distrust of the West.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IRN", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","GBR","IRN"],
+      "tags": ["coup","cia","mi6","oil","mossadegh","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_iranian_revolution",
+      "title": "Iranian Revolution",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1978",
+      "endDate": "1979",
+      "ongoing": false,
+      "description": "A mass revolution overthrew the US-backed Shah and established Ayatollah Khomeini's Islamic Republic. It reshaped the Middle East, triggered the US embassy hostage crisis, and made Iran and the US enduring adversaries.",
+      "parties": [
+        {"countryId": "IRN", "role": "victim"}
+      ],
+      "involvedCountries": ["IRN"],
+      "tags": ["revolution","khomeini","islamic republic","shah","hostage crisis"],
+      "sources": []
+    },
+    {
+      "id": "seed_british_egypt",
+      "title": "British Occupation of Egypt",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1882",
+      "endDate": "1956",
+      "ongoing": false,
+      "description": "Britain occupied Egypt to secure the Suez Canal and its route to India, controlling the country for over 70 years. British forces suppressed nationalist uprisings (1919, 1952) until the 1952 revolution and the 1956 Suez Crisis ended British dominance.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "EGY", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","EGY"],
+      "tags": ["colonial","suez canal","british empire","north africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_mahdist_war",
+      "title": "Mahdist War (Sudan)",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1881",
+      "endDate": "1899",
+      "ongoing": false,
+      "description": "A Sudanese Islamic uprising created the Mahdist State, which Britain and Egypt eventually crushed. At Omdurman (1898), British machine guns killed around 10,000 Sudanese in hours. The reconquest opened Sudan to Anglo-Egyptian colonial rule.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "EGY", "role": "aggressor"},
+        {"countryId": "SDN", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","EGY","SDN"],
+      "tags": ["colonial","mahdi","omdurman","machine guns","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_hama_massacre",
+      "title": "Hama Massacre (Syria)",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1982",
+      "endDate": "1982",
+      "ongoing": false,
+      "description": "Hafez al-Assad's regime crushed a Muslim Brotherhood uprising in the Syrian city of Hama, killing an estimated 10,000–40,000 people and razing much of the old city. It was one of the deadliest single acts of state repression in the modern Middle East.",
+      "parties": [
+        {"countryId": "SYR", "role": "aggressor"}
+      ],
+      "involvedCountries": ["SYR"],
+      "tags": ["massacre","assad","muslim brotherhood","state repression"],
+      "sources": []
+    },
+    {
+      "id": "seed_first_intifada",
+      "title": "First Intifada",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1987",
+      "endDate": "1993",
+      "ongoing": false,
+      "description": "A Palestinian popular uprising against the Israeli occupation, marked by mass protests, strikes, and stone-throwing met with Israel's 'force, might and beatings' policy. Around 1,200 Palestinians and 160 Israelis died. It led to the Oslo peace process.",
+      "parties": [
+        {"countryId": "ISR", "role": "occupier"},
+        {"countryId": "PSE", "role": "victim"}
+      ],
+      "involvedCountries": ["ISR","PSE"],
+      "tags": ["intifada","occupation","palestine","oslo","uprising"],
+      "sources": []
+    },
+    {
+      "id": "seed_second_intifada",
+      "title": "Second Intifada",
+      "type": "occupation",
+      "severity": 4,
+      "startDate": "2000",
+      "endDate": "2005",
+      "ongoing": false,
+      "description": "A far more violent Palestinian uprising involving suicide bombings and heavy Israeli military operations. Around 3,000 Palestinians and 1,000 Israelis died. Israel built the West Bank separation barrier and reoccupied Palestinian cities.",
+      "parties": [
+        {"countryId": "ISR", "role": "occupier"},
+        {"countryId": "PSE", "role": "victim"}
+      ],
+      "involvedCountries": ["ISR","PSE"],
+      "tags": ["intifada","occupation","palestine","separation barrier","suicide bombings"],
+      "sources": []
+    },
+    {
+      "id": "seed_egypt_rabaa",
+      "title": "Egyptian Coup & Rabaa Massacre",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "2013",
+      "endDate": "2013",
+      "ongoing": false,
+      "description": "After a military coup ousted Egypt's first elected president Mohamed Morsi, security forces massacred at least 800–1,000 protesters in a single day at Cairo's Rabaa Square — one of the largest killings of demonstrators in modern history. It entrenched Sisi's authoritarian rule.",
+      "parties": [
+        {"countryId": "EGY", "role": "aggressor"}
+      ],
+      "involvedCountries": ["EGY"],
+      "tags": ["coup","massacre","rabaa","morsi","sisi","arab spring"],
+      "sources": []
+    },
+    {
+      "id": "seed_boer_wars",
+      "title": "Boer Wars",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1880",
+      "endDate": "1902",
+      "ongoing": false,
+      "description": "Britain fought the Dutch-descended Boer republics for control of gold- and diamond-rich South Africa. Britain interned Boer and African civilians in concentration camps where around 28,000 Boers (mostly children) and many thousands of Africans died of disease and starvation — among the first modern concentration camps.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "ZAF", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","ZAF"],
+      "tags": ["colonial","concentration camps","gold","diamonds","british empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_anglo_zulu",
+      "title": "Anglo-Zulu War",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1879",
+      "endDate": "1879",
+      "ongoing": false,
+      "description": "Britain invaded the independent Zulu Kingdom in South Africa. Despite the Zulu victory at Isandlwana, Britain ultimately destroyed the kingdom and absorbed it — a classic episode of the 'Scramble for Africa.'",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "ZAF", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","ZAF"],
+      "tags": ["colonial","zulu","isandlwana","scramble for africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_ethiopia_red_terror",
+      "title": "Ethiopian Red Terror (Derg)",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1976",
+      "endDate": "1978",
+      "ongoing": false,
+      "description": "The Marxist Derg junta under Mengistu unleashed a campaign of mass killing against opponents, killing an estimated 500,000. Bodies were left in the streets and families charged for the bullets. Soviet- and Cuban-backed, the regime also presided over the 1983–85 famine.",
+      "parties": [
+        {"countryId": "ETH", "role": "aggressor"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["ETH","RUS"],
+      "tags": ["red terror","derg","mengistu","famine","cold war","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_idi_amin",
+      "title": "Idi Amin's Uganda",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1971",
+      "endDate": "1979",
+      "ongoing": false,
+      "description": "Ugandan dictator Idi Amin killed an estimated 300,000–500,000 people, expelled the country's Asian minority, and ruled by terror. Tanzania invaded in 1979 to overthrow him after he tried to annex Tanzanian territory.",
+      "parties": [
+        {"countryId": "UGA", "role": "aggressor"},
+        {"countryId": "TZA", "role": "defender"}
+      ],
+      "involvedCountries": ["UGA","TZA"],
+      "tags": ["dictatorship","idi amin","expulsion","terror","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_lra",
+      "title": "Lord's Resistance Army Insurgency",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1987",
+      "endDate": "2017",
+      "ongoing": false,
+      "description": "Joseph Kony's LRA waged a brutal insurgency across Uganda, South Sudan, DR Congo, and CAR, abducting an estimated 60,000–100,000 children as soldiers and sex slaves and displacing millions. Kony remains at large; the ICC indicted him in 2005.",
+      "parties": [
+        {"countryId": "UGA", "role": "victim"},
+        {"countryId": "COD", "role": "victim"},
+        {"countryId": "SSD", "role": "victim"},
+        {"countryId": "CAF", "role": "victim"}
+      ],
+      "involvedCountries": ["UGA","COD","SSD","CAF"],
+      "tags": ["lra","kony","child soldiers","icc","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_burundi_genocides",
+      "title": "Burundian Genocides",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1972",
+      "endDate": "1993",
+      "ongoing": false,
+      "description": "Burundi suffered cycles of ethnic mass killing between Hutu and Tutsi: the 1972 genocide of Hutus (an estimated 100,000–300,000 dead) and the 1993 violence that killed around 50,000–100,000 and helped ignite the wider Great Lakes crisis alongside Rwanda.",
+      "parties": [
+        {"countryId": "BDI", "role": "aggressor"}
+      ],
+      "involvedCountries": ["BDI"],
+      "tags": ["genocide","hutu","tutsi","great lakes","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_mozambique_civil_war",
+      "title": "Mozambican Civil War",
+      "type": "proxy_war",
+      "severity": 4,
+      "startDate": "1977",
+      "endDate": "1992",
+      "ongoing": false,
+      "description": "After independence from Portugal, Mozambique's Soviet-aligned FRELIMO government fought the RENAMO rebels backed by white-ruled Rhodesia and apartheid South Africa. Around 1 million died, many from war-induced famine, and the country was littered with landmines.",
+      "parties": [
+        {"countryId": "MOZ", "role": "victim"},
+        {"countryId": "ZAF", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["MOZ","ZAF","RUS"],
+      "tags": ["proxy war","renamo","frelimo","apartheid","landmines","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_car_civil_war",
+      "title": "Central African Republic Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2012",
+      "endDate": null,
+      "ongoing": true,
+      "description": "A civil war between the mainly Muslim Séléka and Christian anti-Balaka militias has driven sectarian massacres and displaced a quarter of the population. Russia's Wagner Group props up the government in exchange for mining rights.",
+      "parties": [
+        {"countryId": "CAF", "role": "victim"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"}
+      ],
+      "involvedCountries": ["CAF","RUS","FRA"],
+      "tags": ["sectarian","seleka","anti-balaka","wagner","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_ogaden_war",
+      "title": "Ogaden War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1977",
+      "endDate": "1978",
+      "ongoing": false,
+      "description": "Somalia invaded Ethiopia's Somali-inhabited Ogaden region. In a dramatic Cold War switch, the USSR and Cuba backed Ethiopia, sending thousands of Cuban troops to repel Somalia. Tens of thousands died.",
+      "parties": [
+        {"countryId": "SOM", "role": "aggressor"},
+        {"countryId": "ETH", "role": "defender"},
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "CUB", "role": "proxy"}
+      ],
+      "involvedCountries": ["SOM","ETH","RUS","CUB"],
+      "tags": ["cold war","ogaden","horn of africa","cuba"],
+      "sources": []
+    },
+    {
+      "id": "seed_zimbabwe_gukurahundi",
+      "title": "Zimbabwe — Gukurahundi Massacres",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1983",
+      "endDate": "1987",
+      "ongoing": false,
+      "description": "Robert Mugabe's North Korean-trained Fifth Brigade massacred an estimated 20,000 Ndebele civilians in Matabeleland to crush political rivals. Zimbabwe has never fully acknowledged the killings.",
+      "parties": [
+        {"countryId": "ZWE", "role": "aggressor"},
+        {"countryId": "PRK", "role": "funder"}
+      ],
+      "involvedCountries": ["ZWE","PRK"],
+      "tags": ["massacre","mugabe","ndebele","matabeleland","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_cameroon_anglophone",
+      "title": "Cameroon Anglophone Crisis",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "2016",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Cameroon's English-speaking minority rose against marginalization by the Francophone government, escalating into an armed separatist conflict ('Ambazonia'). Government forces and separatists have both committed atrocities; thousands are dead and over a million displaced.",
+      "parties": [
+        {"countryId": "CMR", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CMR"],
+      "tags": ["anglophone","ambazonia","separatist","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_madagascar_uprising",
+      "title": "Malagasy Uprising",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "1947",
+      "endDate": "1948",
+      "ongoing": false,
+      "description": "France brutally crushed a nationalist uprising in its colony of Madagascar, killing an estimated 30,000–100,000 Malagasy through massacres, torture, and 'death flights' in which prisoners were thrown from aircraft. It is one of the lesser-known atrocities of French colonialism.",
+      "parties": [
+        {"countryId": "FRA", "role": "occupier"},
+        {"countryId": "MDG", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","MDG"],
+      "tags": ["colonial","massacre","death flights","france","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_crimean_war",
+      "title": "Crimean War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1853",
+      "endDate": "1856",
+      "ongoing": false,
+      "description": "Britain, France, and the Ottoman Empire fought Russia over influence in the declining Ottoman lands. Around 500,000 died, mostly from disease — a scandal that launched Florence Nightingale's nursing reforms. It checked Russian expansion toward the Mediterranean.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "FRA", "role": "defender"},
+        {"countryId": "TUR", "role": "defender"}
+      ],
+      "involvedCountries": ["RUS","GBR","FRA","TUR"],
+      "tags": ["ottoman","nightingale","disease","19th century","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_franco_prussian",
+      "title": "Franco-Prussian War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1870",
+      "endDate": "1871",
+      "ongoing": false,
+      "description": "Prussia's decisive defeat of France unified the German states into the German Empire and seized Alsace-Lorraine. The humiliation seeded French revanchism that helped fuel World War I.",
+      "parties": [
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "FRA", "role": "victim"}
+      ],
+      "involvedCountries": ["DEU","FRA"],
+      "tags": ["german unification","alsace-lorraine","prussia","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_balkan_wars",
+      "title": "Balkan Wars",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1912",
+      "endDate": "1913",
+      "ongoing": false,
+      "description": "Two wars in which Balkan states drove the Ottoman Empire out of most of Europe, then fought each other over the spoils. Marked by ethnic cleansing and atrocities, they destabilized the region and were a direct prelude to World War I.",
+      "parties": [
+        {"countryId": "SRB", "role": "aggressor"},
+        {"countryId": "GRC", "role": "aggressor"},
+        {"countryId": "BGR", "role": "aggressor"},
+        {"countryId": "TUR", "role": "victim"}
+      ],
+      "involvedCountries": ["SRB","GRC","BGR","TUR"],
+      "tags": ["balkans","ottoman","ethnic cleansing","prelude wwi"],
+      "sources": []
+    },
+    {
+      "id": "seed_prague_spring",
+      "title": "Soviet Invasion of Czechoslovakia",
+      "type": "occupation",
+      "severity": 2,
+      "startDate": "1968",
+      "endDate": "1968",
+      "ongoing": false,
+      "description": "The USSR led a Warsaw Pact invasion to crush the 'Prague Spring' liberalization. Around 500,000 troops occupied Czechoslovakia, ending reform and reasserting Soviet control over Eastern Europe for another two decades.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "CZE", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","CZE"],
+      "tags": ["cold war","prague spring","warsaw pact","soviet","eastern europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_croatian_war",
+      "title": "Croatian War of Independence",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1991",
+      "endDate": "1995",
+      "ongoing": false,
+      "description": "As Yugoslavia broke up, Croatia fought Serb forces seeking to carve out Serb-controlled territory. The war featured ethnic cleansing, the destruction of Vukovar, and the shelling of Dubrovnik. Around 20,000 died before Croatia retook its territory in 1995.",
+      "parties": [
+        {"countryId": "SRB", "role": "aggressor"},
+        {"countryId": "HRV", "role": "victim"}
+      ],
+      "involvedCountries": ["SRB","HRV"],
+      "tags": ["yugoslavia","ethnic cleansing","vukovar","balkans"],
+      "sources": []
+    },
+    {
+      "id": "seed_tajik_civil_war",
+      "title": "Tajikistani Civil War",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1992",
+      "endDate": "1997",
+      "ongoing": false,
+      "description": "A civil war erupted in newly independent Tajikistan between the government and an opposition of democratic and Islamist forces. Around 50,000–100,000 died and over a million were displaced; Russia backed the government militarily.",
+      "parties": [
+        {"countryId": "TJK", "role": "victim"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["TJK","RUS"],
+      "tags": ["post-soviet","civil war","central asia","islamist"],
+      "sources": []
+    },
+    {
+      "id": "seed_transnistria",
+      "title": "Transnistria War (Moldova)",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1992",
+      "endDate": "1992",
+      "ongoing": false,
+      "description": "When Moldova became independent, the Russian-speaking Transnistria region broke away with the backing of Russia's 14th Army. Russia still stations troops there, propping up an unrecognized breakaway state — a 'frozen conflict' like those in Georgia and Ukraine.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "MDA", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","MDA"],
+      "tags": ["post-soviet","frozen conflict","transnistria","russia","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_indo_pak_1965",
+      "title": "Indo-Pakistani War of 1965",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1965",
+      "endDate": "1965",
+      "ongoing": false,
+      "description": "India and Pakistan fought a second war over Kashmir, the largest tank battles since WW2. Thousands died before a UN ceasefire and Soviet-brokered peace restored the pre-war lines, leaving Kashmir unresolved.",
+      "parties": [
+        {"countryId": "PAK", "role": "aggressor"},
+        {"countryId": "IND", "role": "defender"}
+      ],
+      "involvedCountries": ["PAK","IND"],
+      "tags": ["kashmir","tank battle","south asia","cold war"],
+      "sources": []
+    },
+    {
+      "id": "seed_blue_star_sikh",
+      "title": "Operation Blue Star & Anti-Sikh Pogrom",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "1984",
+      "endDate": "1984",
+      "ongoing": false,
+      "description": "India's army stormed the Golden Temple, Sikhism's holiest site, to flush out militants, killing hundreds. After PM Indira Gandhi's assassination by her Sikh bodyguards, anti-Sikh pogroms killed an estimated 3,000+ Sikhs in Delhi, often with police complicity.",
+      "parties": [
+        {"countryId": "IND", "role": "aggressor"}
+      ],
+      "involvedCountries": ["IND"],
+      "tags": ["sikh","golden temple","pogrom","indira gandhi","south asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_nepal_civil_war",
+      "title": "Nepalese Civil War",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1996",
+      "endDate": "2006",
+      "ongoing": false,
+      "description": "A Maoist insurgency against Nepal's monarchy killed around 17,000. The war ended with a peace deal that abolished the 240-year-old monarchy in 2008 and turned Nepal into a federal republic.",
+      "parties": [
+        {"countryId": "NPL", "role": "victim"}
+      ],
+      "involvedCountries": ["NPL"],
+      "tags": ["maoist","monarchy","insurgency","south asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_anglo_afghan",
+      "title": "Anglo-Afghan Wars",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1839",
+      "endDate": "1919",
+      "ongoing": false,
+      "description": "Britain invaded Afghanistan three times during the 'Great Game' rivalry with Russia. The catastrophic 1842 retreat from Kabul annihilated a British army. Afghanistan earned its reputation as the 'graveyard of empires,' resisting British control and winning full independence in 1919.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "AFG", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","AFG"],
+      "tags": ["colonial","great game","graveyard of empires","british empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_nz_land_wars",
+      "title": "New Zealand Land Wars",
+      "type": "occupation",
+      "severity": 2,
+      "startDate": "1845",
+      "endDate": "1872",
+      "ongoing": false,
+      "description": "British colonial forces fought the indigenous Māori over sovereignty and the mass confiscation of Māori land in breach of the Treaty of Waitangi. The wars and confiscations dispossessed Māori and entrenched British settler control of New Zealand.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "NZL", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","NZL"],
+      "tags": ["colonial","maori","land confiscation","waitangi","oceania"],
+      "sources": []
+    }
+  ]
+}

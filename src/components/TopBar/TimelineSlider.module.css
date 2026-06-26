@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 580px;
+}
+
+.playBtn {
+  background: #1e3a5f;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #94a3b8;
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.playBtn:hover {
+  background: #1d4ed8;
+  color: white;
+}
+
+.yearLabel {
+  font-size: 11px;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.sliderWrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    #1d4ed8 var(--pct, 0%),
+    #1e3a5f var(--pct, 0%)
+  );
+  cursor: pointer;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #60a5fa;
+  border: 2px solid #0f172a;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+}
+
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #60a5fa;
+  border: 2px solid #0f172a;
+  cursor: pointer;
+}
+
+.yearDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.yearValue {
+  font-size: 18px;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: -0.02em;
+}
+
+.conflictCount {
+  font-size: 10px;
+  color: #ef4444;
+  font-weight: 600;
+}

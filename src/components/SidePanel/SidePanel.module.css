@@ -1,0 +1,385 @@
+.panel {
+  width: 340px;
+  flex-shrink: 0;
+  background: #0c1524;
+  border-left: 1px solid #1e3a5f;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #1e3a5f;
+}
+
+.countryName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e2e8f0;
+  line-height: 1.2;
+}
+
+.countryMeta {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #475569;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 0 0 8px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  color: #e2e8f0;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #1e3a5f;
+  padding: 0 8px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #94a3b8;
+}
+
+.activeTab {
+  color: #60a5fa;
+  border-bottom-color: #3b82f6;
+}
+
+.badge {
+  background: #dc2626;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty {
+  color: #475569;
+  font-size: 12px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* Conflict Card */
+.card {
+  background: #0f1e30;
+  border: 1px solid #1e3a5f;
+  border-left: 3px solid #94a3b8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cardHeader {
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.cardHeader:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.cardTitleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  flex: 1;
+}
+
+.focusBtn {
+  background: none;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1;
+  padding: 1px 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.focusBtn:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+.focusBtnActive {
+  border-color: currentColor;
+}
+
+.roleBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid;
+  margin-bottom: 4px;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.type {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dates {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.ongoingBadge {
+  font-size: 9px;
+  font-weight: 700;
+  background: #dc2626;
+  color: white;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+}
+
+.roleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.roleLabel {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.roleLabel strong {
+  color: #94a3b8;
+}
+
+.severity {
+  color: #f59e0b;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.cardBody {
+  padding: 0 12px 10px;
+  border-top: 1px solid #1e3a5f;
+}
+
+.description {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.parties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.partyTag {
+  font-size: 10px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: #64748b;
+}
+
+.partySelected {
+  background: #1e3a5f;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.tag {
+  font-size: 9px;
+  color: #475569;
+}
+
+.editBtn {
+  background: #1e3a5f;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  color: #60a5fa;
+  font-size: 11px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.editBtn:hover {
+  background: #1d4ed8;
+}
+
+/* Note Card */
+.noteCard {
+  background: #0f1e30;
+  border: 1px solid #1e3a5f;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.noteTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 3px;
+}
+
+.noteDate {
+  font-size: 10px;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.noteBody {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-bottom: 6px;
+}
+
+.addNoteBtn {
+  background: #1e3a5f;
+  border: 1px dashed #3b82f6;
+  border-radius: 6px;
+  color: #60a5fa;
+  font-size: 12px;
+  padding: 7px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s;
+}
+
+.addNoteBtn:hover {
+  background: #1d4ed8;
+}
+
+/* Related */
+.related {
+  margin-top: 8px;
+  border-top: 1px solid #1e3a5f;
+  padding-top: 10px;
+}
+
+.relatedTitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.relatedList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.relatedBtn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  color: #94a3b8;
+  font-size: 10px;
+  padding: 3px 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.relatedBtn:hover {
+  background: #1e40af;
+  color: #e2e8f0;
+  border-color: #3b82f6;
+}
+
+.footer {
+  padding: 10px;
+  border-top: 1px solid #1e3a5f;
+}
+
+.graphBtn {
+  background: #1e3a5f;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #60a5fa;
+  font-size: 12px;
+  padding: 7px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s;
+}
+
+.graphBtn:hover {
+  background: #1d4ed8;
+}

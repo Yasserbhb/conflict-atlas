@@ -1,0 +1,139 @@
+.legend {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(12, 21, 36, 0.94);
+  border: 1px solid #1e3a5f;
+  border-radius: 10px;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  min-width: 230px;
+}
+
+/* ---- Loud mode banner ---- */
+.banner {
+  position: relative;
+  padding: 10px 14px 11px 18px;
+  border-bottom: 1px solid #1e3a5f;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.banner_global::before  { background: #64748b; }
+.banner_country::before { background: #3b82f6; }
+.banner_focus::before   { background: #f59e0b; }
+
+.bannerMode {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.banner_country .bannerMode { color: #60a5fa; }
+.banner_focus .bannerMode   { color: #fbbf24; }
+
+.bannerTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #e2e8f0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.bannerSub {
+  font-size: 10px;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.bannerRule {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+.bannerRule strong {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+/* ---- Swatch sections ---- */
+.swatches {
+  display: flex;
+  gap: 18px;
+  padding: 10px 14px 12px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+}
+
+.title {
+  font-size: 9px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.line {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.lineStyleNote {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #1e3a5f;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lineSolid {
+  width: 16px;
+  height: 0;
+  border-top: 2px solid #94a3b8;
+  flex-shrink: 0;
+}
+
+.lineDashed {
+  width: 16px;
+  height: 0;
+  border-top: 2px dashed #94a3b8;
+  flex-shrink: 0;
+}
