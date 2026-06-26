@@ -2,6 +2,10 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.2.1 — 2026-06-26
+
+Fixed the side panel: with many conflicts the cards were squished into thin overlapping strips and the selected one's text was clipped. Caused by a flexbox scroll bug — the list lacked `min-height: 0` and the cards lacked `flex-shrink: 0`, so the column compressed the cards instead of scrolling. Now the list scrolls and every card keeps its full height.
+
 ## v1.2.0 — 2026-06-26
 
 Professionalization pass — cleaned up for sharing.
