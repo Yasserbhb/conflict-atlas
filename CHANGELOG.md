@@ -2,6 +2,12 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.1.0 — 2026-06-26
+
+Filled the sparse early-modern era (1490–1865), which had only ~1–2 conflicts per period. Now ~180 conflicts total with a balanced spread across the centuries.
+
+Added: Sengoku Japan, Eighty Years' War, Thirty Years' War, Qing conquest of China, English Civil War, Cromwellian conquest of Ireland, Ottoman wars in Europe, Mughal expansion, War of the Spanish Succession, Great Northern War, Dzungar genocide, Seven Years' War, British conquest of India, American Revolution, French Revolution & Terror, Haitian Revolution, Napoleonic Wars, Russo-Turkish Wars, Mexican–American War, Circassian genocide, American Civil War.
+
 ## v1.0.0 — 2026-06-26
 
 First saved version. A complete, working app.

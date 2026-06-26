@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "countries": [
     {"id":"AFG","iso2":"AF","name":"Afghanistan","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
     {"id":"ALB","iso2":"AL","name":"Albania","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
@@ -2995,6 +2995,370 @@
       ],
       "involvedCountries": ["GBR","NZL"],
       "tags": ["colonial","maori","land confiscation","waitangi","oceania"],
+      "sources": []
+    },
+    {
+      "id": "seed_sengoku",
+      "title": "Sengoku Period (Japan's Warring States)",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1467",
+      "endDate": "1615",
+      "ongoing": false,
+      "description": "Nearly 150 years of near-constant civil war between rival samurai warlords (daimyo) fractured Japan. It ended with the country's reunification under Tokugawa Ieyasu, who founded a shogunate that ruled for over 250 years.",
+      "parties": [
+        {"countryId": "JPN", "role": "victim"}
+      ],
+      "involvedCountries": ["JPN"],
+      "tags": ["samurai","daimyo","civil war","tokugawa","japan"],
+      "sources": []
+    },
+    {
+      "id": "seed_dutch_revolt",
+      "title": "Eighty Years' War (Dutch Revolt)",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1568",
+      "endDate": "1648",
+      "ongoing": false,
+      "description": "The Protestant Low Countries rebelled against the rule of Catholic Habsburg Spain. After eighty years of war, including the sack of Antwerp, the Dutch Republic won independence and became a global trading and colonial power.",
+      "parties": [
+        {"countryId": "ESP", "role": "occupier"},
+        {"countryId": "NLD", "role": "victim"}
+      ],
+      "involvedCountries": ["ESP","NLD"],
+      "tags": ["habsburg","independence","protestant","dutch republic","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_thirty_years_war",
+      "title": "Thirty Years' War",
+      "type": "war",
+      "severity": 5,
+      "startDate": "1618",
+      "endDate": "1648",
+      "ongoing": false,
+      "description": "A catastrophic religious and dynastic war fought largely on German soil, drawing in Spain, France, Sweden, and Austria. An estimated 4.5–8 million died, and some German regions lost a third to half their population. The Peace of Westphalia (1648) founded the modern system of sovereign states.",
+      "parties": [
+        {"countryId": "DEU", "role": "victim"},
+        {"countryId": "AUT", "role": "aggressor"},
+        {"countryId": "ESP", "role": "aggressor"},
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "SWE", "role": "aggressor"}
+      ],
+      "involvedCountries": ["DEU","AUT","ESP","FRA","SWE"],
+      "tags": ["religious war","westphalia","habsburg","depopulation","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_qing_conquest",
+      "title": "Qing Conquest of China",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1618",
+      "endDate": "1683",
+      "ongoing": false,
+      "description": "The Manchu-led Qing overthrew the Ming dynasty and conquered China, with massacres such as the Yangzhou massacre (1645). Decades of war and upheaval killed an estimated 25 million. The Qing forced Han Chinese men to wear the queue hairstyle on pain of death.",
+      "parties": [
+        {"countryId": "CHN", "role": "victim"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["qing","ming","manchu","yangzhou","china"],
+      "sources": []
+    },
+    {
+      "id": "seed_english_civil_war",
+      "title": "English Civil War",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1642",
+      "endDate": "1651",
+      "ongoing": false,
+      "description": "War between Parliamentarians and Royalists ended with the execution of King Charles I (1649) and a brief republic under Oliver Cromwell. Proportionally one of Britain's deadliest conflicts, it reshaped the balance between crown and parliament.",
+      "parties": [
+        {"countryId": "GBR", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR"],
+      "tags": ["cromwell","charles i","parliament","republic","britain"],
+      "sources": []
+    },
+    {
+      "id": "seed_cromwell_ireland",
+      "title": "Cromwellian Conquest of Ireland",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1649",
+      "endDate": "1653",
+      "ongoing": false,
+      "description": "Cromwell's brutal conquest of Ireland, including the massacres at Drogheda and Wexford, mass land confiscation, and famine, killed an estimated 15–40% of the Irish population. Thousands were shipped to the Caribbean as indentured labour.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IRL", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IRL"],
+      "tags": ["cromwell","drogheda","colonial","famine","ireland"],
+      "sources": []
+    },
+    {
+      "id": "seed_ottoman_habsburg",
+      "title": "Ottoman Wars in Europe",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1526",
+      "endDate": "1699",
+      "ongoing": false,
+      "description": "The Ottoman Empire pushed deep into Europe, twice besieging Vienna (1529, 1683). The failed 1683 siege, broken by a Polish-led relief, marked the high tide of Ottoman expansion and the start of its long retreat from Central Europe.",
+      "parties": [
+        {"countryId": "TUR", "role": "aggressor"},
+        {"countryId": "AUT", "role": "defender"}
+      ],
+      "involvedCountries": ["TUR","AUT"],
+      "tags": ["ottoman","vienna","habsburg","europe","empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_mughal_expansion",
+      "title": "Mughal Empire Expansion",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1526",
+      "endDate": "1707",
+      "ongoing": false,
+      "description": "The Mughals conquered and ruled most of the Indian subcontinent, one of the wealthiest empires of its age. Expansion under Aurangzeb included long, bloody wars against the Marathas and others before the empire's slow decline opened the door to British colonization.",
+      "parties": [
+        {"countryId": "IND", "role": "victim"}
+      ],
+      "involvedCountries": ["IND"],
+      "tags": ["mughal","aurangzeb","maratha","empire","south asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_spanish_succession",
+      "title": "War of the Spanish Succession",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1701",
+      "endDate": "1714",
+      "ongoing": false,
+      "description": "A Europe-wide war over who would inherit the Spanish throne, pitting France and Spain against an alliance of Britain, Austria, and the Dutch. Around 400,000+ died; Britain gained Gibraltar and rising naval dominance.",
+      "parties": [
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "ESP", "role": "aggressor"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "AUT", "role": "defender"},
+        {"countryId": "NLD", "role": "defender"}
+      ],
+      "involvedCountries": ["FRA","ESP","GBR","AUT","NLD"],
+      "tags": ["succession","gibraltar","dynastic","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_great_northern_war",
+      "title": "Great Northern War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1700",
+      "endDate": "1721",
+      "ongoing": false,
+      "description": "A coalition led by Russia broke the dominance of the Swedish Empire in northern Europe. Russia's victory under Peter the Great made it a major European power and gave it its Baltic coast, where it founded St. Petersburg.",
+      "parties": [
+        {"countryId": "SWE", "role": "aggressor"},
+        {"countryId": "RUS", "role": "defender"}
+      ],
+      "involvedCountries": ["SWE","RUS"],
+      "tags": ["peter the great","baltic","sweden","empire","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_dzungar_genocide",
+      "title": "Dzungar Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1755",
+      "endDate": "1758",
+      "ongoing": false,
+      "description": "Qing China exterminated the Dzungar Mongols of Central Asia, killing an estimated 80% of the population (around 500,000–800,000) through massacre, famine, and disease. The Qianlong Emperor ordered the destruction; the emptied land was resettled by other peoples. It is one of the clearest genocides of the 18th century.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CHN"],
+      "tags": ["genocide","dzungar","qing","qianlong","central asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_seven_years_war",
+      "title": "Seven Years' War",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1756",
+      "endDate": "1763",
+      "ongoing": false,
+      "description": "Often called the first true world war, fought across Europe, the Americas, India, and the seas. Britain and Prussia defeated France, Austria, and allies; around 1 million died. Britain seized Canada and dominance in India, while war debts helped trigger the American and French revolutions.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "DEU", "role": "aggressor"},
+        {"countryId": "FRA", "role": "defender"},
+        {"countryId": "AUT", "role": "defender"},
+        {"countryId": "RUS", "role": "defender"}
+      ],
+      "involvedCountries": ["GBR","DEU","FRA","AUT","RUS"],
+      "tags": ["world war","canada","india","prussia","empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_anglo_indian_wars",
+      "title": "British Conquest of India (Mysore & Maratha Wars)",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1767",
+      "endDate": "1818",
+      "ongoing": false,
+      "description": "Through the Anglo-Mysore and Anglo-Maratha wars, the British East India Company defeated the major Indian powers and seized control of most of the subcontinent, paving the way for the British Raj.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IND", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IND"],
+      "tags": ["colonial","east india company","mysore","maratha","conquest"],
+      "sources": []
+    },
+    {
+      "id": "seed_american_revolution",
+      "title": "American Revolutionary War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1775",
+      "endDate": "1783",
+      "ongoing": false,
+      "description": "The thirteen American colonies won independence from Britain, aided decisively by France. It created the United States and inspired revolutionary movements worldwide, though it left slavery and the dispossession of Native Americans intact.",
+      "parties": [
+        {"countryId": "USA", "role": "defender"},
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "FRA", "role": "funder"}
+      ],
+      "involvedCountries": ["USA","GBR","FRA"],
+      "tags": ["independence","revolution","colonial","france"],
+      "sources": []
+    },
+    {
+      "id": "seed_french_revolution",
+      "title": "French Revolution & Reign of Terror",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1789",
+      "endDate": "1799",
+      "ongoing": false,
+      "description": "The revolution overthrew the French monarchy and proclaimed the Rights of Man, but descended into the Reign of Terror, in which tens of thousands were executed by guillotine. The brutal suppression of the Vendée uprising killed up to 170,000 and is sometimes called a genocide.",
+      "parties": [
+        {"countryId": "FRA", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA"],
+      "tags": ["revolution","terror","guillotine","vendee","rights of man"],
+      "sources": []
+    },
+    {
+      "id": "seed_haitian_revolution",
+      "title": "Haitian Revolution",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1791",
+      "endDate": "1804",
+      "ongoing": false,
+      "description": "The only successful large-scale slave revolt in history: enslaved Africans in the French colony of Saint-Domingue overthrew their masters and defeated Napoleon's army to found Haiti, the first Black republic. France later punished it with a crippling 'independence debt.'",
+      "parties": [
+        {"countryId": "FRA", "role": "occupier"},
+        {"countryId": "HTI", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","HTI"],
+      "tags": ["slave revolt","independence","napoleon","first black republic","caribbean"],
+      "sources": []
+    },
+    {
+      "id": "seed_napoleonic_wars",
+      "title": "Napoleonic Wars",
+      "type": "war",
+      "severity": 5,
+      "startDate": "1803",
+      "endDate": "1815",
+      "ongoing": false,
+      "description": "Napoleon's France fought a series of coalitions across Europe, briefly dominating the continent before his catastrophic 1812 invasion of Russia and final defeat at Waterloo (1815). An estimated 3.5–6 million died. The wars redrew Europe and spread revolutionary ideas and nationalism.",
+      "parties": [
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "RUS", "role": "defender"},
+        {"countryId": "AUT", "role": "defender"},
+        {"countryId": "ESP", "role": "victim"},
+        {"countryId": "DEU", "role": "defender"}
+      ],
+      "involvedCountries": ["FRA","GBR","RUS","AUT","ESP","DEU"],
+      "tags": ["napoleon","waterloo","russia campaign","empire","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_russo_turkish_wars",
+      "title": "Russo-Turkish Wars",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1768",
+      "endDate": "1878",
+      "ongoing": false,
+      "description": "A long series of wars in which an expanding Russia steadily pushed back the declining Ottoman Empire, gaining the Black Sea coast and Caucasus and backing Balkan independence movements. The conflicts fed the 'Eastern Question' that destabilized 19th-century Europe.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "TUR", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","TUR"],
+      "tags": ["ottoman","black sea","eastern question","balkans","empire"],
+      "sources": []
+    },
+    {
+      "id": "seed_mexican_american_war",
+      "title": "Mexican–American War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1846",
+      "endDate": "1848",
+      "ongoing": false,
+      "description": "The US invaded Mexico and seized roughly half its territory — today's California, Texas, Arizona, New Mexico, and more. It fulfilled US 'Manifest Destiny' expansion and left a lasting grievance over the lost lands.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "MEX", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","MEX"],
+      "tags": ["manifest destiny","annexation","texas","california","expansion"],
+      "sources": []
+    },
+    {
+      "id": "seed_circassian_genocide",
+      "title": "Circassian Genocide",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1864",
+      "endDate": "1867",
+      "ongoing": false,
+      "description": "As Russia completed its conquest of the Caucasus, it expelled and killed the Circassian people. An estimated 600,000–1.5 million died or were driven into the Ottoman Empire, with mass deaths during forced sea crossings. Russia repopulated the emptied lands.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "TUR", "role": "mediator"}
+      ],
+      "involvedCountries": ["RUS","TUR"],
+      "tags": ["genocide","circassian","caucasus","expulsion","ethnic cleansing"],
+      "sources": []
+    },
+    {
+      "id": "seed_us_civil_war",
+      "title": "American Civil War",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1861",
+      "endDate": "1865",
+      "ongoing": false,
+      "description": "The war between the Union and the secessionist Confederacy over slavery and states' rights killed an estimated 620,000–750,000 — the deadliest war in US history. The Union victory ended slavery in the United States.",
+      "parties": [
+        {"countryId": "USA", "role": "victim"}
+      ],
+      "involvedCountries": ["USA"],
+      "tags": ["slavery","confederacy","union","abolition","civil war"],
       "sources": []
     }
   ]
