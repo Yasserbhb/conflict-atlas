@@ -1,5 +1,7 @@
 export const initialState = {
+  view: 'map',
   mode: 'view',
+  mapFilters: { type: 'all', minSeverity: 1, ongoingOnly: false },
   timelineYear: 2026,
   isPlaying: false,
   selectedCountryId: null,
@@ -16,6 +18,12 @@ export const initialState = {
 
 export function appReducer(state, action) {
   switch (action.type) {
+    case 'SET_VIEW':
+      return { ...state, view: action.payload };
+    case 'SET_MAP_FILTERS':
+      return { ...state, mapFilters: { ...state.mapFilters, ...action.payload } };
+    case 'RESET_MAP_FILTERS':
+      return { ...state, mapFilters: { type: 'all', minSeverity: 1, ongoingOnly: false } };
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload };
     case 'SET_CONFLICTS':

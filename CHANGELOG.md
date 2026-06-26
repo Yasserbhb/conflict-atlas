@@ -2,6 +2,25 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.3.0 — 2026-06-26
+
+Turned the single-map page into a real multi-section app.
+
+- **Left sidebar nav** with five views: Map, Conflicts, Stats, Timeline, Help.
+- **Conflicts view** — browse all ~180 in a searchable, sortable, filterable list (by type, region, severity, ongoing); click a row to open it on the map.
+- **Stats view** — headline counts + bar charts (by type, most-involved countries, by era, by severity).
+- **Timeline view** — per-year density histogram of active conflicts (1490–2026), click/scrub to a year, see the active list, jump to the map.
+- **Help/About view** — explains the three map modes, the severity/type/role color systems, navigation, and the data disclaimer.
+- **Map filter bar** — filter the map by type / severity / ongoing; the whole map (heatmap, arcs, highlights, side panel) recomputes as if only the filtered conflicts exist.
+
+Fixes & polish:
+- Map TopoJSON now parsed once and cached → switching views and back is instant; "Loading map…" hint on first load.
+- Severity scale relabeled (5 = "Catastrophic", not "Genocide") and given a cleaner gradient.
+- Selected country = bold blue outline; related countries = thin white outline (no more arbitrary blue fill hiding the data).
+- Fixed unmapped territories (Greenland, Antarctica) falsely rendering as "selected".
+- Opening a conflict from a list now moves the timeline into its window so the side panel matches.
+- Fixed side-panel cards squishing/overlapping (flexbox scroll bug).
+
 ## v1.2.1 — 2026-06-26
 
 Fixed the side panel: with many conflicts the cards were squished into thin overlapping strips and the selected one's text was clipped. Caused by a flexbox scroll bug — the list lacked `min-height: 0` and the cards lacked `flex-shrink: 0`, so the column compressed the cards instead of scrolling. Now the list scrolls and every card keeps its full height.

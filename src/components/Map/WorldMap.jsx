@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import { useApp } from '../../context/AppContext';
 import { useCountrySeverity, useConflictFilter } from '../../hooks/useConflictFilter';
+import { applyConflictFilters } from '../../utils/dateUtils';
 import { numericToAlpha3 } from '../../utils/isoLookup';
 import { severityColor, roleColor } from '../../utils/conflictColors';
 import ConflictOverlay from './ConflictOverlay';
@@ -11,6 +12,10 @@ import styles from './WorldMap.module.css';
 
 const WIDTH = 960;
 const HEIGHT = 500;
+
+// Parsed map is expensive (756KB TopoJSON -> ~180 path strings). Cache it at
+// module level so switching away and back to the Map view is instant.
+let MAP_CACHE = null;
 
 // Countries whose d3.geoCentroid() is pulled far from their mainland
 // by overseas territories — [longitude, latitude]
@@ -47,8 +52,14 @@ export default function WorldMap() {
   const pathGen = d3.geoPath().projection(projection);
 
   const { focusedConflictId } = state;
-  const activeConflicts = useConflictFilter(conflicts, timelineYear);
-  const severityMap = useCountrySeverity(conflicts, timelineYear);
+  // Apply the map filter bar (type / severity / ongoing) so the whole map
+  // behaves as if only the filtered conflicts exist.
+  const filteredConflicts = useMemo(
+    () => applyConflictFilters(conflicts, state.mapFilters),
+    [conflicts, state.mapFilters]
+  );
+  const activeConflicts = useConflictFilter(filteredConflicts, timelineYear);
+  const severityMap = useCountrySeverity(filteredConflicts, timelineYear);
 
   const relatedIds = (() => {
     if (!selectedCountryId) return new Set();
@@ -71,10 +82,15 @@ export default function WorldMap() {
     }
   }
 
-  // Load the higher-resolution 50m map for sharper small countries
+  // Load the higher-resolution 50m map for sharper small countries.
+  // Uses a module-level cache so returning to the Map view is instant.
   useEffect(() => {
+    if (MAP_CACHE) {
+      setCountryPaths(MAP_CACHE.paths);
+      setCentroids(MAP_CACHE.centroids);
+      return;
+    }
     d3.json('/data/countries-50m.json').then((world) => {
-      worldRef.current = world;
       const geo = topojson.feature(world, world.objects.countries);
       const paths = [];
       const cents = {};
@@ -90,6 +106,7 @@ export default function WorldMap() {
           if (proj) cents[alpha3] = proj;
         }
       }
+      MAP_CACHE = { paths, centroids: cents };
       setCountryPaths(paths);
       setCentroids(cents);
     });
@@ -150,8 +167,8 @@ export default function WorldMap() {
         <g transform={gTransform}>
           {countryPaths.map(({ numId, alpha3, d }) => {
             const severity = severityMap[alpha3] || 0;
-            const isSelected = alpha3 === selectedCountryId;
-            const isRelated = relatedIds.has(alpha3);
+            const isSelected = !!alpha3 && alpha3 === selectedCountryId;
+            const isRelated = !!alpha3 && relatedIds.has(alpha3);
             const hasSev = severity > 0;
             const roleFill = roleFillMap[alpha3];
 
@@ -167,13 +184,15 @@ export default function WorldMap() {
                 strokeWidth = 0.4;
               }
             } else if (isSelected) {
-              fill = '#3b82f6';
-              stroke = '#93c5fd';
-              strokeWidth = 1.4;
-            } else if (isRelated) {
+              // keep the country's real severity color; mark THE selected one with a bold BLUE outline
               fill = hasSev ? severityColor(severity) : '#253347';
-              stroke = '#facc15';
-              strokeWidth = 1.2;
+              stroke = '#38bdf8';
+              strokeWidth = 2.6;
+            } else if (isRelated) {
+              // its connections get a thinner white outline (clearly different from the blue selected one)
+              fill = hasSev ? severityColor(severity) : '#253347';
+              stroke = '#ffffff';
+              strokeWidth = 1.3;
             } else {
               fill = hasSev ? severityColor(severity) : '#253347';
               stroke = '#0f172a';
@@ -223,6 +242,10 @@ export default function WorldMap() {
           </g>
         )}
       </svg>
+
+      {countryPaths.length === 0 && (
+        <div className={styles.mapLoading}>Loading map…</div>
+      )}
 
       <div className={styles.zoomControls}>
         <span className={styles.zoomHint}>scroll to zoom · drag to pan</span>

@@ -2,7 +2,7 @@ import { SEVERITY_COLORS, ROLE_COLORS } from '../../utils/conflictColors';
 import { useApp } from '../../context/AppContext';
 import styles from './MapLegend.module.css';
 
-const SEVERITY_LABELS = ['No conflict', 'Low tension', 'Serious', 'Armed conflict', 'Mass atrocity', 'Genocide'];
+const SEVERITY_LABELS = ['No conflict', 'Low tension', 'Serious', 'Armed conflict', 'Mass atrocity', 'Catastrophic'];
 
 const ROLE_ITEMS = [
   { color: ROLE_COLORS.aggressor,  label: 'Aggressor / Occupier' },

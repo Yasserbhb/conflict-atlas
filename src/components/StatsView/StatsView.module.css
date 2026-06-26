@@ -1,0 +1,121 @@
+.view {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  background: #0b1220;
+  padding: 20px 24px 32px;
+}
+
+.heading {
+  font-size: 18px;
+  font-weight: 800;
+  color: #e2e8f0;
+  margin: 0 0 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #0c1524;
+  border: 1px solid #1e3a5f;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.cardValue {
+  font-size: 32px;
+  font-weight: 800;
+  color: #e2e8f0;
+  line-height: 1;
+}
+
+.cardLabel {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.panel {
+  background: #0c1524;
+  border: 1px solid #1e3a5f;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.panelTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  padding: 1px 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.barLabel {
+  flex: 0 0 130px;
+  font-size: 11px;
+  color: #cbd5e1;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barTrack {
+  flex: 1;
+  height: 14px;
+  background: #1e293b;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  min-width: 2px;
+  transition: width 0.3s;
+}
+
+.barValue {
+  flex: 0 0 28px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-align: right;
+}

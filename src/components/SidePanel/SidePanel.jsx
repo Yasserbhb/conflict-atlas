@@ -1,21 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { getNotesByCountry } from '../../db/queries';
 import { useCountryConflicts } from '../../hooks/useConflictFilter';
 import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor } from '../../utils/conflictColors';
-import { formatDateRange } from '../../utils/dateUtils';
+import { formatDateRange, applyConflictFilters } from '../../utils/dateUtils';
 import styles from './SidePanel.module.css';
 
 const TABS = ['Conflicts', 'Territories', 'Notes'];
 
 export default function SidePanel() {
   const { state, dispatch } = useApp();
-  const { selectedCountryId, focusedConflictId, conflicts, timelineYear, mode, countries } = state;
+  const { selectedCountryId, focusedConflictId, conflicts: allStateConflicts, timelineYear, mode, countries } = state;
   const [tab, setTab] = useState('Conflicts');
   const [notes, setNotes] = useState([]);
 
   const country = countries.find((c) => c.id === selectedCountryId);
 
+  // Respect the map filter bar so the panel matches what's shown on the map
+  const conflicts = useMemo(
+    () => applyConflictFilters(allStateConflicts, state.mapFilters),
+    [allStateConflicts, state.mapFilters]
+  );
   const allConflicts = useCountryConflicts(conflicts, selectedCountryId, null);
   const activeConflicts = allConflicts.filter((c) => {
     const sy = parseInt(String(c.startDate).substring(0, 4));

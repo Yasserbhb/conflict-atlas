@@ -34,11 +34,11 @@ export const ROLE_LABELS = {
 
 export const SEVERITY_COLORS = [
   '#374151', // 0 = none
-  '#854d0e', // 1 = low
-  '#b45309', // 2 = serious
-  '#c2410c', // 3 = armed
-  '#b91c1c', // 4 = mass atrocity
-  '#7c3aed', // 5 = genocide/existential
+  '#eab308', // 1 = low tension      (yellow)
+  '#f59e0b', // 2 = serious          (amber)
+  '#f97316', // 3 = armed conflict   (orange)
+  '#dc2626', // 4 = mass atrocity    (red)
+  '#9f1239', // 5 = catastrophic     (deep crimson)
 ];
 
 export function severityColor(severity) {
