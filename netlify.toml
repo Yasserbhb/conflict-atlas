@@ -1,0 +1,11 @@
+# Netlify deploy config — connect this repo at app.netlify.com and it just works.
+# (Vercel needs no config: it auto-detects Vite. GitHub Pages needs a base path — see README.)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page app: send all routes to index.html so refreshes don't 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

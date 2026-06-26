@@ -1,8 +1,20 @@
 {
-  "name": "map",
+  "name": "conflict-atlas",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.2.0",
+  "description": "An interactive vector world map for exploring geopolitical conflicts, genocides, occupations, and atrocities from 1490 to the present.",
   "type": "module",
+  "license": "MIT",
+  "author": "Yasser Bouhai",
+  "keywords": [
+    "history",
+    "geopolitics",
+    "conflicts",
+    "world-map",
+    "d3",
+    "react",
+    "data-visualization"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,13 +22,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rolldown/binding-win32-x64-msvc": "^1.1.3",
-    "@rollup/rollup-win32-x64-msvc": "^4.62.2",
     "d3": "^7.9.0",
     "idb": "^8.0.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "rolldown": "^1.1.3",
     "topojson-client": "^3.1.0",
     "uuid": "^14.0.1"
   },
@@ -26,5 +35,9 @@
     "@vitejs/plugin-react": "^4.7.0",
     "oxlint": "^1.69.0",
     "vite": "^5.4.21"
+  },
+  "comment": "The optionalDependency below works around npm bug npm/cli#4828 on Windows. It is skipped automatically on macOS/Linux (which pull their own rollup binary via rollup's own optionalDependencies).",
+  "optionalDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.62.2"
   }
 }

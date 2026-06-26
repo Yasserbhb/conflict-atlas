@@ -40,6 +40,31 @@ Conflicts, countries, and notes live in IndexedDB, seeded once from `src/data/se
 
 Each conflict has: `type`, `severity` (1-5), `startDate`/`endDate`/`ongoing`, a `description`, and `parties` (each a country + role). Roles drive the map colors.
 
+## Deploying
+
+It's a static single-page app (all data lives in the browser via IndexedDB), so it hosts anywhere:
+
+- **Netlify** — connect the repo; `netlify.toml` is already set up (`npm run build` → `dist/`).
+- **Vercel** — zero config; it auto-detects Vite.
+- **GitHub Pages** — set `base: '/<repo-name>/'` in `vite.config.js`, then publish `dist/`.
+
+## Troubleshooting
+
+- **`Cannot find module @rollup/rollup-win32-x64-msvc` on Windows** — a known npm bug ([npm/cli#4828](https://github.com/npm/cli/issues/4828)) that sometimes skips optional native binaries. Fix: `rm -rf node_modules package-lock.json && npm install`. (It's listed under `optionalDependencies` and is harmless/skipped on macOS & Linux.)
+
+## Data, sources & disclaimer
+
+This is an **educational tool**, not an authoritative record. The seeded conflicts are compiled from widely-available historical summaries to give a starting point — they are deliberately concise and, for some events, casualty figures and even classifications (e.g. what counts as a "genocide") are **genuinely debated by historians**. Pre-modern events are mapped onto modern successor states, which is a simplification.
+
+Treat every entry as a prompt for your own further reading, and use **Edit mode** to correct, refine, and add sources as you learn. Nothing here represents an official position.
+
+- Map geometry: [Natural Earth](https://www.naturalearthdata.com/) via [world-atlas](https://github.com/topojson/world-atlas) (public domain).
+- Built with [D3](https://d3js.org/), [React](https://react.dev/), and [Vite](https://vite.dev/).
+
+## License
+
+[MIT](LICENSE) © Yasser Bouhai. Note: the license covers the **code**; historical facts themselves are not copyrightable.
+
 ## Versions
 
-See `CHANGELOG.md` for the version history.
+See [CHANGELOG.md](CHANGELOG.md) for the version history.

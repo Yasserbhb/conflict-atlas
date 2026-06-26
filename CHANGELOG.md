@@ -2,6 +2,17 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.2.0 — 2026-06-26
+
+Professionalization pass — cleaned up for sharing.
+
+- **package.json**: real name/description/author/keywords; removed leftover platform-locked deps (`rolldown`, rollup/rolldown win32 bindings as hard deps) that broke cross-platform `npm install`. Windows rollup binary moved to `optionalDependencies` (skipped on macOS/Linux).
+- Removed dead Vite boilerplate (`App.css`, `index.css`, `src/assets/`, `icons.svg`, old default favicon, unused 110m map).
+- New project favicon + page title, description, and Open Graph meta tags.
+- Added **MIT LICENSE**.
+- README expanded: features, data disclaimer (educational, figures debated), Natural Earth/D3 attribution, deploy guide, troubleshooting.
+- Added `netlify.toml` for one-click deploy (Vercel zero-config; GH Pages noted).
+
 ## v1.1.0 — 2026-06-26
 
 Filled the sparse early-modern era (1490–1865), which had only ~1–2 conflicts per period. Now ~180 conflicts total with a balanced spread across the centuries.
