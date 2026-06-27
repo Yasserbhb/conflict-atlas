@@ -6,6 +6,7 @@ export const initialState = {
   isPlaying: false,
   selectedCountryId: null,
   focusedConflictId: null,
+  openConflictId: null,
   activePanel: null,
   editTarget: null,
   conflicts: [],
@@ -52,16 +53,31 @@ export function appReducer(state, action) {
         ...state,
         selectedCountryId: newId,
         focusedConflictId: keepFocus,
+        openConflictId: null,
         activePanel: newId ? 'side' : null,
         showGraphView: false,
       };
     }
     case 'CLEAR_SELECTION':
-      return { ...state, selectedCountryId: null, focusedConflictId: null, activePanel: null, showGraphView: false };
+      return { ...state, selectedCountryId: null, focusedConflictId: null, openConflictId: null, activePanel: null, showGraphView: false };
     case 'FOCUS_CONFLICT':
       return { ...state, focusedConflictId: action.payload };
     case 'CLEAR_FOCUSED_CONFLICT':
       return { ...state, focusedConflictId: null };
+    case 'OPEN_CONFLICT': {
+      // Open the dedicated conflict detail panel + role-color the map + move the
+      // timeline into the conflict's window so it reads as active.
+      const id = action.payload;
+      const c = state.conflicts.find((x) => x.id === id);
+      let year = state.timelineYear;
+      if (c) {
+        const sy = parseInt(String(c.startDate).slice(0, 4), 10);
+        if (!isNaN(sy)) year = c.ongoing ? 2026 : Math.min(2026, Math.max(1490, sy));
+      }
+      return { ...state, openConflictId: id, focusedConflictId: id, timelineYear: year, view: 'map', showGraphView: false };
+    }
+    case 'CLOSE_CONFLICT':
+      return { ...state, openConflictId: null, focusedConflictId: null };
     case 'OPEN_EDIT':
       return { ...state, editTarget: action.payload };
     case 'CLOSE_EDIT':

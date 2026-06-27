@@ -1,5 +1,5 @@
 {
-  "version": "2.2.0",
+  "version": "2.6.0",
   "countries": [
     {"id":"AFG","iso2":"AF","name":"Afghanistan","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
     {"id":"ALB","iso2":"AL","name":"Albania","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
@@ -130,7 +130,12 @@
     {"id":"LAO","iso2":"LA","name":"Laos","region":"Asia","subregion":"South-Eastern Asia","aliases":[],"notes":""},
     {"id":"MDG","iso2":"MG","name":"Madagascar","region":"Africa","subregion":"Eastern Africa","aliases":[],"notes":""},
     {"id":"MDA","iso2":"MD","name":"Moldova","region":"Europe","subregion":"Eastern Europe","aliases":["Transnistria"],"notes":""},
-    {"id":"BGR","iso2":"BG","name":"Bulgaria","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""}
+    {"id":"BGR","iso2":"BG","name":"Bulgaria","region":"Europe","subregion":"Eastern Europe","aliases":[],"notes":""},
+    {"id":"TWN","iso2":"TW","name":"Taiwan","region":"Asia","subregion":"Eastern Asia","aliases":["Republic of China","ROC","Formosa"],"notes":""},
+    {"id":"DOM","iso2":"DO","name":"Dominican Republic","region":"Americas","subregion":"Caribbean","aliases":[],"notes":""},
+    {"id":"GNB","iso2":"GW","name":"Guinea-Bissau","region":"Africa","subregion":"Western Africa","aliases":[],"notes":""},
+    {"id":"KGZ","iso2":"KG","name":"Kyrgyzstan","region":"Asia","subregion":"Central Asia","aliases":[],"notes":""},
+    {"id":"MNG","iso2":"MN","name":"Mongolia","region":"Asia","subregion":"Eastern Asia","aliases":[],"notes":""}
   ],
   "conflicts": [
     {
@@ -3359,6 +3364,800 @@
       ],
       "involvedCountries": ["USA"],
       "tags": ["slavery","confederacy","union","abolition","civil war"],
+      "sources": []
+    },
+    {
+      "id": "seed_taiwan_strait",
+      "title": "Taiwan Strait Tensions",
+      "type": "disputed_territory",
+      "severity": 3,
+      "startDate": "1949",
+      "endDate": null,
+      "ongoing": true,
+      "description": "After losing the Chinese Civil War in 1949, the Nationalists fled to Taiwan, which has governed itself ever since while China (PRC) claims it as a breakaway province and vows 'reunification', by force if necessary. China stages large military drills and incursions; the US is Taiwan's main arms supplier and security backer under deliberate 'strategic ambiguity'. A Chinese invasion is considered one of the most dangerous potential flashpoints of the 21st century.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"},
+        {"countryId": "TWN", "role": "defender"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["CHN","TWN","USA"],
+      "tags": ["taiwan","china","one china","strategic ambiguity","flashpoint","semiconductors"],
+      "sources": []
+    },
+    {
+      "id": "seed_falklands",
+      "title": "Falklands War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1982",
+      "endDate": "1982",
+      "ongoing": false,
+      "description": "Argentina's military junta invaded the British-held Falkland Islands (Malvinas); Britain sent a naval task force 8,000 miles to retake them in a 10-week war that killed about 900. The defeat hastened the fall of Argentina's dictatorship. The islands' sovereignty remains disputed.",
+      "parties": [
+        {"countryId": "ARG", "role": "aggressor"},
+        {"countryId": "GBR", "role": "defender"}
+      ],
+      "involvedCountries": ["ARG","GBR"],
+      "tags": ["malvinas","islands","junta","disputed","south atlantic"],
+      "sources": []
+    },
+    {
+      "id": "seed_anglo_ashanti",
+      "title": "Anglo-Ashanti Wars",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1823",
+      "endDate": "1900",
+      "ongoing": false,
+      "description": "A series of wars over the 19th century in which Britain conquered the powerful Ashanti Empire in West Africa (today Ghana), looting Kumasi and exiling the Asantehene. It was part of the wider 'Scramble for Africa' and Britain's Gold Coast colony.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "GHA", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","GHA"],
+      "tags": ["colonial","ashanti","gold coast","scramble for africa","west africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_anglo_burmese",
+      "title": "Anglo-Burmese Wars",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1824",
+      "endDate": "1885",
+      "ongoing": false,
+      "description": "Three wars through which Britain conquered and annexed all of Burma (Myanmar), exiling its last king and ruling it as a province of British India. The conquest extracted teak, oil, and rubies, and the borders it drew helped fuel Myanmar's later ethnic conflicts.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "MMR", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","MMR"],
+      "tags": ["colonial","burma","british empire","annexation","teak"],
+      "sources": []
+    },
+    {
+      "id": "seed_amritsar",
+      "title": "Amritsar (Jallianwala Bagh) Massacre",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "1919",
+      "endDate": "1919",
+      "ongoing": false,
+      "description": "British troops under General Dyer opened fire without warning on thousands of unarmed Indians trapped in an enclosed garden in Amritsar, killing several hundred to ~1,000 and wounding over a thousand. The massacre became a turning point that galvanized the Indian independence movement.",
+      "parties": [
+        {"countryId": "GBR", "role": "aggressor"},
+        {"countryId": "IND", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","IND"],
+      "tags": ["colonial","massacre","jallianwala bagh","dyer","independence"],
+      "sources": []
+    },
+    {
+      "id": "seed_cyprus_emergency",
+      "title": "Cyprus Emergency (EOKA)",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1955",
+      "endDate": "1959",
+      "ongoing": false,
+      "description": "Greek Cypriot EOKA guerrillas fought a campaign against British colonial rule seeking union with Greece. Britain used detention camps and hangings to suppress it. Cyprus gained independence in 1960 — but unresolved tensions led to the 1974 Turkish invasion and the island's division.",
+      "parties": [
+        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "CYP", "role": "victim"}
+      ],
+      "involvedCountries": ["GBR","CYP"],
+      "tags": ["colonial","eoka","independence","british empire","mediterranean"],
+      "sources": []
+    },
+    {
+      "id": "seed_rhodesian_bush_war",
+      "title": "Rhodesian Bush War",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1964",
+      "endDate": "1979",
+      "ongoing": false,
+      "description": "After white-minority Rhodesia declared independence to preserve white rule, Black nationalist guerrillas (ZANU and ZAPU) fought a 15-year liberation war. Around 20,000+ died before majority rule and the creation of Zimbabwe in 1980 under Robert Mugabe.",
+      "parties": [
+        {"countryId": "ZWE", "role": "aggressor"},
+        {"countryId": "GBR", "role": "mediator"}
+      ],
+      "involvedCountries": ["ZWE","GBR"],
+      "tags": ["colonial","rhodesia","liberation war","white minority rule","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_french_mandate_syria",
+      "title": "French Mandate of Syria & Lebanon",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1920",
+      "endDate": "1946",
+      "ongoing": false,
+      "description": "After WW1, France took control of Syria and Lebanon, crushing the Arab Kingdom of Syria and suppressing the Great Syrian Revolt (1925–27) — including the aerial bombardment of Damascus. France's divide-and-rule policies and the borders it drew (carving out Lebanon) shaped the region's later sectarian conflicts.",
+      "parties": [
+        {"countryId": "FRA", "role": "occupier"},
+        {"countryId": "SYR", "role": "victim"},
+        {"countryId": "LBN", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","SYR","LBN"],
+      "tags": ["colonial","mandate","great syrian revolt","damascus","middle east"],
+      "sources": []
+    },
+    {
+      "id": "seed_cameroon_bamileke",
+      "title": "Cameroon — Bamileke War (Hidden War)",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1955",
+      "endDate": "1964",
+      "ongoing": false,
+      "description": "As Cameroon moved to independence, France waged a brutal secret war against the UPC independence movement, especially among the Bamileke and Bassa peoples. French forces used napalm, mass killings, and severed heads on display; estimates of the dead range from tens of thousands to several hundred thousand. It remains one of the least-known atrocities of French decolonization.",
+      "parties": [
+        {"countryId": "FRA", "role": "aggressor"},
+        {"countryId": "CMR", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA","CMR"],
+      "tags": ["colonial","hidden war","bamileke","upc","napalm","francafrique"],
+      "sources": []
+    },
+    {
+      "id": "seed_french_wars_religion",
+      "title": "French Wars of Religion",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "1562",
+      "endDate": "1598",
+      "ongoing": false,
+      "description": "Decades of civil war between French Catholics and Protestant Huguenots killed an estimated 2–4 million. The St. Bartholomew's Day Massacre (1572) saw thousands of Huguenots slaughtered in Paris and beyond. The wars ended with the Edict of Nantes granting limited tolerance.",
+      "parties": [
+        {"countryId": "FRA", "role": "victim"}
+      ],
+      "involvedCountries": ["FRA"],
+      "tags": ["religious war","huguenots","st bartholomew","catholic","europe"],
+      "sources": []
+    },
+    {
+      "id": "seed_spanish_american_war",
+      "title": "Spanish–American War",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1898",
+      "endDate": "1898",
+      "ongoing": false,
+      "description": "The US defeated Spain and seized its remaining empire — taking Puerto Rico, Guam, and the Philippines, and making Cuba a protectorate. It marked the United States' emergence as an overseas imperial power and led directly to the brutal Philippine–American War.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "ESP", "role": "defender"},
+        {"countryId": "CUB", "role": "victim"},
+        {"countryId": "PHL", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","ESP","CUB","PHL"],
+      "tags": ["imperialism","cuba","philippines","puerto rico","1898"],
+      "sources": []
+    },
+    {
+      "id": "seed_us_dominican",
+      "title": "US Invasion of the Dominican Republic",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1965",
+      "endDate": "1966",
+      "ongoing": false,
+      "description": "The US sent 42,000 troops to the Dominican Republic to crush a pro-democracy uprising trying to restore the elected president Juan Bosch, fearing 'another Cuba.' Thousands of Dominicans died. It was part of a long pattern of US interventions in the Caribbean.",
+      "parties": [
+        {"countryId": "USA", "role": "aggressor"},
+        {"countryId": "DOM", "role": "victim"}
+      ],
+      "involvedCountries": ["USA","DOM"],
+      "tags": ["intervention","cold war","caribbean","bosch","imperialism"],
+      "sources": []
+    },
+    {
+      "id": "seed_greek_independence",
+      "title": "Greek War of Independence",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1821",
+      "endDate": "1832",
+      "ongoing": false,
+      "description": "Greeks rose against three centuries of Ottoman rule. Both sides committed massacres (Chios, Tripolitsa); the Ottomans' atrocities drew European 'philhellene' sympathy, and Britain, France, and Russia intervened, destroying the Ottoman-Egyptian fleet at Navarino. Greece won independence in 1832 — the first nation to break from the Ottoman Empire.",
+      "parties": [
+        {"countryId": "TUR", "role": "occupier"},
+        {"countryId": "GRC", "role": "victim"},
+        {"countryId": "GBR", "role": "funder"},
+        {"countryId": "FRA", "role": "funder"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["TUR","GRC","GBR","FRA","RUS"],
+      "tags": ["ottoman","independence","chios","navarino","philhellene"],
+      "sources": []
+    },
+    {
+      "id": "seed_ottoman_safavid",
+      "title": "Ottoman–Safavid Wars",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1514",
+      "endDate": "1639",
+      "ongoing": false,
+      "description": "More than a century of wars between the Sunni Ottoman Empire and Shia Safavid Persia over Mesopotamia and the Caucasus, sharpening the Sunni–Shia divide. The Treaty of Zuhab (1639) fixed a border between Turkey/Iraq and Iran that still roughly holds today.",
+      "parties": [
+        {"countryId": "TUR", "role": "aggressor"},
+        {"countryId": "IRN", "role": "defender"}
+      ],
+      "involvedCountries": ["TUR","IRN"],
+      "tags": ["ottoman","safavid","sunni-shia","mesopotamia","persia"],
+      "sources": []
+    },
+    {
+      "id": "seed_portuguese_colonial_war",
+      "title": "Portuguese Colonial War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1961",
+      "endDate": "1974",
+      "ongoing": false,
+      "description": "Portugal fought to keep its African colonies — Angola, Mozambique, and Guinea-Bissau — against independence movements for 13 years. Atrocities like the Wiriyamu massacre occurred. The unwinnable war exhausted Portugal and triggered the 1974 Carnation Revolution at home, which finally freed the colonies.",
+      "parties": [
+        {"countryId": "PRT", "role": "occupier"},
+        {"countryId": "AGO", "role": "victim"},
+        {"countryId": "MOZ", "role": "victim"},
+        {"countryId": "GNB", "role": "victim"}
+      ],
+      "involvedCountries": ["PRT","AGO","MOZ","GNB"],
+      "tags": ["colonial","independence","carnation revolution","wiriyamu","africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_italian_east_africa",
+      "title": "Italian Colonization of Eritrea & Somalia",
+      "type": "occupation",
+      "severity": 2,
+      "startDate": "1885",
+      "endDate": "1941",
+      "ongoing": false,
+      "description": "Italy colonized Eritrea and Italian Somaliland from the 1880s, using forced labour and racial segregation, before briefly forming 'Italian East Africa' with occupied Ethiopia (1936). Italian rule ended with defeat by the Allies in WW2.",
+      "parties": [
+        {"countryId": "ITA", "role": "occupier"},
+        {"countryId": "ERI", "role": "victim"},
+        {"countryId": "SOM", "role": "victim"}
+      ],
+      "involvedCountries": ["ITA","ERI","SOM"],
+      "tags": ["colonial","italian east africa","forced labour","horn of africa"],
+      "sources": []
+    },
+    {
+      "id": "seed_eritrean_independence",
+      "title": "Eritrean War of Independence",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1961",
+      "endDate": "1991",
+      "ongoing": false,
+      "description": "Eritrea fought a 30-year war against Ethiopian annexation — one of Africa's longest wars. Ethiopia, backed first by the US then heavily by the USSR, used famine and bombing as weapons. An estimated 150,000+ died before Eritrea won independence in 1991 (formalized 1993).",
+      "parties": [
+        {"countryId": "ETH", "role": "occupier"},
+        {"countryId": "ERI", "role": "victim"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["ETH","ERI","RUS"],
+      "tags": ["independence","horn of africa","famine","cold war","longest war"],
+      "sources": []
+    },
+    {
+      "id": "seed_first_sudanese_war",
+      "title": "First Sudanese Civil War",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1955",
+      "endDate": "1972",
+      "ongoing": false,
+      "description": "Even before independence, southern Sudan rose against domination by the Arab-Muslim north. The 17-year war killed an estimated 500,000, mostly civilians. A 1972 autonomy deal paused it — but its collapse reignited the even deadlier Second Sudanese Civil War in 1983.",
+      "parties": [
+        {"countryId": "SDN", "role": "aggressor"},
+        {"countryId": "SSD", "role": "victim"}
+      ],
+      "involvedCountries": ["SDN","SSD"],
+      "tags": ["civil war","north-south","africa","secession"],
+      "sources": []
+    },
+    {
+      "id": "seed_sino_indian",
+      "title": "Sino-Indian War",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1962",
+      "endDate": "1962",
+      "ongoing": false,
+      "description": "China and India fought a brief, sharp war over their disputed Himalayan border (Aksai Chin and Arunachal Pradesh). China won decisively. The border remains militarized and undefined, with deadly clashes as recently as 2020 (Galwan Valley).",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"},
+        {"countryId": "IND", "role": "defender"}
+      ],
+      "involvedCountries": ["CHN","IND"],
+      "tags": ["border war","himalaya","aksai chin","galwan","disputed"],
+      "sources": []
+    },
+    {
+      "id": "seed_sino_vietnamese",
+      "title": "Sino-Vietnamese War",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1979",
+      "endDate": "1979",
+      "ongoing": false,
+      "description": "China invaded northern Vietnam to 'punish' it for toppling China's ally the Khmer Rouge in Cambodia. Both sides claimed victory after a bloody month that killed tens of thousands; China withdrew, and border skirmishes continued through the 1980s.",
+      "parties": [
+        {"countryId": "CHN", "role": "aggressor"},
+        {"countryId": "VNM", "role": "defender"}
+      ],
+      "involvedCountries": ["CHN","VNM"],
+      "tags": ["cold war","khmer rouge","border war","punitive"],
+      "sources": []
+    },
+    {
+      "id": "seed_kurdish_conflict",
+      "title": "Kurdish–Turkish Conflict (PKK)",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1984",
+      "endDate": null,
+      "ongoing": true,
+      "description": "The Kurdistan Workers' Party (PKK) has waged an insurgency for Kurdish rights and autonomy against Turkey since 1984, killing an estimated 40,000+. Turkey has bombed Kurdish areas in Iraq and Syria. The Kurds — a stateless people of ~30 million split across Turkey, Iraq, Syria, and Iran — are among the largest ethnic groups without a state.",
+      "parties": [
+        {"countryId": "TUR", "role": "aggressor"},
+        {"countryId": "IRQ", "role": "victim"},
+        {"countryId": "SYR", "role": "victim"}
+      ],
+      "involvedCountries": ["TUR","IRQ","SYR"],
+      "tags": ["kurds","pkk","stateless","insurgency","autonomy"],
+      "sources": []
+    },
+    {
+      "id": "seed_west_papua",
+      "title": "West Papua Conflict",
+      "type": "occupation",
+      "severity": 3,
+      "startDate": "1963",
+      "endDate": null,
+      "ongoing": true,
+      "description": "Indonesia took over the former Dutch colony of West Papua via a widely-criticized 1969 'Act of Free Choice' (just 1,026 hand-picked voters). A low-level independence insurgency continues; rights groups estimate 100,000+ Papuans have died under Indonesian rule, with ongoing repression and restricted access for journalists.",
+      "parties": [
+        {"countryId": "IDN", "role": "occupier"}
+      ],
+      "involvedCountries": ["IDN"],
+      "tags": ["occupation","west papua","act of free choice","independence","indigenous"],
+      "sources": []
+    },
+    {
+      "id": "seed_aceh",
+      "title": "Aceh Conflict",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1976",
+      "endDate": "2005",
+      "ongoing": false,
+      "description": "The Free Aceh Movement fought for independence from Indonesia for nearly 30 years, with an estimated 15,000+ killed amid army abuses. The devastating 2004 Indian Ocean tsunami, which killed ~170,000 in Aceh, paradoxically pushed both sides to a 2005 peace deal granting autonomy.",
+      "parties": [
+        {"countryId": "IDN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["IDN"],
+      "tags": ["independence","aceh","tsunami","autonomy","insurgency"],
+      "sources": []
+    },
+    {
+      "id": "seed_moro_conflict",
+      "title": "Moro Conflict (Philippines)",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1969",
+      "endDate": "2019",
+      "ongoing": false,
+      "description": "Muslim Moro groups fought for self-rule in the southern Philippines (Mindanao) for half a century, with an estimated 120,000+ killed. A 2014 peace deal created the autonomous Bangsamoro region (ratified 2019), though splinter jihadist groups remain active.",
+      "parties": [
+        {"countryId": "PHL", "role": "aggressor"}
+      ],
+      "involvedCountries": ["PHL"],
+      "tags": ["mindanao","moro","bangsamoro","muslim","insurgency"],
+      "sources": []
+    },
+    {
+      "id": "seed_philippines_drug_war",
+      "title": "Philippine Drug War",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "2016",
+      "endDate": "2022",
+      "ongoing": false,
+      "description": "President Rodrigo Duterte's 'war on drugs' encouraged police and vigilantes to kill suspected drug users and dealers without trial. Official figures cite ~6,000 killed; rights groups estimate 12,000–30,000. The ICC opened a crimes-against-humanity investigation, and Duterte was arrested on an ICC warrant in 2025.",
+      "parties": [
+        {"countryId": "PHL", "role": "aggressor"}
+      ],
+      "involvedCountries": ["PHL"],
+      "tags": ["drug war","duterte","extrajudicial","ICC","death squads"],
+      "sources": []
+    },
+    {
+      "id": "seed_haiti_gangs",
+      "title": "Haiti Gang Crisis",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2024",
+      "endDate": null,
+      "ongoing": true,
+      "description": "After the 2021 assassination of President Moïse, heavily-armed gangs seized control of over 85% of Port-au-Prince. More than 11,000 people were killed between 2024 and late 2025 and 1.4 million displaced. A Kenyan-led multinational force (2024) failed to stem it and was replaced by a UN-backed Gang Suppression Force in 2026. The crisis is fueled by weapons trafficked from the US.",
+      "parties": [
+        {"countryId": "HTI", "role": "victim"},
+        {"countryId": "KEN", "role": "mediator"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["HTI","KEN","USA"],
+      "tags": ["gangs","state collapse","displacement","caribbean","weapons trafficking"],
+      "sources": []
+    },
+    {
+      "id": "seed_red_sea_houthi",
+      "title": "Red Sea Crisis (Houthi Attacks)",
+      "type": "proxy_war",
+      "severity": 3,
+      "startDate": "2023-11",
+      "endDate": null,
+      "ongoing": true,
+      "description": "In solidarity with Gaza, Yemen's Houthis began attacking commercial ships in the Red Sea and Bab el-Mandeb, sinking vessels and forcing much global shipping to reroute around Africa. The US and UK launched repeated airstrikes on Yemen (Operations Prosperity Guardian / Rough Rider). Attacks paused with the 2025 Gaza ceasefire but the Houthis vowed to resume after the 2026 US–Israel strikes on Iran.",
+      "parties": [
+        {"countryId": "YEM", "role": "aggressor"},
+        {"countryId": "USA", "role": "defender"},
+        {"countryId": "GBR", "role": "defender"},
+        {"countryId": "ISR", "role": "victim"},
+        {"countryId": "IRN", "role": "funder"}
+      ],
+      "involvedCountries": ["YEM","USA","GBR","ISR","IRN"],
+      "tags": ["houthis","red sea","shipping","gaza","bab el-mandeb","iran"],
+      "sources": []
+    },
+    {
+      "id": "seed_portuguese_brazil",
+      "title": "Portuguese Colonization & Slavery in Brazil",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1500",
+      "endDate": "1888",
+      "ongoing": false,
+      "description": "Portugal colonized Brazil and made it the largest slave society in the Americas: roughly 5 million enslaved Africans were shipped there — about 40% of the entire transatlantic slave trade. Indigenous peoples were enslaved, killed, and devastated by disease. Brazil was the last country in the Western Hemisphere to abolish slavery, in 1888.",
+      "parties": [
+        {"countryId": "PRT", "role": "occupier"},
+        {"countryId": "BRA", "role": "victim"}
+      ],
+      "involvedCountries": ["PRT","BRA"],
+      "tags": ["colonial","slavery","indigenous","transatlantic","abolition 1888"],
+      "sources": []
+    },
+    {
+      "id": "seed_spain_expulsions",
+      "title": "Expulsion of Jews & Muslims from Spain",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1492",
+      "endDate": "1614",
+      "ongoing": false,
+      "description": "In 1492 Spain expelled its Jews (the Alhambra Decree) — up to 200,000 forced to convert or flee — and the Inquisition persecuted those who remained. Muslims were forcibly converted then expelled (the Morisco expulsion, 1609–1614 drove out ~300,000). It was one of the largest religious cleansings in European history.",
+      "parties": [
+        {"countryId": "ESP", "role": "aggressor"}
+      ],
+      "involvedCountries": ["ESP"],
+      "tags": ["inquisition","alhambra decree","moriscos","jews","religious cleansing"],
+      "sources": []
+    },
+    {
+      "id": "seed_tupac_amaru",
+      "title": "Túpac Amaru II Rebellion",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1780",
+      "endDate": "1783",
+      "ongoing": false,
+      "description": "The largest indigenous uprising against Spanish rule in the Americas, led by Túpac Amaru II in Peru against colonial forced labour and tribute. Spain crushed it brutally — executing the leader by dismemberment in the plaza of Cusco — and an estimated 100,000 died. It became a lasting symbol of indigenous and anti-colonial resistance.",
+      "parties": [
+        {"countryId": "ESP", "role": "occupier"},
+        {"countryId": "PER", "role": "victim"}
+      ],
+      "involvedCountries": ["ESP","PER"],
+      "tags": ["colonial","indigenous","uprising","andes","forced labour"],
+      "sources": []
+    },
+    {
+      "id": "seed_spanish_american_independence",
+      "title": "Spanish American Wars of Independence",
+      "type": "war",
+      "severity": 4,
+      "startDate": "1808",
+      "endDate": "1833",
+      "ongoing": false,
+      "description": "Across two decades, most of Spanish America won independence from Spain in wars led by figures like Simón Bolívar and José de San Martín. The wars freed today's Mexico, Colombia, Venezuela, Peru, Bolivia, Chile, Argentina, and more, ending three centuries of Spanish colonial rule and reshaping the continent.",
+      "parties": [
+        {"countryId": "ESP", "role": "occupier"},
+        {"countryId": "MEX", "role": "victim"},
+        {"countryId": "COL", "role": "victim"},
+        {"countryId": "VEN", "role": "victim"},
+        {"countryId": "PER", "role": "victim"},
+        {"countryId": "BOL", "role": "victim"},
+        {"countryId": "CHL", "role": "victim"},
+        {"countryId": "ARG", "role": "victim"}
+      ],
+      "involvedCountries": ["ESP","MEX","COL","VEN","PER","BOL","CHL","ARG"],
+      "tags": ["independence","bolivar","san martin","colonial","liberation"],
+      "sources": []
+    },
+    {
+      "id": "seed_conquest_desert",
+      "title": "Argentine Conquest of the Desert",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1878",
+      "endDate": "1885",
+      "ongoing": false,
+      "description": "Argentina's military campaign to seize Patagonia from its indigenous peoples (Mapuche, Tehuelche, Ranquel) killed thousands, enslaved survivors, and shipped children to forced labour. It opened vast lands for European settlers and is widely described as a genocide that nearly erased Patagonia's native population. Chile waged a parallel 'Pacification of Araucanía'.",
+      "parties": [
+        {"countryId": "ARG", "role": "aggressor"}
+      ],
+      "involvedCountries": ["ARG"],
+      "tags": ["genocide","indigenous","mapuche","patagonia","settler colonialism"],
+      "sources": []
+    },
+    {
+      "id": "seed_chaco_war",
+      "title": "Chaco War",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1932",
+      "endDate": "1935",
+      "ongoing": false,
+      "description": "Bolivia and Paraguay fought the bloodiest South American war of the 20th century over the Gran Chaco region, wrongly believed to hold oil. Around 100,000 died, many from disease and thirst in the harsh terrain. Paraguay won most of the disputed land; both impoverished nations were devastated.",
+      "parties": [
+        {"countryId": "BOL", "role": "aggressor"},
+        {"countryId": "PRY", "role": "defender"}
+      ],
+      "involvedCountries": ["BOL","PRY"],
+      "tags": ["south america","oil","gran chaco","disease"],
+      "sources": []
+    },
+    {
+      "id": "seed_cuban_revolution",
+      "title": "Cuban Revolution",
+      "type": "civil_war",
+      "severity": 2,
+      "startDate": "1953",
+      "endDate": "1959",
+      "ongoing": false,
+      "description": "Fidel Castro and Che Guevara's guerrilla movement overthrew the US-backed dictator Batista in 1959, establishing a communist state 90 miles from Florida. It triggered the US embargo, the Bay of Pigs, and the 1962 Missile Crisis, and made Cuba a Cold War flashpoint and exporter of revolution.",
+      "parties": [
+        {"countryId": "CUB", "role": "victim"},
+        {"countryId": "USA", "role": "funder"}
+      ],
+      "involvedCountries": ["CUB","USA"],
+      "tags": ["revolution","castro","che","cold war","batista"],
+      "sources": []
+    },
+    {
+      "id": "seed_mexican_cristero",
+      "title": "Cristero War (Mexico)",
+      "type": "civil_war",
+      "severity": 2,
+      "startDate": "1926",
+      "endDate": "1929",
+      "ongoing": false,
+      "description": "A Catholic uprising against the Mexican government's violent enforcement of anti-clerical, secularist laws. Around 90,000 died before a US-brokered truce. Persecution of Catholics continued for years afterward.",
+      "parties": [
+        {"countryId": "MEX", "role": "victim"}
+      ],
+      "involvedCountries": ["MEX"],
+      "tags": ["catholic","anti-clerical","uprising","mexico"],
+      "sources": []
+    },
+    {
+      "id": "seed_canada_residential",
+      "title": "Canada — Residential Schools & Indigenous Genocide",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1883",
+      "endDate": "1996",
+      "ongoing": false,
+      "description": "For over a century Canada forcibly removed Indigenous children to church-run 'residential schools' to erase their culture, where many suffered abuse, malnutrition, and death; thousands of unmarked graves have since been found. A 2015 Truth and Reconciliation Commission called it 'cultural genocide'. Combined with earlier dispossession and disease, it devastated First Nations, Inuit, and Métis peoples.",
+      "parties": [
+        {"countryId": "CAN", "role": "aggressor"}
+      ],
+      "involvedCountries": ["CAN"],
+      "tags": ["genocide","indigenous","residential schools","first nations","cultural genocide"],
+      "sources": []
+    },
+    {
+      "id": "seed_winter_war",
+      "title": "Winter War",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1939",
+      "endDate": "1940",
+      "ongoing": false,
+      "description": "The Soviet Union invaded Finland in 1939; vastly outnumbered Finnish forces inflicted huge losses in the snow before being forced to cede territory. The Soviets' poor performance encouraged Hitler to later invade the USSR. Finland kept its independence.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "FIN", "role": "defender"}
+      ],
+      "involvedCountries": ["RUS","FIN"],
+      "tags": ["soviet","finland","wwii","invasion"],
+      "sources": []
+    },
+    {
+      "id": "seed_katyn",
+      "title": "Katyn Massacre",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "1940",
+      "endDate": "1940",
+      "ongoing": false,
+      "description": "The Soviet secret police executed around 22,000 Polish military officers, police, and intellectuals in the Katyn forest and elsewhere, aiming to decapitate Poland's leadership class. The USSR blamed the Nazis and denied it for 50 years, only admitting responsibility in 1990.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "POL", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","POL"],
+      "tags": ["massacre","soviet","poland","nkvd","denial"],
+      "sources": []
+    },
+    {
+      "id": "seed_soviet_deportations",
+      "title": "Soviet Deportation of Nations",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1941",
+      "endDate": "1949",
+      "ongoing": false,
+      "description": "Stalin forcibly deported entire ethnic groups — Crimean Tatars, Chechens, Ingush, Volga Germans, Kalmyks, and others — to Central Asia and Siberia, accusing them of collective disloyalty. Packed into cattle trains, an estimated quarter to nearly half of some peoples died of cold, hunger, and disease. The Crimean Tatar deportation is recognized by some as genocide.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"}
+      ],
+      "involvedCountries": ["RUS"],
+      "tags": ["stalin","deportation","crimean tatars","chechens","ethnic cleansing"],
+      "sources": []
+    },
+    {
+      "id": "seed_kazakh_famine",
+      "title": "Kazakh Famine (Asharshylyk)",
+      "type": "genocide",
+      "severity": 5,
+      "startDate": "1930",
+      "endDate": "1933",
+      "ongoing": false,
+      "description": "Stalin's forced collectivization and seizure of livestock caused a catastrophic famine in Kazakhstan that killed an estimated 1.5 million Kazakhs — around 40% of the entire Kazakh population, the highest death ratio of any group in the Soviet Union. The traditionally nomadic Kazakhs were made a minority in their own land. Many call it a genocide.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "KAZ", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","KAZ"],
+      "tags": ["famine","stalin","collectivization","soviet","central asia","nomads"],
+      "sources": []
+    },
+    {
+      "id": "seed_mongolian_purges",
+      "title": "Mongolian Stalinist Purges",
+      "type": "genocide",
+      "severity": 4,
+      "startDate": "1937",
+      "endDate": "1939",
+      "ongoing": false,
+      "description": "Under Soviet direction, Mongolia's leader Khorloogiin Choibalsan purged 'enemies of the people' — executing an estimated 30,000–35,000, a huge share of a small population. Buddhist monasteries were destroyed and tens of thousands of monks killed, all but erasing organized Buddhism in Mongolia for decades.",
+      "parties": [
+        {"countryId": "RUS", "role": "funder"},
+        {"countryId": "MNG", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","MNG"],
+      "tags": ["purge","stalin","buddhism","choibalsan","soviet","mongolia"],
+      "sources": []
+    },
+    {
+      "id": "seed_basmachi",
+      "title": "Basmachi Revolt (Central Asia)",
+      "type": "war",
+      "severity": 3,
+      "startDate": "1916",
+      "endDate": "1934",
+      "ongoing": false,
+      "description": "A long Muslim uprising across Central Asia against Russian Imperial then Soviet rule, sparked by the 1916 conscription revolt. The Red Army crushed it over nearly two decades, killing an estimated hundreds of thousands and consolidating Soviet control over today's Uzbekistan, Tajikistan, Kyrgyzstan, and Turkmenistan.",
+      "parties": [
+        {"countryId": "RUS", "role": "occupier"},
+        {"countryId": "UZB", "role": "victim"},
+        {"countryId": "TJK", "role": "victim"},
+        {"countryId": "KGZ", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","UZB","TJK","KGZ"],
+      "tags": ["basmachi","soviet","central asia","muslim","uprising"],
+      "sources": []
+    },
+    {
+      "id": "seed_black_january",
+      "title": "Black January (Azerbaijan)",
+      "type": "occupation",
+      "severity": 2,
+      "startDate": "1990",
+      "endDate": "1990",
+      "ongoing": false,
+      "description": "Soviet troops stormed Baku in January 1990, killing around 130+ civilians to crush Azerbaijan's growing independence movement. It shattered any remaining Azerbaijani loyalty to Moscow and is commemorated as a national day of mourning.",
+      "parties": [
+        {"countryId": "RUS", "role": "aggressor"},
+        {"countryId": "AZE", "role": "victim"}
+      ],
+      "involvedCountries": ["RUS","AZE"],
+      "tags": ["soviet","baku","independence","crackdown","caucasus"],
+      "sources": []
+    },
+    {
+      "id": "seed_andijan",
+      "title": "Andijan Massacre (Uzbekistan)",
+      "type": "genocide",
+      "severity": 3,
+      "startDate": "2005",
+      "endDate": "2005",
+      "ongoing": false,
+      "description": "Uzbek government forces opened fire on a large crowd of mostly peaceful protesters in Andijan, killing an estimated several hundred to ~1,500. The regime of Islam Karimov sealed off the city and denied wrongdoing. It stands as one of the worst state massacres in post-Soviet Central Asia.",
+      "parties": [
+        {"countryId": "UZB", "role": "aggressor"}
+      ],
+      "involvedCountries": ["UZB"],
+      "tags": ["massacre","karimov","protesters","state repression","central asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_osh_riots",
+      "title": "Kyrgyz–Uzbek Ethnic Clashes (Osh)",
+      "type": "civil_war",
+      "severity": 2,
+      "startDate": "2010",
+      "endDate": "2010",
+      "ongoing": false,
+      "description": "Ethnic violence between Kyrgyz and the Uzbek minority erupted in southern Kyrgyzstan (Osh and Jalal-Abad) after a political upheaval, killing around 400–2,000 and displacing hundreds of thousands. It echoed an earlier round of Osh clashes in 1990.",
+      "parties": [
+        {"countryId": "KGZ", "role": "aggressor"}
+      ],
+      "involvedCountries": ["KGZ"],
+      "tags": ["ethnic","osh","kyrgyz","uzbek","central asia"],
+      "sources": []
+    },
+    {
+      "id": "seed_georgia_abkhazia",
+      "title": "Georgian Civil Wars (Abkhazia & South Ossetia)",
+      "type": "civil_war",
+      "severity": 3,
+      "startDate": "1991",
+      "endDate": "1993",
+      "ongoing": false,
+      "description": "As the USSR collapsed, the breakaway regions of Abkhazia and South Ossetia fought Georgia with Russian backing, driving out around 250,000 ethnic Georgians (ethnic cleansing in Abkhazia). The conflicts froze into Russian-backed statelets — the same fault lines that erupted again in the 2008 Russo-Georgian War.",
+      "parties": [
+        {"countryId": "GEO", "role": "victim"},
+        {"countryId": "RUS", "role": "funder"}
+      ],
+      "involvedCountries": ["GEO","RUS"],
+      "tags": ["post-soviet","abkhazia","south ossetia","ethnic cleansing","frozen conflict","caucasus"],
       "sources": []
     }
   ]

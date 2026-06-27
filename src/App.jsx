@@ -9,6 +9,7 @@ import TopBar from './components/TopBar/TopBar';
 import WorldMap from './components/Map/WorldMap';
 import MapFilterBar from './components/Map/MapFilterBar';
 import SidePanel from './components/SidePanel/SidePanel';
+import ConflictDetailPanel from './components/ConflictDetail/ConflictDetailPanel';
 import GraphView from './components/GraphView/GraphView';
 import EditModal from './components/EditModal/EditModal';
 import DataPanel from './components/DataPanel/DataPanel';
@@ -24,7 +25,9 @@ function ActiveView() {
           <MapFilterBar />
           <div className={styles.main}>
             <WorldMap />
-            {state.selectedCountryId && <SidePanel />}
+            {state.openConflictId
+              ? <ConflictDetailPanel />
+              : state.selectedCountryId && <SidePanel />}
           </div>
         </div>
       );

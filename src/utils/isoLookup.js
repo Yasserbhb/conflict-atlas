@@ -30,7 +30,7 @@ const NUMERIC_TO_ALPHA3 = {
   662: 'LCA', 670: 'VCT', 882: 'WSM', 674: 'SMR', 678: 'STP', 688: 'SRB',
   690: 'SYC', 706: 'SOM', 736: 'SDN', 748: 'SWZ', 762: 'TJK', 626: 'TLS',
   796: 'TCA', 798: 'TUV', 807: 'MKD', 850: 'VIR', 876: 'WLF', 887: 'YEM',
-  834: 'TZA', 728: 'SSD', 732: 'ESH',
+  834: 'TZA', 728: 'SSD', 732: 'ESH', 158: 'TWN',
 };
 
 const ALPHA3_TO_NUMERIC = {};

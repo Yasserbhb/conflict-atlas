@@ -71,18 +71,9 @@ export default function ConflictsView() {
   }, [conflicts, search, type, region, minSeverity, ongoingOnly, sortBy, regionByCountry, nameByCountry]);
 
   function openOnMap(conflict) {
-    // Move the timeline into the conflict's window so it counts as "active" and
-    // shows up in the side panel (otherwise a past conflict like WW2 looks empty
-    // because the year is still at the present).
-    const startY = parseYear(conflict.startDate);
-    if (startY != null) {
-      const year = conflict.ongoing ? 2026 : Math.min(2026, Math.max(1490, startY));
-      dispatch({ type: 'SET_TIMELINE_YEAR', payload: year });
-    }
-    const firstParty = conflict.parties?.[0]?.countryId;
-    if (firstParty) dispatch({ type: 'SELECT_COUNTRY', payload: firstParty });
-    dispatch({ type: 'FOCUS_CONFLICT', payload: conflict.id });
-    dispatch({ type: 'SET_VIEW', payload: 'map' });
+    // Opens the conflict detail panel, role-colors the map, and moves the
+    // timeline into the conflict's window — all handled by the reducer.
+    dispatch({ type: 'OPEN_CONFLICT', payload: conflict.id });
   }
 
   return (

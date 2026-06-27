@@ -54,10 +54,7 @@ export default function TimelineView() {
   }
 
   function openOnMap(conflict) {
-    const firstParty = conflict.parties?.[0]?.countryId;
-    if (firstParty) dispatch({ type: 'SELECT_COUNTRY', payload: firstParty });
-    dispatch({ type: 'FOCUS_CONFLICT', payload: conflict.id });
-    dispatch({ type: 'SET_VIEW', payload: 'map' });
+    dispatch({ type: 'OPEN_CONFLICT', payload: conflict.id });
   }
 
   const cursorX = ((timelineYear - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * VB_W;

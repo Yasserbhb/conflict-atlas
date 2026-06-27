@@ -247,6 +247,7 @@ export default function WorldMap() {
         <div className={styles.mapLoading}>Loading map…</div>
       )}
 
+
       <div className={styles.zoomControls}>
         <span className={styles.zoomHint}>scroll to zoom · drag to pan</span>
         {transform.k > 1.01 && (

@@ -2,6 +2,26 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.5.0 — 2026-06-27
+
+Conflict detail panel + a big catalogue expansion.
+
+**Feature**
+- **Conflict detail panel** (right side): click any conflict (Conflicts list, Timeline, or a country card) to open a dedicated panel — type glyph, severity gauge, full description, **parties grouped by side** (aggressors / victims & defenders / backers / mediators) with flag chips, tags, and a **Sources** section (your added links + a guaranteed "Look it up on Wikipedia" link; no fabricated citations). Click a party to jump to that country.
+- Opening a conflict role-colors the map and moves the timeline into its era.
+
+**Data — now ~226 conflicts, 135 countries**
+- Fixed **Taiwan** (was unmapped): added the ISO mapping, the country, and a Taiwan Strait conflict.
+- **British gaps**: Falklands, Anglo-Ashanti, Anglo-Burmese, Amritsar, Cyprus EOKA, Rhodesian Bush War.
+- **French gaps**: Syria/Lebanon mandate, the Cameroon Bamileke "hidden war", Wars of Religion.
+- **US gaps**: Spanish–American War, Dominican Republic 1965.
+- **Ottoman/Europe**: Greek War of Independence, Ottoman–Safavid Wars.
+- **Africa/Asia**: Portuguese Colonial War, Italian East Africa, Eritrean independence, First Sudanese war, Sino-Indian & Sino-Vietnamese wars, Kurdish–PKK, West Papua, Aceh, Moro conflict, Philippine drug war.
+- **Latin America/Iberian**: Portuguese Brazil & slavery, Spanish American Wars of Independence, Conquest of the Desert, Chaco War, Túpac Amaru II, Spanish expulsions, Cuban Revolution, Cristero War.
+- **Central Asia/Caucasus/Mongolia**: Kazakh Famine, Mongolian purges, Basmachi revolt, Black January, Andijan, Osh clashes, Georgian civil wars.
+- **Other**: Canada residential schools, Winter War, Katyn, Soviet deportations.
+- **Current (2024–26)**: Haiti gang crisis, Red Sea/Houthi crisis.
+
 ## v1.4.0 — 2026-06-27
 
 Full visual redesign — "green glass."

@@ -118,10 +118,7 @@ export default function SidePanel() {
                 countries={countries}
                 selectedId={selectedCountryId}
                 isFocused={focusedConflictId === c.id}
-                onFocus={() => dispatch({
-                  type: focusedConflictId === c.id ? 'CLEAR_FOCUSED_CONFLICT' : 'FOCUS_CONFLICT',
-                  payload: c.id,
-                })}
+                onFocus={() => dispatch({ type: 'OPEN_CONFLICT', payload: c.id })}
               />
             ))}
           </>
@@ -140,10 +137,7 @@ export default function SidePanel() {
                 countries={countries}
                 selectedId={selectedCountryId}
                 isFocused={focusedConflictId === c.id}
-                onFocus={() => dispatch({
-                  type: focusedConflictId === c.id ? 'CLEAR_FOCUSED_CONFLICT' : 'FOCUS_CONFLICT',
-                  payload: c.id,
-                })}
+                onFocus={() => dispatch({ type: 'OPEN_CONFLICT', payload: c.id })}
               />
             ))}
           </>
