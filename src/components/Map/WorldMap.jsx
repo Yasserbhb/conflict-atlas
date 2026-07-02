@@ -90,7 +90,7 @@ export default function WorldMap() {
       setCentroids(MAP_CACHE.centroids);
       return;
     }
-    d3.json('/data/countries-50m.json').then((world) => {
+    d3.json(`${import.meta.env.BASE_URL}data/countries-50m.json`).then((world) => {
       const geo = topojson.feature(world, world.objects.countries);
       const paths = [];
       const cents = {};
