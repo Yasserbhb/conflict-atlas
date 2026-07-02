@@ -20,11 +20,15 @@ export async function initSeed() {
   }
   await tx.done;
 
-  // Import conflicts (only seed_ prefixed — never overwrite user-created ones)
+  // Import conflicts. On a version bump, seed_ conflicts are refreshed to the
+  // latest data (so corrections/edits in seed.json actually reach you), while
+  // user-created (user_) conflicts are never touched.
   for (const conflict of seedData.conflicts) {
-    const existing = await db.get('conflicts', conflict.id);
-    if (!existing) {
+    if (conflict.id.startsWith('seed_')) {
       await saveConflict(conflict);
+    } else {
+      const existing = await db.get('conflicts', conflict.id);
+      if (!existing) await saveConflict(conflict);
     }
   }
 

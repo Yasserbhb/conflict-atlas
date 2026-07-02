@@ -1,5 +1,5 @@
 {
-  "version": "2.6.0",
+  "version": "2.7.0",
   "countries": [
     {"id":"AFG","iso2":"AF","name":"Afghanistan","region":"Asia","subregion":"Southern Asia","aliases":[],"notes":""},
     {"id":"ALB","iso2":"AL","name":"Albania","region":"Europe","subregion":"Southern Europe","aliases":[],"notes":""},
@@ -1066,9 +1066,9 @@
       "startDate": "1788",
       "endDate": "1934",
       "ongoing": false,
-      "description": "British colonization of Australia killed the vast majority of the Aboriginal population through frontier massacres, introduced disease, and dispossession. The Aboriginal population fell from an estimated 750,000+ to around 75,000 by the 1930s. The 'Stolen Generations' — forced removal of Aboriginal children — continued into the 1970s. Australia has never made full reparation.",
+      "description": "Britain colonized Australia from 1788 and, with the settler society that became modern Australia, killed the vast majority of the Aboriginal population through frontier massacres, introduced disease, and dispossession. The Aboriginal population fell from an estimated 750,000+ to around 75,000 by the 1930s. The 'Stolen Generations' — forced removal of Aboriginal children, continued by Australian governments into the 1970s. (In 1788 there was no 'Australia' — it was a British colony; Australia federated in 1901 and continued the policies.)",
       "parties": [
-        {"countryId": "GBR", "role": "occupier"},
+        {"countryId": "GBR", "role": "aggressor"},
         {"countryId": "AUS", "role": "aggressor"}
       ],
       "involvedCountries": ["GBR","AUS"],

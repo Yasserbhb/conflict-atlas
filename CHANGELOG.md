@@ -2,6 +2,11 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.5.1 — 2026-06-27
+
+- Fixed the roles on the Aboriginal Australian genocide (Britain is now correctly an aggressor, not just "occupier") and clarified the 1788/1901 anachronism in the description.
+- Fixed the seed importer: on a version bump, built-in (`seed_`) conflicts are now refreshed to the latest data, so corrections to existing entries actually reach an already-populated database. User-created (`user_`) conflicts are never touched.
+
 ## v1.5.0 — 2026-06-27
 
 Conflict detail panel + a big catalogue expansion.
