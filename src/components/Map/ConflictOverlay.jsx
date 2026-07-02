@@ -9,7 +9,7 @@ const DEFENDER_ROLES = new Set(['victim', 'defender', 'sanctioned']);
 const SUPPORT_ROLES = new Set(['funder', 'proxy', 'sanctioner']);
 const MEDIATOR_ROLES = new Set(['mediator']);
 
-function quadraticArc(x1, y1, x2, y2, curvature = 0.3) {
+function quadraticArc(x1, y1, x2, y2, curvature = 0.36) {
   const mx = (x1 + x2) / 2;
   const my = (y1 + y2) / 2;
   const dx = x2 - x1;
@@ -90,10 +90,11 @@ export default function ConflictOverlay({ activeConflicts, centroids, selectedCo
       const involvedIds = conflict.involvedCountries || [];
       if (!involvedIds.includes(selectedCountryId)) continue;
 
-      // Color by the selected country's role in this conflict
+      // Color by the selected country's role in this conflict.
+      // Thin, semi-transparent threads (not bold pipes) for a calmer, mature look.
       const color = conflictColorForCountry(conflict, selectedCountryId);
-      const opacity = 0.9;
-      const width = Math.max(1.2, conflict.severity * 0.5);
+      const opacity = 0.6;
+      const width = Math.max(0.7, conflict.severity * 0.28);
 
       const edges = buildDirectedEdges(conflict, centroids)
         .filter((e) => e.from === selectedCountryId || e.to === selectedCountryId);
@@ -128,7 +129,7 @@ export default function ConflictOverlay({ activeConflicts, centroids, selectedCo
           opacity={opacity}
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          strokeDasharray={kind === 'support' ? `${width * 3} ${width * 2.5}` : undefined}
+          strokeDasharray={kind === 'support' ? '5 4' : undefined}
         />
       ))}
     </g>

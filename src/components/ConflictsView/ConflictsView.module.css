@@ -103,17 +103,19 @@
   background: var(--glass);
   border: 1px solid var(--glass-border);
   border-left: 3px solid #94a3b8;
-  border-radius: 6px;
-  padding: 9px 12px;
+  border-radius: var(--radius-card);
+  padding: 10px 12px;
   cursor: pointer;
   text-align: left;
   flex-shrink: 0;
-  transition: background 0.12s, border-color 0.12s;
+  transition: background 0.14s, border-color 0.14s, box-shadow 0.14s, transform 0.14s;
 }
 
 .row:hover {
-  background: rgba(52, 211, 153, 0.1);
-  border-color: var(--glass-border);
+  background: rgba(52, 211, 153, 0.08);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
 }
 
 .rowGlyph {

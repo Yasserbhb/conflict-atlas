@@ -85,6 +85,7 @@
   font-weight: 800;
   color: #e2e8f0;
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 .conflictCount {

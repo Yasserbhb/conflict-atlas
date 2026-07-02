@@ -13,12 +13,12 @@
 .modal {
   background: #0d1714;
   border: 1px solid var(--glass-border);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   width: 100%;
   max-width: 760px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--shadow-lg);
   animation: fadeScaleIn 200ms ease-out;
 }
 

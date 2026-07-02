@@ -33,12 +33,12 @@ export const ROLE_LABELS = {
 };
 
 export const SEVERITY_COLORS = [
-  '#374151', // 0 = none
-  '#eab308', // 1 = low tension      (yellow)
-  '#f59e0b', // 2 = serious          (amber)
-  '#f97316', // 3 = armed conflict   (orange)
-  '#dc2626', // 4 = mass atrocity    (red)
-  '#9f1239', // 5 = catastrophic     (deep crimson)
+  '#37413a', // 0 = none
+  '#c49a52', // 1 = low tension      (muted ochre / gold)
+  '#c17d3e', // 2 = serious          (burnt amber)
+  '#b85a37', // 3 = armed conflict   (terracotta)
+  '#a83f39', // 4 = mass atrocity    (brick red)
+  '#8f2f46', // 5 = catastrophic     (deep wine)
 ];
 
 export function severityColor(severity) {

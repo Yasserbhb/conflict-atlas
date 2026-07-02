@@ -2,6 +2,16 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.8.0 — 2026-06-27
+
+Visual maturity pass.
+
+- **Palette**: muted the severity ramp from neon (yellow→pure red) to an editorial "ember" sequence (ochre → burnt amber → terracotta → brick → deep wine), so the map no longer reads as a wall of alarm colors.
+- **Legend**: compact, quieter, and collapsible — dropped the loud banner (name lives in the side panel), added a small mode chip + one-line rule, and a "Legend" chip when hidden.
+- **Arcs**: thinner (max ~1.4px), more transparent (0.6), softer curves — elegant threads instead of bold pipes.
+- **Typography**: self-hosted Inter (offline-safe) with tabular numerals on the year/counts so they don't jitter.
+- **Shapes**: radius + elevation tokens; list rows now match the card radius and get the same hover lift/shadow; modals unified to the token scale.
+
 ## v1.7.2 — 2026-06-27
 
 - Map focus behaviour reworked (cleaner, no decorative outlines):

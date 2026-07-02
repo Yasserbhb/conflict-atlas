@@ -32,6 +32,8 @@
   font-weight: 800;
   color: #e2e8f0;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 }
 
 .cardLabel {
@@ -118,4 +120,5 @@
   font-weight: 600;
   color: #94a3b8;
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }

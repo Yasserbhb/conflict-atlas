@@ -1,7 +1,7 @@
 {
   "name": "conflict-atlas",
   "private": true,
-  "version": "1.7.2",
+  "version": "1.8.0",
   "description": "An interactive vector world map for exploring geopolitical conflicts, genocides, occupations, and atrocities from 1490 to the present.",
   "type": "module",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
     "d3": "^7.9.0",
     "idb": "^8.0.3",
     "lucide-react": "^1.23.0",
