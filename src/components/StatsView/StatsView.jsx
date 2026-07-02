@@ -131,8 +131,16 @@ function Panel({ title, children }) {
 
 function Bar({ label, value, max, color, onClick }) {
   const pct = (value / max) * 100;
+  const interactive = !!onClick;
   return (
-    <div className={`${styles.barRow} ${onClick ? styles.clickable : ''}`} onClick={onClick}>
+    <div
+      className={`${styles.barRow} ${interactive ? styles.clickable : ''}`}
+      onClick={onClick}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-label={interactive ? `${label}, ${value} — open on map` : `${label}: ${value}`}
+      onKeyDown={interactive ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } } : undefined}
+    >
       <span className={styles.barLabel}>{label}</span>
       <span className={styles.barTrack}>
         <span className={styles.barFill} style={{ width: `${pct}%`, background: color || '#3b82f6' }} />

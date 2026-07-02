@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { isActiveAt, parseYear, formatDateRange } from '../../utils/dateUtils';
 import { TYPE_COLORS, TYPE_LABELS } from '../../utils/conflictColors';
@@ -44,11 +44,23 @@ export default function TimelineView() {
   const N = perYear.length;
   const barW = VB_W / N;
 
+  const [hover, setHover] = useState(null);
+  const peak = useMemo(
+    () => perYear.reduce((a, b) => (b.count > a.count ? b : a), perYear[0] || { year: 0, count: 0 }),
+    [perYear]
+  );
+
   function yearFromEvent(e) {
     const rect = svgRef.current.getBoundingClientRect();
     const frac = (e.clientX - rect.left) / rect.width;
     const y = Math.round(MIN_YEAR + frac * (MAX_YEAR - MIN_YEAR));
     return Math.min(MAX_YEAR, Math.max(MIN_YEAR, y));
+  }
+
+  function handleHover(e) {
+    const y = yearFromEvent(e);
+    const d = perYear[y - MIN_YEAR];
+    setHover({ year: y, count: d ? d.count : 0, xPct: ((y - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100 });
   }
 
   function setYear(y) {
@@ -78,11 +90,16 @@ export default function TimelineView() {
           viewBox={`0 0 ${VB_W} ${VB_H}`}
           preserveAspectRatio="none"
           className={styles.chart}
+          role="img"
+          aria-label={`Number of active conflicts each year from ${MIN_YEAR} to ${MAX_YEAR}. It rises over time, peaking near ${peak.count} around ${peak.year}. Currently ${timelineYear} with ${activeNow.length} active. Click to pick a year.`}
           onClick={(e) => setYear(yearFromEvent(e))}
+          onMouseMove={handleHover}
+          onMouseLeave={() => setHover(null)}
         >
           {perYear.map((d, i) => {
             const h = (d.count / maxCount) * (VB_H - 10);
             const isCurrent = d.year === timelineYear;
+            const isHover = hover && d.year === hover.year;
             return (
               <rect
                 key={d.year}
@@ -90,13 +107,27 @@ export default function TimelineView() {
                 y={VB_H - h}
                 width={Math.max(barW * 0.9, 0.6)}
                 height={h}
-                fill={isCurrent ? '#6ee7b7' : '#2a4a42'}
+                fill={isCurrent ? '#6ee7b7' : isHover ? '#4ade80' : '#2a4a42'}
               />
             );
           })}
+          {/* hovered-year line */}
+          {hover && (
+            <line
+              x1={(hover.xPct / 100) * VB_W} y1={0}
+              x2={(hover.xPct / 100) * VB_W} y2={VB_H}
+              stroke="#6ee7b7" strokeWidth={1} strokeDasharray="3 3" opacity={0.6}
+              vectorEffect="non-scaling-stroke"
+            />
+          )}
           {/* current-year cursor */}
           <line x1={cursorX} y1={0} x2={cursorX} y2={VB_H} stroke="#34d399" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         </svg>
+        {hover && (
+          <div className={styles.chartTip} style={{ left: `${hover.xPct}%` }}>
+            <strong>{hover.year}</strong> · {hover.count} active
+          </div>
+        )}
         {/* axis labels */}
         <div className={styles.axis}>
           {axisYears.map((y) => (

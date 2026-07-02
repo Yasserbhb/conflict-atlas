@@ -45,7 +45,26 @@
 .chartWrap {
   flex-shrink: 0;
   margin-top: 14px;
+  position: relative;
 }
+
+.chartTip {
+  position: absolute;
+  top: -6px;
+  transform: translate(-50%, -100%);
+  background: rgba(10, 18, 16, 0.95);
+  border: 1px solid var(--accent-border);
+  border-radius: 7px;
+  padding: 4px 9px;
+  font-size: 11px;
+  color: #e6f0ec;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.chartTip strong { color: var(--accent-light); font-weight: 700; }
 
 .chart {
   width: 100%;
