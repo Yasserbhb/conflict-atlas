@@ -71,5 +71,5 @@
 
 .region {
   font-size: 10px;
-  color: #475569;
+  color: var(--text-muted);
 }

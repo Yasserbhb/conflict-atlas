@@ -27,7 +27,7 @@
 
 .zoomHint {
   font-size: 10px;
-  color: #475569;
+  color: var(--text-muted);
   background: rgba(10, 18, 16, 0.75);
   padding: 3px 8px;
   border-radius: 5px;
@@ -57,7 +57,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 14px;
-  color: #64748b;
+  color: var(--text-secondary);
   letter-spacing: 0.04em;
   pointer-events: none;
 }
@@ -67,7 +67,7 @@
   bottom: 12px;
   right: 12px;
   font-size: 10px;
-  color: #475569;
+  color: var(--text-muted);
   background: rgba(10, 18, 16, 0.75);
   padding: 3px 8px;
   border-radius: 5px;

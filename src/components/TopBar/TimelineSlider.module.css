@@ -29,7 +29,7 @@
 
 .yearLabel {
   font-size: 11px;
-  color: #475569;
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 

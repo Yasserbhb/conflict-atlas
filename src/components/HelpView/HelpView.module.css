@@ -42,7 +42,7 @@
 
 .note {
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0 0 12px;
 }
@@ -111,6 +111,6 @@
 
 .credit {
   font-size: 11px;
-  color: #475569;
+  color: var(--text-muted);
   margin: 12px 0 0;
 }

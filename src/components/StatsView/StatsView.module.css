@@ -36,7 +36,7 @@
 
 .cardLabel {
   font-size: 11px;
-  color: #64748b;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-top: 6px;

@@ -53,7 +53,7 @@
 
 .placeholderSub {
   font-size: 12px;
-  color: #475569;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -68,6 +68,6 @@
 
 .loadingText {
   font-size: 18px;
-  color: #475569;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
 }

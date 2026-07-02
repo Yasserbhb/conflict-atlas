@@ -42,7 +42,7 @@
   justify-content: center;
   background: none;
   border: none;
-  color: #475569;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 4px;
   transition: color 0.15s;
