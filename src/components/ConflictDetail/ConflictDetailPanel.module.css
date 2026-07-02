@@ -12,6 +12,24 @@
   animation: slideInRight 220ms ease-out;
 }
 
+/* Mobile: bottom sheet above the nav bar */
+@media (max-width: 768px) {
+  .panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: var(--bottom-nav-h);
+    width: auto;
+    max-height: 62vh;
+    border-left: none;
+    border-top: 1px solid var(--glass-border);
+    border-radius: 16px 16px 0 0;
+    z-index: 40;
+    box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.55);
+    animation: slideUp 240ms ease-out;
+  }
+}
+
 .accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
 
 .header {
@@ -180,3 +198,7 @@
   transition: filter 0.15s;
 }
 .graphBtn:hover { filter: brightness(1.15); }
+
+@media (max-width: 768px) {
+  .closeBtn { width: 38px; height: 38px; }
+}

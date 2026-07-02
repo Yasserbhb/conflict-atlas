@@ -12,6 +12,13 @@
   min-height: 0;
 }
 
+/* Mobile: stack the nav to the bottom */
+@media (max-width: 768px) {
+  .shell {
+    flex-direction: column-reverse;
+  }
+}
+
 .viewArea {
   flex: 1;
   display: flex;

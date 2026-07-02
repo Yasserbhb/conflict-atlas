@@ -11,6 +11,24 @@
   animation: slideInRight 220ms ease-out;
 }
 
+/* Mobile: turn into a bottom sheet above the nav bar */
+@media (max-width: 768px) {
+  .panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: var(--bottom-nav-h);
+    width: auto;
+    max-height: 60vh;
+    border-left: none;
+    border-top: 1px solid var(--glass-border);
+    border-radius: 16px 16px 0 0;
+    z-index: 40;
+    box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.55);
+    animation: slideUp 240ms ease-out;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -341,3 +359,10 @@
 }
 
 .graphBtn:hover { filter: brightness(1.15); }
+
+/* Mobile: larger touch targets */
+@media (max-width: 768px) {
+  .closeBtn { width: 38px; height: 38px; }
+  .focusBtn { width: 34px; height: 34px; }
+  .tab { padding: 11px 12px; }
+}

@@ -2,6 +2,10 @@
   position: relative;
 }
 
+@media (max-width: 560px) {
+  .wrapper { display: none; }
+}
+
 .searchIcon {
   position: absolute;
   left: 9px;

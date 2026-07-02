@@ -134,3 +134,7 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+
+@media (max-width: 768px) {
+  .overlay { padding: 10px; }
+}

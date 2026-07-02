@@ -74,3 +74,10 @@
   max-width: 240px;
   pointer-events: none;
 }
+
+/* Mobile: hide the small hint labels to keep the map clean */
+@media (max-width: 768px) {
+  .zoomHint { display: none; }
+  .bordersNote { display: none; }
+  .zoomControls { top: 8px; right: 8px; }
+}

@@ -27,11 +27,19 @@
   --glass: rgba(255, 255, 255, 0.045);
   --glass-strong: rgba(255, 255, 255, 0.07);
   --glass-border: rgba(255, 255, 255, 0.09);
+
+  --bottom-nav-h: 56px;
 }
 
 html, body, #root {
   height: 100%;
   overflow: hidden;
+}
+
+/* Use dynamic viewport height on mobile so the browser chrome doesn't clip it */
+#root {
+  height: 100vh;
+  height: 100dvh;
 }
 
 body {
@@ -106,6 +114,10 @@ svg { display: block; }
 @keyframes overlayFade {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0.6; }
+  to   { transform: none; opacity: 1; }
 }
 
 input, select, textarea {

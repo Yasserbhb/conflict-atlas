@@ -59,3 +59,7 @@
   overflow-y: auto;
   padding: 16px 20px;
 }
+
+@media (max-width: 768px) {
+  .overlay { padding: 10px; }
+}

@@ -52,3 +52,39 @@
 
 .icon { font-size: 18px; line-height: 1; }
 .label { font-size: 9px; font-weight: 600; letter-spacing: 0.02em; }
+
+/* Mobile: horizontal bottom nav bar */
+@media (max-width: 768px) {
+  .nav {
+    width: 100%;
+    height: var(--bottom-nav-h);
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 0;
+    gap: 0;
+    border-right: none;
+    border-top: 1px solid var(--glass-border);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .item {
+    flex: 1;
+    margin: 0;
+    border-radius: 0;
+    justify-content: center;
+    padding: 6px 0;
+  }
+  .active {
+    background: var(--accent-dim);
+  }
+  /* move the active indicator from the left edge to the top */
+  .active::before {
+    left: 50%;
+    top: 0;
+    bottom: auto;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+  }
+  .label { font-size: 10px; }
+}

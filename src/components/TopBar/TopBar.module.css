@@ -94,3 +94,27 @@
   background: var(--accent-dim);
   color: var(--accent-light);
 }
+
+/* Mobile: let the bar wrap and drop the timeline slider to its own row */
+@media (max-width: 768px) {
+  .topBar {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .center {
+    order: 3;
+    flex-basis: 100%;
+  }
+  .left, .right {
+    flex: 1;
+  }
+  .right {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 560px) {
+  .logoText { display: none; }
+}

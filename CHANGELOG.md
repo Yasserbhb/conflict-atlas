@@ -2,6 +2,16 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.7.0 — 2026-06-27
+
+UX polish batch (design-standards) + **mobile responsive**.
+
+- **A — Contrast**: brightened the text tokens and swapped all hardcoded dim greys to them, so captions/labels/axis/list text meet contrast on the dark background.
+- **B — Severity gauge**: shared segmented 1–5 meter (with `aria-label`) replaces the `◆◆◆` marks in the Conflicts and Timeline lists (each row also gets a type icon); side panel and edit form use the same component.
+- **C — Chart accessibility**: the Timeline histogram has a hover readout (year + active count) with a guide line and an `aria-label` summary; Stats bars are keyboard-navigable buttons.
+- **D — Micro-animations**: panels slide in, modals fade + scale in, cards fade-down on expand — all 150–220ms and disabled under `prefers-reduced-motion`.
+- **F — Mobile/responsive** (under 768px): the sidebar becomes a bottom nav bar; the top bar reflows (timeline to its own row, search hidden); the side panel and conflict detail become bottom sheets; the map declutters (legend/hints hidden); bigger touch targets; `100dvh` so the mobile browser bar doesn't clip it.
+
 ## v1.6.0 — 2026-06-27
 
 Design-standards pass (SVG icons + accessibility).
