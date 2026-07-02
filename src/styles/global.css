@@ -90,6 +90,24 @@ button {
 /* Lucide icons align nicely as inline flex children */
 svg { display: block; }
 
+/* ---- Motion primitives (all auto-disabled by prefers-reduced-motion above) ---- */
+@keyframes slideInRight {
+  from { transform: translateX(14px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+@keyframes fadeScaleIn {
+  from { transform: scale(0.975); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+@keyframes fadeInDown {
+  from { transform: translateY(-4px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 input, select, textarea {
   font-family: inherit;
 }
