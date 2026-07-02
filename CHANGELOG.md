@@ -2,6 +2,12 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.7.2 — 2026-06-27
+
+- Map focus behaviour reworked (cleaner, no decorative outlines):
+  - **Click a country** → spotlight: the uninvolved countries fade back; the selected one + its connections stay bright (selected keeps a thin blue outline). Removed the white rings on related countries.
+  - **Open a conflict** → only the parties are colored by role; the rest of the map stays visible but neutral and dimmed (severity heatmap off), so role colors are the only thing that pops.
+
 ## v1.7.1 — 2026-06-27
 
 - Mobile: the side/conflict panels are now in-flow bottom sheets — the map **stacks above and shrinks** to fill the remaining space instead of being covered by the sheet. Added a grab-handle and tuned sheet heights (map ~50%, sheet ~46–50%).

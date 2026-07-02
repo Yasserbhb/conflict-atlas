@@ -172,29 +172,32 @@ export default function WorldMap() {
             const hasSev = severity > 0;
             const roleFill = roleFillMap[alpha3];
 
-            let fill, stroke, strokeWidth;
+            const sevFill = hasSev ? severityColor(severity) : '#1a2823';
+            let fill, stroke, strokeWidth, opacity = 1;
+
             if (focusedConflict) {
+              // Conflict focus: only the parties are colored (by role); the rest of
+              // the map stays visible but neutral (flat land, no severity colors).
               if (roleFill) {
                 fill = roleFill;
                 stroke = isSelected ? '#ffffff' : '#0a1310';
                 strokeWidth = isSelected ? 1.6 : 0.6;
               } else {
-                fill = '#111c18';
+                fill = '#131d19';
                 stroke = '#0a1310';
                 strokeWidth = 0.4;
               }
-            } else if (isSelected) {
-              // keep the country's real severity color; mark THE selected one with a bold BLUE outline
-              fill = hasSev ? severityColor(severity) : '#1a2823';
-              stroke = '#38bdf8';
-              strokeWidth = 2.6;
-            } else if (isRelated) {
-              // its connections get a thinner white outline (clearly different from the blue selected one)
-              fill = hasSev ? severityColor(severity) : '#1a2823';
-              stroke = '#ffffff';
-              strokeWidth = 1.3;
+            } else if (selectedCountryId) {
+              // Country focus: keep the selected + involved countries bright, and
+              // FADE everyone else back (spotlight). No decorative outlines.
+              fill = sevFill;
+              const involved = isSelected || isRelated;
+              opacity = involved ? 1 : 0.16;
+              stroke = isSelected ? '#38bdf8' : '#0a1310';
+              strokeWidth = isSelected ? 1.6 : 0.4;
             } else {
-              fill = hasSev ? severityColor(severity) : '#1a2823';
+              // Overview
+              fill = sevFill;
               stroke = '#0a1310';
               strokeWidth = 0.4;
             }
@@ -206,8 +209,9 @@ export default function WorldMap() {
                 fill={fill}
                 stroke={stroke}
                 strokeWidth={strokeWidth}
+                opacity={opacity}
                 vectorEffect="non-scaling-stroke"
-                style={{ cursor: 'pointer', transition: 'fill 0.3s, stroke 0.2s' }}
+                style={{ cursor: 'pointer', transition: 'fill 0.3s, stroke 0.2s, opacity 0.3s' }}
                 onClick={() => handleCountryClick(alpha3)}
                 onMouseEnter={(e) => setTip(e, alpha3)}
                 onMouseMove={(e) => setTip(e, alpha3)}
