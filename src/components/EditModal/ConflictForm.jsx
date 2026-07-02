@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { generateId } from '../../utils/uuid';
 import { CONFLICT_TYPES, ROLE_TYPES, TYPE_LABELS, ROLE_LABELS } from '../../utils/conflictColors';
+import SeverityGauge from '../common/SeverityGauge';
 import styles from './ConflictForm.module.css';
 
 const emptyParty = () => ({ countryId: '', role: 'aggressor' });
@@ -89,7 +90,7 @@ export default function ConflictForm({ initial, onClose }) {
             type="range" min={1} max={5} value={form.severity}
             onChange={(e) => set('severity', parseInt(e.target.value))}
           />
-          <span className={styles.sevVal}>{'◆'.repeat(form.severity)}</span>
+          <span className={styles.sevVal}><SeverityGauge severity={form.severity} size="md" /></span>
         </div>
       </div>
 

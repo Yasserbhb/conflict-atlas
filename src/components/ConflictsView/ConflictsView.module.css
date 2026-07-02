@@ -116,6 +116,16 @@
   border-color: var(--glass-border);
 }
 
+.rowGlyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
 .rowMain {
   min-width: 0;
   flex: 1;

@@ -2,6 +2,8 @@ import { useMemo, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { isActiveAt, parseYear, formatDateRange } from '../../utils/dateUtils';
 import { TYPE_COLORS, TYPE_LABELS } from '../../utils/conflictColors';
+import { TypeIcon } from '../../utils/typeIcons';
+import SeverityGauge from '../common/SeverityGauge';
 import styles from './TimelineView.module.css';
 
 const MIN_YEAR = 1490;
@@ -128,6 +130,9 @@ export default function TimelineView() {
           const parties = (c.involvedCountries || []).map((id) => nameByCountry[id] || id);
           return (
             <button key={c.id} className={styles.row} onClick={() => openOnMap(c)} style={{ borderLeftColor: color }}>
+              <span className={styles.rowGlyph} style={{ background: color + '22', color }}>
+                <TypeIcon type={c.type} size={15} aria-hidden="true" />
+              </span>
               <div className={styles.rowMain}>
                 <div className={styles.rowTitle}>{c.title}{c.ongoing && <span className={styles.ongoing}>ONGOING</span>}</div>
                 <div className={styles.rowParties}>{parties.join(' · ')}</div>
@@ -135,6 +140,7 @@ export default function TimelineView() {
               <div className={styles.rowMeta}>
                 <span className={styles.type} style={{ color }}>{TYPE_LABELS[c.type] || c.type}</span>
                 <span className={styles.dates}>{formatDateRange(c.startDate, c.endDate, c.ongoing)}</span>
+                <SeverityGauge severity={c.severity} />
               </div>
             </button>
           );

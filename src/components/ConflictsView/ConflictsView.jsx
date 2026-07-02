@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { TYPE_LABELS, TYPE_COLORS, CONFLICT_TYPES } from '../../utils/conflictColors';
 import { formatDateRange, parseYear } from '../../utils/dateUtils';
+import { TypeIcon } from '../../utils/typeIcons';
+import SeverityGauge from '../common/SeverityGauge';
 import styles from './ConflictsView.module.css';
 
 const REGIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
@@ -121,6 +123,9 @@ export default function ConflictsView() {
           const parties = (c.involvedCountries || []).map((id) => nameByCountry[id] || id);
           return (
             <button key={c.id} className={styles.row} onClick={() => openOnMap(c)} style={{ borderLeftColor: color }}>
+              <span className={styles.rowGlyph} style={{ background: color + '22', color }}>
+                <TypeIcon type={c.type} size={15} aria-hidden="true" />
+              </span>
               <div className={styles.rowMain}>
                 <div className={styles.rowTitle}>
                   {c.title}
@@ -131,7 +136,7 @@ export default function ConflictsView() {
               <div className={styles.rowMeta}>
                 <span className={styles.type} style={{ color }}>{TYPE_LABELS[c.type] || c.type}</span>
                 <span className={styles.dates}>{formatDateRange(c.startDate, c.endDate, c.ongoing)}</span>
-                <span className={styles.severity} title={`Severity ${c.severity}`}>{'◆'.repeat(c.severity || 0)}</span>
+                <SeverityGauge severity={c.severity} />
               </div>
             </button>
           );

@@ -1,0 +1,20 @@
+.gauge {
+  display: inline-flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.seg {
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* sizes */
+.sm .seg { width: 11px; height: 4px; }
+.md .seg { width: 14px; height: 4px; }
+.lg .seg { width: 20px; height: 5px; }
+
+/* the size class also sits on .gauge, so target segments via combinators too */
+.sm { }
+.md { }
+.lg { }

@@ -2,22 +2,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { getNotesByCountry } from '../../db/queries';
 import { useCountryConflicts } from '../../hooks/useConflictFilter';
-import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor, severityColor } from '../../utils/conflictColors';
+import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor } from '../../utils/conflictColors';
 import { X, Crosshair, Network } from 'lucide-react';
 import { formatDateRange, applyConflictFilters } from '../../utils/dateUtils';
 import { flagEmoji } from '../../utils/flags';
 import { TypeIcon } from '../../utils/typeIcons';
-
-function SeverityGauge({ severity }) {
-  const color = severityColor(severity);
-  return (
-    <span className={styles.gauge} title={`Severity ${severity}`}>
-      {[1, 2, 3, 4, 5].map((s) => (
-        <span key={s} className={styles.gaugeSeg} style={{ background: s <= severity ? color : undefined }} />
-      ))}
-    </span>
-  );
-}
+import SeverityGauge from '../common/SeverityGauge';
 import styles from './SidePanel.module.css';
 
 const TABS = ['Conflicts', 'Territories', 'Notes'];
