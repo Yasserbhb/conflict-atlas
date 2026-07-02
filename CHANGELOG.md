@@ -2,6 +2,14 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.11.0 — 2026-07-03
+
+Fill historical gaps in the 1600s–1800s (seed 2.8.0).
+
+- Added 12 conflicts, all with sources: Great Turkish War, Khmelnytsky Uprising, King Philip's War, Shimabara Rebellion (1600s); War of the Austrian Succession, Nader Shah's Invasion of India, Partitions of Poland (1700s); Indian Rebellion of 1857, Java War, Mfecane, First Italo-Ethiopian War, Caucasian War (1800s).
+- Targeted the non-European gaps: first Persia, Dutch East Indies, and intra-African (Mfecane) entries.
+- Enriched the existing Transatlantic Slave Trade entry with USA/Brazil as parties and a source.
+
 ## v1.10.0 — 2026-07-03
 
 Definitions & methodology — make the rubric explicit and the sourcing honest.
