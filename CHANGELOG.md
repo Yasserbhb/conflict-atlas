@@ -2,6 +2,10 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.7.1 — 2026-06-27
+
+- Mobile: the side/conflict panels are now in-flow bottom sheets — the map **stacks above and shrinks** to fill the remaining space instead of being covered by the sheet. Added a grab-handle and tuned sheet heights (map ~50%, sheet ~46–50%).
+
 ## v1.7.0 — 2026-06-27
 
 UX polish batch (design-standards) + **mobile responsive**.

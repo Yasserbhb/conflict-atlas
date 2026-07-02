@@ -42,6 +42,15 @@
   min-width: 0;
 }
 
+/* Mobile: stack map on top, panel (sheet) below — so the map shrinks to fill
+   the space above the sheet instead of being covered by it. */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    min-height: 0;
+  }
+}
+
 .placeholder {
   flex: 1;
   display: flex;

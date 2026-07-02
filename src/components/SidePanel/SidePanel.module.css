@@ -11,21 +11,31 @@
   animation: slideInRight 220ms ease-out;
 }
 
-/* Mobile: turn into a bottom sheet above the nav bar */
+/* Mobile: an in-flow bottom sheet — the map above shrinks to fit the rest */
 @media (max-width: 768px) {
   .panel {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: var(--bottom-nav-h);
+    position: relative;
     width: auto;
-    max-height: 60vh;
+    height: 46vh;
+    padding-top: 10px;
     border-left: none;
     border-top: 1px solid var(--glass-border);
     border-radius: 16px 16px 0 0;
-    z-index: 40;
     box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.55);
     animation: slideUp 240ms ease-out;
+  }
+  /* grab handle */
+  .panel::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.25);
+    z-index: 2;
   }
 }
 
