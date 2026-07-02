@@ -2,6 +2,14 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.6.0 — 2026-06-27
+
+Design-standards pass (SVG icons + accessibility).
+
+- **Replaced all structural emoji with Lucide SVG icons** — the sidebar nav, top bar (logo, add, data), timeline play/pause, search, and every conflict **type glyph** in the side panel and detail panel, plus all close / focus / export / import / network / edit / link buttons. Country flags are kept (content, not chrome).
+- **Accessibility**: `aria-label` on all icon-only buttons, `aria-current` on the active nav item, a global keyboard `:focus-visible` ring, and `prefers-reduced-motion` support.
+- Consistent icon family, stroke width, and sizing; icon+label buttons aligned.
+
 ## v1.5.1 — 2026-06-27
 
 - Fixed the roles on the Aboriginal Australian genocide (Britain is now correctly an aggressor, not just "occupier") and clarified the 1788/1901 anachronism in the description.

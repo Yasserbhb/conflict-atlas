@@ -3,8 +3,10 @@ import { useApp } from '../../context/AppContext';
 import { getNotesByCountry } from '../../db/queries';
 import { useCountryConflicts } from '../../hooks/useConflictFilter';
 import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor, severityColor } from '../../utils/conflictColors';
+import { X, Crosshair, Network } from 'lucide-react';
 import { formatDateRange, applyConflictFilters } from '../../utils/dateUtils';
-import { flagEmoji, TYPE_GLYPH } from '../../utils/flags';
+import { flagEmoji } from '../../utils/flags';
+import { TypeIcon } from '../../utils/typeIcons';
 
 function SeverityGauge({ severity }) {
   const color = severityColor(severity);
@@ -83,8 +85,9 @@ export default function SidePanel() {
         </div>
         <button
           className={styles.closeBtn}
+          aria-label="Close panel"
           onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}
-        >✕</button>
+        ><X size={15} strokeWidth={2.2} aria-hidden="true" /></button>
       </div>
 
       <div className={styles.tabs}>
@@ -191,7 +194,7 @@ export default function SidePanel() {
           className={styles.graphBtn}
           onClick={() => dispatch({ type: 'SHOW_GRAPH' })}
         >
-          View Network Graph
+          <Network size={14} strokeWidth={2} aria-hidden="true" /> View Network Graph
         </button>
       </div>
     </div>
@@ -217,7 +220,7 @@ function ConflictCard({ conflict, role, mode, onEdit, countries, selectedId, isF
       <div className={styles.cardHeader} onClick={() => setExpanded((v) => !v)}>
         <div className={styles.cardTitleRow}>
           <span className={styles.glyph} style={{ background: typeColor + '22', color: typeColor }}>
-            {TYPE_GLYPH[conflict.type] || '•'}
+            <TypeIcon type={conflict.type} size={15} aria-hidden="true" />
           </span>
           <div className={styles.titleCol}>
             <div className={styles.cardTitle}>{conflict.title}</div>
@@ -229,11 +232,12 @@ function ConflictCard({ conflict, role, mode, onEdit, countries, selectedId, isF
           </div>
           <button
             className={`${styles.focusBtn} ${isFocused ? styles.focusBtnActive : ''}`}
-            title={isFocused ? 'Show all conflicts' : 'Isolate this conflict on map'}
+            aria-label="Open conflict details"
+            title="Open conflict details"
             onClick={(e) => { e.stopPropagation(); onFocus(); }}
             style={isFocused ? { color: rColor, borderColor: rColor } : {}}
           >
-            {isFocused ? '✕' : '◎'}
+            <Crosshair size={13} strokeWidth={2} aria-hidden="true" />
           </button>
         </div>
 

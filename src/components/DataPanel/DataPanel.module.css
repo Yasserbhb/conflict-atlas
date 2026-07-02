@@ -67,6 +67,9 @@
 }
 
 .primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: var(--accent);
   border: none;
   border-radius: 8px;
@@ -83,7 +86,9 @@
 }
 
 .fileLabel {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: var(--accent-dim);
   border: 1px solid var(--accent-border);
   border-radius: 8px;

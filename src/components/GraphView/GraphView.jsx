@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { X } from 'lucide-react';
 import * as d3 from 'd3';
 import { useApp } from '../../context/AppContext';
 import { TYPE_COLORS, TYPE_LABELS } from '../../utils/conflictColors';
@@ -137,7 +138,7 @@ export default function GraphView() {
         <div className={styles.header}>
           <span className={styles.title}>Conflict Network — {centerCountry?.name || selectedCountryId}</span>
           <span className={styles.hint}>Click a node to navigate · Drag to rearrange</span>
-          <button className={styles.closeBtn} onClick={() => dispatch({ type: 'HIDE_GRAPH' })}>✕</button>
+          <button className={styles.closeBtn} aria-label="Close" onClick={() => dispatch({ type: 'HIDE_GRAPH' })}><X size={16} strokeWidth={2.2} aria-hidden="true" /></button>
         </div>
         <svg ref={svgRef} className={styles.graph} />
         <div className={styles.legend}>

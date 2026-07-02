@@ -1,7 +1,9 @@
+import { X, Network, Pencil, ExternalLink } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, roleColor, severityColor } from '../../utils/conflictColors';
 import { formatDateRange } from '../../utils/dateUtils';
-import { flagEmoji, TYPE_GLYPH } from '../../utils/flags';
+import { flagEmoji } from '../../utils/flags';
+import { TypeIcon } from '../../utils/typeIcons';
 import styles from './ConflictDetailPanel.module.css';
 
 const SIDES = [
@@ -34,7 +36,7 @@ export default function ConflictDetailPanel() {
 
       <div className={styles.header}>
         <span className={styles.glyph} style={{ background: typeColor + '22', color: typeColor }}>
-          {TYPE_GLYPH[conflict.type] || '•'}
+          <TypeIcon type={conflict.type} size={17} aria-hidden="true" />
         </span>
         <div className={styles.headMain}>
           <div className={styles.title}>{conflict.title}</div>
@@ -45,7 +47,7 @@ export default function ConflictDetailPanel() {
             {conflict.ongoing && <span className={styles.live}>● live</span>}
           </div>
         </div>
-        <button className={styles.closeBtn} onClick={() => dispatch({ type: 'CLOSE_CONFLICT' })} title="Close">✕</button>
+        <button className={styles.closeBtn} onClick={() => dispatch({ type: 'CLOSE_CONFLICT' })} aria-label="Close" title="Close"><X size={15} strokeWidth={2.2} aria-hidden="true" /></button>
       </div>
 
       <div className={styles.severityRow}>
@@ -106,7 +108,7 @@ export default function ConflictDetailPanel() {
             </a>
           ))}
           <a href={wikiUrl} target="_blank" rel="noreferrer" className={styles.wikiLink}>
-            Look it up on Wikipedia →
+            <ExternalLink size={13} strokeWidth={2} aria-hidden="true" /> Look it up on Wikipedia
           </a>
         </div>
       </div>
@@ -114,7 +116,7 @@ export default function ConflictDetailPanel() {
       <div className={styles.footer}>
         {mode === 'edit' && (
           <button className={styles.editBtn} onClick={() => dispatch({ type: 'OPEN_EDIT', payload: { kind: 'conflict', data: conflict } })}>
-            Edit
+            <Pencil size={13} strokeWidth={2} aria-hidden="true" /> Edit
           </button>
         )}
         <button className={styles.graphBtn} onClick={() => {
@@ -122,7 +124,7 @@ export default function ConflictDetailPanel() {
           if (first) dispatch({ type: 'SELECT_COUNTRY', payload: first });
           dispatch({ type: 'SHOW_GRAPH' });
         }}>
-          Network Graph
+          <Network size={14} strokeWidth={2} aria-hidden="true" /> Network Graph
         </button>
       </div>
     </div>

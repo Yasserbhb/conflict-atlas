@@ -41,12 +41,14 @@
 }
 
 .closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   color: #475569;
-  font-size: 18px;
   cursor: pointer;
-  padding: 0;
+  padding: 4px;
   transition: color 0.15s;
 }
 

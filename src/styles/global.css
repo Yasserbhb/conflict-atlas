@@ -66,6 +66,30 @@ button {
   font-family: inherit;
 }
 
+/* Accessibility: visible keyboard focus ring on all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* Don't show the ring on mouse click, only keyboard */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Lucide icons align nicely as inline flex children */
+svg { display: block; }
+
 input, select, textarea {
   font-family: inherit;
 }

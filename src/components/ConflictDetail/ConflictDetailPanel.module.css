@@ -53,11 +53,13 @@
 .live { color: #fca5a5; background: rgba(239,68,68,0.15); padding: 1px 7px; border-radius: 20px; font-weight: 700; font-size: 9px; }
 
 .closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255,255,255,0.05);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   color: var(--text-secondary);
-  font-size: 13px;
   width: 26px; height: 26px;
   cursor: pointer;
   flex-shrink: 0;
@@ -131,6 +133,7 @@
 .sourceLink { font-size: 11px; color: #a8b6c8; text-decoration: none; }
 .sourceLink:hover { color: var(--accent-light); text-decoration: underline; }
 .wikiLink {
+  display: inline-flex; align-items: center; gap: 5px;
   font-size: 12px; font-weight: 600; color: var(--accent-light);
   text-decoration: none; margin-top: 2px;
 }
@@ -145,6 +148,9 @@
 }
 
 .editBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: rgba(255,255,255,0.05);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
@@ -158,6 +164,10 @@
 
 .graphBtn {
   flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background: linear-gradient(180deg, rgba(52,211,153,0.28), rgba(20,184,166,0.14));
   border: 1px solid var(--accent-border);
   border-radius: 8px;

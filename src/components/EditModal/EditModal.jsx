@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import ConflictForm from './ConflictForm';
 import NoteForm from './NoteForm';
@@ -22,7 +23,7 @@ export default function EditModal() {
               ? (editTarget.data ? 'Edit Conflict' : 'New Conflict')
               : (editTarget.data?.id ? 'Edit Note' : 'New Note')}
           </h2>
-          <button className={styles.closeBtn} onClick={close}>✕</button>
+          <button className={styles.closeBtn} aria-label="Close" onClick={close}><X size={16} strokeWidth={2.2} aria-hidden="true" /></button>
         </div>
         <div className={styles.body}>
           {editTarget.kind === 'conflict'

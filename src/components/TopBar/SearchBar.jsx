@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { Search } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import styles from './SearchBar.module.css';
 
@@ -25,10 +26,12 @@ export default function SearchBar() {
 
   return (
     <div className={styles.wrapper}>
+      <Search size={13} strokeWidth={2} className={styles.searchIcon} aria-hidden="true" />
       <input
         ref={inputRef}
         className={styles.input}
         placeholder="Search country…"
+        aria-label="Search country"
         value={query}
         onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
         onFocus={() => setOpen(true)}

@@ -34,11 +34,13 @@
 }
 
 .closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   color: var(--text-secondary);
-  font-size: 13px;
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -174,12 +176,13 @@
 .dot { color: var(--text-muted); }
 
 .focusBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
   border-radius: 7px;
   color: var(--text-muted);
-  font-size: 13px;
-  line-height: 1;
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -319,6 +322,10 @@
 .footer { padding: 11px; border-top: 1px solid var(--glass-border); flex-shrink: 0; }
 
 .graphBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background: linear-gradient(180deg, rgba(52, 211, 153, 0.28), rgba(20, 184, 166, 0.14));
   border: 1px solid var(--accent-border);
   border-radius: 9px;

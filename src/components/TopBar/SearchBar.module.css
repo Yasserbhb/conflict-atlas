@@ -2,14 +2,23 @@
   position: relative;
 }
 
+.searchIcon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
 .input {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   color: var(--text-primary);
   font-size: 12px;
-  padding: 5px 10px;
-  width: 160px;
+  padding: 5px 10px 5px 26px;
+  width: 170px;
   outline: none;
   transition: border-color 0.15s;
 }

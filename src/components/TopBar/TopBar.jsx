@@ -1,3 +1,4 @@
+import { Globe2, Plus, Database } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import ModeToggle from './ModeToggle';
 import TimelineSlider from './TimelineSlider';
@@ -11,7 +12,7 @@ export default function TopBar() {
     <header className={styles.topBar}>
       <div className={styles.left}>
         <div className={styles.logo}>
-          <span className={styles.logoIcon}>⚔</span>
+          <Globe2 size={18} strokeWidth={2.2} className={styles.logoIcon} aria-hidden="true" />
           <span className={styles.logoText}>Conflict Atlas</span>
         </div>
         <ModeToggle />
@@ -26,15 +27,16 @@ export default function TopBar() {
             className={styles.addBtn}
             onClick={() => dispatch({ type: 'OPEN_EDIT', payload: { kind: 'conflict', data: null } })}
           >
-            + Add Conflict
+            <Plus size={14} strokeWidth={2.5} aria-hidden="true" /> Add Conflict
           </button>
         )}
         <button
           className={styles.iconBtn}
-          title="Data & Export"
+          aria-label="Data & export"
+          title="Data & export"
           onClick={() => dispatch({ type: 'SHOW_DATA_PANEL' })}
         >
-          ⬇
+          <Database size={15} strokeWidth={2} aria-hidden="true" />
         </button>
       </div>
     </header>

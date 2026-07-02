@@ -1,3 +1,4 @@
+import { X, Download, Upload } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { getAllConflicts, getAllCountries, saveConflict, saveCountry } from '../../db/queries';
 import styles from './DataPanel.module.css';
@@ -49,21 +50,21 @@ export default function DataPanel() {
       <div className={styles.panel}>
         <div className={styles.header}>
           <span className={styles.title}>Data & Export</span>
-          <button className={styles.closeBtn} onClick={() => dispatch({ type: 'HIDE_DATA_PANEL' })}>✕</button>
+          <button className={styles.closeBtn} aria-label="Close" onClick={() => dispatch({ type: 'HIDE_DATA_PANEL' })}><X size={16} strokeWidth={2.2} aria-hidden="true" /></button>
         </div>
         <div className={styles.body}>
           <section className={styles.section}>
             <h3>Export</h3>
             <p>Download all your conflicts and notes as a JSON file. You can re-import this later or back it up.</p>
             <button className={styles.primaryBtn} onClick={handleExport}>
-              ⬇ Download JSON
+              <Download size={14} strokeWidth={2.2} aria-hidden="true" /> Download JSON
             </button>
           </section>
           <section className={styles.section}>
             <h3>Import</h3>
             <p>Import a previously exported JSON file. Existing records are merged (not duplicated by ID).</p>
             <label className={styles.fileLabel}>
-              ⬆ Choose file
+              <Upload size={14} strokeWidth={2.2} aria-hidden="true" /> Choose file
               <input type="file" accept=".json" onChange={handleImport} className={styles.fileInput} />
             </label>
           </section>

@@ -1,3 +1,4 @@
+import { Play, Pause } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import styles from './TimelineSlider.module.css';
 
@@ -22,9 +23,10 @@ export default function TimelineSlider() {
       <button
         className={styles.playBtn}
         onClick={() => dispatch({ type: 'SET_PLAYING', payload: !isPlaying })}
+        aria-label={isPlaying ? 'Pause timeline' : 'Play timeline'}
         title={isPlaying ? 'Pause' : 'Play timeline'}
       >
-        {isPlaying ? '⏸' : '▶'}
+        {isPlaying ? <Pause size={13} strokeWidth={2.5} aria-hidden="true" /> : <Play size={13} strokeWidth={2.5} aria-hidden="true" />}
       </button>
       <span className={styles.yearLabel}>{MIN_YEAR}</span>
       <div className={styles.sliderWrapper}>

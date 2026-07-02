@@ -26,7 +26,8 @@
 }
 
 .logoIcon {
-  font-size: 18px;
+  color: var(--accent);
+  display: block;
 }
 
 .logoText {
@@ -52,23 +53,29 @@
 }
 
 .addBtn {
-  background: #dc2626;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent);
+  color: #042b20;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 5px 12px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.15s;
+  transition: filter 0.15s;
 }
 
 .addBtn:hover {
-  background: #ef4444;
+  filter: brightness(1.1);
 }
 
 .iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
   border: 1px solid var(--glass-border);
