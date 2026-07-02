@@ -2,6 +2,15 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.9.0 — 2026-07-02
+
+Sober theme — retired the acid-green glass look for a calmer, editorial palette.
+
+- **Accent**: acid green → muted teal (`#56988a`); links, buttons, focus rings, pills, gauges and sliders all follow the tokens.
+- **Base**: green-black → neutral slate; the map ocean and calm land are now neutral, so the choropleth severity ramp (unchanged) is the only color that reads as "conflict."
+- **Flattened the glass**: removed the two radial glows from the page background, dropped button glows, and switched card/surface fills from translucent to solid. The "View Network Graph" buttons lost their teal gradient for a flat fill.
+- **Network graph**: muted the node palette to match (steel-blue center, neutral-slate peers, neutral arrowheads) — already flat, now on-theme.
+
 ## v1.8.0 — 2026-06-27
 
 Visual maturity pass.

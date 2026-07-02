@@ -162,7 +162,7 @@ export default function WorldMap() {
         className={styles.mapSvg}
         preserveAspectRatio="xMidYMid meet"
       >
-        <rect width={WIDTH} height={HEIGHT} fill="#0a1310" />
+        <rect width={WIDTH} height={HEIGHT} fill="#0d1215" />
         {/* Everything that should zoom/pan together */}
         <g transform={gTransform}>
           {countryPaths.map(({ numId, alpha3, d }) => {
@@ -172,7 +172,7 @@ export default function WorldMap() {
             const hasSev = severity > 0;
             const roleFill = roleFillMap[alpha3];
 
-            const sevFill = hasSev ? severityColor(severity) : '#1a2823';
+            const sevFill = hasSev ? severityColor(severity) : '#1f272c';
             let fill, stroke, strokeWidth, opacity = 1;
 
             if (focusedConflict) {
@@ -180,11 +180,11 @@ export default function WorldMap() {
               // the map stays visible but neutral (flat land, no severity colors).
               if (roleFill) {
                 fill = roleFill;
-                stroke = isSelected ? '#ffffff' : '#0a1310';
+                stroke = isSelected ? '#ffffff' : '#0d1215';
                 strokeWidth = isSelected ? 1.6 : 0.6;
               } else {
-                fill = '#131d19';
-                stroke = '#0a1310';
+                fill = '#171e22';
+                stroke = '#0d1215';
                 strokeWidth = 0.4;
               }
             } else if (selectedCountryId) {
@@ -193,12 +193,12 @@ export default function WorldMap() {
               fill = sevFill;
               const involved = isSelected || isRelated;
               opacity = involved ? 1 : 0.16;
-              stroke = isSelected ? '#38bdf8' : '#0a1310';
+              stroke = isSelected ? '#38bdf8' : '#0d1215';
               strokeWidth = isSelected ? 1.6 : 0.4;
             } else {
               // Overview
               fill = sevFill;
-              stroke = '#0a1310';
+              stroke = '#0d1215';
               strokeWidth = 0.4;
             }
 
@@ -237,7 +237,7 @@ export default function WorldMap() {
               width={Math.min(tooltip.name.length * 7 + 16, 220)}
               height={22}
               rx={4}
-              fill="#15211f"
+              fill="#1a2226"
               opacity={0.92}
             />
             <text x={tooltip.x + 16} y={tooltip.y - 6} fill="#f1f5f9" fontSize={12} fontFamily="system-ui, sans-serif">

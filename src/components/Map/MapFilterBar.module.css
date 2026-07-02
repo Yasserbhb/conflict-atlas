@@ -4,7 +4,7 @@
   align-items: center;
   gap: 10px;
   padding: 8px 14px;
-  background: rgba(10, 18, 16, 0.72);
+  background: rgba(15, 20, 23, 0.72);
   border-bottom: 1px solid var(--glass-border);
   flex-wrap: wrap;
 }
@@ -59,4 +59,4 @@
   transition: background 0.15s;
 }
 
-.reset:hover { background: rgba(52, 211, 153, 0.28); color: #fff; }
+.reset:hover { background: rgba(86, 152, 138, 0.28); color: #fff; }

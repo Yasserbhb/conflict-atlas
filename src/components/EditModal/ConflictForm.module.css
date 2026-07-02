@@ -111,7 +111,7 @@
 }
 
 .addPartyBtn:hover {
-  background: rgba(52, 211, 153, 0.28);
+  background: rgba(86, 152, 138, 0.28);
 }
 
 .partyRow {
@@ -163,7 +163,7 @@
   background: var(--accent);
   border: none;
   border-radius: 8px;
-  color: #042b20;
+  color: #06231d;
   font-size: 13px;
   font-weight: 700;
   padding: 8px 18px;

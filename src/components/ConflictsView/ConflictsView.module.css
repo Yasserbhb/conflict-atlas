@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #0a120f;
+  background: #0d1215;
   overflow: hidden;
 }
 
@@ -11,7 +11,7 @@
   flex-shrink: 0;
   padding: 16px 20px 12px;
   border-bottom: 1px solid var(--glass-border);
-  background: rgba(10, 18, 16, 0.55);
+  background: rgba(15, 20, 23, 0.55);
 }
 
 .toolbarTop {
@@ -112,7 +112,7 @@
 }
 
 .row:hover {
-  background: rgba(52, 211, 153, 0.08);
+  background: rgba(86, 152, 138, 0.08);
   border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);

@@ -11,7 +11,7 @@
 }
 
 .modal {
-  background: #0d1714;
+  background: #141a1d;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   width: 100%;
@@ -61,7 +61,7 @@
 .graph {
   width: 100%;
   height: 460px;
-  background: #0a120f;
+  background: #0d1215;
 }
 
 .legend {

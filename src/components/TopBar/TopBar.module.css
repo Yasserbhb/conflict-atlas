@@ -4,7 +4,7 @@
   gap: 16px;
   padding: 0 16px;
   height: 52px;
-  background: rgba(10, 18, 16, 0.72);
+  background: rgba(15, 20, 23, 0.72);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--glass-border);
@@ -57,7 +57,7 @@
   align-items: center;
   gap: 5px;
   background: var(--accent);
-  color: #042b20;
+  color: #06231d;
   border: none;
   border-radius: 8px;
   padding: 5px 12px;

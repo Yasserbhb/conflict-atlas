@@ -60,7 +60,7 @@ export default function GraphView() {
       .attr('markerWidth', 6)
       .attr('markerHeight', 6)
       .attr('orient', 'auto');
-    marker.append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', '#334155');
+    marker.append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', '#3f4d54');
 
     const sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(edges).id((d) => d.id).distance(120).strength(0.6))
@@ -100,8 +100,8 @@ export default function GraphView() {
 
     node.append('circle')
       .attr('r', (d) => d.isCenter ? 20 : 12)
-      .attr('fill', (d) => d.isCenter ? '#3b82f6' : '#1e3a5f')
-      .attr('stroke', (d) => d.isCenter ? '#93c5fd' : '#334155')
+      .attr('fill', (d) => d.isCenter ? '#3a6ea5' : '#1e262b')
+      .attr('stroke', (d) => d.isCenter ? '#7fb0d6' : '#2f3d47')
       .attr('stroke-width', 1.5);
 
     node.append('text')

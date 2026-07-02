@@ -107,7 +107,7 @@ export default function TimelineView() {
                 y={VB_H - h}
                 width={Math.max(barW * 0.9, 0.6)}
                 height={h}
-                fill={isCurrent ? '#6ee7b7' : isHover ? '#4ade80' : '#2a4a42'}
+                fill={isCurrent ? '#82b8ab' : isHover ? '#4ade80' : '#263230'}
               />
             );
           })}
@@ -116,12 +116,12 @@ export default function TimelineView() {
             <line
               x1={(hover.xPct / 100) * VB_W} y1={0}
               x2={(hover.xPct / 100) * VB_W} y2={VB_H}
-              stroke="#6ee7b7" strokeWidth={1} strokeDasharray="3 3" opacity={0.6}
+              stroke="#82b8ab" strokeWidth={1} strokeDasharray="3 3" opacity={0.6}
               vectorEffect="non-scaling-stroke"
             />
           )}
           {/* current-year cursor */}
-          <line x1={cursorX} y1={0} x2={cursorX} y2={VB_H} stroke="#34d399" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+          <line x1={cursorX} y1={0} x2={cursorX} y2={VB_H} stroke="#56988a" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         </svg>
         {hover && (
           <div className={styles.chartTip} style={{ left: `${hover.xPct}%` }}>
