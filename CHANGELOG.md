@@ -2,6 +2,14 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.10.0 — 2026-07-03
+
+Definitions & methodology — make the rubric explicit and the sourcing honest.
+
+- **Taxonomy** (`utils/taxonomy.js`): a single source of truth for what every severity level, conflict type, and role actually *means* — so the map's colors and numbers are defined, not implied.
+- **Help page** rewritten into a methodology reference: each severity 1–5 gets a written definition with a rough casualty guide, all 8 types and 9 roles are defined, and a new **Methodology** section states the honest caveats (severity = intensity not category; roles are analytical judgments; borders are always today's; entries are single-curator summaries to verify).
+- **Conflict detail — sources**: real sources render as clickable links; conflicts with **no sources** now say so explicitly ("No primary sources cited yet — treat as a starting point and verify") instead of hiding the gap.
+
 ## v1.9.0 — 2026-07-02
 
 Sober theme — retired the acid-green glass look for a calmer, editorial palette.

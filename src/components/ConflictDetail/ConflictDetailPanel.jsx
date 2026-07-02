@@ -29,6 +29,7 @@ export default function ConflictDetailPanel() {
   }
 
   const wikiUrl = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(conflict.title)}`;
+  const hasSources = (conflict.sources || []).length > 0;
 
   return (
     <div className={styles.panel}>
@@ -102,11 +103,19 @@ export default function ConflictDetailPanel() {
         {/* Sources */}
         <div className={styles.sources}>
           <div className={styles.sourcesLabel}>Sources</div>
-          {(conflict.sources || []).map((url, i) => (
-            <a key={i} href={url} target="_blank" rel="noreferrer" className={styles.sourceLink}>
-              {url.replace(/^https?:\/\//, '').slice(0, 48)}…
-            </a>
-          ))}
+          {hasSources
+            ? conflict.sources.map((url, i) => (
+                <a key={i} href={url} target="_blank" rel="noreferrer" className={styles.sourceLink}>
+                  <ExternalLink size={12} strokeWidth={2} aria-hidden="true" />
+                  {url.replace(/^https?:\/\/(www\.)?/, '').slice(0, 46)}
+                </a>
+              ))
+            : (
+              <p className={styles.unsourced}>
+                No primary sources cited yet — this entry is a curated summary. Treat it as a
+                starting point and verify before relying on it.
+              </p>
+            )}
           <a href={wikiUrl} target="_blank" rel="noreferrer" className={styles.wikiLink}>
             <ExternalLink size={13} strokeWidth={2} aria-hidden="true" /> Look it up on Wikipedia
           </a>

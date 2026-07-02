@@ -157,8 +157,22 @@
   gap: 6px;
 }
 .sourcesLabel { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.sourceLink { font-size: 11px; color: #a8b6c8; text-decoration: none; }
+.sourceLink {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: #a8b6c8; text-decoration: none;
+}
 .sourceLink:hover { color: var(--accent-light); text-decoration: underline; }
+.unsourced {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+  padding: 7px 9px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-left: 2px solid var(--text-muted);
+  border-radius: 6px;
+}
 .wikiLink {
   display: inline-flex; align-items: center; gap: 5px;
   font-size: 12px; font-weight: 600; color: var(--accent-light);

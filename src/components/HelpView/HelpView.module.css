@@ -93,6 +93,55 @@
   flex-shrink: 0;
 }
 
+/* Definition list: swatch + term + definition */
+.defList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.defRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.defRow:last-child { border-bottom: none; }
+
+.defBox {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.defText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.defTerm {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.defDef {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
 .list {
   margin: 0;
   padding-left: 18px;
@@ -108,6 +157,7 @@
 }
 
 .list strong { color: #e2e8f0; }
+.list em, .note em { color: var(--accent-light); font-style: normal; }
 
 .credit {
   font-size: 11px;
