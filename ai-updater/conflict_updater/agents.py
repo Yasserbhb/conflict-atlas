@@ -44,10 +44,14 @@ def extractor(llm: LLMClient, items: list[RawItem], req: ScanRequest) -> Extract
 def resolver(llm: LLMClient, cand: CandidateEvent,
              candidates: list[tuple[BaseConflict, float]]) -> ResolverOutput:
     cand_list = [
-        {"id": c.id, "title": c.title, "aliases": c.aliases, "match_score": round(s, 2)}
+        {
+            "id": c.id, "title": c.title, "aliases": c.aliases, "match_score": round(s, 2),
+            # the conflict's EXISTING events, so the resolver can tell known-vs-gap
+            "existing_events": [f"{e.get('date')}: {e.get('title')}" for e in c.events][:30],
+        }
         for c, s in candidates
     ]
-    user = f"Candidate event:\n{_j(cand)}\n\nPossible existing conflicts:\n{_j(cand_list)}"
+    user = f"Candidate event:\n{_j(cand)}\n\nPossible existing conflicts (with their events):\n{_j(cand_list)}"
     return llm.structured(ResolverOutput, P.RESOLVER_SYS, user)
 
 

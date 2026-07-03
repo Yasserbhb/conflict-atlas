@@ -176,6 +176,16 @@ Reconciler routes the whole proposal to **human** — never ship a contested val
 Terminal fallback everywhere: **human review queue.** That is the guarantee there is no
 "idk what to do" state.
 
+### 5g. What the pipeline knows vs how it stays unbiased
+
+The atlas's **existing data is used for one thing only — dedup/identity.** The Resolver sees the
+matched conflict *and its existing events*, so it can tell "already have this" from "this fills a
+gap", and never re-adds what you have. But **assessment is independent**: the Classifier, Severity,
+Roles, Geolocator, Summarizer and Fact-check agents judge each event **from its sources**, and are
+*not* shown your existing type/severity/role labels — so a scan never conforms new events to your
+(possibly wrong) prior framing. And because a scan covers the **whole window/region**, it also
+surfaces conflicts you *don't* have (routed `new`), not only events of the one you asked about.
+
 ---
 
 ## 6. Lifecycle — generic phases, per-type profiles (kept, now event-driven)

@@ -21,6 +21,7 @@ class BaseConflict(BaseModel):
     start: Optional[int] = None
     end: Optional[int] = None
     status: str = "active"
+    events: list[dict] = Field(default_factory=list)  # compact [{date, title}] for gap detection
 
 
 def _year(s) -> Optional[int]:
@@ -43,6 +44,7 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
             start=_year(c.get("startDate")),
             end=_year(c.get("endDate")),
             status=c.get("status", "active"),
+            events=[{"date": e.get("date"), "title": e.get("title")} for e in c.get("events", [])],
         ))
     return out
 

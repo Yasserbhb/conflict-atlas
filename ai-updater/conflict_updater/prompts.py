@@ -2,29 +2,39 @@
 `src/utils/taxonomy.js`; keep them in sync (single source of truth is the app)."""
 
 TAXONOMY = """
-DEFINITIONS (classify strictly by these; they match the app):
+DEFINITIONS — classify STRICTLY by these (verbatim from the app's src/utils/taxonomy.js):
 
-Conflict types: war (states' armed forces), civil_war (state vs internal groups),
-genocide (intent to destroy a national/ethnic/racial/religious group), occupation
-(control of territory outside recognised borders), proxy_war (outside powers fight
-through locals), sanctions (coercive economic/diplomatic measures), funding (arming/
-financing one side), disputed_territory (contested claim).
+CONFLICT TYPES (a conflict has ONE primary type):
+- war: Armed conflict between the organised forces of two or more states.
+- civil_war: Sustained armed conflict between a state and one or more organised groups inside its own borders.
+- genocide: Acts committed with intent to destroy, in whole or in part, a national, ethnic, racial, or religious group (1948 Genocide Convention).
+- occupation: One state exercising effective control over territory outside its recognised borders, against the will of the population.
+- proxy_war: A conflict in which outside powers fight through local or third-party forces rather than confronting each other directly.
+- sanctions: Coercive economic or diplomatic measures imposed to pressure another state, short of armed force.
+- disputed_territory: A standing territorial claim contested by two or more states, whether or not it is currently violent.
+NOTE: outside material/arms support to one side is NOT a type — it is the `funder` ROLE. A state that funds a war is either a proxy_war or a funder in the underlying war.
 
-Party roles: aggressor (started the force), defender (fought back), victim (bore the
-harm, not the main combatant), funder (paid/armed one side), proxy (fought for a
-sponsor), occupier (holds territory by force), mediator (brokered peace),
-sanctioner / sanctioned.
+PARTY ROLES:
+- aggressor: Initiated the use of force.
+- defender: Fought back against an attack on itself or an ally.
+- victim: Bore the harm — the population or state targeted — without being the primary combatant.
+- funder: Paid for, armed, or materially supplied one side.
+- proxy: Did the fighting on behalf of a sponsoring power.
+- occupier: Holds territory outside its borders by force.
+- mediator: Worked to negotiate, broker, or enforce a settlement.
+- sanctioner: Imposed economic or diplomatic pressure.
+- sanctioned: The target of economic or diplomatic pressure.
 
-Event kinds: attack, battle, offensive, atrocity, displacement, ceasefire, treaty,
-settlement, escalation, intervention, sanction, annexation, milestone.
+SEVERITY 1-5 (INTENSITY, not category — a war and a genocide can both be 5):
+1 Low tension: Political friction, a standoff, or a frozen dispute — no sustained fighting.
+2 Serious: Recurrent clashes, a militarised standoff, or state repression; casualties contained (up to the low hundreds).
+3 Armed conflict: Active, organised warfare between forces — on the order of 1,000+ battle-related deaths.
+4 Mass atrocity: Deliberate large-scale killing of civilians, or war with a very heavy civilian toll — tens of thousands or more.
+5 Catastrophic: Genocide, or death and displacement on a national / existential scale — hundreds of thousands to millions.
 
-Severity 1-5 (INTENSITY, not category): 1 low tension; 2 serious (contained, up to low
-hundreds); 3 armed conflict (~1,000+ battle deaths); 4 mass atrocity (tens of thousands,
-or heavy civilian toll); 5 catastrophic (genocide / national-existential scale).
+EVENT KINDS: attack, battle, offensive, atrocity, displacement, ceasefire, treaty, settlement, escalation, intervention, sanction, annexation, milestone.
 
-Status: active, easing (declining), suspended (reversible pause: ceasefire/truce),
-dormant (frozen, unresolved), ended (acts ceased), resolved (positive terminal event:
-treaty/withdrawal/lifted). QUIET IS NOT RESOLVED — quiet only reaches dormant/ended.
+STATUS: active; easing (declining, still happening); suspended (explicit reversible pause — ceasefire/truce); dormant (frozen, unresolved); ended (acts ceased, nothing to settle); resolved (positive terminal event: treaty/withdrawal/sanctions lifted). QUIET IS NOT RESOLVED — sustained quiet only reaches dormant/ended.
 """
 
 SCOPER_SYS = (
@@ -45,13 +55,18 @@ EXTRACTOR_SYS = (
 )
 
 RESOLVER_SYS = (
-    "You decide whether a candidate event is already covered by an existing conflict. You are "
-    "given the event and a short list of possible existing conflicts (id, title, aliases). "
-    "Decide exactly one: 'known' (this exact event already exists → give its conflict_id), "
-    "'attach' (belongs to an existing conflict → conflict_id; if the event names the conflict "
-    "differently, add that name to new_aliases), 'new' (no existing conflict fits → a new one "
-    "is warranted), or 'ambiguous' (could be several / unclear → a human should decide). "
-    "The same war has many names across languages — match on meaning, not exact string."
+    "You place a candidate event relative to what the atlas ALREADY HAS. You are given the "
+    "event and a short list of possible existing conflicts — each with its id, title, aliases, "
+    "AND its existing events (date + title). Decide exactly one:\n"
+    "- 'known': this exact event is already in a conflict's event list → give its conflict_id.\n"
+    "- 'attach': it belongs to an existing conflict but is NOT yet in its events (you are filling "
+    "a gap) → give conflict_id; if the event names the conflict differently, add that name to "
+    "new_aliases.\n"
+    "- 'new': no existing conflict fits → a new conflict is warranted.\n"
+    "- 'ambiguous': could be several / unclear → a human decides.\n"
+    "The same war has many names across languages — match on MEANING, not exact string. "
+    "Only match the identity of the conflict here; do NOT adjust or conform the event's own facts "
+    "to the existing conflict — later agents assess the event independently from its sources."
 )
 
 CLASSIFIER_SYS = "Assign the event's kind, and (only if a NEW conflict is being created) the conflict type. Use the definitions.\n" + TAXONOMY

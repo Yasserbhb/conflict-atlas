@@ -12,7 +12,8 @@ from pydantic import BaseModel, Field
 # ---- controlled vocabularies (must match the app) ----
 ConflictType = Literal[
     "war", "civil_war", "genocide", "occupation",
-    "proxy_war", "sanctions", "funding", "disputed_territory",
+    "proxy_war", "sanctions", "disputed_territory",
+    # note: "funding" is intentionally NOT a type — it's the `funder` ROLE.
 ]
 Role = Literal[
     "aggressor", "defender", "victim", "funder", "proxy",
