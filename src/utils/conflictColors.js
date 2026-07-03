@@ -5,7 +5,6 @@ export const TYPE_COLORS = {
   occupation: '#dc2626',
   proxy_war: '#f59e0b',
   sanctions: '#3b82f6',
-  funding: '#22d3ee',
   disputed_territory: '#84cc16',
 };
 

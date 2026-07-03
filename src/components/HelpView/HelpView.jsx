@@ -1,5 +1,6 @@
 import { SEVERITY_COLORS, TYPE_COLORS, TYPE_LABELS, ROLE_COLORS, ROLE_LABELS, CONFLICT_TYPES, ROLE_TYPES } from '../../utils/conflictColors';
-import { SEVERITY_LEVELS, TYPE_DEFINITIONS, ROLE_DEFINITIONS } from '../../utils/taxonomy';
+import { SEVERITY_LEVELS, TYPE_DEFINITIONS, ROLE_DEFINITIONS, KIND_DEFINITIONS } from '../../utils/taxonomy';
+import { KIND_META } from '../../utils/eventKinds';
 import styles from './HelpView.module.css';
 
 export default function HelpView() {
@@ -87,6 +88,33 @@ export default function HelpView() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2>Events — moments within a conflict</h2>
+          <p className={styles.note}>
+            Each conflict has a <em>timeline of events</em> — the discrete moments that make it up
+            (an attack, a massacre, a ceasefire, a treaty). They show as an intensity sparkline and
+            list in the conflict panel, and as <strong>pins on the map</strong> that appear as you
+            scrub the timeline. Each event kind has its own icon and color.
+          </p>
+          <div className={styles.defList}>
+            {Object.keys(KIND_META).map((k) => {
+              const m = KIND_META[k];
+              const Icon = m.Icon;
+              return (
+                <div key={k} className={styles.defRow}>
+                  <span className={styles.defBox} style={{ background: m.color + '22', color: m.color }}>
+                    <Icon size={13} strokeWidth={2.2} aria-hidden="true" />
+                  </span>
+                  <div className={styles.defText}>
+                    <span className={styles.defTerm}>{m.label}</span>
+                    <span className={styles.defDef}>{KIND_DEFINITIONS[k]}</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 

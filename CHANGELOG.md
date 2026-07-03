@@ -2,6 +2,13 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.16.0 — 2026-07-04
+
+Help page: event kinds + taxonomy cleanup.
+
+- **Help page** now documents **event kinds** (attack, battle, atrocity, ceasefire, treaty…) with their icons, colors, and definitions — the events feature was undocumented.
+- **Removed `funding` as a conflict type** — it had zero uses and was redundant with the `funder` **role** (a state that funds a war is a proxy_war, or a funder in the underlying war). The type list is now 7: war, civil_war, genocide, occupation, proxy_war, sanctions, disputed_territory. Added `KIND_DEFINITIONS` to `taxonomy.js`.
+
 ## v1.15.0 — 2026-07-03
 
 Fact-checked 2025–2026 data update (web-sourced, all links verified).

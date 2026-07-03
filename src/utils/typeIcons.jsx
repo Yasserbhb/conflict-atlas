@@ -1,4 +1,4 @@
-import { Swords, Flame, Skull, Lock, Crosshair, Ban, Banknote, MapPinned } from 'lucide-react';
+import { Swords, Flame, Skull, Lock, Crosshair, Ban, MapPinned } from 'lucide-react';
 
 // Conflict type → Lucide icon component (SVG, not emoji)
 const TYPE_ICON = {
@@ -8,7 +8,6 @@ const TYPE_ICON = {
   occupation: Lock,
   proxy_war: Crosshair,
   sanctions: Ban,
-  funding: Banknote,
   disputed_territory: MapPinned,
 };
 

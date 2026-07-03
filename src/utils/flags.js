@@ -14,6 +14,5 @@ export const TYPE_GLYPH = {
   occupation: '⛓',
   proxy_war: '🎯',
   sanctions: '🚫',
-  funding: '💰',
   disputed_territory: '🗺',
 };
