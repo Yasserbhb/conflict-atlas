@@ -19,7 +19,6 @@ export const TYPE_DEFINITIONS = {
   occupation: 'One state exercising effective control over territory outside its recognised borders, against the will of the population.',
   proxy_war: 'A conflict in which outside powers fight through local or third-party forces rather than confronting each other directly.',
   sanctions: 'Coercive economic or diplomatic measures imposed to pressure another state, short of armed force.',
-  funding: 'Material, financial, or arms support supplied to one side of a conflict by an outside state.',
   disputed_territory: 'A standing territorial claim contested by two or more states, whether or not it is currently violent.',
 };
 
@@ -34,3 +33,22 @@ export const ROLE_DEFINITIONS = {
   sanctioner: 'Imposed economic or diplomatic pressure.',
   sanctioned: 'The target of economic or diplomatic pressure.',
 };
+
+// A conflict is made of EVENTS — the discrete moments in its timeline (shown as pins on
+// the map and the sparkline/timeline in the detail panel). These are the kinds of event.
+export const KIND_DEFINITIONS = {
+  attack: 'A discrete strike or assault — an airstrike, raid, bombing, or terror attack.',
+  battle: 'A pitched engagement between armed forces.',
+  offensive: 'A broader campaign or invasion pushing into territory.',
+  atrocity: 'Mass killing or grave abuse of civilians — a massacre, ethnic cleansing, chemical attack.',
+  displacement: 'Mass flight, expulsion, or famine driving people from their homes.',
+  ceasefire: 'A truce or pause in the fighting — reversible, not a settlement.',
+  treaty: 'A formal agreement that ends or governs the conflict.',
+  settlement: 'A negotiated resolution of the underlying dispute.',
+  escalation: 'A step that widens or intensifies the conflict.',
+  intervention: 'An outside power entering the conflict militarily.',
+  sanction: 'An economic or diplomatic measure imposed as pressure.',
+  annexation: 'One state formally absorbing territory it holds by force.',
+  milestone: 'A turning point — a capital falling, a leader killed, independence, a war’s end.',
+};
+
