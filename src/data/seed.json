@@ -1,5 +1,5 @@
 {
-  "version": "2.12.0",
+  "version": "2.13.0",
   "countries": [
     {
       "id": "AFG",
@@ -10490,7 +10490,49 @@
         "korea",
         "qing"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_first_sino_japanese_e1",
+          "date": "1894-09-17",
+          "title": "Battle of the Yalu River",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 39.8,
+            "lng": 124,
+            "label": "Yalu River"
+          },
+          "parties": [
+            "JPN",
+            "CHN"
+          ],
+          "description": "Japan destroyed the Chinese Beiyang Fleet, seizing naval dominance.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_the_Yalu_River_(1894)"
+          ]
+        },
+        {
+          "id": "seed_first_sino_japanese_e2",
+          "date": "1895-04-17",
+          "title": "Treaty of Shimonoseki",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 33.95,
+            "lng": 130.94,
+            "label": "Shimonoseki"
+          },
+          "parties": [
+            "JPN",
+            "CHN"
+          ],
+          "description": "China ceded Taiwan and recognised Korean independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Shimonoseki"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_boxer_rebellion",
@@ -10552,7 +10594,53 @@
         "indemnity",
         "looting"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_boxer_rebellion_e1",
+          "date": "1900-06-20",
+          "title": "Siege of the international legations",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.39,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Boxers and imperial troops besieged the foreign quarter for 55 days.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_the_International_Legations"
+          ]
+        },
+        {
+          "id": "seed_boxer_rebellion_e2",
+          "date": "1900-08-14",
+          "title": "Eight-Nation Alliance takes Beijing",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.39,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN",
+            "GBR",
+            "USA",
+            "JPN",
+            "RUS",
+            "FRA",
+            "DEU"
+          ],
+          "description": "Foreign armies relieved the siege and looted the capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Boxer_Rebellion"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_japan_korea_annexation",
@@ -10626,7 +10714,66 @@
         "taiwan",
         "cold war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_chinese_civil_war_e1",
+          "date": "1927-04-12",
+          "title": "Shanghai massacre of communists",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 31.23,
+            "lng": 121.47,
+            "label": "Shanghai"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The Nationalist purge of communists opened the civil war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Shanghai_massacre"
+          ]
+        },
+        {
+          "id": "seed_chinese_civil_war_e2",
+          "date": "1934-10-16",
+          "title": "The Long March begins",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 25.89,
+            "lng": 116.03,
+            "label": "Ruijin"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The Red Army’s epic retreat became the founding myth of Maoism.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Long_March"
+          ]
+        },
+        {
+          "id": "seed_chinese_civil_war_e3",
+          "date": "1949-10-01",
+          "title": "Communist victory; PRC founded",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.39,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Mao proclaimed the People’s Republic as the Nationalists fled to Taiwan.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Chinese_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_tiananmen",
@@ -10653,7 +10800,47 @@
         "censorship",
         "tank man"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_tiananmen_e1",
+          "date": "1989-04-15",
+          "title": "Protests fill Tiananmen Square",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.39,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Weeks of pro-democracy demonstrations gathered in the heart of Beijing.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1989_Tiananmen_Square_protests_and_massacre"
+          ]
+        },
+        {
+          "id": "seed_tiananmen_e2",
+          "date": "1989-06-04",
+          "title": "Military crushes the protests",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.39,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Troops and tanks killed hundreds to thousands of civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1989_Tiananmen_Square_protests_and_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_laos_secret_war",
@@ -10789,7 +10976,30 @@
         "mossadegh",
         "cold war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_iran_1953_coup_e1",
+          "date": "1953-08-19",
+          "title": "CIA/MI6 coup topples Mossadegh",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 35.7,
+            "lng": 51.42,
+            "label": "Tehran"
+          },
+          "parties": [
+            "IRN",
+            "USA",
+            "GBR"
+          ],
+          "description": "Britain and the US overthrew Iran's elected PM over oil nationalisation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1953_Iranian_coup_d%27%C3%A9tat"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_iranian_revolution",
@@ -10816,7 +11026,66 @@
         "shah",
         "hostage crisis"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_iranian_revolution_e1",
+          "date": "1978-09-08",
+          "title": "Black Friday shootings",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 35.7,
+            "lng": 51.42,
+            "label": "Tehran"
+          },
+          "parties": [
+            "IRN"
+          ],
+          "description": "Troops fired on protesters, a turning point against the Shah.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Black_Friday_(1978)"
+          ]
+        },
+        {
+          "id": "seed_iranian_revolution_e2",
+          "date": "1979-01-16",
+          "title": "The Shah flees Iran",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 35.7,
+            "lng": 51.42,
+            "label": "Tehran"
+          },
+          "parties": [
+            "IRN"
+          ],
+          "description": "The monarch left as the revolution reached its climax.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Iranian_Revolution"
+          ]
+        },
+        {
+          "id": "seed_iranian_revolution_e3",
+          "date": "1979-02-11",
+          "title": "Khomeini returns; monarchy falls",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 35.7,
+            "lng": 51.42,
+            "label": "Tehran"
+          },
+          "parties": [
+            "IRN"
+          ],
+          "description": "An Islamic Republic replaced 2,500 years of monarchy.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Iranian_Revolution"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_british_egypt",
@@ -10910,7 +11179,28 @@
         "muslim brotherhood",
         "state repression"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_hama_massacre_e1",
+          "date": "1982-02-02",
+          "title": "Syrian army crushes Hama",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 35.13,
+            "lng": 36.75,
+            "label": "Hama"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "Hafez al-Assad's forces killed tens of thousands to crush an uprising.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Hama_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_first_intifada",
@@ -10942,7 +11232,49 @@
         "oslo",
         "uprising"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_first_intifada_e1",
+          "date": "1987-12-09",
+          "title": "Uprising begins in Gaza",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza"
+          },
+          "parties": [
+            "PSE",
+            "ISR"
+          ],
+          "description": "A largely grassroots Palestinian uprising against the occupation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Intifada"
+          ]
+        },
+        {
+          "id": "seed_first_intifada_e2",
+          "date": "1993-09-13",
+          "title": "Oslo Accords",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 38.9,
+            "lng": -77.04,
+            "label": "Washington, D.C."
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "The accords set up limited Palestinian self-rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Oslo_Accords"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_second_intifada",
@@ -10974,7 +11306,69 @@
         "separation barrier",
         "suicide bombings"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_second_intifada_e1",
+          "date": "2000-09-28",
+          "title": "Uprising erupts",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 31.78,
+            "lng": 35.23,
+            "label": "Jerusalem"
+          },
+          "parties": [
+            "PSE",
+            "ISR"
+          ],
+          "description": "A far more violent uprising broke out after failed peace talks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Intifada"
+          ]
+        },
+        {
+          "id": "seed_second_intifada_e2",
+          "date": "2002-03-29",
+          "title": "Israeli reoccupation of the West Bank",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 31.9,
+            "lng": 35.2,
+            "label": "Ramallah"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "Operation Defensive Shield followed a wave of suicide bombings.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Defensive_Shield"
+          ]
+        },
+        {
+          "id": "seed_second_intifada_e3",
+          "date": "2005-02-08",
+          "title": "Ceasefire ends the uprising",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 27.91,
+            "lng": 34.33,
+            "label": "Sharm el-Sheikh"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "Around 3,000 Palestinians and 1,000 Israelis died over five years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Intifada"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_egypt_rabaa",
@@ -11002,7 +11396,47 @@
         "sisi",
         "arab spring"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_egypt_rabaa_e1",
+          "date": "2013-07-03",
+          "title": "Military coup ousts Morsi",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 30.04,
+            "lng": 31.24,
+            "label": "Cairo"
+          },
+          "parties": [
+            "EGY"
+          ],
+          "description": "The army removed Egypt's first elected president.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2013_Egyptian_coup_d%27%C3%A9tat"
+          ]
+        },
+        {
+          "id": "seed_egypt_rabaa_e2",
+          "date": "2013-08-14",
+          "title": "Rabaa massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 30.06,
+            "lng": 31.32,
+            "label": "Cairo"
+          },
+          "parties": [
+            "EGY"
+          ],
+          "description": "Security forces killed over 800 protesters in a single day.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rabaa_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_boer_wars",
@@ -11551,7 +11985,29 @@
         "soviet",
         "eastern europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_prague_spring_e1",
+          "date": "1968-08-20",
+          "title": "Warsaw Pact invasion of Czechoslovakia",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 50.09,
+            "lng": 14.42,
+            "label": "Prague"
+          },
+          "parties": [
+            "RUS",
+            "CZE"
+          ],
+          "description": "Soviet-led forces crushed the \"socialism with a human face\" reforms.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Warsaw_Pact_invasion_of_Czechoslovakia"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_croatian_war",
@@ -11582,7 +12038,49 @@
         "vukovar",
         "balkans"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_croatian_war_e1",
+          "date": "1991-08-25",
+          "title": "Battle of Vukovar",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 45.35,
+            "lng": 19,
+            "label": "Vukovar"
+          },
+          "parties": [
+            "HRV",
+            "SRB"
+          ],
+          "description": "An 87-day siege razed the city and was followed by a massacre.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Vukovar"
+          ]
+        },
+        {
+          "id": "seed_croatian_war_e2",
+          "date": "1995-08-04",
+          "title": "Operation Storm",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 44.04,
+            "lng": 16.2,
+            "label": "Knin"
+          },
+          "parties": [
+            "HRV",
+            "SRB"
+          ],
+          "description": "A Croatian offensive ended the war and displaced most local Serbs.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Storm"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_tajik_civil_war",
@@ -11703,7 +12201,47 @@
         "indira gandhi",
         "south asia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_blue_star_sikh_e1",
+          "date": "1984-06-01",
+          "title": "Operation Blue Star",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 31.62,
+            "lng": 74.88,
+            "label": "Amritsar"
+          },
+          "parties": [
+            "IND"
+          ],
+          "description": "The army stormed the Golden Temple, killing militants and pilgrims.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Blue_Star"
+          ]
+        },
+        {
+          "id": "seed_blue_star_sikh_e2",
+          "date": "1984-11-01",
+          "title": "Anti-Sikh pogrom",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 28.61,
+            "lng": 77.21,
+            "label": "Delhi"
+          },
+          "parties": [
+            "IND"
+          ],
+          "description": "After Indira Gandhi's assassination, mobs killed thousands of Sikhs.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1984_anti-Sikh_riots"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_nepal_civil_war",
@@ -12263,7 +12801,69 @@
         "colonial",
         "france"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_american_revolution_e1",
+          "date": "1775-04-19",
+          "title": "Battles of Lexington and Concord",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 42.45,
+            "lng": -71.23,
+            "label": "Lexington"
+          },
+          "parties": [
+            "USA",
+            "GBR"
+          ],
+          "description": "The \"shot heard round the world\" began the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battles_of_Lexington_and_Concord"
+          ]
+        },
+        {
+          "id": "seed_american_revolution_e2",
+          "date": "1776-07-04",
+          "title": "Declaration of Independence",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 39.95,
+            "lng": -75.15,
+            "label": "Philadelphia"
+          },
+          "parties": [
+            "USA"
+          ],
+          "description": "The thirteen colonies declared independence from Britain.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/United_States_Declaration_of_Independence"
+          ]
+        },
+        {
+          "id": "seed_american_revolution_e3",
+          "date": "1781-10-19",
+          "title": "Surrender at Yorktown",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 37.24,
+            "lng": -76.51,
+            "label": "Yorktown"
+          },
+          "parties": [
+            "USA",
+            "GBR",
+            "FRA"
+          ],
+          "description": "A Franco-American victory effectively won the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Yorktown"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_french_revolution",
@@ -12322,7 +12922,69 @@
         "first black republic",
         "caribbean"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_haitian_revolution_e1",
+          "date": "1791-08-22",
+          "title": "Slave uprising begins",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 19.76,
+            "lng": -72.2,
+            "label": "Cap-Français"
+          },
+          "parties": [
+            "HTI",
+            "FRA"
+          ],
+          "description": "The largest slave revolt in history erupted in the French colony.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_Revolution"
+          ]
+        },
+        {
+          "id": "seed_haitian_revolution_e2",
+          "date": "1802-02-01",
+          "title": "French expedition to restore slavery",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "FRA",
+            "HTI"
+          ],
+          "description": "Napoleon sent an army that was defeated by resistance and yellow fever.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_Revolution"
+          ]
+        },
+        {
+          "id": "seed_haitian_revolution_e3",
+          "date": "1804-01-01",
+          "title": "Haiti declares independence",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 19.45,
+            "lng": -72.69,
+            "label": "Gonaïves"
+          },
+          "parties": [
+            "HTI",
+            "FRA"
+          ],
+          "description": "Haiti became the first state founded by a successful slave revolt.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_Declaration_of_Independence"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_napoleonic_wars",
@@ -12374,7 +13036,92 @@
         "empire",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_napoleonic_wars_e1",
+          "date": "1805-10-21",
+          "title": "Battle of Trafalgar",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 36.18,
+            "lng": -6.03,
+            "label": "Cape Trafalgar"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "ESP"
+          ],
+          "description": "British naval victory secured control of the seas for a century.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Trafalgar"
+          ]
+        },
+        {
+          "id": "seed_napoleonic_wars_e2",
+          "date": "1805-12-02",
+          "title": "Battle of Austerlitz",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 49.13,
+            "lng": 16.76,
+            "label": "Austerlitz"
+          },
+          "parties": [
+            "FRA",
+            "AUT",
+            "RUS"
+          ],
+          "description": "Napoleon's masterpiece crushed the Austro-Russian armies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Austerlitz"
+          ]
+        },
+        {
+          "id": "seed_napoleonic_wars_e3",
+          "date": "1812-09-07",
+          "title": "French invasion of Russia",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 55.52,
+            "lng": 35.82,
+            "label": "Borodino"
+          },
+          "parties": [
+            "FRA",
+            "RUS"
+          ],
+          "description": "Napoleon's Grande Armée was destroyed by battle, cold and hunger.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/French_invasion_of_Russia"
+          ]
+        },
+        {
+          "id": "seed_napoleonic_wars_e4",
+          "date": "1815-06-18",
+          "title": "Battle of Waterloo",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 50.68,
+            "lng": 4.41,
+            "label": "Waterloo"
+          },
+          "parties": [
+            "FRA",
+            "GBR",
+            "DEU"
+          ],
+          "description": "Napoleon's final defeat ended two decades of war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Waterloo"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_russo_turkish_wars",
@@ -12497,7 +13244,85 @@
         "abolition",
         "civil war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_us_civil_war_e1",
+          "date": "1861-04-12",
+          "title": "Confederates fire on Fort Sumter",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 32.75,
+            "lng": -79.87,
+            "label": "Charleston"
+          },
+          "parties": [
+            "USA"
+          ],
+          "description": "The bombardment of a federal fort opened the American Civil War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Fort_Sumter"
+          ]
+        },
+        {
+          "id": "seed_us_civil_war_e2",
+          "date": "1863-01-01",
+          "title": "Emancipation Proclamation",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 38.9,
+            "lng": -77.04,
+            "label": "Washington, D.C."
+          },
+          "parties": [
+            "USA"
+          ],
+          "description": "Lincoln declared enslaved people in rebel states to be free.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Emancipation_Proclamation"
+          ]
+        },
+        {
+          "id": "seed_us_civil_war_e3",
+          "date": "1863-07-01",
+          "title": "Battle of Gettysburg",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 39.81,
+            "lng": -77.23,
+            "label": "Gettysburg"
+          },
+          "parties": [
+            "USA"
+          ],
+          "description": "The bloodiest battle of the war turned the tide against the Confederacy.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Gettysburg"
+          ]
+        },
+        {
+          "id": "seed_us_civil_war_e4",
+          "date": "1865-04-09",
+          "title": "Surrender at Appomattox",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 37.38,
+            "lng": -78.8,
+            "label": "Appomattox"
+          },
+          "parties": [
+            "USA"
+          ],
+          "description": "Lee's surrender effectively ended a war that killed some 620,000.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Appomattox_Court_House"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_taiwan_strait",
@@ -12567,7 +13392,69 @@
         "disputed",
         "south atlantic"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_falklands_e1",
+          "date": "1982-04-02",
+          "title": "Argentina invades the Falklands",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": -51.69,
+            "lng": -57.85,
+            "label": "Stanley"
+          },
+          "parties": [
+            "ARG",
+            "GBR"
+          ],
+          "description": "The junta seized the British-held islands, provoking a naval war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Falklands_War"
+          ]
+        },
+        {
+          "id": "seed_falklands_e2",
+          "date": "1982-05-02",
+          "title": "Sinking of the Belgrano",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": -55,
+            "lng": -61,
+            "label": "South Atlantic"
+          },
+          "parties": [
+            "GBR",
+            "ARG"
+          ],
+          "description": "A British submarine sank the cruiser, killing 323.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/ARA_General_Belgrano"
+          ]
+        },
+        {
+          "id": "seed_falklands_e3",
+          "date": "1982-06-14",
+          "title": "Argentine surrender",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": -51.69,
+            "lng": -57.85,
+            "label": "Stanley"
+          },
+          "parties": [
+            "GBR",
+            "ARG"
+          ],
+          "description": "Britain retook the islands; the defeat toppled the junta.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Falklands_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_anglo_ashanti",
@@ -12663,7 +13550,29 @@
         "dyer",
         "independence"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_amritsar_e1",
+          "date": "1919-04-13",
+          "title": "Jallianwala Bagh massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 31.62,
+            "lng": 74.88,
+            "label": "Amritsar"
+          },
+          "parties": [
+            "GBR",
+            "IND"
+          ],
+          "description": "British troops fired on a peaceful crowd, killing hundreds.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Jallianwala_Bagh_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cyprus_emergency",
@@ -13659,7 +14568,67 @@
         "cold war",
         "batista"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_cuban_revolution_e1",
+          "date": "1953-07-26",
+          "title": "Attack on the Moncada Barracks",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 20.02,
+            "lng": -75.82,
+            "label": "Santiago de Cuba"
+          },
+          "parties": [
+            "CUB"
+          ],
+          "description": "Castro's failed assault launched the 26th of July Movement.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Moncada_Barracks"
+          ]
+        },
+        {
+          "id": "seed_cuban_revolution_e2",
+          "date": "1956-12-02",
+          "title": "Granma landing",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 20,
+            "lng": -77.2,
+            "label": "Cuba"
+          },
+          "parties": [
+            "CUB"
+          ],
+          "description": "Castro and Guevara landed to begin the guerrilla war in the Sierra Maestra.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Granma_(yacht)"
+          ]
+        },
+        {
+          "id": "seed_cuban_revolution_e3",
+          "date": "1959-01-01",
+          "title": "Castro takes power",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 23.11,
+            "lng": -82.37,
+            "label": "Havana"
+          },
+          "parties": [
+            "CUB",
+            "USA"
+          ],
+          "description": "Batista fled and the revolutionaries entered Havana.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cuban_Revolution"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_mexican_cristero",
@@ -13743,7 +14712,49 @@
         "wwii",
         "invasion"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_winter_war_e1",
+          "date": "1939-11-30",
+          "title": "Soviet Union invades Finland",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 60.17,
+            "lng": 24.94,
+            "label": "Finland"
+          },
+          "parties": [
+            "RUS",
+            "FIN"
+          ],
+          "description": "Finnish forces inflicted heavy losses on a far larger Soviet army.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Winter_War"
+          ]
+        },
+        {
+          "id": "seed_winter_war_e2",
+          "date": "1940-03-13",
+          "title": "Moscow Peace Treaty",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "RUS",
+            "FIN"
+          ],
+          "description": "Finland ceded territory but kept its independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Moscow_Peace_Treaty_(1940)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_katyn",
@@ -13775,7 +14786,29 @@
         "nkvd",
         "denial"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_katyn_e1",
+          "date": "1940-04-01",
+          "title": "Katyn massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 54.77,
+            "lng": 31.79,
+            "label": "Katyn Forest"
+          },
+          "parties": [
+            "RUS",
+            "POL"
+          ],
+          "description": "The Soviets executed some 22,000 Polish officers and intellectuals.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Katyn_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_soviet_deportations",
@@ -14073,6 +15106,49 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Great_Turkish_War"
+      ],
+      "events": [
+        {
+          "id": "seed_great_turkish_war_e1",
+          "date": "1683-09-12",
+          "title": "Battle of Vienna",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 48.21,
+            "lng": 16.37,
+            "label": "Vienna"
+          },
+          "parties": [
+            "AUT",
+            "TUR",
+            "POL"
+          ],
+          "description": "A relief army broke the Ottoman siege, turning the tide in Europe.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Vienna"
+          ]
+        },
+        {
+          "id": "seed_great_turkish_war_e2",
+          "date": "1699-01-26",
+          "title": "Treaty of Karlowitz",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 45.2,
+            "lng": 19.93,
+            "label": "Karlowitz"
+          },
+          "parties": [
+            "AUT",
+            "TUR"
+          ],
+          "description": "The Ottomans ceded Hungary — their first major territorial loss.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Karlowitz"
+          ]
+        }
       ]
     },
     {
@@ -14340,6 +15416,68 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Indian_Rebellion_of_1857"
+      ],
+      "events": [
+        {
+          "id": "seed_indian_rebellion_1857_e1",
+          "date": "1857-05-10",
+          "title": "Mutiny erupts at Meerut",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 28.98,
+            "lng": 77.71,
+            "label": "Meerut"
+          },
+          "parties": [
+            "IND",
+            "GBR"
+          ],
+          "description": "Sepoys rose against the East India Company and marched on Delhi.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Indian_Rebellion_of_1857"
+          ]
+        },
+        {
+          "id": "seed_indian_rebellion_1857_e2",
+          "date": "1857-06-25",
+          "title": "Siege of Cawnpore",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 26.45,
+            "lng": 80.33,
+            "label": "Kanpur"
+          },
+          "parties": [
+            "IND",
+            "GBR"
+          ],
+          "description": "Sieges and massacres on both sides marked the rebellion’s bloodiest phase.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Cawnpore"
+          ]
+        },
+        {
+          "id": "seed_indian_rebellion_1857_e3",
+          "date": "1858-07-08",
+          "title": "Rebellion crushed; Crown rule begins",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 28.61,
+            "lng": 77.21,
+            "label": "Delhi"
+          },
+          "parties": [
+            "GBR",
+            "IND"
+          ],
+          "description": "The Crown took direct control of India from the Company.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Indian_Rebellion_of_1857"
+          ]
+        }
       ]
     },
     {
@@ -14437,6 +15575,28 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/First_Italo-Ethiopian_War"
+      ],
+      "events": [
+        {
+          "id": "seed_first_italo_ethiopian_war_e1",
+          "date": "1896-03-01",
+          "title": "Battle of Adwa",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 14.17,
+            "lng": 38.9,
+            "label": "Adwa"
+          },
+          "parties": [
+            "ETH",
+            "ITA"
+          ],
+          "description": "Ethiopia routed the Italian invaders — a landmark African victory.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Adwa"
+          ]
+        }
       ]
     },
     {
