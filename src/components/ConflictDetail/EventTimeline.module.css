@@ -1,0 +1,225 @@
+.wrap {
+  margin: 4px 0 2px;
+}
+
+.head {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.count {
+  background: var(--glass-strong);
+  color: var(--text-secondary);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+/* ---- intensity sparkline: neutral line (severity shape) + kind-colored dots ---- */
+.sparkWrap {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.spark {
+  width: 100%;
+  height: 40px;
+  display: block;
+  overflow: visible;
+}
+
+.sparkLine {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.sparkArea {
+  fill: rgba(255, 255, 255, 0.04);
+  stroke: none;
+}
+
+/* full round dots, colored by event kind, kept legible with a dark ring */
+.node {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px var(--bg-base);
+}
+
+/* key: what each point color (event kind) means */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: -2px 0 11px;
+}
+
+.legItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.legDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---- vertical narrative timeline ---- */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+/* the rail: a vertical line with a node dot per event */
+.rail {
+  position: relative;
+  flex-shrink: 0;
+  width: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.rail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--glass-border);
+  transform: translateX(-50%);
+}
+
+/* trim the rail at the very top and bottom of the list */
+.item:first-child .rail::before { top: 9px; }
+.item:last-child .rail::before { bottom: calc(100% - 9px); }
+
+.dot {
+  position: relative;
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: 6px;
+  box-shadow: 0 0 0 3px var(--bg-base);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1px 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.row[data-static='true'] { cursor: default; }
+
+.date {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 62px;
+}
+
+.glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.gauge { display: inline-flex; gap: 2px; flex-shrink: 0; }
+.seg {
+  width: 6px;
+  height: 4px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.chev, .chevOpen {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.18s;
+}
+.chevOpen { transform: rotate(180deg); }
+
+.detail {
+  padding: 4px 0 2px;
+  animation: fadeInDown 160ms ease-out;
+}
+
+.kindLabel {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.desc {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 4px 0 6px;
+}
+
+.src {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  color: #a8b6c8;
+  text-decoration: none;
+  margin-right: 12px;
+}
+.src:hover { color: var(--accent-light); text-decoration: underline; }

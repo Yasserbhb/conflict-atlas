@@ -1,0 +1,16 @@
+/* expanding halo on the event(s) happening in the currently-scrubbed year */
+.pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pinPulse 1.7s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pinPulse {
+  0% { transform: scale(0.7); opacity: 0.5; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; opacity: 0; }
+}

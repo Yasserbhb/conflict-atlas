@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { TYPE_LABELS, TYPE_COLORS, CONFLICT_TYPES } from '../../utils/conflictColors';
 import { formatDateRange, parseYear } from '../../utils/dateUtils';
 import { TypeIcon } from '../../utils/typeIcons';
 import SeverityGauge from '../common/SeverityGauge';
+import NestedEvents from '../common/NestedEvents';
 import styles from './ConflictsView.module.css';
 
 const REGIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
@@ -25,6 +27,9 @@ export default function ConflictsView() {
   const [minSeverity, setMinSeverity] = useState(1);
   const [ongoingOnly, setOngoingOnly] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
+  const [expanded, setExpanded] = useState(() => new Set());
+
+  const q = search.trim().toLowerCase();
 
   const regionByCountry = useMemo(() => {
     const m = {};
@@ -39,7 +44,6 @@ export default function ConflictsView() {
   }, [countries]);
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
     let list = conflicts.filter((c) => {
       if (type !== 'all' && c.type !== type) return false;
       if (ongoingOnly && !c.ongoing) return false;
@@ -54,6 +58,7 @@ export default function ConflictsView() {
           c.description,
           ...(c.tags || []),
           ...(c.involvedCountries || []).map((id) => nameByCountry[id] || ''),
+          ...(c.events || []).map((e) => e.title),
         ].join(' ').toLowerCase();
         if (!hay.includes(q)) return false;
       }
@@ -70,12 +75,25 @@ export default function ConflictsView() {
       }
     });
     return list;
-  }, [conflicts, search, type, region, minSeverity, ongoingOnly, sortBy, regionByCountry, nameByCountry]);
+  }, [conflicts, q, type, region, minSeverity, ongoingOnly, sortBy, regionByCountry, nameByCountry]);
+
+  function toggle(id) {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  }
 
   function openOnMap(conflict) {
-    // Opens the conflict detail panel, role-colors the map, and moves the
-    // timeline into the conflict's window — all handled by the reducer.
     dispatch({ type: 'OPEN_CONFLICT', payload: conflict.id });
+  }
+
+  // Open the conflict on the map and park the timeline on the event's year
+  function openEvent(conflict, event) {
+    dispatch({ type: 'OPEN_CONFLICT', payload: conflict.id });
+    const y = parseYear(event.date);
+    if (y != null) dispatch({ type: 'SET_TIMELINE_YEAR', payload: y });
   }
 
   return (
@@ -88,7 +106,7 @@ export default function ConflictsView() {
         <div className={styles.controls}>
           <input
             className={styles.search}
-            placeholder="Search title, country, tag…"
+            placeholder="Search title, country, tag, event…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -121,24 +139,49 @@ export default function ConflictsView() {
         {filtered.map((c) => {
           const color = TYPE_COLORS[c.type] || '#94a3b8';
           const parties = (c.involvedCountries || []).map((id) => nameByCountry[id] || id);
+          const events = c.events || [];
+          const hasEvents = events.length > 0;
+          // auto-expand when the search matched one of this conflict's events
+          const matchedEvent = q.length >= 2 && !c.title.toLowerCase().includes(q) && events.some((e) => e.title.toLowerCase().includes(q));
+          const isOpen = hasEvents && (expanded.has(c.id) || matchedEvent);
+
           return (
-            <button key={c.id} className={styles.row} onClick={() => openOnMap(c)} style={{ borderLeftColor: color }}>
-              <span className={styles.rowGlyph} style={{ background: color + '22', color }}>
-                <TypeIcon type={c.type} size={15} aria-hidden="true" />
-              </span>
-              <div className={styles.rowMain}>
-                <div className={styles.rowTitle}>
-                  {c.title}
-                  {c.ongoing && <span className={styles.ongoing}>ONGOING</span>}
-                </div>
-                <div className={styles.rowParties}>{parties.join(' · ')}</div>
+            <div key={c.id} className={styles.rowWrap}>
+              <div className={styles.row} style={{ borderLeftColor: color }}>
+                <button className={styles.rowClick} onClick={() => openOnMap(c)}>
+                  <span className={styles.rowGlyph} style={{ background: color + '22', color }}>
+                    <TypeIcon type={c.type} size={15} aria-hidden="true" />
+                  </span>
+                  <div className={styles.rowMain}>
+                    <div className={styles.rowTitle}>
+                      {c.title}
+                      {c.ongoing && <span className={styles.ongoing}>ONGOING</span>}
+                    </div>
+                    <div className={styles.rowParties}>{parties.join(' · ')}</div>
+                  </div>
+                  <div className={styles.rowMeta}>
+                    <span className={styles.type} style={{ color }}>{TYPE_LABELS[c.type] || c.type}</span>
+                    <span className={styles.dates}>{formatDateRange(c.startDate, c.endDate, c.ongoing)}</span>
+                    <SeverityGauge severity={c.severity} />
+                  </div>
+                </button>
+                {hasEvents && (
+                  <button
+                    className={styles.expandBtn}
+                    onClick={() => toggle(c.id)}
+                    aria-expanded={isOpen}
+                    aria-label={isOpen ? 'Hide events' : `Show ${events.length} events`}
+                  >
+                    <span className={styles.evCount}>{events.length}</span>
+                    <ChevronDown size={14} className={isOpen ? styles.chevOpen : styles.chev} aria-hidden="true" />
+                  </button>
+                )}
               </div>
-              <div className={styles.rowMeta}>
-                <span className={styles.type} style={{ color }}>{TYPE_LABELS[c.type] || c.type}</span>
-                <span className={styles.dates}>{formatDateRange(c.startDate, c.endDate, c.ongoing)}</span>
-                <SeverityGauge severity={c.severity} />
-              </div>
-            </button>
+
+              {isOpen && (
+                <NestedEvents events={events} onOpen={(ev) => openEvent(c, ev)} highlightQuery={q} />
+              )}
+            </div>
           );
         })}
       </div>

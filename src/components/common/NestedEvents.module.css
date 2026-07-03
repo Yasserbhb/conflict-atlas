@@ -1,0 +1,76 @@
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 3px 0 2px 16px;
+  padding-left: 10px;
+  border-left: 1px solid var(--glass-border);
+}
+
+.eventRow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 8px;
+  background: none;
+  border: none;
+  border-radius: 7px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.eventRow:hover { background: rgba(86, 152, 138, 0.1); }
+
+/* a search-matched event: tinted, with a brief "here it is" pulse */
+.match {
+  background: var(--accent-dim);
+  animation: matchPulse 1.3s ease-out;
+}
+@keyframes matchPulse {
+  0% { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+  100% { background: var(--accent-dim); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .match { animation: none; }
+}
+
+.evDate {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 74px;
+}
+
+.evGlyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.evTitle {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.evKind {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.evGauge { display: inline-flex; gap: 2px; flex-shrink: 0; }
+.evSeg { width: 6px; height: 4px; border-radius: 1px; background: rgba(255, 255, 255, 0.1); }
