@@ -2,6 +2,16 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.12.0 — 2026-07-03
+
+Events — conflicts unfold in time and space.
+
+- **Sub-event model**: a conflict can now carry an `events[]` timeline (date, kind, severity, location, parties, sources), with its headline severity/status still summarising the whole.
+- **Conflict detail**: a new **intensity sparkline** (severity over time, plain line + kind-colored dots) and a **narrative timeline** — each event with a kind icon, severity gauge, and expandable description + its own sources.
+- **Map pins + timeline animation**: a focused conflict's events plot at their real coordinates; scrubbing the timeline reveals them as their dates arrive, and the current year's event pulses — so you watch a conflict spread across the map over time.
+- **Content**: 155 of 238 conflicts seeded with **425 sourced, geolocated events** — every conflict with discrete, mappable events, from the Fall of Tenochtitlan to the 2023 Sudan war. Country-wide famines carry pin-less stage markers.
+- Graceful: conflicts without events render exactly as before.
+
 ## v1.11.0 — 2026-07-03
 
 Fill historical gaps in the 1600s–1800s (seed 2.8.0).
