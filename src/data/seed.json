@@ -1,5 +1,5 @@
 {
-  "version": "2.15.1",
+  "version": "2.16.0",
   "countries": [
     {
       "id": "AFG",
@@ -4625,12 +4625,12 @@
     {
       "id": "seed_gaza_war",
       "title": "Gaza War",
-      "type": "war",
+      "type": "genocide",
       "severity": 5,
       "startDate": "2023-10-07",
       "endDate": null,
       "ongoing": true,
-      "description": "Following Hamas's October 7 attack killing ~1,200 Israelis, Israel launched a devastating two-year military campaign on Gaza. Over 72,000 Palestinians were killed (majority women and children), 90%+ of Gaza's buildings destroyed, famine induced through blockade, and nearly all 2 million people displaced. The ICJ found plausible evidence of genocide; South Africa led the case against Israel. A ceasefire took effect 10 October 2025, but Israel retained control of ~50% of Gaza and over 1,000 Palestinians were killed in violations through mid-2026. The USA, UK, and Germany supplied weapons throughout.",
+      "description": "Triggered by the Hamas-led attack of 7 October 2023, Israel's war on Gaza has killed more than 70,000 Palestinians and displaced almost the entire population. In September 2025 a UN Commission of Inquiry concluded that Israel is committing genocide in Gaza — a finding Israel rejects as politically motivated. Ceasefires in January and October 2025 were followed by resumed fighting and thousands of documented violations.",
       "parties": [
         {
           "countryId": "ISR",
@@ -4715,33 +4715,13 @@
             "ISR",
             "PSE"
           ],
-          "description": "Following weeks of airstrikes, Israeli ground forces entered the Gaza Strip.",
+          "description": "After weeks of bombardment, Israeli ground forces entered the Gaza Strip.",
           "sources": [
             "https://en.wikipedia.org/wiki/Gaza_war"
           ]
         },
         {
           "id": "seed_gaza_war_e3",
-          "date": "2023-11-24",
-          "title": "First truce & hostage–prisoner exchange",
-          "kind": "ceasefire",
-          "severity": 2,
-          "location": {
-            "lat": 31.5,
-            "lng": 34.47,
-            "label": "Gaza Strip"
-          },
-          "parties": [
-            "ISR",
-            "PSE"
-          ],
-          "description": "A week-long pause saw the release of hostages and Palestinian prisoners before fighting resumed.",
-          "sources": [
-            "https://en.wikipedia.org/wiki/2023_Israel%E2%80%93Hamas_war_ceasefire"
-          ]
-        },
-        {
-          "id": "seed_gaza_war_e4",
           "date": "2024-03-18",
           "title": "Famine warning for northern Gaza",
           "kind": "displacement",
@@ -4754,9 +4734,101 @@
           "parties": [
             "PSE"
           ],
-          "description": "An IPC-backed assessment warned that famine was imminent amid mass displacement and a collapse of aid.",
+          "description": "An IPC-backed assessment warned that famine was imminent amid a collapse of aid.",
           "sources": [
             "https://en.wikipedia.org/wiki/Gaza_Strip_famine"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e4",
+          "date": "2025-01-19",
+          "title": "First major ceasefire & hostage exchange",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A phased truce released hostages and prisoners, but collapsed within two months.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/January_2025_Gaza_war_ceasefire"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e5",
+          "date": "2025-03-18",
+          "title": "Israel resumes its offensive",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "Israel declared a return to \"full force\" combat, ending the January ceasefire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gaza_war"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e6",
+          "date": "2025-09-16",
+          "title": "UN commission concludes Israel is committing genocide",
+          "kind": "milestone",
+          "severity": 4,
+          "location": null,
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A UN Commission of Inquiry found Israel had committed genocidal acts in Gaza; Israel rejected the finding.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_UNHRC_Commission_of_Inquiry_report_on_Gaza_genocide"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e7",
+          "date": "2025-10-10",
+          "title": "Second ceasefire under a US peace plan",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A US-brokered 20-point framework halted major fighting, though violations continued.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gaza_war"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e8",
+          "date": "2026-06-23",
+          "title": "UN inquiry: deliberate targeting of Gaza's children",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A follow-up report documented over 20,000 Palestinian children killed — about 30% of the death toll.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_UNHRC_Commission_of_Inquiry_report_on_Gaza_genocide"
           ]
         }
       ]
@@ -9962,10 +10034,10 @@
       "title": "Israel–Iran War",
       "type": "war",
       "severity": 5,
-      "startDate": "2025-06",
-      "endDate": "2026-06",
-      "ongoing": false,
-      "description": "After the 12-Day War of June 2025, in which Israel struck Iran's nuclear and military infrastructure, open war broke out again from February 2026 when US and Israeli airstrikes killed Iranian officials and Supreme Leader Ali Khamenei. The US joined Israel directly against Iran and its allies; after five weeks, a US–Iran ceasefire (including Israel) was reached in mid-June 2026.",
+      "startDate": "2025-06-13",
+      "endDate": null,
+      "ongoing": true,
+      "description": "A direct war between Israel and Iran, fought in two phases. The 12-Day War of June 2025 saw Israel strike Iran's nuclear and military sites, the US bomb Fordow, Natanz and Isfahan, and Iran retaliate against a US base in Qatar before a ceasefire. In February 2026 the US and Israel launched a far larger campaign that killed Supreme Leader Khamenei; Iran blocked the Strait of Hormuz, causing a massive oil shock, and fighting continued into mid-2026.",
       "parties": [
         {
           "countryId": "ISR",
@@ -9977,13 +10049,18 @@
         },
         {
           "countryId": "IRN",
+          "role": "defender"
+        },
+        {
+          "countryId": "QAT",
           "role": "victim"
         }
       ],
       "involvedCountries": [
         "ISR",
         "USA",
-        "IRN"
+        "IRN",
+        "QAT"
       ],
       "tags": [
         "nuclear",
@@ -9993,7 +10070,164 @@
         "middle east",
         "ceasefire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_israel_iran_war_e1",
+          "date": "2025-06-13",
+          "title": "Israel launches Operation Rising Lion",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.72,
+            "lng": 51.91,
+            "label": "Natanz, Iran"
+          },
+          "parties": [
+            "ISR",
+            "IRN"
+          ],
+          "description": "Israel struck Iran's nuclear facilities, military sites and commanders, opening the 12-Day War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e2",
+          "date": "2025-06-22",
+          "title": "US bombs Fordow, Natanz and Isfahan",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 34.88,
+            "lng": 50.99,
+            "label": "Fordow, Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "US B-2s dropped bunker-buster bombs on Iran’s deepest nuclear sites (Operation Midnight Hammer).",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e3",
+          "date": "2025-06-23",
+          "title": "Iran strikes the US base at Al Udeid",
+          "kind": "attack",
+          "severity": 2,
+          "location": {
+            "lat": 25.12,
+            "lng": 51.32,
+            "label": "Al Udeid, Qatar"
+          },
+          "parties": [
+            "IRN",
+            "QAT",
+            "USA"
+          ],
+          "description": "Iran fired missiles at the largest US base in the Middle East in a telegraphed, symbolic response.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e4",
+          "date": "2025-06-24",
+          "title": "Ceasefire ends the 12-Day War",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "ISR",
+            "IRN",
+            "USA"
+          ],
+          "description": "A US-announced ceasefire paused the war after twelve days.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e5",
+          "date": "2026-02-28",
+          "title": "Operation Epic Fury; Khamenei killed",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 35.7,
+            "lng": 51.42,
+            "label": "Tehran"
+          },
+          "parties": [
+            "USA",
+            "ISR",
+            "IRN"
+          ],
+          "description": "A massive US-Israeli air campaign killed Supreme Leader Ali Khamenei and hit hundreds of targets.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e6",
+          "date": "2026-03-01",
+          "title": "Iran retaliates against Israel and US bases",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 32.09,
+            "lng": 34.78,
+            "label": "Tel Aviv"
+          },
+          "parties": [
+            "IRN",
+            "ISR"
+          ],
+          "description": "Iran launched waves of missiles and drones at Israel, Gulf states and US forces.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e7",
+          "date": "2026-04-13",
+          "title": "Iran blocks the Strait of Hormuz",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 26.57,
+            "lng": 56.25,
+            "label": "Strait of Hormuz"
+          },
+          "parties": [
+            "IRN",
+            "USA"
+          ],
+          "description": "Iran closed the strait, triggering the largest oil-supply disruption in history; the US imposed a naval blockade.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e8",
+          "date": "2026-06-28",
+          "title": "US and Iran agree to cease attacks",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "After renewed strikes, the two sides agreed to halt attacks, though the wider standoff remained unresolved.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_us_venezuela",
