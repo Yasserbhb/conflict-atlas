@@ -1,5 +1,5 @@
 {
-  "version": "2.16.0",
+  "version": "2.16.1",
   "countries": [
     {
       "id": "AFG",
@@ -5360,6 +5360,26 @@
           "sources": [
             "https://en.wikipedia.org/wiki/%C3%89vian_Accords"
           ]
+        },
+        {
+          "id": "seed_algerian_war_e4",
+          "date": "1962-07-05",
+          "title": "Algeria gains independence",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 36.75,
+            "lng": 3.06,
+            "label": "Algiers"
+          },
+          "parties": [
+            "DZA",
+            "FRA"
+          ],
+          "description": "Independence was proclaimed on 5 July — 132 years to the day after France took Algiers — after a war that killed hundreds of thousands.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Algerian_War"
+          ]
         }
       ]
     },
@@ -5965,7 +5985,69 @@
         "france",
         "land seizure"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_algeria_occupation_e1",
+          "date": "1830-07-05",
+          "title": "France captures Algiers",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 36.75,
+            "lng": 3.06,
+            "label": "Algiers"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "A French invasion seized Algiers, beginning 132 years of colonial rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Invasion_of_Algiers_(1830)"
+          ]
+        },
+        {
+          "id": "seed_algeria_occupation_e2",
+          "date": "1832-01-01",
+          "title": "Abd al-Qadir's resistance",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 35.4,
+            "lng": 0.14,
+            "label": "Mascara"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "Emir Abdelkader led a 15-year armed resistance against the French conquest.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Emir_Abdelkader"
+          ]
+        },
+        {
+          "id": "seed_algeria_occupation_e3",
+          "date": "1945-05-08",
+          "title": "Sétif and Guelma massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 36.19,
+            "lng": 5.41,
+            "label": "Sétif"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "On VE Day, French forces killed thousands of Algerians (estimates from 6,000 to 30,000) after nationalist demonstrations.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/S%C3%A9tif_and_Guelma_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_british_raj",
@@ -10225,6 +10307,26 @@
           "description": "After renewed strikes, the two sides agreed to halt attacks, though the wider standoff remained unresolved.",
           "sources": [
             "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e9",
+          "date": "2026-02-28",
+          "title": "Minab school strike kills ~120 children",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 27.15,
+            "lng": 57.08,
+            "label": "Minab, Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "A missile destroyed an elementary school in Minab, killing about 156 civilians including some 120 children; investigations attribute the strike to the US.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Minab_school_attack"
           ]
         }
       ]
