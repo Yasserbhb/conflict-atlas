@@ -44,53 +44,73 @@ the base, attach or create. Only the *trigger* and *time rules* differ (§2).
 
 ---
 
-## 2. Two modes, one engine
+## 2. One operation: scan a period
 
-| | **Backfill mode** (fill the past) | **Watch mode** (stay current) |
-|---|---|---|
-| **Trigger** | human query: *a period + region (+ topic)* — "Central Africa, 1990–2003" | weekly cron |
-| **Scope** | everything in that window/region | all **non-`resolved`** conflicts + new-event scan of the feeds |
-| **First step** | **pull what already exists** in the base for that scope, so it fills gaps not duplicates | same dedup lookup per candidate |
-| **Settling lag** | **none** (historical events are settled) | **yes** — recent reports wait (§7) |
-| **Output** | proposed new conflicts + events for the gap, as a review diff | proposed updates/regressions, as a review diff |
+The whole pipeline is **a single function with a single input** — a time window (plus optional
+region/topic). There is no "backfill vs live"; there is only:
 
-Everything downstream of "produce a candidate event" is **identical** in both modes. Backfill is
-how the user seeds history *and stress-tests the agents* before letting the same system run
-autonomously per week.
+```
+scan(period, region?, topic?)  →  proposed events & conflicts for that window
+```
+
+It does not matter whether the window is a century or a week — **same input, same protocol,
+same agents**:
+
+- `scan([1924, 2024], region: "Africa")` — fill a hundred years of African conflicts
+- `scan([2003, 2005], topic: "Darfur")` — deepen one conflict's history
+- `scan([last_monday, today])` — the routine weekly update
+
+The **weekly job is just an automatic caller of the same function** with `period = the last 7
+days`. Whether a human types the window or cron supplies it changes **nothing** downstream.
+
+The only thing that varies is **per-event recency** (a property of an event's date, not of how
+the run was triggered): any candidate event dated within the last `T_settle` days is **provisional**
+— held until it ages and corroborates — because breaking news is unreliable. A century-scan never
+produces provisional events; a weekly scan does. One rule, applied to each event by its date (§7).
 
 ---
 
-## 3. The loop
+## 3. The pipeline — one entry, each agent in its lane
+
+Every run — human or cron — enters the same top and flows straight down. Each box is **one agent
+with one job**. The only branches out are the `─► HUMAN` escapes (the "no dead-end" rule).
 
 ```
-  ┌── Backfill: human scope query ──┐        ┌── Watch: weekly cron ──┐
-  └──────────────┬──────────────────┘        └───────────┬───────────┘
-                 ▼                                        ▼
-        SCOPER agent → research plan          WATCHER → list of non-resolved
-        (period/region/topic → queries)       conflicts to re-check + feed scan
-                 └──────────────┬───────────────────────┘
-                                ▼
-   FETCHER (deterministic): web search + source APIs, MULTI-LANGUAGE, credibility-tagged
-                                ▼
-   EXTRACTOR agent: raw items → candidate EVENTS (date, actors, action) + citations
-                                ▼
-   RESOLVER (dedup/identity): does this event/conflict already exist in the base?
-        │  already-known → drop (or enrich sources)
-        │  attaches to exactly one conflict → ATTACH path
-        │  no home → NEW-CONFLICT path            │ ambiguous → human
-                                ▼
-   [Watch mode only] SETTLING BUFFER — hold until aged + corroborated (§7)
-                                ▼
-   ENRICHERS in parallel (LLM critics, one lane each):
-        CLASSIFIER (kind/type) · SEVERITY · ROLES · GEOLOCATOR · SUMMARIZER · LIFECYCLE
-                                ▼
-   FACT-CHECK / CORROBORATION agent: N independent, cross-language, cross-alignment sources
-                                ▼
-   RECONCILER (judge): all-pass+confident → auto-queue · else → needs-human (with the objection)
-                                ▼
-   HUMAN REVIEW QUEUE  →  [approve/edit/reject]  →  MERGER (deterministic)
-                                ▼
-   seed.json (events[] + derived summary) · version bump · shape-validate · PR to main
+              scan(period, region?, topic?)              ◄── the ONLY input
+                          │
+   ┌──────────────────────▼──────────────────────────────────────────────────┐
+   │ SCOPER     turn the window into concrete, multi-language search queries.  │
+   │            For recent windows, also emit a targeted "is X still quiet /   │
+   │            did it flare?" query for each non-resolved conflict.           │
+   └──────────────────────┬──────────────────────────────────────────────────┘
+                          ▼
+   FETCHER    (code) web search + ACLED/UCDP → raw items tagged {lang, outlet, alignment}
+                          ▼
+   EXTRACTOR  raw items → discrete candidate EVENTS (date · actor · action · place) + citations
+                          ▼
+   RESOLVER   already in the base?  ── already-known → drop (keep any new sources)
+              (dedup / identity)    ── attach to conflict X
+                          │         ── new conflict
+                          │         ── ambiguous ─────────────────────────────► HUMAN
+                          ▼
+   RECENCY    event within the last T_settle days? → hold as provisional (age + corroborate)
+                          ▼
+   ENRICHERS  (parallel — one lane each)
+        ├ CLASSIFIER   event kind, and a new conflict's type        (taxonomy.js)
+        ├ SEVERITY     1–5 from the rubric + cited evidence
+        ├ ROLES        each country's role (aggressor / funder / victim / mediator / …)
+        ├ GEOLOCATOR   lat / lng / label — or null for a place-less event
+        ├ SUMMARIZER   neutral, attributed prose
+        └ LIFECYCLE    status (active/easing/suspended/dormant/ended/resolved); quiet ≠ resolved
+                          ▼
+   FACT-CHECK  do the sources support each field? ≥ N independent, cross-language,
+               cross-alignment?              ── not enough / disagree ─────────► HUMAN
+                          ▼
+   RECONCILER  all pass + confident → auto-queue      else ─────────────────────► HUMAN
+                          ▼
+   HUMAN REVIEW   approve / edit / reject             ◄── the one required human step
+                          ▼
+   MERGER     (code) write events[] → seed.json · bump version · validate · PR to main
 ```
 
 ---
@@ -188,12 +208,13 @@ phase the **evidence + type profile** allow, and defaults toward *not* closing.
 
 | Param | Meaning | Default |
 |---|---|---|
-| `T_settle` | **watch mode only** — a report must age/corroborate before it can change the dataset | 7 days |
+| `T_settle` | **per event, by its date** — an event within the last N days is provisional (held until it ages + corroborates). A long-past scan never triggers it. | 7 days |
 | `T_dwell` | sustained quiet before a conflict leaves `active` — **per type**; only reaches `dormant`/`ended`, never `resolved` | 45 d war · 180 d disputed |
 | `N_min` | independent credible sources to corroborate (higher for status changes & new conflicts) | 2–3 |
-| `recheck` | Watcher cadence over non-resolved conflicts | weekly |
+| `cron` | how often the automatic caller runs `scan([last 7 days])` | weekly |
 
-Backfill mode sets `T_settle = 0` (history is settled) but keeps `N_min` and every enricher.
+None of these are "modes" — they're rules keyed off an **event's own date**, so a century-scan
+and a weekly-scan run the identical code and simply hit them differently.
 
 ---
 
@@ -267,16 +288,16 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
 ## 12. Build roadmap
 
 - **Phase 0 (design):** this doc + agent specs + schemas + config templates. *(current)*
-- **Phase 1 — backfill thin slice:** Scoper + Extractor + Resolver + the enrichers + Reconciler,
-  web-search only, on **one region/decade**; emits a `review/*.md` diff, **no merge**. This
-  proves the agents on settled history where the answer is checkable.
+- **Phase 1 — `scan()` on one past window:** Scoper + Extractor + Resolver + enrichers +
+  Reconciler, web-search only, run on **one region/decade**; emits a `review/*.md` diff, **no
+  merge**. A settled historical window is the safest first target — the answer is checkable.
 - **Phase 2:** the Merger + human-review CLI + source verification → approved diffs actually land
-  (still human-gated). Backfill becomes usable.
-- **Phase 3 — watch mode:** the settling buffer, Watcher, lifecycle dwell timers, `T_settle`;
-  weekly cron over non-resolved conflicts.
+  (still human-gated). `scan()` is now usable on any window.
+- **Phase 3 — automate it:** the recency gate + lifecycle dwell timers, then the **weekly cron**
+  that just calls `scan([last 7 days])`. Same code, now unattended.
 - **Phase 4:** multilingual source expansion + ACLED/UCDP anchors + cross-alignment corroboration
   hardening; app surfaces `status`.
 
-Backfill is deliberately Phase 1 — it's the safest place to trust-test the whole agent team,
-because you can check its work against known history before it ever runs unattended.
+The order is deliberate: a past window trust-tests the whole agent team against known history
+before the **identical function** is ever pointed at "this week" and run on a schedule.
 ```

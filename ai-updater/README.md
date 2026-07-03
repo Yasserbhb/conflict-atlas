@@ -15,11 +15,11 @@ data rigor, not UI.
   conflict** or **spawns a new one**. So "something happened today" and "we're missing something
   from 1975" are the *same operation*.
 
-- **Two modes, one engine.**
-  - **Backfill** (fill the past): you give it *a period + region* → it pulls what already exists,
-    researches the gap, and proposes new conflicts/events. Run it as a CLI. No settling lag.
-  - **Watch** (stay current): a **weekly** cron re-checks every non-`resolved` conflict and scans
-    the feeds; recent reports wait out a settling lag before they can change anything.
+- **One operation: `scan(period, region?, topic?)`.** The only input is a time window — a week or
+  a century, **same protocol, same agents**. `scan([1924,2024], "Africa")` fills a century;
+  `scan([last_monday, today])` is the routine update. The weekly job is just an **automatic caller
+  of the same function** with `period = last 7 days`. Recency is a per-event rule, not a mode: an
+  event dated in the last ~7 days is held as *provisional* until it corroborates.
 
 - **The agent team** (each one lane, strict JSON out): Scoper · Extractor · Resolver (dedup) ·
   Classifier (kind/type) · Severity · Roles · Geolocator · Summarizer · Lifecycle · Fact-check ·
