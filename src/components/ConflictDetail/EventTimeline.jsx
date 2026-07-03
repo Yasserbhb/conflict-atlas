@@ -22,9 +22,12 @@ export default function EventTimeline({ events, conflict }) {
   const spark = useMemo(() => {
     const withSev = sorted.filter((e) => e.severity != null && dateToValue(e.date) != null);
     if (withSev.length < 2) return null;
+    // Span the axis by the events themselves so they fill the width — anchoring to
+    // the conflict's start/end squeezes short conflicts (e.g. the Six-Day War, all
+    // within one June) into a sliver.
     const vals = withSev.map((e) => dateToValue(e.date));
-    const lo = Math.min(dateToValue(conflict.startDate) ?? vals[0], ...vals);
-    const hi = Math.max(dateToValue(conflict.endDate) ?? vals[vals.length - 1], ...vals);
+    const lo = Math.min(...vals);
+    const hi = Math.max(...vals);
     const span = hi - lo || 1;
     return withSev.map((e) => ({
       x: S_PAD + ((dateToValue(e.date) - lo) / span) * (S_W - 2 * S_PAD),
@@ -32,7 +35,7 @@ export default function EventTimeline({ events, conflict }) {
       color: kindMeta(e.kind).color,
       title: e.title,
     }));
-  }, [sorted, conflict]);
+  }, [sorted]);
 
   const linePts = spark || [];
 
