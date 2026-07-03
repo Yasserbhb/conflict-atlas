@@ -2,6 +2,16 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.14.0 — 2026-07-03
+
+Events everywhere + a real Stats dashboard.
+
+- **Timeline** view: a "notable events" tick ribbon on the histogram, and each year's events nested under their active conflict (one consistent pattern, no separate list).
+- **Conflicts catalogue**: every conflict expands to reveal its events; the filter matches event titles and auto-expands + pulse-highlights the match.
+- **Universal search** (top bar): now spans countries, conflicts, and events — picking an event opens its conflict at the event's year.
+- **Stats** rebuilt into a dashboard: an Events-logged tile, severity shown by level name (not `◆◆◆`), new By-region / Events-by-kind / Most-documented-conflicts panels, honest era buckets, and cleaner marks.
+- Shared `NestedEvents` component so events render identically everywhere.
+
 ## v1.13.0 — 2026-07-03
 
 In-app event editing + data-integrity fixes.
