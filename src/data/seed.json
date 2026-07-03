@@ -1,5 +1,5 @@
 {
-  "version": "2.15.0",
+  "version": "2.15.1",
   "countries": [
     {
       "id": "AFG",
@@ -1648,7 +1648,7 @@
           ],
           "description": "The round-up in the capital marks the start of the genocide, commemorated each 24 April.",
           "sources": [
-            "https://en.wikipedia.org/wiki/Red_Sunday_(1915)"
+            "https://en.wikipedia.org/wiki/Deportation_of_Armenian_intellectuals_on_24_April_1915"
           ]
         },
         {
@@ -4294,7 +4294,7 @@
           ],
           "description": "A truce ended a war that may have killed around 600,000 people, many by famine.",
           "sources": [
-            "https://en.wikipedia.org/wiki/Pretoria_Agreement"
+            "https://en.wikipedia.org/wiki/Tigray_War"
           ]
         }
       ]
@@ -4598,7 +4598,7 @@
           ],
           "description": "RSF and allied militias carried out ethnically-targeted killings in Darfur.",
           "sources": [
-            "https://en.wikipedia.org/wiki/West_Darfur_massacres"
+            "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
           ]
         },
         {
@@ -4717,7 +4717,7 @@
           ],
           "description": "Following weeks of airstrikes, Israeli ground forces entered the Gaza Strip.",
           "sources": [
-            "https://en.wikipedia.org/wiki/Israeli_ground_invasion_of_the_Gaza_Strip"
+            "https://en.wikipedia.org/wiki/Gaza_war"
           ]
         },
         {
@@ -4737,7 +4737,7 @@
           ],
           "description": "A week-long pause saw the release of hostages and Palestinian prisoners before fighting resumed.",
           "sources": [
-            "https://en.wikipedia.org/wiki/November_2023_Gaza_Strip_temporary_ceasefire"
+            "https://en.wikipedia.org/wiki/2023_Israel%E2%80%93Hamas_war_ceasefire"
           ]
         },
         {
@@ -8653,7 +8653,7 @@
           ],
           "description": "Pinochet stepped down after losing a 1988 plebiscite.",
           "sources": [
-            "https://en.wikipedia.org/wiki/History_of_Chile_(1973%E2%80%931990)"
+            "https://en.wikipedia.org/wiki/Military_dictatorship_of_Chile_(1973%E2%80%931990)"
           ]
         }
       ]
@@ -10515,7 +10515,7 @@
           ],
           "description": "The rebellion collapsed after perhaps 20–30 million deaths — one of history’s deadliest wars.",
           "sources": [
-            "https://en.wikipedia.org/wiki/Third_Battle_of_Nanking_(1864)"
+            "https://en.wikipedia.org/wiki/Third_Battle_of_Nanking"
           ]
         }
       ]
@@ -11771,7 +11771,7 @@
           ],
           "description": "Tens of thousands of Boer and African civilians died in the camps.",
           "sources": [
-            "https://en.wikipedia.org/wiki/Concentration_camps_in_the_Second_Boer_War"
+            "https://en.wikipedia.org/wiki/Second_Boer_War_concentration_camps"
           ]
         },
         {
@@ -17670,7 +17670,7 @@
           ],
           "description": "Clashes between Kyrgyz and Uzbeks killed hundreds.",
           "sources": [
-            "https://en.wikipedia.org/wiki/2010_Osh_riots"
+            "https://en.wikipedia.org/wiki/2010_South_Kyrgyzstan_ethnic_clashes"
           ]
         }
       ]
