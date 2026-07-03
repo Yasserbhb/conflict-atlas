@@ -1,5 +1,5 @@
 {
-  "version": "2.17.1",
+  "version": "2.18.0",
   "countries": [
     {
       "id": "AFG",
@@ -4707,6 +4707,62 @@
           "sources": [
             "https://en.wikipedia.org/wiki/2023_Ukrainian_counteroffensive"
           ]
+        },
+        {
+          "id": "seed_ukraine_war_e7",
+          "date": "2024-02-17",
+          "title": "Fall of Avdiivka",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 48.14,
+            "lng": 37.75,
+            "label": "Avdiivka"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Russia captured the fortress town after months of costly assaults.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Avdiivka_(2023%E2%80%932024)"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e8",
+          "date": "2024-08-06",
+          "title": "Ukraine's Kursk incursion",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 51.19,
+            "lng": 35.27,
+            "label": "Kursk Oblast, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine launched a surprise cross-border offensive into Russia itself.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Kursk_offensive_(2024)"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e9",
+          "date": "2026-05-09",
+          "title": "Three-day ceasefire amid stalled talks",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "A brief truce during US-mediated talks; peace remained stuck over Donbas as Russia held ~1/5 of Ukraine.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_United_States%E2%80%93Ukraine%E2%80%93Russia_meetings_in_Geneva"
+          ]
         }
       ]
     },
@@ -4842,6 +4898,44 @@
           "description": "The war created the world’s largest displacement crisis and confirmed famine.",
           "sources": [
             "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e4",
+          "date": "2025-03-26",
+          "title": "Army recaptures Khartoum",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 15.5,
+            "lng": 32.56,
+            "label": "Khartoum"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The Sudanese Armed Forces retook the capital from the RSF after two years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e5",
+          "date": "2025-10-26",
+          "title": "Fall of El Fasher and mass killings",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.63,
+            "lng": 25.35,
+            "label": "El Fasher, Darfur"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The RSF took El Fasher after an 18-month siege and killed tens of thousands — possibly the largest massacre of the 21st century.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_El_Fasher"
           ]
         }
       ]
@@ -5209,6 +5303,62 @@
           "description": "India stripped Jammu & Kashmir of autonomy amid a communications blackout.",
           "sources": [
             "https://en.wikipedia.org/wiki/Revocation_of_the_special_status_of_Jammu_and_Kashmir"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e5",
+          "date": "2025-04-22",
+          "title": "Pahalgam terror attack",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 34.01,
+            "lng": 75.32,
+            "label": "Pahalgam"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "Militants killed 26 tourists in Kashmir; India blamed Pakistan, which denied involvement.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Pahalgam_attack"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e6",
+          "date": "2025-05-07",
+          "title": "India launches Operation Sindoor",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 34.37,
+            "lng": 73.47,
+            "label": "Pakistan & Kashmir"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "India struck what it called militant sites in Pakistan; the two nuclear powers fought their first drone war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e7",
+          "date": "2025-05-10",
+          "title": "Ceasefire ends the four-day conflict",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "After strikes and counter-strikes, a US-brokered ceasefire halted the escalation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
           ]
         }
       ]
@@ -19404,6 +19554,81 @@
           "description": "African and Arab mediation ended the fighting, leaving the border unresolved.",
           "sources": [
             "https://en.wikipedia.org/wiki/Sand_War"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seed_syria_sectarian_2025",
+      "title": "Syria — Post-Assad Sectarian Violence",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2025-03-06",
+      "endDate": null,
+      "ongoing": true,
+      "description": "The fall of Assad in December 2024 gave way to waves of sectarian bloodshed under the new transitional government. In March 2025 roughly 1,400 Alawites were killed in massacres along the coast; in July 2025, Druze–Bedouin fighting in Suwayda killed hundreds and drew Israeli airstrikes on Damascus.",
+      "parties": [
+        {
+          "countryId": "SYR",
+          "role": "aggressor"
+        },
+        {
+          "countryId": "ISR",
+          "role": "mediator"
+        }
+      ],
+      "involvedCountries": [
+        "SYR",
+        "ISR"
+      ],
+      "tags": [
+        "sectarian",
+        "post-assad",
+        "alawite",
+        "druze",
+        "transition"
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/2025_massacres_of_Syrian_Alawites"
+      ],
+      "events": [
+        {
+          "id": "seed_syria_sectarian_2025_e1",
+          "date": "2025-03-06",
+          "title": "Massacres of Alawites on the coast",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 35.52,
+            "lng": 35.79,
+            "label": "Latakia"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "Around 1,400 people, mostly Alawite civilians, were killed by pro-government and allied militias.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_massacres_of_Syrian_Alawites"
+          ]
+        },
+        {
+          "id": "seed_syria_sectarian_2025_e2",
+          "date": "2025-07-13",
+          "title": "Suwayda clashes; Israel strikes Damascus",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 32.71,
+            "lng": 36.57,
+            "label": "Suwayda"
+          },
+          "parties": [
+            "SYR",
+            "ISR"
+          ],
+          "description": "Druze–Bedouin fighting killed hundreds and displaced tens of thousands; Israel bombed Damascus to protect the Druze.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Southern_Syria_clashes_(July_2025%E2%80%93present)"
           ]
         }
       ]
