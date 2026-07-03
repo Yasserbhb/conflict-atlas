@@ -7,6 +7,7 @@ import { applyConflictFilters } from '../../utils/dateUtils';
 import { numericToAlpha3 } from '../../utils/isoLookup';
 import { severityColor, roleColor } from '../../utils/conflictColors';
 import ConflictOverlay from './ConflictOverlay';
+import EventPins from './EventPins';
 import MapLegend from './MapLegend';
 import styles from './WorldMap.module.css';
 
@@ -224,6 +225,14 @@ export default function WorldMap() {
               activeConflicts={activeConflicts}
               centroids={centroids}
               selectedCountryId={selectedCountryId}
+            />
+          )}
+          {focusedConflict?.events?.length > 0 && (
+            <EventPins
+              events={focusedConflict.events}
+              project={projection}
+              timelineYear={timelineYear}
+              k={transform.k}
             />
           )}
         </g>

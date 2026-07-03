@@ -4,6 +4,7 @@ import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, roleColor, severityColor } from 
 import { formatDateRange } from '../../utils/dateUtils';
 import { flagEmoji } from '../../utils/flags';
 import { TypeIcon } from '../../utils/typeIcons';
+import EventTimeline from './EventTimeline';
 import styles from './ConflictDetailPanel.module.css';
 
 const SIDES = [
@@ -62,6 +63,8 @@ export default function ConflictDetailPanel() {
 
       <div className={styles.body}>
         {conflict.description && <p className={styles.description}>{conflict.description}</p>}
+
+        {conflict.events?.length > 0 && <EventTimeline events={conflict.events} conflict={conflict} />}
 
         {/* Parties grouped by side */}
         {SIDES.map(({ label, roles }) => {
