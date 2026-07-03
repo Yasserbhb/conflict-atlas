@@ -1,5 +1,5 @@
 {
-  "version": "2.11.0",
+  "version": "2.12.0",
   "countries": [
     {
       "id": "AFG",
@@ -2546,7 +2546,66 @@
         "CIA",
         "cold war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_guatemalan_genocide_e1",
+          "date": "1960-11-13",
+          "title": "Civil war begins",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 14.63,
+            "lng": -90.51,
+            "label": "Guatemala City"
+          },
+          "parties": [
+            "GTM"
+          ],
+          "description": "A US-backed government fought leftist insurgents for 36 years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Guatemalan_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_guatemalan_genocide_e2",
+          "date": "1982-03-01",
+          "title": "Highland massacres under Ríos Montt",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 15.4,
+            "lng": -91.15,
+            "label": "Ixil region"
+          },
+          "parties": [
+            "GTM"
+          ],
+          "description": "The army destroyed hundreds of Maya villages in a campaign later ruled genocide.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Guatemalan_genocide"
+          ]
+        },
+        {
+          "id": "seed_guatemalan_genocide_e3",
+          "date": "1996-12-29",
+          "title": "Peace accords",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 14.63,
+            "lng": -90.51,
+            "label": "Guatemala City"
+          },
+          "parties": [
+            "GTM"
+          ],
+          "description": "The war ended after some 200,000 deaths, most of them Maya civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Guatemalan_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cambodian_genocide",
@@ -4903,7 +4962,70 @@
         "nine dash line",
         "ICJ"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_south_china_sea_e1",
+          "date": "2012-04-08",
+          "title": "Scarborough Shoal standoff",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 15.15,
+            "lng": 117.76,
+            "label": "Scarborough Shoal"
+          },
+          "parties": [
+            "CHN",
+            "PHL"
+          ],
+          "description": "A naval standoff left China in effective control of the shoal.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Scarborough_Shoal_standoff"
+          ]
+        },
+        {
+          "id": "seed_south_china_sea_e2",
+          "date": "2014-05-01",
+          "title": "China builds artificial islands",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 9.7,
+            "lng": 113.9,
+            "label": "Spratly Islands"
+          },
+          "parties": [
+            "CHN",
+            "VNM",
+            "PHL"
+          ],
+          "description": "Large-scale island-building militarised the disputed waters.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Great_Wall_of_Sand"
+          ]
+        },
+        {
+          "id": "seed_south_china_sea_e3",
+          "date": "2016-07-12",
+          "title": "Hague tribunal rules against China",
+          "kind": "milestone",
+          "severity": 1,
+          "location": {
+            "lat": 52.08,
+            "lng": 4.31,
+            "label": "The Hague"
+          },
+          "parties": [
+            "PHL",
+            "CHN"
+          ],
+          "description": "An arbitration panel rejected China’s claims; Beijing ignored the ruling.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Philippines_v._China"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_nagorno_karabakh",
@@ -5430,7 +5552,70 @@
         "africa",
         "belgian congo"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_congo_free_state_e1",
+          "date": "1890-01-01",
+          "title": "Rubber terror under Leopold II",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -1,
+            "lng": 23,
+            "label": "Congo Basin"
+          },
+          "parties": [
+            "BEL",
+            "COD"
+          ],
+          "description": "Forced rubber collection enforced by mutilation and killing; millions died.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Congo_Free_State"
+          ]
+        },
+        {
+          "id": "seed_congo_free_state_e2",
+          "date": "1904-01-01",
+          "title": "Casement Report exposes atrocities",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": -5.85,
+            "lng": 13.06,
+            "label": "Boma"
+          },
+          "parties": [
+            "GBR",
+            "BEL",
+            "COD"
+          ],
+          "description": "A British report documented the horrors and sparked international outcry.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Casement_Report"
+          ]
+        },
+        {
+          "id": "seed_congo_free_state_e3",
+          "date": "1908-11-15",
+          "title": "Belgium annexes the Free State",
+          "kind": "annexation",
+          "severity": 3,
+          "location": {
+            "lat": 50.85,
+            "lng": 4.35,
+            "label": "Brussels"
+          },
+          "parties": [
+            "BEL",
+            "COD"
+          ],
+          "description": "The state was taken from Leopold's personal rule amid the scandal.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Congo_Free_State"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_transatlantic_slave_trade",
@@ -5974,7 +6159,69 @@
         "torture",
         "independence"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_philippine_american_war_e1",
+          "date": "1899-02-04",
+          "title": "War breaks out in Manila",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 14.6,
+            "lng": 120.98,
+            "label": "Manila"
+          },
+          "parties": [
+            "USA",
+            "PHL"
+          ],
+          "description": "After defeating Spain, the US fought Filipinos seeking independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Philippine%E2%80%93American_War"
+          ]
+        },
+        {
+          "id": "seed_philippine_american_war_e2",
+          "date": "1901-09-28",
+          "title": "Balangiga massacre and reprisals",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 11.11,
+            "lng": 125.39,
+            "label": "Samar"
+          },
+          "parties": [
+            "USA",
+            "PHL"
+          ],
+          "description": "A Filipino attack was followed by brutal US reprisals on Samar.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Balangiga_massacre"
+          ]
+        },
+        {
+          "id": "seed_philippine_american_war_e3",
+          "date": "1902-07-04",
+          "title": "US declares the war over",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 14.6,
+            "lng": 120.98,
+            "label": "Manila"
+          },
+          "parties": [
+            "USA",
+            "PHL"
+          ],
+          "description": "Hundreds of thousands of Filipinos died; US colonial rule continued.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Philippine%E2%80%93American_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_maji_maji",
@@ -6006,7 +6253,49 @@
         "africa",
         "german empire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_maji_maji_e1",
+          "date": "1905-07-31",
+          "title": "Maji Maji rebellion begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -8,
+            "lng": 38.8,
+            "label": "Rufiji"
+          },
+          "parties": [
+            "TZA",
+            "DEU"
+          ],
+          "description": "A broad uprising against German rule in East Africa.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Maji_Maji_Rebellion"
+          ]
+        },
+        {
+          "id": "seed_maji_maji_e2",
+          "date": "1906-01-01",
+          "title": "German scorched-earth and famine",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -9,
+            "lng": 36,
+            "label": "southern Tanganyika"
+          },
+          "parties": [
+            "DEU",
+            "TZA"
+          ],
+          "description": "A deliberate famine campaign killed an estimated 200,000–300,000.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Maji_Maji_Rebellion"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_italian_libya",
@@ -6039,7 +6328,69 @@
         "poison gas",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_italian_libya_e1",
+          "date": "1911-09-29",
+          "title": "Italy invades Ottoman Libya",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 32.89,
+            "lng": 13.19,
+            "label": "Tripoli"
+          },
+          "parties": [
+            "ITA",
+            "LBY"
+          ],
+          "description": "Italy seized Libya from the Ottomans, beginning decades of colonial rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Italo-Turkish_War"
+          ]
+        },
+        {
+          "id": "seed_italian_libya_e2",
+          "date": "1929-06-01",
+          "title": "Concentration camps in Cyrenaica",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 32,
+            "lng": 21,
+            "label": "Cyrenaica"
+          },
+          "parties": [
+            "ITA",
+            "LBY"
+          ],
+          "description": "Tens of thousands of Libyans died in camps during the \"pacification\".",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Libyan_genocide"
+          ]
+        },
+        {
+          "id": "seed_italian_libya_e3",
+          "date": "1931-09-16",
+          "title": "Execution of Omar Mukhtar",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 32.12,
+            "lng": 20.07,
+            "label": "Benghazi"
+          },
+          "parties": [
+            "ITA",
+            "LBY"
+          ],
+          "description": "The resistance leader was hanged before his people.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Omar_al-Mukhtar"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_russian_civil_war",
@@ -6087,7 +6438,104 @@
         "red terror",
         "intervention"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_russian_civil_war_e1",
+          "date": "1917-11-07",
+          "title": "October Revolution",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 59.94,
+            "lng": 30.31,
+            "label": "Petrograd"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "The Bolsheviks seized power, triggering a civil war between Reds and Whites.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/October_Revolution"
+          ]
+        },
+        {
+          "id": "seed_russian_civil_war_e2",
+          "date": "1918-07-17",
+          "title": "Execution of the Romanov family",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 56.84,
+            "lng": 60.61,
+            "label": "Yekaterinburg"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "The former tsar and his family were shot, ending three centuries of Romanov rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Execution_of_the_Romanov_family"
+          ]
+        },
+        {
+          "id": "seed_russian_civil_war_e3",
+          "date": "1918-09-05",
+          "title": "Red Terror begins",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "A campaign of mass repression by the Cheka against real and suspected enemies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Terror"
+          ]
+        },
+        {
+          "id": "seed_russian_civil_war_e4",
+          "date": "1921-08-01",
+          "title": "Russian famine of 1921–22",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 51.5,
+            "lng": 46,
+            "label": "Volga region"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "War and requisitioning caused a famine that killed around 5 million.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Russian_famine_of_1921%E2%80%931922"
+          ]
+        },
+        {
+          "id": "seed_russian_civil_war_e5",
+          "date": "1922-10-25",
+          "title": "Bolshevik victory",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 43.12,
+            "lng": 131.89,
+            "label": "Vladivostok"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "The Reds triumphed, leading to the founding of the USSR.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Russian_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_irish_independence",
@@ -6119,7 +6567,89 @@
         "partition",
         "british empire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_irish_independence_e1",
+          "date": "1919-01-21",
+          "title": "War begins (Soloheadbeg ambush)",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 52.6,
+            "lng": -8.14,
+            "label": "Tipperary"
+          },
+          "parties": [
+            "IRL",
+            "GBR"
+          ],
+          "description": "The IRA began a guerrilla war against British rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Irish_War_of_Independence"
+          ]
+        },
+        {
+          "id": "seed_irish_independence_e2",
+          "date": "1920-11-21",
+          "title": "Bloody Sunday",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 53.36,
+            "lng": -6.25,
+            "label": "Dublin"
+          },
+          "parties": [
+            "GBR",
+            "IRL"
+          ],
+          "description": "British forces fired on a crowd at Croke Park after IRA killings that morning.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Bloody_Sunday_(1920)"
+          ]
+        },
+        {
+          "id": "seed_irish_independence_e3",
+          "date": "1921-07-11",
+          "title": "Truce",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 53.35,
+            "lng": -6.26,
+            "label": "Dublin"
+          },
+          "parties": [
+            "IRL",
+            "GBR"
+          ],
+          "description": "A truce halted the fighting and opened negotiations.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Irish_War_of_Independence"
+          ]
+        },
+        {
+          "id": "seed_irish_independence_e4",
+          "date": "1921-12-06",
+          "title": "Anglo-Irish Treaty",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 51.51,
+            "lng": -0.13,
+            "label": "London"
+          },
+          "parties": [
+            "IRL",
+            "GBR"
+          ],
+          "description": "The treaty created the Irish Free State but partitioned the island.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Anglo-Irish_Treaty"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_rif_war",
@@ -6156,7 +6686,70 @@
         "africa",
         "berber"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_rif_war_e1",
+          "date": "1921-07-22",
+          "title": "Battle of Annual",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 35,
+            "lng": -3.4,
+            "label": "Annual"
+          },
+          "parties": [
+            "ESP",
+            "MAR"
+          ],
+          "description": "A catastrophic Spanish defeat by Rif Berber forces.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Annual"
+          ]
+        },
+        {
+          "id": "seed_rif_war_e2",
+          "date": "1925-09-08",
+          "title": "Alhucemas landing",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 35.25,
+            "lng": -3.93,
+            "label": "Al Hoceima"
+          },
+          "parties": [
+            "ESP",
+            "FRA",
+            "MAR"
+          ],
+          "description": "A joint Franco-Spanish landing with early use of chemical weapons.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Alhucemas"
+          ]
+        },
+        {
+          "id": "seed_rif_war_e3",
+          "date": "1926-05-27",
+          "title": "Abd el-Krim surrenders",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 34.9,
+            "lng": -4,
+            "label": "Rif"
+          },
+          "parties": [
+            "MAR",
+            "ESP"
+          ],
+          "description": "The Rif Republic fell after a brutal campaign including gas attacks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rif_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_holodomor",
@@ -6189,7 +6782,56 @@
         "ukraine",
         "denial"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_holodomor_e1",
+          "date": "1932-08-07",
+          "title": "Grain requisition tightened",
+          "kind": "escalation",
+          "severity": 4,
+          "location": null,
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Punitive quotas and the \"law of spikelets\" stripped Ukraine of food.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Holodomor"
+          ]
+        },
+        {
+          "id": "seed_holodomor_e2",
+          "date": "1933-03-01",
+          "title": "Peak of the famine",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Millions starved as borders were sealed to trap the population.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Holodomor"
+          ]
+        },
+        {
+          "id": "seed_holodomor_e3",
+          "date": "1933-12-01",
+          "title": "Millions dead",
+          "kind": "milestone",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "UKR"
+          ],
+          "description": "An estimated 3.5–5 million Ukrainians died; many states recognise it as genocide.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Holodomor"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_great_purge",
@@ -6216,7 +6858,66 @@
         "soviet",
         "political terror"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_great_purge_e1",
+          "date": "1936-08-19",
+          "title": "First Moscow Show Trial",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "Old Bolsheviks were tried and executed in staged public trials.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Moscow_Trials"
+          ]
+        },
+        {
+          "id": "seed_great_purge_e2",
+          "date": "1937-07-30",
+          "title": "NKVD Order No. 00447",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "A quota-driven campaign of mass arrests and executions across the USSR.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/NKVD_Order_No._00447"
+          ]
+        },
+        {
+          "id": "seed_great_purge_e3",
+          "date": "1938-11-01",
+          "title": "The purge winds down",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "Around 700,000–1.2 million were killed in the Great Terror.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Great_Purge"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_italo_ethiopian",
@@ -6540,7 +7241,41 @@
         "starvation",
         "wwii"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_bengal_famine_e1",
+          "date": "1943-01-01",
+          "title": "Famine sets in amid wartime policy",
+          "kind": "escalation",
+          "severity": 4,
+          "location": null,
+          "parties": [
+            "GBR",
+            "IND"
+          ],
+          "description": "War disruption and British policy choices triggered mass starvation in Bengal.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Bengal_famine_of_1943"
+          ]
+        },
+        {
+          "id": "seed_bengal_famine_e2",
+          "date": "1943-10-01",
+          "title": "Around 3 million die",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "IND",
+            "GBR"
+          ],
+          "description": "Roughly 2–3 million died while food was exported and relief withheld.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Bengal_famine_of_1943"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_partition_india",
@@ -6653,7 +7388,69 @@
         "massacres",
         "decolonization"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_indonesian_revolution_e1",
+          "date": "1945-08-17",
+          "title": "Indonesia declares independence",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -6.21,
+            "lng": 106.85,
+            "label": "Jakarta"
+          },
+          "parties": [
+            "IDN",
+            "NLD"
+          ],
+          "description": "Sukarno proclaimed independence as the Dutch sought to return.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Proclamation_of_Indonesian_Independence"
+          ]
+        },
+        {
+          "id": "seed_indonesian_revolution_e2",
+          "date": "1945-11-10",
+          "title": "Battle of Surabaya",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": -7.25,
+            "lng": 112.75,
+            "label": "Surabaya"
+          },
+          "parties": [
+            "IDN",
+            "GBR"
+          ],
+          "description": "A bloody battle became a symbol of the independence struggle.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Surabaya"
+          ]
+        },
+        {
+          "id": "seed_indonesian_revolution_e3",
+          "date": "1949-12-27",
+          "title": "Dutch recognise independence",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 52.08,
+            "lng": 4.31,
+            "label": "The Hague"
+          },
+          "parties": [
+            "NLD",
+            "IDN"
+          ],
+          "description": "After four years of war the Netherlands transferred sovereignty.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Indonesian_National_Revolution"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_first_indochina",
@@ -6788,7 +7585,67 @@
         "communism",
         "proxy war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_greek_civil_war_e1",
+          "date": "1946-03-30",
+          "title": "Civil war begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 37.98,
+            "lng": 23.73,
+            "label": "Athens"
+          },
+          "parties": [
+            "GRC"
+          ],
+          "description": "Communist and government forces fought one of the first Cold War conflicts.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Greek_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_greek_civil_war_e2",
+          "date": "1947-03-12",
+          "title": "Truman Doctrine backs the government",
+          "kind": "funder",
+          "severity": 2,
+          "location": {
+            "lat": 37.98,
+            "lng": 23.73,
+            "label": "Athens"
+          },
+          "parties": [
+            "GRC",
+            "USA"
+          ],
+          "description": "US aid to Greece and Turkey inaugurated the containment policy.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Truman_Doctrine"
+          ]
+        },
+        {
+          "id": "seed_greek_civil_war_e3",
+          "date": "1949-10-16",
+          "title": "Communist defeat",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 40.35,
+            "lng": 20.78,
+            "label": "Grammos"
+          },
+          "parties": [
+            "GRC"
+          ],
+          "description": "The government prevailed, keeping Greece in the Western bloc.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Greek_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_tibet",
@@ -7058,7 +7915,54 @@
         "collectivization",
         "man-made"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_great_leap_famine_e1",
+          "date": "1958-01-01",
+          "title": "Great Leap Forward launched",
+          "kind": "escalation",
+          "severity": 4,
+          "location": null,
+          "parties": [
+            "CHN"
+          ],
+          "description": "Forced collectivisation and impossible quotas wrecked agriculture.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Great_Leap_Forward"
+          ]
+        },
+        {
+          "id": "seed_great_leap_famine_e2",
+          "date": "1959-01-01",
+          "title": "The Great Chinese Famine",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "CHN"
+          ],
+          "description": "The deadliest famine in history killed an estimated 15–55 million.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Great_Chinese_Famine"
+          ]
+        },
+        {
+          "id": "seed_great_leap_famine_e3",
+          "date": "1961-01-01",
+          "title": "Policy reversed",
+          "kind": "milestone",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "CHN"
+          ],
+          "description": "The disastrous campaign was wound down after mass death.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Great_Leap_Forward"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_congo_crisis",
@@ -7262,7 +8166,66 @@
         "communism",
         "persecution"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_cultural_revolution_e1",
+          "date": "1966-05-16",
+          "title": "Mao launches the Cultural Revolution",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.4,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Mao unleashed a decade of upheaval to purge his rivals.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cultural_Revolution"
+          ]
+        },
+        {
+          "id": "seed_cultural_revolution_e2",
+          "date": "1966-08-01",
+          "title": "Red Guards and mass persecution",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.4,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Millions were persecuted, humiliated or killed; heritage was destroyed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cultural_Revolution"
+          ]
+        },
+        {
+          "id": "seed_cultural_revolution_e3",
+          "date": "1976-09-09",
+          "title": "Death of Mao ends it",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.4,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Mao's death led to the arrest of the Gang of Four and the end of the era.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cultural_Revolution"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_six_day_war",
@@ -7725,7 +8688,86 @@
         "cold war",
         "stolen babies"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_argentine_dirty_war_e1",
+          "date": "1976-03-24",
+          "title": "Military coup",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -34.6,
+            "lng": -58.38,
+            "label": "Buenos Aires"
+          },
+          "parties": [
+            "ARG"
+          ],
+          "description": "A junta seized power and launched a campaign of state terror.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1976_Argentine_coup_d%27%C3%A9tat"
+          ]
+        },
+        {
+          "id": "seed_argentine_dirty_war_e2",
+          "date": "1977-01-01",
+          "title": "The \"disappeared\"",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": -34.6,
+            "lng": -58.38,
+            "label": "Buenos Aires"
+          },
+          "parties": [
+            "ARG"
+          ],
+          "description": "Up to 30,000 people were abducted, tortured and killed by the state.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dirty_War"
+          ]
+        },
+        {
+          "id": "seed_argentine_dirty_war_e3",
+          "date": "1982-04-02",
+          "title": "Falklands War",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": -51.69,
+            "lng": -57.85,
+            "label": "Falkland Islands"
+          },
+          "parties": [
+            "ARG",
+            "GBR"
+          ],
+          "description": "A failed invasion of the British-held islands hastened the junta’s collapse.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Falklands_War"
+          ]
+        },
+        {
+          "id": "seed_argentine_dirty_war_e4",
+          "date": "1983-12-10",
+          "title": "Return to democracy",
+          "kind": "milestone",
+          "severity": 1,
+          "location": {
+            "lat": -34.6,
+            "lng": -58.38,
+            "label": "Buenos Aires"
+          },
+          "parties": [
+            "ARG"
+          ],
+          "description": "Civilian rule returned and junta leaders were later put on trial.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/History_of_Argentina"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_operation_condor",
@@ -7783,7 +8825,70 @@
         "south america",
         "disappearances"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_operation_condor_e1",
+          "date": "1975-11-25",
+          "title": "Operation Condor formalised",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": -33.44,
+            "lng": -70.65,
+            "label": "Santiago"
+          },
+          "parties": [
+            "CHL",
+            "ARG"
+          ],
+          "description": "Southern Cone dictatorships coordinated to hunt and kill dissidents.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Condor"
+          ]
+        },
+        {
+          "id": "seed_operation_condor_e2",
+          "date": "1976-09-21",
+          "title": "Assassination of Orlando Letelier",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 38.9,
+            "lng": -77.04,
+            "label": "Washington, D.C."
+          },
+          "parties": [
+            "CHL",
+            "USA"
+          ],
+          "description": "A car bomb killed the Chilean exile in the US capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Assassination_of_Orlando_Letelier"
+          ]
+        },
+        {
+          "id": "seed_operation_condor_e3",
+          "date": "1978-01-01",
+          "title": "Cross-border repression across the Southern Cone",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": -30,
+            "lng": -60,
+            "label": "Southern Cone"
+          },
+          "parties": [
+            "ARG",
+            "CHL",
+            "USA"
+          ],
+          "description": "Thousands were disappeared across borders with US knowledge.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Condor"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_lebanese_civil_war",
@@ -7953,7 +9058,68 @@
         "africa",
         "unita"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_angolan_civil_war_e1",
+          "date": "1975-11-11",
+          "title": "Independence and civil war begin",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": -8.84,
+            "lng": 13.23,
+            "label": "Luanda"
+          },
+          "parties": [
+            "AGO"
+          ],
+          "description": "A Cold War proxy war erupted between the MPLA and UNITA at independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Angolan_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_angolan_civil_war_e2",
+          "date": "1987-11-01",
+          "title": "Battle of Cuito Cuanavale",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": -15.17,
+            "lng": 19.17,
+            "label": "Cuito Cuanavale"
+          },
+          "parties": [
+            "AGO",
+            "CUB",
+            "ZAF"
+          ],
+          "description": "A major battle drawing in Cuban and South African forces.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Cuito_Cuanavale"
+          ]
+        },
+        {
+          "id": "seed_angolan_civil_war_e3",
+          "date": "2002-02-22",
+          "title": "Death of Savimbi ends the war",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": -11.9,
+            "lng": 20,
+            "label": "Moxico"
+          },
+          "parties": [
+            "AGO"
+          ],
+          "description": "UNITA’s leader was killed, ending a 27-year war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Angolan_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cyprus_invasion",
