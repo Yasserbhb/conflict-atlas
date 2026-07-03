@@ -2,6 +2,17 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.15.0 — 2026-07-03
+
+Fact-checked 2025–2026 data update (web-sourced, all links verified).
+
+- **Gaza** reclassified **war → genocide** (UN Commission of Inquiry, Sept 2025); retitled "Gaza War & Genocide"; events through the 2025 ceasefires and the June 2026 children report.
+- **Israel–Iran** split into its two phases — the June 2025 12-Day War (incl. the US strikes on Fordow/Natanz/Isfahan and the Minab school strike) and the Feb 2026 war (Khamenei killed, Strait of Hormuz blockade). US as a direct combatant.
+- **Lebanon** built out (2024 pager attacks/Nasrallah + the 2026 invasion, village demolitions, "Black Wednesday").
+- **Ukraine, Sudan (El Fasher), Darfur genocide (ongoing), DR Congo/M23, Red Sea/Houthis, Haiti, Myanmar, post-Assad Syria, India–Pakistan (2025)** all brought current.
+- New conflicts: **Sand War** (Algeria–Morocco 1963), **Syria post-Assad sectarian violence**.
+- Expanded **WWI** and **WWII** with more major events; Algeria occupation + independence.
+
 ## v1.14.0 — 2026-07-03
 
 Events everywhere + a real Stats dashboard.
