@@ -10,9 +10,12 @@ permissions:
   pages: write
   id-token: write
 
+# Allow one deployment at a time, but never cancel one that is mid-apply —
+# cancelling an in-progress Pages deployment corrupts it and makes later runs
+# fail with "Deployment failed, try again later."
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
