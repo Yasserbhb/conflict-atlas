@@ -1,9 +1,10 @@
 import { useMemo, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { isActiveAt, parseYear, formatDateRange } from '../../utils/dateUtils';
-import { TYPE_COLORS, TYPE_LABELS } from '../../utils/conflictColors';
+import { TYPE_COLORS, TYPE_LABELS, severityColor } from '../../utils/conflictColors';
 import { TypeIcon } from '../../utils/typeIcons';
 import SeverityGauge from '../common/SeverityGauge';
+import NestedEvents from '../common/NestedEvents';
 import styles from './TimelineView.module.css';
 
 const MIN_YEAR = 1490;
@@ -34,6 +35,35 @@ export default function TimelineView() {
     return { perYear: years, maxCount: Math.max(1, max) };
   }, [conflicts]);
 
+  // Events grouped by the year they occurred
+  const eventsByYear = useMemo(() => {
+    const byYear = new Map();
+    for (const c of conflicts) {
+      for (const e of c.events || []) {
+        const y = parseYear(e.date);
+        if (y == null) continue;
+        if (!byYear.has(y)) byYear.set(y, []);
+        byYear.get(y).push({ event: e, conflict: c });
+      }
+    }
+    return byYear;
+  }, [conflicts]);
+
+  // One tick per eventful year, colored by its worst event — a "notable moments" ribbon
+  const eventYears = useMemo(() => {
+    const out = [];
+    for (const [year, arr] of eventsByYear) {
+      const maxSev = arr.reduce((m, x) => Math.max(m, x.event.severity || 0), 0);
+      out.push({ year, maxSev });
+    }
+    return out;
+  }, [eventsByYear]);
+
+  const eventsThisYear = useMemo(
+    () => [...(eventsByYear.get(timelineYear) || [])].sort((a, b) => (b.event.severity || 0) - (a.event.severity || 0)),
+    [eventsByYear, timelineYear]
+  );
+
   const activeNow = useMemo(
     () => conflicts
       .filter((c) => isActiveAt(c, timelineYear))
@@ -60,7 +90,8 @@ export default function TimelineView() {
   function handleHover(e) {
     const y = yearFromEvent(e);
     const d = perYear[y - MIN_YEAR];
-    setHover({ year: y, count: d ? d.count : 0, xPct: ((y - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100 });
+    const evs = eventsByYear.get(y);
+    setHover({ year: y, count: d ? d.count : 0, events: evs ? evs.length : 0, xPct: ((y - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100 });
   }
 
   function setYear(y) {
@@ -69,6 +100,13 @@ export default function TimelineView() {
 
   function openOnMap(conflict) {
     dispatch({ type: 'OPEN_CONFLICT', payload: conflict.id });
+  }
+
+  // Open the conflict on the map AND park the timeline on the event's year so it pins/pulses
+  function openEvent(conflict, event) {
+    dispatch({ type: 'OPEN_CONFLICT', payload: conflict.id });
+    const y = parseYear(event.date);
+    if (y != null) dispatch({ type: 'SET_TIMELINE_YEAR', payload: y });
   }
 
   const cursorX = ((timelineYear - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * VB_W;
@@ -91,13 +129,13 @@ export default function TimelineView() {
           preserveAspectRatio="none"
           className={styles.chart}
           role="img"
-          aria-label={`Number of active conflicts each year from ${MIN_YEAR} to ${MAX_YEAR}. It rises over time, peaking near ${peak.count} around ${peak.year}. Currently ${timelineYear} with ${activeNow.length} active. Click to pick a year.`}
+          aria-label={`Active conflicts each year from ${MIN_YEAR} to ${MAX_YEAR}, peaking near ${peak.count} around ${peak.year}. A ribbon of ticks marks years with notable events. Currently ${timelineYear} with ${activeNow.length} active and ${eventsThisYear.length} events. Click to pick a year.`}
           onClick={(e) => setYear(yearFromEvent(e))}
           onMouseMove={handleHover}
           onMouseLeave={() => setHover(null)}
         >
           {perYear.map((d, i) => {
-            const h = (d.count / maxCount) * (VB_H - 10);
+            const h = (d.count / maxCount) * (VB_H - 18);
             const isCurrent = d.year === timelineYear;
             const isHover = hover && d.year === hover.year;
             return (
@@ -108,6 +146,22 @@ export default function TimelineView() {
                 width={Math.max(barW * 0.9, 0.6)}
                 height={h}
                 fill={isCurrent ? '#82b8ab' : isHover ? '#4ade80' : '#263230'}
+              />
+            );
+          })}
+          {/* notable-events ribbon along the top: one tick per eventful year, colored by worst event */}
+          {eventYears.map((ey) => {
+            const i = ey.year - MIN_YEAR;
+            const isCurrent = ey.year === timelineYear;
+            return (
+              <rect
+                key={`ev-${ey.year}`}
+                x={i * barW}
+                y={0}
+                width={Math.max(barW * 0.9, 0.8)}
+                height={8}
+                fill={severityColor(ey.maxSev)}
+                opacity={isCurrent ? 1 : 0.72}
               />
             );
           })}
@@ -125,7 +179,7 @@ export default function TimelineView() {
         </svg>
         {hover && (
           <div className={styles.chartTip} style={{ left: `${hover.xPct}%` }}>
-            <strong>{hover.year}</strong> · {hover.count} active
+            <strong>{hover.year}</strong> · {hover.count} active{hover.events > 0 ? ` · ${hover.events} event${hover.events === 1 ? '' : 's'}` : ''}
           </div>
         )}
         {/* axis labels */}
@@ -151,31 +205,34 @@ export default function TimelineView() {
         className={styles.slider}
       />
 
-      <div className={styles.listHeader}>
-        Active in {timelineYear} — {activeNow.length} conflict{activeNow.length === 1 ? '' : 's'}
-      </div>
-      <div className={styles.list}>
-        {activeNow.length === 0 && <div className={styles.empty}>No conflicts logged for {timelineYear}.</div>}
-        {activeNow.map((c) => {
-          const color = TYPE_COLORS[c.type] || '#94a3b8';
-          const parties = (c.involvedCountries || []).map((id) => nameByCountry[id] || id);
-          return (
-            <button key={c.id} className={styles.row} onClick={() => openOnMap(c)} style={{ borderLeftColor: color }}>
-              <span className={styles.rowGlyph} style={{ background: color + '22', color }}>
-                <TypeIcon type={c.type} size={15} aria-hidden="true" />
-              </span>
-              <div className={styles.rowMain}>
-                <div className={styles.rowTitle}>{c.title}{c.ongoing && <span className={styles.ongoing}>ONGOING</span>}</div>
-                <div className={styles.rowParties}>{parties.join(' · ')}</div>
+      <div className={styles.scroll}>
+        <div className={styles.section}>
+          {activeNow.length === 0 && <div className={styles.empty}>No conflicts logged for {timelineYear}.</div>}
+          {activeNow.map((c) => {
+            const color = TYPE_COLORS[c.type] || '#94a3b8';
+            const parties = (c.involvedCountries || []).map((id) => nameByCountry[id] || id);
+            const yearEvents = (c.events || []).filter((e) => parseYear(e.date) === timelineYear);
+            return (
+              <div key={c.id} className={styles.rowWrap}>
+                <button className={styles.row} onClick={() => openOnMap(c)} style={{ borderLeftColor: color }}>
+                  <span className={styles.rowGlyph} style={{ background: color + '22', color }}>
+                    <TypeIcon type={c.type} size={15} aria-hidden="true" />
+                  </span>
+                  <div className={styles.rowMain}>
+                    <div className={styles.rowTitle}>{c.title}{c.ongoing && <span className={styles.ongoing}>ONGOING</span>}</div>
+                    <div className={styles.rowParties}>{parties.join(' · ')}</div>
+                  </div>
+                  <div className={styles.rowMeta}>
+                    <span className={styles.type} style={{ color }}>{TYPE_LABELS[c.type] || c.type}</span>
+                    <span className={styles.dates}>{formatDateRange(c.startDate, c.endDate, c.ongoing)}</span>
+                    <SeverityGauge severity={c.severity} />
+                  </div>
+                </button>
+                {yearEvents.length > 0 && <NestedEvents events={yearEvents} onOpen={(ev) => openEvent(c, ev)} />}
               </div>
-              <div className={styles.rowMeta}>
-                <span className={styles.type} style={{ color }}>{TYPE_LABELS[c.type] || c.type}</span>
-                <span className={styles.dates}>{formatDateRange(c.startDate, c.endDate, c.ongoing)}</span>
-                <SeverityGauge severity={c.severity} />
-              </div>
-            </button>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
