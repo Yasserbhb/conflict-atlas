@@ -1,5 +1,5 @@
 {
-  "version": "2.14.0",
+  "version": "2.15.0",
   "countries": [
     {
       "id": "AFG",
@@ -10999,7 +10999,48 @@
         "unexploded ordnance",
         "cold war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_laos_secret_war_e1",
+          "date": "1964-01-01",
+          "title": "US secret bombing of Laos begins",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 19.45,
+            "lng": 103.15,
+            "label": "Plain of Jars"
+          },
+          "parties": [
+            "USA",
+            "LAO"
+          ],
+          "description": "Laos became the most heavily bombed country per capita in history.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Laotian_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_laos_secret_war_e2",
+          "date": "1975-12-02",
+          "title": "Pathet Lao take power",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 17.97,
+            "lng": 102.63,
+            "label": "Vientiane"
+          },
+          "parties": [
+            "LAO"
+          ],
+          "description": "Communist forces won as the US left Indochina.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Laotian_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_malayan_emergency",
@@ -11859,7 +11900,28 @@
         "cold war",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_ethiopia_red_terror_e1",
+          "date": "1977-01-01",
+          "title": "The Derg's Red Terror",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 9.03,
+            "lng": 38.74,
+            "label": "Addis Ababa"
+          },
+          "parties": [
+            "ETH"
+          ],
+          "description": "The military junta killed tens of thousands of suspected opponents.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Terror_(Ethiopia)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_idi_amin",
@@ -11993,7 +12055,47 @@
         "icc",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_lra_e1",
+          "date": "1987-01-01",
+          "title": "Lord's Resistance Army insurgency begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 2.77,
+            "lng": 32.3,
+            "label": "northern Uganda"
+          },
+          "parties": [
+            "UGA"
+          ],
+          "description": "The LRA waged a brutal war marked by child abduction.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Lord%27s_Resistance_Army_insurgency"
+          ]
+        },
+        {
+          "id": "seed_lra_e2",
+          "date": "2005-10-08",
+          "title": "ICC issues warrants for LRA leaders",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 2.77,
+            "lng": 32.3,
+            "label": "Gulu"
+          },
+          "parties": [
+            "UGA"
+          ],
+          "description": "Joseph Kony became one of the world’s most wanted men.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Joseph_Kony"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_burundi_genocides",
@@ -12020,7 +12122,47 @@
         "great lakes",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_burundi_genocides_e1",
+          "date": "1972-04-29",
+          "title": "Mass killings of Hutu",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -3.38,
+            "lng": 29.36,
+            "label": "Bujumbura"
+          },
+          "parties": [
+            "BDI"
+          ],
+          "description": "The army killed an estimated 100,000–300,000 Hutu.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Ikiza"
+          ]
+        },
+        {
+          "id": "seed_burundi_genocides_e2",
+          "date": "1993-10-21",
+          "title": "Assassination sparks new killings",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": -3.38,
+            "lng": 29.36,
+            "label": "Bujumbura"
+          },
+          "parties": [
+            "BDI"
+          ],
+          "description": "The murder of the elected president triggered mass ethnic violence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1993_Burundian_coup_d%27%C3%A9tat_attempt"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_mozambique_civil_war",
@@ -12058,7 +12200,47 @@
         "landmines",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_mozambique_civil_war_e1",
+          "date": "1977-05-30",
+          "title": "RENAMO insurgency begins",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": -25.97,
+            "lng": 32.57,
+            "label": "Mozambique"
+          },
+          "parties": [
+            "MOZ"
+          ],
+          "description": "An externally-backed insurgency devastated the newly independent state.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Mozambican_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_mozambique_civil_war_e2",
+          "date": "1992-10-04",
+          "title": "Rome General Peace Accords",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 41.9,
+            "lng": 12.5,
+            "label": "Rome"
+          },
+          "parties": [
+            "MOZ"
+          ],
+          "description": "The war ended after around a million deaths.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rome_General_Peace_Accords"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_car_civil_war",
@@ -12136,7 +12318,50 @@
         "horn of africa",
         "cuba"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_ogaden_war_e1",
+          "date": "1977-07-23",
+          "title": "Somalia invades the Ogaden",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 9.35,
+            "lng": 42.8,
+            "label": "Jijiga"
+          },
+          "parties": [
+            "SOM",
+            "ETH"
+          ],
+          "description": "Somalia attacked to seize the ethnic-Somali Ogaden region.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Ogaden_War"
+          ]
+        },
+        {
+          "id": "seed_ogaden_war_e2",
+          "date": "1978-03-15",
+          "title": "Ethiopia repels the invasion",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 9.35,
+            "lng": 42.8,
+            "label": "Jijiga"
+          },
+          "parties": [
+            "ETH",
+            "SOM",
+            "CUB"
+          ],
+          "description": "Soviet arms and Cuban troops helped Ethiopia win.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Ogaden_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_zimbabwe_gukurahundi",
@@ -12168,7 +12393,47 @@
         "matabeleland",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_zimbabwe_gukurahundi_e1",
+          "date": "1983-01-01",
+          "title": "Gukurahundi massacres in Matabeleland",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -20.15,
+            "lng": 28.58,
+            "label": "Matabeleland"
+          },
+          "parties": [
+            "ZWE"
+          ],
+          "description": "A North Korea-trained brigade killed an estimated 20,000 Ndebele.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gukurahundi"
+          ]
+        },
+        {
+          "id": "seed_zimbabwe_gukurahundi_e2",
+          "date": "1987-12-22",
+          "title": "Unity Accord",
+          "kind": "treaty",
+          "severity": 1,
+          "location": {
+            "lat": -17.83,
+            "lng": 31.05,
+            "label": "Harare"
+          },
+          "parties": [
+            "ZWE"
+          ],
+          "description": "A political merger ended the campaign of violence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gukurahundi"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cameroon_anglophone",
@@ -12226,7 +12491,49 @@
         "france",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_madagascar_uprising_e1",
+          "date": "1947-03-29",
+          "title": "Malagasy uprising against French rule",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": -18.95,
+            "lng": 48.2,
+            "label": "Moramanga"
+          },
+          "parties": [
+            "MDG",
+            "FRA"
+          ],
+          "description": "A nationalist revolt spread across the island.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Malagasy_Uprising"
+          ]
+        },
+        {
+          "id": "seed_madagascar_uprising_e2",
+          "date": "1948-01-01",
+          "title": "French repression",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -18.88,
+            "lng": 47.51,
+            "label": "Antananarivo"
+          },
+          "parties": [
+            "FRA",
+            "MDG"
+          ],
+          "description": "French forces killed tens of thousands crushing the revolt.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Malagasy_Uprising"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_crimean_war",
@@ -12671,7 +12978,48 @@
         "central asia",
         "islamist"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_tajik_civil_war_e1",
+          "date": "1992-05-01",
+          "title": "Civil war erupts",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 38.56,
+            "lng": 68.79,
+            "label": "Dushanbe"
+          },
+          "parties": [
+            "TJK"
+          ],
+          "description": "A brutal war killed tens of thousands after independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tajikistani_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_tajik_civil_war_e2",
+          "date": "1997-06-27",
+          "title": "Peace agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "TJK",
+            "RUS"
+          ],
+          "description": "A power-sharing deal ended the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tajikistani_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_transnistria",
@@ -12703,7 +13051,49 @@
         "russia",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_transnistria_e1",
+          "date": "1992-03-02",
+          "title": "War in Transnistria",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 46.83,
+            "lng": 29.48,
+            "label": "Bendery"
+          },
+          "parties": [
+            "MDA",
+            "RUS"
+          ],
+          "description": "A Russian-backed strip of Moldova fought for separation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Transnistria_War"
+          ]
+        },
+        {
+          "id": "seed_transnistria_e2",
+          "date": "1992-07-21",
+          "title": "Ceasefire freezes the conflict",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 46.84,
+            "lng": 29.61,
+            "label": "Tiraspol"
+          },
+          "parties": [
+            "MDA",
+            "RUS"
+          ],
+          "description": "Russian troops remain in a frozen breakaway region.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Transnistria_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_indo_pak_1965",
@@ -12827,7 +13217,66 @@
         "insurgency",
         "south asia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_nepal_civil_war_e1",
+          "date": "1996-02-13",
+          "title": "Maoist People's War begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 27.71,
+            "lng": 85.32,
+            "label": "Nepal"
+          },
+          "parties": [
+            "NPL"
+          ],
+          "description": "A Maoist insurgency challenged the monarchy.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nepalese_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_nepal_civil_war_e2",
+          "date": "2001-06-01",
+          "title": "Royal palace massacre",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 27.71,
+            "lng": 85.32,
+            "label": "Kathmandu"
+          },
+          "parties": [
+            "NPL"
+          ],
+          "description": "The crown prince killed most of the royal family.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nepalese_royal_massacre"
+          ]
+        },
+        {
+          "id": "seed_nepal_civil_war_e3",
+          "date": "2006-11-21",
+          "title": "Comprehensive Peace Accord",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 27.71,
+            "lng": 85.32,
+            "label": "Kathmandu"
+          },
+          "parties": [
+            "NPL"
+          ],
+          "description": "The war ended and Nepal became a republic.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nepalese_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_anglo_afghan",
@@ -12858,7 +13307,49 @@
         "graveyard of empires",
         "british empire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_anglo_afghan_e1",
+          "date": "1842-01-06",
+          "title": "Retreat from Kabul",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 34.3,
+            "lng": 69.9,
+            "label": "Gandamak"
+          },
+          "parties": [
+            "GBR",
+            "AFG"
+          ],
+          "description": "An entire British-Indian army was annihilated in the passes.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Massacre_of_Elphinstone%27s_army"
+          ]
+        },
+        {
+          "id": "seed_anglo_afghan_e2",
+          "date": "1880-07-27",
+          "title": "Battle of Maiwand",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 31.6,
+            "lng": 65.15,
+            "label": "Maiwand"
+          },
+          "parties": [
+            "GBR",
+            "AFG"
+          ],
+          "description": "A famous Afghan victory in the Second Anglo-Afghan War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Maiwand"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_nz_land_wars",
@@ -12949,7 +13440,49 @@
         "dutch republic",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_dutch_revolt_e1",
+          "date": "1572-04-01",
+          "title": "Capture of Brielle sparks the revolt",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 51.9,
+            "lng": 4.16,
+            "label": "Brielle"
+          },
+          "parties": [
+            "NLD",
+            "ESP"
+          ],
+          "description": "The Sea Beggars’ raid ignited open rebellion against Spain.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Eighty_Years%27_War"
+          ]
+        },
+        {
+          "id": "seed_dutch_revolt_e2",
+          "date": "1648-01-30",
+          "title": "Peace of Münster",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 51.96,
+            "lng": 7.63,
+            "label": "Münster"
+          },
+          "parties": [
+            "NLD",
+            "ESP"
+          ],
+          "description": "Spain recognised Dutch independence after 80 years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Peace_of_M%C3%BCnster"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_thirty_years_war",
@@ -13108,7 +13641,47 @@
         "yangzhou",
         "china"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_qing_conquest_e1",
+          "date": "1644-04-25",
+          "title": "Manchus capture Beijing",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.39,
+            "label": "Beijing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The Qing dynasty replaced the Ming and began conquering China.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Transition_from_Ming_to_Qing"
+          ]
+        },
+        {
+          "id": "seed_qing_conquest_e2",
+          "date": "1645-05-20",
+          "title": "Yangzhou massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 32.39,
+            "lng": 119.41,
+            "label": "Yangzhou"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Qing troops massacred the city over ten days.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Yangzhou_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_english_civil_war",
@@ -13519,7 +14092,47 @@
         "qianlong",
         "central asia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_dzungar_genocide_e1",
+          "date": "1755-01-01",
+          "title": "Qing conquest of the Dzungars",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 43.92,
+            "lng": 81.32,
+            "label": "Dzungaria"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The Qing destroyed the Dzungar Khanate.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dzungar_genocide"
+          ]
+        },
+        {
+          "id": "seed_dzungar_genocide_e2",
+          "date": "1757-01-01",
+          "title": "Extermination of the Dzungar people",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 44,
+            "lng": 85,
+            "label": "Xinjiang"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "Perhaps 80% of the Dzungars were killed — a deliberate genocide.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dzungar_genocide"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_seven_years_war",
@@ -14254,7 +14867,29 @@
         "expulsion",
         "ethnic cleansing"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_circassian_genocide_e1",
+          "date": "1864-05-21",
+          "title": "Mass expulsion of the Circassians",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 43.6,
+            "lng": 39.73,
+            "label": "Sochi"
+          },
+          "parties": [
+            "RUS",
+            "TUR"
+          ],
+          "description": "Russia expelled most Circassians; hundreds of thousands died.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Circassian_genocide"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_us_civil_war",
@@ -14555,7 +15190,49 @@
         "annexation",
         "teak"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_anglo_burmese_e1",
+          "date": "1824-03-05",
+          "title": "First Anglo-Burmese War",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 16.87,
+            "lng": 96.2,
+            "label": "Rangoon"
+          },
+          "parties": [
+            "GBR",
+            "MMR"
+          ],
+          "description": "Britain began the piecemeal conquest of Burma.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Anglo-Burmese_War"
+          ]
+        },
+        {
+          "id": "seed_anglo_burmese_e2",
+          "date": "1885-11-28",
+          "title": "Britain annexes Burma",
+          "kind": "annexation",
+          "severity": 3,
+          "location": {
+            "lat": 21.98,
+            "lng": 96.08,
+            "label": "Mandalay"
+          },
+          "parties": [
+            "GBR",
+            "MMR"
+          ],
+          "description": "The last Burmese king was deposed and exiled.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Third_Anglo-Burmese_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_amritsar",
@@ -14641,7 +15318,51 @@
         "british empire",
         "mediterranean"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_cyprus_emergency_e1",
+          "date": "1955-04-01",
+          "title": "EOKA insurgency against British rule",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 35.19,
+            "lng": 33.36,
+            "label": "Nicosia"
+          },
+          "parties": [
+            "CYP",
+            "GBR"
+          ],
+          "description": "Greek Cypriots fought for union with Greece.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cyprus_Emergency"
+          ]
+        },
+        {
+          "id": "seed_cyprus_emergency_e2",
+          "date": "1959-02-19",
+          "title": "Independence agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 51.51,
+            "lng": -0.13,
+            "label": "London"
+          },
+          "parties": [
+            "CYP",
+            "GBR",
+            "GRC",
+            "TUR"
+          ],
+          "description": "Cyprus became independent under a power-sharing constitution.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cyprus_Emergency"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_rhodesian_bush_war",
@@ -14673,7 +15394,49 @@
         "white minority rule",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_rhodesian_bush_war_e1",
+          "date": "1965-11-11",
+          "title": "White-minority government declares UDI",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": -17.83,
+            "lng": 31.05,
+            "label": "Salisbury"
+          },
+          "parties": [
+            "ZWE",
+            "GBR"
+          ],
+          "description": "Rhodesia’s unilateral independence entrenched white-minority rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Unilateral_Declaration_of_Independence_(Rhodesia)"
+          ]
+        },
+        {
+          "id": "seed_rhodesian_bush_war_e2",
+          "date": "1979-12-21",
+          "title": "Lancaster House Agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 51.51,
+            "lng": -0.13,
+            "label": "London"
+          },
+          "parties": [
+            "ZWE",
+            "GBR"
+          ],
+          "description": "The settlement led to majority rule and an independent Zimbabwe.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Lancaster_House_Agreement"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_french_mandate_syria",
@@ -14852,7 +15615,72 @@
         "puerto rico",
         "1898"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_spanish_american_war_e1",
+          "date": "1898-02-15",
+          "title": "Sinking of the USS Maine",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 23.14,
+            "lng": -82.35,
+            "label": "Havana"
+          },
+          "parties": [
+            "USA",
+            "ESP"
+          ],
+          "description": "The explosion pushed the US toward war with Spain.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/USS_Maine_(1889)"
+          ]
+        },
+        {
+          "id": "seed_spanish_american_war_e2",
+          "date": "1898-05-01",
+          "title": "Battle of Manila Bay",
+          "kind": "battle",
+          "severity": 2,
+          "location": {
+            "lat": 14.5,
+            "lng": 120.8,
+            "label": "Manila Bay"
+          },
+          "parties": [
+            "USA",
+            "ESP",
+            "PHL"
+          ],
+          "description": "The US destroyed the Spanish Pacific fleet.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Manila_Bay"
+          ]
+        },
+        {
+          "id": "seed_spanish_american_war_e3",
+          "date": "1898-12-10",
+          "title": "Treaty of Paris",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "USA",
+            "ESP",
+            "CUB",
+            "PHL"
+          ],
+          "description": "Spain ceded the Philippines, Puerto Rico and Guam; the US became a colonial power.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Paris_(1898)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_us_dominican",
@@ -14884,7 +15712,29 @@
         "bosch",
         "imperialism"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_us_dominican_e1",
+          "date": "1965-04-28",
+          "title": "US invades the Dominican Republic",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 18.49,
+            "lng": -69.93,
+            "label": "Santo Domingo"
+          },
+          "parties": [
+            "USA",
+            "DOM"
+          ],
+          "description": "US troops intervened in a civil war to prevent \"another Cuba\".",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dominican_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_greek_independence",
@@ -15090,7 +15940,48 @@
         "wiriyamu",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_portuguese_colonial_war_e1",
+          "date": "1961-02-04",
+          "title": "War begins in Angola",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -8.84,
+            "lng": 13.23,
+            "label": "Luanda"
+          },
+          "parties": [
+            "PRT",
+            "AGO"
+          ],
+          "description": "Independence wars erupted across Portugal’s African colonies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portuguese_Colonial_War"
+          ]
+        },
+        {
+          "id": "seed_portuguese_colonial_war_e2",
+          "date": "1974-04-25",
+          "title": "Carnation Revolution ends the war",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 38.72,
+            "lng": -9.14,
+            "label": "Lisbon"
+          },
+          "parties": [
+            "PRT"
+          ],
+          "description": "A coup in Portugal led to independence for its colonies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Carnation_Revolution"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_italian_east_africa",
@@ -15163,7 +16054,49 @@
         "cold war",
         "longest war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_eritrean_independence_e1",
+          "date": "1961-09-01",
+          "title": "Armed struggle begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 15.34,
+            "lng": 38.93,
+            "label": "Eritrea"
+          },
+          "parties": [
+            "ERI",
+            "ETH"
+          ],
+          "description": "A 30-year war for independence from Ethiopia began.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Eritrean_War_of_Independence"
+          ]
+        },
+        {
+          "id": "seed_eritrean_independence_e2",
+          "date": "1991-05-24",
+          "title": "EPLF captures Asmara",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 15.34,
+            "lng": 38.93,
+            "label": "Asmara"
+          },
+          "parties": [
+            "ERI",
+            "ETH"
+          ],
+          "description": "Eritrea won de facto independence, made formal in 1993.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Eritrean_War_of_Independence"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_first_sudanese_war",
@@ -15194,7 +16127,48 @@
         "africa",
         "secession"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_first_sudanese_war_e1",
+          "date": "1955-08-18",
+          "title": "Torit mutiny sparks the war",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 4.41,
+            "lng": 32.57,
+            "label": "Torit"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "A southern mutiny began Africa’s longest civil war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Sudanese_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_first_sudanese_war_e2",
+          "date": "1972-03-27",
+          "title": "Addis Ababa Agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 9.03,
+            "lng": 38.74,
+            "label": "Addis Ababa"
+          },
+          "parties": [
+            "SDN",
+            "ETH"
+          ],
+          "description": "The accord granted the south autonomy for a decade.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Addis_Ababa_Agreement_(1972)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_sino_indian",
@@ -15405,7 +16379,47 @@
         "independence",
         "indigenous"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_west_papua_e1",
+          "date": "1963-05-01",
+          "title": "Indonesia takes control of West Papua",
+          "kind": "annexation",
+          "severity": 3,
+          "location": {
+            "lat": -2.53,
+            "lng": 140.72,
+            "label": "Jayapura"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "Indonesia assumed control of the former Dutch territory.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Papua_conflict"
+          ]
+        },
+        {
+          "id": "seed_west_papua_e2",
+          "date": "1969-08-02",
+          "title": "\"Act of Free Choice\"",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -2.53,
+            "lng": 140.72,
+            "label": "West Papua"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "A vote by ~1,000 hand-picked elders formalised Indonesian rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Act_of_Free_Choice"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_aceh",
@@ -15432,7 +16446,66 @@
         "autonomy",
         "insurgency"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_aceh_e1",
+          "date": "1976-12-04",
+          "title": "Free Aceh Movement declares independence",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 5.55,
+            "lng": 95.32,
+            "label": "Banda Aceh"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "A separatist insurgency began in resource-rich Aceh.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Insurgency_in_Aceh"
+          ]
+        },
+        {
+          "id": "seed_aceh_e2",
+          "date": "2004-12-26",
+          "title": "Indian Ocean tsunami devastates Aceh",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 5.55,
+            "lng": 95.32,
+            "label": "Banda Aceh"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "The disaster killed ~170,000 in Aceh and pushed both sides to peace.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2004_Indian_Ocean_earthquake_and_tsunami"
+          ]
+        },
+        {
+          "id": "seed_aceh_e3",
+          "date": "2005-08-15",
+          "title": "Helsinki peace agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 60.17,
+            "lng": 24.94,
+            "label": "Helsinki"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "The deal ended nearly 30 years of conflict.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Insurgency_in_Aceh"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_moro_conflict",
@@ -15459,7 +16532,47 @@
         "muslim",
         "insurgency"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_moro_conflict_e1",
+          "date": "1969-03-18",
+          "title": "Moro insurgency begins in Mindanao",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 7.22,
+            "lng": 124.25,
+            "label": "Mindanao"
+          },
+          "parties": [
+            "PHL"
+          ],
+          "description": "Muslim Moro groups fought for autonomy in the southern Philippines.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Moro_conflict"
+          ]
+        },
+        {
+          "id": "seed_moro_conflict_e2",
+          "date": "2014-03-27",
+          "title": "Bangsamoro peace agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 14.6,
+            "lng": 120.98,
+            "label": "Manila"
+          },
+          "parties": [
+            "PHL"
+          ],
+          "description": "A deal created an autonomous Bangsamoro region.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Comprehensive_Agreement_on_the_Bangsamoro"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_philippines_drug_war",
@@ -15662,7 +16775,49 @@
         "andes",
         "forced labour"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_tupac_amaru_e1",
+          "date": "1780-11-04",
+          "title": "Túpac Amaru II leads indigenous revolt",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -13.53,
+            "lng": -71.97,
+            "label": "Cusco"
+          },
+          "parties": [
+            "PER",
+            "ESP"
+          ],
+          "description": "The largest indigenous uprising in colonial Spanish America.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rebellion_of_T%C3%BApac_Amaru_II"
+          ]
+        },
+        {
+          "id": "seed_tupac_amaru_e2",
+          "date": "1781-05-18",
+          "title": "Execution of Túpac Amaru II",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": -13.52,
+            "lng": -71.98,
+            "label": "Cusco"
+          },
+          "parties": [
+            "ESP",
+            "PER"
+          ],
+          "description": "The leader was brutally executed in the main square.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/T%C3%BApac_Amaru_II"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_spanish_american_independence",
@@ -15751,7 +16906,28 @@
         "patagonia",
         "settler colonialism"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_conquest_desert_e1",
+          "date": "1878-01-01",
+          "title": "Argentine Conquest of the Desert",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": -40,
+            "lng": -66,
+            "label": "Patagonia"
+          },
+          "parties": [
+            "ARG"
+          ],
+          "description": "A military campaign seized Indigenous lands, killing and displacing thousands.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Conquest_of_the_Desert"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_chaco_war",
@@ -15782,7 +16958,49 @@
         "gran chaco",
         "disease"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_chaco_war_e1",
+          "date": "1932-06-15",
+          "title": "War erupts over the Gran Chaco",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -21,
+            "lng": -61,
+            "label": "Gran Chaco"
+          },
+          "parties": [
+            "BOL",
+            "PRY"
+          ],
+          "description": "The deadliest South American war of the 20th century, over barren scrubland.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Chaco_War"
+          ]
+        },
+        {
+          "id": "seed_chaco_war_e2",
+          "date": "1935-06-12",
+          "title": "Ceasefire",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": -34.6,
+            "lng": -58.38,
+            "label": "Buenos Aires"
+          },
+          "parties": [
+            "BOL",
+            "PRY"
+          ],
+          "description": "Paraguay held most of the disputed territory.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Chaco_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cuban_revolution",
@@ -15900,7 +17118,47 @@
         "uprising",
         "mexico"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_mexican_cristero_e1",
+          "date": "1926-08-01",
+          "title": "Cristero War begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 20.67,
+            "lng": -103.35,
+            "label": "Guadalajara"
+          },
+          "parties": [
+            "MEX"
+          ],
+          "description": "Catholics rose against the anti-clerical government.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cristero_War"
+          ]
+        },
+        {
+          "id": "seed_mexican_cristero_e2",
+          "date": "1929-06-21",
+          "title": "Settlement ends the war",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 19.43,
+            "lng": -99.13,
+            "label": "Mexico City"
+          },
+          "parties": [
+            "MEX"
+          ],
+          "description": "A US-brokered deal ended a war that killed ~90,000.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cristero_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_canada_residential",
@@ -16114,7 +17372,40 @@
         "central asia",
         "nomads"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_kazakh_famine_e1",
+          "date": "1930-01-01",
+          "title": "Forced collectivisation in Kazakhstan",
+          "kind": "escalation",
+          "severity": 4,
+          "location": null,
+          "parties": [
+            "KAZ",
+            "RUS"
+          ],
+          "description": "Soviet collectivisation destroyed nomadic herding.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Kazakh_famine_of_1930%E2%80%931933"
+          ]
+        },
+        {
+          "id": "seed_kazakh_famine_e2",
+          "date": "1932-01-01",
+          "title": "The Asharshylyk famine peaks",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "KAZ"
+          ],
+          "description": "Around 1.5 million died — a huge share of the Kazakh population.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Kazakh_famine_of_1930%E2%80%931933"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_mongolian_purges",
@@ -16189,7 +17480,50 @@
         "muslim",
         "uprising"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_basmachi_e1",
+          "date": "1916-07-01",
+          "title": "Central Asian revolt against Russia",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 41.3,
+            "lng": 69.24,
+            "label": "Turkestan"
+          },
+          "parties": [
+            "UZB",
+            "RUS"
+          ],
+          "description": "Revolt against conscription grew into a long anti-Soviet insurgency.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Basmachi_movement"
+          ]
+        },
+        {
+          "id": "seed_basmachi_e2",
+          "date": "1922-01-01",
+          "title": "Soviet suppression of the Basmachi",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 38.56,
+            "lng": 68.79,
+            "label": "Central Asia"
+          },
+          "parties": [
+            "RUS",
+            "UZB",
+            "TJK"
+          ],
+          "description": "The Red Army gradually crushed the resistance.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Basmachi_movement"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_black_january",
@@ -16221,7 +17555,29 @@
         "crackdown",
         "caucasus"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_black_january_e1",
+          "date": "1990-01-20",
+          "title": "Soviet crackdown in Baku",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 40.41,
+            "lng": 49.87,
+            "label": "Baku"
+          },
+          "parties": [
+            "RUS",
+            "AZE"
+          ],
+          "description": "Soviet troops killed over a hundred civilians in Azerbaijan’s capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Black_January"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_andijan",
@@ -16248,7 +17604,28 @@
         "state repression",
         "central asia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_andijan_e1",
+          "date": "2005-05-13",
+          "title": "Andijan massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 40.78,
+            "lng": 72.34,
+            "label": "Andijan"
+          },
+          "parties": [
+            "UZB"
+          ],
+          "description": "Uzbek troops fired on protesters, killing hundreds.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Andijan_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_osh_riots",
@@ -16275,7 +17652,28 @@
         "uzbek",
         "central asia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_osh_riots_e1",
+          "date": "2010-06-10",
+          "title": "Ethnic violence in Osh",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 40.53,
+            "lng": 72.8,
+            "label": "Osh"
+          },
+          "parties": [
+            "KGZ"
+          ],
+          "description": "Clashes between Kyrgyz and Uzbeks killed hundreds.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2010_Osh_riots"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_georgia_abkhazia",
@@ -16308,7 +17706,49 @@
         "frozen conflict",
         "caucasus"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_georgia_abkhazia_e1",
+          "date": "1992-08-14",
+          "title": "War in Abkhazia begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 43,
+            "lng": 41.02,
+            "label": "Sukhumi"
+          },
+          "parties": [
+            "GEO",
+            "RUS"
+          ],
+          "description": "Separatist war broke out in the newly independent Georgia.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/War_in_Abkhazia_(1992%E2%80%931993)"
+          ]
+        },
+        {
+          "id": "seed_georgia_abkhazia_e2",
+          "date": "1993-09-27",
+          "title": "Fall of Sukhumi",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 43,
+            "lng": 41.02,
+            "label": "Sukhumi"
+          },
+          "parties": [
+            "GEO",
+            "RUS"
+          ],
+          "description": "Abkhaz forces took the city; ethnic Georgians were expelled.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/War_in_Abkhazia_(1992%E2%80%931993)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_great_turkish_war",
@@ -16911,6 +18351,48 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Java_War"
+      ],
+      "events": [
+        {
+          "id": "seed_java_war_e1",
+          "date": "1825-07-20",
+          "title": "Java War begins under Diponegoro",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -7.8,
+            "lng": 110.36,
+            "label": "Yogyakarta"
+          },
+          "parties": [
+            "NLD",
+            "IDN"
+          ],
+          "description": "A revolt against Dutch rule became the costliest war of the Dutch East Indies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Java_War"
+          ]
+        },
+        {
+          "id": "seed_java_war_e2",
+          "date": "1830-03-28",
+          "title": "Diponegoro captured",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": -7.47,
+            "lng": 110.22,
+            "label": "Magelang"
+          },
+          "parties": [
+            "NLD",
+            "IDN"
+          ],
+          "description": "The prince was seized under a flag of truce; ~200,000 had died.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Java_War"
+          ]
+        }
       ]
     },
     {
@@ -16940,6 +18422,46 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Mfecane"
+      ],
+      "events": [
+        {
+          "id": "seed_mfecane_e1",
+          "date": "1818-01-01",
+          "title": "Rise of the Zulu under Shaka",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": -28.5,
+            "lng": 31.4,
+            "label": "Zululand"
+          },
+          "parties": [
+            "ZAF"
+          ],
+          "description": "Zulu expansion triggered mass upheaval across southern Africa.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Mfecane"
+          ]
+        },
+        {
+          "id": "seed_mfecane_e2",
+          "date": "1828-09-24",
+          "title": "Death of Shaka",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": -29,
+            "lng": 31.4,
+            "label": "Zululand"
+          },
+          "parties": [
+            "ZAF"
+          ],
+          "description": "Shaka was assassinated after transforming the region.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Shaka"
+          ]
+        }
       ]
     },
     {
@@ -17035,6 +18557,46 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Caucasian_War"
+      ],
+      "events": [
+        {
+          "id": "seed_caucasian_war_e1",
+          "date": "1817-01-01",
+          "title": "Russia begins conquest of the Caucasus",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 43.32,
+            "lng": 45.7,
+            "label": "North Caucasus"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "A decades-long campaign to subdue the mountain peoples.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Caucasian_War"
+          ]
+        },
+        {
+          "id": "seed_caucasian_war_e2",
+          "date": "1859-09-06",
+          "title": "Capture of Imam Shamil",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 42.55,
+            "lng": 46.65,
+            "label": "Gunib"
+          },
+          "parties": [
+            "RUS"
+          ],
+          "description": "The surrender of the resistance leader broke organised resistance.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Caucasian_War"
+          ]
+        }
       ]
     }
   ]
