@@ -3,16 +3,27 @@
   min-width: 0;
   overflow-y: auto;
   background: #0d1215;
-  padding: 20px 24px 32px;
+  padding: 22px 24px 36px;
 }
+
+.head { margin-bottom: 18px; }
 
 .heading {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
-  color: #e2e8f0;
-  margin: 0 0 16px;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 
+.sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 5px 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- stat tiles ---- */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -21,77 +32,100 @@
 }
 
 .card {
+  position: relative;
   background: var(--glass);
   border: 1px solid var(--glass-border);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   padding: 16px 18px;
+  overflow: hidden;
+}
+
+.cardBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
 }
 
 .cardValue {
   font-size: 32px;
   font-weight: 800;
-  color: #e2e8f0;
+  color: var(--text-primary);
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .cardLabel {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-top: 6px;
+  margin-top: 7px;
 }
 
+/* ---- panels ---- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 14px;
 }
 
 .panel {
   background: var(--glass);
   border: 1px solid var(--glass-border);
-  border-radius: 10px;
-  padding: 14px 16px;
+  border-radius: var(--radius-card);
+  padding: 14px 16px 16px;
+}
+
+.wide { grid-column: 1 / -1; }
+
+.panelHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 13px;
 }
 
 .panelTitle {
   font-size: 12px;
   font-weight: 700;
-  color: #94a3b8;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 12px;
+}
+
+.panelHint {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .bars {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .barRow {
   display: flex;
   align-items: center;
   gap: 10px;
-  border-radius: 4px;
-  padding: 1px 0;
+  border-radius: 5px;
+  padding: 2px 3px;
+  transition: background 0.12s;
 }
 
-.clickable {
-  cursor: pointer;
-}
-
-.clickable:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
+.clickable { cursor: pointer; }
+.clickable:hover { background: rgba(255, 255, 255, 0.05); }
+.clickable:hover .barLabel { color: var(--text-primary); }
 
 .barLabel {
-  flex: 0 0 130px;
-  font-size: 11px;
-  color: #cbd5e1;
+  flex: 0 0 118px;
+  font-size: 11.5px;
+  color: var(--text-secondary);
   text-align: right;
   white-space: nowrap;
   overflow: hidden;
@@ -100,8 +134,8 @@
 
 .barTrack {
   flex: 1;
-  height: 14px;
-  background: rgba(255, 255, 255, 0.07);
+  height: 12px;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -109,16 +143,16 @@
 .barFill {
   display: block;
   height: 100%;
-  border-radius: 3px;
-  min-width: 2px;
-  transition: width 0.3s;
+  border-radius: 0 3px 3px 0;
+  min-width: 3px;
+  transition: width 0.4s ease;
 }
 
 .barValue {
-  flex: 0 0 28px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #94a3b8;
+  flex: 0 0 30px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }

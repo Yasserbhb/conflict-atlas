@@ -95,19 +95,15 @@
   padding: 40px 0;
 }
 
+.rowWrap { flex-shrink: 0; }
+
 .row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+  align-items: stretch;
   background: var(--glass);
   border: 1px solid var(--glass-border);
   border-left: 3px solid #94a3b8;
   border-radius: var(--radius-card);
-  padding: 10px 12px;
-  cursor: pointer;
-  text-align: left;
-  flex-shrink: 0;
   transition: background 0.14s, border-color 0.14s, box-shadow 0.14s, transform 0.14s;
 }
 
@@ -117,6 +113,38 @@
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
+
+.rowClick {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.expandBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 11px;
+  background: none;
+  border: none;
+  border-left: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.expandBtn:hover { color: var(--accent-light); }
+
+.evCount { font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.chev, .chevOpen { transition: transform 0.18s; }
+.chevOpen { transform: rotate(180deg); }
 
 .rowGlyph {
   display: inline-flex;
