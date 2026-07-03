@@ -1,5 +1,5 @@
 {
-  "version": "2.15.1",
+  "version": "2.19.1",
   "countries": [
     {
       "id": "AFG",
@@ -1597,6 +1597,108 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"
           ]
+        },
+        {
+          "id": "seed_ww1_e7",
+          "date": "1915-04-25",
+          "title": "Gallipoli campaign",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 40.2,
+            "lng": 26.28,
+            "label": "Gallipoli"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "TUR"
+          ],
+          "description": "A failed Allied attempt to knock the Ottomans out of the war; a defining moment for Australia and New Zealand.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gallipoli_campaign"
+          ]
+        },
+        {
+          "id": "seed_ww1_e8",
+          "date": "1915-05-07",
+          "title": "Sinking of the Lusitania",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 51.42,
+            "lng": -8.55,
+            "label": "off Ireland"
+          },
+          "parties": [
+            "DEU",
+            "GBR"
+          ],
+          "description": "A German U-boat sank the liner, killing 1,198 and turning US opinion against Germany.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/RMS_Lusitania"
+          ]
+        },
+        {
+          "id": "seed_ww1_e9",
+          "date": "1916-05-31",
+          "title": "Battle of Jutland",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 56.9,
+            "lng": 6,
+            "label": "North Sea"
+          },
+          "parties": [
+            "GBR",
+            "DEU"
+          ],
+          "description": "The war’s largest naval battle; the British fleet retained control of the seas.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Jutland"
+          ]
+        },
+        {
+          "id": "seed_ww1_e10",
+          "date": "1917-07-31",
+          "title": "Battle of Passchendaele",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 50.9,
+            "lng": 3.02,
+            "label": "Ypres"
+          },
+          "parties": [
+            "GBR",
+            "DEU"
+          ],
+          "description": "Months of fighting in the mud for a few miles of ground; enormous casualties.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Passchendaele"
+          ]
+        },
+        {
+          "id": "seed_ww1_e11",
+          "date": "1918-03-21",
+          "title": "German Spring Offensive",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 49.85,
+            "lng": 3,
+            "label": "Western Front"
+          },
+          "parties": [
+            "DEU",
+            "GBR",
+            "FRA"
+          ],
+          "description": "Germany’s last great gamble broke Allied lines before being halted and reversed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Spring_Offensive"
+          ]
         }
       ]
     },
@@ -1945,6 +2047,128 @@
           "description": "Japan's formal surrender aboard the USS Missouri ended the Second World War.",
           "sources": [
             "https://en.wikipedia.org/wiki/Surrender_of_Japan"
+          ]
+        },
+        {
+          "id": "seed_ww2_e10",
+          "date": "1940-05-26",
+          "title": "Dunkirk evacuation",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 51.04,
+            "lng": 2.38,
+            "label": "Dunkirk"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "DEU"
+          ],
+          "description": "Over 330,000 Allied troops were evacuated from France as the Wehrmacht advanced.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dunkirk_evacuation"
+          ]
+        },
+        {
+          "id": "seed_ww2_e11",
+          "date": "1940-07-10",
+          "title": "Battle of Britain",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 51.51,
+            "lng": -0.13,
+            "label": "United Kingdom"
+          },
+          "parties": [
+            "GBR",
+            "DEU"
+          ],
+          "description": "The RAF held off the Luftwaffe, preventing a German invasion of Britain.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Britain"
+          ]
+        },
+        {
+          "id": "seed_ww2_e12",
+          "date": "1942-06-04",
+          "title": "Battle of Midway",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 28.2,
+            "lng": -177.37,
+            "label": "Midway"
+          },
+          "parties": [
+            "USA",
+            "JPN"
+          ],
+          "description": "A decisive US naval victory that turned the tide in the Pacific.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Midway"
+          ]
+        },
+        {
+          "id": "seed_ww2_e13",
+          "date": "1942-10-23",
+          "title": "Second Battle of El Alamein",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 30.83,
+            "lng": 28.95,
+            "label": "El Alamein"
+          },
+          "parties": [
+            "GBR",
+            "DEU",
+            "ITA"
+          ],
+          "description": "The Allied victory in North Africa halted the Axis drive toward the Suez Canal.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Battle_of_El_Alamein"
+          ]
+        },
+        {
+          "id": "seed_ww2_e14",
+          "date": "1943-07-05",
+          "title": "Battle of Kursk",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 51.73,
+            "lng": 36.19,
+            "label": "Kursk"
+          },
+          "parties": [
+            "RUS",
+            "DEU"
+          ],
+          "description": "The largest tank battle in history ended Germany’s offensive power in the East.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Kursk"
+          ]
+        },
+        {
+          "id": "seed_ww2_e15",
+          "date": "1944-12-16",
+          "title": "Battle of the Bulge",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 50,
+            "lng": 5.72,
+            "label": "Ardennes"
+          },
+          "parties": [
+            "USA",
+            "DEU"
+          ],
+          "description": "Germany’s last major western offensive was repulsed at heavy cost.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_the_Bulge"
           ]
         }
       ]
@@ -3579,6 +3803,44 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Omar_al-Bashir"
           ]
+        },
+        {
+          "id": "seed_darfur_genocide_e4",
+          "date": "2023-06-15",
+          "title": "Renewed ethnic cleansing in West Darfur",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.45,
+            "lng": 22.45,
+            "label": "El Geneina"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The 2023 civil war reignited the genocide: RSF and allied militias massacred Masalit civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Masalit_genocide"
+          ]
+        },
+        {
+          "id": "seed_darfur_genocide_e5",
+          "date": "2025-10-26",
+          "title": "El Fasher massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.63,
+            "lng": 25.35,
+            "label": "El Fasher"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The fall of El Fasher brought mass killings of Darfuris — possibly the largest massacre of the 21st century.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_El_Fasher"
+          ]
         }
       ]
     },
@@ -4483,6 +4745,62 @@
           "sources": [
             "https://en.wikipedia.org/wiki/2023_Ukrainian_counteroffensive"
           ]
+        },
+        {
+          "id": "seed_ukraine_war_e7",
+          "date": "2024-02-17",
+          "title": "Fall of Avdiivka",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 48.14,
+            "lng": 37.75,
+            "label": "Avdiivka"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Russia captured the fortress town after months of costly assaults.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Avdiivka_(2023%E2%80%932024)"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e8",
+          "date": "2024-08-06",
+          "title": "Ukraine's Kursk incursion",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 51.19,
+            "lng": 35.27,
+            "label": "Kursk Oblast, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine launched a surprise cross-border offensive into Russia itself.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Kursk_offensive_(2024)"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e9",
+          "date": "2026-05-09",
+          "title": "Three-day ceasefire amid stalled talks",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "A brief truce during US-mediated talks; peace remained stuck over Donbas as Russia held ~1/5 of Ukraine.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_United_States%E2%80%93Ukraine%E2%80%93Russia_meetings_in_Geneva"
+          ]
         }
       ]
     },
@@ -4517,7 +4835,89 @@
         "africa",
         "displacement"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_drc_m23_e1",
+          "date": "2025-01-30",
+          "title": "M23 captures Goma",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": -1.68,
+            "lng": 29.22,
+            "label": "Goma"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "Rwanda-backed M23 rebels seized the largest city in eastern Congo.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Goma_offensive"
+          ]
+        },
+        {
+          "id": "seed_drc_m23_e2",
+          "date": "2025-02-16",
+          "title": "M23 captures Bukavu",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": -2.51,
+            "lng": 28.84,
+            "label": "Bukavu"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "The rebels took a second provincial capital within weeks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Bukavu_offensive"
+          ]
+        },
+        {
+          "id": "seed_drc_m23_e3",
+          "date": "2025-03-19",
+          "title": "M23 takes Walikale",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": -1.42,
+            "lng": 28.03,
+            "label": "Walikale"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "The furthest western advance of the 2025 campaign.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Walikale_offensive"
+          ]
+        },
+        {
+          "id": "seed_drc_m23_e4",
+          "date": "2025-07-19",
+          "title": "Doha Declaration of Principles",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 25.29,
+            "lng": 51.53,
+            "label": "Doha"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "The DRC and M23 pledged dialogue, though fighting continued.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/M23_campaign_(2022%E2%80%93present)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_sudan_civil_war",
@@ -4619,18 +5019,56 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
           ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e4",
+          "date": "2025-03-26",
+          "title": "Army recaptures Khartoum",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 15.5,
+            "lng": 32.56,
+            "label": "Khartoum"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The Sudanese Armed Forces retook the capital from the RSF after two years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e5",
+          "date": "2025-10-26",
+          "title": "Fall of El Fasher and mass killings",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.63,
+            "lng": 25.35,
+            "label": "El Fasher, Darfur"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The RSF took El Fasher after an 18-month siege and killed tens of thousands — possibly the largest massacre of the 21st century.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_El_Fasher"
+          ]
         }
       ]
     },
     {
       "id": "seed_gaza_war",
-      "title": "Gaza War",
-      "type": "war",
+      "title": "Gaza War & Genocide",
+      "type": "genocide",
       "severity": 5,
       "startDate": "2023-10-07",
       "endDate": null,
       "ongoing": true,
-      "description": "Following Hamas's October 7 attack killing ~1,200 Israelis, Israel launched a devastating two-year military campaign on Gaza. Over 72,000 Palestinians were killed (majority women and children), 90%+ of Gaza's buildings destroyed, famine induced through blockade, and nearly all 2 million people displaced. The ICJ found plausible evidence of genocide; South Africa led the case against Israel. A ceasefire took effect 10 October 2025, but Israel retained control of ~50% of Gaza and over 1,000 Palestinians were killed in violations through mid-2026. The USA, UK, and Germany supplied weapons throughout.",
+      "description": "Triggered by the Hamas-led attack of 7 October 2023, Israel's war on Gaza has killed more than 70,000 Palestinians and displaced almost the entire population. In September 2025 a UN Commission of Inquiry concluded that Israel is committing genocide in Gaza — a finding Israel rejects as politically motivated. Ceasefires in January and October 2025 were followed by resumed fighting and thousands of documented violations.",
       "parties": [
         {
           "countryId": "ISR",
@@ -4715,33 +5153,13 @@
             "ISR",
             "PSE"
           ],
-          "description": "Following weeks of airstrikes, Israeli ground forces entered the Gaza Strip.",
+          "description": "After weeks of bombardment, Israeli ground forces entered the Gaza Strip.",
           "sources": [
             "https://en.wikipedia.org/wiki/Gaza_war"
           ]
         },
         {
           "id": "seed_gaza_war_e3",
-          "date": "2023-11-24",
-          "title": "First truce & hostage–prisoner exchange",
-          "kind": "ceasefire",
-          "severity": 2,
-          "location": {
-            "lat": 31.5,
-            "lng": 34.47,
-            "label": "Gaza Strip"
-          },
-          "parties": [
-            "ISR",
-            "PSE"
-          ],
-          "description": "A week-long pause saw the release of hostages and Palestinian prisoners before fighting resumed.",
-          "sources": [
-            "https://en.wikipedia.org/wiki/2023_Israel%E2%80%93Hamas_war_ceasefire"
-          ]
-        },
-        {
-          "id": "seed_gaza_war_e4",
           "date": "2024-03-18",
           "title": "Famine warning for northern Gaza",
           "kind": "displacement",
@@ -4754,9 +5172,101 @@
           "parties": [
             "PSE"
           ],
-          "description": "An IPC-backed assessment warned that famine was imminent amid mass displacement and a collapse of aid.",
+          "description": "An IPC-backed assessment warned that famine was imminent amid a collapse of aid.",
           "sources": [
             "https://en.wikipedia.org/wiki/Gaza_Strip_famine"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e4",
+          "date": "2025-01-19",
+          "title": "First major ceasefire & hostage exchange",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A phased truce released hostages and prisoners, but collapsed within two months.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/January_2025_Gaza_war_ceasefire"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e5",
+          "date": "2025-03-18",
+          "title": "Israel resumes its offensive",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "Israel declared a return to \"full force\" combat, ending the January ceasefire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gaza_war"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e6",
+          "date": "2025-09-16",
+          "title": "UN commission concludes Israel is committing genocide",
+          "kind": "milestone",
+          "severity": 4,
+          "location": null,
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A UN Commission of Inquiry found Israel had committed genocidal acts in Gaza; Israel rejected the finding.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_UNHRC_Commission_of_Inquiry_report_on_Gaza_genocide"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e7",
+          "date": "2025-10-10",
+          "title": "Second ceasefire under a US peace plan",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A US-brokered 20-point framework halted major fighting, though violations continued.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gaza_war"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e8",
+          "date": "2026-06-23",
+          "title": "UN inquiry: deliberate targeting of Gaza's children",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": null,
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A follow-up report documented over 20,000 Palestinian children killed — about 30% of the death toll.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_UNHRC_Commission_of_Inquiry_report_on_Gaza_genocide"
           ]
         }
       ]
@@ -4913,6 +5423,62 @@
           "description": "India stripped Jammu & Kashmir of autonomy amid a communications blackout.",
           "sources": [
             "https://en.wikipedia.org/wiki/Revocation_of_the_special_status_of_Jammu_and_Kashmir"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e5",
+          "date": "2025-04-22",
+          "title": "Pahalgam terror attack",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 34.01,
+            "lng": 75.32,
+            "label": "Pahalgam"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "Militants killed 26 tourists in Kashmir; India blamed Pakistan, which denied involvement.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Pahalgam_attack"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e6",
+          "date": "2025-05-07",
+          "title": "India launches Operation Sindoor",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 34.37,
+            "lng": 73.47,
+            "label": "Pakistan & Kashmir"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "India struck what it called militant sites in Pakistan; the two nuclear powers fought their first drone war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e7",
+          "date": "2025-05-10",
+          "title": "Ceasefire ends the four-day conflict",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "After strikes and counter-strikes, a US-brokered ceasefire halted the escalation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_India%E2%80%93Pakistan_conflict"
           ]
         }
       ]
@@ -5287,6 +5853,26 @@
           "description": "After some 400,000–1.5 million deaths, Algeria won independence.",
           "sources": [
             "https://en.wikipedia.org/wiki/%C3%89vian_Accords"
+          ]
+        },
+        {
+          "id": "seed_algerian_war_e4",
+          "date": "1962-07-05",
+          "title": "Algeria gains independence",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 36.75,
+            "lng": 3.06,
+            "label": "Algiers"
+          },
+          "parties": [
+            "DZA",
+            "FRA"
+          ],
+          "description": "Independence was proclaimed on 5 July — 132 years to the day after France took Algiers — after a war that killed hundreds of thousands.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Algerian_War"
           ]
         }
       ]
@@ -5893,7 +6479,69 @@
         "france",
         "land seizure"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_algeria_occupation_e1",
+          "date": "1830-07-05",
+          "title": "France captures Algiers",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 36.75,
+            "lng": 3.06,
+            "label": "Algiers"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "A French invasion seized Algiers, beginning 132 years of colonial rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Invasion_of_Algiers_(1830)"
+          ]
+        },
+        {
+          "id": "seed_algeria_occupation_e2",
+          "date": "1832-01-01",
+          "title": "Abd al-Qadir's resistance",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 35.4,
+            "lng": 0.14,
+            "label": "Mascara"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "Emir Abdelkader led a 15-year armed resistance against the French conquest.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Emir_Abdelkader"
+          ]
+        },
+        {
+          "id": "seed_algeria_occupation_e3",
+          "date": "1945-05-08",
+          "title": "Sétif and Guelma massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 36.19,
+            "lng": 5.41,
+            "label": "Sétif"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "On VE Day, French forces killed thousands of Algerians (estimates from 6,000 to 30,000) after nationalist demonstrations.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/S%C3%A9tif_and_Guelma_massacre"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_british_raj",
@@ -9923,7 +10571,7 @@
       "startDate": "2024",
       "endDate": null,
       "ongoing": true,
-      "description": "Israel and Hezbollah escalated from cross-border exchanges (tied to the Gaza war) into full war in 2024, including Israel's pager-explosion attack, the killing of Hezbollah leader Hassan Nasrallah, and a ground invasion of southern Lebanon. A November 2024 ceasefire was repeatedly violated; renewed fighting and fresh US-brokered ceasefires followed in 2026. Iran backs Hezbollah.",
+      "description": "Renewed war between Israel and Hezbollah. In 2024 Israel detonated Hezbollah's pagers, killed its leader Hassan Nasrallah, and invaded southern Lebanon before a November ceasefire. When the 2026 Iran war erupted, fighting resumed: Israel invaded again, announced the demolition of border villages up to the Litani, and killed thousands — the death toll passed 3,000 by mid-2026.",
       "parties": [
         {
           "countryId": "ISR",
@@ -9936,17 +10584,12 @@
         {
           "countryId": "IRN",
           "role": "funder"
-        },
-        {
-          "countryId": "USA",
-          "role": "funder"
         }
       ],
       "involvedCountries": [
         "ISR",
         "LBN",
-        "IRN",
-        "USA"
+        "IRN"
       ],
       "tags": [
         "hezbollah",
@@ -9955,17 +10598,175 @@
         "middle east",
         "invasion"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_lebanon_war_2024_e1",
+          "date": "2024-09-17",
+          "title": "Hezbollah pager explosions",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "across Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel remotely detonated thousands of Hezbollah pagers and radios, killing and maiming many.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2024_Lebanon_electronic_device_attacks"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e2",
+          "date": "2024-09-27",
+          "title": "Israel kills Hezbollah leader Nasrallah",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.87,
+            "lng": 35.5,
+            "label": "Beirut"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "A massive airstrike on Beirut killed Hassan Nasrallah, decapitating Hezbollah.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Assassination_of_Hassan_Nasrallah"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e3",
+          "date": "2024-10-01",
+          "title": "Israeli ground invasion of south Lebanon",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.2,
+            "lng": 35.4,
+            "label": "southern Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israeli forces crossed into southern Lebanon against Hezbollah.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2024_Israeli_invasion_of_Lebanon"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e4",
+          "date": "2024-11-27",
+          "title": "Ceasefire",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "A US-brokered ceasefire paused the war after roughly 4,000 deaths.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2024_Israel%E2%80%93Hezbollah_ceasefire_agreement"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e5",
+          "date": "2026-03-16",
+          "title": "Israel invades southern Lebanon again",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.2,
+            "lng": 35.4,
+            "label": "southern Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "As the 2026 Iran war spread, Israel launched a new ground offensive into Lebanon.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Lebanon_war"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e6",
+          "date": "2026-03-24",
+          "title": "Israel begins demolishing border villages",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 33.1,
+            "lng": 35.4,
+            "label": "southern Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel announced it would raze and occupy 55 towns and villages up to the Litani River.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Lebanon_war"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e7",
+          "date": "2026-04-08",
+          "title": "\"Black Wednesday\" — deadliest strikes",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "across Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel’s \"most powerful attacks\" killed at least 357 people; Lebanon called it a massacre.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/8_April_2026_Israeli_attacks_on_Lebanon"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e8",
+          "date": "2026-06-29",
+          "title": "Huge blast levels Majdal Zoun",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 33.16,
+            "lng": 35.2,
+            "label": "Majdal Zoun"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "A massive controlled explosion flattened much of the border village, part of the demolition campaign.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Lebanon_war"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_israel_iran_war",
       "title": "Israel–Iran War",
       "type": "war",
       "severity": 5,
-      "startDate": "2025-06",
-      "endDate": "2026-06",
-      "ongoing": false,
-      "description": "After the 12-Day War of June 2025, in which Israel struck Iran's nuclear and military infrastructure, open war broke out again from February 2026 when US and Israeli airstrikes killed Iranian officials and Supreme Leader Ali Khamenei. The US joined Israel directly against Iran and its allies; after five weeks, a US–Iran ceasefire (including Israel) was reached in mid-June 2026.",
+      "startDate": "2025-06-13",
+      "endDate": null,
+      "ongoing": true,
+      "description": "A direct war between Israel and Iran, fought in two phases. The 12-Day War of June 2025 saw Israel strike Iran's nuclear and military sites, the US bomb Fordow, Natanz and Isfahan, and Iran retaliate against a US base in Qatar before a ceasefire. In February 2026 the US and Israel launched a far larger campaign that killed Supreme Leader Khamenei; Iran blocked the Strait of Hormuz, causing a massive oil shock, and fighting continued into mid-2026.",
       "parties": [
         {
           "countryId": "ISR",
@@ -9977,13 +10778,18 @@
         },
         {
           "countryId": "IRN",
+          "role": "defender"
+        },
+        {
+          "countryId": "QAT",
           "role": "victim"
         }
       ],
       "involvedCountries": [
         "ISR",
         "USA",
-        "IRN"
+        "IRN",
+        "QAT"
       ],
       "tags": [
         "nuclear",
@@ -9993,7 +10799,184 @@
         "middle east",
         "ceasefire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_israel_iran_war_e1",
+          "date": "2025-06-13",
+          "title": "Israel launches Operation Rising Lion",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.72,
+            "lng": 51.91,
+            "label": "Natanz, Iran"
+          },
+          "parties": [
+            "ISR",
+            "IRN"
+          ],
+          "description": "Israel struck Iran's nuclear facilities, military sites and commanders, opening the 12-Day War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e2",
+          "date": "2025-06-22",
+          "title": "US bombs Fordow, Natanz and Isfahan",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 34.88,
+            "lng": 50.99,
+            "label": "Fordow, Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "US B-2s dropped bunker-buster bombs on Iran’s deepest nuclear sites (Operation Midnight Hammer).",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e3",
+          "date": "2025-06-23",
+          "title": "Iran strikes the US base at Al Udeid",
+          "kind": "attack",
+          "severity": 2,
+          "location": {
+            "lat": 25.12,
+            "lng": 51.32,
+            "label": "Al Udeid, Qatar"
+          },
+          "parties": [
+            "IRN",
+            "QAT",
+            "USA"
+          ],
+          "description": "Iran fired missiles at the largest US base in the Middle East in a telegraphed, symbolic response.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e4",
+          "date": "2025-06-24",
+          "title": "Ceasefire ends the 12-Day War",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "ISR",
+            "IRN",
+            "USA"
+          ],
+          "description": "A US-announced ceasefire paused the war after twelve days.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Twelve-Day_War"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e5",
+          "date": "2026-02-28",
+          "title": "Operation Epic Fury; Khamenei killed",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 35.7,
+            "lng": 51.42,
+            "label": "Tehran"
+          },
+          "parties": [
+            "USA",
+            "ISR",
+            "IRN"
+          ],
+          "description": "A massive US-Israeli air campaign killed Supreme Leader Ali Khamenei and hit hundreds of targets.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e6",
+          "date": "2026-03-01",
+          "title": "Iran retaliates against Israel and US bases",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 32.09,
+            "lng": 34.78,
+            "label": "Tel Aviv"
+          },
+          "parties": [
+            "IRN",
+            "ISR"
+          ],
+          "description": "Iran launched waves of missiles and drones at Israel, Gulf states and US forces.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e7",
+          "date": "2026-04-13",
+          "title": "Iran blocks the Strait of Hormuz",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 26.57,
+            "lng": 56.25,
+            "label": "Strait of Hormuz"
+          },
+          "parties": [
+            "IRN",
+            "USA"
+          ],
+          "description": "Iran closed the strait, triggering the largest oil-supply disruption in history; the US imposed a naval blockade.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e8",
+          "date": "2026-06-28",
+          "title": "US and Iran agree to cease attacks",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "After renewed strikes, the two sides agreed to halt attacks, though the wider standoff remained unresolved.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ]
+        },
+        {
+          "id": "seed_israel_iran_war_e9",
+          "date": "2026-02-28",
+          "title": "Minab school strike kills ~120 children",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 27.15,
+            "lng": 57.08,
+            "label": "Minab, Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "A missile destroyed an elementary school in Minab, killing about 156 civilians including some 120 children; investigations attribute the strike to the US.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Minab_school_attack"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_us_venezuela",
@@ -11157,6 +12140,44 @@
           "description": "An ethnic-alliance offensive seized swathes of territory from the junta.",
           "sources": [
             "https://en.wikipedia.org/wiki/Operation_1027"
+          ]
+        },
+        {
+          "id": "seed_myanmar_civil_war_e4",
+          "date": "2025-03-28",
+          "title": "7.7 earthquake compounds the war",
+          "kind": "displacement",
+          "severity": 4,
+          "location": {
+            "lat": 21.98,
+            "lng": 96.08,
+            "label": "Mandalay"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "A devastating quake killed thousands and deepened an already catastrophic humanitarian crisis.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Myanmar_earthquake"
+          ]
+        },
+        {
+          "id": "seed_myanmar_civil_war_e5",
+          "date": "2026-01-11",
+          "title": "Junta holds contested elections",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 19.76,
+            "lng": 96.08,
+            "label": "Naypyidaw"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "The military-backed party swept an election widely dismissed as a sham, as the war ground on in stalemate.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Myanmar_civil_war_(2021%E2%80%93present)"
           ]
         }
       ]
@@ -16636,7 +17657,66 @@
         "caribbean",
         "weapons trafficking"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_haiti_gangs_e1",
+          "date": "2024-02-29",
+          "title": "Gangs storm Port-au-Prince",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "HTI"
+          ],
+          "description": "The \"Viv Ansanm\" gang coalition launched a coordinated assault, forcing the prime minister to resign.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_conflict"
+          ]
+        },
+        {
+          "id": "seed_haiti_gangs_e2",
+          "date": "2025-01-01",
+          "title": "Gangs control most of the capital",
+          "kind": "displacement",
+          "severity": 4,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "HTI"
+          ],
+          "description": "Viv Ansanm held most of Port-au-Prince; over 5,500 people were killed in 2025 alone.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_conflict"
+          ]
+        },
+        {
+          "id": "seed_haiti_gangs_e3",
+          "date": "2025-09-30",
+          "title": "UN approves a Gang Suppression Force",
+          "kind": "intervention",
+          "severity": 2,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "HTI"
+          ],
+          "description": "The UN authorised a new 5,500-strong force after the Kenya-led mission fell short.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_conflict"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_red_sea_houthi",
@@ -16684,7 +17764,86 @@
         "bab el-mandeb",
         "iran"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_red_sea_houthi_e1",
+          "date": "2023-11-19",
+          "title": "Houthis seize the Galaxy Leader",
+          "kind": "attack",
+          "severity": 2,
+          "location": {
+            "lat": 12.58,
+            "lng": 43.33,
+            "label": "Bab-el-Mandeb"
+          },
+          "parties": [
+            "YEM",
+            "ISR"
+          ],
+          "description": "Yemen’s Houthis began attacking Red Sea shipping in solidarity with Gaza, disrupting global trade.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        },
+        {
+          "id": "seed_red_sea_houthi_e2",
+          "date": "2024-01-12",
+          "title": "US–UK strikes on the Houthis begin",
+          "kind": "offensive",
+          "severity": 2,
+          "location": {
+            "lat": 15.37,
+            "lng": 44.19,
+            "label": "Sana'a"
+          },
+          "parties": [
+            "USA",
+            "GBR",
+            "YEM"
+          ],
+          "description": "A Western coalition launched air and missile strikes to try to stop the attacks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        },
+        {
+          "id": "seed_red_sea_houthi_e3",
+          "date": "2025-05-06",
+          "title": "US–Houthi ceasefire",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "USA",
+            "YEM"
+          ],
+          "description": "An Oman-brokered deal halted US strikes and Houthi attacks on US ships.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        },
+        {
+          "id": "seed_red_sea_houthi_e4",
+          "date": "2026-02-01",
+          "title": "Houthis resume attacks after strikes on Iran",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 12.58,
+            "lng": 43.33,
+            "label": "Bab-el-Mandeb"
+          },
+          "parties": [
+            "YEM",
+            "ISR"
+          ],
+          "description": "The Houthis restarted attacks in response to the US–Israeli war on Iran.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_portuguese_brazil",
@@ -18595,6 +19754,216 @@
           "description": "The surrender of the resistance leader broke organised resistance.",
           "sources": [
             "https://en.wikipedia.org/wiki/Caucasian_War"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seed_sand_war",
+      "title": "Sand War (Algeria–Morocco)",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1963-10-01",
+      "endDate": "1964-02-20",
+      "ongoing": false,
+      "description": "A border war in October 1963, barely a year after Algerian independence, when Morocco pressed claims to the resource-rich Tindouf and Béchar regions of the Algerian Sahara. An OAU-brokered ceasefire ended the fighting, but the border dispute simmered for years and fed later rivalry over the Western Sahara.",
+      "parties": [
+        {
+          "countryId": "MAR",
+          "role": "aggressor"
+        },
+        {
+          "countryId": "DZA",
+          "role": "defender"
+        }
+      ],
+      "involvedCountries": [
+        "MAR",
+        "DZA"
+      ],
+      "tags": [
+        "border",
+        "maghreb",
+        "sahara",
+        "post-colonial",
+        "africa"
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Sand_War"
+      ],
+      "events": [
+        {
+          "id": "seed_sand_war_e1",
+          "date": "1963-10-01",
+          "title": "Border clashes erupt over the Sahara",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 27.67,
+            "lng": -8.15,
+            "label": "Tindouf"
+          },
+          "parties": [
+            "MAR",
+            "DZA"
+          ],
+          "description": "Moroccan claims to Tindouf and Béchar sparked fighting along the disputed frontier.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sand_War"
+          ]
+        },
+        {
+          "id": "seed_sand_war_e2",
+          "date": "1963-10-14",
+          "title": "Fighting at Hassi Beida and Tinjoub",
+          "kind": "battle",
+          "severity": 2,
+          "location": {
+            "lat": 28.5,
+            "lng": -6.5,
+            "label": "Algerian Sahara"
+          },
+          "parties": [
+            "MAR",
+            "DZA"
+          ],
+          "description": "Clashes over remote desert posts marked the height of the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sand_War"
+          ]
+        },
+        {
+          "id": "seed_sand_war_e3",
+          "date": "1964-02-20",
+          "title": "Ceasefire (OAU mediation)",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 12.64,
+            "lng": -8,
+            "label": "Bamako"
+          },
+          "parties": [
+            "MAR",
+            "DZA"
+          ],
+          "description": "African and Arab mediation ended the fighting, leaving the border unresolved.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sand_War"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seed_syria_sectarian_2025",
+      "title": "Syria — Post-Assad Sectarian Violence",
+      "type": "civil_war",
+      "severity": 4,
+      "startDate": "2025-03-06",
+      "endDate": null,
+      "ongoing": true,
+      "description": "The fall of Assad in December 2024 gave way to sectarian bloodshed. In March 2025 around 1,400 Alawites were killed in massacres on the coast. In July 2025 fighting in Suwayda between Druze and Bedouin groups — and abuses by government-allied forces — killed roughly 1,700 people and displaced nearly 200,000. Israel bombed Damascus and Syrian forces, saying it was defending the Druze; the Syrian government and its backers cast the intervention as Israel using the minority to weaken the new state. As of 2026 the south remains tense, with a Druze insurgency and most of the displaced unable to return.",
+      "parties": [
+        {
+          "countryId": "SYR",
+          "role": "aggressor"
+        },
+        {
+          "countryId": "ISR",
+          "role": "funder"
+        }
+      ],
+      "involvedCountries": [
+        "SYR",
+        "ISR"
+      ],
+      "tags": [
+        "sectarian",
+        "post-assad",
+        "alawite",
+        "druze",
+        "transition"
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/2025_massacres_of_Syrian_Alawites"
+      ],
+      "events": [
+        {
+          "id": "seed_syria_sectarian_2025_e1",
+          "date": "2025-03-06",
+          "title": "Massacres of Alawites on the coast",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 35.52,
+            "lng": 35.79,
+            "label": "Latakia"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "Around 1,400 people, mostly Alawite civilians, were killed by government-allied and other militias in revenge attacks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_massacres_of_Syrian_Alawites"
+          ]
+        },
+        {
+          "id": "seed_syria_sectarian_2025_e2",
+          "date": "2025-07-13",
+          "title": "Sectarian violence erupts in Suwayda",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 32.71,
+            "lng": 36.57,
+            "label": "Suwayda"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "Druze–Bedouin fighting and abuses by government-allied forces killed ~1,700 and displaced ~200,000; Druze groups later drove out much of the Bedouin population.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Southern_Syria_clashes_(July_2025%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_syria_sectarian_2025_e3",
+          "date": "2025-07-15",
+          "title": "Israel bombs Damascus over the Druze",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 33.51,
+            "lng": 36.29,
+            "label": "Damascus"
+          },
+          "parties": [
+            "ISR",
+            "SYR"
+          ],
+          "description": "Israel struck the Syrian defence ministry and forces near Suwayda, saying it was protecting the Druze.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Southern_Syria_clashes_(July_2025%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_syria_sectarian_2025_e4",
+          "date": "2026-03-20",
+          "title": "Israel strikes Syrian army in the south again",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 32.71,
+            "lng": 36.57,
+            "label": "southern Syria"
+          },
+          "parties": [
+            "ISR",
+            "SYR"
+          ],
+          "description": "Continued Israeli strikes as a low-level Druze insurgency and displacement persisted into 2026.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Druze_insurgency_in_Southern_Syria_(2025%E2%80%93present)"
           ]
         }
       ]
