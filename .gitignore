@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python (ai-updater pipeline) — never track caches/venv/secrets
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+ai-updater/out/
+.venv/
+venv/
