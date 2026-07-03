@@ -5,6 +5,10 @@ import { severityColor } from '../../utils/conflictColors';
 import { kindMeta } from '../../utils/eventKinds';
 import styles from './EventTimeline.module.css';
 
+// sparkline geometry, in viewBox units
+const S_W = 100, S_H = 40, S_PAD = 3;
+const yForSev = (s) => S_H - S_PAD - (s / 5) * (S_H - 2 * S_PAD);
+
 // A conflict's events, presented as an intensity sparkline + a narrative timeline.
 export default function EventTimeline({ events, conflict }) {
   const [openId, setOpenId] = useState(null);
@@ -22,13 +26,26 @@ export default function EventTimeline({ events, conflict }) {
     const lo = Math.min(dateToValue(conflict.startDate) ?? vals[0], ...vals);
     const hi = Math.max(dateToValue(conflict.endDate) ?? vals[vals.length - 1], ...vals);
     const span = hi - lo || 1;
-    const W = 100, H = 40, pad = 3;
     return withSev.map((e) => ({
-      x: pad + ((dateToValue(e.date) - lo) / span) * (W - 2 * pad),
-      y: H - pad - ((e.severity) / 5) * (H - 2 * pad),
-      sev: e.severity,
+      x: S_PAD + ((dateToValue(e.date) - lo) / span) * (S_W - 2 * S_PAD),
+      y: yForSev(e.severity),
+      color: kindMeta(e.kind).color,
+      title: e.title,
     }));
   }, [sorted, conflict]);
+
+  const linePts = spark || [];
+
+  // Distinct kinds present in this conflict — a small key so the point colors read.
+  const kinds = useMemo(() => {
+    const seen = new Set();
+    const out = [];
+    for (const e of sorted) {
+      const k = e.kind || 'milestone';
+      if (!seen.has(k)) { seen.add(k); out.push(k); }
+    }
+    return out;
+  }, [sorted]);
 
   return (
     <div className={styles.wrap}>
@@ -37,20 +54,46 @@ export default function EventTimeline({ events, conflict }) {
       </div>
 
       {spark && (
-        <svg className={styles.spark} viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-          <polyline
-            className={styles.sparkArea}
-            points={`${spark[0].x},40 ${spark.map((p) => `${p.x},${p.y}`).join(' ')} ${spark[spark.length - 1].x},40`}
-          />
-          <polyline
-            className={styles.sparkLine}
-            points={spark.map((p) => `${p.x},${p.y}`).join(' ')}
-            vectorEffect="non-scaling-stroke"
-          />
+        <div className={styles.sparkWrap}>
+          {/* the line shows only the up/down shape of severity; the dots carry the kind color */}
+          <svg className={styles.spark} viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            {linePts.length >= 2 && (
+              <>
+                <polyline
+                  className={styles.sparkArea}
+                  points={`${linePts[0].x},40 ${linePts.map((p) => `${p.x},${p.y}`).join(' ')} ${linePts[linePts.length - 1].x},40`}
+                />
+                <polyline
+                  className={styles.sparkLine}
+                  points={linePts.map((p) => `${p.x},${p.y}`).join(' ')}
+                  vectorEffect="non-scaling-stroke"
+                />
+              </>
+            )}
+          </svg>
           {spark.map((p, i) => (
-            <circle key={i} cx={p.x} cy={p.y} r={1.6} fill={severityColor(p.sev)} vectorEffect="non-scaling-stroke" />
+            <span
+              key={i}
+              className={styles.node}
+              style={{ left: `${p.x}%`, top: `${(p.y / S_H) * 100}%`, background: p.color }}
+              title={p.title}
+            />
           ))}
-        </svg>
+        </div>
+      )}
+
+      {kinds.length > 0 && (
+        <div className={styles.legend}>
+          {kinds.map((k) => {
+            const m = kindMeta(k);
+            return (
+              <span key={k} className={styles.legItem}>
+                <span className={styles.legDot} style={{ background: m.color }} />
+                {m.label}
+              </span>
+            );
+          })}
+        </div>
       )}
 
       <ol className={styles.list}>
