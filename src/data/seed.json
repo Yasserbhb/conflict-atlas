@@ -1,5 +1,5 @@
 {
-  "version": "2.16.1",
+  "version": "2.17.1",
   "countries": [
     {
       "id": "AFG",
@@ -1597,6 +1597,108 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"
           ]
+        },
+        {
+          "id": "seed_ww1_e7",
+          "date": "1915-04-25",
+          "title": "Gallipoli campaign",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 40.2,
+            "lng": 26.28,
+            "label": "Gallipoli"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "TUR"
+          ],
+          "description": "A failed Allied attempt to knock the Ottomans out of the war; a defining moment for Australia and New Zealand.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gallipoli_campaign"
+          ]
+        },
+        {
+          "id": "seed_ww1_e8",
+          "date": "1915-05-07",
+          "title": "Sinking of the Lusitania",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 51.42,
+            "lng": -8.55,
+            "label": "off Ireland"
+          },
+          "parties": [
+            "DEU",
+            "GBR"
+          ],
+          "description": "A German U-boat sank the liner, killing 1,198 and turning US opinion against Germany.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/RMS_Lusitania"
+          ]
+        },
+        {
+          "id": "seed_ww1_e9",
+          "date": "1916-05-31",
+          "title": "Battle of Jutland",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 56.9,
+            "lng": 6,
+            "label": "North Sea"
+          },
+          "parties": [
+            "GBR",
+            "DEU"
+          ],
+          "description": "The war’s largest naval battle; the British fleet retained control of the seas.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Jutland"
+          ]
+        },
+        {
+          "id": "seed_ww1_e10",
+          "date": "1917-07-31",
+          "title": "Battle of Passchendaele",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 50.9,
+            "lng": 3.02,
+            "label": "Ypres"
+          },
+          "parties": [
+            "GBR",
+            "DEU"
+          ],
+          "description": "Months of fighting in the mud for a few miles of ground; enormous casualties.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Passchendaele"
+          ]
+        },
+        {
+          "id": "seed_ww1_e11",
+          "date": "1918-03-21",
+          "title": "German Spring Offensive",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 49.85,
+            "lng": 3,
+            "label": "Western Front"
+          },
+          "parties": [
+            "DEU",
+            "GBR",
+            "FRA"
+          ],
+          "description": "Germany’s last great gamble broke Allied lines before being halted and reversed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Spring_Offensive"
+          ]
         }
       ]
     },
@@ -1945,6 +2047,128 @@
           "description": "Japan's formal surrender aboard the USS Missouri ended the Second World War.",
           "sources": [
             "https://en.wikipedia.org/wiki/Surrender_of_Japan"
+          ]
+        },
+        {
+          "id": "seed_ww2_e10",
+          "date": "1940-05-26",
+          "title": "Dunkirk evacuation",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 51.04,
+            "lng": 2.38,
+            "label": "Dunkirk"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "DEU"
+          ],
+          "description": "Over 330,000 Allied troops were evacuated from France as the Wehrmacht advanced.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dunkirk_evacuation"
+          ]
+        },
+        {
+          "id": "seed_ww2_e11",
+          "date": "1940-07-10",
+          "title": "Battle of Britain",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 51.51,
+            "lng": -0.13,
+            "label": "United Kingdom"
+          },
+          "parties": [
+            "GBR",
+            "DEU"
+          ],
+          "description": "The RAF held off the Luftwaffe, preventing a German invasion of Britain.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Britain"
+          ]
+        },
+        {
+          "id": "seed_ww2_e12",
+          "date": "1942-06-04",
+          "title": "Battle of Midway",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 28.2,
+            "lng": -177.37,
+            "label": "Midway"
+          },
+          "parties": [
+            "USA",
+            "JPN"
+          ],
+          "description": "A decisive US naval victory that turned the tide in the Pacific.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Midway"
+          ]
+        },
+        {
+          "id": "seed_ww2_e13",
+          "date": "1942-10-23",
+          "title": "Second Battle of El Alamein",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 30.83,
+            "lng": 28.95,
+            "label": "El Alamein"
+          },
+          "parties": [
+            "GBR",
+            "DEU",
+            "ITA"
+          ],
+          "description": "The Allied victory in North Africa halted the Axis drive toward the Suez Canal.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Battle_of_El_Alamein"
+          ]
+        },
+        {
+          "id": "seed_ww2_e14",
+          "date": "1943-07-05",
+          "title": "Battle of Kursk",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 51.73,
+            "lng": 36.19,
+            "label": "Kursk"
+          },
+          "parties": [
+            "RUS",
+            "DEU"
+          ],
+          "description": "The largest tank battle in history ended Germany’s offensive power in the East.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Kursk"
+          ]
+        },
+        {
+          "id": "seed_ww2_e15",
+          "date": "1944-12-16",
+          "title": "Battle of the Bulge",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 50,
+            "lng": 5.72,
+            "label": "Ardennes"
+          },
+          "parties": [
+            "USA",
+            "DEU"
+          ],
+          "description": "Germany’s last major western offensive was repulsed at heavy cost.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_the_Bulge"
           ]
         }
       ]
@@ -4624,7 +4848,7 @@
     },
     {
       "id": "seed_gaza_war",
-      "title": "Gaza War",
+      "title": "Gaza War & Genocide",
       "type": "genocide",
       "severity": 5,
       "startDate": "2023-10-07",
@@ -10077,7 +10301,7 @@
       "startDate": "2024",
       "endDate": null,
       "ongoing": true,
-      "description": "Israel and Hezbollah escalated from cross-border exchanges (tied to the Gaza war) into full war in 2024, including Israel's pager-explosion attack, the killing of Hezbollah leader Hassan Nasrallah, and a ground invasion of southern Lebanon. A November 2024 ceasefire was repeatedly violated; renewed fighting and fresh US-brokered ceasefires followed in 2026. Iran backs Hezbollah.",
+      "description": "Renewed war between Israel and Hezbollah. In 2024 Israel detonated Hezbollah's pagers, killed its leader Hassan Nasrallah, and invaded southern Lebanon before a November ceasefire. When the 2026 Iran war erupted, fighting resumed: Israel invaded again, announced the demolition of border villages up to the Litani, and killed thousands — the death toll passed 3,000 by mid-2026.",
       "parties": [
         {
           "countryId": "ISR",
@@ -10090,17 +10314,12 @@
         {
           "countryId": "IRN",
           "role": "funder"
-        },
-        {
-          "countryId": "USA",
-          "role": "funder"
         }
       ],
       "involvedCountries": [
         "ISR",
         "LBN",
-        "IRN",
-        "USA"
+        "IRN"
       ],
       "tags": [
         "hezbollah",
@@ -10109,7 +10328,165 @@
         "middle east",
         "invasion"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_lebanon_war_2024_e1",
+          "date": "2024-09-17",
+          "title": "Hezbollah pager explosions",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "across Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel remotely detonated thousands of Hezbollah pagers and radios, killing and maiming many.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2024_Lebanon_electronic_device_attacks"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e2",
+          "date": "2024-09-27",
+          "title": "Israel kills Hezbollah leader Nasrallah",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.87,
+            "lng": 35.5,
+            "label": "Beirut"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "A massive airstrike on Beirut killed Hassan Nasrallah, decapitating Hezbollah.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Assassination_of_Hassan_Nasrallah"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e3",
+          "date": "2024-10-01",
+          "title": "Israeli ground invasion of south Lebanon",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.2,
+            "lng": 35.4,
+            "label": "southern Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israeli forces crossed into southern Lebanon against Hezbollah.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2024_Israeli_invasion_of_Lebanon"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e4",
+          "date": "2024-11-27",
+          "title": "Ceasefire",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "A US-brokered ceasefire paused the war after roughly 4,000 deaths.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2024_Israel%E2%80%93Hezbollah_ceasefire_agreement"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e5",
+          "date": "2026-03-16",
+          "title": "Israel invades southern Lebanon again",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.2,
+            "lng": 35.4,
+            "label": "southern Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "As the 2026 Iran war spread, Israel launched a new ground offensive into Lebanon.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Lebanon_war"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e6",
+          "date": "2026-03-24",
+          "title": "Israel begins demolishing border villages",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 33.1,
+            "lng": 35.4,
+            "label": "southern Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel announced it would raze and occupy 55 towns and villages up to the Litani River.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Lebanon_war"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e7",
+          "date": "2026-04-08",
+          "title": "\"Black Wednesday\" — deadliest strikes",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "across Lebanon"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel’s \"most powerful attacks\" killed at least 357 people; Lebanon called it a massacre.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/8_April_2026_Israeli_attacks_on_Lebanon"
+          ]
+        },
+        {
+          "id": "seed_lebanon_war_2024_e8",
+          "date": "2026-06-29",
+          "title": "Huge blast levels Majdal Zoun",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 33.16,
+            "lng": 35.2,
+            "label": "Majdal Zoun"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "A massive controlled explosion flattened much of the border village, part of the demolition campaign.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Lebanon_war"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_israel_iran_war",
@@ -18931,6 +19308,102 @@
           "description": "The surrender of the resistance leader broke organised resistance.",
           "sources": [
             "https://en.wikipedia.org/wiki/Caucasian_War"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seed_sand_war",
+      "title": "Sand War (Algeria–Morocco)",
+      "type": "war",
+      "severity": 2,
+      "startDate": "1963-10-01",
+      "endDate": "1964-02-20",
+      "ongoing": false,
+      "description": "A border war in October 1963, barely a year after Algerian independence, when Morocco pressed claims to the resource-rich Tindouf and Béchar regions of the Algerian Sahara. An OAU-brokered ceasefire ended the fighting, but the border dispute simmered for years and fed later rivalry over the Western Sahara.",
+      "parties": [
+        {
+          "countryId": "MAR",
+          "role": "aggressor"
+        },
+        {
+          "countryId": "DZA",
+          "role": "defender"
+        }
+      ],
+      "involvedCountries": [
+        "MAR",
+        "DZA"
+      ],
+      "tags": [
+        "border",
+        "maghreb",
+        "sahara",
+        "post-colonial",
+        "africa"
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/Sand_War"
+      ],
+      "events": [
+        {
+          "id": "seed_sand_war_e1",
+          "date": "1963-10-01",
+          "title": "Border clashes erupt over the Sahara",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 27.67,
+            "lng": -8.15,
+            "label": "Tindouf"
+          },
+          "parties": [
+            "MAR",
+            "DZA"
+          ],
+          "description": "Moroccan claims to Tindouf and Béchar sparked fighting along the disputed frontier.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sand_War"
+          ]
+        },
+        {
+          "id": "seed_sand_war_e2",
+          "date": "1963-10-14",
+          "title": "Fighting at Hassi Beida and Tinjoub",
+          "kind": "battle",
+          "severity": 2,
+          "location": {
+            "lat": 28.5,
+            "lng": -6.5,
+            "label": "Algerian Sahara"
+          },
+          "parties": [
+            "MAR",
+            "DZA"
+          ],
+          "description": "Clashes over remote desert posts marked the height of the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sand_War"
+          ]
+        },
+        {
+          "id": "seed_sand_war_e3",
+          "date": "1964-02-20",
+          "title": "Ceasefire (OAU mediation)",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 12.64,
+            "lng": -8,
+            "label": "Bamako"
+          },
+          "parties": [
+            "MAR",
+            "DZA"
+          ],
+          "description": "African and Arab mediation ended the fighting, leaving the border unresolved.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sand_War"
           ]
         }
       ]
