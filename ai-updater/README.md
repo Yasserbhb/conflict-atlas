@@ -52,5 +52,35 @@ Phase 1 is **backfill on one region/decade** — the safest place to trust-test 
 team, because its answers are checkable against known history before it ever runs unattended.
 Then merge, then watch-mode, then multilingual hardening. See ARCHITECTURE.md §12.
 
+## Run it (Python)
+
+The Phase-1 pipeline is implemented in `conflict_updater/`.
+
+```bash
+cd ai-updater
+python -m pytest              # 12 tests, offline (fake LLM + search — no API key)
+
+pip install -r requirements.txt
+cp .env.example .env          # add OPENAI_API_KEY (+ TAVILY_API_KEY)
+python -m conflict_updater "1990..2003" --region Africa   # fill the past
+python -m conflict_updater week                           # the routine update
+```
+
+Output lands in `out/`: a `proposals_*.json` (machine-readable, to feed into `seed.json`) and a
+`review_*.md` (the human queue — only the uncertain/contested items need you). Layout:
+
+```
+conflict_updater/
+  schema.py    pydantic models (domain + every agent's I/O)
+  prompts.py   one system prompt per agent
+  agents.py    the agent team (scoper/extractor/resolver/enrichers/factcheck/reconciler)
+  dedup.py     deterministic candidate finder (the cheap half of the Resolver)
+  pipeline.py  scan() — the one operation
+  llm.py       swappable LLM client (OpenAI default)   search.py  swappable web search
+  store.py     load seed.json + write proposals/review   config.py  env settings
+tests/         offline tests with fakes
+```
+
 ---
-*Status: design locked, not built. Origin & requirements: project memory `project_agentic_pipeline`.*
+*Status: design locked; Phase-1 pipeline implemented in Python & offline-tested; a live run needs
+an API key. Origin & requirements: project memory `project_agentic_pipeline`.*

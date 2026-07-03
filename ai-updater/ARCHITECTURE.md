@@ -5,8 +5,9 @@
 > work (fetch, shape-check, dedup lookup, merge); LLM agents do **only judgment**, each in one
 > lane. **Every uncertain path ends at a human review queue — never a silent guess or a dead end.**
 
-Status: **design locked, not built.** Per-agent contracts will live in [`agents/`](agents/),
-shapes in [`schema/`](schema/), tunables in [`config/`](config/).
+Status: **design locked; the Phase-1 pipeline is implemented in Python** (`conflict_updater/`,
+offline-tested with fake LLM/search — a live run needs an API key). Agent prompts live in
+`conflict_updater/prompts.py`, the typed models in `conflict_updater/schema.py`.
 
 ---
 
@@ -274,14 +275,20 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
 
 ---
 
-## 11. Tech
+## 11. Tech (implemented)
 
-- **Node**, plain JSON-file queues, no DB, no orchestration framework — a small pipeline runner.
-- **Anthropic SDK** (`@anthropic-ai/sdk`), latest Claude model; each agent one prompt + strict
-  JSON schema. Claude does the translation/multilingual reading directly.
-- **Web search** tool for discovery + fact-check; **ACLED/UCDP** as structured anchors.
-- **Backfill** = a CLI (`node ai-updater/backfill "Central Africa 1990-2003"`). **Watch** = a
-  **weekly GitHub Action** that opens a **PR**, never pushes to `main`.
+- **Python** (`conflict_updater/` package), pydantic models, plain JSON-file output (a DB later).
+- **LLM via LangChain**, provider-swappable in `llm.py` — **OpenAI by default** (`gpt-4o-mini`),
+  any langchain provider otherwise. Each agent = one prompt (`prompts.py`) + a strict pydantic
+  output schema; the model does the multilingual reading directly.
+- **Web search** via a swappable `SearchClient` (`search.py`, Tavily default) for discovery +
+  fact-check; ACLED/UCDP as structured anchors (later phase).
+- **One entrypoint:** `scan(period, region?, topic?)` → CLI `python -m conflict_updater "1990..2003"`;
+  the weekly cron just calls `python -m conflict_updater week`. Output = a proposals JSON + a
+  human-review markdown; an approve step feeds the accepted items into `seed.json`.
+- **Tested offline:** a fake LLM + fake search drive the whole pipeline under `pytest` with no API
+  key (12 tests green). A live run needs `OPENAI_API_KEY` (+ `TAVILY_API_KEY`). DB migration later,
+  once the file queues get messy.
 
 ---
 

@@ -1,0 +1,15 @@
+# Core LLM + agents (provider-swappable via LangChain)
+langchain-core>=0.3
+langchain-openai>=0.2        # default provider; swap for any langchain-* provider
+pydantic>=2.7
+
+# Web search (pick one backend; Tavily is the default)
+tavily-python>=0.5
+langchain-community>=0.3
+
+# HTTP + utils
+httpx>=0.27
+python-dotenv>=1.0
+
+# Dev / tests
+pytest>=8.0
