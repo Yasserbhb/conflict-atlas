@@ -1,5 +1,7 @@
 # Conflict Atlas
 
+**🌍 Live site: [yasserbhb.github.io/conflict-atlas](https://yasserbhb.github.io/conflict-atlas/)**
+
 An interactive vector world map for exploring geopolitical conflicts, genocides, occupations, and atrocities across history — from 1490 to the present (2026).
 
 Built as a personal learning tool: browse the map, dig into any country's involvements, read the structure of a single conflict, scrub a timeline through history, and add or edit your own entries.
@@ -15,7 +17,7 @@ Built as a personal learning tool: browse the map, dig into any country's involv
 - **Edit mode** — add/edit conflicts (type, severity, dates, parties with roles, description, tags) and personal notes per country.
 - **Network graph** view of a country's connections.
 - **Export / import** your whole dataset as JSON.
-- **~225 pre-loaded conflicts** across every region and era (1490→2026), with descriptions, parties, and roles.
+- **~240 pre-loaded conflicts** across every region and era (1490→2026), with descriptions, parties, and roles.
 - **Left sidebar** with five views: **Map**, **Conflicts** (searchable/filterable list), **Stats** (charts), **Timeline** (a per-year density histogram), and **Help**.
 
 > **Note on borders:** the map always shows *modern* borders. Historical events are mapped onto the country that occupies that territory today (e.g. the Spanish Conquest -> modern Mexico/Peru). Successor states use aliases (Russia = USSR, Turkey = Ottoman Empire, etc.).
