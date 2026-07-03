@@ -2,6 +2,14 @@
 
 All notable changes to Conflict Atlas are tracked here. Each tagged version is a meaningful milestone.
 
+## v1.13.0 — 2026-07-03
+
+In-app event editing + data-integrity fixes.
+
+- **Event editor**: the conflict edit form now has an **Events (timeline)** section — add/edit/remove events (date, kind, severity, lat/lng/place, description, per-event sources) as collapsible cards. Leave coordinates blank for location-less events (they show in the timeline, no map pin).
+- **Bug fix**: the edit form previously didn't carry `events[]`, so saving an edited conflict silently dropped its timeline. Events are now preserved and normalised on save.
+- **Data integrity**: an automated check against the Wikipedia API found and fixed 9 event source links that pointed at non-existent articles; all 358 source articles now resolve (seed 2.15.1).
+
 ## v1.12.0 — 2026-07-03
 
 Events — conflicts unfold in time and space.
