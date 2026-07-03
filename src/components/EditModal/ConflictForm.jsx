@@ -3,6 +3,7 @@ import { useApp } from '../../context/AppContext';
 import { generateId } from '../../utils/uuid';
 import { CONFLICT_TYPES, ROLE_TYPES, TYPE_LABELS, ROLE_LABELS } from '../../utils/conflictColors';
 import SeverityGauge from '../common/SeverityGauge';
+import EventsEditor from './EventsEditor';
 import styles from './ConflictForm.module.css';
 
 const emptyParty = () => ({ countryId: '', role: 'aggressor' });
@@ -23,6 +24,7 @@ export default function ConflictForm({ initial, onClose }) {
     parties: initial?.parties?.length ? [...initial.parties] : [emptyParty()],
     tags: initial?.tags?.join(', ') || '',
     sources: initial?.sources?.join('\n') || '',
+    events: initial?.events ? initial.events.map((e) => ({ ...e })) : [],
   });
 
   function set(key, value) {
@@ -51,11 +53,32 @@ export default function ConflictForm({ initial, onClose }) {
     const sources = form.sources.split('\n').map((s) => s.trim()).filter(Boolean);
     const parties = form.parties.filter((p) => p.countryId);
 
+    // Normalise events: numeric lat/lng, drop location if incomplete, keep only titled+dated ones
+    const events = (form.events || [])
+      .filter((ev) => ev.title && ev.date)
+      .map((ev) => {
+        const lat = ev.location?.lat === '' || ev.location?.lat == null ? null : Number(ev.location.lat);
+        const lng = ev.location?.lng === '' || ev.location?.lng == null ? null : Number(ev.location.lng);
+        const hasLoc = lat != null && !Number.isNaN(lat) && lng != null && !Number.isNaN(lng);
+        return {
+          id: ev.id,
+          date: String(ev.date).trim(),
+          title: ev.title.trim(),
+          kind: ev.kind || 'milestone',
+          severity: Number(ev.severity) || 3,
+          location: hasLoc ? { lat, lng, label: ev.location.label || '' } : null,
+          parties: ev.parties || [],
+          description: (ev.description || '').trim(),
+          sources: ev.sources || [],
+        };
+      });
+
     await handleSaveConflict({
       ...form,
       tags,
       sources,
       parties,
+      events,
       involvedCountries: parties.map((p) => p.countryId),
       endDate: form.ongoing ? null : form.endDate || null,
     });
@@ -142,6 +165,8 @@ export default function ConflictForm({ initial, onClose }) {
           </div>
         ))}
       </div>
+
+      <EventsEditor events={form.events} onChange={(events) => set('events', events)} />
 
       <div className={styles.field}>
         <label>Tags (comma-separated)</label>
