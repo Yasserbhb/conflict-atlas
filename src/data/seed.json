@@ -1,5 +1,5 @@
 {
-  "version": "2.18.0",
+  "version": "2.19.1",
   "countries": [
     {
       "id": "AFG",
@@ -3803,6 +3803,44 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Omar_al-Bashir"
           ]
+        },
+        {
+          "id": "seed_darfur_genocide_e4",
+          "date": "2023-06-15",
+          "title": "Renewed ethnic cleansing in West Darfur",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.45,
+            "lng": 22.45,
+            "label": "El Geneina"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The 2023 civil war reignited the genocide: RSF and allied militias massacred Masalit civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Masalit_genocide"
+          ]
+        },
+        {
+          "id": "seed_darfur_genocide_e5",
+          "date": "2025-10-26",
+          "title": "El Fasher massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.63,
+            "lng": 25.35,
+            "label": "El Fasher"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The fall of El Fasher brought mass killings of Darfuris — possibly the largest massacre of the 21st century.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_El_Fasher"
+          ]
         }
       ]
     },
@@ -4797,7 +4835,89 @@
         "africa",
         "displacement"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_drc_m23_e1",
+          "date": "2025-01-30",
+          "title": "M23 captures Goma",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": -1.68,
+            "lng": 29.22,
+            "label": "Goma"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "Rwanda-backed M23 rebels seized the largest city in eastern Congo.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Goma_offensive"
+          ]
+        },
+        {
+          "id": "seed_drc_m23_e2",
+          "date": "2025-02-16",
+          "title": "M23 captures Bukavu",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": -2.51,
+            "lng": 28.84,
+            "label": "Bukavu"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "The rebels took a second provincial capital within weeks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Bukavu_offensive"
+          ]
+        },
+        {
+          "id": "seed_drc_m23_e3",
+          "date": "2025-03-19",
+          "title": "M23 takes Walikale",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": -1.42,
+            "lng": 28.03,
+            "label": "Walikale"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "The furthest western advance of the 2025 campaign.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Walikale_offensive"
+          ]
+        },
+        {
+          "id": "seed_drc_m23_e4",
+          "date": "2025-07-19",
+          "title": "Doha Declaration of Principles",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 25.29,
+            "lng": 51.53,
+            "label": "Doha"
+          },
+          "parties": [
+            "COD",
+            "RWA"
+          ],
+          "description": "The DRC and M23 pledged dialogue, though fighting continued.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/M23_campaign_(2022%E2%80%93present)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_sudan_civil_war",
@@ -12021,6 +12141,44 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Operation_1027"
           ]
+        },
+        {
+          "id": "seed_myanmar_civil_war_e4",
+          "date": "2025-03-28",
+          "title": "7.7 earthquake compounds the war",
+          "kind": "displacement",
+          "severity": 4,
+          "location": {
+            "lat": 21.98,
+            "lng": 96.08,
+            "label": "Mandalay"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "A devastating quake killed thousands and deepened an already catastrophic humanitarian crisis.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2025_Myanmar_earthquake"
+          ]
+        },
+        {
+          "id": "seed_myanmar_civil_war_e5",
+          "date": "2026-01-11",
+          "title": "Junta holds contested elections",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 19.76,
+            "lng": 96.08,
+            "label": "Naypyidaw"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "The military-backed party swept an election widely dismissed as a sham, as the war ground on in stalemate.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Myanmar_civil_war_(2021%E2%80%93present)"
+          ]
         }
       ]
     },
@@ -17499,7 +17657,66 @@
         "caribbean",
         "weapons trafficking"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_haiti_gangs_e1",
+          "date": "2024-02-29",
+          "title": "Gangs storm Port-au-Prince",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "HTI"
+          ],
+          "description": "The \"Viv Ansanm\" gang coalition launched a coordinated assault, forcing the prime minister to resign.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_conflict"
+          ]
+        },
+        {
+          "id": "seed_haiti_gangs_e2",
+          "date": "2025-01-01",
+          "title": "Gangs control most of the capital",
+          "kind": "displacement",
+          "severity": 4,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "HTI"
+          ],
+          "description": "Viv Ansanm held most of Port-au-Prince; over 5,500 people were killed in 2025 alone.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_conflict"
+          ]
+        },
+        {
+          "id": "seed_haiti_gangs_e3",
+          "date": "2025-09-30",
+          "title": "UN approves a Gang Suppression Force",
+          "kind": "intervention",
+          "severity": 2,
+          "location": {
+            "lat": 18.59,
+            "lng": -72.31,
+            "label": "Port-au-Prince"
+          },
+          "parties": [
+            "HTI"
+          ],
+          "description": "The UN authorised a new 5,500-strong force after the Kenya-led mission fell short.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Haitian_conflict"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_red_sea_houthi",
@@ -17547,7 +17764,86 @@
         "bab el-mandeb",
         "iran"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_red_sea_houthi_e1",
+          "date": "2023-11-19",
+          "title": "Houthis seize the Galaxy Leader",
+          "kind": "attack",
+          "severity": 2,
+          "location": {
+            "lat": 12.58,
+            "lng": 43.33,
+            "label": "Bab-el-Mandeb"
+          },
+          "parties": [
+            "YEM",
+            "ISR"
+          ],
+          "description": "Yemen’s Houthis began attacking Red Sea shipping in solidarity with Gaza, disrupting global trade.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        },
+        {
+          "id": "seed_red_sea_houthi_e2",
+          "date": "2024-01-12",
+          "title": "US–UK strikes on the Houthis begin",
+          "kind": "offensive",
+          "severity": 2,
+          "location": {
+            "lat": 15.37,
+            "lng": 44.19,
+            "label": "Sana'a"
+          },
+          "parties": [
+            "USA",
+            "GBR",
+            "YEM"
+          ],
+          "description": "A Western coalition launched air and missile strikes to try to stop the attacks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        },
+        {
+          "id": "seed_red_sea_houthi_e3",
+          "date": "2025-05-06",
+          "title": "US–Houthi ceasefire",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "USA",
+            "YEM"
+          ],
+          "description": "An Oman-brokered deal halted US strikes and Houthi attacks on US ships.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        },
+        {
+          "id": "seed_red_sea_houthi_e4",
+          "date": "2026-02-01",
+          "title": "Houthis resume attacks after strikes on Iran",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 12.58,
+            "lng": 43.33,
+            "label": "Bab-el-Mandeb"
+          },
+          "parties": [
+            "YEM",
+            "ISR"
+          ],
+          "description": "The Houthis restarted attacks in response to the US–Israeli war on Iran.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sea_crisis"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_portuguese_brazil",
@@ -19566,7 +19862,7 @@
       "startDate": "2025-03-06",
       "endDate": null,
       "ongoing": true,
-      "description": "The fall of Assad in December 2024 gave way to waves of sectarian bloodshed under the new transitional government. In March 2025 roughly 1,400 Alawites were killed in massacres along the coast; in July 2025, Druze–Bedouin fighting in Suwayda killed hundreds and drew Israeli airstrikes on Damascus.",
+      "description": "The fall of Assad in December 2024 gave way to sectarian bloodshed. In March 2025 around 1,400 Alawites were killed in massacres on the coast. In July 2025 fighting in Suwayda between Druze and Bedouin groups — and abuses by government-allied forces — killed roughly 1,700 people and displaced nearly 200,000. Israel bombed Damascus and Syrian forces, saying it was defending the Druze; the Syrian government and its backers cast the intervention as Israel using the minority to weaken the new state. As of 2026 the south remains tense, with a Druze insurgency and most of the displaced unable to return.",
       "parties": [
         {
           "countryId": "SYR",
@@ -19574,7 +19870,7 @@
         },
         {
           "countryId": "ISR",
-          "role": "mediator"
+          "role": "funder"
         }
       ],
       "involvedCountries": [
@@ -19606,7 +19902,7 @@
           "parties": [
             "SYR"
           ],
-          "description": "Around 1,400 people, mostly Alawite civilians, were killed by pro-government and allied militias.",
+          "description": "Around 1,400 people, mostly Alawite civilians, were killed by government-allied and other militias in revenge attacks.",
           "sources": [
             "https://en.wikipedia.org/wiki/2025_massacres_of_Syrian_Alawites"
           ]
@@ -19614,8 +19910,8 @@
         {
           "id": "seed_syria_sectarian_2025_e2",
           "date": "2025-07-13",
-          "title": "Suwayda clashes; Israel strikes Damascus",
-          "kind": "battle",
+          "title": "Sectarian violence erupts in Suwayda",
+          "kind": "atrocity",
           "severity": 4,
           "location": {
             "lat": 32.71,
@@ -19623,12 +19919,51 @@
             "label": "Suwayda"
           },
           "parties": [
-            "SYR",
-            "ISR"
+            "SYR"
           ],
-          "description": "Druze–Bedouin fighting killed hundreds and displaced tens of thousands; Israel bombed Damascus to protect the Druze.",
+          "description": "Druze–Bedouin fighting and abuses by government-allied forces killed ~1,700 and displaced ~200,000; Druze groups later drove out much of the Bedouin population.",
           "sources": [
             "https://en.wikipedia.org/wiki/Southern_Syria_clashes_(July_2025%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_syria_sectarian_2025_e3",
+          "date": "2025-07-15",
+          "title": "Israel bombs Damascus over the Druze",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 33.51,
+            "lng": 36.29,
+            "label": "Damascus"
+          },
+          "parties": [
+            "ISR",
+            "SYR"
+          ],
+          "description": "Israel struck the Syrian defence ministry and forces near Suwayda, saying it was protecting the Druze.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Southern_Syria_clashes_(July_2025%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_syria_sectarian_2025_e4",
+          "date": "2026-03-20",
+          "title": "Israel strikes Syrian army in the south again",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 32.71,
+            "lng": 36.57,
+            "label": "southern Syria"
+          },
+          "parties": [
+            "ISR",
+            "SYR"
+          ],
+          "description": "Continued Israeli strikes as a low-level Druze insurgency and displacement persisted into 2026.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Druze_insurgency_in_Southern_Syria_(2025%E2%80%93present)"
           ]
         }
       ]
