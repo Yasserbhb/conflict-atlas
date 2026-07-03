@@ -1,5 +1,5 @@
 {
-  "version": "2.9.2",
+  "version": "2.10.0",
   "countries": [
     {
       "id": "AFG",
@@ -1392,7 +1392,131 @@
         "empire",
         "trench warfare"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_ww1_e1",
+          "date": "1914-06-28",
+          "title": "Assassination of Archduke Franz Ferdinand",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 43.86,
+            "lng": 18.42,
+            "label": "Sarajevo"
+          },
+          "parties": [
+            "AUT",
+            "SRB"
+          ],
+          "description": "The killing in Sarajevo set off the chain of alliances that plunged Europe into war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand"
+          ]
+        },
+        {
+          "id": "seed_ww1_e2",
+          "date": "1914-09-06",
+          "title": "First Battle of the Marne",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 48.96,
+            "lng": 3.4,
+            "label": "Marne, France"
+          },
+          "parties": [
+            "FRA",
+            "GBR",
+            "DEU"
+          ],
+          "description": "The Allied stand halted the German advance on Paris and began years of trench warfare.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Battle_of_the_Marne"
+          ]
+        },
+        {
+          "id": "seed_ww1_e3",
+          "date": "1916-02-21",
+          "title": "Battle of Verdun",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 49.16,
+            "lng": 5.38,
+            "label": "Verdun"
+          },
+          "parties": [
+            "FRA",
+            "DEU"
+          ],
+          "description": "Ten months of attrition killed or wounded around 700,000 men for almost no ground.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Verdun"
+          ]
+        },
+        {
+          "id": "seed_ww1_e4",
+          "date": "1916-07-01",
+          "title": "Battle of the Somme",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 50,
+            "lng": 2.68,
+            "label": "Somme"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "DEU"
+          ],
+          "description": "Over a million casualties; nearly 20,000 British troops died on the first day alone.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_the_Somme"
+          ]
+        },
+        {
+          "id": "seed_ww1_e5",
+          "date": "1917-04-06",
+          "title": "United States enters the war",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 38.9,
+            "lng": -77.04,
+            "label": "Washington, D.C."
+          },
+          "parties": [
+            "USA"
+          ],
+          "description": "American entry tipped the balance of manpower and materiel toward the Allies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/American_entry_into_World_War_I"
+          ]
+        },
+        {
+          "id": "seed_ww1_e6",
+          "date": "1918-11-11",
+          "title": "Armistice ends the fighting",
+          "kind": "treaty",
+          "severity": 1,
+          "location": {
+            "lat": 49.42,
+            "lng": 2.83,
+            "label": "Compiègne"
+          },
+          "parties": [
+            "DEU",
+            "FRA",
+            "GBR"
+          ],
+          "description": "The guns fell silent on the Western Front after four years and some 20 million dead.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_armenian_genocide",
@@ -1423,7 +1547,65 @@
         "christians",
         "denial"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_armenian_genocide_e1",
+          "date": "1915-04-24",
+          "title": "Arrest of Armenian intellectuals",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 41.01,
+            "lng": 28.98,
+            "label": "Constantinople"
+          },
+          "parties": [
+            "TUR",
+            "ARM"
+          ],
+          "description": "The round-up in the capital marks the start of the genocide, commemorated each 24 April.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Red_Sunday_(1915)"
+          ]
+        },
+        {
+          "id": "seed_armenian_genocide_e2",
+          "date": "1915-05-27",
+          "title": "Deportations and death marches begin",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 35.33,
+            "lng": 40.14,
+            "label": "Deir ez-Zor"
+          },
+          "parties": [
+            "TUR",
+            "ARM"
+          ],
+          "description": "Armenians were driven on death marches into the Syrian desert; hundreds of thousands perished.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Armenian_genocide"
+          ]
+        },
+        {
+          "id": "seed_armenian_genocide_e3",
+          "date": "1923-01-01",
+          "title": "Genocide ends",
+          "kind": "milestone",
+          "severity": 3,
+          "location": null,
+          "parties": [
+            "TUR",
+            "ARM"
+          ],
+          "description": "An estimated 1 to 1.5 million Armenians had been killed; the population of Anatolia was destroyed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Armenian_genocide"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_ww2",
@@ -1730,7 +1912,107 @@
         "extermination camps",
         "antisemitism"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_holocaust_e1",
+          "date": "1941-09-29",
+          "title": "Babi Yar massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 50.47,
+            "lng": 30.45,
+            "label": "Kyiv"
+          },
+          "parties": [
+            "DEU"
+          ],
+          "description": "Nearly 34,000 Jews were shot over two days as the Einsatzgruppen killings spread east.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Babi_Yar"
+          ]
+        },
+        {
+          "id": "seed_holocaust_e2",
+          "date": "1942-01-20",
+          "title": "Wannsee Conference",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 52.43,
+            "lng": 13.16,
+            "label": "Berlin"
+          },
+          "parties": [
+            "DEU"
+          ],
+          "description": "Senior officials coordinated the \"Final Solution\" — the industrialised murder of Europe’s Jews.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Wannsee_Conference"
+          ]
+        },
+        {
+          "id": "seed_holocaust_e3",
+          "date": "1943-04-19",
+          "title": "Warsaw Ghetto Uprising",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 52.23,
+            "lng": 21.01,
+            "label": "Warsaw"
+          },
+          "parties": [
+            "POL",
+            "DEU"
+          ],
+          "description": "Jewish fighters resisted deportation to the death camps for nearly a month.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Warsaw_Ghetto_Uprising"
+          ]
+        },
+        {
+          "id": "seed_holocaust_e4",
+          "date": "1944-05-15",
+          "title": "Deportation of Hungarian Jews to Auschwitz",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 50.03,
+            "lng": 19.2,
+            "label": "Auschwitz"
+          },
+          "parties": [
+            "DEU",
+            "HUN"
+          ],
+          "description": "Around 430,000 were deported in eight weeks, most murdered on arrival.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Auschwitz_concentration_camp"
+          ]
+        },
+        {
+          "id": "seed_holocaust_e5",
+          "date": "1945-01-27",
+          "title": "Liberation of Auschwitz",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 50.03,
+            "lng": 19.2,
+            "label": "Auschwitz"
+          },
+          "parties": [
+            "RUS",
+            "DEU"
+          ],
+          "description": "Soviet troops entered the largest death camp; some six million Jews had been murdered.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Liberation_of_Auschwitz"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_nakba",
@@ -1826,7 +2108,91 @@
         "korea",
         "ceasefire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_korean_war_e1",
+          "date": "1950-06-25",
+          "title": "North Korea invades the South",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 37.57,
+            "lng": 126.98,
+            "label": "across the 38th parallel"
+          },
+          "parties": [
+            "PRK",
+            "KOR"
+          ],
+          "description": "Northern forces swept south, nearly overrunning the peninsula within weeks.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Korean_War"
+          ]
+        },
+        {
+          "id": "seed_korean_war_e2",
+          "date": "1950-09-15",
+          "title": "Inchon landing",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 37.48,
+            "lng": 126.63,
+            "label": "Incheon"
+          },
+          "parties": [
+            "USA",
+            "KOR"
+          ],
+          "description": "A bold amphibious assault reversed the war and retook Seoul.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Inchon"
+          ]
+        },
+        {
+          "id": "seed_korean_war_e3",
+          "date": "1950-10-19",
+          "title": "China enters the war",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 41,
+            "lng": 126.51,
+            "label": "Yalu River"
+          },
+          "parties": [
+            "CHN",
+            "PRK"
+          ],
+          "description": "Chinese intervention pushed UN forces back and locked the war into stalemate.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/China_and_the_Korean_War"
+          ]
+        },
+        {
+          "id": "seed_korean_war_e4",
+          "date": "1953-07-27",
+          "title": "Armistice signed at Panmunjom",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 37.96,
+            "lng": 126.68,
+            "label": "Panmunjom"
+          },
+          "parties": [
+            "PRK",
+            "KOR",
+            "USA",
+            "CHN"
+          ],
+          "description": "An armistice — never a peace treaty — froze the war along the 38th parallel.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Korean_Armistice_Agreement"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_vietnam_war",
@@ -1877,7 +2243,109 @@
         "napalm",
         "agent orange"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_vietnam_war_e1",
+          "date": "1964-08-02",
+          "title": "Gulf of Tonkin incident",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 19.5,
+            "lng": 106.5,
+            "label": "Gulf of Tonkin"
+          },
+          "parties": [
+            "USA",
+            "VNM"
+          ],
+          "description": "A disputed naval clash was used to justify a major escalation of US involvement.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gulf_of_Tonkin_incident"
+          ]
+        },
+        {
+          "id": "seed_vietnam_war_e2",
+          "date": "1968-01-30",
+          "title": "Tet Offensive",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 10.82,
+            "lng": 106.63,
+            "label": "across South Vietnam"
+          },
+          "parties": [
+            "VNM",
+            "USA"
+          ],
+          "description": "A vast coordinated assault shattered American confidence that the war was being won.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tet_Offensive"
+          ]
+        },
+        {
+          "id": "seed_vietnam_war_e3",
+          "date": "1968-03-16",
+          "title": "My Lai massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 15.18,
+            "lng": 108.87,
+            "label": "My Lai"
+          },
+          "parties": [
+            "USA",
+            "VNM"
+          ],
+          "description": "US soldiers murdered hundreds of unarmed villagers; its exposure galvanised anti-war opinion.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/My_Lai_massacre"
+          ]
+        },
+        {
+          "id": "seed_vietnam_war_e4",
+          "date": "1973-01-27",
+          "title": "Paris Peace Accords",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "USA",
+            "VNM"
+          ],
+          "description": "The accords ended direct US involvement, though the war between North and South continued.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Paris_Peace_Accords"
+          ]
+        },
+        {
+          "id": "seed_vietnam_war_e5",
+          "date": "1975-04-30",
+          "title": "Fall of Saigon",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 10.82,
+            "lng": 106.63,
+            "label": "Saigon"
+          },
+          "parties": [
+            "VNM",
+            "USA"
+          ],
+          "description": "North Vietnamese tanks entered Saigon, ending the war and reunifying Vietnam.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Fall_of_Saigon"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_guatemalan_genocide",
@@ -1945,7 +2413,67 @@
         "pol pot",
         "year zero"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_cambodian_genocide_e1",
+          "date": "1975-04-17",
+          "title": "Khmer Rouge capture Phnom Penh",
+          "kind": "milestone",
+          "severity": 4,
+          "location": {
+            "lat": 11.56,
+            "lng": 104.92,
+            "label": "Phnom Penh"
+          },
+          "parties": [
+            "KHM"
+          ],
+          "description": "The Khmer Rouge emptied the cities and began remaking society at gunpoint.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Fall_of_Phnom_Penh"
+          ]
+        },
+        {
+          "id": "seed_cambodian_genocide_e2",
+          "date": "1976-01-01",
+          "title": "The Killing Fields",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 11.48,
+            "lng": 104.9,
+            "label": "Choeung Ek"
+          },
+          "parties": [
+            "KHM"
+          ],
+          "description": "Execution, forced labour and starvation killed roughly 1.5–2 million people.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Killing_Fields"
+          ]
+        },
+        {
+          "id": "seed_cambodian_genocide_e3",
+          "date": "1979-01-07",
+          "title": "Vietnamese invasion topples the regime",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 11.56,
+            "lng": 104.92,
+            "label": "Phnom Penh"
+          },
+          "parties": [
+            "VNM",
+            "KHM"
+          ],
+          "description": "Vietnam ousted the Khmer Rouge, ending the genocide.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Cambodian%E2%80%93Vietnamese_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_soviet_afghan_war",
@@ -1992,7 +2520,70 @@
         "islam",
         "soviet"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_soviet_afghan_war_e1",
+          "date": "1979-12-24",
+          "title": "Soviet invasion of Afghanistan",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 34.53,
+            "lng": 69.17,
+            "label": "Kabul"
+          },
+          "parties": [
+            "RUS",
+            "AFG"
+          ],
+          "description": "Soviet forces intervened to prop up the communist government, sparking a decade of war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Soviet%E2%80%93Afghan_War"
+          ]
+        },
+        {
+          "id": "seed_soviet_afghan_war_e2",
+          "date": "1986-09-01",
+          "title": "CIA-supplied Stinger missiles reach the mujahideen",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 33,
+            "lng": 65,
+            "label": "Afghanistan"
+          },
+          "parties": [
+            "AFG",
+            "USA",
+            "PAK"
+          ],
+          "description": "US and Pakistani backing turned the insurgency into a costly quagmire for Moscow.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Cyclone"
+          ]
+        },
+        {
+          "id": "seed_soviet_afghan_war_e3",
+          "date": "1989-02-15",
+          "title": "Soviet withdrawal complete",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 37.22,
+            "lng": 67.28,
+            "label": "Hairatan"
+          },
+          "parties": [
+            "RUS",
+            "AFG"
+          ],
+          "description": "The last Soviet troops left after around a million Afghan deaths.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Soviet%E2%80%93Afghan_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_iran_iraq_war",
@@ -2089,7 +2680,70 @@
         "coalition",
         "saddam"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_gulf_war_e1",
+          "date": "1990-08-02",
+          "title": "Iraq invades Kuwait",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 29.38,
+            "lng": 47.99,
+            "label": "Kuwait City"
+          },
+          "parties": [
+            "IRQ",
+            "KWT"
+          ],
+          "description": "Saddam Hussein's seizure of Kuwait triggered a US-led international coalition.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Invasion_of_Kuwait"
+          ]
+        },
+        {
+          "id": "seed_gulf_war_e2",
+          "date": "1991-01-17",
+          "title": "Operation Desert Storm",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.31,
+            "lng": 44.36,
+            "label": "Baghdad"
+          },
+          "parties": [
+            "USA",
+            "IRQ"
+          ],
+          "description": "A massive air campaign opened the coalition war to expel Iraq from Kuwait.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gulf_War"
+          ]
+        },
+        {
+          "id": "seed_gulf_war_e3",
+          "date": "1991-02-28",
+          "title": "Kuwait liberated, ceasefire",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 29.38,
+            "lng": 47.99,
+            "label": "Kuwait"
+          },
+          "parties": [
+            "IRQ",
+            "USA",
+            "KWT"
+          ],
+          "description": "A 100-hour ground offensive ended the war; retreating forces set oil wells ablaze.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gulf_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_bosnian_war",
@@ -2136,7 +2790,90 @@
         "yugoslavia",
         "balkans"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_bosnian_war_e1",
+          "date": "1992-04-05",
+          "title": "Siege of Sarajevo begins",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 43.86,
+            "lng": 18.42,
+            "label": "Sarajevo"
+          },
+          "parties": [
+            "BIH",
+            "SRB"
+          ],
+          "description": "The longest siege of a capital in modern history lasted nearly four years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Sarajevo"
+          ]
+        },
+        {
+          "id": "seed_bosnian_war_e2",
+          "date": "1995-07-11",
+          "title": "Srebrenica massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 44.1,
+            "lng": 19.3,
+            "label": "Srebrenica"
+          },
+          "parties": [
+            "SRB",
+            "BIH"
+          ],
+          "description": "Around 8,000 Bosniak men and boys were murdered in a UN \"safe area\" — ruled genocide.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Srebrenica_massacre"
+          ]
+        },
+        {
+          "id": "seed_bosnian_war_e3",
+          "date": "1995-08-30",
+          "title": "NATO air campaign",
+          "kind": "intervention",
+          "severity": 3,
+          "location": {
+            "lat": 43.9,
+            "lng": 18.3,
+            "label": "Bosnia"
+          },
+          "parties": [
+            "USA",
+            "SRB"
+          ],
+          "description": "Operation Deliberate Force pushed the parties toward negotiations.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Deliberate_Force"
+          ]
+        },
+        {
+          "id": "seed_bosnian_war_e4",
+          "date": "1995-12-14",
+          "title": "Dayton Agreement",
+          "kind": "treaty",
+          "severity": 1,
+          "location": {
+            "lat": 39.76,
+            "lng": -84.19,
+            "label": "Dayton"
+          },
+          "parties": [
+            "BIH",
+            "SRB",
+            "HRV"
+          ],
+          "description": "The accords ended the war and split Bosnia into two entities.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Dayton_Agreement"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_rwandan_genocide",
@@ -2379,7 +3116,68 @@
         "ethnic cleansing",
         "bombing"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_kosovo_war_e1",
+          "date": "1999-01-15",
+          "title": "Račak massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 42.4,
+            "lng": 21.05,
+            "label": "Račak"
+          },
+          "parties": [
+            "SRB"
+          ],
+          "description": "The killing of Kosovar Albanian civilians galvanised international intervention.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Ra%C4%8Dak_massacre"
+          ]
+        },
+        {
+          "id": "seed_kosovo_war_e2",
+          "date": "1999-03-24",
+          "title": "NATO bombing campaign begins",
+          "kind": "intervention",
+          "severity": 4,
+          "location": {
+            "lat": 44.79,
+            "lng": 20.45,
+            "label": "Belgrade"
+          },
+          "parties": [
+            "USA",
+            "GBR",
+            "SRB"
+          ],
+          "description": "NATO launched a 78-day air war against Yugoslavia without UN authorisation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/NATO_bombing_of_Yugoslavia"
+          ]
+        },
+        {
+          "id": "seed_kosovo_war_e3",
+          "date": "1999-06-10",
+          "title": "Serbian withdrawal ends the war",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 42.66,
+            "lng": 21.16,
+            "label": "Pristina"
+          },
+          "parties": [
+            "SRB"
+          ],
+          "description": "Serb forces withdrew and Kosovo came under UN administration.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Kosovo_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_darfur_genocide",
@@ -2412,7 +3210,67 @@
         "ICC",
         "oil"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_darfur_genocide_e1",
+          "date": "2003-04-25",
+          "title": "Rebellion and Janjaweed campaign begin",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13,
+            "lng": 24,
+            "label": "Darfur"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "Government-backed militias waged a scorched-earth campaign against Darfuri civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/War_in_Darfur"
+          ]
+        },
+        {
+          "id": "seed_darfur_genocide_e2",
+          "date": "2004-09-09",
+          "title": "US declares the killings genocide",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 13,
+            "lng": 24,
+            "label": "Darfur"
+          },
+          "parties": [
+            "SDN",
+            "USA"
+          ],
+          "description": "International recognition grew as hundreds of thousands died and millions were displaced.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/War_in_Darfur"
+          ]
+        },
+        {
+          "id": "seed_darfur_genocide_e3",
+          "date": "2009-03-04",
+          "title": "ICC indicts President al-Bashir",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 52.08,
+            "lng": 4.31,
+            "label": "The Hague"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The first ICC arrest warrant for a sitting head of state, for war crimes in Darfur.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Omar_al-Bashir"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_iraq_war",
@@ -2450,7 +3308,90 @@
         "war on terror",
         "imperialism"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_iraq_war_e1",
+          "date": "2003-03-20",
+          "title": "US-led invasion begins",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.31,
+            "lng": 44.36,
+            "label": "Baghdad"
+          },
+          "parties": [
+            "USA",
+            "GBR",
+            "IRQ"
+          ],
+          "description": "The invasion was launched on the false premise of weapons of mass destruction.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2003_invasion_of_Iraq"
+          ]
+        },
+        {
+          "id": "seed_iraq_war_e2",
+          "date": "2003-04-09",
+          "title": "Fall of Baghdad",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 33.31,
+            "lng": 44.36,
+            "label": "Baghdad"
+          },
+          "parties": [
+            "USA",
+            "IRQ"
+          ],
+          "description": "Baghdad fell and Saddam's statue was toppled; a long insurgency soon followed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Baghdad_(2003)"
+          ]
+        },
+        {
+          "id": "seed_iraq_war_e3",
+          "date": "2004-04-28",
+          "title": "Abu Ghraib torture revealed",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 33.29,
+            "lng": 44.06,
+            "label": "Abu Ghraib"
+          },
+          "parties": [
+            "USA",
+            "IRQ"
+          ],
+          "description": "Photographs of prisoner abuse by US personnel caused global outrage.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Abu_Ghraib_torture_and_prisoner_abuse"
+          ]
+        },
+        {
+          "id": "seed_iraq_war_e4",
+          "date": "2011-12-18",
+          "title": "US withdrawal",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 33.31,
+            "lng": 44.36,
+            "label": "Baghdad"
+          },
+          "parties": [
+            "USA",
+            "IRQ"
+          ],
+          "description": "US forces left after nearly nine years and hundreds of thousands of deaths.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Withdrawal_of_United_States_troops_from_Iraq_(2007%E2%80%932011)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_palestine_occupation",
@@ -2549,7 +3490,105 @@
         "chemical weapons",
         "barrel bombs"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_syrian_civil_war_e1",
+          "date": "2011-03-15",
+          "title": "Protests erupt",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 32.62,
+            "lng": 36.1,
+            "label": "Daraa"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "Arab Spring protests met with lethal force spiralled into civil war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Syrian_civil_war"
+          ]
+        },
+        {
+          "id": "seed_syrian_civil_war_e2",
+          "date": "2013-08-21",
+          "title": "Ghouta chemical attack",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 33.52,
+            "lng": 36.36,
+            "label": "Ghouta"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "A sarin attack on rebel-held suburbs killed over a thousand civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Ghouta_chemical_attack"
+          ]
+        },
+        {
+          "id": "seed_syrian_civil_war_e3",
+          "date": "2014-06-29",
+          "title": "ISIS declares a caliphate",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 35.95,
+            "lng": 39.01,
+            "label": "Raqqa"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "The Islamic State seized vast territory across Syria and Iraq.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Islamic_State"
+          ]
+        },
+        {
+          "id": "seed_syrian_civil_war_e4",
+          "date": "2016-12-22",
+          "title": "Fall of Aleppo",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 36.2,
+            "lng": 37.16,
+            "label": "Aleppo"
+          },
+          "parties": [
+            "SYR",
+            "RUS"
+          ],
+          "description": "Russian-backed forces retook Aleppo after a devastating siege.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Aleppo_(2012%E2%80%932016)"
+          ]
+        },
+        {
+          "id": "seed_syrian_civil_war_e5",
+          "date": "2024-12-08",
+          "title": "Assad regime falls",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 33.51,
+            "lng": 36.29,
+            "label": "Damascus"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "A lightning rebel offensive toppled the Assad government after 13 years of war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Fall_of_the_Assad_regime"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_crimea_annexation",
@@ -3269,7 +4308,85 @@
         "disputed",
         "drone warfare"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_nagorno_karabakh_e1",
+          "date": "1988-02-20",
+          "title": "Conflict erupts over the enclave",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 39.82,
+            "lng": 46.75,
+            "label": "Stepanakert"
+          },
+          "parties": [
+            "ARM",
+            "AZE"
+          ],
+          "description": "Competing claims to Nagorno-Karabakh ignited as the USSR unravelled.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nagorno-Karabakh_conflict"
+          ]
+        },
+        {
+          "id": "seed_nagorno_karabakh_e2",
+          "date": "1994-05-12",
+          "title": "Ceasefire ends the first war",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "ARM",
+            "AZE"
+          ],
+          "description": "Armenian forces held the enclave and surrounding districts under a frozen ceasefire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Nagorno-Karabakh_War"
+          ]
+        },
+        {
+          "id": "seed_nagorno_karabakh_e3",
+          "date": "2020-09-27",
+          "title": "Second Nagorno-Karabakh War",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 39.82,
+            "lng": 46.75,
+            "label": "Nagorno-Karabakh"
+          },
+          "parties": [
+            "AZE",
+            "ARM"
+          ],
+          "description": "Azerbaijan retook much of the territory in a 44-day war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2020_Nagorno-Karabakh_war"
+          ]
+        },
+        {
+          "id": "seed_nagorno_karabakh_e4",
+          "date": "2023-09-19",
+          "title": "Azerbaijani offensive; Armenian exodus",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 39.82,
+            "lng": 46.75,
+            "label": "Stepanakert"
+          },
+          "parties": [
+            "AZE",
+            "ARM"
+          ],
+          "description": "A one-day offensive dissolved the enclave; almost its entire Armenian population fled.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2023_Azerbaijani_offensive_in_Nagorno-Karabakh"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_sahel_insurgency",
@@ -3351,7 +4468,69 @@
         "setif",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_algerian_war_e1",
+          "date": "1954-11-01",
+          "title": "FLN launches the war",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 36.75,
+            "lng": 3.06,
+            "label": "Algiers"
+          },
+          "parties": [
+            "DZA",
+            "FRA"
+          ],
+          "description": "Coordinated attacks (the \"Toussaint Rouge\") opened the independence war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Algerian_War"
+          ]
+        },
+        {
+          "id": "seed_algerian_war_e2",
+          "date": "1957-01-07",
+          "title": "Battle of Algiers",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 36.75,
+            "lng": 3.06,
+            "label": "Algiers"
+          },
+          "parties": [
+            "FRA",
+            "DZA"
+          ],
+          "description": "French forces broke the FLN network in the capital using systematic torture.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Algiers_(1956%E2%80%931957)"
+          ]
+        },
+        {
+          "id": "seed_algerian_war_e3",
+          "date": "1962-03-18",
+          "title": "Évian Accords / independence",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 46.4,
+            "lng": 6.59,
+            "label": "Évian"
+          },
+          "parties": [
+            "DZA",
+            "FRA"
+          ],
+          "description": "After some 400,000–1.5 million deaths, Algeria won independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/%C3%89vian_Accords"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_france_rwanda",
@@ -4328,7 +5507,67 @@
         "civil war",
         "white terror"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_spanish_civil_war_e1",
+          "date": "1936-07-17",
+          "title": "Nationalist coup begins the war",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 35.29,
+            "lng": -2.94,
+            "label": "Melilla"
+          },
+          "parties": [
+            "ESP"
+          ],
+          "description": "Franco's revolt against the Republic split Spain and drew in foreign powers.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Spanish_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_spanish_civil_war_e2",
+          "date": "1937-04-26",
+          "title": "Bombing of Guernica",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 43.32,
+            "lng": -2.68,
+            "label": "Guernica"
+          },
+          "parties": [
+            "ESP",
+            "DEU"
+          ],
+          "description": "German and Italian aircraft razed the town, immortalised in Picasso’s painting.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Bombing_of_Guernica"
+          ]
+        },
+        {
+          "id": "seed_spanish_civil_war_e3",
+          "date": "1939-04-01",
+          "title": "Franco declares victory",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 40.42,
+            "lng": -3.7,
+            "label": "Madrid"
+          },
+          "parties": [
+            "ESP"
+          ],
+          "description": "The Republic fell, beginning a 36-year dictatorship.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Spanish_Civil_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_nanjing_sino_japanese",
@@ -4361,7 +5600,69 @@
         "mass rape",
         "wwii"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_nanjing_sino_japanese_e1",
+          "date": "1937-07-07",
+          "title": "Marco Polo Bridge Incident",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 39.85,
+            "lng": 116.21,
+            "label": "Beijing"
+          },
+          "parties": [
+            "JPN",
+            "CHN"
+          ],
+          "description": "A skirmish opened full-scale war between Japan and China.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Marco_Polo_Bridge_Incident"
+          ]
+        },
+        {
+          "id": "seed_nanjing_sino_japanese_e2",
+          "date": "1937-12-13",
+          "title": "Nanjing Massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 32.06,
+            "lng": 118.8,
+            "label": "Nanjing"
+          },
+          "parties": [
+            "JPN",
+            "CHN"
+          ],
+          "description": "Japanese troops murdered an estimated 200,000–300,000 and committed mass rape.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nanjing_Massacre"
+          ]
+        },
+        {
+          "id": "seed_nanjing_sino_japanese_e3",
+          "date": "1945-08-15",
+          "title": "Japan surrenders",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 39.9,
+            "lng": 116.4,
+            "label": "China"
+          },
+          "parties": [
+            "JPN",
+            "CHN"
+          ],
+          "description": "Eight years of war left China with 15–20 million dead.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Sino-Japanese_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_bengal_famine",
@@ -4501,7 +5802,69 @@
         "indochina",
         "cold war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_first_indochina_e1",
+          "date": "1946-12-19",
+          "title": "War breaks out in Hanoi",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 21.03,
+            "lng": 105.85,
+            "label": "Hanoi"
+          },
+          "parties": [
+            "VNM",
+            "FRA"
+          ],
+          "description": "The Viet Minh's independence struggle against France turned to open war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Indochina_War"
+          ]
+        },
+        {
+          "id": "seed_first_indochina_e2",
+          "date": "1954-05-07",
+          "title": "Battle of Dien Bien Phu",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 21.39,
+            "lng": 103.02,
+            "label": "Dien Bien Phu"
+          },
+          "parties": [
+            "VNM",
+            "FRA"
+          ],
+          "description": "The Viet Minh victory ended French rule in Indochina.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Dien_Bien_Phu"
+          ]
+        },
+        {
+          "id": "seed_first_indochina_e3",
+          "date": "1954-07-21",
+          "title": "Geneva Accords partition Vietnam",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 46.2,
+            "lng": 6.14,
+            "label": "Geneva"
+          },
+          "parties": [
+            "VNM",
+            "FRA"
+          ],
+          "description": "Vietnam was split at the 17th parallel, setting the stage for the next war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1954_Geneva_Conference"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_greek_civil_war",
@@ -4606,7 +5969,67 @@
         "decolonization",
         "nasser"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_suez_crisis_e1",
+          "date": "1956-07-26",
+          "title": "Nasser nationalises the Suez Canal",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 30.58,
+            "lng": 32.27,
+            "label": "Suez Canal"
+          },
+          "parties": [
+            "EGY"
+          ],
+          "description": "Egypt's seizure of the canal provoked a secret Anglo-French-Israeli plan.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Suez_Crisis"
+          ]
+        },
+        {
+          "id": "seed_suez_crisis_e2",
+          "date": "1956-10-29",
+          "title": "Israel, Britain and France invade",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 31.26,
+            "lng": 32.3,
+            "label": "Port Said"
+          },
+          "parties": [
+            "ISR",
+            "GBR",
+            "FRA",
+            "EGY"
+          ],
+          "description": "The invasion succeeded militarily but became a diplomatic disaster.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Suez_Crisis"
+          ]
+        },
+        {
+          "id": "seed_suez_crisis_e3",
+          "date": "1956-11-07",
+          "title": "Ceasefire under superpower pressure",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "GBR",
+            "FRA",
+            "EGY"
+          ],
+          "description": "US and Soviet pressure forced a humiliating withdrawal, marking the end of British imperial power.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Suez_Crisis"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_hungarian_revolution",
@@ -4936,7 +6359,70 @@
         "operation searchlight",
         "south asia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_bangladesh_genocide_e1",
+          "date": "1971-03-25",
+          "title": "Operation Searchlight",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 23.81,
+            "lng": 90.41,
+            "label": "Dhaka"
+          },
+          "parties": [
+            "PAK",
+            "BGD"
+          ],
+          "description": "The Pakistani army launched a brutal crackdown on Bengali nationalists and civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Searchlight"
+          ]
+        },
+        {
+          "id": "seed_bangladesh_genocide_e2",
+          "date": "1971-04-01",
+          "title": "Mass killings and refugee crisis",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 24,
+            "lng": 90,
+            "label": "East Pakistan"
+          },
+          "parties": [
+            "PAK",
+            "BGD"
+          ],
+          "description": "Up to 3 million were killed and around 10 million fled to India.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1971_Bangladesh_genocide"
+          ]
+        },
+        {
+          "id": "seed_bangladesh_genocide_e3",
+          "date": "1971-12-16",
+          "title": "Pakistan surrenders; Bangladesh is born",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 23.81,
+            "lng": 90.41,
+            "label": "Dhaka"
+          },
+          "parties": [
+            "PAK",
+            "BGD",
+            "IND"
+          ],
+          "description": "Indian intervention ended the war and secured Bangladeshi independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Surrender_of_Pakistan"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_yom_kippur",
@@ -4982,7 +6468,67 @@
         "cold war",
         "camp david"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_yom_kippur_e1",
+          "date": "1973-10-06",
+          "title": "Egypt and Syria launch a surprise attack",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 30,
+            "lng": 32.55,
+            "label": "Suez Canal"
+          },
+          "parties": [
+            "EGY",
+            "SYR",
+            "ISR"
+          ],
+          "description": "A coordinated assault on the Jewish holy day caught Israel off guard.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Yom_Kippur_War"
+          ]
+        },
+        {
+          "id": "seed_yom_kippur_e2",
+          "date": "1973-10-15",
+          "title": "Israeli counteroffensive crosses the Suez",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 30.6,
+            "lng": 32.35,
+            "label": "Suez Canal"
+          },
+          "parties": [
+            "ISR",
+            "EGY"
+          ],
+          "description": "Israel encircled the Egyptian Third Army before superpower pressure halted the fighting.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Yom_Kippur_War"
+          ]
+        },
+        {
+          "id": "seed_yom_kippur_e3",
+          "date": "1973-10-25",
+          "title": "Ceasefire",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "ISR",
+            "EGY",
+            "SYR"
+          ],
+          "description": "The war reset Middle East diplomacy and led toward the Camp David Accords.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Yom_Kippur_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_chile_pinochet",
