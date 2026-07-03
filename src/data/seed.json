@@ -1,5 +1,5 @@
 {
-  "version": "2.19.1",
+  "version": "2.19.2",
   "countries": [
     {
       "id": "AFG",
@@ -4983,25 +4983,6 @@
           ]
         },
         {
-          "id": "seed_sudan_civil_war_e2",
-          "date": "2023-06-15",
-          "title": "Ethnic massacres in El Geneina",
-          "kind": "atrocity",
-          "severity": 5,
-          "location": {
-            "lat": 13.45,
-            "lng": 22.45,
-            "label": "El Geneina, Darfur"
-          },
-          "parties": [
-            "SDN"
-          ],
-          "description": "RSF and allied militias carried out ethnically-targeted killings in Darfur.",
-          "sources": [
-            "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
-          ]
-        },
-        {
           "id": "seed_sudan_civil_war_e3",
           "date": "2024-08-01",
           "title": "Mass displacement and famine",
@@ -5037,25 +5018,6 @@
           "description": "The Sudanese Armed Forces retook the capital from the RSF after two years.",
           "sources": [
             "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
-          ]
-        },
-        {
-          "id": "seed_sudan_civil_war_e5",
-          "date": "2025-10-26",
-          "title": "Fall of El Fasher and mass killings",
-          "kind": "atrocity",
-          "severity": 5,
-          "location": {
-            "lat": 13.63,
-            "lng": 25.35,
-            "label": "El Fasher, Darfur"
-          },
-          "parties": [
-            "SDN"
-          ],
-          "description": "The RSF took El Fasher after an 18-month siege and killed tens of thousands — possibly the largest massacre of the 21st century.",
-          "sources": [
-            "https://en.wikipedia.org/wiki/Siege_of_El_Fasher"
           ]
         }
       ]
