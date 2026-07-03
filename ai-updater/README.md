@@ -46,28 +46,48 @@ Before creating anything, the **Resolver** asks: is this already in the base —
 different name? Match by title/**aliases**/parties/region/date-overlap → *already-known* /
 *attach* / *new* / *ambiguous→human*. Same event, many languages, many names.
 
+## The closed loop: scan → review → apply
+
+`scan` finds and proposes; a human approves; **`apply` folds the approved items into `seed.json`
+coherently**. The merger (`merge.py`) is deterministic code, one explicit rule per case:
+
+- attach → append the event, re-sort by date, **raise** conflict severity to the event's (never
+  lower), union `involvedCountries`, add any new party+role (keep existing roles), union aliases,
+  and change `status` **only from the latest event** (a backfilled old battle can't reopen a
+  resolved war).
+- new_conflict → convert and append (snake_case → the app's camelCase shape).
+- Only **approved** (`needs_human=false`) and **non-provisional** proposals apply; the rest stay in
+  the queue. After folding, `validate()` re-checks the whole dataset (`parties ⊆ involvedCountries`,
+  event parties are listed countries, ISO dates, severity 1–5, no `ongoing && ended`) — on any
+  failure it **writes nothing** and exits non-zero.
+
 ## Build order
 
 Phase 1 is **backfill on one region/decade** — the safest place to trust-test the whole agent
 team, because its answers are checkable against known history before it ever runs unattended.
-Then merge, then watch-mode, then multilingual hardening. See ARCHITECTURE.md §12.
+The merger (Phase 2) is now implemented; next is watch-mode, then multilingual hardening. See
+ARCHITECTURE.md §12.
 
 ## Run it (Python)
 
-The Phase-1 pipeline is implemented in `conflict_updater/`.
+The `scan → review → apply` loop is implemented in `conflict_updater/`.
 
 ```bash
 cd ai-updater
-python -m pytest              # 12 tests, offline (fake LLM + search — no API key)
+python -m pytest              # 19 tests, offline (fake LLM + search — no API key)
 
 pip install -r requirements.txt
 cp .env.example .env          # add OPENAI_API_KEY (+ TAVILY_API_KEY)
-python -m conflict_updater "1990..2003" --region Africa   # fill the past
-python -m conflict_updater week                           # the routine update
+python -m conflict_updater "1990..2003" --region Africa   # scan: fill the past
+python -m conflict_updater week                           # scan: the routine update
+# ... open out/review_*.md, edit out/proposals_*.json (set needs_human=false on the ones you accept)
+python -m conflict_updater apply out/proposals_*.json     # fold approved items into seed.json
+python -m conflict_updater apply out/proposals_*.json --dry-run   # report only, write nothing
 ```
 
-Output lands in `out/`: a `proposals_*.json` (machine-readable, to feed into `seed.json`) and a
-`review_*.md` (the human queue — only the uncertain/contested items need you). Layout:
+`scan` output lands in `out/`: a `proposals_*.json` (machine-readable) and a `review_*.md` (the
+human queue — only the uncertain/contested items need you). `apply` reads the JSON back and writes
+`seed.json`. Layout:
 
 ```
 conflict_updater/
@@ -75,12 +95,15 @@ conflict_updater/
   prompts.py   one system prompt per agent
   agents.py    the agent team (scoper/extractor/resolver/enrichers/factcheck/reconciler)
   dedup.py     deterministic candidate finder (the cheap half of the Resolver)
-  pipeline.py  scan() — the one operation
+  pipeline.py  scan() — the discovery half of the operation
+  merge.py     apply()/validate() — the coherent write-back into seed.json
   llm.py       swappable LLM client (OpenAI default)   search.py  swappable web search
-  store.py     load seed.json + write proposals/review   config.py  env settings
+  store.py     load seed.json + write/read proposals   config.py  env settings
+  cli.py       scan + apply subcommands              __main__.py  python -m entrypoint
 tests/         offline tests with fakes
 ```
 
 ---
-*Status: design locked; Phase-1 pipeline implemented in Python & offline-tested; a live run needs
-an API key. Origin & requirements: project memory `project_agentic_pipeline`.*
+*Status: design locked; the scan → review → apply loop is implemented in Python & offline-tested
+(19 tests); a live run needs an API key. Origin & requirements: project memory
+`project_agentic_pipeline`.*

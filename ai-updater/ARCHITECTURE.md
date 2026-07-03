@@ -5,9 +5,10 @@
 > work (fetch, shape-check, dedup lookup, merge); LLM agents do **only judgment**, each in one
 > lane. **Every uncertain path ends at a human review queue — never a silent guess or a dead end.**
 
-Status: **design locked; the Phase-1 pipeline is implemented in Python** (`conflict_updater/`,
-offline-tested with fake LLM/search — a live run needs an API key). Agent prompts live in
-`conflict_updater/prompts.py`, the typed models in `conflict_updater/schema.py`.
+Status: **design locked; the full `scan → review → apply` loop is implemented in Python**
+(`conflict_updater/`, offline-tested with fake LLM/search — a live run needs an API key). Agent
+prompts live in `conflict_updater/prompts.py`, the typed models in `conflict_updater/schema.py`,
+and the coherent merger in `conflict_updater/merge.py`.
 
 ---
 
@@ -293,23 +294,35 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
   output schema; the model does the multilingual reading directly.
 - **Web search** via a swappable `SearchClient` (`search.py`, Tavily default) for discovery +
   fact-check; ACLED/UCDP as structured anchors (later phase).
-- **One entrypoint:** `scan(period, region?, topic?)` → CLI `python -m conflict_updater "1990..2003"`;
-  the weekly cron just calls `python -m conflict_updater week`. Output = a proposals JSON + a
-  human-review markdown; an approve step feeds the accepted items into `seed.json`.
+- **Two entrypoints, one loop:**
+  - `scan(period, region?, topic?)` → CLI `python -m conflict_updater "1990..2003"` (bare period ==
+    scan; the weekly cron calls `scan week`). Output = a proposals JSON + a human-review markdown.
+  - `apply(proposals, seed)` (`merge.py`) → CLI `python -m conflict_updater apply out/proposals_*.json`.
+    Folds only **approved, non-provisional** proposals into `seed.json`, then `validate()`s the whole
+    dataset; if any invariant fails it writes nothing and exits non-zero. `--dry-run` reports only.
+- **The merger's coherence rules** (every case has one): attach appends the event, re-sorts by date,
+  **raises** conflict severity to the event's (never lowers), unions `involvedCountries`, adds any new
+  party+role (never clobbering an existing role), unions aliases, and lets `status` change **only from
+  the latest event** — a backfilled old battle can't reopen a resolved war. `validate()` enforces the
+  hard invariants: `parties ⊆ involvedCountries`, every event party is a listed country, ISO dates,
+  severity 1–5, and no `ongoing && status∈{ended,resolved}`.
 - **Tested offline:** a fake LLM + fake search drive the whole pipeline under `pytest` with no API
-  key (12 tests green). A live run needs `OPENAI_API_KEY` (+ `TAVILY_API_KEY`). DB migration later,
-  once the file queues get messy.
+  key (19 tests green, incl. merge + a JSON round-trip). A live run needs `OPENAI_API_KEY`
+  (+ `TAVILY_API_KEY`). DB migration later, once the file queues get messy.
 
 ---
 
 ## 12. Build roadmap
 
-- **Phase 0 (design):** this doc + agent specs + schemas + config templates. *(current)*
+- **Phase 0 (design):** this doc + agent specs + schemas + config templates. ✅ *done*
 - **Phase 1 — `scan()` on one past window:** Scoper + Extractor + Resolver + enrichers +
   Reconciler, web-search only, run on **one region/decade**; emits a `review/*.md` diff, **no
   merge**. A settled historical window is the safest first target — the answer is checkable.
-- **Phase 2:** the Merger + human-review CLI + source verification → approved diffs actually land
-  (still human-gated). `scan()` is now usable on any window.
+  ✅ *implemented + offline-tested (needs a live keyed run to trust-test against known history)*
+- **Phase 2 — the Merger + apply CLI:** `merge.apply()` + `merge.validate()` fold approved,
+  non-provisional proposals into `seed.json` coherently (all rules in §11), human-gated.
+  `scan → review → apply` is now a closed loop. ✅ *implemented + offline-tested.* Remaining:
+  source-existence verification wired into the gate before an auto-approve.
 - **Phase 3 — automate it:** the recency gate + lifecycle dwell timers, then the **weekly cron**
   that just calls `scan([last 7 days])`. Same code, now unattended.
 - **Phase 4:** multilingual source expansion + ACLED/UCDP anchors + cross-alignment corroboration

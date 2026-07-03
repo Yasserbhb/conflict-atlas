@@ -49,6 +49,20 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
     return out
 
 
+def load_seed_dict(seed_json: Path) -> dict:
+    return json.loads(Path(seed_json).read_text(encoding="utf-8"))
+
+
+def write_seed_dict(seed_json: Path, data: dict) -> None:
+    Path(seed_json).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def load_proposals(path: Path) -> list[Proposal]:
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    raw = data.get("proposals", data) if isinstance(data, dict) else data
+    return [Proposal.model_validate(p) for p in raw]
+
+
 def write_result(result: ScanResult, output_dir: Path) -> tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     stamp = f"{result.request.period_start}_{result.request.period_end}"
