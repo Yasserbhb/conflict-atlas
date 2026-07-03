@@ -1,5 +1,5 @@
 {
-  "version": "2.13.0",
+  "version": "2.14.0",
   "countries": [
     {
       "id": "AFG",
@@ -10459,7 +10459,66 @@
         "deadliest",
         "famine"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_taiping_rebellion_e1",
+          "date": "1851-01-11",
+          "title": "Rebellion proclaimed at Jintian",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 23.4,
+            "lng": 110.08,
+            "label": "Jintian"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "A millenarian movement rose against the Qing dynasty.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Taiping_Rebellion"
+          ]
+        },
+        {
+          "id": "seed_taiping_rebellion_e2",
+          "date": "1853-03-19",
+          "title": "Taiping capture Nanjing",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 32.06,
+            "lng": 118.8,
+            "label": "Nanjing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The rebels made Nanjing the capital of their Heavenly Kingdom.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Taiping_Rebellion"
+          ]
+        },
+        {
+          "id": "seed_taiping_rebellion_e3",
+          "date": "1864-07-19",
+          "title": "Fall of Nanjing",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 32.06,
+            "lng": 118.8,
+            "label": "Nanjing"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The rebellion collapsed after perhaps 20–30 million deaths — one of history’s deadliest wars.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Third_Battle_of_Nanking_(1864)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_first_sino_japanese",
@@ -10677,7 +10736,69 @@
         "imperial japan",
         "korea"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_japan_korea_annexation_e1",
+          "date": "1910-08-29",
+          "title": "Japan annexes Korea",
+          "kind": "annexation",
+          "severity": 3,
+          "location": {
+            "lat": 37.57,
+            "lng": 126.98,
+            "label": "Seoul"
+          },
+          "parties": [
+            "JPN",
+            "KOR"
+          ],
+          "description": "Korea was absorbed into the Japanese Empire for 35 years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Japan%E2%80%93Korea_Treaty_of_1910"
+          ]
+        },
+        {
+          "id": "seed_japan_korea_annexation_e2",
+          "date": "1919-03-01",
+          "title": "March 1st independence movement",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 37.57,
+            "lng": 126.98,
+            "label": "Seoul"
+          },
+          "parties": [
+            "KOR",
+            "JPN"
+          ],
+          "description": "Mass protests for independence were violently suppressed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/March_First_Movement"
+          ]
+        },
+        {
+          "id": "seed_japan_korea_annexation_e3",
+          "date": "1945-08-15",
+          "title": "Liberation of Korea",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 37.57,
+            "lng": 126.98,
+            "label": "Seoul"
+          },
+          "parties": [
+            "KOR",
+            "JPN"
+          ],
+          "description": "Japan's defeat freed Korea, which was then divided.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Korea_under_Japanese_rule"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_chinese_civil_war",
@@ -10938,7 +11059,66 @@
         "resistance",
         "civil war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_myanmar_civil_war_e1",
+          "date": "2021-02-01",
+          "title": "Military coup",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 19.76,
+            "lng": 96.08,
+            "label": "Naypyidaw"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "The army seized power, reversing a decade of tentative democracy.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2021_Myanmar_coup_d%27%C3%A9tat"
+          ]
+        },
+        {
+          "id": "seed_myanmar_civil_war_e2",
+          "date": "2021-03-27",
+          "title": "Crackdown on protesters",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 16.87,
+            "lng": 96.2,
+            "label": "Yangon"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "Security forces killed hundreds as resistance spread nationwide.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Myanmar_civil_war_(2021%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_myanmar_civil_war_e3",
+          "date": "2023-10-27",
+          "title": "Resistance offensive (Operation 1027)",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 23,
+            "lng": 98,
+            "label": "Shan State"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "An ethnic-alliance offensive seized swathes of territory from the junta.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_1027"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_iran_1953_coup",
@@ -11153,7 +11333,50 @@
         "machine guns",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_mahdist_war_e1",
+          "date": "1885-01-26",
+          "title": "Fall of Khartoum",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 15.5,
+            "lng": 32.56,
+            "label": "Khartoum"
+          },
+          "parties": [
+            "SDN",
+            "GBR"
+          ],
+          "description": "Mahdist forces took the city and killed General Gordon.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Khartoum"
+          ]
+        },
+        {
+          "id": "seed_mahdist_war_e2",
+          "date": "1898-09-02",
+          "title": "Battle of Omdurman",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 15.65,
+            "lng": 32.48,
+            "label": "Omdurman"
+          },
+          "parties": [
+            "GBR",
+            "EGY",
+            "SDN"
+          ],
+          "description": "Anglo-Egyptian machine guns destroyed the Mahdist army.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Omdurman"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_hama_massacre",
@@ -11468,7 +11691,69 @@
         "diamonds",
         "british empire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_boer_wars_e1",
+          "date": "1899-10-11",
+          "title": "Second Boer War begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -25.75,
+            "lng": 28.19,
+            "label": "Transvaal"
+          },
+          "parties": [
+            "GBR",
+            "ZAF"
+          ],
+          "description": "Britain fought the Boer republics for control of gold-rich South Africa.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Boer_War"
+          ]
+        },
+        {
+          "id": "seed_boer_wars_e2",
+          "date": "1900-06-01",
+          "title": "British concentration camps",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": -29.12,
+            "lng": 26.21,
+            "label": "Bloemfontein"
+          },
+          "parties": [
+            "GBR",
+            "ZAF"
+          ],
+          "description": "Tens of thousands of Boer and African civilians died in the camps.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Concentration_camps_in_the_Second_Boer_War"
+          ]
+        },
+        {
+          "id": "seed_boer_wars_e3",
+          "date": "1902-05-31",
+          "title": "Treaty of Vereeniging",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": -25.75,
+            "lng": 28.19,
+            "label": "Pretoria"
+          },
+          "parties": [
+            "GBR",
+            "ZAF"
+          ],
+          "description": "The Boer republics were absorbed into the British Empire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Vereeniging"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_anglo_zulu",
@@ -11499,7 +11784,49 @@
         "isandlwana",
         "scramble for africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_anglo_zulu_e1",
+          "date": "1879-01-22",
+          "title": "Battle of Isandlwana",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": -28.36,
+            "lng": 30.65,
+            "label": "Isandlwana"
+          },
+          "parties": [
+            "GBR",
+            "ZAF"
+          ],
+          "description": "The Zulu inflicted a stunning defeat on a British column.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Isandlwana"
+          ]
+        },
+        {
+          "id": "seed_anglo_zulu_e2",
+          "date": "1879-07-04",
+          "title": "Battle of Ulundi",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": -28.31,
+            "lng": 31.42,
+            "label": "Ulundi"
+          },
+          "parties": [
+            "GBR",
+            "ZAF"
+          ],
+          "description": "Britain destroyed the Zulu army and annexed the kingdom.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Ulundi"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_ethiopia_red_terror",
@@ -11564,7 +11891,67 @@
         "terror",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_idi_amin_e1",
+          "date": "1971-01-25",
+          "title": "Idi Amin seizes power",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 0.35,
+            "lng": 32.58,
+            "label": "Kampala"
+          },
+          "parties": [
+            "UGA"
+          ],
+          "description": "A coup began eight years of dictatorship and mass killing.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Idi_Amin"
+          ]
+        },
+        {
+          "id": "seed_idi_amin_e2",
+          "date": "1972-08-04",
+          "title": "Expulsion of Ugandan Asians",
+          "kind": "displacement",
+          "severity": 3,
+          "location": {
+            "lat": 0.35,
+            "lng": 32.58,
+            "label": "Kampala"
+          },
+          "parties": [
+            "UGA"
+          ],
+          "description": "Some 80,000 South Asians were expelled, wrecking the economy.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Expulsion_of_Asians_from_Uganda"
+          ]
+        },
+        {
+          "id": "seed_idi_amin_e3",
+          "date": "1979-04-11",
+          "title": "Amin overthrown",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 0.35,
+            "lng": 32.58,
+            "label": "Kampala"
+          },
+          "parties": [
+            "UGA",
+            "TZA"
+          ],
+          "description": "A Tanzanian invasion ended a regime that killed up to 500,000.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Uganda%E2%80%93Tanzania_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_lra",
@@ -11881,7 +12268,74 @@
         "19th century",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_crimean_war_e1",
+          "date": "1854-09-01",
+          "title": "Siege of Sevastopol",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 44.62,
+            "lng": 33.53,
+            "label": "Sevastopol"
+          },
+          "parties": [
+            "RUS",
+            "GBR",
+            "FRA"
+          ],
+          "description": "An 11-month siege of the Russian naval base decided the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Sevastopol_(1854%E2%80%931855)"
+          ]
+        },
+        {
+          "id": "seed_crimean_war_e2",
+          "date": "1854-10-25",
+          "title": "Battle of Balaclava",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 44.5,
+            "lng": 33.6,
+            "label": "Balaclava"
+          },
+          "parties": [
+            "RUS",
+            "GBR",
+            "FRA",
+            "TUR"
+          ],
+          "description": "Site of the doomed Charge of the Light Brigade.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Balaclava"
+          ]
+        },
+        {
+          "id": "seed_crimean_war_e3",
+          "date": "1856-03-30",
+          "title": "Treaty of Paris",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "RUS",
+            "TUR",
+            "GBR",
+            "FRA"
+          ],
+          "description": "The first war widely covered by photography and the telegraph.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Paris_(1856)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_franco_prussian",
@@ -11912,7 +12366,69 @@
         "prussia",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_franco_prussian_e1",
+          "date": "1870-09-01",
+          "title": "Battle of Sedan",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 49.7,
+            "lng": 4.94,
+            "label": "Sedan"
+          },
+          "parties": [
+            "FRA",
+            "DEU"
+          ],
+          "description": "The capture of Napoleon III's army decided the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Sedan"
+          ]
+        },
+        {
+          "id": "seed_franco_prussian_e2",
+          "date": "1870-09-19",
+          "title": "Siege of Paris",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "DEU",
+            "FRA"
+          ],
+          "description": "Paris held out for four months amid starvation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Paris_(1870%E2%80%931871)"
+          ]
+        },
+        {
+          "id": "seed_franco_prussian_e3",
+          "date": "1871-01-18",
+          "title": "German Empire proclaimed",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 48.8,
+            "lng": 2.12,
+            "label": "Versailles"
+          },
+          "parties": [
+            "DEU",
+            "FRA"
+          ],
+          "description": "Germany was unified in the Hall of Mirrors after victory.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Proclamation_of_the_German_Empire"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_balkan_wars",
@@ -11953,7 +12469,51 @@
         "ethnic cleansing",
         "prelude wwi"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_balkan_wars_e1",
+          "date": "1912-10-08",
+          "title": "First Balkan War",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 41.99,
+            "lng": 21.43,
+            "label": "the Balkans"
+          },
+          "parties": [
+            "SRB",
+            "GRC",
+            "TUR"
+          ],
+          "description": "A Balkan league drove the Ottomans almost entirely out of Europe.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Balkan_War"
+          ]
+        },
+        {
+          "id": "seed_balkan_wars_e2",
+          "date": "1913-06-29",
+          "title": "Second Balkan War",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 42.7,
+            "lng": 23.32,
+            "label": "the Balkans"
+          },
+          "parties": [
+            "SRB",
+            "GRC",
+            "TUR"
+          ],
+          "description": "The victors fought over the spoils, sowing seeds for WWI.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Balkan_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_prague_spring",
@@ -12436,7 +12996,92 @@
         "depopulation",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_thirty_years_war_e1",
+          "date": "1618-05-23",
+          "title": "Defenestration of Prague",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 50.09,
+            "lng": 14.4,
+            "label": "Prague"
+          },
+          "parties": [
+            "CZE",
+            "AUT"
+          ],
+          "description": "Bohemian nobles threw imperial officials from a window, sparking the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Defenestration_of_Prague"
+          ]
+        },
+        {
+          "id": "seed_thirty_years_war_e2",
+          "date": "1620-11-08",
+          "title": "Battle of White Mountain",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 50.09,
+            "lng": 14.32,
+            "label": "Prague"
+          },
+          "parties": [
+            "AUT",
+            "CZE"
+          ],
+          "description": "A Catholic victory crushed the Bohemian revolt.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_White_Mountain"
+          ]
+        },
+        {
+          "id": "seed_thirty_years_war_e3",
+          "date": "1631-05-20",
+          "title": "Sack of Magdeburg",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 52.13,
+            "lng": 11.63,
+            "label": "Magdeburg"
+          },
+          "parties": [
+            "DEU",
+            "AUT"
+          ],
+          "description": "Imperial troops massacred around 20,000 — one of the war’s worst atrocities.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sack_of_Magdeburg"
+          ]
+        },
+        {
+          "id": "seed_thirty_years_war_e4",
+          "date": "1648-10-24",
+          "title": "Peace of Westphalia",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 52.28,
+            "lng": 8.05,
+            "label": "Osnabrück & Münster"
+          },
+          "parties": [
+            "DEU",
+            "FRA",
+            "SWE",
+            "AUT",
+            "ESP"
+          ],
+          "description": "The peace founded the modern system of sovereign states.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Peace_of_Westphalia"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_qing_conquest",
@@ -12490,7 +13135,66 @@
         "republic",
         "britain"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_english_civil_war_e1",
+          "date": "1642-10-23",
+          "title": "Battle of Edgehill",
+          "kind": "battle",
+          "severity": 2,
+          "location": {
+            "lat": 52.15,
+            "lng": -1.45,
+            "label": "Edgehill"
+          },
+          "parties": [
+            "GBR"
+          ],
+          "description": "The first pitched battle between King and Parliament.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Edgehill"
+          ]
+        },
+        {
+          "id": "seed_english_civil_war_e2",
+          "date": "1645-06-14",
+          "title": "Battle of Naseby",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 52.4,
+            "lng": -0.99,
+            "label": "Naseby"
+          },
+          "parties": [
+            "GBR"
+          ],
+          "description": "Parliament's New Model Army broke the Royalist cause.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Naseby"
+          ]
+        },
+        {
+          "id": "seed_english_civil_war_e3",
+          "date": "1649-01-30",
+          "title": "Execution of Charles I",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 51.5,
+            "lng": -0.13,
+            "label": "London"
+          },
+          "parties": [
+            "GBR"
+          ],
+          "description": "The king was beheaded and England briefly became a republic.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Execution_of_Charles_I"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cromwell_ireland",
@@ -12522,7 +13226,49 @@
         "famine",
         "ireland"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_cromwell_ireland_e1",
+          "date": "1649-09-11",
+          "title": "Siege of Drogheda",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 53.72,
+            "lng": -6.35,
+            "label": "Drogheda"
+          },
+          "parties": [
+            "GBR",
+            "IRL"
+          ],
+          "description": "Cromwell's forces massacred the garrison and many civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Drogheda"
+          ]
+        },
+        {
+          "id": "seed_cromwell_ireland_e2",
+          "date": "1652-08-12",
+          "title": "Act for the Settlement of Ireland",
+          "kind": "displacement",
+          "severity": 4,
+          "location": {
+            "lat": 53.35,
+            "lng": -6.26,
+            "label": "Dublin"
+          },
+          "parties": [
+            "GBR",
+            "IRL"
+          ],
+          "description": "Mass land confiscation and death reshaped Ireland.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Act_for_the_Settlement_of_Ireland_1652"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_ottoman_habsburg",
@@ -12627,7 +13373,52 @@
         "dynastic",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_spanish_succession_e1",
+          "date": "1704-08-13",
+          "title": "Battle of Blenheim",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 48.63,
+            "lng": 10.63,
+            "label": "Blenheim"
+          },
+          "parties": [
+            "GBR",
+            "AUT",
+            "FRA"
+          ],
+          "description": "Marlborough's victory checked French dominance.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Blenheim"
+          ]
+        },
+        {
+          "id": "seed_spanish_succession_e2",
+          "date": "1713-04-11",
+          "title": "Treaty of Utrecht",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 52.09,
+            "lng": 5.12,
+            "label": "Utrecht"
+          },
+          "parties": [
+            "FRA",
+            "ESP",
+            "GBR",
+            "AUT"
+          ],
+          "description": "The settlement redrew Europe and gave Britain Gibraltar.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Peace_of_Utrecht"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_great_northern_war",
@@ -12659,7 +13450,49 @@
         "empire",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_great_northern_war_e1",
+          "date": "1709-07-08",
+          "title": "Battle of Poltava",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 49.59,
+            "lng": 34.55,
+            "label": "Poltava"
+          },
+          "parties": [
+            "RUS",
+            "SWE"
+          ],
+          "description": "Russia crushed Sweden's army, ending its era as a great power.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Poltava"
+          ]
+        },
+        {
+          "id": "seed_great_northern_war_e2",
+          "date": "1721-09-10",
+          "title": "Treaty of Nystad",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 60.8,
+            "lng": 21.41,
+            "label": "Nystad"
+          },
+          "parties": [
+            "RUS",
+            "SWE"
+          ],
+          "description": "Russia gained the Baltic coast and became a European power.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Nystad"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_dzungar_genocide",
@@ -12733,7 +13566,71 @@
         "prussia",
         "empire"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_seven_years_war_e1",
+          "date": "1757-06-23",
+          "title": "Battle of Plassey",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 23.8,
+            "lng": 88.25,
+            "label": "Plassey"
+          },
+          "parties": [
+            "GBR",
+            "IND",
+            "FRA"
+          ],
+          "description": "The victory gave the East India Company control of Bengal.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Plassey"
+          ]
+        },
+        {
+          "id": "seed_seven_years_war_e2",
+          "date": "1759-09-13",
+          "title": "Battle of Quebec",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 46.81,
+            "lng": -71.21,
+            "label": "Quebec City"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "CAN"
+          ],
+          "description": "Britain took Quebec, deciding the fate of French North America.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_the_Plains_of_Abraham"
+          ]
+        },
+        {
+          "id": "seed_seven_years_war_e3",
+          "date": "1763-02-10",
+          "title": "Treaty of Paris",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "GBR",
+            "FRA"
+          ],
+          "description": "France ceded Canada and much of its empire to Britain.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Paris_(1763)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_anglo_indian_wars",
@@ -12890,7 +13787,85 @@
         "vendee",
         "rights of man"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_french_revolution_e1",
+          "date": "1789-07-14",
+          "title": "Storming of the Bastille",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.37,
+            "label": "Paris"
+          },
+          "parties": [
+            "FRA"
+          ],
+          "description": "The fall of the royal prison became the symbol of the revolution.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Storming_of_the_Bastille"
+          ]
+        },
+        {
+          "id": "seed_french_revolution_e2",
+          "date": "1793-01-21",
+          "title": "Execution of Louis XVI",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 48.87,
+            "lng": 2.32,
+            "label": "Paris"
+          },
+          "parties": [
+            "FRA"
+          ],
+          "description": "The king was guillotined, radicalising the revolution.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Execution_of_Louis_XVI"
+          ]
+        },
+        {
+          "id": "seed_french_revolution_e3",
+          "date": "1793-09-05",
+          "title": "Reign of Terror",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 48.86,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "FRA"
+          ],
+          "description": "Tens of thousands were executed as enemies of the revolution.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Reign_of_Terror"
+          ]
+        },
+        {
+          "id": "seed_french_revolution_e4",
+          "date": "1799-11-09",
+          "title": "Napoleon seizes power",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 48.85,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "FRA"
+          ],
+          "description": "The coup of 18 Brumaire ended the revolution.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Coup_of_18_Brumaire"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_haitian_revolution",
@@ -13185,7 +14160,69 @@
         "california",
         "expansion"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_mexican_american_war_e1",
+          "date": "1846-05-13",
+          "title": "US declares war on Mexico",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 26,
+            "lng": -98,
+            "label": "Rio Grande"
+          },
+          "parties": [
+            "USA",
+            "MEX"
+          ],
+          "description": "A border dispute became a war of continental expansion.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Mexican%E2%80%93American_War"
+          ]
+        },
+        {
+          "id": "seed_mexican_american_war_e2",
+          "date": "1847-09-13",
+          "title": "Fall of Mexico City",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 19.42,
+            "lng": -99.18,
+            "label": "Mexico City"
+          },
+          "parties": [
+            "USA",
+            "MEX"
+          ],
+          "description": "US forces stormed Chapultepec and took the capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Chapultepec"
+          ]
+        },
+        {
+          "id": "seed_mexican_american_war_e3",
+          "date": "1848-02-02",
+          "title": "Treaty of Guadalupe Hidalgo",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 19.49,
+            "lng": -99.16,
+            "label": "Mexico City"
+          },
+          "parties": [
+            "USA",
+            "MEX"
+          ],
+          "description": "Mexico ceded nearly half its territory, including California.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Guadalupe_Hidalgo"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_circassian_genocide",
@@ -13733,7 +14770,47 @@
         "catholic",
         "europe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_french_wars_religion_e1",
+          "date": "1572-08-24",
+          "title": "St Bartholomew's Day Massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 48.86,
+            "lng": 2.35,
+            "label": "Paris"
+          },
+          "parties": [
+            "FRA"
+          ],
+          "description": "Thousands of Protestant Huguenots were slaughtered across France.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/St._Bartholomew%27s_Day_massacre"
+          ]
+        },
+        {
+          "id": "seed_french_wars_religion_e2",
+          "date": "1598-04-13",
+          "title": "Edict of Nantes",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 47.22,
+            "lng": -1.55,
+            "label": "Nantes"
+          },
+          "parties": [
+            "FRA"
+          ],
+          "description": "The edict granted the Huguenots toleration, ending the wars.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Edict_of_Nantes"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_spanish_american_war",
@@ -13854,7 +14931,92 @@
         "navarino",
         "philhellene"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_greek_independence_e1",
+          "date": "1821-03-25",
+          "title": "Uprising against Ottoman rule",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 37.04,
+            "lng": 22.11,
+            "label": "Kalamata"
+          },
+          "parties": [
+            "GRC",
+            "TUR"
+          ],
+          "description": "Greeks rose against three centuries of Ottoman rule.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Greek_War_of_Independence"
+          ]
+        },
+        {
+          "id": "seed_greek_independence_e2",
+          "date": "1822-04-01",
+          "title": "Chios massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 38.37,
+            "lng": 26.14,
+            "label": "Chios"
+          },
+          "parties": [
+            "TUR",
+            "GRC"
+          ],
+          "description": "Ottoman forces killed or enslaved most of the island’s population.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Chios_massacre"
+          ]
+        },
+        {
+          "id": "seed_greek_independence_e3",
+          "date": "1827-10-20",
+          "title": "Battle of Navarino",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 36.92,
+            "lng": 21.7,
+            "label": "Navarino"
+          },
+          "parties": [
+            "GRC",
+            "GBR",
+            "FRA",
+            "RUS",
+            "TUR"
+          ],
+          "description": "A European fleet destroyed the Ottoman navy, securing Greek independence.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Navarino"
+          ]
+        },
+        {
+          "id": "seed_greek_independence_e4",
+          "date": "1832-01-01",
+          "title": "Greek independence recognised",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 37.98,
+            "lng": 23.73,
+            "label": "Athens"
+          },
+          "parties": [
+            "GRC",
+            "TUR"
+          ],
+          "description": "Greece became an independent kingdom.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Greek_War_of_Independence"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_ottoman_safavid",
@@ -14064,7 +15226,49 @@
         "galwan",
         "disputed"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_sino_indian_e1",
+          "date": "1962-10-20",
+          "title": "China attacks Indian border positions",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 27.59,
+            "lng": 91.87,
+            "label": "Himalayan border"
+          },
+          "parties": [
+            "CHN",
+            "IND"
+          ],
+          "description": "A short, sharp war over disputed Himalayan frontiers.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sino-Indian_War"
+          ]
+        },
+        {
+          "id": "seed_sino_indian_e2",
+          "date": "1962-11-21",
+          "title": "China declares a ceasefire",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 34,
+            "lng": 79,
+            "label": "Aksai Chin"
+          },
+          "parties": [
+            "CHN",
+            "IND"
+          ],
+          "description": "China held Aksai Chin; the border remains disputed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sino-Indian_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_sino_vietnamese",
@@ -14095,7 +15299,49 @@
         "border war",
         "punitive"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_sino_vietnamese_e1",
+          "date": "1979-02-17",
+          "title": "China invades northern Vietnam",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 21.85,
+            "lng": 106.76,
+            "label": "Lạng Sơn"
+          },
+          "parties": [
+            "CHN",
+            "VNM"
+          ],
+          "description": "China attacked to 'punish' Vietnam over Cambodia.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sino-Vietnamese_War"
+          ]
+        },
+        {
+          "id": "seed_sino_vietnamese_e2",
+          "date": "1979-03-16",
+          "title": "Chinese withdrawal",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 21.85,
+            "lng": 106.76,
+            "label": "Lạng Sơn"
+          },
+          "parties": [
+            "CHN",
+            "VNM"
+          ],
+          "description": "Both sides claimed victory in a costly month-long war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sino-Vietnamese_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_kurdish_conflict",
@@ -15299,6 +16545,50 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/War_of_the_Austrian_Succession"
+      ],
+      "events": [
+        {
+          "id": "seed_war_austrian_succession_e1",
+          "date": "1740-12-16",
+          "title": "Prussia invades Silesia",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 51.11,
+            "lng": 17.04,
+            "label": "Silesia"
+          },
+          "parties": [
+            "DEU",
+            "AUT"
+          ],
+          "description": "Frederick the Great's seizure of Silesia triggered a European war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/War_of_the_Austrian_Succession"
+          ]
+        },
+        {
+          "id": "seed_war_austrian_succession_e2",
+          "date": "1748-10-18",
+          "title": "Treaty of Aix-la-Chapelle",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 50.78,
+            "lng": 6.08,
+            "label": "Aachen"
+          },
+          "parties": [
+            "AUT",
+            "DEU",
+            "FRA",
+            "GBR"
+          ],
+          "description": "The peace largely restored the pre-war map.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Aix-la-Chapelle_(1748)"
+          ]
+        }
       ]
     },
     {
@@ -15333,6 +16623,48 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Nader_Shah%27s_invasion_of_India"
+      ],
+      "events": [
+        {
+          "id": "seed_nader_shah_invasion_india_e1",
+          "date": "1739-02-24",
+          "title": "Battle of Karnal",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": 29.69,
+            "lng": 76.99,
+            "label": "Karnal"
+          },
+          "parties": [
+            "IRN",
+            "IND"
+          ],
+          "description": "Nader Shah routed the Mughal army in three hours.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Karnal"
+          ]
+        },
+        {
+          "id": "seed_nader_shah_invasion_india_e2",
+          "date": "1739-03-22",
+          "title": "Sack of Delhi",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 28.66,
+            "lng": 77.23,
+            "label": "Delhi"
+          },
+          "parties": [
+            "IRN",
+            "IND"
+          ],
+          "description": "Persian troops massacred some 30,000 and looted the imperial treasury.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nader_Shah%27s_invasion_of_India"
+          ]
+        }
       ]
     },
     {
@@ -15377,6 +16709,73 @@
       ],
       "sources": [
         "https://en.wikipedia.org/wiki/Partitions_of_Poland"
+      ],
+      "events": [
+        {
+          "id": "seed_partitions_of_poland_e1",
+          "date": "1772-08-05",
+          "title": "First Partition",
+          "kind": "annexation",
+          "severity": 3,
+          "location": {
+            "lat": 52.23,
+            "lng": 21.01,
+            "label": "Poland"
+          },
+          "parties": [
+            "POL",
+            "RUS",
+            "AUT",
+            "DEU"
+          ],
+          "description": "Russia, Prussia and Austria seized a third of the Commonwealth.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Partition_of_Poland"
+          ]
+        },
+        {
+          "id": "seed_partitions_of_poland_e2",
+          "date": "1793-01-23",
+          "title": "Second Partition",
+          "kind": "annexation",
+          "severity": 3,
+          "location": {
+            "lat": 52.23,
+            "lng": 21.01,
+            "label": "Poland"
+          },
+          "parties": [
+            "POL",
+            "RUS",
+            "DEU"
+          ],
+          "description": "A further partition left a rump Polish state.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Partition_of_Poland"
+          ]
+        },
+        {
+          "id": "seed_partitions_of_poland_e3",
+          "date": "1795-10-24",
+          "title": "Third Partition erases Poland",
+          "kind": "annexation",
+          "severity": 4,
+          "location": {
+            "lat": 52.23,
+            "lng": 21.01,
+            "label": "Poland"
+          },
+          "parties": [
+            "POL",
+            "RUS",
+            "AUT",
+            "DEU"
+          ],
+          "description": "Poland vanished from the map for 123 years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Third_Partition_of_Poland"
+          ]
+        }
       ]
     },
     {
