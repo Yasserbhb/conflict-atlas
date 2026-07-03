@@ -1,5 +1,5 @@
 {
-  "version": "2.10.0",
+  "version": "2.11.0",
   "countries": [
     {
       "id": "AFG",
@@ -1331,7 +1331,89 @@
         "africa",
         "concentration camps"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_herero_genocide_e1",
+          "date": "1904-01-12",
+          "title": "Herero uprising against German rule",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -21.98,
+            "lng": 16.91,
+            "label": "Okahandja"
+          },
+          "parties": [
+            "DEU",
+            "NAM"
+          ],
+          "description": "The Herero rose against colonial land seizures in German South West Africa.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Herero_Wars"
+          ]
+        },
+        {
+          "id": "seed_herero_genocide_e2",
+          "date": "1904-08-11",
+          "title": "Battle of Waterberg",
+          "kind": "battle",
+          "severity": 4,
+          "location": {
+            "lat": -20.5,
+            "lng": 17.23,
+            "label": "Waterberg"
+          },
+          "parties": [
+            "DEU",
+            "NAM"
+          ],
+          "description": "German forces routed the Herero and drove survivors into the Omaheke desert.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Waterberg"
+          ]
+        },
+        {
+          "id": "seed_herero_genocide_e3",
+          "date": "1904-10-02",
+          "title": "Von Trotha's extermination order",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -21.5,
+            "lng": 19.5,
+            "label": "Omaheke Desert"
+          },
+          "parties": [
+            "DEU",
+            "NAM"
+          ],
+          "description": "The order to shoot or drive out every Herero is considered the first genocide of the 20th century.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Herero_and_Nama_genocide"
+          ]
+        },
+        {
+          "id": "seed_herero_genocide_e4",
+          "date": "1905-04-01",
+          "title": "Concentration camps (Shark Island)",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -26.65,
+            "lng": 15.15,
+            "label": "Shark Island"
+          },
+          "parties": [
+            "DEU",
+            "NAM"
+          ],
+          "description": "Herero and Nama were worked and starved to death in camps; up to 80% of the Herero died.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Shark_Island_concentration_camp"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_ww1",
@@ -2063,7 +2145,94 @@
         "refugees",
         "ethnic cleansing"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_nakba_e1",
+          "date": "1948-04-09",
+          "title": "Deir Yassin massacre",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 31.79,
+            "lng": 35.18,
+            "label": "Deir Yassin"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "The killing of villagers near Jerusalem spread panic and accelerated the Palestinian exodus.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Deir_Yassin_massacre"
+          ]
+        },
+        {
+          "id": "seed_nakba_e2",
+          "date": "1948-05-14",
+          "title": "Israel declares independence; war begins",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 32.08,
+            "lng": 34.78,
+            "label": "Tel Aviv"
+          },
+          "parties": [
+            "ISR",
+            "EGY",
+            "JOR",
+            "SYR",
+            "PSE"
+          ],
+          "description": "Neighbouring Arab states intervened as the British mandate ended.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1948_Arab%E2%80%93Israeli_War"
+          ]
+        },
+        {
+          "id": "seed_nakba_e3",
+          "date": "1948-07-01",
+          "title": "The Nakba — Palestinian exodus",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 31.9,
+            "lng": 35.2,
+            "label": "Palestine"
+          },
+          "parties": [
+            "PSE",
+            "ISR"
+          ],
+          "description": "Around 700,000 Palestinians were expelled or fled; hundreds of villages were depopulated.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nakba"
+          ]
+        },
+        {
+          "id": "seed_nakba_e4",
+          "date": "1949-07-20",
+          "title": "Armistice agreements",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 36.43,
+            "lng": 28.22,
+            "label": "Rhodes"
+          },
+          "parties": [
+            "ISR",
+            "EGY",
+            "JOR",
+            "SYR"
+          ],
+          "description": "The armistice lines (\"Green Line\") set the de facto borders for years.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1949_Armistice_Agreements"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_korean_war",
@@ -3070,7 +3239,89 @@
         "coltan",
         "world war africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_congo_wars_e1",
+          "date": "1996-10-24",
+          "title": "First Congo War begins",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": -1.68,
+            "lng": 29.23,
+            "label": "Goma"
+          },
+          "parties": [
+            "COD",
+            "RWA",
+            "UGA"
+          ],
+          "description": "Rwanda and Uganda backed a rebellion that swept across Zaire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Congo_War"
+          ]
+        },
+        {
+          "id": "seed_congo_wars_e2",
+          "date": "1997-05-17",
+          "title": "Mobutu falls; Kabila takes power",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": -4.32,
+            "lng": 15.31,
+            "label": "Kinshasa"
+          },
+          "parties": [
+            "COD"
+          ],
+          "description": "The decades-old dictatorship collapsed as rebels reached the capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Congo_War"
+          ]
+        },
+        {
+          "id": "seed_congo_wars_e3",
+          "date": "1998-08-02",
+          "title": "Second Congo War — Africa's World War",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 0.52,
+            "lng": 25.19,
+            "label": "Kisangani"
+          },
+          "parties": [
+            "COD",
+            "RWA",
+            "UGA"
+          ],
+          "description": "Nine countries and many militias fought a war that killed millions, mostly from disease and hunger.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Congo_War"
+          ]
+        },
+        {
+          "id": "seed_congo_wars_e4",
+          "date": "2003-07-18",
+          "title": "Transitional government",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": -4.32,
+            "lng": 15.31,
+            "label": "Kinshasa"
+          },
+          "parties": [
+            "COD"
+          ],
+          "description": "A peace deal formally ended the war, though eastern Congo remained violent.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Congo_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_kosovo_war",
@@ -3620,7 +3871,69 @@
         "donbas",
         "euromaidan"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_crimea_annexation_e1",
+          "date": "2014-02-27",
+          "title": "Armed men seize Crimean parliament",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 44.95,
+            "lng": 34.1,
+            "label": "Simferopol"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Unmarked Russian troops (\"little green men\") took control of key sites.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Annexation_of_Crimea_by_the_Russian_Federation"
+          ]
+        },
+        {
+          "id": "seed_crimea_annexation_e2",
+          "date": "2014-03-16",
+          "title": "Disputed referendum",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 44.95,
+            "lng": 34.1,
+            "label": "Simferopol"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "A hastily-held vote under occupation claimed overwhelming support for joining Russia.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2014_Crimean_status_referendum"
+          ]
+        },
+        {
+          "id": "seed_crimea_annexation_e3",
+          "date": "2014-03-18",
+          "title": "Russia formally annexes Crimea",
+          "kind": "annexation",
+          "severity": 4,
+          "location": {
+            "lat": 55.75,
+            "lng": 37.62,
+            "label": "Moscow"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "The first forcible annexation of European territory since WWII; widely unrecognised.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Annexation_of_Crimea_by_the_Russian_Federation"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_yemen_war",
@@ -3672,7 +3985,70 @@
         "arms sales",
         "humanitarian catastrophe"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_yemen_war_e1",
+          "date": "2015-03-26",
+          "title": "Saudi-led coalition intervenes",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 15.37,
+            "lng": 44.19,
+            "label": "Sanaa"
+          },
+          "parties": [
+            "SAU",
+            "ARE",
+            "YEM"
+          ],
+          "description": "A coalition began an air campaign against the Houthis after they seized the capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Saudi_Arabian-led_intervention_in_Yemen"
+          ]
+        },
+        {
+          "id": "seed_yemen_war_e2",
+          "date": "2018-06-13",
+          "title": "Battle and blockade of Hodeidah",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 14.8,
+            "lng": 42.95,
+            "label": "Hodeidah"
+          },
+          "parties": [
+            "YEM",
+            "SAU"
+          ],
+          "description": "Fighting over the main port worsened the world’s worst humanitarian crisis and famine.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Yemeni_civil_war_(2014%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_yemen_war_e3",
+          "date": "2022-04-02",
+          "title": "UN-brokered truce",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 15.37,
+            "lng": 44.19,
+            "label": "Sanaa"
+          },
+          "parties": [
+            "YEM",
+            "SAU"
+          ],
+          "description": "A truce sharply reduced fighting after years that killed hundreds of thousands.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Yemeni_civil_war_(2014%E2%80%93present)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_rohingya_genocide",
@@ -3710,7 +4086,67 @@
         "ethnic cleansing",
         "ICJ"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_rohingya_genocide_e1",
+          "date": "2016-10-09",
+          "title": "Crackdown begins in Rakhine",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 20.82,
+            "lng": 92.36,
+            "label": "Maungdaw"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "Military \"area clearance\" operations against the Rohingya minority intensified.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rohingya_genocide"
+          ]
+        },
+        {
+          "id": "seed_rohingya_genocide_e2",
+          "date": "2017-08-25",
+          "title": "Military \"clearance operations\"",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 20.5,
+            "lng": 92.9,
+            "label": "Rakhine State"
+          },
+          "parties": [
+            "MMR"
+          ],
+          "description": "Villages were burned and thousands killed in a campaign the UN called ethnic cleansing.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rohingya_genocide"
+          ]
+        },
+        {
+          "id": "seed_rohingya_genocide_e3",
+          "date": "2017-09-15",
+          "title": "Mass exodus to Bangladesh",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 21.43,
+            "lng": 92.01,
+            "label": "Cox's Bazar"
+          },
+          "parties": [
+            "MMR",
+            "BGD"
+          ],
+          "description": "Over 700,000 Rohingya fled to the world’s largest refugee camp.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rohingya_refugee_crisis"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_tigray_war",
@@ -3742,7 +4178,67 @@
         "africa",
         "atrocities"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_tigray_war_e1",
+          "date": "2020-11-04",
+          "title": "Federal offensive into Tigray",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 13.49,
+            "lng": 39.47,
+            "label": "Mekelle"
+          },
+          "parties": [
+            "ETH",
+            "ERI"
+          ],
+          "description": "Ethiopian and Eritrean forces launched an assault on the Tigray region.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tigray_War"
+          ]
+        },
+        {
+          "id": "seed_tigray_war_e2",
+          "date": "2021-06-28",
+          "title": "Tigrayan forces retake Mekelle",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 13.49,
+            "lng": 39.47,
+            "label": "Mekelle"
+          },
+          "parties": [
+            "ETH"
+          ],
+          "description": "A dramatic reversal saw Tigrayan forces recapture the regional capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tigray_War"
+          ]
+        },
+        {
+          "id": "seed_tigray_war_e3",
+          "date": "2022-11-02",
+          "title": "Pretoria peace agreement",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": -25.75,
+            "lng": 28.19,
+            "label": "Pretoria"
+          },
+          "parties": [
+            "ETH"
+          ],
+          "description": "A truce ended a war that may have killed around 600,000 people, many by famine.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Pretoria_Agreement"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_ukraine_war",
@@ -4006,7 +4502,66 @@
         "displacement",
         "atrocities"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_sudan_civil_war_e1",
+          "date": "2023-04-15",
+          "title": "Fighting erupts between SAF and RSF",
+          "kind": "escalation",
+          "severity": 5,
+          "location": {
+            "lat": 15.5,
+            "lng": 32.56,
+            "label": "Khartoum"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "A power struggle between the army and the RSF exploded into war in the capital.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
+          ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e2",
+          "date": "2023-06-15",
+          "title": "Ethnic massacres in El Geneina",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 13.45,
+            "lng": 22.45,
+            "label": "El Geneina, Darfur"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "RSF and allied militias carried out ethnically-targeted killings in Darfur.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/West_Darfur_massacres"
+          ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e3",
+          "date": "2024-08-01",
+          "title": "Mass displacement and famine",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 15.5,
+            "lng": 32.56,
+            "label": "Sudan"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "The war created the world’s largest displacement crisis and confirmed famine.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_gaza_war",
@@ -4219,7 +4774,89 @@
         "south asia",
         "british colonialism"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_kashmir_e1",
+          "date": "1947-10-22",
+          "title": "First war over Kashmir",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 34.08,
+            "lng": 74.8,
+            "label": "Srinagar"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "The princely state’s accession to India sparked the first Indo-Pakistani war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Indo-Pakistani_War_of_1947%E2%80%931948"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e2",
+          "date": "1965-08-05",
+          "title": "Second Indo-Pakistani War",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 34,
+            "lng": 74.5,
+            "label": "Kashmir"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "A second full war ended in stalemate and a return to the ceasefire line.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Indo-Pakistani_War_of_1965"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e3",
+          "date": "1999-05-03",
+          "title": "Kargil War",
+          "kind": "battle",
+          "severity": 3,
+          "location": {
+            "lat": 34.56,
+            "lng": 76.13,
+            "label": "Kargil"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "A high-altitude conflict between two now-nuclear states.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Kargil_War"
+          ]
+        },
+        {
+          "id": "seed_kashmir_e4",
+          "date": "2019-08-05",
+          "title": "India revokes Article 370",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 34.08,
+            "lng": 74.8,
+            "label": "Srinagar"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "India stripped Jammu & Kashmir of autonomy amid a communications blackout.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Revocation_of_the_special_status_of_Jammu_and_Kashmir"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_south_china_sea",
@@ -4955,7 +5592,90 @@
         "silver",
         "disease"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_spanish_conquest_e1",
+          "date": "1519-11-08",
+          "title": "Cortés reaches Tenochtitlan",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 19.43,
+            "lng": -99.13,
+            "label": "Tenochtitlan"
+          },
+          "parties": [
+            "ESP",
+            "MEX"
+          ],
+          "description": "A small Spanish force entered the Aztec capital, then seized its emperor.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Spanish_conquest_of_the_Aztec_Empire"
+          ]
+        },
+        {
+          "id": "seed_spanish_conquest_e2",
+          "date": "1521-08-13",
+          "title": "Fall of Tenochtitlan",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 19.43,
+            "lng": -99.13,
+            "label": "Tenochtitlan"
+          },
+          "parties": [
+            "ESP",
+            "MEX"
+          ],
+          "description": "The Aztec capital fell after a brutal siege, aided by smallpox and native allies.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Fall_of_Tenochtitlan"
+          ]
+        },
+        {
+          "id": "seed_spanish_conquest_e3",
+          "date": "1532-11-16",
+          "title": "Capture of Atahualpa at Cajamarca",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": -7.16,
+            "lng": -78.51,
+            "label": "Cajamarca"
+          },
+          "parties": [
+            "ESP",
+            "PER"
+          ],
+          "description": "Pizarro ambushed and later executed the Inca emperor, collapsing the empire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Cajamarca"
+          ]
+        },
+        {
+          "id": "seed_spanish_conquest_e4",
+          "date": "1545-01-01",
+          "title": "Epidemics devastate Indigenous peoples",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 19,
+            "lng": -99,
+            "label": "the Americas"
+          },
+          "parties": [
+            "ESP",
+            "MEX",
+            "PER"
+          ],
+          "description": "Old World diseases and colonial violence killed a large majority of the Indigenous population.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Population_history_of_the_Indigenous_peoples_of_the_Americas"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_algeria_occupation",
@@ -5127,7 +5847,70 @@
         "unequal treaties",
         "century of humiliation"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_opium_wars_e1",
+          "date": "1839-06-03",
+          "title": "Destruction of opium at Canton",
+          "kind": "escalation",
+          "severity": 2,
+          "location": {
+            "lat": 23.13,
+            "lng": 113.26,
+            "label": "Canton"
+          },
+          "parties": [
+            "CHN",
+            "GBR"
+          ],
+          "description": "China’s seizure of British opium triggered the First Opium War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/First_Opium_War"
+          ]
+        },
+        {
+          "id": "seed_opium_wars_e2",
+          "date": "1842-08-29",
+          "title": "Treaty of Nanking",
+          "kind": "treaty",
+          "severity": 3,
+          "location": {
+            "lat": 32.06,
+            "lng": 118.8,
+            "label": "Nanjing"
+          },
+          "parties": [
+            "GBR",
+            "CHN"
+          ],
+          "description": "China ceded Hong Kong and opened ports in the first of the \"unequal treaties\".",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Treaty_of_Nanking"
+          ]
+        },
+        {
+          "id": "seed_opium_wars_e3",
+          "date": "1860-10-18",
+          "title": "Burning of the Summer Palace",
+          "kind": "atrocity",
+          "severity": 3,
+          "location": {
+            "lat": 39.99,
+            "lng": 116.27,
+            "label": "Beijing"
+          },
+          "parties": [
+            "GBR",
+            "FRA",
+            "CHN"
+          ],
+          "description": "Anglo-French troops looted and burned the imperial palace to end the Second Opium War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Old_Summer_Palace"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_irish_famine",
@@ -5465,7 +6248,69 @@
         "africa",
         "league of nations"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_italo_ethiopian_e1",
+          "date": "1935-10-03",
+          "title": "Italy invades Ethiopia",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 14.17,
+            "lng": 38.9,
+            "label": "Tigray"
+          },
+          "parties": [
+            "ITA",
+            "ETH"
+          ],
+          "description": "Mussolini’s invasion exposed the impotence of the League of Nations.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Italo-Ethiopian_War"
+          ]
+        },
+        {
+          "id": "seed_italo_ethiopian_e2",
+          "date": "1936-02-01",
+          "title": "Use of mustard gas on civilians",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 11,
+            "lng": 39.6,
+            "label": "Ethiopia"
+          },
+          "parties": [
+            "ITA",
+            "ETH"
+          ],
+          "description": "Italy sprayed chemical weapons on troops, civilians and villages.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Italo-Ethiopian_War"
+          ]
+        },
+        {
+          "id": "seed_italo_ethiopian_e3",
+          "date": "1936-05-05",
+          "title": "Italian forces take Addis Ababa",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 9.03,
+            "lng": 38.74,
+            "label": "Addis Ababa"
+          },
+          "parties": [
+            "ITA",
+            "ETH"
+          ],
+          "description": "Ethiopia was occupied until 1941, when it was liberated during WWII.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Second_Italo-Ethiopian_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_spanish_civil_war",
@@ -5733,7 +6578,50 @@
         "british empire",
         "kashmir"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_partition_india_e1",
+          "date": "1947-08-15",
+          "title": "Partition and independence",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 31,
+            "lng": 74.5,
+            "label": "Punjab"
+          },
+          "parties": [
+            "IND",
+            "PAK",
+            "GBR"
+          ],
+          "description": "British India was split into India and Pakistan along hasty religious lines.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Partition_of_India"
+          ]
+        },
+        {
+          "id": "seed_partition_india_e2",
+          "date": "1947-09-01",
+          "title": "Communal massacres and mass migration",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 31,
+            "lng": 74.5,
+            "label": "Punjab & Bengal"
+          },
+          "parties": [
+            "IND",
+            "PAK"
+          ],
+          "description": "Up to 2 million died and 15 million were displaced in the largest migration in history.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Partition_of_India"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_indonesian_revolution",
@@ -5927,7 +6815,47 @@
         "dalai lama",
         "china"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_tibet_e1",
+          "date": "1950-10-07",
+          "title": "Chinese army invades Tibet",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 31.14,
+            "lng": 97.17,
+            "label": "Chamdo"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "The People’s Liberation Army entered Tibet, which China annexed the next year.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Chamdo"
+          ]
+        },
+        {
+          "id": "seed_tibet_e2",
+          "date": "1959-03-10",
+          "title": "Tibetan uprising; Dalai Lama flees",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 29.65,
+            "lng": 91.13,
+            "label": "Lhasa"
+          },
+          "parties": [
+            "CHN"
+          ],
+          "description": "A failed uprising was crushed; the Dalai Lama fled into exile in India.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1959_Tibetan_uprising"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_suez_crisis",
@@ -6061,7 +6989,49 @@
         "eastern europe",
         "repression"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_hungarian_revolution_e1",
+          "date": "1956-10-23",
+          "title": "Uprising against Soviet rule begins",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 47.5,
+            "lng": 19.04,
+            "label": "Budapest"
+          },
+          "parties": [
+            "HUN",
+            "RUS"
+          ],
+          "description": "A student-led revolt briefly established a reformist government.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Hungarian_Revolution_of_1956"
+          ]
+        },
+        {
+          "id": "seed_hungarian_revolution_e2",
+          "date": "1956-11-04",
+          "title": "Soviet tanks crush the revolution",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 47.5,
+            "lng": 19.04,
+            "label": "Budapest"
+          },
+          "parties": [
+            "RUS",
+            "HUN"
+          ],
+          "description": "A massive Soviet intervention killed thousands and ended the revolt.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Hungarian_Revolution_of_1956"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_great_leap_famine",
@@ -6126,7 +7096,69 @@
         "cia",
         "africa"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_congo_crisis_e1",
+          "date": "1960-06-30",
+          "title": "Independence and immediate crisis",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -4.32,
+            "lng": 15.31,
+            "label": "Léopoldville"
+          },
+          "parties": [
+            "COD",
+            "BEL"
+          ],
+          "description": "Independence from Belgium was followed within days by mutiny and secession.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Congo_Crisis"
+          ]
+        },
+        {
+          "id": "seed_congo_crisis_e2",
+          "date": "1961-01-17",
+          "title": "Assassination of Patrice Lumumba",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": -11.66,
+            "lng": 27.48,
+            "label": "Katanga"
+          },
+          "parties": [
+            "COD",
+            "BEL"
+          ],
+          "description": "The elected prime minister was killed with Belgian and CIA complicity.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Assassination_of_Patrice_Lumumba"
+          ]
+        },
+        {
+          "id": "seed_congo_crisis_e3",
+          "date": "1965-11-24",
+          "title": "Mobutu seizes power",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": -4.32,
+            "lng": 15.31,
+            "label": "Léopoldville"
+          },
+          "parties": [
+            "COD",
+            "USA"
+          ],
+          "description": "A US-backed coup installed a 32-year dictatorship.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Mobutu_Sese_Seko"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_indonesian_killings",
@@ -6163,7 +7195,47 @@
         "cold war",
         "cia"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_indonesian_killings_e1",
+          "date": "1965-10-01",
+          "title": "Failed coup blamed on communists",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": -6.21,
+            "lng": 106.85,
+            "label": "Jakarta"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "An abortive coup was used as a pretext to destroy the Indonesian Communist Party.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Transition_to_the_New_Order"
+          ]
+        },
+        {
+          "id": "seed_indonesian_killings_e2",
+          "date": "1965-11-01",
+          "title": "Mass killings of suspected communists",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -7.5,
+            "lng": 110,
+            "label": "Java & Bali"
+          },
+          "parties": [
+            "IDN"
+          ],
+          "description": "An estimated 500,000 to over a million people were killed with Western backing.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Indonesian_mass_killings_of_1965%E2%80%9366"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_cultural_revolution",
@@ -6561,7 +7633,67 @@
         "disappearances",
         "cold war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_chile_pinochet_e1",
+          "date": "1973-09-11",
+          "title": "Military coup overthrows Allende",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": -33.44,
+            "lng": -70.65,
+            "label": "Santiago"
+          },
+          "parties": [
+            "CHL",
+            "USA"
+          ],
+          "description": "A US-backed coup ended Chilean democracy; Allende died in the presidential palace.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1973_Chilean_coup_d%27%C3%A9tat"
+          ]
+        },
+        {
+          "id": "seed_chile_pinochet_e2",
+          "date": "1974-01-01",
+          "title": "Repression: executions and the \"disappeared\"",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": -33.44,
+            "lng": -70.65,
+            "label": "Santiago"
+          },
+          "parties": [
+            "CHL"
+          ],
+          "description": "Pinochet's regime killed or disappeared thousands and tortured tens of thousands.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Augusto_Pinochet"
+          ]
+        },
+        {
+          "id": "seed_chile_pinochet_e3",
+          "date": "1990-03-11",
+          "title": "Return to democracy",
+          "kind": "milestone",
+          "severity": 1,
+          "location": {
+            "lat": -33.44,
+            "lng": -70.65,
+            "label": "Santiago"
+          },
+          "parties": [
+            "CHL"
+          ],
+          "description": "Pinochet stepped down after losing a 1988 plebiscite.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/History_of_Chile_(1973%E2%80%931990)"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_argentine_dirty_war",
@@ -6693,7 +7825,87 @@
         "occupation",
         "middle east"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_lebanese_civil_war_e1",
+          "date": "1975-04-13",
+          "title": "War erupts in Beirut",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "Beirut"
+          },
+          "parties": [
+            "LBN"
+          ],
+          "description": "Sectarian and factional tensions ignited a 15-year civil war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Lebanese_Civil_War"
+          ]
+        },
+        {
+          "id": "seed_lebanese_civil_war_e2",
+          "date": "1982-06-06",
+          "title": "Israel invades Lebanon",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "Beirut"
+          },
+          "parties": [
+            "ISR",
+            "LBN"
+          ],
+          "description": "Israel invaded to expel the PLO and besieged Beirut.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1982_Lebanon_War"
+          ]
+        },
+        {
+          "id": "seed_lebanese_civil_war_e3",
+          "date": "1982-09-16",
+          "title": "Sabra and Shatila massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 33.86,
+            "lng": 35.5,
+            "label": "Beirut"
+          },
+          "parties": [
+            "LBN",
+            "ISR"
+          ],
+          "description": "Militias killed hundreds to thousands of Palestinians in refugee camps under Israeli control.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Sabra_and_Shatila_massacre"
+          ]
+        },
+        {
+          "id": "seed_lebanese_civil_war_e4",
+          "date": "1990-10-13",
+          "title": "War ends (Taif Agreement)",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 33.89,
+            "lng": 35.5,
+            "label": "Beirut"
+          },
+          "parties": [
+            "LBN"
+          ],
+          "description": "The war left around 150,000 dead and Beirut in ruins.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Taif_Agreement"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_angolan_civil_war",
@@ -6778,7 +7990,70 @@
         "displacement",
         "mediterranean"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_cyprus_invasion_e1",
+          "date": "1974-07-15",
+          "title": "Greek-backed coup in Cyprus",
+          "kind": "escalation",
+          "severity": 3,
+          "location": {
+            "lat": 35.19,
+            "lng": 33.36,
+            "label": "Nicosia"
+          },
+          "parties": [
+            "GRC",
+            "CYP"
+          ],
+          "description": "A coup aiming for union with Greece triggered the crisis.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/1974_Cypriot_coup_d%27%C3%A9tat"
+          ]
+        },
+        {
+          "id": "seed_cyprus_invasion_e2",
+          "date": "1974-07-20",
+          "title": "Turkey invades northern Cyprus",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 35.34,
+            "lng": 33.32,
+            "label": "Kyrenia"
+          },
+          "parties": [
+            "TUR",
+            "CYP"
+          ],
+          "description": "Turkish forces occupied the north, dividing the island.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Turkish_invasion_of_Cyprus"
+          ]
+        },
+        {
+          "id": "seed_cyprus_invasion_e3",
+          "date": "1974-08-16",
+          "title": "Island divided; mass displacement",
+          "kind": "displacement",
+          "severity": 3,
+          "location": {
+            "lat": 35.19,
+            "lng": 33.36,
+            "label": "Nicosia"
+          },
+          "parties": [
+            "TUR",
+            "CYP",
+            "GRC"
+          ],
+          "description": "Some 200,000 people were displaced across the new dividing line.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Turkish_invasion_of_Cyprus"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_troubles",
