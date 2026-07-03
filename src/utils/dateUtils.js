@@ -12,6 +12,30 @@ export function isActiveAt(conflict, year) {
   return end >= year;
 }
 
+// Parse "YYYY" | "YYYY-MM" | "YYYY-MM-DD" into a decimal year, for sorting and
+// positioning events along a conflict's span. Returns null if unparseable.
+export function dateToValue(dateStr) {
+  if (!dateStr) return null;
+  const [y, m, d] = String(dateStr).split('-').map((n) => parseInt(n, 10));
+  if (!y) return null;
+  let v = y;
+  if (m) v += (m - 1) / 12;
+  if (d) v += (d - 1) / 372; // keep within the month's slice
+  return v;
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// Human-friendly event date at whatever precision was given.
+export function formatEventDate(dateStr) {
+  if (!dateStr) return '';
+  const parts = String(dateStr).split('-');
+  const [y, m, d] = parts.map((n) => parseInt(n, 10));
+  if (parts.length >= 3) return `${d} ${MONTHS[m - 1]} ${y}`;
+  if (parts.length === 2) return `${MONTHS[m - 1]} ${y}`;
+  return String(y);
+}
+
 export function formatDateRange(startDate, endDate, ongoing) {
   const start = startDate ? String(startDate).substring(0, 4) : '?';
   if (ongoing || !endDate) return `${start} – present`;

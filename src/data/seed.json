@@ -1,5 +1,5 @@
 {
-  "version": "2.8.0",
+  "version": "2.9.0",
   "countries": [
     {
       "id": "AFG",
@@ -1500,7 +1500,190 @@
         "allies",
         "atomic bomb"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_ww2_e1",
+          "date": "1939-09-01",
+          "title": "Germany invades Poland",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 52.23,
+            "lng": 21.01,
+            "label": "Poland"
+          },
+          "parties": [
+            "DEU",
+            "POL"
+          ],
+          "description": "The German invasion of Poland began the Second World War in Europe; Britain and France declared war two days later.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Invasion_of_Poland"
+          ]
+        },
+        {
+          "id": "seed_ww2_e2",
+          "date": "1940-05-10",
+          "title": "Germany invades France & the Low Countries",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 49.87,
+            "lng": 4.94,
+            "label": "Sedan, France"
+          },
+          "parties": [
+            "DEU",
+            "FRA"
+          ],
+          "description": "A rapid armoured offensive through the Ardennes overran France in six weeks and forced the Dunkirk evacuation.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_France"
+          ]
+        },
+        {
+          "id": "seed_ww2_e3",
+          "date": "1941-06-22",
+          "title": "Operation Barbarossa",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 52.1,
+            "lng": 23.73,
+            "label": "Eastern Front"
+          },
+          "parties": [
+            "DEU",
+            "RUS"
+          ],
+          "description": "The German invasion of the Soviet Union opened the deadliest theatre of the war, ultimately claiming tens of millions of lives.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Barbarossa"
+          ]
+        },
+        {
+          "id": "seed_ww2_e4",
+          "date": "1941-12-07",
+          "title": "Attack on Pearl Harbor",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 21.36,
+            "lng": -157.95,
+            "label": "Pearl Harbor, Hawaii"
+          },
+          "parties": [
+            "JPN",
+            "USA"
+          ],
+          "description": "The surprise Japanese attack on the US Pacific Fleet brought the United States into the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Attack_on_Pearl_Harbor"
+          ]
+        },
+        {
+          "id": "seed_ww2_e5",
+          "date": "1942-08-23",
+          "title": "Battle of Stalingrad begins",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 48.71,
+            "lng": 44.51,
+            "label": "Stalingrad"
+          },
+          "parties": [
+            "DEU",
+            "RUS"
+          ],
+          "description": "One of the bloodiest battles in history; the Soviet victory in early 1943 marked the turning point on the Eastern Front.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Stalingrad"
+          ]
+        },
+        {
+          "id": "seed_ww2_e6",
+          "date": "1944-06-06",
+          "title": "D-Day: Normandy landings",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 49.34,
+            "lng": -0.51,
+            "label": "Normandy, France"
+          },
+          "parties": [
+            "USA",
+            "GBR",
+            "FRA",
+            "DEU"
+          ],
+          "description": "The Allied amphibious invasion of occupied France opened the Western Front in Europe.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Normandy_landings"
+          ]
+        },
+        {
+          "id": "seed_ww2_e7",
+          "date": "1945-05-08",
+          "title": "V-E Day: Germany surrenders",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 52.52,
+            "lng": 13.4,
+            "label": "Berlin"
+          },
+          "parties": [
+            "DEU"
+          ],
+          "description": "Nazi Germany's unconditional surrender ended the war in Europe.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Victory_in_Europe_Day"
+          ]
+        },
+        {
+          "id": "seed_ww2_e8",
+          "date": "1945-08-06",
+          "title": "Atomic bombing of Hiroshima",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 34.39,
+            "lng": 132.45,
+            "label": "Hiroshima, Japan"
+          },
+          "parties": [
+            "USA",
+            "JPN"
+          ],
+          "description": "The first use of a nuclear weapon in war killed an estimated 70,000–140,000 people; Nagasaki was bombed three days later.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki"
+          ]
+        },
+        {
+          "id": "seed_ww2_e9",
+          "date": "1945-09-02",
+          "title": "V-J Day: Japan surrenders",
+          "kind": "treaty",
+          "severity": 1,
+          "location": {
+            "lat": 35.62,
+            "lng": 139.77,
+            "label": "Tokyo Bay"
+          },
+          "parties": [
+            "JPN",
+            "USA"
+          ],
+          "description": "Japan's formal surrender aboard the USS Missouri ended the Second World War.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Surrender_of_Japan"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_holocaust",
@@ -1991,7 +2174,119 @@
         "machete",
         "100 days"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_rwandan_genocide_e1",
+          "date": "1994-04-06",
+          "title": "President Habyarimana's plane shot down",
+          "kind": "escalation",
+          "severity": 4,
+          "location": {
+            "lat": -1.94,
+            "lng": 30.06,
+            "label": "Kigali"
+          },
+          "parties": [
+            "RWA"
+          ],
+          "description": "The assassination of the Rwandan president was the spark that unleashed the genocide within hours.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Assassination_of_Juv%C3%A9nal_Habyarimana_and_Cyprien_Ntaryamira"
+          ]
+        },
+        {
+          "id": "seed_rwandan_genocide_e2",
+          "date": "1994-04-07",
+          "title": "Genocide begins in Kigali",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -1.95,
+            "lng": 30.06,
+            "label": "Kigali"
+          },
+          "parties": [
+            "RWA"
+          ],
+          "description": "Roadblocks went up and the systematic killing of Tutsi and moderate Hutu began, coordinated by militias and radio.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rwandan_genocide"
+          ]
+        },
+        {
+          "id": "seed_rwandan_genocide_e3",
+          "date": "1994-04-15",
+          "title": "Nyarubuye massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -2.28,
+            "lng": 30.79,
+            "label": "Nyarubuye"
+          },
+          "parties": [
+            "RWA"
+          ],
+          "description": "Thousands who had sought refuge at a church were killed over several days, one of many church massacres.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Nyarubuye_massacre"
+          ]
+        },
+        {
+          "id": "seed_rwandan_genocide_e4",
+          "date": "1994-04-21",
+          "title": "Murambi massacre",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": -2.47,
+            "lng": 29.75,
+            "label": "Murambi"
+          },
+          "parties": [
+            "RWA"
+          ],
+          "description": "Around 45,000 people gathered at a technical school were massacred; the site is now a genocide memorial.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Murambi_Genocide_Memorial_Centre"
+          ]
+        },
+        {
+          "id": "seed_rwandan_genocide_e5",
+          "date": "1994-07-04",
+          "title": "RPF captures Kigali",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": -1.95,
+            "lng": 30.06,
+            "label": "Kigali"
+          },
+          "parties": [
+            "RWA"
+          ],
+          "description": "The advance of the Rwandan Patriotic Front brought the genocide to an end as the government collapsed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rwandan_Patriotic_Front"
+          ]
+        },
+        {
+          "id": "seed_rwandan_genocide_e6",
+          "date": "1994-07-15",
+          "title": "Genocide ends",
+          "kind": "milestone",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "RWA"
+          ],
+          "description": "In about 100 days an estimated 500,000–800,000 people were killed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Rwandan_genocide"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_congo_wars",
@@ -2476,7 +2771,126 @@
         "invasion",
         "sanctions"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_ukraine_war_e1",
+          "date": "2022-02-24",
+          "title": "Russia launches full-scale invasion",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 50.45,
+            "lng": 30.52,
+            "label": "Kyiv"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Russian forces attacked Ukraine on multiple fronts, including a drive toward the capital that was repelled.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e2",
+          "date": "2022-03-02",
+          "title": "Siege of Mariupol",
+          "kind": "battle",
+          "severity": 5,
+          "location": {
+            "lat": 47.1,
+            "lng": 37.55,
+            "label": "Mariupol"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "A near-three-month siege devastated the city, including the bombing of a theatre sheltering civilians.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Siege_of_Mariupol"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e3",
+          "date": "2022-04-03",
+          "title": "Bucha massacre revealed",
+          "kind": "atrocity",
+          "severity": 5,
+          "location": {
+            "lat": 50.54,
+            "lng": 30.21,
+            "label": "Bucha"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "After Russian withdrawal from Kyiv oblast, hundreds of murdered civilians were found in Bucha.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Bucha_massacre"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e4",
+          "date": "2022-09-06",
+          "title": "Kharkiv counteroffensive",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 49.99,
+            "lng": 36.23,
+            "label": "Kharkiv oblast"
+          },
+          "parties": [
+            "UKR"
+          ],
+          "description": "A rapid Ukrainian counteroffensive recaptured thousands of square kilometres in the northeast.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2022_Ukrainian_Kharkiv_counteroffensive"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e5",
+          "date": "2022-11-11",
+          "title": "Liberation of Kherson",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 46.64,
+            "lng": 32.61,
+            "label": "Kherson"
+          },
+          "parties": [
+            "UKR"
+          ],
+          "description": "Ukraine retook the only regional capital Russia had captured, forcing a withdrawal across the Dnipro.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Kherson"
+          ]
+        },
+        {
+          "id": "seed_ukraine_war_e6",
+          "date": "2023-06-08",
+          "title": "Ukrainian counteroffensive",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 47.6,
+            "lng": 35.24,
+            "label": "Zaporizhzhia"
+          },
+          "parties": [
+            "UKR"
+          ],
+          "description": "A much-anticipated southern offensive made only limited gains against deep Russian defences.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2023_Ukrainian_counteroffensive"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_drc_m23",
@@ -2611,7 +3025,88 @@
         "war crimes",
         "ethnic cleansing"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_gaza_war_e1",
+          "date": "2023-10-07",
+          "title": "Hamas-led attack on southern Israel",
+          "kind": "attack",
+          "severity": 5,
+          "location": {
+            "lat": 31.44,
+            "lng": 34.39,
+            "label": "Gaza envelope"
+          },
+          "parties": [
+            "PSE",
+            "ISR"
+          ],
+          "description": "A cross-border assault killed about 1,200 people in Israel and took some 250 hostages, triggering the war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/October_7_attacks"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e2",
+          "date": "2023-10-27",
+          "title": "Israeli ground invasion of Gaza begins",
+          "kind": "offensive",
+          "severity": 5,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "Following weeks of airstrikes, Israeli ground forces entered the Gaza Strip.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Israeli_ground_invasion_of_the_Gaza_Strip"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e3",
+          "date": "2023-11-24",
+          "title": "First truce & hostage–prisoner exchange",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.47,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "A week-long pause saw the release of hostages and Palestinian prisoners before fighting resumed.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/November_2023_Gaza_Strip_temporary_ceasefire"
+          ]
+        },
+        {
+          "id": "seed_gaza_war_e4",
+          "date": "2024-03-18",
+          "title": "Famine warning for northern Gaza",
+          "kind": "displacement",
+          "severity": 5,
+          "location": {
+            "lat": 31.5,
+            "lng": 34.45,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "PSE"
+          ],
+          "description": "An IPC-backed assessment warned that famine was imminent amid mass displacement and a collapse of aid.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gaza_Strip_famine"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_western_sahara",
@@ -4319,7 +4814,87 @@
         "golan",
         "six day war"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_six_day_war_e1",
+          "date": "1967-06-05",
+          "title": "Israel launches Operation Focus",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 30.12,
+            "lng": 31.4,
+            "label": "Egyptian airfields"
+          },
+          "parties": [
+            "ISR",
+            "EGY"
+          ],
+          "description": "Pre-emptive airstrikes destroyed most of Egypt's air force on the ground within hours.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Operation_Focus"
+          ]
+        },
+        {
+          "id": "seed_six_day_war_e2",
+          "date": "1967-06-07",
+          "title": "Israel captures East Jerusalem & the West Bank",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 31.78,
+            "lng": 35.23,
+            "label": "Jerusalem"
+          },
+          "parties": [
+            "ISR",
+            "JOR"
+          ],
+          "description": "Israeli forces took the Old City of Jerusalem and the West Bank from Jordan.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Battle_of_Jerusalem_(1967)"
+          ]
+        },
+        {
+          "id": "seed_six_day_war_e3",
+          "date": "1967-06-09",
+          "title": "Israel captures the Golan Heights",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 33,
+            "lng": 35.75,
+            "label": "Golan Heights"
+          },
+          "parties": [
+            "ISR",
+            "SYR"
+          ],
+          "description": "In the final days Israel seized the strategic Golan Heights from Syria.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Israeli_occupation_of_the_Golan_Heights"
+          ]
+        },
+        {
+          "id": "seed_six_day_war_e4",
+          "date": "1967-06-10",
+          "title": "Ceasefire ends the war",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": null,
+          "parties": [
+            "ISR",
+            "EGY",
+            "SYR",
+            "JOR"
+          ],
+          "description": "In six days Israel tripled the territory under its control, reshaping the region for decades.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Six-Day_War"
+          ]
+        }
+      ]
     },
     {
       "id": "seed_bangladesh_genocide",
