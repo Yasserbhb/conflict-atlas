@@ -2,7 +2,15 @@
 from __future__ import annotations
 
 from typing import Protocol
+from urllib.parse import urlparse
 from .schema import RawItem
+
+
+def _outlet(url: str) -> str:
+    """Bare domain as the outlet name (e.g. 'reuters.com'), so the fact-checker can count
+    independent outlets and cross-outlet corroboration."""
+    net = urlparse(url or "").netloc.lower()
+    return net[4:] if net.startswith("www.") else net
 
 
 class SearchClient(Protocol):
@@ -26,6 +34,7 @@ class TavilySearch:
                 title=r.get("title", ""),
                 url=r.get("url", ""),
                 snippet=r.get("content", ""),
+                outlet=_outlet(r.get("url", "")),
                 lang=lang,
             ))
         return out

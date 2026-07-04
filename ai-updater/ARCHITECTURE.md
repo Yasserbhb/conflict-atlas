@@ -251,6 +251,10 @@ The whole point is a dataset you can trust, so sourcing is adversarial by design
 - **Cross-alignment corroboration.** A contested claim (casualty counts, *who started it*, the
   "genocide" label) may only enter if corroborated across sources of **different alignment** —
   not just multiple outlets echoing one wire. Structured datasets (ACLED, UCDP) anchor the facts.
+  Until an explicit per-outlet alignment allowlist exists, the fact-checker uses a **measurable
+  proxy**: independent **outlets** (distinct domains, populated by the fetcher) and **languages**.
+  `cross_alignment` = corroboration across different outlets and/or languages, so the signal is
+  real and reachable today rather than a field nothing can set.
 - **Attribute, don't adopt.** Where sources genuinely disagree, the record states the range and
   **attributes** each framing ("Israel says… ; the UN Commission found…") rather than picking a
   side. The Summarizer is instructed to neutral, attributed prose.

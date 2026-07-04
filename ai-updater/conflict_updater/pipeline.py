@@ -10,7 +10,7 @@ from .config import Settings, load_settings
 from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
 from .geocode import GeocodeClient, get_geocode
-from .store import BaseConflict, load_base, pending_to_base
+from .store import BaseConflict, load_base, pending_to_base, date_key
 from . import agents, dedup
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
@@ -19,6 +19,20 @@ from .schema import (
 
 def _slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", (s or "").lower()).strip("_")[:40] or "unnamed"
+
+
+def _unique_new_id(title: str, *taken) -> str:
+    """A `seed_new_<slug>` id guaranteed not to collide with any existing or pending conflict,
+    so two same-scan foundings whose titles slugify identically don't share an id (which would
+    make the merger silently drop the second one's event)."""
+    base_id = f"seed_new_{_slug(title)}"
+    def used(cid): return any(cid in t for t in taken)
+    if not used(base_id):
+        return base_id
+    n = 2
+    while used(f"{base_id}_{n}"):
+        n += 1
+    return f"{base_id}_{n}"
 
 
 def _year(d: str):
@@ -84,7 +98,7 @@ def _is_latest_event(cand: CandidateEvent, parent) -> bool:
     """True if this event is the most recent in its conflict — only then may it move status."""
     if not parent or not parent.events:
         return True
-    return (cand.date or "") >= max((e.get("date") or "") for e in parent.events)
+    return date_key(cand.date) >= max(date_key(e.get("date")) for e in parent.events)
 
 
 def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
@@ -93,9 +107,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
     geocode = geocode or get_geocode(settings)
     by_id = {c.id: c for c in base}
     # New conflicts founded EARLIER IN THIS SCAN aren't in `base` yet (that only reflects
-    # seed.json as of scan start) — track them so a second event for the same undeclared
-    # conflict attaches to the first instead of spawning a duplicate "new" one.
-    pending: dict[str, Conflict] = {}
+    # seed.json as of scan start) — track a BaseConflict view of each so a second event for
+    # the same undeclared conflict attaches to the first instead of spawning a duplicate.
+    pending_bases: dict[str, BaseConflict] = {}
 
     # 1. SCOPER — window → queries (multi-language) + which existing conflicts to re-check
     plan = agents.scoper(llm, req, [c.id for c in base])
@@ -118,7 +132,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         print(f"  [{i}/{len(cands)}] {cand.date} {cand.title[:60]}")
         # 4. RESOLVER — dedup lookup (code) then decide (LLM). Pending new conflicts from
         # earlier in this same scan are included so a follow-up event attaches to them.
-        pool = base + [pending_to_base(pc) for pc in pending.values()]
+        pool = base + list(pending_bases.values())
         candidates = dedup.find_candidates(pool, cand)
         res = agents.resolver(llm, cand, candidates)
 
@@ -127,7 +141,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             continue
 
         is_new = res.decision == "new" or (
-            res.decision == "attach" and res.conflict_id not in by_id and res.conflict_id not in pending
+            res.decision == "attach"
+            and res.conflict_id not in by_id and res.conflict_id not in pending_bases
         )
         target_id = res.conflict_id if not is_new else None
         ambiguous = res.decision == "ambiguous"
@@ -140,8 +155,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # this same scan (pending) — both are equally valid "parents" for context purposes.
         if is_new:
             parent = None
-        elif target_id in pending:
-            parent = pending_to_base(pending[target_id])
+        elif target_id in pending_bases:
+            parent = pending_bases[target_id]
         else:
             parent = by_id.get(target_id)
         parent_type = parent.type if parent else None
@@ -218,7 +233,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         if is_new:
             y = _year(cand.date) or str(req.period_start)
             new_conflict = Conflict(
-                id=f"seed_new_{_slug(cand.title)}",
+                id=_unique_new_id(cand.title, by_id, pending_bases),
                 title=cand.title,               # provisional — a human renames on review
                 type=cls.conflict_type or "war",
                 severity=sev.severity,
@@ -231,7 +246,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                 aliases=res.new_aliases,
                 events=[event],
             )
-            pending[new_conflict.id] = new_conflict  # visible to later candidates in this scan
+            # visible (as a BaseConflict) to later candidates in this same scan
+            pending_bases[new_conflict.id] = pending_to_base(new_conflict)
 
         proposals.append(Proposal(
             kind="new_conflict" if is_new else "attach",

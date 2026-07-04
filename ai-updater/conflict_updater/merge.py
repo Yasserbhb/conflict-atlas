@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import re
 from .schema import Proposal, Event, Conflict
+from .store import date_key
 
 _TERMINAL = {"ended", "resolved"}
 
@@ -78,8 +79,8 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
             ev = _event_to_app(p.event, f"{c['id']}_e{len(events) + 1}")
             events.append(ev)
             # is this now the most recent event? (only the latest may change current status)
-            is_latest = all(ev["date"] >= (e.get("date") or "") for e in events)
-            events.sort(key=lambda e: e.get("date") or "")
+            is_latest = all(date_key(ev["date"]) >= date_key(e.get("date")) for e in events)
+            events.sort(key=lambda e: date_key(e.get("date")))
 
             c["severity"] = max(c.get("severity", 0), p.event.severity)   # never lowered
             inv = c.setdefault("involvedCountries", [])

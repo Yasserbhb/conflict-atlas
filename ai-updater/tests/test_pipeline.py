@@ -103,6 +103,38 @@ def test_strongly_corroborated_new_conflict_can_auto_approve():
     assert p.needs_human is False
 
 
+def test_reconciler_can_still_veto_a_strongly_corroborated_new_conflict():
+    # being new no longer auto-blocks, but the reconciler may still route to a human on a
+    # genuine objection (contested roles/classification) even with strong sourcing.
+    over = {
+        ResolverOutput: ResolverOutput(decision="new"),
+        ClassifyOutput: ClassifyOutput(event_kind="attack", conflict_type="war"),
+        FactCheckOutput: FactCheckOutput(verdict="pass", confidence=0.95,
+                                         independent_sources=3, cross_alignment=True),
+        ReconcilerOutput: ReconcilerOutput(decision="needs_human", open_question="who started it?"),
+    }
+    res = scan(_req(), llm=FakeLLM(_happy(over)), search=FakeSearch(ITEMS),
+               base=BASE, settings=Settings(), geocode=FakeGeocode())
+    assert res.proposals[0].needs_human is True
+
+
+def test_two_same_slug_new_conflicts_get_distinct_ids():
+    # two foundings whose titles slugify identically must not share an id (which would make
+    # the merger silently drop the second one's event).
+    c1 = CandidateEvent(date="1900-01-01", title="Border Clash!", actors=["A", "B"],
+                        place="X", source_urls=["http://a"])
+    c2 = CandidateEvent(date="1950-01-01", title="Border Clash?", actors=["C", "D"],
+                        place="Y", source_urls=["http://b"])
+    responses = _happy({
+        ExtractorOutput: ExtractorOutput(events=[c1, c2]),
+        ResolverOutput: ResolverOutput(decision="new"),  # force both to be new
+    })
+    res = scan(_req(), llm=FakeLLM(responses), search=FakeSearch(ITEMS), base=[],
+               settings=Settings(), geocode=FakeGeocode())
+    new_ids = [p.new_conflict.id for p in res.proposals if p.kind == "new_conflict"]
+    assert new_ids == ["seed_new_border_clash", "seed_new_border_clash_2"]
+
+
 def test_second_event_attaches_to_a_pending_new_conflict_instead_of_duplicating():
     # two events for the SAME undeclared conflict, found in one scan — the second must
     # attach to the first's pending conflict, not spawn a duplicate "new" one.

@@ -143,16 +143,21 @@ LIFECYCLE_SYS = (
 
 FACTCHECK_SYS = (
     "Judge whether the cited source items actually support the event, and how well-corroborated "
-    "it is. Count INDEPENDENT sources (different outlets, not one wire echoed). Set "
-    "cross_alignment=true only if sources of DIFFERENT political alignment agree. verdict: 'pass' "
-    "(well-supported), 'fail' (unsupported/contradicted), 'uncertain' (thin/single-source/one-"
-    "sided). Give a confidence 0-1. Single-source or one-alignment-only claims are at most 'uncertain'."
+    "it is. Count INDEPENDENT sources = distinct outlets/domains (one wire story echoed across "
+    "sites counts once). Set cross_alignment=true when independent sources from DIFFERENT outlets "
+    "AND/OR DIFFERENT languages corroborate the claim — a practical proxy for crossing the "
+    "political/perspective spectrum when an explicit alignment label isn't available. verdict: "
+    "'pass' (well-supported), 'fail' (unsupported/contradicted), 'uncertain' (thin/single-source/"
+    "one-sided). Give a confidence 0-1. Single-source or single-outlet claims are at most 'uncertain'."
 )
 
 RECONCILER_SYS = (
     "You are the judge. Given an assembled event proposal and the fact-check verdict, decide "
     "'auto_approve' (well-formed, corroborated, high confidence, nothing contested) or "
-    "'needs_human' (any fail/uncertain verdict, contested roles/classification, a new conflict, "
-    "or low confidence). When routing to a human, give a one-line open_question. Prefer "
-    "auto_approve when the evidence is clearly solid, but never rubber-stamp a contested claim."
+    "'needs_human' (any fail/uncertain verdict, contested roles/classification, or low "
+    "confidence). Being a NEW conflict is not by itself a reason to route to a human — the "
+    "caller already applies a higher evidence bar for founding one; judge it on the same "
+    "quality/contestedness criteria, just more strictly. When routing to a human, give a "
+    "one-line open_question. Prefer auto_approve when the evidence is clearly solid, but never "
+    "rubber-stamp a contested claim."
 )

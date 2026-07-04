@@ -80,17 +80,34 @@ class LangChainLLM:
 
 
 def _extract_json(text: str) -> dict:
-    """Pull a JSON object out of a possibly-noisy model reply (fences, prose, reasoning)."""
+    """Pull a JSON object out of a possibly-noisy model reply (fences, prose, reasoning).
+
+    Uses the decoder's raw_decode from each '{' so it tolerates prose/reasoning before or
+    after the object, and stray braces in that prose — rather than a naive first-brace..
+    last-brace slice that breaks on either.
+    """
     if not text:
         raise ValueError("empty model reply")
-    # strip ```json ... ``` fences
-    m = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+    dec = json.JSONDecoder()
+
+    # prefer a fenced ```json ... ``` block if the model used one
+    m = re.search(r"```(?:json)?\s*(\{.*\})\s*```", text, re.DOTALL)
     if m:
-        return json.loads(m.group(1))
-    # otherwise take the outermost {...}
-    start, end = text.find("{"), text.rfind("}")
-    if start != -1 and end > start:
-        return json.loads(text[start:end + 1])
+        try:
+            return dec.raw_decode(m.group(1).strip())[0]
+        except ValueError:
+            pass
+
+    # otherwise scan each '{' and return the first that decodes to a complete JSON object
+    idx = text.find("{")
+    while idx != -1:
+        try:
+            obj, _ = dec.raw_decode(text[idx:])
+            if isinstance(obj, dict):
+                return obj
+        except ValueError:
+            pass
+        idx = text.find("{", idx + 1)
     raise ValueError(f"no JSON object found in reply: {text[:120]!r}")
 
 

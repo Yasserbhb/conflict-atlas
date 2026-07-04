@@ -28,3 +28,18 @@ def test_missing_status_infers_active_when_ongoing_true(tmp_path):
 def test_explicit_status_is_kept_even_if_ongoing_conflicts():
     from conflict_updater.store import _default_status
     assert _default_status({"status": "suspended", "ongoing": True}) == "suspended"
+
+
+def test_ongoing_true_wins_over_a_stale_enddate():
+    from conflict_updater.store import _default_status
+    assert _default_status({"ongoing": True, "endDate": "1962"}) == "active"
+
+
+def test_date_key_orders_mixed_precision_dates():
+    from conflict_updater.store import date_key
+    assert date_key("1871") == "1871-00-00"
+    assert date_key("1871-05") == "1871-05-00"
+    assert date_key("1871-05-01") == "1871-05-01"
+    # a bare year sorts before any dated event in that same year (whole-year → start-of-year)
+    assert date_key("2024") < date_key("2024-03-01")
+    assert date_key("2024-12-31") > date_key("2024-03-01")
