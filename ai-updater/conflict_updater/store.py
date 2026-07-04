@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Optional
 from pydantic import BaseModel, Field
 
-from .schema import ScanResult, Proposal
+from .schema import ScanResult, Proposal, Conflict
 
 
 class BaseConflict(BaseModel):
@@ -64,6 +64,25 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
             events=[{"date": e.get("date"), "title": e.get("title")} for e in c.get("events", [])],
         ))
     return out
+
+
+def pending_to_base(c: Conflict) -> BaseConflict:
+    """View an in-memory, not-yet-saved Conflict (created earlier in THIS scan) as a
+    BaseConflict — so the Resolver/dedup can see it and a second event for the same new
+    conflict attaches to it instead of spawning a duplicate new conflict."""
+    return BaseConflict(
+        id=c.id,
+        title=c.title,
+        type=c.type,
+        aliases=list(c.aliases),
+        involved_countries=list(c.involved_countries),
+        parties=[{"countryId": p.country_id, "role": p.role} for p in c.parties],
+        tags=list(c.tags),
+        start=_year(c.start_date),
+        end=_year(c.end_date),
+        status=c.status,
+        events=[{"date": e.date, "title": e.title} for e in c.events],
+    )
 
 
 def load_seed_dict(seed_json: Path) -> dict:

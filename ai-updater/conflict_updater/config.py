@@ -24,6 +24,12 @@ class Settings:
     auto_approve_confidence: float = float(_get("AUTO_APPROVE_CONFIDENCE", "0.8"))
     max_candidates: int = int(_get("MAX_CANDIDATES", "0"))  # 0 = no cap; >0 caps per scan (quota)
 
+    # Founding a brand-new conflict is riskier than attaching an event to one that already
+    # exists (wrong id/title/type/parties are harder to undo), so it needs a HIGHER bar to
+    # auto-approve — not an unconditional human-review flag regardless of evidence quality.
+    new_conflict_min_confidence: float = float(_get("NEW_CONFLICT_MIN_CONFIDENCE", "0.9"))
+    new_conflict_min_sources: int = int(_get("NEW_CONFLICT_MIN_SOURCES", "3"))
+
     seed_json: Path = Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json")))
     output_dir: Path = Path(_get("OUTPUT_DIR", str(_HERE / "out")))
 
@@ -46,6 +52,8 @@ def load_settings() -> Settings:
         n_min_sources=int(_get("N_MIN_SOURCES", "2")),
         auto_approve_confidence=float(_get("AUTO_APPROVE_CONFIDENCE", "0.8")),
         max_candidates=int(_get("MAX_CANDIDATES", "0")),
+        new_conflict_min_confidence=float(_get("NEW_CONFLICT_MIN_CONFIDENCE", "0.9")),
+        new_conflict_min_sources=int(_get("NEW_CONFLICT_MIN_SOURCES", "3")),
         seed_json=Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))),
         output_dir=Path(_get("OUTPUT_DIR", str(_HERE / "out"))),
     )

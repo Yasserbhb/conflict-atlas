@@ -87,6 +87,39 @@ def test_new_conflict_is_added():
     assert merge.validate(seed2) == []
 
 
+def test_attach_to_a_same_batch_new_conflict_applies_regardless_of_list_order():
+    # the attach proposal is listed BEFORE its founding new_conflict proposal — apply() must
+    # not care about that ordering, since a scan may emit them either way.
+    seed = _seed()
+    nc = Conflict(id="seed_new_mokrani_revolt", title="Mokrani Revolt", type="war", severity=3,
+                  start_date="1871", ongoing=False, status="ended",
+                  parties=[Party(country_id="FRA", role="occupier"), Party(country_id="DZA", role="victim")],
+                  involved_countries=["FRA", "DZA"],
+                  events=[Event(id="e1", date="1871-03-15", title="Revolt begins", kind="escalation",
+                                severity=3, parties=["FRA", "DZA"])])
+    founding = Proposal(kind="new_conflict", event=nc.events[0], new_conflict=nc, needs_human=False)
+    followup = Proposal(kind="attach", target_conflict_id="seed_new_mokrani_revolt",
+                        event=Event(date="1871-05-01", title="Revolt crushed", kind="battle", severity=3,
+                                   parties=["FRA", "DZA"]),
+                        roles=[Party(country_id="FRA", role="occupier"), Party(country_id="DZA", role="victim")],
+                        status="ended", needs_human=False)
+
+    seed2, report = merge.apply([followup, founding], seed)  # attach listed FIRST
+    c = next(c for c in seed2["conflicts"] if c["id"] == "seed_new_mokrani_revolt")
+    assert len(c["events"]) == 2
+    assert merge.validate(seed2) == []
+
+
+def test_attach_to_an_unapproved_founding_conflict_is_skipped_clearly():
+    seed = _seed()
+    followup = Proposal(kind="attach", target_conflict_id="seed_new_unapproved_thing",
+                        event=Event(date="1871-05-01", title="Some event", kind="battle", severity=3,
+                                   parties=["FRA", "DZA"]),
+                        needs_human=False)
+    seed2, report = merge.apply([followup], seed)
+    assert any("founding new_conflict proposal wasn't approved" in line for line in report)
+
+
 def test_proposals_round_trip_through_json(tmp_path):
     # the `apply` CLI reads proposals back from disk — prove that path is coherent
     from conflict_updater.schema import ScanResult, ScanRequest

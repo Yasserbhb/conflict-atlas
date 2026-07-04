@@ -162,7 +162,16 @@ knows about the others (so each is separately testable/tunable).
 | Check | If yes | If no |
 |---|---|---|
 | an existing conflict is the same thing under another alias? | attach + alias (not a new conflict) | continue |
+| a conflict founded **earlier in this same scan** (not yet in seed.json) is the same thing? | **attach to that pending conflict** — not a second duplicate "new" | continue |
 | enough corroboration to stand up a conflict? (§8) | derive type/severity/parties+roles/dates/summary → propose new conflict | hold in pending / → human |
+
+Founding a conflict is riskier than attaching to one that already exists (a wrong
+id/title/type/parties is harder to undo), so it needs a **higher**, not infinite, bar:
+`fact-check pass` + confidence ≥ `NEW_CONFLICT_MIN_CONFIDENCE` (default 0.9) + independent
+sources ≥ `NEW_CONFLICT_MIN_SOURCES` (default 3) + cross-alignment → auto-approve is allowed.
+Anything thinner → human. This is *not* an unconditional "new conflicts always need a human"
+rule — that would make the review queue scale with how much history is missing rather than
+with how uncertain any given founding claim actually is.
 
 **5d. Any enricher is unsure** (role contested, type genuinely dual, severity evidence thin,
 location unknown-but-expected): attach the field **provisionally**, mark low-confidence, and the

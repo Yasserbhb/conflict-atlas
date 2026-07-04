@@ -10,7 +10,7 @@ from .config import Settings, load_settings
 from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
 from .geocode import GeocodeClient, get_geocode
-from .store import BaseConflict, load_base
+from .store import BaseConflict, load_base, pending_to_base
 from . import agents, dedup
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
@@ -92,6 +92,10 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
          geocode: GeocodeClient | None = None) -> ScanResult:
     geocode = geocode or get_geocode(settings)
     by_id = {c.id: c for c in base}
+    # New conflicts founded EARLIER IN THIS SCAN aren't in `base` yet (that only reflects
+    # seed.json as of scan start) — track them so a second event for the same undeclared
+    # conflict attaches to the first instead of spawning a duplicate "new" one.
+    pending: dict[str, Conflict] = {}
 
     # 1. SCOPER — window → queries (multi-language) + which existing conflicts to re-check
     plan = agents.scoper(llm, req, [c.id for c in base])
@@ -112,15 +116,19 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
     for i, cand in enumerate(cands, 1):
         print(f"  [{i}/{len(cands)}] {cand.date} {cand.title[:60]}")
-        # 4. RESOLVER — dedup lookup (code) then decide (LLM)
-        candidates = dedup.find_candidates(base, cand)
+        # 4. RESOLVER — dedup lookup (code) then decide (LLM). Pending new conflicts from
+        # earlier in this same scan are included so a follow-up event attaches to them.
+        pool = base + [pending_to_base(pc) for pc in pending.values()]
+        candidates = dedup.find_candidates(pool, cand)
         res = agents.resolver(llm, cand, candidates)
 
         if res.decision == "known":
             dropped.append(f"already known: {cand.date} {cand.title}")
             continue
 
-        is_new = res.decision == "new"
+        is_new = res.decision == "new" or (
+            res.decision == "attach" and res.conflict_id not in by_id and res.conflict_id not in pending
+        )
         target_id = res.conflict_id if not is_new else None
         ambiguous = res.decision == "ambiguous"
 
@@ -128,7 +136,14 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         provisional = _is_recent(cand.date, settings.t_settle_days)
 
         # 6. ENRICHERS  (parent context keeps type/roles consistent; not re-derived per event)
-        parent = by_id.get(target_id) if not is_new else None
+        # target_id may point at a conflict already in seed.json OR one founded earlier in
+        # this same scan (pending) — both are equally valid "parents" for context purposes.
+        if is_new:
+            parent = None
+        elif target_id in pending:
+            parent = pending_to_base(pending[target_id])
+        else:
+            parent = by_id.get(target_id)
         parent_type = parent.type if parent else None
 
         cls = agents.classifier(llm, cand, is_new, parent_type=parent_type)
@@ -178,13 +193,26 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # 8. RECONCILER
         rec = agents.reconciler(llm, event, fc, is_new)
 
-        needs_human = (
-            ambiguous
-            or is_new                                  # new conflicts are always human-checked
-            or rec.decision == "needs_human"
-            or fc.verdict != "pass"
-            or fc.confidence < settings.auto_approve_confidence
-        )
+        if ambiguous:
+            needs_human = True
+        elif is_new:
+            # Founding a brand-new conflict is riskier than attaching to one that already
+            # exists — wrong id/title/type/parties are harder to undo later. So it needs a
+            # HIGHER, but not infinite, bar: strong multi-source, cross-aligned corroboration
+            # can still auto-create; anything thinner goes to a human. Not an absolute block.
+            strongly_corroborated = (
+                fc.verdict == "pass"
+                and fc.confidence >= settings.new_conflict_min_confidence
+                and fc.independent_sources >= settings.new_conflict_min_sources
+                and fc.cross_alignment
+            )
+            needs_human = (not strongly_corroborated) or rec.decision == "needs_human"
+        else:
+            needs_human = (
+                rec.decision == "needs_human"
+                or fc.verdict != "pass"
+                or fc.confidence < settings.auto_approve_confidence
+            )
 
         new_conflict = None
         if is_new:
@@ -203,6 +231,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                 aliases=res.new_aliases,
                 events=[event],
             )
+            pending[new_conflict.id] = new_conflict  # visible to later candidates in this scan
 
         proposals.append(Proposal(
             kind="new_conflict" if is_new else "attach",

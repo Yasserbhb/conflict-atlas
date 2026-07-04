@@ -70,7 +70,10 @@ def test_uncertain_factcheck_routes_to_human():
     assert res.proposals[0].needs_human is True
 
 
-def test_new_conflict_always_needs_human():
+def test_thinly_sourced_new_conflict_needs_human():
+    # _happy()'s FactCheck has only 2 independent sources — below the higher bar a NEW
+    # conflict needs (default 3) — so it's held for review even though a plain attach with
+    # the same evidence would auto-approve (see test_happy_path_attaches_and_auto_approves).
     over = {
         ResolverOutput: ResolverOutput(decision="new"),
         ClassifyOutput: ClassifyOutput(event_kind="attack", conflict_type="war"),
@@ -82,6 +85,50 @@ def test_new_conflict_always_needs_human():
     assert p.needs_human is True
     assert p.new_conflict.type == "war"
     assert p.new_conflict.events and p.new_conflict.events[0].kind == "attack"
+
+
+def test_strongly_corroborated_new_conflict_can_auto_approve():
+    # a founding event isn't ALWAYS forced to human review — strong, cross-aligned,
+    # multi-source evidence can clear the (higher) bar and auto-create it.
+    over = {
+        ResolverOutput: ResolverOutput(decision="new"),
+        ClassifyOutput: ClassifyOutput(event_kind="attack", conflict_type="war"),
+        FactCheckOutput: FactCheckOutput(verdict="pass", confidence=0.95,
+                                         independent_sources=3, cross_alignment=True),
+    }
+    res = scan(_req(), llm=FakeLLM(_happy(over)), search=FakeSearch(ITEMS),
+               base=BASE, settings=Settings(), geocode=FakeGeocode())
+    p = res.proposals[0]
+    assert p.kind == "new_conflict"
+    assert p.needs_human is False
+
+
+def test_second_event_attaches_to_a_pending_new_conflict_instead_of_duplicating():
+    # two events for the SAME undeclared conflict, found in one scan — the second must
+    # attach to the first's pending conflict, not spawn a duplicate "new" one.
+    cand1 = CandidateEvent(date="1871-03-15", title="Mokrani Revolt begins",
+                           actors=["France", "Algeria"], place="Kabylie", source_urls=["http://a"])
+    cand2 = CandidateEvent(date="1871-05-01", title="Mokrani Revolt is crushed by France",
+                           actors=["France", "Algeria"], place="Kabylie", source_urls=["http://b"])
+
+    def resolver_fn(user):
+        if "seed_new_mokrani_revolt_begins" in user:
+            return ResolverOutput(decision="attach", conflict_id="seed_new_mokrani_revolt_begins")
+        return ResolverOutput(decision="new")
+
+    responses = _happy({
+        ExtractorOutput: ExtractorOutput(events=[cand1, cand2]),
+        ResolverOutput: resolver_fn,
+    })
+    llm = FakeLLM(responses)
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=[], settings=Settings(),
+               geocode=FakeGeocode())
+
+    kinds = [p.kind for p in res.proposals]
+    assert kinds.count("new_conflict") == 1   # not two duplicate new conflicts
+    assert kinds.count("attach") == 1
+    attach_p = next(p for p in res.proposals if p.kind == "attach")
+    assert attach_p.target_conflict_id == "seed_new_mokrani_revolt_begins"
 
 
 def test_event_gathers_all_corroborating_sources_with_metadata():

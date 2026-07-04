@@ -54,7 +54,12 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
     report: list[str] = []
     applied = 0
 
-    for p in proposals:
+    # A "new_conflict" proposal must land BEFORE any "attach" proposal that targets it (a
+    # second event for the same not-yet-saved conflict, founded earlier in the same scan) —
+    # process founding proposals first regardless of the order they happen to arrive in.
+    ordered = sorted(proposals, key=lambda p: 0 if p.kind == "new_conflict" else 1)
+
+    for p in ordered:
         if p.needs_human:
             report.append(f"skip (needs human): {p.event.date} {p.event.title}")
             continue
@@ -65,7 +70,9 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
         if p.kind == "attach":
             c = by_id.get(p.target_conflict_id)
             if not c:
-                report.append(f"skip (missing target {p.target_conflict_id}): {p.event.title}")
+                is_pending_new = str(p.target_conflict_id or "").startswith("seed_new_")
+                why = "its founding new_conflict proposal wasn't approved" if is_pending_new else "conflict not found"
+                report.append(f"skip ({why} — target {p.target_conflict_id}): {p.event.title}")
                 continue
             events = c.setdefault("events", [])
             ev = _event_to_app(p.event, f"{c['id']}_e{len(events) + 1}")
