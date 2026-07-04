@@ -127,6 +127,14 @@ SUMMARY_SYS = (
     "than asserting one side. No editorialising."
 )
 
+SPAN_SYS = (
+    "You are given a newly-identified conflict (its founding event) and source snippets. From the "
+    "sources, extract the CONFLICT'S overall time span — NOT this one event's date. Return "
+    "start_date (when the conflict began) and end_date (when it ended), each a year or ISO date. "
+    "If it is still ongoing, or the end is genuinely unknown from the sources, set end_date to null. "
+    "Use only what the sources state — do not guess a span."
+)
+
 LIFECYCLE_SYS = (
     "Decide the conflict's status AS OF TODAY, using the new event, the dates given, and the "
     "current status.\n"

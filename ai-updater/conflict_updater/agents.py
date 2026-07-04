@@ -12,8 +12,8 @@ from .store import BaseConflict
 from .schema import (
     ScanRequest, RawItem, CandidateEvent,
     ScoperOutput, ExtractorOutput, ResolverOutput, ClassifyOutput, SeverityOutput,
-    RolesOutput, GeoOutput, SummaryOutput, LifecycleOutput, FactCheckOutput, ReconcilerOutput,
-    Event, Status, ConflictType,
+    RolesOutput, GeoOutput, SummaryOutput, LifecycleOutput, SpanOutput, FactCheckOutput,
+    ReconcilerOutput, Event, Status, ConflictType,
 )
 
 
@@ -96,6 +96,11 @@ def lifecycle(llm: LLMClient, cand: CandidateEvent, conflict_type: Optional[str]
         f"New event:\n{_j(cand)}"
     )
     return llm.structured(LifecycleOutput, P.LIFECYCLE_SYS, user)
+
+
+def span(llm: LLMClient, cand: CandidateEvent, items: list[RawItem]) -> SpanOutput:
+    user = f"Founding event:\n{_j(cand)}\n\nSources:\n{_j([i.snippet for i in items][:8])}"
+    return llm.structured(SpanOutput, P.SPAN_SYS, user)
 
 
 def factcheck(llm: LLMClient, event: Event, items: list[RawItem]) -> FactCheckOutput:

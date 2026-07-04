@@ -5,7 +5,7 @@ from conflict_updater.schema import (
     ScanRequest, RawItem, SearchQuery,
     ScoperOutput, ExtractorOutput, CandidateEvent, ResolverOutput, ClassifyOutput,
     SeverityOutput, RolesOutput, Party, GeoOutput, Location, SummaryOutput,
-    LifecycleOutput, FactCheckOutput, ReconcilerOutput,
+    LifecycleOutput, SpanOutput, FactCheckOutput, ReconcilerOutput,
 )
 from fakes import FakeLLM, FakeSearch, FakeGeocode
 
@@ -35,6 +35,7 @@ def _happy(override=None):
         GeoOutput: GeoOutput(location=Location(lat=31.5, lng=34.47, label="Gaza")),
         SummaryOutput: SummaryOutput(text="An Israeli strike hit Gaza City."),
         LifecycleOutput: LifecycleOutput(status="active"),
+        SpanOutput: SpanOutput(start_date="2023", end_date=None),  # sources: began 2023, ongoing
         FactCheckOutput: FactCheckOutput(verdict="pass", confidence=0.9,
                                          independent_sources=2, cross_alignment=True),
         ReconcilerOutput: ReconcilerOutput(decision="auto_approve"),
@@ -101,6 +102,36 @@ def test_strongly_corroborated_new_conflict_can_auto_approve():
     p = res.proposals[0]
     assert p.kind == "new_conflict"
     assert p.needs_human is False
+
+
+def test_new_conflict_span_comes_from_sources_not_just_the_event():
+    # the founding event is 2024; the sources say the conflict began 2023 and is ongoing.
+    over = {
+        ResolverOutput: ResolverOutput(decision="new"),
+        ClassifyOutput: ClassifyOutput(event_kind="attack", conflict_type="war"),
+    }
+    res = scan(_req(), llm=FakeLLM(_happy(over)), search=FakeSearch(ITEMS),
+               base=BASE, settings=Settings(), geocode=FakeGeocode())
+    nc = res.proposals[0].new_conflict
+    assert nc.start_date == "2023"          # from the span agent, earlier than the 2024 event
+    assert nc.end_date is None and nc.ongoing is True
+
+
+def test_new_conflict_with_a_sourced_end_date_is_closed_and_marked_ended():
+    cand = CandidateEvent(date="1885-06-01", title="War breaks out", actors=["A", "B"],
+                          place="X", source_urls=["http://a"])
+    over = {
+        ExtractorOutput: ExtractorOutput(events=[cand]),
+        ResolverOutput: ResolverOutput(decision="new"),
+        ClassifyOutput: ClassifyOutput(event_kind="battle", conflict_type="war"),
+        SpanOutput: SpanOutput(start_date="1881", end_date="1899"),
+        LifecycleOutput: LifecycleOutput(status="active"),   # lifecycle unsure; sources show it ended
+    }
+    res = scan(_req(), llm=FakeLLM(_happy(over)), search=FakeSearch(ITEMS),
+               base=BASE, settings=Settings(), geocode=FakeGeocode())
+    nc = res.proposals[0].new_conflict
+    assert nc.start_date == "1881" and nc.end_date == "1899"
+    assert nc.ongoing is False and nc.status == "ended"
 
 
 def test_reconciler_can_still_veto_a_strongly_corroborated_new_conflict():

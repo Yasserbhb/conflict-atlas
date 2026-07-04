@@ -35,7 +35,7 @@ def _year(s) -> Optional[int]:
     return int(m.group(1)) if m else None
 
 
-def _default_status(c: dict) -> str:
+def default_status(c: dict) -> str:
     """Most conflicts predate the `status` field and have it missing (not null) — don't just
     assume 'active'. Fall back to what the app already tracks (`ongoing`/`endDate`) instead,
     or a long-finished conflict silently poisons the lifecycle agent's current_status."""
@@ -60,6 +60,24 @@ def date_key(d: Optional[str]) -> str:
     return f"{y}-{m}-{day}"
 
 
+def derive_span(event_dates, status, stated_start=None, stated_end=None):
+    """A conflict's (startDate, endDate), derived in ONE place from its events plus any span the
+    sources stated. start = earliest known date; end = latest known date ONLY when the conflict
+    has ended (positive evidence), else None. Self-corrects as more events are attached."""
+    starts = [d for d in event_dates if d]
+    if stated_start:
+        starts.append(stated_start)
+    start = min(starts, key=date_key) if starts else stated_start
+    if status in ("ended", "resolved"):
+        ends = [d for d in event_dates if d]
+        if stated_end:
+            ends.append(stated_end)
+        end = max(ends, key=date_key) if ends else stated_end
+    else:
+        end = None
+    return start, end
+
+
 def load_base(seed_json: Path) -> list[BaseConflict]:
     data = json.loads(Path(seed_json).read_text(encoding="utf-8"))
     out: list[BaseConflict] = []
@@ -74,7 +92,7 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
             tags=c.get("tags", []),
             start=_year(c.get("startDate")),
             end=_year(c.get("endDate")),
-            status=_default_status(c),
+            status=default_status(c),
             events=[{"date": e.get("date"), "title": e.get("title")} for e in c.get("events", [])],
         ))
     return out

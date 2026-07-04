@@ -72,6 +72,32 @@ def test_latest_ceasefire_sets_suspended():
     assert c["status"] == "suspended" and c["ongoing"] is True
 
 
+_ISR_PSE = [Party(country_id="ISR", role="aggressor"), Party(country_id="PSE", role="victim")]
+
+
+def test_attach_earlier_event_pulls_start_date_back():
+    seed = _seed()   # seed_gaza startDate "2023", earliest event 2023-10-07
+    early = _attach(event=Event(date="2022-01-01", title="Earlier incident", kind="attack",
+                                severity=3, parties=["ISR", "PSE"]), roles=_ISR_PSE, status="active")
+    seed2, _ = merge.apply([early], seed)
+    c = seed2["conflicts"][0]
+    assert c["startDate"] == "2022-01-01"   # span self-corrected backwards
+    assert c["endDate"] is None             # still active → no end
+    assert merge.validate(seed2) == []
+
+
+def test_attach_latest_terminal_event_closes_end_date():
+    seed = _seed()
+    ender = _attach(event=Event(date="2025-06-01", title="Full withdrawal", kind="treaty",
+                                severity=1, parties=["ISR", "PSE"]), roles=_ISR_PSE, status="ended")
+    seed2, _ = merge.apply([ender], seed)
+    c = seed2["conflicts"][0]
+    assert c["status"] == "ended" and c["ongoing"] is False
+    assert c["endDate"] == "2025-06-01"     # the terminal event closed the span
+    assert c["startDate"] == "2023"
+    assert merge.validate(seed2) == []
+
+
 def test_new_conflict_is_added():
     seed = _seed()
     nc = Conflict(id="seed_new_sand_war", title="Sand War", type="war", severity=2,

@@ -73,9 +73,12 @@ flowchart TD
         GEO["Geolocator\nnames a PLACE only\n(no coordinates from memory)"]
         SUMMARY["Summarizer\nneutral, 1-2 sentences,\nattributes contested claims"]
         LIFECYCLE["Lifecycle\nONLY called if this is the latest\nevent, or a new conflict —\nelse status is inherited, no call"]
+        SPAN["Span\nONLY for a NEW conflict —\nreads start/end dates from sources;\nderive_span() merges with event min/max"]
     end
     ENRICH_IN --> CLASSIFIER & SEVERITY & ROLES & GEO & SUMMARY
     ENRICH_IN -->|"is_latest_event? / is_new?"| LIFECYCLE
+    ENRICH_IN -->|"is_new only"| SPAN
+    SPAN -.->|"start/end for the new conflict"| PROPOSAL
     BASE -.->|"parent type"| CLASSIFIER
     BASE -.->|"parent type + existing parties/roles"| ROLES
     BASE -.->|"current status, start/end,\ntoday's date"| LIFECYCLE

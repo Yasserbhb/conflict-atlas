@@ -154,6 +154,12 @@ class LifecycleOutput(BaseModel):
     reason: str = ""
 
 
+class SpanOutput(BaseModel):
+    """The conflict's overall time span, read from the sources (only when founding a new one)."""
+    start_date: Optional[str] = None   # when the conflict began (year or ISO)
+    end_date: Optional[str] = None     # when it ended, or null if ongoing / unknown
+
+
 class FactCheckOutput(BaseModel):
     verdict: Verdict
     confidence: float = Field(ge=0.0, le=1.0)

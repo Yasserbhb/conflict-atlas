@@ -132,8 +132,9 @@ knows about the others (so each is separately testable/tunable).
 | **Classifier** | event `kind` (attack/atrocity/ceasefire/…) and, for a new conflict, its `type` — strictly per `src/utils/taxonomy.js` | kind + type |
 | **Severity** | `severity` 1–5 from the rubric given the cited human toll/intensity | 1–5 + evidence |
 | **Roles** | each involved country's `role` (aggressor/defender/victim/funder/proxy/occupier/mediator/sanctioner/sanctioned) — per event and rolled up to the conflict | party→role map |
-| **Geolocator** | resolve the event's `location` to lat/lng/label; **null** for genuinely place-less events (nationwide famine) | coords or null |
+| **Geolocator** | name the event's place; a real geocoder (Nominatim, code) turns the name into lat/lng — **null** for genuinely place-less events (nationwide famine) | place → coords or null |
 | **Summarizer** | write the neutral 1–2 sentence event description and, for a new conflict, its longer summary | prose |
+| **Span** *(new conflicts only)* | read the conflict's overall **start/end dates** from the sources (not just this event's date); combined with the events' min/max so the span self-corrects as coverage fills in | start + end (or null) |
 | **Lifecycle** *(guardrail)* | is the proposed **status** change legal for this conflict's **type** (§6)? end vs de-escalation vs dormant vs regression | status + transition |
 | **Fact-check / Corroboration** | do the cited sources actually support each field? ≥ N independent, **cross-language, cross-alignment** sources? (§8) | pass/fail + credibility |
 | **Reconciler** | fold every verdict into one decision; route to auto-queue or human | decision + rationale |
@@ -315,10 +316,13 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
     dataset; if any invariant fails it writes nothing and exits non-zero. `--dry-run` reports only.
 - **The merger's coherence rules** (every case has one): attach appends the event, re-sorts by date,
   **raises** conflict severity to the event's (never lowers), unions `involvedCountries`, adds any new
-  party+role (never clobbering an existing role), unions aliases, and lets `status` change **only from
-  the latest event** — a backfilled old battle can't reopen a resolved war. `validate()` enforces the
-  hard invariants: `parties ⊆ involvedCountries`, every event party is a listed country, ISO dates,
-  severity 1–5, and no `ongoing && status∈{ended,resolved}`.
+  party+role (never clobbering an existing role), unions aliases, lets `status` change **only from
+  the latest event** — a backfilled old battle can't reopen a resolved war — and **re-derives
+  `startDate`/`endDate`** from the events + any source-stated span (`derive_span`, one helper shared
+  with the pipeline): an earlier event pulls the start back, a terminal event closes the end. So a
+  conflict's duration is never a frozen guess — it self-corrects as coverage fills in. `validate()`
+  enforces the hard invariants: `parties ⊆ involvedCountries`, every event party is a listed country,
+  ISO dates, severity 1–5, and no `ongoing && status∈{ended,resolved}`.
 - **Tested offline:** a fake LLM + fake search drive the whole pipeline under `pytest` with no API
   key (19 tests green, incl. merge + a JSON round-trip). A live run needs `OPENAI_API_KEY`
   (+ `TAVILY_API_KEY`). DB migration later, once the file queues get messy.

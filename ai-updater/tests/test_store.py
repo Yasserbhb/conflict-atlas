@@ -26,13 +26,13 @@ def test_missing_status_infers_active_when_ongoing_true(tmp_path):
 
 
 def test_explicit_status_is_kept_even_if_ongoing_conflicts():
-    from conflict_updater.store import _default_status
-    assert _default_status({"status": "suspended", "ongoing": True}) == "suspended"
+    from conflict_updater.store import default_status
+    assert default_status({"status": "suspended", "ongoing": True}) == "suspended"
 
 
 def test_ongoing_true_wins_over_a_stale_enddate():
-    from conflict_updater.store import _default_status
-    assert _default_status({"ongoing": True, "endDate": "1962"}) == "active"
+    from conflict_updater.store import default_status
+    assert default_status({"ongoing": True, "endDate": "1962"}) == "active"
 
 
 def test_date_key_orders_mixed_precision_dates():

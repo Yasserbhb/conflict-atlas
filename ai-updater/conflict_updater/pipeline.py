@@ -10,7 +10,7 @@ from .config import Settings, load_settings
 from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
 from .geocode import GeocodeClient, get_geocode
-from .store import BaseConflict, load_base, pending_to_base, date_key
+from .store import BaseConflict, load_base, pending_to_base, date_key, derive_span
 from . import agents, dedup
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
@@ -231,13 +231,17 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
         new_conflict = None
         if is_new:
-            y = _year(cand.date) or str(req.period_start)
+            sp = agents.span(llm, cand, items)          # read the conflict's stated span from sources
+            if sp.end_date and status not in ("ended", "resolved"):
+                status = "ended"                        # sources show the conflict concluded
+            start_date, end_date = derive_span([event.date], status, sp.start_date, sp.end_date)
             new_conflict = Conflict(
                 id=_unique_new_id(cand.title, by_id, pending_bases),
                 title=cand.title,               # provisional — a human renames on review
                 type=cls.conflict_type or "war",
                 severity=sev.severity,
-                start_date=y,
+                start_date=start_date,          # earliest of the sourced span and the events
+                end_date=end_date,
                 ongoing=status not in ("ended", "resolved"),
                 status=status,
                 description=summ.text,

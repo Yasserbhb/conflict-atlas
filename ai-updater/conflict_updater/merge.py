@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import re
 from .schema import Proposal, Event, Conflict
-from .store import date_key
+from .store import date_key, derive_span, default_status
 
 _TERMINAL = {"ended", "resolved"}
 
@@ -100,6 +100,12 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
             if p.status and is_latest:                                   # status changes only from the latest event
                 c["status"] = p.status
                 c["ongoing"] = p.status not in _TERMINAL
+            # span self-corrects from the (now updated) events + status: an earlier event pulls
+            # startDate back; a terminal event closes endDate. Source-stated span is preserved.
+            c["startDate"], c["endDate"] = derive_span(
+                [e.get("date") for e in events], default_status(c),
+                stated_start=c.get("startDate"), stated_end=c.get("endDate"),
+            )
             applied += 1
             report.append(f"attach → {c['id']}: {p.event.title}")
 
