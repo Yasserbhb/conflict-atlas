@@ -14,9 +14,9 @@ CONFLICT TYPES (a conflict has ONE primary type):
 - disputed_territory: A standing territorial claim contested by two or more states, whether or not it is currently violent.
 NOTE: outside material/arms support to one side is NOT a type — it is the `funder` ROLE. A state that funds a war is either a proxy_war or a funder in the underlying war.
 
-PARTY ROLES:
-- aggressor: Initiated the use of force.
-- defender: Fought back against an attack on itself or an ally.
+PARTY ROLES (structural — a country's position across the WHOLE conflict, not per-event):
+- aggressor: The party driving the conflict — began and/or sustains the offensive, invasion, or occupation.
+- defender: The party resisting that force on its own soil — including a people resisting occupation, even when a given event is them attacking back.
 - victim: Bore the harm — the population or state targeted — without being the primary combatant.
 - funder: Paid for, armed, or materially supplied one side.
 - proxy: Did the fighting on behalf of a sponsoring power.
@@ -70,14 +70,48 @@ RESOLVER_SYS = (
     "to the existing conflict — later agents assess the event independently from its sources."
 )
 
-CLASSIFIER_SYS = "Assign the event's kind, and (only if a NEW conflict is being created) the conflict type. Use the definitions.\n" + TAXONOMY
+CLASSIFIER_SYS = (
+    "Assign the event's KIND (always), and the conflict TYPE (ONLY when a new conflict is being "
+    "created — otherwise leave conflict_type null). Map the real-world wording to a kind:\n"
+    "- invasion / landing / conquest campaign / large offensive push  -> offensive\n"
+    "- a named battle or siege                                        -> battle\n"
+    "- a single strike / bombing / raid / shelling / assassination    -> attack\n"
+    "- massacre / mass killing / ethnic cleansing of civilians        -> atrocity\n"
+    "- people forced to flee, expelled, deported                      -> displacement\n"
+    "- uprising / revolt / insurrection / coup / sharp worsening       -> escalation\n"
+    "- foreign troops enter / peacekeeping / no-fly zone              -> intervention\n"
+    "- ceasefire / truce / armistice -> ceasefire ; peace treaty / accord -> treaty ; final peace -> settlement\n"
+    "- formal takeover of territory -> annexation ; economic/diplomatic measure -> sanction\n"
+    "- otherwise notable (declaration, recognition, key anniversary)  -> milestone\n"
+    "If a parent conflict type is given, your kind must be consistent with it; do NOT re-decide the type.\n"
+    + TAXONOMY
+)
 
-SEVERITY_SYS = "Assign the event's severity 1-5 from the human toll / intensity in the evidence. Be conservative when evidence is thin.\n" + TAXONOMY
+SEVERITY_SYS = (
+    "Assign the EVENT's severity 1-5 — the intensity of THIS single event, on the scale below.\n"
+    "Judge by the NATURE and SCALE of the event, NOT only by whether a death toll happens to be "
+    "quoted. Never default to 1 just because a snippet is short — infer from what KIND of event it "
+    "is. Worked examples:\n"
+    "- An army lands / invades and begins conquering a country (a war opens)   -> 3\n"
+    "- A single strike on a military site with no reported civilian deaths     -> 1-2\n"
+    "- An armed uprising or revolt with sustained fighting and reprisals       -> 3-4\n"
+    "- A massacre / mass killing of civilians (thousands)                      -> 4\n"
+    "- A systematic, group-targeting extermination campaign                    -> 5\n"
+    "- The signing of a ceasefire or treaty (a low-violence moment)            -> 1\n"
+    + TAXONOMY
+)
 
 ROLES_SYS = (
-    "Assign each involved country an ISO 3166-1 alpha-3 code and a role from the taxonomy, for "
-    "THIS event. If a country's role is genuinely contested, pick the most defensible and say so "
-    "— do not adopt one side's framing. Only include countries with a real part in the event.\n"
+    "Assign each involved country an ISO 3166-1 alpha-3 code and ONE role.\n"
+    "ROLES ARE STRUCTURAL — they describe a country's position in the WHOLE conflict and MUST NOT "
+    "flip from event to event. If a parent conflict is given with its existing parties+roles, KEEP "
+    "THEM: reuse the same role for the same country; only add a NEW party if this event genuinely "
+    "introduces a country not already listed.\n"
+    "In an OCCUPATION or colonial conflict, the occupying / colonising power stays the occupier "
+    "(aggressor) and the occupied people stay victim / defender EVEN IN AN EVENT WHERE THEY REVOLT, "
+    "RESIST, OR STRIKE FIRST — an uprising by the occupied is resistance (defender), never "
+    "'aggression'. Do not adopt one side's framing; if a role is truly contested, pick the most "
+    "defensible.\n"
     + TAXONOMY
 )
 
@@ -94,11 +128,17 @@ SUMMARY_SYS = (
 )
 
 LIFECYCLE_SYS = (
-    "Given a conflict's type, its current status, and a new event, decide the conflict's new "
-    "status. A ceasefire/pause is 'suspended', not 'ended'/'resolved'. Sustained quiet reaches "
-    "'dormant' or 'ended' but NEVER 'resolved' — 'resolved' needs a positive terminal event "
-    "(treaty, withdrawal, sanctions lifted). If the event is a resumption after quiet, set "
-    "is_regression=true and status back to 'active'. When unsure, do NOT close it.\n" + TAXONOMY
+    "Decide the conflict's status AS OF TODAY, using the new event, the dates given, and the "
+    "current status.\n"
+    "CRITICAL: 'active' means hostilities are ONGOING as of the latest event / today — NOT merely "
+    "that this event was happening at its own time. An event from long ago does NOT make a "
+    "long-finished conflict 'active' now. Reason from the dates: if the event is many years/decades "
+    "in the past and nothing shows the conflict continued to today, it is 'ended' (or 'resolved' if "
+    "there was a positive terminal event).\n"
+    "A ceasefire/pause is 'suspended'. Sustained quiet is 'dormant' or 'ended' but NEVER 'resolved' "
+    "without a positive terminal event (treaty, withdrawal, sanctions lifted). A genuine resumption "
+    "after quiet sets is_regression=true and status 'active'. When unsure, do NOT close it as "
+    "'resolved'.\n" + TAXONOMY
 )
 
 FACTCHECK_SYS = (

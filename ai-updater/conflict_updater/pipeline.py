@@ -48,6 +48,44 @@ def _dedupe_items(items: list[RawItem]) -> list[RawItem]:
     return out
 
 
+def _tokens(s: str) -> set[str]:
+    return {w for w in re.findall(r"[a-zà-ÿ0-9]{4,}", (s or "").lower())}
+
+
+def _gather_sources(cand: CandidateEvent, items: list[RawItem]) -> list[Source]:
+    """Attach EVERY fetched item that corroborates this event (not just the one it was
+    extracted from), carrying outlet/lang/alignment — so the fact-checker can actually count
+    independent, cross-language sources instead of seeing a single URL."""
+    want = set(cand.source_urls or [])
+    toks = _tokens(f"{cand.title} {cand.action} {' '.join(cand.actors)} {cand.place or ''}")
+    yr = _year(cand.date)
+    out: list[Source] = []
+    seen: set[str] = set()
+    for it in items:
+        if not it.url or it.url in seen:
+            continue
+        take = it.url in want
+        if not take:
+            overlap = len(toks & _tokens(f"{it.title} {it.snippet}"))
+            yr_ok = yr is None or yr in f"{it.title} {it.snippet} {it.date or ''}"
+            take = overlap >= 3 and yr_ok
+        if take:
+            seen.add(it.url)
+            out.append(Source(url=it.url, outlet=it.outlet, lang=it.lang, alignment=it.alignment))
+    for u in want:  # never drop the extractor's own citations
+        if u not in seen:
+            out.append(Source(url=u))
+            seen.add(u)
+    return out[:8]
+
+
+def _is_latest_event(cand: CandidateEvent, parent) -> bool:
+    """True if this event is the most recent in its conflict — only then may it move status."""
+    if not parent or not parent.events:
+        return True
+    return (cand.date or "") >= max((e.get("date") or "") for e in parent.events)
+
+
 def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
          base: list[BaseConflict], settings: Settings) -> ScanResult:
     by_id = {c.id: c for c in base}
@@ -86,14 +124,30 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # 5. RECENCY gate (per event, by its date)
         provisional = _is_recent(cand.date, settings.t_settle_days)
 
-        # 6. ENRICHERS
-        cls = agents.classifier(llm, cand, is_new)
+        # 6. ENRICHERS  (parent context keeps type/roles consistent; not re-derived per event)
+        parent = by_id.get(target_id) if not is_new else None
+        parent_type = parent.type if parent else None
+
+        cls = agents.classifier(llm, cand, is_new, parent_type=parent_type)
         sev = agents.severity(llm, cand, items)
-        rls = agents.roles(llm, cand)
+        rls = agents.roles(llm, cand, parent_type=parent_type,
+                           parent_parties=(parent.parties if parent else None))
         geo = agents.geolocator(llm, cand)
         summ = agents.summarizer(llm, cand, items)
-        current_status = by_id[target_id].status if target_id in by_id else None
-        life = agents.lifecycle(llm, cand, cls.conflict_type, current_status)
+
+        # LIFECYCLE — only the latest event (or a new conflict) may set status; a backfilled
+        # old event keeps the conflict's current status (and skips the call entirely).
+        current_status = parent.status if parent else None
+        if is_new or _is_latest_event(cand, parent):
+            life = agents.lifecycle(
+                llm, cand, cls.conflict_type or parent_type, current_status,
+                today=date.today().isoformat(),
+                conflict_start=(parent.start if parent else None),
+                conflict_end=(parent.end if parent else None),
+            )
+            status = life.status
+        else:
+            status = current_status  # backfill: don't touch (or ask about) the current status
 
         event = Event(
             id=None,
@@ -104,7 +158,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             location=geo.location,
             parties=[p.country_id for p in rls.parties],
             description=summ.text,
-            sources=[Source(url=u) for u in cand.source_urls],
+            sources=_gather_sources(cand, items),
         )
 
         # 7. FACT-CHECK (anti-bias corroboration)
@@ -130,8 +184,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                 type=cls.conflict_type or "war",
                 severity=sev.severity,
                 start_date=y,
-                ongoing=True,
-                status=life.status,
+                ongoing=status not in ("ended", "resolved"),
+                status=status,
                 description=summ.text,
                 parties=rls.parties,
                 involved_countries=[p.country_id for p in rls.parties],
@@ -144,7 +198,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             target_conflict_id=target_id,
             event=event,
             roles=rls.parties,
-            status=life.status,
+            status=status,
             new_conflict=new_conflict,
             new_aliases=res.new_aliases,
             factcheck=fc,

@@ -82,6 +82,25 @@ def test_new_conflict_always_needs_human():
     assert p.new_conflict.events and p.new_conflict.events[0].kind == "attack"
 
 
+def test_event_gathers_all_corroborating_sources_with_metadata():
+    llm = FakeLLM(_happy())
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=BASE, settings=Settings())
+    srcs = res.proposals[0].event.sources
+    assert {s.url for s in srcs} == {"http://a", "http://b"}   # both corroborating items linked
+    assert any(s.alignment for s in srcs)                      # outlet/alignment preserved for fact-check
+
+
+def test_backfill_event_keeps_status_and_skips_lifecycle():
+    base = [BaseConflict(id="seed_gaza", title="Gaza War", involved_countries=["ISR", "PSE"],
+                         start=2023, status="suspended",
+                         events=[{"date": "2025-01-01", "title": "a later event"}])]
+    llm = FakeLLM(_happy())  # candidate is 2024-05-01 → older than the 2025 event → a backfill
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=base, settings=Settings())
+    p = res.proposals[0]
+    assert "LifecycleOutput" not in llm.calls   # the lifecycle agent is not called for a backfill
+    assert p.status == "suspended"              # the conflict's current status is kept, not overwritten
+
+
 def test_known_event_is_dropped():
     llm = FakeLLM(_happy({ResolverOutput: ResolverOutput(decision="known", conflict_id="seed_gaza")}))
     res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=BASE, settings=Settings())

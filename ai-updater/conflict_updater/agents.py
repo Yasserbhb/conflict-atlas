@@ -55,8 +55,9 @@ def resolver(llm: LLMClient, cand: CandidateEvent,
     return llm.structured(ResolverOutput, P.RESOLVER_SYS, user)
 
 
-def classifier(llm: LLMClient, cand: CandidateEvent, is_new_conflict: bool) -> ClassifyOutput:
-    user = f"is_new_conflict={is_new_conflict}\nEvent:\n{_j(cand)}"
+def classifier(llm: LLMClient, cand: CandidateEvent, is_new_conflict: bool,
+               parent_type: Optional[str] = None) -> ClassifyOutput:
+    user = f"is_new_conflict={is_new_conflict}\nparent_conflict_type={parent_type}\nEvent:\n{_j(cand)}"
     return llm.structured(ClassifyOutput, P.CLASSIFIER_SYS, user)
 
 
@@ -65,8 +66,15 @@ def severity(llm: LLMClient, cand: CandidateEvent, items: list[RawItem]) -> Seve
     return llm.structured(SeverityOutput, P.SEVERITY_SYS, user)
 
 
-def roles(llm: LLMClient, cand: CandidateEvent) -> RolesOutput:
-    return llm.structured(RolesOutput, P.ROLES_SYS, f"Event:\n{_j(cand)}")
+def roles(llm: LLMClient, cand: CandidateEvent, parent_type: Optional[str] = None,
+          parent_parties: Optional[list] = None) -> RolesOutput:
+    ctx = ""
+    if parent_type or parent_parties:
+        ctx = (
+            "\n\nParent conflict (KEEP roles consistent with these — do not flip them):\n"
+            f"type={parent_type}\nexisting_parties={_j(parent_parties or [])}"
+        )
+    return llm.structured(RolesOutput, P.ROLES_SYS, f"Event:\n{_j(cand)}{ctx}")
 
 
 def geolocator(llm: LLMClient, cand: CandidateEvent) -> GeoOutput:
@@ -79,9 +87,12 @@ def summarizer(llm: LLMClient, cand: CandidateEvent, items: list[RawItem]) -> Su
 
 
 def lifecycle(llm: LLMClient, cand: CandidateEvent, conflict_type: Optional[str],
-              current_status: Optional[str]) -> LifecycleOutput:
+              current_status: Optional[str], today: str,
+              conflict_start=None, conflict_end=None) -> LifecycleOutput:
     user = (
-        f"conflict_type={conflict_type}\ncurrent_status={current_status or 'active'}\n"
+        f"today={today}\nevent_date={cand.date}\n"
+        f"conflict_type={conflict_type}\nconflict_start={conflict_start}\nconflict_end={conflict_end}\n"
+        f"current_status={current_status or 'active'}\n"
         f"New event:\n{_j(cand)}"
     )
     return llm.structured(LifecycleOutput, P.LIFECYCLE_SYS, user)

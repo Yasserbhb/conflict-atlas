@@ -12,11 +12,14 @@ from .schema import ScanResult, Proposal
 
 
 class BaseConflict(BaseModel):
-    """Just enough of an existing conflict for the Resolver to match against."""
+    """Just enough of an existing conflict for the Resolver to match against, and for the
+    enrichers to stay consistent with (type + existing party roles)."""
     id: str
     title: str
+    type: Optional[str] = None
     aliases: list[str] = Field(default_factory=list)
     involved_countries: list[str] = Field(default_factory=list)
+    parties: list[dict] = Field(default_factory=list)  # [{countryId, role}] — for structural roles
     tags: list[str] = Field(default_factory=list)
     start: Optional[int] = None
     end: Optional[int] = None
@@ -38,8 +41,10 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
         out.append(BaseConflict(
             id=c["id"],
             title=c.get("title", ""),
+            type=c.get("type"),
             aliases=c.get("aliases", []),
             involved_countries=c.get("involvedCountries", []),
+            parties=c.get("parties", []),
             tags=c.get("tags", []),
             start=_year(c.get("startDate")),
             end=_year(c.get("endDate")),
