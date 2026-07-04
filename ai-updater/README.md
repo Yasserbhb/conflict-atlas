@@ -3,6 +3,8 @@
 > **This branch (`ai-updater`) is the home of the automated updater**, built standalone first and
 > coupled to the app later. Working here = working on the pipeline, not the React app.
 > The full design of record is **[ARCHITECTURE.md](ARCHITECTURE.md)** — read that.
+> For a visual, box-by-box walkthrough of every agent/tool/context object, see
+> **[PIPELINE_DIAGRAM.md](PIPELINE_DIAGRAM.md)**.
 
 A team of narrow AI agents + web search that keeps the Conflict Atlas dataset **current and
 honest**, and can also **fill the past** on demand. This is the credibility leap: world-class =
