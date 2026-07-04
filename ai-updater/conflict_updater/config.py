@@ -17,6 +17,7 @@ class Settings:
     llm_provider: str = _get("LLM_PROVIDER", "openai")
     llm_model: str = _get("LLM_MODEL", "gpt-4o-mini")
     search_backend: str = _get("SEARCH_BACKEND", "tavily")
+    geocode_backend: str = _get("GEOCODE_BACKEND", "nominatim")  # nominatim | none
 
     t_settle_days: int = int(_get("T_SETTLE_DAYS", "7"))
     n_min_sources: int = int(_get("N_MIN_SOURCES", "2"))
@@ -40,6 +41,7 @@ def load_settings() -> Settings:
         llm_provider=_get("LLM_PROVIDER", "openai"),
         llm_model=_get("LLM_MODEL", "gpt-4o-mini"),
         search_backend=_get("SEARCH_BACKEND", "tavily"),
+        geocode_backend=_get("GEOCODE_BACKEND", "nominatim"),
         t_settle_days=int(_get("T_SETTLE_DAYS", "7")),
         n_min_sources=int(_get("N_MIN_SOURCES", "2")),
         auto_approve_confidence=float(_get("AUTO_APPROVE_CONFIDENCE", "0.8")),

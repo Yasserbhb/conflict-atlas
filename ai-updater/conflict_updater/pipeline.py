@@ -9,6 +9,7 @@ from datetime import date
 from .config import Settings, load_settings
 from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
+from .geocode import GeocodeClient, get_geocode
 from .store import BaseConflict, load_base
 from . import agents, dedup
 from .schema import (
@@ -87,7 +88,9 @@ def _is_latest_event(cand: CandidateEvent, parent) -> bool:
 
 
 def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
-         base: list[BaseConflict], settings: Settings) -> ScanResult:
+         base: list[BaseConflict], settings: Settings,
+         geocode: GeocodeClient | None = None) -> ScanResult:
+    geocode = geocode or get_geocode(settings)
     by_id = {c.id: c for c in base}
 
     # 1. SCOPER — window → queries (multi-language) + which existing conflicts to re-check
@@ -133,6 +136,14 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         rls = agents.roles(llm, cand, parent_type=parent_type,
                            parent_parties=(parent.parties if parent else None))
         geo = agents.geolocator(llm, cand)
+        location = geo.location
+        if location and location.label:
+            # Real lookup, not model memory: an LLM recalls famous cities accurately but
+            # silently collapses smaller/specific places to "the nearest big place it
+            # remembers" (verified live — see geocode.py). A geocoder looks it up instead.
+            real = geocode.lookup(location.label)
+            if real:
+                location = real
         summ = agents.summarizer(llm, cand, items)
 
         # LIFECYCLE — only the latest event (or a new conflict) may set status; a backfilled
@@ -155,7 +166,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             title=cand.title,
             kind=cls.event_kind,
             severity=sev.severity,
-            location=geo.location,
+            location=location,
             parties=[p.country_id for p in rls.parties],
             description=summ.text,
             sources=_gather_sources(cand, items),

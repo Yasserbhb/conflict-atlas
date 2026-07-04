@@ -25,3 +25,16 @@ class FakeSearch:
 
     def search(self, query: str, lang: str = "en", max_results: int = 8):
         return list(self.items)
+
+
+class FakeGeocode:
+    """Offline double for GeocodeClient. Default: no match (keeps the LLM's own guess) —
+    pass `table={"place name": Location(...)}` to simulate a real lookup succeeding."""
+
+    def __init__(self, table: dict | None = None):
+        self.table = table or {}
+        self.calls: list[str] = []
+
+    def lookup(self, place: str):
+        self.calls.append(place)
+        return self.table.get(place)
