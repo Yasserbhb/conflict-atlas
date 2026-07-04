@@ -34,6 +34,18 @@ def _year(s) -> Optional[int]:
     return int(m.group(1)) if m else None
 
 
+def _default_status(c: dict) -> str:
+    """Most conflicts predate the `status` field and have it missing (not null) — don't just
+    assume 'active'. Fall back to what the app already tracks (`ongoing`/`endDate`) instead,
+    or a long-finished conflict silently poisons the lifecycle agent's current_status."""
+    s = c.get("status")
+    if s:
+        return s
+    if c.get("ongoing") is False or c.get("endDate"):
+        return "ended"
+    return "active"
+
+
 def load_base(seed_json: Path) -> list[BaseConflict]:
     data = json.loads(Path(seed_json).read_text(encoding="utf-8"))
     out: list[BaseConflict] = []
@@ -48,7 +60,7 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
             tags=c.get("tags", []),
             start=_year(c.get("startDate")),
             end=_year(c.get("endDate")),
-            status=c.get("status", "active"),
+            status=_default_status(c),
             events=[{"date": e.get("date"), "title": e.get("title")} for e in c.get("events", [])],
         ))
     return out
