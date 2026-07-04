@@ -21,6 +21,7 @@ class Settings:
     t_settle_days: int = int(_get("T_SETTLE_DAYS", "7"))
     n_min_sources: int = int(_get("N_MIN_SOURCES", "2"))
     auto_approve_confidence: float = float(_get("AUTO_APPROVE_CONFIDENCE", "0.8"))
+    max_candidates: int = int(_get("MAX_CANDIDATES", "0"))  # 0 = no cap; >0 caps per scan (quota)
 
     seed_json: Path = Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json")))
     output_dir: Path = Path(_get("OUTPUT_DIR", str(_HERE / "out")))
@@ -42,6 +43,7 @@ def load_settings() -> Settings:
         t_settle_days=int(_get("T_SETTLE_DAYS", "7")),
         n_min_sources=int(_get("N_MIN_SOURCES", "2")),
         auto_approve_confidence=float(_get("AUTO_APPROVE_CONFIDENCE", "0.8")),
+        max_candidates=int(_get("MAX_CANDIDATES", "0")),
         seed_json=Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))),
         output_dir=Path(_get("OUTPUT_DIR", str(_HERE / "out"))),
     )

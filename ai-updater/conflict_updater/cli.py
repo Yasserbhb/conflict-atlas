@@ -42,8 +42,11 @@ def _parse_period(text: str) -> tuple[str, str]:
 
 
 def _cmd_scan(args) -> int:
+    import dataclasses
     start, end = _parse_period(args.period)
     settings = load_settings()
+    if args.limit:
+        settings = dataclasses.replace(settings, max_candidates=args.limit)
     req = ScanRequest(period_start=start, period_end=end, region=args.region, topic=args.topic)
     base = load_base(settings.seed_json)
     result = scan(req, llm=get_llm(settings), search=get_search(settings), base=base, settings=settings)
@@ -78,6 +81,11 @@ def _cmd_apply(args) -> int:
 
 
 def main(argv=None) -> int:
+    for stream in (sys.stdout, sys.stderr):  # Windows console defaults to cp1252; our output has → … ✗
+        try:
+            stream.reconfigure(encoding="utf-8")
+        except Exception:
+            pass
     argv = list(sys.argv[1:] if argv is None else argv)
     if argv and argv[0] not in _SUBCOMMANDS and not argv[0].startswith("-"):
         argv.insert(0, "scan")  # bare period → scan
@@ -89,6 +97,7 @@ def main(argv=None) -> int:
     s.add_argument("period", help='"1990..2003" | "2026-06-01..2026-06-30" | "YYYY-YYYY" | "week"')
     s.add_argument("--region")
     s.add_argument("--topic")
+    s.add_argument("--limit", type=int, default=0, help="cap candidates processed (free-tier quota)")
     s.set_defaults(func=_cmd_scan)
 
     a = sub.add_parser("apply", help="fold approved proposals into seed.json")

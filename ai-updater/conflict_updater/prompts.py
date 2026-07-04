@@ -43,7 +43,8 @@ SCOPER_SYS = (
     "conflicts and discrete events in that window. Include queries in the region's main "
     "LANGUAGES (Arabic, Russian, Persian, French, Spanish, Ukrainian, etc.), not only English. "
     "If existing conflict ids are given, also emit re-check queries for the ones that could "
-    "have events in the window (set watch_conflict_ids). Be specific; avoid vague queries."
+    "have events in the window (set watch_conflict_ids). Be specific; avoid vague queries. "
+    "Produce AT MOST 6 focused queries total, and at most 12 watch_conflict_ids."
 )
 
 EXTRACTOR_SYS = (

@@ -63,11 +63,14 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
     # 3. EXTRACTOR — items → discrete candidate events
     cands = agents.extractor(llm, items, req).events
+    if settings.max_candidates and len(cands) > settings.max_candidates:
+        cands = cands[: settings.max_candidates]
 
     proposals: list[Proposal] = []
     dropped: list[str] = []
 
-    for cand in cands:
+    for i, cand in enumerate(cands, 1):
+        print(f"  [{i}/{len(cands)}] {cand.date} {cand.title[:60]}")
         # 4. RESOLVER — dedup lookup (code) then decide (LLM)
         candidates = dedup.find_candidates(base, cand)
         res = agents.resolver(llm, cand, candidates)
