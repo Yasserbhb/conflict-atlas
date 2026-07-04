@@ -23,6 +23,9 @@ class LangChainLLM:
         if provider == "openai":
             from langchain_openai import ChatOpenAI  # lazy
             self._llm = ChatOpenAI(model=model, temperature=temperature)
+        elif provider in ("google", "gemini"):
+            from langchain_google_genai import ChatGoogleGenerativeAI  # lazy; reads GOOGLE_API_KEY
+            self._llm = ChatGoogleGenerativeAI(model=model, temperature=temperature)
         else:
             raise ValueError(f"unknown LLM_PROVIDER={provider!r}; wire it in llm.py")
 

@@ -1,6 +1,7 @@
 # Core LLM + agents (provider-swappable via LangChain)
 langchain-core>=0.3
-langchain-openai>=0.2        # default provider; swap for any langchain-* provider
+langchain-openai>=0.2        # provider: openai (gpt-4o-mini, ...)
+langchain-google-genai>=2.0  # provider: google/gemini (free tier — gemini-2.0-flash)
 pydantic>=2.7
 
 # Web search (pick one backend; Tavily is the default)

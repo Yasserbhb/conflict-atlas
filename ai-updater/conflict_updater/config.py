@@ -34,4 +34,14 @@ def load_settings() -> Settings:
         load_dotenv(_HERE / ".env")
     except Exception:
         pass
-    return Settings()
+    # read env HERE, after .env is loaded (dataclass field defaults bind at import — too early)
+    return Settings(
+        llm_provider=_get("LLM_PROVIDER", "openai"),
+        llm_model=_get("LLM_MODEL", "gpt-4o-mini"),
+        search_backend=_get("SEARCH_BACKEND", "tavily"),
+        t_settle_days=int(_get("T_SETTLE_DAYS", "7")),
+        n_min_sources=int(_get("N_MIN_SOURCES", "2")),
+        auto_approve_confidence=float(_get("AUTO_APPROVE_CONFIDENCE", "0.8")),
+        seed_json=Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))),
+        output_dir=Path(_get("OUTPUT_DIR", str(_HERE / "out"))),
+    )
