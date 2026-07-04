@@ -1,14 +1,17 @@
-"""CLI. Two subcommands:
+"""CLI. Subcommands:
 
-  scan   — find events in a period and emit proposals + a review queue
-  apply  — fold approved proposals from a scan back into seed.json, coherently
+  scan      — find events in a period and emit proposals + a review queue
+  apply     — fold approved proposals from a scan back into seed.json, coherently
+  coverage  — show what regions/periods have already been scanned (and how they came back)
 
     python -m conflict_updater "1990..2003" --region Africa      # bare == scan
     python -m conflict_updater scan week
     python -m conflict_updater apply out/proposals_2026-06-01_2026-06-30.json
+    python -m conflict_updater coverage --region Algeria
 
 Period accepts "start..end" (any ISO precision), "YYYY-YYYY", or "week".
-The weekly cron just calls `scan week`.
+The weekly cron just calls `scan week`. Every scan appends to a coverage ledger so
+"searched and empty" is never confused with "never searched".
 """
 from __future__ import annotations
 
@@ -20,12 +23,19 @@ from datetime import date, timedelta
 from .config import load_settings
 from .llm import get_llm
 from .search import get_search
-from .store import load_base, write_result, load_seed_dict, write_seed_dict, load_proposals
+from .store import (
+    load_base, write_result, load_seed_dict, write_seed_dict, load_proposals,
+    append_coverage, load_coverage, render_coverage,
+)
 from .schema import ScanRequest
 from .pipeline import scan
 from . import merge
 
-_SUBCOMMANDS = {"scan", "apply"}
+_SUBCOMMANDS = {"scan", "apply", "coverage"}
+
+
+def _coverage_path(settings):
+    return settings.output_dir / "coverage.json"
 
 
 def _parse_period(text: str) -> tuple[str, str]:
@@ -51,9 +61,20 @@ def _cmd_scan(args) -> int:
     base = load_base(settings.seed_json)
     result = scan(req, llm=get_llm(settings), search=get_search(settings), base=base, settings=settings)
     pjson, md = write_result(result, settings.output_dir)
+    entry = append_coverage(_coverage_path(settings), result, limited=settings.max_candidates)
     print(f"scan {start}..{end}: {result.stats}")
     print(f"proposals → {pjson}")
     print(f"review    → {md}")
+    print(f"coverage  → {_coverage_path(settings)} [{entry['status']}]")
+    return 0
+
+
+def _cmd_coverage(args) -> int:
+    settings = load_settings()
+    ledger = load_coverage(_coverage_path(settings))
+    if args.region:
+        ledger = [e for e in ledger if (e.get("region") or "").lower() == args.region.lower()]
+    print(render_coverage(ledger))
     return 0
 
 
@@ -106,6 +127,10 @@ def main(argv=None) -> int:
                    help="also apply events held by the recency gate")
     a.add_argument("--dry-run", action="store_true", help="report only; do not write seed.json")
     a.set_defaults(func=_cmd_apply)
+
+    c = sub.add_parser("coverage", help="show what regions/periods have been scanned")
+    c.add_argument("--region", help="filter to one region")
+    c.set_defaults(func=_cmd_coverage)
 
     args = ap.parse_args(argv)
     return args.func(args)

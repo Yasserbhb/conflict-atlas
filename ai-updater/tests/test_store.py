@@ -43,3 +43,34 @@ def test_date_key_orders_mixed_precision_dates():
     # a bare year sorts before any dated event in that same year (whole-year → start-of-year)
     assert date_key("2024") < date_key("2024-03-01")
     assert date_key("2024-12-31") > date_key("2024-03-01")
+
+
+def test_coverage_status_distinguishes_the_three_cases():
+    from conflict_updater.store import _coverage_status
+    assert _coverage_status({"items": 0, "candidates": 0}) == "blind"    # search returned nothing
+    assert _coverage_status({"items": 40, "candidates": 0}) == "quiet"   # searched, nothing found
+    assert _coverage_status({"items": 40, "candidates": 3}) == "found"   # events surfaced
+
+
+def test_coverage_ledger_appends_and_persists(tmp_path):
+    from conflict_updater.store import append_coverage, load_coverage, render_coverage
+    from conflict_updater.schema import ScanResult, ScanRequest
+    path = tmp_path / "coverage.json"
+    r = ScanResult(request=ScanRequest(period_start="1870", period_end="1900", region="Algeria"),
+                   stats={"items": 40, "candidates": 3, "proposals": 2, "dropped": 1})
+
+    entry = append_coverage(path, r, limited=6)
+    assert entry["region"] == "Algeria" and entry["status"] == "found" and entry["limited_to"] == 6
+
+    led = load_coverage(path)
+    assert len(led) == 1 and led[0]["period"] == "1870..1900"
+
+    append_coverage(path, r)                        # a second scan of the same cell
+    assert len(load_coverage(path)) == 2            # ledger keeps history, doesn't overwrite
+    assert "Algeria" in render_coverage(load_coverage(path))
+
+
+def test_load_coverage_missing_file_is_empty(tmp_path):
+    from conflict_updater.store import load_coverage, render_coverage
+    assert load_coverage(tmp_path / "nope.json") == []
+    assert "nothing has been searched" in render_coverage([])

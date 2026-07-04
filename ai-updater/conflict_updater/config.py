@@ -17,6 +17,8 @@ class Settings:
     llm_provider: str = _get("LLM_PROVIDER", "openai")
     llm_model: str = _get("LLM_MODEL", "gpt-4o-mini")
     search_backend: str = _get("SEARCH_BACKEND", "tavily")
+    search_depth: str = _get("SEARCH_DEPTH", "advanced")            # tavily: basic (1 credit) | advanced (2, fuller)
+    search_max_results: int = int(_get("SEARCH_MAX_RESULTS", "12"))  # articles per query (Tavily default is 8)
     geocode_backend: str = _get("GEOCODE_BACKEND", "nominatim")  # nominatim | none
 
     t_settle_days: int = int(_get("T_SETTLE_DAYS", "7"))
@@ -47,6 +49,8 @@ def load_settings() -> Settings:
         llm_provider=_get("LLM_PROVIDER", "openai"),
         llm_model=_get("LLM_MODEL", "gpt-4o-mini"),
         search_backend=_get("SEARCH_BACKEND", "tavily"),
+        search_depth=_get("SEARCH_DEPTH", "advanced"),
+        search_max_results=int(_get("SEARCH_MAX_RESULTS", "12")),
         geocode_backend=_get("GEOCODE_BACKEND", "nominatim"),
         t_settle_days=int(_get("T_SETTLE_DAYS", "7")),
         n_min_sources=int(_get("N_MIN_SOURCES", "2")),

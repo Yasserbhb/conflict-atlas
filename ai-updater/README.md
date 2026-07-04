@@ -63,6 +63,19 @@ coherently**. The merger (`merge.py`) is deterministic code, one explicit rule p
   event parties are listed countries, ISO dates, severity 1–5, no `ongoing && ended`) — on any
   failure it **writes nothing** and exits non-zero.
 
+## Knowing what we've looked at (coverage ledger)
+
+Search *samples* — it can't tell you "I found everything" or "there's genuinely nothing here." So
+every scan appends to `out/coverage.json`, and `coverage` shows it, turning silence into a record:
+
+- **found** — events surfaced.
+- **quiet** — searched a real article pool, nothing extractable (genuinely quiet / already covered).
+- **blind** — search returned **0** results: *unknown*, a source gap — **not** proof nothing happened.
+
+That distinction is the honest answer to "did we look here?" and the frontier a future auto-crawler
+walks (scan what isn't `found`/`quiet` yet). Search recall itself is tuned via `SEARCH_DEPTH`
+(basic|advanced) and `SEARCH_MAX_RESULTS` — advanced depth + more results pull a fuller pool per query.
+
 ## Build order
 
 Phase 1 is **backfill on one region/decade** — the safest place to trust-test the whole agent
@@ -85,6 +98,7 @@ python -m conflict_updater week                           # scan: the routine up
 # ... open out/review_*.md, edit out/proposals_*.json (set needs_human=false on the ones you accept)
 python -m conflict_updater apply out/proposals_*.json     # fold approved items into seed.json
 python -m conflict_updater apply out/proposals_*.json --dry-run   # report only, write nothing
+python -m conflict_updater coverage                       # what's been searched, and how it came back
 ```
 
 `scan` output lands in `out/`: a `proposals_*.json` (machine-readable) and a `review_*.md` (the

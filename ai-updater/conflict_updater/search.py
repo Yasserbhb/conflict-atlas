@@ -19,15 +19,19 @@ class SearchClient(Protocol):
 
 
 class TavilySearch:
-    """Real backend (lazy import)."""
+    """Real backend (lazy import). `depth='advanced'` and a higher `max_results` pull a much
+    fuller article pool per query than Tavily's shallow defaults (basic / 8)."""
 
-    def __init__(self):
+    def __init__(self, depth: str = "advanced", max_results: int = 12):
         from tavily import TavilyClient  # lazy
         import os
         self._client = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])
+        self._depth = depth
+        self._max_results = max_results
 
-    def search(self, query: str, lang: str = "en", max_results: int = 8) -> list[RawItem]:
-        resp = self._client.search(query=query, max_results=max_results)
+    def search(self, query: str, lang: str = "en", max_results: int | None = None) -> list[RawItem]:
+        n = max_results or self._max_results
+        resp = self._client.search(query=query, max_results=n, search_depth=self._depth)
         out: list[RawItem] = []
         for r in resp.get("results", []):
             out.append(RawItem(
@@ -49,5 +53,5 @@ class NullSearch:
 
 def get_search(settings) -> SearchClient:
     if settings.search_backend == "tavily":
-        return TavilySearch()
+        return TavilySearch(depth=settings.search_depth, max_results=settings.search_max_results)
     return NullSearch()

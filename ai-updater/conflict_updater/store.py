@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import date
 from pathlib import Path
 from typing import Optional
 from pydantic import BaseModel, Field
@@ -110,6 +111,72 @@ def load_proposals(path: Path) -> list[Proposal]:
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     raw = data.get("proposals", data) if isinstance(data, dict) else data
     return [Proposal.model_validate(p) for p in raw]
+
+
+# ---- coverage ledger: a persistent record of what we've searched, so "we looked and found
+#      nothing" is distinguishable from "search returned nothing" and from "never scanned" ----
+
+def _coverage_status(stats: dict) -> str:
+    if stats.get("items", 0) == 0:
+        return "blind"    # search returned 0 results — UNKNOWN, not proven empty (source gap)
+    if stats.get("candidates", 0) == 0:
+        return "quiet"    # searched a real article pool, nothing extractable — genuinely quiet/covered
+    return "found"        # events surfaced
+
+
+def load_coverage(ledger_path: Path) -> list[dict]:
+    p = Path(ledger_path)
+    if not p.exists():
+        return []
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+
+def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0) -> dict:
+    """Record one scan attempt in the ledger. Returns the entry."""
+    s = result.stats
+    entry = {
+        "scanned_at": date.today().isoformat(),
+        "region": result.request.region or "(any)",
+        "topic": result.request.topic,
+        "period": f"{result.request.period_start}..{result.request.period_end}",
+        "items": s.get("items", 0),           # articles the search returned
+        "events_found": s.get("candidates", 0),
+        "proposals": s.get("proposals", 0),
+        "dropped": s.get("dropped", 0),        # already-known events
+        "status": _coverage_status(s),
+    }
+    if limited:
+        entry["limited_to"] = limited          # a capped scan is NOT evidence of completeness
+    ledger = load_coverage(ledger_path)
+    ledger.append(entry)
+    p = Path(ledger_path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return entry
+
+
+def render_coverage(ledger: list[dict]) -> str:
+    if not ledger:
+        return "No scans logged yet — nothing has been searched.\n"
+    rows = sorted(ledger, key=lambda e: (str(e.get("region")), str(e.get("period"))))
+    head = f"{'REGION':<16} {'PERIOD':<22} {'SCANNED':<11} {'ITEMS':>5} {'EVENTS':>6} {'PROP':>4}  STATUS"
+    lines = [head, "-" * len(head)]
+    for e in rows:
+        cap = f" (cap {e['limited_to']})" if e.get("limited_to") else ""
+        lines.append(
+            f"{str(e.get('region'))[:15]:<16} {str(e.get('period'))[:21]:<22} "
+            f"{str(e.get('scanned_at', '')):<11} {e.get('items', 0):>5} {e.get('events_found', 0):>6} "
+            f"{e.get('proposals', 0):>4}  {e.get('status', '')}{cap}"
+        )
+    lines += [
+        "",
+        "status: found = events surfaced | quiet = searched, nothing found (genuinely quiet/covered)",
+        "        blind = search returned 0 results (UNKNOWN — a source gap, not proven empty)",
+    ]
+    return "\n".join(lines) + "\n"
 
 
 def write_result(result: ScanResult, output_dir: Path) -> tuple[Path, Path]:
