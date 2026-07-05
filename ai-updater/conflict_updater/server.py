@@ -5,13 +5,12 @@ the page: watch the coverage (honesty) map, run scans, review what's waiting, ap
 seed. It's a LOCAL admin tool by nature (it holds your keys and writes seed.json), so it binds to
 localhost by default and is never deployed.
 """
-from __future__ import annotations
-
 import dataclasses
 import json
 import threading
+import time
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta, date
 from pathlib import Path
 
 from .config import load_settings
@@ -133,6 +132,125 @@ def _recent(out_dir: Path) -> list[dict]:
         return []
 
 
+def data_list() -> list[dict]:
+    """The atlas contents as a flat list (for browsing in the panel — not the map)."""
+    settings = load_settings()
+    try:
+        d = json.loads(Path(settings.seed_json).read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    out = []
+    for c in d.get("conflicts", []):
+        out.append({
+            "id": c["id"], "title": c.get("title"), "type": c.get("type"),
+            "severity": c.get("severity"), "start": c.get("startDate"), "end": c.get("endDate"),
+            "status": c.get("status"), "ongoing": c.get("ongoing"),
+            "countries": c.get("involvedCountries", []), "events": len(c.get("events", [])),
+        })
+    return out
+
+
+# ---------------- scheduler (automated runs) ----------------
+
+_DEFAULT_SCHEDULE = {
+    "enabled": False,
+    "mode": "recent",         # recent = each period, scan the last N days · backfill = walk old years
+    "every_hours": 168,       # 168h = weekly
+    "start_hour": 3,          # anchor hour of day (0-23)
+    "limit": 6,               # cap candidates per scheduled scan
+    "recent_days": 7,
+    "region": None,           # backfill: optional region focus
+    "from_year": 1900, "to_year": 2000, "step_years": 1, "cursor": 1900,
+    "next_run": None, "last_run": None,
+}
+
+
+def _schedule_path() -> Path:
+    return load_settings().output_dir / "schedule.json"
+
+
+def load_schedule() -> dict:
+    cfg = dict(_DEFAULT_SCHEDULE)
+    p = _schedule_path()
+    if p.exists():
+        try:
+            cfg.update(json.loads(p.read_text(encoding="utf-8")))
+        except Exception:
+            pass
+    return cfg
+
+
+def save_schedule(cfg: dict):
+    p = _schedule_path()
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _next_anchor(start_hour: int) -> datetime:
+    now = datetime.now()
+    nxt = now.replace(hour=int(start_hour) % 24, minute=0, second=0, microsecond=0)
+    return nxt if nxt > now else nxt + timedelta(days=1)
+
+
+def set_schedule(patch: dict) -> dict:
+    cfg = load_schedule()
+    was_on = cfg.get("enabled")
+    cfg.update({k: v for k, v in patch.items() if k in _DEFAULT_SCHEDULE and v is not None})
+    if cfg["enabled"]:
+        if not was_on:
+            if cfg["mode"] == "backfill":
+                cfg["cursor"] = int(cfg["from_year"])
+            cfg["next_run"] = _next_anchor(cfg["start_hour"]).isoformat()
+    else:
+        cfg["next_run"] = None
+    save_schedule(cfg)
+    return cfg
+
+
+def _scheduler_tick():
+    cfg = load_schedule()
+    if not cfg.get("enabled") or not cfg.get("next_run"):
+        return
+    if datetime.now() < datetime.fromisoformat(cfg["next_run"]):
+        return
+    with _jobs_lock:                                  # don't stack scans
+        if any(j.status == "running" for j in _jobs):
+            return
+    if cfg["mode"] == "recent":
+        today = date.today()
+        start_scan(str(today - timedelta(days=int(cfg["recent_days"]))), str(today), None, int(cfg["limit"]))
+    else:
+        cur, step, to = int(cfg["cursor"]), int(cfg["step_years"]), int(cfg["to_year"])
+        end = min(cur + step, to)
+        start_scan(str(cur), str(end), cfg.get("region") or None, int(cfg["limit"]))
+        cfg["cursor"] = end
+        if end >= to:
+            cfg["enabled"] = False                    # backfill complete
+    cfg["last_run"] = datetime.now().isoformat()
+    cfg["next_run"] = (datetime.now() + timedelta(hours=int(cfg["every_hours"]))).isoformat() if cfg["enabled"] else None
+    save_schedule(cfg)
+
+
+_scheduler_on = False
+
+
+def start_scheduler():
+    global _scheduler_on
+    if _scheduler_on:
+        return
+    _scheduler_on = True
+
+    def loop():
+        while True:
+            time.sleep(20)
+            try:
+                _scheduler_tick()
+            except Exception:
+                pass
+
+    threading.Thread(target=loop, daemon=True).start()
+
+
 def _seed_stats(seed_path: Path) -> dict:
     try:
         d = json.loads(Path(seed_path).read_text(encoding="utf-8"))
@@ -159,6 +277,7 @@ def overview() -> dict:
         "recent": _recent(out_dir),
         "jobs": jobs,
         "running": any(j["status"] == "running" for j in jobs),
+        "schedule": load_schedule(),
     }
 
 
@@ -232,6 +351,18 @@ def create_app():
         approve: list[int] = []
         approve_all: bool = False
 
+    class ScheduleBody(BaseModel):
+        enabled: bool | None = None
+        mode: str | None = None
+        every_hours: int | None = None
+        start_hour: int | None = None
+        limit: int | None = None
+        recent_days: int | None = None
+        region: str | None = None
+        from_year: int | None = None
+        to_year: int | None = None
+        step_years: int | None = None
+
     @app.get("/", response_class=HTMLResponse)
     def index():
         return (_HERE / "dashboard.html").read_text(encoding="utf-8")
@@ -239,6 +370,10 @@ def create_app():
     @app.get("/api/overview")
     def api_overview():
         return JSONResponse(overview())
+
+    @app.get("/api/data")
+    def api_data():
+        return JSONResponse(data_list())
 
     @app.post("/api/scan")
     def api_scan(body: ScanBody):
@@ -249,11 +384,20 @@ def create_app():
     def api_apply(body: ApplyBody):
         return JSONResponse(apply_file(body.file, body.approve, body.approve_all))
 
+    @app.get("/api/schedule")
+    def api_schedule():
+        return JSONResponse(load_schedule())
+
+    @app.post("/api/schedule")
+    def api_schedule_set(body: ScheduleBody):
+        return JSONResponse(set_schedule(body.model_dump(exclude_unset=True)))
+
     return app
 
 
 def serve(host: str = "127.0.0.1", port: int = 8000):
     import uvicorn
+    start_scheduler()
     print("\n  Conflict Atlas — Pipeline Control")
     print(f"  open  ->  http://{host}:{port}\n")
     uvicorn.run(create_app(), host=host, port=port, log_level="warning")

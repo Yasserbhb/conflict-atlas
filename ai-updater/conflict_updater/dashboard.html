@@ -3,245 +3,357 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pipeline Control — Conflict Atlas</title>
+<title>Pipeline · Conflict Atlas</title>
 <style>
   :root{
-    --bg:#0e1413; --panel:#141c1b; --panel2:#18211f; --line:#22302e;
-    --ink:#e6efec; --muted:#8aa39d; --faint:#5f7671;
-    --teal:#3f9d95; --teal-dim:#2b6f69;
-    --amber:#c9942f; --red:#c25c4e; --gray:#5a6a67;
+    --bg-deep:#0a0f11; --bg-base:#0f1417; --bg-raised:#151b1f; --bg-surface:#1a2226;
+    --border:#253039; --border-light:#2f3d47;
+    --text-primary:#e7edec; --text-secondary:#9fadab; --text-muted:#6f7e7c;
+    --accent:#56988a; --accent-light:#82b8ab; --accent-dim:rgba(86,152,138,.15);
+    --accent-border:rgba(86,152,138,.44); --danger:#d76b64; --amber:#c79a4a;
+    --r-sm:6px; --r-md:8px; --r-card:10px;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-  a{color:var(--teal)}
-  header{display:flex;align-items:center;gap:20px;padding:14px 22px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
-  header h1{font-size:15px;font-weight:600;margin:0;letter-spacing:.02em}
-  header .stat{color:var(--muted);font-size:12.5px}
-  header .stat b{color:var(--ink);font-weight:600}
-  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gray);margin-right:6px;vertical-align:middle}
-  .dot.on{background:var(--teal);box-shadow:0 0 0 3px rgba(63,157,149,.18);animation:pulse 1.4s infinite}
-  @keyframes pulse{50%{opacity:.5}}
-  main{max-width:1120px;margin:0 auto;padding:22px;display:grid;gap:18px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600}
-  .card .body{padding:14px 16px}
-  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
-  label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
-  input,select{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:8px 10px;font-size:13px;min-width:90px}
-  input:focus,select:focus{outline:none;border-color:var(--teal-dim)}
-  button{background:var(--teal-dim);border:1px solid var(--teal-dim);color:#eafffb;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
-  button:hover{background:var(--teal)}
-  button.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
-  button.ghost:hover{border-color:var(--teal-dim);color:var(--ink)}
-  button:disabled{opacity:.5;cursor:default}
-  .muted{color:var(--muted)} .faint{color:var(--faint)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
-  .cov{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--panel2)}
-  .cov .p{font-weight:600;font-size:13px}
-  .cov .m{font-size:11.5px;color:var(--muted);margin-top:2px}
-  .pill{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:20px}
-  .pill.found{background:rgba(63,157,149,.16);color:#6fc9c0}
-  .pill.quiet{background:rgba(90,106,103,.2);color:#9fb2ae}
-  .pill.blind{background:rgba(201,148,47,.16);color:#dcb765}
-  .scan{border:1px solid var(--line);border-radius:9px;margin-bottom:12px;background:var(--panel2)}
-  .scan>.h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line)}
-  .scan>.h .t{font-weight:600}
-  .item{display:flex;gap:10px;padding:9px 13px;border-bottom:1px solid var(--line);align-items:flex-start}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg-deep);color:var(--text-primary);
+    font:14px/1.55 'Inter Variable','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    -webkit-font-smoothing:antialiased}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-thumb{background:#2f3d47;border-radius:3px}
+  header{display:flex;align-items:center;gap:16px;padding:13px 24px;background:var(--bg-base);
+    border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+  .brand{font-size:14.5px;font-weight:650;letter-spacing:.01em;display:flex;align-items:center;gap:8px}
+  .brand .d{width:9px;height:9px;background:var(--accent);border-radius:2px;transform:rotate(45deg)}
+  .stat{font-size:12.5px;color:var(--text-secondary)} .stat b{color:var(--text-primary);font-weight:600}
+  .live{margin-left:auto;font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:7px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#3a4a47}
+  .dot.on{background:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);animation:pulse 1.5s infinite}
+  @keyframes pulse{50%{opacity:.45}}
+  nav{display:flex;gap:2px;padding:0 24px;background:var(--bg-base);border-bottom:1px solid var(--border);position:sticky;top:47px;z-index:9}
+  nav button{background:none;border:none;color:var(--text-muted);font:inherit;font-size:13px;font-weight:600;
+    padding:11px 15px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+  nav button:hover{color:var(--text-secondary)}
+  nav button.active{color:var(--text-primary);border-bottom-color:var(--accent)}
+  nav .badge{display:inline-block;min-width:17px;padding:0 5px;margin-left:6px;font-size:11px;line-height:16px;
+    text-align:center;background:var(--accent-dim);color:var(--accent-light);border-radius:9px;font-weight:700}
+  main{max-width:1080px;margin:0 auto;padding:22px 24px 60px}
+  .tab{display:none} .tab.on{display:block;animation:fade .2s}
+  @keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1}}
+  .card{background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--r-card);margin-bottom:16px}
+  .card>h2{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);
+    font-weight:650;padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+  .card>.b{padding:15px 16px}
+  .row{display:flex;flex-wrap:wrap;gap:11px;align-items:end}
+  label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:5px}
+  input,select{background:var(--bg-surface);border:1px solid var(--border);color:var(--text-primary);
+    border-radius:var(--r-sm);padding:8px 10px;font:inherit;font-size:13px}
+  input:focus,select:focus{outline:none;border-color:var(--accent-border)}
+  input[type=number]{width:80px}
+  button.btn{background:var(--accent);border:1px solid var(--accent);color:#08110f;border-radius:var(--r-sm);
+    padding:8px 15px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}
+  button.btn:hover{background:var(--accent-light)}
+  button.ghost{background:transparent;border:1px solid var(--border-light);color:var(--text-secondary);
+    border-radius:var(--r-sm);padding:8px 13px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+  button.ghost:hover{border-color:var(--accent-border);color:var(--text-primary)}
+  button.danger{border-color:rgba(215,107,100,.5);color:var(--danger)}
+  .hint{font-size:12px;color:var(--text-muted);margin-top:9px}
+  .muted{color:var(--text-muted)} .sec{color:var(--text-secondary)}
+  .empty{color:var(--text-muted);font-size:13px;padding:6px 0}
+  /* review */
+  .scan{border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:13px;background:var(--bg-base)}
+  .scan>.h{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)}
+  .scan>.h .t{font-weight:650}
+  .item{display:flex;gap:11px;padding:10px 14px;border-bottom:1px solid var(--border);align-items:flex-start}
   .item:last-child{border-bottom:none}
-  .item input[type=checkbox]{margin-top:3px;min-width:auto;accent-color:var(--teal)}
-  .item .meta{flex:1;min-width:0}
-  .item .ttl{font-weight:600}
-  .item .sub{font-size:12px;color:var(--muted);margin-top:2px}
-  .item .q{font-size:12px;color:var(--amber);margin-top:3px}
-  .tag{font-size:10.5px;color:var(--faint);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:6px;white-space:nowrap}
-  .sev{font-weight:700}
-  .sev4,.sev5{color:var(--red)} .sev3{color:var(--amber)} .sev1,.sev2{color:var(--muted)}
-  .empty{color:var(--faint);padding:8px 2px;font-size:13px}
-  .jobline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
-  .jobline:last-child{border:none}
-  .st{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-  .st.running{color:var(--teal)} .st.done{color:var(--muted)} .st.error{color:var(--red)}
-  .recent{font-size:12.5px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--line)}
-  .recent:last-child{border:none} .recent b{color:var(--ink);font-weight:600}
-  .toast{position:fixed;bottom:18px;right:18px;background:var(--panel);border:1px solid var(--teal-dim);border-radius:8px;padding:11px 15px;font-size:13px;max-width:360px;opacity:0;transform:translateY(8px);transition:.25s}
+  .item input[type=checkbox]{margin-top:3px;accent-color:var(--accent);width:15px;height:15px}
+  .ttl{font-weight:600} .sub{font-size:12px;color:var(--text-secondary);margin-top:2px}
+  .q{font-size:12px;color:var(--amber);margin-top:3px}
+  .tag{font-size:10.5px;color:var(--text-muted);border:1px solid var(--border-light);border-radius:5px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .tag.new{color:var(--accent-light);border-color:var(--accent-border)}
+  .sev4,.sev5{color:var(--danger);font-weight:700} .sev3{color:var(--amber);font-weight:700} .sev1,.sev2{color:var(--text-muted)}
+  details summary{cursor:pointer;color:var(--text-muted);font-size:12px;padding:8px 14px}
+  /* grids */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px}
+  .cov{border:1px solid var(--border);border-radius:var(--r-md);padding:10px 12px;background:var(--bg-base)}
+  .cov .p{font-weight:650;font-size:13px} .cov .m{font-size:11.5px;color:var(--text-secondary);margin-top:3px}
+  .pill{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:20px}
+  .pill.found{background:var(--accent-dim);color:var(--accent-light)}
+  .pill.quiet{background:rgba(111,126,124,.18);color:var(--text-secondary)}
+  .pill.blind{background:rgba(199,154,74,.16);color:var(--amber)}
+  /* data table */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);
+    font-weight:650;padding:8px 10px;border-bottom:1px solid var(--border);position:sticky;top:96px;background:var(--bg-raised);cursor:pointer}
+  td{padding:8px 10px;border-bottom:1px solid var(--border)}
+  tr:hover td{background:var(--bg-base)}
+  .cty{font-size:11px;color:var(--text-muted)}
+  /* activity / recent */
+  .line{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+  .line:last-child{border:none}
+  .st{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .st.running{color:var(--accent-light)} .st.done{color:var(--text-muted)} .st.error{color:var(--danger)}
+  .kv{display:flex;gap:24px;flex-wrap:wrap;font-size:13px}
+  .kv div span{color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:2px}
+  .toast{position:fixed;bottom:20px;right:20px;background:var(--bg-raised);border:1px solid var(--accent-border);
+    border-radius:var(--r-md);padding:11px 16px;font-size:13px;max-width:360px;opacity:0;transform:translateY(8px);transition:.22s;z-index:20}
   .toast.show{opacity:1;transform:none}
-  .dropwrap details summary{cursor:pointer;color:var(--faint);font-size:12px}
+  .on-badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+  .on-badge.yes{background:var(--accent-dim);color:var(--accent-light)}
+  .on-badge.no{background:rgba(111,126,124,.18);color:var(--text-muted)}
 </style>
 </head>
 <body>
 <header>
-  <h1>◆ Pipeline Control</h1>
+  <span class="brand"><span class="d"></span> Conflict Atlas · Pipeline</span>
   <span class="stat">seed <b id="ver">—</b></span>
   <span class="stat"><b id="nc">—</b> conflicts · <b id="ne">—</b> events</span>
-  <span class="stat" id="prov"></span>
-  <span class="stat" style="margin-left:auto"><span class="dot" id="livedot"></span><span id="livetxt" class="muted">idle</span></span>
+  <span class="stat muted" id="prov"></span>
+  <span class="live"><span class="dot" id="dot"></span><span id="livetxt">idle</span></span>
 </header>
+<nav>
+  <button data-tab="review" class="active">Review <span class="badge" id="revn" style="display:none">0</span></button>
+  <button data-tab="data">Data</button>
+  <button data-tab="coverage">Coverage</button>
+  <button data-tab="automate">Automate <span class="badge" id="autob" style="display:none">on</span></button>
+</nav>
 
 <main>
-  <section class="card">
-    <h2>Run a scan</h2>
-    <div class="body">
-      <div class="row">
-        <div><label>From</label><input id="ps" placeholder="1967" size="8"></div>
-        <div><label>To</label><input id="pe" placeholder="1970" size="8"></div>
-        <div><label>Region <span class="faint">(optional)</span></label><input id="rg" placeholder="Nigeria"></div>
-        <div><label>Cap <span class="faint">(0 = all)</span></label><input id="lm" type="number" value="0" size="4" style="min-width:70px"></div>
-        <button id="run">Scan</button>
-        <button class="ghost" id="week">This week</button>
+  <!-- REVIEW -->
+  <section class="tab on" id="tab-review">
+    <div class="card">
+      <h2>Run a scan</h2>
+      <div class="b">
+        <div class="row">
+          <div><label>From</label><input id="ps" placeholder="1967" size="7"></div>
+          <div><label>To</label><input id="pe" placeholder="1970" size="7"></div>
+          <div><label>Region <span class="muted">(optional)</span></label><input id="rg" placeholder="Nigeria"></div>
+          <div><label>Cap</label><input id="lm" type="number" value="0" min="0"></div>
+          <button class="btn" id="run">Scan</button>
+          <button class="ghost" id="week">Last 7 days</button>
+        </div>
+        <div class="hint">Tight windows (1–5 yrs) give richer, better-sourced results than wide sweeps.</div>
       </div>
-      <div class="faint" style="margin-top:8px;font-size:12px">Tight windows (1–5 yrs) give richer, better-sourced results than wide sweeps.</div>
+    </div>
+    <div class="card">
+      <h2>Waiting for you</h2>
+      <div class="b" id="review"><div class="empty">Loading…</div></div>
+    </div>
+    <div class="card">
+      <h2>Activity</h2><div class="b" id="jobs"><div class="empty">—</div></div>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Waiting for you — review queue</h2>
-    <div class="body" id="review"><div class="empty">Loading…</div></div>
-  </section>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" id="lower">
-    <section class="card">
-      <h2>Coverage — the honesty map</h2>
-      <div class="body"><div class="grid" id="cov"><div class="empty">—</div></div>
-        <div class="faint" style="margin-top:10px;font-size:11.5px">
-          <span class="pill found">found</span> events surfaced &nbsp;
-          <span class="pill quiet">quiet</span> searched, nothing there &nbsp;
-          <span class="pill blind">blind</span> search returned 0 — unknown, not empty
+  <!-- DATA -->
+  <section class="tab" id="tab-data">
+    <div class="card">
+      <h2>The atlas <span class="muted" id="datacount"></span></h2>
+      <div class="b">
+        <div class="row" style="margin-bottom:12px">
+          <div style="flex:1"><label>Filter</label><input id="dq" placeholder="title, type, or country…" style="width:100%"></div>
+          <div><label>Type</label><select id="dtype"><option value="">all</option></select></div>
+        </div>
+        <div style="overflow:auto;max-height:60vh">
+          <table><thead><tr>
+            <th data-sort="title">Conflict</th><th data-sort="type">Type</th>
+            <th data-sort="severity">Sev</th><th data-sort="start">Span</th>
+            <th data-sort="status">Status</th><th data-sort="events">Events</th>
+          </tr></thead><tbody id="datarows"></tbody></table>
         </div>
       </div>
-    </section>
-    <div style="display:grid;gap:18px">
-      <section class="card"><h2>Activity</h2><div class="body" id="jobs"><div class="empty">—</div></div></section>
-      <section class="card"><h2>Recently added to the atlas</h2><div class="body" id="recent"><div class="empty">—</div></div></section>
     </div>
-  </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="tab" id="tab-coverage">
+    <div class="card">
+      <h2>The honesty map</h2>
+      <div class="b">
+        <div class="grid" id="cov"><div class="empty">—</div></div>
+        <div class="hint">
+          <span class="pill found">found</span> events surfaced &nbsp;
+          <span class="pill quiet">quiet</span> searched, nothing there &nbsp;
+          <span class="pill blind">blind</span> search returned 0 — unknown, <b>not</b> proven empty
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Recently added to the atlas</h2><div class="b" id="recent"><div class="empty">—</div></div>
+    </div>
+  </section>
+
+  <!-- AUTOMATE -->
+  <section class="tab" id="tab-automate">
+    <div class="card">
+      <h2>Automated runs <span class="on-badge no" id="schstate">off</span></h2>
+      <div class="b">
+        <div class="kv" style="margin-bottom:16px" id="schstatus"></div>
+        <div class="row">
+          <div><label>Mode</label>
+            <select id="smode">
+              <option value="recent">Recent — fetch what happened lately</option>
+              <option value="backfill">Backfill — walk old years, slice by slice</option>
+            </select></div>
+          <div><label>Every (hours)</label><input id="severy" type="number" value="168" min="1"></div>
+          <div><label>Start at hour</label><input id="sstart" type="number" value="3" min="0" max="23"></div>
+          <div><label>Cap / run</label><input id="slimit" type="number" value="6" min="0"></div>
+        </div>
+        <div class="row" id="recentrow" style="margin-top:11px">
+          <div><label>Look back (days)</label><input id="sdays" type="number" value="7" min="1"></div>
+        </div>
+        <div class="row" id="backfillrow" style="margin-top:11px;display:none">
+          <div><label>Region <span class="muted">(optional)</span></label><input id="sregion" placeholder="e.g. Africa or Sudan"></div>
+          <div><label>From year</label><input id="sfrom" type="number" value="1900"></div>
+          <div><label>To year</label><input id="sto" type="number" value="2000"></div>
+          <div><label>Years / slice</label><input id="sstep" type="number" value="2" min="1"></div>
+        </div>
+        <div class="row" style="margin-top:16px">
+          <button class="btn" id="schon">Turn on</button>
+          <button class="ghost danger" id="schoff">Turn off</button>
+        </div>
+        <div class="hint" id="schhint">
+          <b>Recent</b> re-runs every interval on the last N days — the routine world-watch.
+          <b>Backfill</b> steps through old years one slice per interval (set it once, it walks the past on its own).
+          Runs land in the review queue like any scan; nothing is applied automatically.
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const $ = s => document.querySelector(s);
-const esc = s => (s??'').toString().replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-let busy = false;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>(s??'').toString().replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let DATA=[], sortKey='severity', sortDir=-1;
 
-function toast(msg, ok=true){
-  const t = $('#toast'); t.textContent = msg; t.style.borderColor = ok ? 'var(--teal-dim)' : 'var(--red)';
-  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 3200);
-}
+function toast(m,ok=true){const t=$('#toast');t.textContent=m;t.style.borderColor=ok?'var(--accent-border)':'rgba(215,107,100,.6)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
+function sev(s){return `<span class="sev sev${s}">${s}</span>`;}
 
-function sevCls(s){ return 'sev sev'+s; }
+// tabs
+$$('nav button').forEach(b=>b.onclick=()=>{
+  $$('nav button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  $$('.tab').forEach(t=>t.classList.remove('on')); $('#tab-'+b.dataset.tab).classList.add('on');
+  if(b.dataset.tab==='data') loadData();
+});
 
+// ---------- review ----------
 function renderReview(pending){
-  const el = $('#review');
-  if(!pending.length){ el.innerHTML = '<div class="empty">Nothing waiting. Run a scan above.</div>'; return; }
-  el.innerHTML = pending.map(sc => {
-    const human = sc.human.map(it => `
+  const el=$('#review');
+  const total=pending.reduce((n,s)=>n+s.human.length,0);
+  const badge=$('#revn'); badge.style.display=total?'inline-block':'none'; badge.textContent=total;
+  if(!pending.length){el.innerHTML='<div class="empty">Nothing waiting. Run a scan above.</div>';return;}
+  el.innerHTML=pending.map(sc=>{
+    const human=sc.human.map(it=>`
       <div class="item">
         <input type="checkbox" data-file="${esc(sc.file)}" data-n="${it.n}">
-        <div class="meta">
+        <div style="flex:1;min-width:0">
           <div class="ttl">${esc(it.date)} — ${esc(it.title)}
-            <span class="tag">${esc(it.kind)}</span>
-            <span class="tag ${sevCls(it.severity)}">sev ${it.severity}</span>
-            ${it.is_new?'<span class="tag" style="color:var(--teal)">NEW conflict</span>':''}
-          </div>
-          <div class="sub">${it.is_new?'would create a new conflict':'→ '+esc(it.target||'')}
-            · ${it.sources} sources${it.location?' · '+esc(it.location):''}${it.provisional?' · <span style="color:var(--amber)">provisional</span>':''}</div>
+            <span class="tag">${esc(it.kind)}</span><span class="tag">${sev(it.severity)}</span>
+            ${it.is_new?'<span class="tag new">NEW conflict</span>':''}</div>
+          <div class="sub">${it.is_new?'would create a new conflict':'→ '+esc(it.target||'')} · ${it.sources} sources${it.location?' · '+esc(it.location):''}${it.provisional?' · <span style="color:var(--amber)">provisional</span>':''}</div>
           ${it.question?`<div class="q">❔ ${esc(it.question)}</div>`:''}
-        </div>
-      </div>`).join('');
-    const autoN = sc.auto.length, dropN = (sc.dropped||[]).length;
-    const dropped = dropN ? `<div class="dropwrap" style="padding:8px 13px"><details><summary>${dropN} found but dropped as already-known</summary>
-        <div class="faint" style="margin-top:6px;font-size:12px">${sc.dropped.map(esc).join('<br>')}</div></details></div>` : '';
+        </div></div>`).join('');
+    const dropN=(sc.dropped||[]).length;
+    const drop=dropN?`<details><summary>${dropN} found but dropped (already in the atlas)</summary><div class="muted" style="padding:0 14px 10px;font-size:12px">${sc.dropped.map(esc).join('<br>')}</div></details>`:'';
     return `<div class="scan">
-      <div class="h">
-        <div class="t">${esc(sc.period)} <span class="muted">· ${esc(sc.region)}</span></div>
-        <div class="muted" style="font-size:12px">${sc.human.length} to review · ${autoN} auto-ready</div>
-      </div>
-      ${human || '<div class="empty" style="padding:9px 13px">nothing needs review here</div>'}
-      ${dropped}
-      <div class="h" style="border-top:1px solid var(--line);border-bottom:none">
-        <div class="muted" style="font-size:12px">${autoN} auto-approved event(s) ready to add</div>
+      <div class="h"><div class="t">${esc(sc.period)} <span class="muted">· ${esc(sc.region)}</span></div>
+        <div class="muted" style="font-size:12px">${sc.human.length} to review · ${sc.auto.length} auto-ready</div></div>
+      ${human||'<div class="empty" style="padding:10px 14px">nothing needs review here</div>'}${drop}
+      <div class="h" style="border-top:1px solid var(--border);border-bottom:none">
+        <div class="muted" style="font-size:12px">${sc.auto.length} auto-approved ready to add</div>
         <div style="display:flex;gap:8px">
-          <button class="ghost" data-apply="${esc(sc.file)}" data-mode="checked">Apply checked</button>
-          <button data-apply="${esc(sc.file)}" data-mode="auto">Apply auto-approved</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  el.querySelectorAll('[data-apply]').forEach(b => b.onclick = () => {
-    const file = b.getAttribute('data-apply'), mode = b.getAttribute('data-mode');
-    let approve = [];
-    if(mode==='checked'){
-      approve = [...el.querySelectorAll(`input[data-file="${CSS.escape(file)}"]:checked`)].map(c=>+c.getAttribute('data-n'));
-      if(!approve.length){ toast('Tick the items you want first.', false); return; }
-    }
-    applyFile(file, approve);
-  });
+          <button class="ghost" data-apply="${esc(sc.file)}" data-mode="checked">Add checked</button>
+          <button class="btn" data-apply="${esc(sc.file)}" data-mode="auto">Add auto-approved</button></div></div>
+    </div>`;}).join('');
+  el.querySelectorAll('[data-apply]').forEach(b=>b.onclick=()=>{
+    const f=b.dataset.apply;let ap=[];
+    if(b.dataset.mode==='checked'){ap=[...el.querySelectorAll(`input[data-file="${CSS.escape(f)}"]:checked`)].map(c=>+c.dataset.n);
+      if(!ap.length){toast('Tick the items you want first.',false);return;}}
+    applyFile(f,ap);});
+}
+async function applyFile(file,approve){
+  const r=await(await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({file,approve,approve_all:false})})).json();
+  r.ok?toast(`Added ${r.applied} event(s) to the atlas.`):toast('Not applied: '+(r.error||'error'),false); refresh();
 }
 
+// ---------- coverage / activity ----------
 function renderCoverage(cov){
-  const el = $('#cov');
-  if(!cov.length){ el.innerHTML = '<div class="empty">No scans yet.</div>'; return; }
-  el.innerHTML = [...cov].reverse().map(c => `
-    <div class="cov">
-      <div class="p">${esc(c.region)} <span class="muted" style="font-weight:400">${esc(c.period)}</span></div>
-      <div class="m"><span class="pill ${c.status}">${c.status}</span>
-        &nbsp;${c.items} articles · ${c.events_found} events${c.limited_to?` · cap ${c.limited_to}`:''}</div>
-    </div>`).join('');
+  const el=$('#cov');
+  el.innerHTML=cov.length?[...cov].reverse().map(c=>`<div class="cov">
+    <div class="p">${esc(c.region)} <span class="muted" style="font-weight:400">${esc(c.period)}</span></div>
+    <div class="m"><span class="pill ${c.status}">${c.status}</span> &nbsp;${c.items} articles · ${c.events_found} events${c.limited_to?` · cap ${c.limited_to}`:''}</div>
+  </div>`).join(''):'<div class="empty">No scans yet.</div>';
 }
+function renderJobs(j){$('#jobs').innerHTML=j.length?j.map(x=>`<div class="line"><div>${esc(x.label)} <span class="muted">${x.started}</span><br><span class="muted" style="font-size:12px">${esc(x.detail||'')}</span></div><div class="st ${x.status}">${x.status}</div></div>`).join(''):'<div class="empty">No scans yet this session.</div>';}
+function renderRecent(r){$('#recent').innerHTML=r.length?r.map(x=>`<div class="line"><div><b>${esc(x.when)}</b> — ${x.titles.length} event(s)<br><span class="muted" style="font-size:12px">${esc(x.titles.slice(0,3).join('; '))}${x.titles.length>3?'…':''}</span></div></div>`).join(''):'<div class="empty">Nothing applied yet.</div>';}
 
-function renderJobs(jobs){
-  const el = $('#jobs');
-  el.innerHTML = jobs.length ? jobs.map(j => `
-    <div class="jobline"><div>${esc(j.label)} <span class="faint">${j.started}</span><br>
-      <span class="faint" style="font-size:12px">${esc(j.detail||'')}</span></div>
-    <div class="st ${j.status}">${j.status}</div></div>`).join('')
-    : '<div class="empty">No scans run yet this session.</div>';
+// ---------- data ----------
+async function loadData(){
+  DATA=await(await fetch('/api/data')).json();
+  const types=[...new Set(DATA.map(d=>d.type))].sort();
+  $('#dtype').innerHTML='<option value="">all</option>'+types.map(t=>`<option>${esc(t)}</option>`).join('');
+  $('#datacount').textContent=`(${DATA.length})`; renderData();
 }
-
-function renderRecent(recent){
-  const el = $('#recent');
-  el.innerHTML = recent.length ? recent.map(r => `
-    <div class="recent"><b>${esc(r.when)}</b> — ${r.titles.length} event(s): ${esc(r.titles.slice(0,3).join('; '))}${r.titles.length>3?'…':''}</div>`).join('')
-    : '<div class="empty">Nothing applied yet.</div>';
+function renderData(){
+  const q=$('#dq').value.toLowerCase(), ty=$('#dtype').value;
+  let rows=DATA.filter(d=>(!ty||d.type===ty) && (!q ||
+    (d.title||'').toLowerCase().includes(q) || (d.type||'').toLowerCase().includes(q) ||
+    (d.countries||[]).join(' ').toLowerCase().includes(q)));
+  rows.sort((a,b)=>{let x=a[sortKey],y=b[sortKey];x=x??'';y=y??'';return (x>y?1:x<y?-1:0)*sortDir;});
+  $('#datarows').innerHTML=rows.map(d=>`<tr>
+    <td><div class="ttl" style="font-size:13px">${esc(d.title)}</div><div class="cty">${(d.countries||[]).slice(0,6).join(' · ')}</div></td>
+    <td class="sec">${esc(d.type)}</td><td>${sev(d.severity)}</td>
+    <td class="sec">${esc(d.start||'?')}–${esc(d.end||(d.ongoing?'now':'?'))}</td>
+    <td class="sec">${esc(d.status||(d.ongoing?'active':'ended'))}</td>
+    <td class="${d.events?'':'muted'}">${d.events}</td></tr>`).join('')
+    || '<tr><td colspan="6" class="empty">No matches.</td></tr>';
 }
+$('#dq').oninput=renderData; $('#dtype').onchange=renderData;
+$$('th[data-sort]').forEach(th=>th.onclick=()=>{const k=th.dataset.sort;sortDir=(sortKey===k)?-sortDir:(k==='severity'||k==='events'?-1:1);sortKey=k;renderData();});
 
+// ---------- automate ----------
+function renderSchedule(s){
+  const on=s.enabled;
+  $('#schstate').textContent=on?'on':'off'; $('#schstate').className='on-badge '+(on?'yes':'no');
+  $('#autob').style.display=on?'inline-block':'none';
+  const nx=s.next_run?new Date(s.next_run).toLocaleString():'—', lr=s.last_run?new Date(s.last_run).toLocaleString():'—';
+  const prog=s.mode==='backfill'?`<div><span>Backfill progress</span>${s.cursor} → ${s.to_year}</div>`:'';
+  $('#schstatus').innerHTML=`<div><span>Mode</span>${s.mode}</div><div><span>Next run</span>${nx}</div><div><span>Last run</span>${lr}</div>${prog}`;
+}
+function schMode(){const b=$('#smode').value==='backfill';$('#backfillrow').style.display=b?'flex':'none';$('#recentrow').style.display=b?'none':'flex';}
+$('#smode').onchange=schMode;
+async function saveSchedule(enabled){
+  const body={enabled,mode:$('#smode').value,every_hours:+$('#severy').value,start_hour:+$('#sstart').value,limit:+$('#slimit').value,
+    recent_days:+$('#sdays').value,region:$('#sregion').value.trim()||null,from_year:+$('#sfrom').value,to_year:+$('#sto').value,step_years:+$('#sstep').value};
+  const s=await(await fetch('/api/schedule',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
+  renderSchedule(s); toast(enabled?'Automation on.':'Automation off.');
+}
+$('#schon').onclick=()=>saveSchedule(true); $('#schoff').onclick=()=>saveSchedule(false);
+
+// ---------- run ----------
+async function runScan(){
+  const ps=$('#ps').value.trim(),pe=$('#pe').value.trim();
+  if(!ps||!pe){toast('Enter a From and To year.',false);return;}
+  const r=await(await fetch('/api/scan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({period_start:ps,period_end:pe,region:$('#rg').value.trim()||null,limit:+$('#lm').value||0})})).json();
+  if(r.ok)toast('Scan started — watch Activity.'); refresh();
+}
+$('#run').onclick=runScan;
+$('#week').onclick=()=>{const t=new Date(),a=new Date(t-7*864e5),f=d=>d.toISOString().slice(0,10);$('#ps').value=f(a);$('#pe').value=f(t);$('#rg').value='';runScan();};
+
+let schLoaded=false;
 async function refresh(){
   try{
-    const o = await (await fetch('/api/overview')).json();
-    $('#ver').textContent = o.seed.version ?? '—';
-    $('#nc').textContent = o.seed.conflicts; $('#ne').textContent = o.seed.events;
-    $('#prov').innerHTML = `<span class="faint">${esc(o.provider.llm)} · ${esc(o.provider.search)}</span>`;
-    $('#livedot').className = 'dot' + (o.running?' on':'');
-    $('#livetxt').textContent = o.running ? 'scanning…' : 'idle';
-    $('#livetxt').className = o.running ? 'muted' : 'muted';
-    renderReview(o.pending); renderCoverage(o.coverage); renderJobs(o.jobs); renderRecent(o.recent);
-  }catch(e){ /* server starting */ }
+    const o=await(await fetch('/api/overview')).json();
+    $('#ver').textContent=o.seed.version??'—';$('#nc').textContent=o.seed.conflicts;$('#ne').textContent=o.seed.events;
+    $('#prov').textContent=`${o.provider.llm} · ${o.provider.search}`;
+    $('#dot').className='dot'+(o.running?' on':'');$('#livetxt').textContent=o.running?'scanning…':'idle';
+    renderReview(o.pending);renderCoverage(o.coverage);renderJobs(o.jobs);renderRecent(o.recent);renderSchedule(o.schedule);
+    if(!schLoaded){const s=o.schedule;$('#smode').value=s.mode;$('#severy').value=s.every_hours;$('#sstart').value=s.start_hour;
+      $('#slimit').value=s.limit;$('#sdays').value=s.recent_days;$('#sregion').value=s.region||'';$('#sfrom').value=s.from_year;
+      $('#sto').value=s.to_year;$('#sstep').value=s.step_years;schMode();schLoaded=true;}
+  }catch(e){}
 }
-
-async function runScan(){
-  const ps=$('#ps').value.trim(), pe=$('#pe').value.trim();
-  if(!ps||!pe){ toast('Enter a From and To year.', false); return; }
-  const body={period_start:ps,period_end:pe,region:$('#rg').value.trim()||null,limit:+$('#lm').value||0};
-  const r = await (await fetch('/api/scan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
-  if(r.ok) toast('Scan started — watch Activity.'); refresh();
-}
-
-async function applyFile(file, approve){
-  const r = await (await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({file, approve, approve_all:false})})).json();
-  if(r.ok) toast(`Added ${r.applied} event(s) to the atlas.`);
-  else toast('Not applied: '+(r.error||'error'), false);
-  refresh();
-}
-
-$('#run').onclick = runScan;
-$('#week').onclick = () => {
-  const t=new Date(), a=new Date(t-7*864e5);
-  const f=d=>d.toISOString().slice(0,10);
-  $('#ps').value=f(a); $('#pe').value=f(t); $('#rg').value=''; runScan();
-};
-refresh(); setInterval(refresh, 3000);
+refresh(); setInterval(refresh,3000);
 </script>
 </body>
 </html>
