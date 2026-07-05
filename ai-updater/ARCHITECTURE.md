@@ -323,8 +323,8 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
   conflict's duration is never a frozen guess — it self-corrects as coverage fills in. `validate()`
   enforces the hard invariants: `parties ⊆ involvedCountries`, every event party is a listed country,
   ISO dates, severity 1–5, and no `ongoing && status∈{ended,resolved}`.
-- **Tested offline:** a fake LLM + fake search drive the whole pipeline under `pytest` with no API
-  key (19 tests green, incl. merge + a JSON round-trip). A live run needs `OPENAI_API_KEY`
+- **Tested offline:** fake LLM + search + geocode drive the whole pipeline under `pytest` with no
+  API key (dedup, merge, span/dates, coverage ledger, JSON round-trip). A live run needs an LLM key
   (+ `TAVILY_API_KEY`). DB migration later, once the file queues get messy.
 
 ---

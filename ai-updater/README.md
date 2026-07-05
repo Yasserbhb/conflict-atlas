@@ -89,7 +89,7 @@ The `scan → review → apply` loop is implemented in `conflict_updater/`.
 
 ```bash
 cd ai-updater
-python -m pytest              # 19 tests, offline (fake LLM + search — no API key)
+python -m pytest              # offline tests (fake LLM + search + geocode — no API key)
 
 pip install -r requirements.txt
 cp .env.example .env          # add OPENAI_API_KEY (+ TAVILY_API_KEY)
@@ -120,6 +120,5 @@ tests/         offline tests with fakes
 ```
 
 ---
-*Status: design locked; the scan → review → apply loop is implemented in Python & offline-tested
-(19 tests); a live run needs an API key. Origin & requirements: project memory
-`project_agentic_pipeline`.*
+*Status: design locked; the scan → review → apply loop is implemented in Python & offline-tested;
+a live run needs an API key. Origin & requirements: project memory `project_agentic_pipeline`.*

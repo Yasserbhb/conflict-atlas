@@ -145,8 +145,8 @@ LIFECYCLE_SYS = (
     "there was a positive terminal event).\n"
     "A ceasefire/pause is 'suspended'. Sustained quiet is 'dormant' or 'ended' but NEVER 'resolved' "
     "without a positive terminal event (treaty, withdrawal, sanctions lifted). A genuine resumption "
-    "after quiet sets is_regression=true and status 'active'. When unsure, do NOT close it as "
-    "'resolved'.\n" + TAXONOMY
+    "after quiet sets status back to 'active'. When unsure, do NOT close it as 'resolved'.\n"
+    + TAXONOMY
 )
 
 FACTCHECK_SYS = (

@@ -150,7 +150,6 @@ class SummaryOutput(BaseModel):
 
 class LifecycleOutput(BaseModel):
     status: Status
-    is_regression: bool = False
     reason: str = ""
 
 

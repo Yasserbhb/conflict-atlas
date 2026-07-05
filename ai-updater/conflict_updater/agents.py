@@ -13,7 +13,7 @@ from .schema import (
     ScanRequest, RawItem, CandidateEvent,
     ScoperOutput, ExtractorOutput, ResolverOutput, ClassifyOutput, SeverityOutput,
     RolesOutput, GeoOutput, SummaryOutput, LifecycleOutput, SpanOutput, FactCheckOutput,
-    ReconcilerOutput, Event, Status, ConflictType,
+    ReconcilerOutput, Event,
 )
 
 
