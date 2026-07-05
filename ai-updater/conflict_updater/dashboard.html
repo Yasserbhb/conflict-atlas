@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline Control — Conflict Atlas</title>
+<style>
+  :root{
+    --bg:#0e1413; --panel:#141c1b; --panel2:#18211f; --line:#22302e;
+    --ink:#e6efec; --muted:#8aa39d; --faint:#5f7671;
+    --teal:#3f9d95; --teal-dim:#2b6f69;
+    --amber:#c9942f; --red:#c25c4e; --gray:#5a6a67;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  a{color:var(--teal)}
+  header{display:flex;align-items:center;gap:20px;padding:14px 22px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+  header h1{font-size:15px;font-weight:600;margin:0;letter-spacing:.02em}
+  header .stat{color:var(--muted);font-size:12.5px}
+  header .stat b{color:var(--ink);font-weight:600}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gray);margin-right:6px;vertical-align:middle}
+  .dot.on{background:var(--teal);box-shadow:0 0 0 3px rgba(63,157,149,.18);animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{opacity:.5}}
+  main{max-width:1120px;margin:0 auto;padding:22px;display:grid;gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600}
+  .card .body{padding:14px 16px}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+  label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+  input,select{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:8px 10px;font-size:13px;min-width:90px}
+  input:focus,select:focus{outline:none;border-color:var(--teal-dim)}
+  button{background:var(--teal-dim);border:1px solid var(--teal-dim);color:#eafffb;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
+  button:hover{background:var(--teal)}
+  button.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
+  button.ghost:hover{border-color:var(--teal-dim);color:var(--ink)}
+  button:disabled{opacity:.5;cursor:default}
+  .muted{color:var(--muted)} .faint{color:var(--faint)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+  .cov{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--panel2)}
+  .cov .p{font-weight:600;font-size:13px}
+  .cov .m{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .pill{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:20px}
+  .pill.found{background:rgba(63,157,149,.16);color:#6fc9c0}
+  .pill.quiet{background:rgba(90,106,103,.2);color:#9fb2ae}
+  .pill.blind{background:rgba(201,148,47,.16);color:#dcb765}
+  .scan{border:1px solid var(--line);border-radius:9px;margin-bottom:12px;background:var(--panel2)}
+  .scan>.h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line)}
+  .scan>.h .t{font-weight:600}
+  .item{display:flex;gap:10px;padding:9px 13px;border-bottom:1px solid var(--line);align-items:flex-start}
+  .item:last-child{border-bottom:none}
+  .item input[type=checkbox]{margin-top:3px;min-width:auto;accent-color:var(--teal)}
+  .item .meta{flex:1;min-width:0}
+  .item .ttl{font-weight:600}
+  .item .sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .item .q{font-size:12px;color:var(--amber);margin-top:3px}
+  .tag{font-size:10.5px;color:var(--faint);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+  .sev{font-weight:700}
+  .sev4,.sev5{color:var(--red)} .sev3{color:var(--amber)} .sev1,.sev2{color:var(--muted)}
+  .empty{color:var(--faint);padding:8px 2px;font-size:13px}
+  .jobline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .jobline:last-child{border:none}
+  .st{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .st.running{color:var(--teal)} .st.done{color:var(--muted)} .st.error{color:var(--red)}
+  .recent{font-size:12.5px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--line)}
+  .recent:last-child{border:none} .recent b{color:var(--ink);font-weight:600}
+  .toast{position:fixed;bottom:18px;right:18px;background:var(--panel);border:1px solid var(--teal-dim);border-radius:8px;padding:11px 15px;font-size:13px;max-width:360px;opacity:0;transform:translateY(8px);transition:.25s}
+  .toast.show{opacity:1;transform:none}
+  .dropwrap details summary{cursor:pointer;color:var(--faint);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>◆ Pipeline Control</h1>
+  <span class="stat">seed <b id="ver">—</b></span>
+  <span class="stat"><b id="nc">—</b> conflicts · <b id="ne">—</b> events</span>
+  <span class="stat" id="prov"></span>
+  <span class="stat" style="margin-left:auto"><span class="dot" id="livedot"></span><span id="livetxt" class="muted">idle</span></span>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Run a scan</h2>
+    <div class="body">
+      <div class="row">
+        <div><label>From</label><input id="ps" placeholder="1967" size="8"></div>
+        <div><label>To</label><input id="pe" placeholder="1970" size="8"></div>
+        <div><label>Region <span class="faint">(optional)</span></label><input id="rg" placeholder="Nigeria"></div>
+        <div><label>Cap <span class="faint">(0 = all)</span></label><input id="lm" type="number" value="0" size="4" style="min-width:70px"></div>
+        <button id="run">Scan</button>
+        <button class="ghost" id="week">This week</button>
+      </div>
+      <div class="faint" style="margin-top:8px;font-size:12px">Tight windows (1–5 yrs) give richer, better-sourced results than wide sweeps.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Waiting for you — review queue</h2>
+    <div class="body" id="review"><div class="empty">Loading…</div></div>
+  </section>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" id="lower">
+    <section class="card">
+      <h2>Coverage — the honesty map</h2>
+      <div class="body"><div class="grid" id="cov"><div class="empty">—</div></div>
+        <div class="faint" style="margin-top:10px;font-size:11.5px">
+          <span class="pill found">found</span> events surfaced &nbsp;
+          <span class="pill quiet">quiet</span> searched, nothing there &nbsp;
+          <span class="pill blind">blind</span> search returned 0 — unknown, not empty
+        </div>
+      </div>
+    </section>
+    <div style="display:grid;gap:18px">
+      <section class="card"><h2>Activity</h2><div class="body" id="jobs"><div class="empty">—</div></div></section>
+      <section class="card"><h2>Recently added to the atlas</h2><div class="body" id="recent"><div class="empty">—</div></div></section>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => (s??'').toString().replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let busy = false;
+
+function toast(msg, ok=true){
+  const t = $('#toast'); t.textContent = msg; t.style.borderColor = ok ? 'var(--teal-dim)' : 'var(--red)';
+  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+function sevCls(s){ return 'sev sev'+s; }
+
+function renderReview(pending){
+  const el = $('#review');
+  if(!pending.length){ el.innerHTML = '<div class="empty">Nothing waiting. Run a scan above.</div>'; return; }
+  el.innerHTML = pending.map(sc => {
+    const human = sc.human.map(it => `
+      <div class="item">
+        <input type="checkbox" data-file="${esc(sc.file)}" data-n="${it.n}">
+        <div class="meta">
+          <div class="ttl">${esc(it.date)} — ${esc(it.title)}
+            <span class="tag">${esc(it.kind)}</span>
+            <span class="tag ${sevCls(it.severity)}">sev ${it.severity}</span>
+            ${it.is_new?'<span class="tag" style="color:var(--teal)">NEW conflict</span>':''}
+          </div>
+          <div class="sub">${it.is_new?'would create a new conflict':'→ '+esc(it.target||'')}
+            · ${it.sources} sources${it.location?' · '+esc(it.location):''}${it.provisional?' · <span style="color:var(--amber)">provisional</span>':''}</div>
+          ${it.question?`<div class="q">❔ ${esc(it.question)}</div>`:''}
+        </div>
+      </div>`).join('');
+    const autoN = sc.auto.length, dropN = (sc.dropped||[]).length;
+    const dropped = dropN ? `<div class="dropwrap" style="padding:8px 13px"><details><summary>${dropN} found but dropped as already-known</summary>
+        <div class="faint" style="margin-top:6px;font-size:12px">${sc.dropped.map(esc).join('<br>')}</div></details></div>` : '';
+    return `<div class="scan">
+      <div class="h">
+        <div class="t">${esc(sc.period)} <span class="muted">· ${esc(sc.region)}</span></div>
+        <div class="muted" style="font-size:12px">${sc.human.length} to review · ${autoN} auto-ready</div>
+      </div>
+      ${human || '<div class="empty" style="padding:9px 13px">nothing needs review here</div>'}
+      ${dropped}
+      <div class="h" style="border-top:1px solid var(--line);border-bottom:none">
+        <div class="muted" style="font-size:12px">${autoN} auto-approved event(s) ready to add</div>
+        <div style="display:flex;gap:8px">
+          <button class="ghost" data-apply="${esc(sc.file)}" data-mode="checked">Apply checked</button>
+          <button data-apply="${esc(sc.file)}" data-mode="auto">Apply auto-approved</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  el.querySelectorAll('[data-apply]').forEach(b => b.onclick = () => {
+    const file = b.getAttribute('data-apply'), mode = b.getAttribute('data-mode');
+    let approve = [];
+    if(mode==='checked'){
+      approve = [...el.querySelectorAll(`input[data-file="${CSS.escape(file)}"]:checked`)].map(c=>+c.getAttribute('data-n'));
+      if(!approve.length){ toast('Tick the items you want first.', false); return; }
+    }
+    applyFile(file, approve);
+  });
+}
+
+function renderCoverage(cov){
+  const el = $('#cov');
+  if(!cov.length){ el.innerHTML = '<div class="empty">No scans yet.</div>'; return; }
+  el.innerHTML = [...cov].reverse().map(c => `
+    <div class="cov">
+      <div class="p">${esc(c.region)} <span class="muted" style="font-weight:400">${esc(c.period)}</span></div>
+      <div class="m"><span class="pill ${c.status}">${c.status}</span>
+        &nbsp;${c.items} articles · ${c.events_found} events${c.limited_to?` · cap ${c.limited_to}`:''}</div>
+    </div>`).join('');
+}
+
+function renderJobs(jobs){
+  const el = $('#jobs');
+  el.innerHTML = jobs.length ? jobs.map(j => `
+    <div class="jobline"><div>${esc(j.label)} <span class="faint">${j.started}</span><br>
+      <span class="faint" style="font-size:12px">${esc(j.detail||'')}</span></div>
+    <div class="st ${j.status}">${j.status}</div></div>`).join('')
+    : '<div class="empty">No scans run yet this session.</div>';
+}
+
+function renderRecent(recent){
+  const el = $('#recent');
+  el.innerHTML = recent.length ? recent.map(r => `
+    <div class="recent"><b>${esc(r.when)}</b> — ${r.titles.length} event(s): ${esc(r.titles.slice(0,3).join('; '))}${r.titles.length>3?'…':''}</div>`).join('')
+    : '<div class="empty">Nothing applied yet.</div>';
+}
+
+async function refresh(){
+  try{
+    const o = await (await fetch('/api/overview')).json();
+    $('#ver').textContent = o.seed.version ?? '—';
+    $('#nc').textContent = o.seed.conflicts; $('#ne').textContent = o.seed.events;
+    $('#prov').innerHTML = `<span class="faint">${esc(o.provider.llm)} · ${esc(o.provider.search)}</span>`;
+    $('#livedot').className = 'dot' + (o.running?' on':'');
+    $('#livetxt').textContent = o.running ? 'scanning…' : 'idle';
+    $('#livetxt').className = o.running ? 'muted' : 'muted';
+    renderReview(o.pending); renderCoverage(o.coverage); renderJobs(o.jobs); renderRecent(o.recent);
+  }catch(e){ /* server starting */ }
+}
+
+async function runScan(){
+  const ps=$('#ps').value.trim(), pe=$('#pe').value.trim();
+  if(!ps||!pe){ toast('Enter a From and To year.', false); return; }
+  const body={period_start:ps,period_end:pe,region:$('#rg').value.trim()||null,limit:+$('#lm').value||0};
+  const r = await (await fetch('/api/scan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
+  if(r.ok) toast('Scan started — watch Activity.'); refresh();
+}
+
+async function applyFile(file, approve){
+  const r = await (await fetch('/api/apply',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({file, approve, approve_all:false})})).json();
+  if(r.ok) toast(`Added ${r.applied} event(s) to the atlas.`);
+  else toast('Not applied: '+(r.error||'error'), false);
+  refresh();
+}
+
+$('#run').onclick = runScan;
+$('#week').onclick = () => {
+  const t=new Date(), a=new Date(t-7*864e5);
+  const f=d=>d.toISOString().slice(0,10);
+  $('#ps').value=f(a); $('#pe').value=f(t); $('#rg').value=''; runScan();
+};
+refresh(); setInterval(refresh, 3000);
+</script>
+</body>
+</html>

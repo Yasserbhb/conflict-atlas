@@ -31,7 +31,7 @@ from .schema import ScanRequest
 from .pipeline import scan
 from . import merge
 
-_SUBCOMMANDS = {"scan", "apply", "coverage"}
+_SUBCOMMANDS = {"scan", "apply", "coverage", "serve"}
 
 
 def _coverage_path(settings):
@@ -75,6 +75,12 @@ def _cmd_coverage(args) -> int:
     if args.region:
         ledger = [e for e in ledger if (e.get("region") or "").lower() == args.region.lower()]
     print(render_coverage(ledger))
+    return 0
+
+
+def _cmd_serve(args) -> int:
+    from .server import serve
+    serve(host=args.host, port=args.port)
     return 0
 
 
@@ -144,6 +150,11 @@ def main(argv=None) -> int:
     c = sub.add_parser("coverage", help="show what regions/periods have been scanned")
     c.add_argument("--region", help="filter to one region")
     c.set_defaults(func=_cmd_coverage)
+
+    v = sub.add_parser("serve", help="launch the browser control panel")
+    v.add_argument("--host", default="127.0.0.1")
+    v.add_argument("--port", type=int, default=8000)
+    v.set_defaults(func=_cmd_serve)
 
     args = ap.parse_args(argv)
     return args.func(args)

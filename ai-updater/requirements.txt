@@ -12,5 +12,9 @@ langchain-community>=0.3
 httpx>=0.27
 python-dotenv>=1.0
 
+# Control panel (local dashboard — `python -m conflict_updater serve`)
+fastapi>=0.110
+uvicorn>=0.29
+
 # Dev / tests
 pytest>=8.0
