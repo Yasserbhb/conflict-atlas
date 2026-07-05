@@ -160,6 +160,23 @@ def test_proposals_round_trip_through_json(tmp_path):
     assert merge.validate(seed2) == []
 
 
+def test_apply_introduces_no_new_issues_despite_a_preexisting_one():
+    # a pre-existing incoherence in an UNRELATED conflict must not be attributed to this apply
+    seed = _seed()
+    seed["conflicts"].append({
+        "id": "seed_other", "title": "Other", "type": "war", "severity": 3,
+        "startDate": "1900", "ongoing": False, "status": "ended",
+        "parties": [{"countryId": "FRA", "role": "aggressor"}],
+        "involvedCountries": [],  # FRA missing → a pre-existing issue
+        "events": [],
+    })
+    before = set(merge.validate(seed))
+    assert before  # confirm there IS a pre-existing issue
+    seed2, _ = merge.apply([_attach()], seed)
+    new_issues = set(merge.validate(seed2)) - before
+    assert new_issues == set()  # the merge itself introduced nothing new
+
+
 def test_validate_flags_incoherence():
     seed = _seed()
     seed["conflicts"][0]["parties"].append({"countryId": "GBR", "role": "funder"})  # not in involvedCountries

@@ -83,14 +83,17 @@ def _cmd_apply(args) -> int:
     seed_path = settings.seed_json
     proposals = load_proposals(args.proposals)
     seed = load_seed_dict(seed_path)
+    before = set(merge.validate(seed))   # pre-existing issues we didn't cause
     seed, report = merge.apply(proposals, seed, include_provisional=args.include_provisional)
-    issues = merge.validate(seed)
+    new_issues = sorted(set(merge.validate(seed)) - before)   # block only on issues WE introduced
 
     for line in report:
         print(line)
-    if issues:
-        print("\nCOHERENCE ISSUES — not written:")
-        for i in issues:
+    if before:
+        print(f"\nnote: {len(before)} pre-existing coherence issue(s) in seed.json, unchanged by this apply")
+    if new_issues:
+        print("\nCOHERENCE ISSUES introduced by this apply — not written:")
+        for i in new_issues:
             print(f"  ✗ {i}")
         return 1
     if args.dry_run:
