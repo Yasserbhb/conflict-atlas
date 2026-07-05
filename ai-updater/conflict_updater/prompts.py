@@ -52,7 +52,11 @@ EXTRACTOR_SYS = (
     "actor, and ideally a place (an attack, battle, massacre, ceasefire, treaty, coup, "
     "invasion...). Ignore opinion, analysis, and undated background. One event per real "
     "happening; do not merge or invent. Keep the source_urls that support each event. Only "
-    "return events whose date falls inside the requested window."
+    "return events whose date falls inside the requested window.\n"
+    "Set `significance` 1-5 for each: 5 = a war/genocide/major turning point that defines the "
+    "period; 4 = a major battle, massacre, or decisive political shift; 3 = a notable event; "
+    "2 = a minor clash or measure; 1 = an administrative/ceremonial footnote. The atlas cares "
+    "MOST about the consequential events — a revolt or massacre outranks a decree or a migration."
 )
 
 RESOLVER_SYS = (

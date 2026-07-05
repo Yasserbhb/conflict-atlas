@@ -120,8 +120,10 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         items.extend(search.search(q.query, q.lang))
     items = _dedupe_items(items)
 
-    # 3. EXTRACTOR — items → discrete candidate events
+    # 3. EXTRACTOR — items → discrete candidate events, most consequential first so a
+    #    --limit cap keeps the important events (a revolt), not the footnotes (a decree).
     cands = agents.extractor(llm, items, req).events
+    cands.sort(key=lambda c: c.significance, reverse=True)
     if settings.max_candidates and len(cands) > settings.max_candidates:
         cands = cands[: settings.max_candidates]
 

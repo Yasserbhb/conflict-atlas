@@ -149,6 +149,25 @@ def test_reconciler_can_still_veto_a_strongly_corroborated_new_conflict():
     assert res.proposals[0].needs_human is True
 
 
+def test_cap_keeps_the_most_significant_events():
+    # three candidates, --limit 1 → the significance-5 revolt must survive, not the footnote
+    footnote = CandidateEvent(date="1870-10-24", title="A decree", actors=["FRA"], place="X",
+                              source_urls=["http://a"], significance=1)
+    revolt = CandidateEvent(date="1871-03-15", title="Major revolt", actors=["DZA", "FRA"],
+                            place="Kabylie", source_urls=["http://b"], significance=5)
+    minor = CandidateEvent(date="1872-01-01", title="A minor measure", actors=["FRA"], place="Y",
+                           source_urls=["http://a"], significance=2)
+    import dataclasses
+    responses = _happy({
+        ExtractorOutput: ExtractorOutput(events=[footnote, revolt, minor]),
+        ResolverOutput: ResolverOutput(decision="attach", conflict_id="seed_gaza"),
+    })
+    res = scan(_req(), llm=FakeLLM(responses), search=FakeSearch(ITEMS), base=BASE,
+               settings=dataclasses.replace(Settings(), max_candidates=1), geocode=FakeGeocode())
+    assert len(res.proposals) == 1
+    assert res.proposals[0].event.title == "Major revolt"
+
+
 def test_two_same_slug_new_conflicts_get_distinct_ids():
     # two foundings whose titles slugify identically must not share an id (which would make
     # the merger silently drop the second one's event).

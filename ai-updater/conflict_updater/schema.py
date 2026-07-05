@@ -113,6 +113,7 @@ class CandidateEvent(BaseModel):
     actors: list[str] = Field(default_factory=list)  # free-text actor names, not yet ISO3
     place: Optional[str] = None
     source_urls: list[str] = Field(default_factory=list)
+    significance: int = Field(3, ge=1, le=5)  # historical consequence — used to rank/cap, not severity
 
 
 class ExtractorOutput(BaseModel):
