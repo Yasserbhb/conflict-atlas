@@ -25,7 +25,7 @@ from .llm import get_llm
 from .search import get_search
 from .store import (
     load_base, write_result, load_seed_dict, write_seed_dict, load_proposals,
-    append_coverage, load_coverage, render_coverage,
+    append_coverage, load_coverage, render_coverage, accept_reviewed,
 )
 from .schema import ScanRequest
 from .pipeline import scan
@@ -82,6 +82,13 @@ def _cmd_apply(args) -> int:
     settings = load_settings()
     seed_path = settings.seed_json
     proposals = load_proposals(args.proposals)
+
+    # accept reviewed items without hand-editing JSON: --approve N M refers to the numbered
+    # "needs human review" items in review_*.md; --approve-all accepts every one of them.
+    accepted = accept_reviewed(proposals, args.approve, args.approve_all)
+    if args.approve or args.approve_all:
+        print(f"accepted {accepted} reviewed item(s)")
+
     seed = load_seed_dict(seed_path)
     before = set(merge.validate(seed))   # pre-existing issues we didn't cause
     seed, report = merge.apply(proposals, seed, include_provisional=args.include_provisional)
@@ -126,6 +133,9 @@ def main(argv=None) -> int:
 
     a = sub.add_parser("apply", help="fold approved proposals into seed.json")
     a.add_argument("proposals", help="path to a proposals_*.json from a scan")
+    a.add_argument("--approve", type=int, nargs="*", metavar="N",
+                   help="accept these numbered 'needs review' items from review_*.md")
+    a.add_argument("--approve-all", action="store_true", help="accept every needs-review item")
     a.add_argument("--include-provisional", action="store_true",
                    help="also apply events held by the recency gate")
     a.add_argument("--dry-run", action="store_true", help="report only; do not write seed.json")

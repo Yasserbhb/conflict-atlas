@@ -131,6 +131,22 @@ def load_proposals(path: Path) -> list[Proposal]:
     return [Proposal.model_validate(p) for p in raw]
 
 
+def accept_reviewed(proposals: list[Proposal], indices=None, approve_all: bool = False) -> int:
+    """Flip needs_human=False on the chosen 'needs review' items. `indices` are 1-based and refer
+    to the numbering in review_*.md (the needs-human items, in order). Returns how many were flipped."""
+    human = [p for p in proposals if p.needs_human]
+    if approve_all:
+        for p in human:
+            p.needs_human = False
+        return len(human)
+    n = 0
+    for i in indices or []:
+        if 1 <= i <= len(human):
+            human[i - 1].needs_human = False
+            n += 1
+    return n
+
+
 # ---- coverage ledger: a persistent record of what we've searched, so "we looked and found
 #      nothing" is distinguishable from "search returned nothing" and from "never scanned" ----
 
@@ -204,11 +220,11 @@ def write_result(result: ScanResult, output_dir: Path) -> tuple[Path, Path]:
     pjson.write_text(result.model_dump_json(indent=2), encoding="utf-8")
 
     md = output_dir / f"review_{stamp}.md"
-    md.write_text(_render_review(result), encoding="utf-8")
+    md.write_text(_render_review(result, pjson.name), encoding="utf-8")
     return pjson, md
 
 
-def _render_review(result: ScanResult) -> str:
+def _render_review(result: ScanResult, proposals_file: str = "proposals.json") -> str:
     auto = [p for p in result.proposals if not p.needs_human]
     human = [p for p in result.proposals if p.needs_human]
     lines = [
@@ -218,14 +234,23 @@ def _render_review(result: ScanResult) -> str:
         "",
         "## Needs human review",
     ]
-    lines += [_render_proposal(p) for p in human] or ["_(none)_"]
+    lines += [_render_proposal(p, i) for i, p in enumerate(human, 1)] or ["_(none)_"]
+    if human:
+        nums = " ".join(str(i) for i in range(1, len(human) + 1))
+        lines += [
+            "",
+            "→ accept the ones you agree with, then apply. e.g. accept #1 and #3:",
+            f"  `python -m conflict_updater apply {proposals_file} --approve 1 3`",
+            f"  (or `--approve {nums}` for all of them, or `--approve-all`).",
+        ]
     lines += ["", "## Auto-approved (spot-check)"]
     lines += [_render_proposal(p) for p in auto] or ["_(none)_"]
     return "\n".join(lines) + "\n"
 
 
-def _render_proposal(p: Proposal) -> str:
+def _render_proposal(p: Proposal, num: int | None = None) -> str:
+    tag = f"**[{num}]** " if num else ""
     where = f"→ attach to `{p.target_conflict_id}`" if p.kind == "attach" else "→ **NEW conflict**"
     q = f"  \n  ❓ {p.reconcile.open_question}" if (p.reconcile and p.reconcile.open_question) else ""
     prov = " _(provisional — too recent)_" if p.provisional else ""
-    return f"- **{p.event.date} — {p.event.title}** [{p.event.kind}, sev {p.event.severity}] {where}{prov}{q}"
+    return f"- {tag}**{p.event.date} — {p.event.title}** [{p.event.kind}, sev {p.event.severity}] {where}{prov}{q}"

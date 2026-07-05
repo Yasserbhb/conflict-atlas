@@ -160,6 +160,22 @@ def test_proposals_round_trip_through_json(tmp_path):
     assert merge.validate(seed2) == []
 
 
+def test_accept_reviewed_flips_the_chosen_items():
+    from conflict_updater.store import accept_reviewed
+    props = [_attach(needs_human=True), _attach(needs_human=False), _attach(needs_human=True)]
+    # human items (in order): props[0]=#1, props[2]=#2
+    n = accept_reviewed(props, indices=[2])   # accept the 2nd needs-review item (props[2])
+    assert n == 1
+    assert props[2].needs_human is False and props[0].needs_human is True
+
+
+def test_accept_reviewed_all():
+    from conflict_updater.store import accept_reviewed
+    props = [_attach(needs_human=True), _attach(needs_human=True)]
+    assert accept_reviewed(props, approve_all=True) == 2
+    assert all(not p.needs_human for p in props)
+
+
 def test_apply_introduces_no_new_issues_despite_a_preexisting_one():
     # a pre-existing incoherence in an UNRELATED conflict must not be attributed to this apply
     seed = _seed()
