@@ -213,6 +213,33 @@ def render_coverage(ledger: list[dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def write_digest(log_dir: Path, result: ScanResult, applied: list, ok: bool) -> Path:
+    """A plain-English weekly findings log — what got ADDED to the atlas, what was HELD (too
+    uncertain to auto-add), what was already known. This is the thing you read; nothing to do."""
+    r = result.request
+    human = [p for p in result.proposals if p.needs_human]
+    L = [f"# Findings — {r.period_start} .. {r.period_end}"]
+    if r.region:
+        L.append(f"_region: {r.region}_")
+    L += ["", f"## ✅ Added to the atlas ({len(applied)})"]
+    L += [f"- **{p.event.date}** {p.event.title} → `{p.target_conflict_id or 'NEW conflict'}` "
+          f"[{p.event.kind}, sev {p.event.severity}]" for p in applied] or ["_(none this period)_"]
+    L += ["", f"## ⏸ Held — found but too uncertain to auto-add ({len(human)})"]
+    L += [f"- {p.event.date} {p.event.title}"
+          + (f" — ❔ {p.reconcile.open_question}" if (p.reconcile and p.reconcile.open_question) else "")
+          for p in human] or ["_(none)_"]
+    if result.dropped:
+        L += ["", f"## ↩ Already in the atlas, skipped ({len(result.dropped)})"]
+        L += [f"- {d}" for d in result.dropped]
+    L += ["", f"_scan: {result.stats}_"]
+    if not ok:
+        L += ["", "> ⚠ nothing written — applying would have introduced an incoherence; skipped."]
+    log_dir.mkdir(parents=True, exist_ok=True)
+    path = log_dir / f"{r.period_start}_{r.period_end}.md"
+    path.write_text("\n".join(L) + "\n", encoding="utf-8")
+    return path
+
+
 def write_result(result: ScanResult, output_dir: Path) -> tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     stamp = f"{result.request.period_start}_{result.request.period_end}"

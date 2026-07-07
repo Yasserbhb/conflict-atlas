@@ -74,3 +74,22 @@ def test_load_coverage_missing_file_is_empty(tmp_path):
     from conflict_updater.store import load_coverage, render_coverage
     assert load_coverage(tmp_path / "nope.json") == []
     assert "nothing has been searched" in render_coverage([])
+
+
+def test_write_digest_reports_added_and_held(tmp_path):
+    from conflict_updater.store import write_digest
+    from conflict_updater.schema import ScanResult, ScanRequest, Proposal, Event
+    added = Proposal(kind="attach", target_conflict_id="seed_gaza",
+                     event=Event(date="2026-07-02", title="Strike", kind="attack", severity=4),
+                     needs_human=False)
+    held = Proposal(kind="attach", target_conflict_id="seed_gaza",
+                    event=Event(date="2026-07-03", title="Rumoured raid", kind="attack", severity=2),
+                    needs_human=True)
+    res = ScanResult(request=ScanRequest(period_start="2026-07-01", period_end="2026-07-08"),
+                     proposals=[added, held], dropped=["already known: 2026-07-01 X"],
+                     stats={"proposals": 2})
+    path = write_digest(tmp_path, res, [added], ok=True)
+    text = path.read_text(encoding="utf-8")
+    assert "Added to the atlas (1)" in text and "Strike" in text
+    assert "Held" in text and "Rumoured raid" in text
+    assert "Already in the atlas" in text

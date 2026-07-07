@@ -25,13 +25,13 @@ from .llm import get_llm
 from .search import get_search
 from .store import (
     load_base, write_result, load_seed_dict, write_seed_dict, load_proposals,
-    append_coverage, load_coverage, render_coverage, accept_reviewed,
+    append_coverage, load_coverage, render_coverage, accept_reviewed, write_digest,
 )
 from .schema import ScanRequest
 from .pipeline import scan
 from . import merge
 
-_SUBCOMMANDS = {"scan", "apply", "coverage", "serve"}
+_SUBCOMMANDS = {"scan", "apply", "coverage", "serve", "auto"}
 
 
 def _coverage_path(settings):
@@ -81,6 +81,40 @@ def _cmd_coverage(args) -> int:
 def _cmd_serve(args) -> int:
     from .server import serve
     serve(host=args.host, port=args.port)
+    return 0
+
+
+def _cmd_auto(args) -> int:
+    """Hands-off: scan, AUTO-APPLY only the confidently-corroborated items, log the rest.
+    This is what the weekly cron runs — no human in the loop, everything reversible via git."""
+    import dataclasses
+    start, end = _parse_period(args.period)
+    settings = load_settings()
+    if args.limit:
+        settings = dataclasses.replace(settings, max_candidates=args.limit)
+    req = ScanRequest(period_start=start, period_end=end, region=args.region, topic=args.topic)
+    base = load_base(settings.seed_json)
+    result = scan(req, llm=get_llm(settings), search=get_search(settings), base=base, settings=settings)
+    append_coverage(_coverage_path(settings), result, limited=settings.max_candidates)
+
+    # apply ONLY the auto-approved (needs_human=False, non-provisional) — the strict gate already
+    # filtered these; everything uncertain is logged and held, never auto-added.
+    seed = load_seed_dict(settings.seed_json)
+    before = set(merge.validate(seed))
+    applied = [p for p in result.proposals if not p.needs_human and not p.provisional]
+    seed, _ = merge.apply(result.proposals, seed)
+    new_issues = sorted(set(merge.validate(seed)) - before)
+    ok = not new_issues
+    if ok and applied:
+        write_seed_dict(settings.seed_json, seed)
+
+    digest = write_digest(settings.log_dir, result, applied, ok)
+    held = sum(1 for p in result.proposals if p.needs_human)
+    print(f"auto {start}..{end}: added {len(applied)}, held {held}, already-known {len(result.dropped)}")
+    print(f"digest → {digest}")
+    if not ok:
+        print("apply skipped — would introduce incoherence (logged, seed untouched)")
+        return 1
     return 0
 
 
@@ -155,6 +189,13 @@ def main(argv=None) -> int:
     v.add_argument("--host", default="127.0.0.1")
     v.add_argument("--port", type=int, default=8000)
     v.set_defaults(func=_cmd_serve)
+
+    au = sub.add_parser("auto", help="hands-off: scan, auto-apply confident items, log the rest")
+    au.add_argument("period", help='"week" | "1990..2003" | "YYYY-YYYY"')
+    au.add_argument("--region")
+    au.add_argument("--topic")
+    au.add_argument("--limit", type=int, default=0)
+    au.set_defaults(func=_cmd_auto)
 
     args = ap.parse_args(argv)
     return args.func(args)

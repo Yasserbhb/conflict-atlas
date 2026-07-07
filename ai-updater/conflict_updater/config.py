@@ -34,6 +34,7 @@ class Settings:
 
     seed_json: Path = Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json")))
     output_dir: Path = Path(_get("OUTPUT_DIR", str(_HERE / "out")))
+    log_dir: Path = Path(_get("LOG_DIR", str(_HERE / "log")))  # committed weekly digests (not out/)
 
 
 def load_settings() -> Settings:
@@ -60,4 +61,5 @@ def load_settings() -> Settings:
         new_conflict_min_sources=int(_get("NEW_CONFLICT_MIN_SOURCES", "3")),
         seed_json=Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))),
         output_dir=Path(_get("OUTPUT_DIR", str(_HERE / "out"))),
+        log_dir=Path(_get("LOG_DIR", str(_HERE / "log"))),
     )

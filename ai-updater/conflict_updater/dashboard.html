@@ -91,14 +91,9 @@
   .line:last-child{border:none}
   .st{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
   .st.running{color:var(--accent-light)} .st.done{color:var(--text-muted)} .st.error{color:var(--danger)}
-  .kv{display:flex;gap:24px;flex-wrap:wrap;font-size:13px}
-  .kv div span{color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:2px}
   .toast{position:fixed;bottom:20px;right:20px;background:var(--bg-raised);border:1px solid var(--accent-border);
     border-radius:var(--r-md);padding:11px 16px;font-size:13px;max-width:360px;opacity:0;transform:translateY(8px);transition:.22s;z-index:20}
   .toast.show{opacity:1;transform:none}
-  .on-badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
-  .on-badge.yes{background:var(--accent-dim);color:var(--accent-light)}
-  .on-badge.no{background:rgba(111,126,124,.18);color:var(--text-muted)}
 </style>
 </head>
 <body>
@@ -113,7 +108,6 @@
   <button data-tab="review" class="active">Review <span class="badge" id="revn" style="display:none">0</span></button>
   <button data-tab="data">Data</button>
   <button data-tab="coverage">Coverage</button>
-  <button data-tab="automate">Automate <span class="badge" id="autob" style="display:none">on</span></button>
 </nav>
 
 <main>
@@ -180,43 +174,6 @@
     </div>
   </section>
 
-  <!-- AUTOMATE -->
-  <section class="tab" id="tab-automate">
-    <div class="card">
-      <h2>Automated runs <span class="on-badge no" id="schstate">off</span></h2>
-      <div class="b">
-        <div class="kv" style="margin-bottom:16px" id="schstatus"></div>
-        <div class="row">
-          <div><label>Mode</label>
-            <select id="smode">
-              <option value="recent">Recent — fetch what happened lately</option>
-              <option value="backfill">Backfill — walk old years, slice by slice</option>
-            </select></div>
-          <div><label>Every (hours)</label><input id="severy" type="number" value="168" min="1"></div>
-          <div><label>Start at hour</label><input id="sstart" type="number" value="3" min="0" max="23"></div>
-          <div><label>Cap / run</label><input id="slimit" type="number" value="6" min="0"></div>
-        </div>
-        <div class="row" id="recentrow" style="margin-top:11px">
-          <div><label>Look back (days)</label><input id="sdays" type="number" value="7" min="1"></div>
-        </div>
-        <div class="row" id="backfillrow" style="margin-top:11px;display:none">
-          <div><label>Region <span class="muted">(optional)</span></label><input id="sregion" placeholder="e.g. Africa or Sudan"></div>
-          <div><label>From year</label><input id="sfrom" type="number" value="1900"></div>
-          <div><label>To year</label><input id="sto" type="number" value="2000"></div>
-          <div><label>Years / slice</label><input id="sstep" type="number" value="2" min="1"></div>
-        </div>
-        <div class="row" style="margin-top:16px">
-          <button class="btn" id="schon">Turn on</button>
-          <button class="ghost danger" id="schoff">Turn off</button>
-        </div>
-        <div class="hint" id="schhint">
-          <b>Recent</b> re-runs every interval on the last N days — the routine world-watch.
-          <b>Backfill</b> steps through old years one slice per interval (set it once, it walks the past on its own).
-          Runs land in the review queue like any scan; nothing is applied automatically.
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <div class="toast" id="toast"></div>
@@ -311,25 +268,6 @@ function renderData(){
 $('#dq').oninput=renderData; $('#dtype').onchange=renderData;
 $$('th[data-sort]').forEach(th=>th.onclick=()=>{const k=th.dataset.sort;sortDir=(sortKey===k)?-sortDir:(k==='severity'||k==='events'?-1:1);sortKey=k;renderData();});
 
-// ---------- automate ----------
-function renderSchedule(s){
-  const on=s.enabled;
-  $('#schstate').textContent=on?'on':'off'; $('#schstate').className='on-badge '+(on?'yes':'no');
-  $('#autob').style.display=on?'inline-block':'none';
-  const nx=s.next_run?new Date(s.next_run).toLocaleString():'—', lr=s.last_run?new Date(s.last_run).toLocaleString():'—';
-  const prog=s.mode==='backfill'?`<div><span>Backfill progress</span>${s.cursor} → ${s.to_year}</div>`:'';
-  $('#schstatus').innerHTML=`<div><span>Mode</span>${s.mode}</div><div><span>Next run</span>${nx}</div><div><span>Last run</span>${lr}</div>${prog}`;
-}
-function schMode(){const b=$('#smode').value==='backfill';$('#backfillrow').style.display=b?'flex':'none';$('#recentrow').style.display=b?'none':'flex';}
-$('#smode').onchange=schMode;
-async function saveSchedule(enabled){
-  const body={enabled,mode:$('#smode').value,every_hours:+$('#severy').value,start_hour:+$('#sstart').value,limit:+$('#slimit').value,
-    recent_days:+$('#sdays').value,region:$('#sregion').value.trim()||null,from_year:+$('#sfrom').value,to_year:+$('#sto').value,step_years:+$('#sstep').value};
-  const s=await(await fetch('/api/schedule',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
-  renderSchedule(s); toast(enabled?'Automation on.':'Automation off.');
-}
-$('#schon').onclick=()=>saveSchedule(true); $('#schoff').onclick=()=>saveSchedule(false);
-
 // ---------- run ----------
 async function runScan(){
   const ps=$('#ps').value.trim(),pe=$('#pe').value.trim();
@@ -340,17 +278,13 @@ async function runScan(){
 $('#run').onclick=runScan;
 $('#week').onclick=()=>{const t=new Date(),a=new Date(t-7*864e5),f=d=>d.toISOString().slice(0,10);$('#ps').value=f(a);$('#pe').value=f(t);$('#rg').value='';runScan();};
 
-let schLoaded=false;
 async function refresh(){
   try{
     const o=await(await fetch('/api/overview')).json();
     $('#ver').textContent=o.seed.version??'—';$('#nc').textContent=o.seed.conflicts;$('#ne').textContent=o.seed.events;
     $('#prov').textContent=`${o.provider.llm} · ${o.provider.search}`;
     $('#dot').className='dot'+(o.running?' on':'');$('#livetxt').textContent=o.running?'scanning…':'idle';
-    renderReview(o.pending);renderCoverage(o.coverage);renderJobs(o.jobs);renderRecent(o.recent);renderSchedule(o.schedule);
-    if(!schLoaded){const s=o.schedule;$('#smode').value=s.mode;$('#severy').value=s.every_hours;$('#sstart').value=s.start_hour;
-      $('#slimit').value=s.limit;$('#sdays').value=s.recent_days;$('#sregion').value=s.region||'';$('#sfrom').value=s.from_year;
-      $('#sto').value=s.to_year;$('#sstep').value=s.step_years;schMode();schLoaded=true;}
+    renderReview(o.pending);renderCoverage(o.coverage);renderJobs(o.jobs);renderRecent(o.recent);
   }catch(e){}
 }
 refresh(); setInterval(refresh,3000);

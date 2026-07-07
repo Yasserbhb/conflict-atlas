@@ -1,0 +1,50 @@
+name: Weekly conflict update
+
+# Runs in the cloud on a schedule — your PC does not need to be on. It scans the past
+# week, AUTO-APPLIES only the confidently-corroborated findings to seed.json, writes a
+# plain-English digest to ai-updater/log/, and pushes (which redeploys the live map).
+# Everything is reversible via git history. Nothing here needs a human.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"      # every Monday 06:00 UTC
+  workflow_dispatch: {}        # ...and a manual "Run" button for testing
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -r ai-updater/requirements.txt
+
+      - name: Scan the week and auto-apply confident findings
+        working-directory: ai-updater
+        env:
+          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: python -m conflict_updater auto week --limit 8
+
+      - name: Commit the update + findings log
+        run: |
+          git config user.name "conflict-atlas-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add src/data/seed.json ai-updater/log/
+          git diff --cached --quiet || git commit -m "weekly: auto-update $(date -u +%Y-%m-%d)"
+          git push
