@@ -172,7 +172,7 @@ class Proposal(BaseModel):
     target_conflict_id: Optional[str] = None
     event: Event
     roles: list[Party] = Field(default_factory=list)   # per-event country roles (for conflict.parties)
-    status: Optional[Status] = None                    # lifecycle verdict (for conflict.status)
+    status: Optional[Status] = None                    # status verdict (for conflict.status)
     new_conflict: Optional[Conflict] = None
     new_aliases: list[str] = Field(default_factory=list)
     factcheck: Optional[FactCheckOutput] = None

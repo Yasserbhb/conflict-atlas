@@ -38,7 +38,7 @@ def _year(s) -> Optional[int]:
 def default_status(c: dict) -> str:
     """Most conflicts predate the `status` field and have it missing (not null) — don't just
     assume 'active'. Fall back to what the app already tracks (`ongoing`/`endDate`) instead,
-    or a long-finished conflict silently poisons the lifecycle agent's current_status."""
+    or a long-finished conflict silently poisons the enricher's current_status context."""
     s = c.get("status")
     if s:
         return s
