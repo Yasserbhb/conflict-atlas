@@ -127,39 +127,31 @@ class ResolverOutput(BaseModel):
     reason: str = ""
 
 
-class ClassifyOutput(BaseModel):
+class EnrichOutput(BaseModel):
+    """One call describes the whole event — kind, severity, roles, place, summary — plus the
+    conflict-level status and (for a new conflict) its span. Batched to save round-trips."""
     event_kind: EventKind
     conflict_type: Optional[ConflictType] = None  # only when proposing a new conflict
+    severity: int = Field(3, ge=1, le=5)
+    parties: list[Party] = Field(default_factory=list)
+    location: Optional[Location] = None            # null when genuinely place-less
+    summary: str = ""
+    status: Status = "active"                      # conflict status as of today, given this event
+    start_date: Optional[str] = None               # conflict span from the sources (new conflict only)
+    end_date: Optional[str] = None
 
 
-class SeverityOutput(BaseModel):
-    severity: int = Field(ge=1, le=5)
-    reason: str = ""
+class VerifyOutput(BaseModel):
+    """One call both fact-checks and decides — replaces the fact-check + reconciler round-trips."""
+    verdict: Verdict
+    confidence: float = Field(ge=0.0, le=1.0)
+    independent_sources: int = 0
+    cross_alignment: bool = False
+    decision: Literal["auto_approve", "needs_human"]
+    open_question: Optional[str] = None
 
 
-class RolesOutput(BaseModel):
-    parties: list[Party]
-
-
-class GeoOutput(BaseModel):
-    location: Optional[Location] = None  # null when genuinely place-less
-
-
-class SummaryOutput(BaseModel):
-    text: str
-
-
-class LifecycleOutput(BaseModel):
-    status: Status
-    reason: str = ""
-
-
-class SpanOutput(BaseModel):
-    """The conflict's overall time span, read from the sources (only when founding a new one)."""
-    start_date: Optional[str] = None   # when the conflict began (year or ISO)
-    end_date: Optional[str] = None     # when it ended, or null if ongoing / unknown
-
-
+# kept as the shape stored on a Proposal (built from VerifyOutput)
 class FactCheckOutput(BaseModel):
     verdict: Verdict
     confidence: float = Field(ge=0.0, le=1.0)

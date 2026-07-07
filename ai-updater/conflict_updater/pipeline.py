@@ -14,6 +14,7 @@ from .store import BaseConflict, load_base, pending_to_base, date_key, derive_sp
 from . import agents, dedup
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
+    FactCheckOutput, ReconcilerOutput,
 )
 
 
@@ -152,103 +153,89 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # 5. RECENCY gate (per event, by its date)
         provisional = _is_recent(cand.date, settings.t_settle_days)
 
-        # 6. ENRICHERS  (parent context keeps type/roles consistent; not re-derived per event)
+        # 6. ENRICH — ONE call for kind/type/severity/roles/location/summary/status/span.
         # target_id may point at a conflict already in seed.json OR one founded earlier in
-        # this same scan (pending) — both are equally valid "parents" for context purposes.
+        # this same scan (pending) — both are equally valid "parents" for context.
         if is_new:
             parent = None
         elif target_id in pending_bases:
             parent = pending_bases[target_id]
         else:
             parent = by_id.get(target_id)
-        parent_type = parent.type if parent else None
 
-        cls = agents.classifier(llm, cand, is_new, parent_type=parent_type)
-        sev = agents.severity(llm, cand, items)
-        rls = agents.roles(llm, cand, parent_type=parent_type,
-                           parent_parties=(parent.parties if parent else None))
-        geo = agents.geolocator(llm, cand)
-        location = geo.location
+        en = agents.enrich(
+            llm, cand, items, is_new, today=date.today().isoformat(),
+            parent_type=(parent.type if parent else None),
+            parent_parties=(parent.parties if parent else None),
+            current_status=(parent.status if parent else None),
+        )
+
+        # real coordinates (code, not model memory): an LLM recalls famous cities but collapses
+        # smaller places to "the nearest big one" — a geocoder looks the label up instead.
+        location = en.location
         if location and location.label:
-            # Real lookup, not model memory: an LLM recalls famous cities accurately but
-            # silently collapses smaller/specific places to "the nearest big place it
-            # remembers" (verified live — see geocode.py). A geocoder looks it up instead.
             real = geocode.lookup(location.label)
             if real:
                 location = real
-        summ = agents.summarizer(llm, cand, items)
 
-        # LIFECYCLE — only the latest event (or a new conflict) may set status; a backfilled
-        # old event keeps the conflict's current status (and skips the call entirely).
-        current_status = parent.status if parent else None
+        # only the LATEST event (or a new conflict) may move status; a backfilled old event
+        # keeps the conflict's current status.
         if is_new or _is_latest_event(cand, parent):
-            life = agents.lifecycle(
-                llm, cand, cls.conflict_type or parent_type, current_status,
-                today=date.today().isoformat(),
-                conflict_start=(parent.start if parent else None),
-                conflict_end=(parent.end if parent else None),
-            )
-            status = life.status
+            status = en.status
         else:
-            status = current_status  # backfill: don't touch (or ask about) the current status
+            status = parent.status if parent else None
 
         event = Event(
-            id=None,
-            date=cand.date,
-            title=cand.title,
-            kind=cls.event_kind,
-            severity=sev.severity,
-            location=location,
-            parties=[p.country_id for p in rls.parties],
-            description=summ.text,
+            id=None, date=cand.date, title=cand.title,
+            kind=en.event_kind, severity=en.severity, location=location,
+            parties=[p.country_id for p in en.parties],
+            description=en.summary,
             sources=_gather_sources(cand, items),
         )
 
-        # 7. FACT-CHECK (anti-bias corroboration)
-        fc = agents.factcheck(llm, event, items)
-
-        # 8. RECONCILER
-        rec = agents.reconciler(llm, event, fc, is_new)
+        # 7. VERIFY — ONE call: fact-check the sources AND decide. Stored as fc/rec on the proposal.
+        ver = agents.verify(llm, event, items, is_new)
+        fc = FactCheckOutput(verdict=ver.verdict, confidence=ver.confidence,
+                             independent_sources=ver.independent_sources, cross_alignment=ver.cross_alignment)
+        rec = ReconcilerOutput(decision=ver.decision, open_question=ver.open_question)
 
         if ambiguous:
             needs_human = True
         elif is_new:
-            # Founding a brand-new conflict is riskier than attaching to one that already
-            # exists — wrong id/title/type/parties are harder to undo later. So it needs a
-            # HIGHER, but not infinite, bar: strong multi-source, cross-aligned corroboration
-            # can still auto-create; anything thinner goes to a human. Not an absolute block.
+            # Founding a brand-new conflict is riskier than attaching to an existing one, so it
+            # needs a HIGHER (not infinite) bar: strong multi-source, cross-aligned corroboration
+            # can still auto-create; anything thinner goes to a human.
             strongly_corroborated = (
-                fc.verdict == "pass"
-                and fc.confidence >= settings.new_conflict_min_confidence
-                and fc.independent_sources >= settings.new_conflict_min_sources
-                and fc.cross_alignment
+                ver.verdict == "pass"
+                and ver.confidence >= settings.new_conflict_min_confidence
+                and ver.independent_sources >= settings.new_conflict_min_sources
+                and ver.cross_alignment
             )
-            needs_human = (not strongly_corroborated) or rec.decision == "needs_human"
+            needs_human = (not strongly_corroborated) or ver.decision == "needs_human"
         else:
             needs_human = (
-                rec.decision == "needs_human"
-                or fc.verdict != "pass"
-                or fc.confidence < settings.auto_approve_confidence
+                ver.decision == "needs_human"
+                or ver.verdict != "pass"
+                or ver.confidence < settings.auto_approve_confidence
             )
 
         new_conflict = None
         if is_new:
-            sp = agents.span(llm, cand, items)          # read the conflict's stated span from sources
-            if sp.end_date and status not in ("ended", "resolved"):
+            if en.end_date and status not in ("ended", "resolved"):
                 status = "ended"                        # sources show the conflict concluded
-            start_date, end_date = derive_span([event.date], status, sp.start_date, sp.end_date)
+            start_date, end_date = derive_span([event.date], status, en.start_date, en.end_date)
             new_conflict = Conflict(
                 id=_unique_new_id(cand.title, by_id, pending_bases),
                 title=cand.title,               # provisional — a human renames on review
-                type=cls.conflict_type or "war",
-                severity=sev.severity,
+                type=en.conflict_type or "war",
+                severity=en.severity,
                 start_date=start_date,          # earliest of the sourced span and the events
                 end_date=end_date,
                 ongoing=status not in ("ended", "resolved"),
                 status=status,
-                description=summ.text,
-                parties=rls.parties,
-                involved_countries=[p.country_id for p in rls.parties],
+                description=en.summary,
+                parties=en.parties,
+                involved_countries=[p.country_id for p in en.parties],
                 aliases=res.new_aliases,
                 events=[event],
             )
@@ -259,7 +246,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             kind="new_conflict" if is_new else "attach",
             target_conflict_id=target_id,
             event=event,
-            roles=rls.parties,
+            roles=en.parties,
             status=status,
             new_conflict=new_conflict,
             new_aliases=res.new_aliases,

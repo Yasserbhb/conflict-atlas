@@ -39,7 +39,9 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-        run: python -m conflict_updater auto week --limit 8
+        # ~3 LLM calls per candidate now (batched), so 12 candidates ≈ 38 calls — inside the
+        # OpenRouter free ~50/day. Raise toward 15 only if you have paid/higher quota.
+        run: python -m conflict_updater auto week --limit 12
 
       - name: Commit the update + findings log
         run: |

@@ -74,102 +74,46 @@ RESOLVER_SYS = (
     "to the existing conflict — later agents assess the event independently from its sources."
 )
 
-CLASSIFIER_SYS = (
-    "Assign the event's KIND (always), and the conflict TYPE (ONLY when a new conflict is being "
-    "created — otherwise leave conflict_type null). Map the real-world wording to a kind:\n"
-    "- invasion / landing / conquest campaign / large offensive push  -> offensive\n"
-    "- a named battle or siege                                        -> battle\n"
-    "- a single strike / bombing / raid / shelling / assassination    -> attack\n"
-    "- massacre / mass killing / ethnic cleansing of civilians        -> atrocity\n"
-    "- people forced to flee, expelled, deported                      -> displacement\n"
-    "- uprising / revolt / insurrection / coup / sharp worsening       -> escalation\n"
-    "- foreign troops enter / peacekeeping / no-fly zone              -> intervention\n"
-    "- ceasefire / truce / armistice -> ceasefire ; peace treaty / accord -> treaty ; final peace -> settlement\n"
-    "- formal takeover of territory -> annexation ; economic/diplomatic measure -> sanction\n"
-    "- otherwise notable (declaration, recognition, key anniversary)  -> milestone\n"
-    "If a parent conflict type is given, your kind must be consistent with it; do NOT re-decide the type.\n"
+ENRICH_SYS = (
+    "Describe ONE event fully, in a single JSON object. Fill every field:\n"
+    "\n"
+    "KIND — map the real-world wording:\n"
+    "  invasion/landing/conquest/large offensive -> offensive ; named battle/siege -> battle ;\n"
+    "  single strike/bombing/raid/assassination -> attack ; massacre/ethnic cleansing -> atrocity ;\n"
+    "  people forced to flee/expelled -> displacement ; uprising/revolt/coup/sharp worsening -> escalation ;\n"
+    "  foreign troops enter/peacekeeping -> intervention ; ceasefire/truce -> ceasefire ; treaty/accord -> treaty ;\n"
+    "  final peace -> settlement ; territory takeover -> annexation ; economic/diplomatic measure -> sanction ;\n"
+    "  otherwise notable (declaration, recognition, anniversary) -> milestone.\n"
+    "TYPE — the conflict's type, ONLY when a new conflict is being created; else leave null. If a parent\n"
+    "  conflict type is given, keep the kind consistent with it and do NOT re-decide the type.\n"
+    "SEVERITY 1-5 — intensity of THIS event by nature/scale, never defaulting to 1 on a short snippet:\n"
+    "  invasion opens a war -> 3 ; single strike, no civilian deaths -> 1-2 ; uprising w/ reprisals -> 3-4 ;\n"
+    "  massacre of thousands -> 4 ; systematic extermination -> 5 ; a ceasefire/treaty signing -> 1.\n"
+    "PARTIES — each involved country as ISO 3166-1 alpha-3 + ONE role. Roles are STRUCTURAL (a country's\n"
+    "  position in the WHOLE conflict) and MUST NOT flip event to event; if a parent conflict's parties+roles\n"
+    "  are given, KEEP them and only ADD a genuinely new country. In an occupation/colonial conflict the\n"
+    "  occupier stays occupier/aggressor and the occupied stay victim/defender EVEN when they revolt or\n"
+    "  strike first — resistance is not 'aggression'.\n"
+    "LOCATION — lat/lng + short place label; null for a genuinely place-less event (nationwide famine, a\n"
+    "  declaration). Prefer the named city/region; don't invent coordinates.\n"
+    "SUMMARY — neutral 1-2 sentences; ATTRIBUTE contested claims ('the UN found…', 'X says…'), no editorialising.\n"
+    "STATUS — the conflict's status AS OF TODAY (today's date is given). 'active' = ongoing now, NOT merely\n"
+    "  that this event happened then; a long-past event in a long-finished conflict is 'ended'/'resolved'.\n"
+    "  ceasefire -> suspended ; sustained quiet -> dormant/ended but NEVER 'resolved' without a positive\n"
+    "  terminal event. When unsure, do not close it.\n"
+    "START_DATE / END_DATE — ONLY when founding a NEW conflict: the conflict's overall span from the sources\n"
+    "  (not this event's date); end_date null if ongoing/unknown. Otherwise leave both null.\n"
     + TAXONOMY
 )
 
-SEVERITY_SYS = (
-    "Assign the EVENT's severity 1-5 — the intensity of THIS single event, on the scale below.\n"
-    "Judge by the NATURE and SCALE of the event, NOT only by whether a death toll happens to be "
-    "quoted. Never default to 1 just because a snippet is short — infer from what KIND of event it "
-    "is. Worked examples:\n"
-    "- An army lands / invades and begins conquering a country (a war opens)   -> 3\n"
-    "- A single strike on a military site with no reported civilian deaths     -> 1-2\n"
-    "- An armed uprising or revolt with sustained fighting and reprisals       -> 3-4\n"
-    "- A massacre / mass killing of civilians (thousands)                      -> 4\n"
-    "- A systematic, group-targeting extermination campaign                    -> 5\n"
-    "- The signing of a ceasefire or treaty (a low-violence moment)            -> 1\n"
-    + TAXONOMY
-)
-
-ROLES_SYS = (
-    "Assign each involved country an ISO 3166-1 alpha-3 code and ONE role.\n"
-    "ROLES ARE STRUCTURAL — they describe a country's position in the WHOLE conflict and MUST NOT "
-    "flip from event to event. If a parent conflict is given with its existing parties+roles, KEEP "
-    "THEM: reuse the same role for the same country; only add a NEW party if this event genuinely "
-    "introduces a country not already listed.\n"
-    "In an OCCUPATION or colonial conflict, the occupying / colonising power stays the occupier "
-    "(aggressor) and the occupied people stay victim / defender EVEN IN AN EVENT WHERE THEY REVOLT, "
-    "RESIST, OR STRIKE FIRST — an uprising by the occupied is resistance (defender), never "
-    "'aggression'. Do not adopt one side's framing; if a role is truly contested, pick the most "
-    "defensible.\n"
-    + TAXONOMY
-)
-
-GEO_SYS = (
-    "Give the event's location as lat/lng plus a short place label. If the event has no single "
-    "place (a nationwide famine, a diplomatic declaration, an abstract milestone), return "
-    "location = null. Do not guess coordinates you are unsure of; prefer the named city/region."
-)
-
-SUMMARY_SYS = (
-    "Write a neutral, 1-2 sentence description of the event for an atlas. State facts and figures "
-    "where sourced; for contested claims, ATTRIBUTE them ('the UN found…', 'France says…') rather "
-    "than asserting one side. No editorialising."
-)
-
-SPAN_SYS = (
-    "You are given a newly-identified conflict (its founding event) and source snippets. From the "
-    "sources, extract the CONFLICT'S overall time span — NOT this one event's date. Return "
-    "start_date (when the conflict began) and end_date (when it ended), each a year or ISO date. "
-    "If it is still ongoing, or the end is genuinely unknown from the sources, set end_date to null. "
-    "Use only what the sources state — do not guess a span."
-)
-
-LIFECYCLE_SYS = (
-    "Decide the conflict's status AS OF TODAY, using the new event, the dates given, and the "
-    "current status.\n"
-    "CRITICAL: 'active' means hostilities are ONGOING as of the latest event / today — NOT merely "
-    "that this event was happening at its own time. An event from long ago does NOT make a "
-    "long-finished conflict 'active' now. Reason from the dates: if the event is many years/decades "
-    "in the past and nothing shows the conflict continued to today, it is 'ended' (or 'resolved' if "
-    "there was a positive terminal event).\n"
-    "A ceasefire/pause is 'suspended'. Sustained quiet is 'dormant' or 'ended' but NEVER 'resolved' "
-    "without a positive terminal event (treaty, withdrawal, sanctions lifted). A genuine resumption "
-    "after quiet sets status back to 'active'. When unsure, do NOT close it as 'resolved'.\n"
-    + TAXONOMY
-)
-
-FACTCHECK_SYS = (
-    "Judge whether the cited source items actually support the event, and how well-corroborated "
-    "it is. Count INDEPENDENT sources = distinct outlets/domains (one wire story echoed across "
-    "sites counts once). Set cross_alignment=true when independent sources from DIFFERENT outlets "
-    "AND/OR DIFFERENT languages corroborate the claim — a practical proxy for crossing the "
-    "political/perspective spectrum when an explicit alignment label isn't available. verdict: "
-    "'pass' (well-supported), 'fail' (unsupported/contradicted), 'uncertain' (thin/single-source/"
-    "one-sided). Give a confidence 0-1. Single-source or single-outlet claims are at most 'uncertain'."
-)
-
-RECONCILER_SYS = (
-    "You are the judge. Given an assembled event proposal and the fact-check verdict, decide "
-    "'auto_approve' (well-formed, corroborated, high confidence, nothing contested) or "
-    "'needs_human' (any fail/uncertain verdict, contested roles/classification, or low "
-    "confidence). Being a NEW conflict is not by itself a reason to route to a human — the "
-    "caller already applies a higher evidence bar for founding one; judge it on the same "
-    "quality/contestedness criteria, just more strictly. When routing to a human, give a "
-    "one-line open_question. Prefer auto_approve when the evidence is clearly solid, but never "
-    "rubber-stamp a contested claim."
+VERIFY_SYS = (
+    "Fact-check the event against its cited sources AND decide whether it can be auto-approved.\n"
+    "Count INDEPENDENT sources = distinct outlets/domains (one wire echoed across sites counts once). Set "
+    "cross_alignment=true when independent sources from DIFFERENT outlets and/or DIFFERENT languages "
+    "corroborate it (a practical proxy for crossing the perspective spectrum).\n"
+    "verdict: 'pass' (well-supported), 'fail' (unsupported/contradicted), 'uncertain' (thin/single-source/"
+    "one-sided); single-source or single-outlet claims are at most 'uncertain'. Give confidence 0-1.\n"
+    "decision: 'auto_approve' only if well-supported, confident, and nothing contested; else 'needs_human' "
+    "with a one-line open_question. Never rubber-stamp a contested claim; being a new conflict is not by "
+    "itself a reason to route to a human (the caller applies a higher evidence bar for that)."
 )

@@ -11,9 +11,7 @@ from . import prompts as P
 from .store import BaseConflict
 from .schema import (
     ScanRequest, RawItem, CandidateEvent,
-    ScoperOutput, ExtractorOutput, ResolverOutput, ClassifyOutput, SeverityOutput,
-    RolesOutput, GeoOutput, SummaryOutput, LifecycleOutput, SpanOutput, FactCheckOutput,
-    ReconcilerOutput, Event,
+    ScoperOutput, ExtractorOutput, ResolverOutput, EnrichOutput, VerifyOutput, Event,
 )
 
 
@@ -55,64 +53,27 @@ def resolver(llm: LLMClient, cand: CandidateEvent,
     return llm.structured(ResolverOutput, P.RESOLVER_SYS, user)
 
 
-def classifier(llm: LLMClient, cand: CandidateEvent, is_new_conflict: bool,
-               parent_type: Optional[str] = None) -> ClassifyOutput:
-    user = f"is_new_conflict={is_new_conflict}\nparent_conflict_type={parent_type}\nEvent:\n{_j(cand)}"
-    return llm.structured(ClassifyOutput, P.CLASSIFIER_SYS, user)
-
-
-def severity(llm: LLMClient, cand: CandidateEvent, items: list[RawItem]) -> SeverityOutput:
-    user = f"Event:\n{_j(cand)}\n\nEvidence snippets:\n{_j([i.snippet for i in items][:8])}"
-    return llm.structured(SeverityOutput, P.SEVERITY_SYS, user)
-
-
-def roles(llm: LLMClient, cand: CandidateEvent, parent_type: Optional[str] = None,
-          parent_parties: Optional[list] = None) -> RolesOutput:
+def enrich(llm: LLMClient, cand: CandidateEvent, items: list[RawItem], is_new: bool, today: str,
+           parent_type: Optional[str] = None, parent_parties: Optional[list] = None,
+           current_status: Optional[str] = None) -> EnrichOutput:
+    """One call: kind, type (if new), severity, roles, location, summary, status, span. Replaces the
+    seven per-field enricher calls — same guidance, one round-trip."""
     ctx = ""
     if parent_type or parent_parties:
-        ctx = (
-            "\n\nParent conflict (KEEP roles consistent with these — do not flip them):\n"
-            f"type={parent_type}\nexisting_parties={_j(parent_parties or [])}"
-        )
-    return llm.structured(RolesOutput, P.ROLES_SYS, f"Event:\n{_j(cand)}{ctx}")
-
-
-def geolocator(llm: LLMClient, cand: CandidateEvent) -> GeoOutput:
-    return llm.structured(GeoOutput, P.GEO_SYS, f"Event:\n{_j(cand)}")
-
-
-def summarizer(llm: LLMClient, cand: CandidateEvent, items: list[RawItem]) -> SummaryOutput:
-    user = f"Event:\n{_j(cand)}\n\nEvidence:\n{_j([i.snippet for i in items][:6])}"
-    return llm.structured(SummaryOutput, P.SUMMARY_SYS, user)
-
-
-def lifecycle(llm: LLMClient, cand: CandidateEvent, conflict_type: Optional[str],
-              current_status: Optional[str], today: str,
-              conflict_start=None, conflict_end=None) -> LifecycleOutput:
+        ctx = ("\nParent conflict (keep type & roles consistent — do not flip):\n"
+               f"  type={parent_type}\n  existing_parties={_j(parent_parties or [])}\n"
+               f"  current_status={current_status or 'active'}")
     user = (
-        f"today={today}\nevent_date={cand.date}\n"
-        f"conflict_type={conflict_type}\nconflict_start={conflict_start}\nconflict_end={conflict_end}\n"
-        f"current_status={current_status or 'active'}\n"
-        f"New event:\n{_j(cand)}"
+        f"today={today}\nis_new_conflict={is_new}{ctx}\n\n"
+        f"Event:\n{_j(cand)}\n\nEvidence snippets:\n{_j([i.snippet for i in items][:8])}"
     )
-    return llm.structured(LifecycleOutput, P.LIFECYCLE_SYS, user)
+    return llm.structured(EnrichOutput, P.ENRICH_SYS, user)
 
 
-def span(llm: LLMClient, cand: CandidateEvent, items: list[RawItem]) -> SpanOutput:
-    user = f"Founding event:\n{_j(cand)}\n\nSources:\n{_j([i.snippet for i in items][:8])}"
-    return llm.structured(SpanOutput, P.SPAN_SYS, user)
-
-
-def factcheck(llm: LLMClient, event: Event, items: list[RawItem]) -> FactCheckOutput:
+def verify(llm: LLMClient, event: Event, items: list[RawItem], is_new: bool) -> VerifyOutput:
+    """One call: fact-check the event against its sources AND decide auto_approve vs needs_human."""
     used = [i.model_dump() for i in items if i.url in {s.url for s in event.sources}] or \
            [i.model_dump() for i in items]
-    user = f"Event:\n{_j(event)}\n\nSource items (with outlet/alignment/lang):\n{_j(used)}"
-    return llm.structured(FactCheckOutput, P.FACTCHECK_SYS, user)
-
-
-def reconciler(llm: LLMClient, event: Event, fc: FactCheckOutput,
-               is_new_conflict: bool) -> ReconcilerOutput:
-    user = (
-        f"is_new_conflict={is_new_conflict}\nEvent:\n{_j(event)}\n\nFact-check:\n{_j(fc)}"
-    )
-    return llm.structured(ReconcilerOutput, P.RECONCILER_SYS, user)
+    user = (f"is_new_conflict={is_new}\nEvent:\n{_j(event)}\n\n"
+            f"Source items (with outlet/lang):\n{_j(used)}")
+    return llm.structured(VerifyOutput, P.VERIFY_SYS, user)
