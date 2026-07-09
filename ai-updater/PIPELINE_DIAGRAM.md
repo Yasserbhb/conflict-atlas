@@ -1,92 +1,93 @@
 # AI Updater — Pipeline Diagram
 
-The whole `scan → review → apply` loop at a glance. Details live in [ARCHITECTURE.md](ARCHITECTURE.md).
+The whole `scan → review/auto → apply` loop at a glance. Details live in [ARCHITECTURE.md](ARCHITECTURE.md).
 
 **Legend:** `[box]` = LLM agent · `([rounded])` = deterministic code · `{{hex}}` = external API ·
 `[(cyl)]` = file on disk · `{diamond}` = branch · `-->` data flow · `-.->` context supplied alongside.
 
 ```mermaid
 flowchart TD
-    IN[["scan(period, region?, topic?)"]]
+    IN[["scan(period, region?)"]]
     SEED[("seed.json")] --> BASE(["load_base()"])
     IN -.-> SCOPER
     BASE -.->|watch ids| SCOPER
 
     SCOPER["① Scoper — multi-lang queries"] --> FETCH
     TAVILY{{Tavily}} --> FETCH(["② Fetcher"])
-    FETCH --> EXTRACT["③ Extractor — dated events"]
+    FETCH --> EXTRACT["③ Extractor — dated events, ranked by significance"]
     EXTRACT --> DEDUP(["④ dedup"])
-    DEDUP --> RESOLVE["④ Resolver"]
+    DEDUP --> RESOLVE["④ Resolver — known / attach / new / ambiguous"]
     BASE -.->|existing events| RESOLVE
 
     RESOLVE -->|known| DROP(["⛔ dropped"])
-    RESOLVE -->|ambiguous| HUMAN["🧑 human review"]
+    RESOLVE -->|ambiguous| HUMAN["🧑 needs human"]
     RESOLVE -->|attach / new| GATE{"⑤ too recent?"}
     GATE -->|yes| PROV(["provisional"])
-    GATE --> ENRICH(("⑥ enrich"))
+    GATE --> ENRICH
     PROV --> ENRICH
 
-    subgraph ENR["enrichers — one lane each"]
-        CLS["Classifier — kind/type"]
-        SEV["Severity — 1–5"]
-        ROL["Roles — structural"]
-        GEO["Geolocator — place"]
-        SUM["Summarizer"]
-        LIFE["Lifecycle — status"]
-        SPAN["Span — dates, new only"]
-    end
-    ENRICH --> CLS & SEV & ROL & GEO & SUM & LIFE & SPAN
-    BASE -.->|parent type / roles / status| ROL
-    GEO --> NOM{{Nominatim}} --> LOC(["real coords"])
+    ENRICH["⑥ ENRICH — 1 call: kind·type·severity·roles·location·summary·status·span"]
+    BASE -.->|parent type / roles / status| ENRICH
+    ENRICH -->|place label| NOM{{Nominatim}} --> LOC(["real coords"])
     FETCH -.->|all items| SRC(["_gather_sources()"])
-
+    ENRICH --> EVENT
+    LOC --> EVENT
+    SRC --> EVENT
     EVENT[["Event"]]
-    CLS & SEV & ROL & LOC & SUM & SRC & LIFE --> EVENT
-    EVENT --> FC["⑦ Fact-check"] --> REC["⑧ Reconciler"] --> DEC{"needs_human?"}
+
+    EVENT --> VERIFY["⑦ VERIFY — 1 call: fact-check + decide"]
+    VERIFY --> DEC{"needs_human?"}
     DEC -->|no| AUTO(["✅ auto-approved"])
     DEC -->|yes| HUMAN
-
     AUTO --> PROP[["Proposal"]]
     HUMAN --> PROP
-    SPAN -.->|new-conflict dates| PROP
-    PROP --> OUT[("out/proposals + review")]
+    ENRICH -.->|new-conflict dates| PROP
+    PROP --> OUT[("out/ proposals · review · coverage")]
 
-    OUT -.->|you approve| MERGE(["🔀 merge.apply → validate"])
-    MERGE -->|pass| SEEDOUT[("seed.json ✔ version bump")]
+    OUT -.->|manual: approve in panel| MERGE
+    OUT -.->|auto/cron: apply confident, log the rest| MERGE
+    MERGE(["🔀 merge.apply → validate"])
+    MERGE -->|pass| SEEDOUT[("seed.json ✔ + weekly digest")]
     MERGE -->|fail| REJ(["❌ nothing written"])
 ```
 
-## Does each agent know the goal? (the "is it blind?" table)
+Per candidate the pipeline makes **3 LLM calls** — `resolver`, `enrich`, `verify` — plus `scoper`
+and `extractor` once per scan. (`enrich` batches what used to be seven separate enricher calls;
+`verify` batches fact-check + reconcile.)
 
-| Agent | Atlas framing? | Extra context it gets |
-|---|---|---|
-| Scoper | ✓ | existing conflict ids to watch |
-| Extractor | ✗ | the window's date bounds |
-| Resolver | ✓ | candidate conflicts + **their existing events** |
-| Classifier | ✗ | parent conflict's **type** |
-| Severity | ✗ | evidence snippets |
-| Roles | ✗ | parent **type + existing parties/roles** |
-| Geolocator | ✗ | — (names a place; Nominatim gives the coords) |
-| Summarizer | ✓ | evidence snippets |
-| Lifecycle | ✗ | today, event date, conflict start/end, status |
-| Span | ✗ | source snippets (new conflicts only) |
-| Fact-check | ✗ | the sources linked to the event |
-| Reconciler | ✗ | the fact-check verdict |
+## The five agents (what each knows)
 
-Only 3 of 12 steps state the mission explicitly — a shared mission preamble is a possible follow-up.
+| Agent | Atlas framing? | Extra context it gets | Output |
+|---|---|---|---|
+| **Scoper** | ✓ | existing conflict ids to watch | multi-language search queries |
+| **Extractor** | ✗ | window bounds | dated candidate events + a significance 1–5 |
+| **Resolver** | ✓ ("what the atlas has") | candidate conflicts + **their existing events** | known / attach / new / ambiguous |
+| **Enrich** | partial | **today's date**, parent conflict **type + parties/roles + status** | kind·type·severity·roles·location·summary·status·span |
+| **Verify** | ✗ | the sources linked to the event | verdict + confidence + independence + auto/human decision |
+
+Deterministic code (no LLM) does the rest: `dedup`, the recency gate, the **Nominatim** geocode,
+`_gather_sources` (link every corroborating article), `derive_span` (dates), and `merge`/`validate`.
 
 ## Tools
 
 | Tool | Used by | Cost |
 |---|---|---|
-| **LLM** (OpenRouter / Gemini / OpenAI, swappable) | every agent | free tier or pennies |
+| **LLM** (OpenRouter / Gemini / OpenAI, swappable) | scoper · extractor · resolver · enrich · verify | free tier (flaky) or ~pennies/wk paid |
 | **Tavily** | Fetcher | free tier (~1000/mo) |
 | **Nominatim (OpenStreetMap)** | coordinate lookup | free, no key |
 
-## Data flow
+## Two ways it runs
+
+- **Manual (control panel):** `serve` → a local dashboard. Run scans, read the review queue, tick
+  what you trust, apply into `seed.json`. You're in the loop.
+- **Auto (weekly cron):** `auto week` in GitHub Actions → scans, **auto-applies only the confidently
+  corroborated findings**, writes a plain-English digest to `log/`, commits + pushes (the live map
+  updates). Nothing uncertain is auto-added; everything is reversible via git. No human in the loop.
+
+## Data flow & the invariant
 
 `RawItem` → `CandidateEvent` → `Event` → `Proposal` → folded into `seed.json` by `merge.py`.
 
-**The invariant:** every exit (`dropped`, `human review`, `nothing written`) is named and logged —
-never a silent guess. Nothing reaches `seed.json` without `merge.validate()`, and nothing
-auto-approves without passing fact-check + the reconciler.
+Every exit (`dropped`, `needs human`, `nothing written`) is **named and logged** — never a silent
+guess. Nothing reaches `seed.json` without `merge.validate()`, and nothing auto-applies without
+passing `verify` and the corroboration bar.

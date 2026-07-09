@@ -24,9 +24,11 @@ data rigor, not UI.
   of the same function** with `period = last 7 days`. Recency is a per-event rule, not a mode: an
   event dated in the last ~7 days is held as *provisional* until it corroborates.
 
-- **The agent team** (each one lane, strict JSON out): Scoper · Extractor · Resolver (dedup) ·
-  Classifier (kind/type) · Severity · Roles · Geolocator · Summarizer · Lifecycle · Fact-check ·
-  Reconciler. Deterministic code does fetch / shape-check / dedup-lookup / merge.
+- **Five LLM agents** (each one focused prompt, strict JSON out): **Scoper** (queries) · **Extractor**
+  (dated events + significance) · **Resolver** (dedup: known/attach/new) · **Enrich** (one call:
+  kind·type·severity·roles·location·summary·status·span) · **Verify** (one call: fact-check + decide).
+  So each candidate is **3 LLM calls**, not ~9. Deterministic code does fetch, dedup, the real
+  geocode (Nominatim), source-linking, span derivation, and the merge.
 
 ## The four things that make it trustworthy
 

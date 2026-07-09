@@ -5,10 +5,12 @@
 > work (fetch, shape-check, dedup lookup, merge); LLM agents do **only judgment**, each in one
 > lane. **Every uncertain path ends at a human review queue — never a silent guess or a dead end.**
 
-Status: **design locked; the full `scan → review → apply` loop is implemented in Python**
-(`conflict_updater/`, offline-tested with fake LLM/search — a live run needs an API key). Agent
-prompts live in `conflict_updater/prompts.py`, the typed models in `conflict_updater/schema.py`,
-and the coherent merger in `conflict_updater/merge.py`.
+Status: **implemented end-to-end and running.** The `scan → review → apply` loop, a local browser
+**control panel** (`serve`), a hands-off **weekly cron** (`auto` + GitHub Actions), and the
+coverage/digest logs are all in `conflict_updater/` — offline-tested (fakes, no key) and
+live-verified on real windows (dedup, continuation, tight-window quality). LLM calls are **batched
+to 3 per candidate** (resolver + enrich + verify). Prompts live in `prompts.py`, typed models in
+`schema.py`, the coherent merger in `merge.py`.
 
 ---
 
@@ -97,47 +99,43 @@ with one job**. The only branches out are the `─► HUMAN` escapes (the "no de
                           ▼
    RECENCY    event within the last T_settle days? → hold as provisional (age + corroborate)
                           ▼
-   ENRICHERS  (parallel — one lane each)
-        ├ CLASSIFIER   event kind, and a new conflict's type        (taxonomy.js)
-        ├ SEVERITY     1–5 from the rubric + cited evidence
-        ├ ROLES        each country's role (aggressor / funder / victim / mediator / …)
-        ├ GEOLOCATOR   lat / lng / label — or null for a place-less event
-        ├ SUMMARIZER   neutral, attributed prose
-        └ LIFECYCLE    status (active/easing/suspended/dormant/ended/resolved); quiet ≠ resolved
+   ENRICH     ONE call: event kind + (new) conflict type · severity 1–5 · country roles ·
+              location label · neutral summary · conflict status · (new) span dates (taxonomy.js)
+                          ▼   then, in code: Nominatim turns the label into real coords;
+                          ▼   _gather_sources links every corroborating fetched article
+   VERIFY     ONE call: do the sources support it (≥N independent, cross-outlet/language)?
+              AND decide auto-approve vs human   ── thin / contested / low-confidence ──► HUMAN
                           ▼
-   FACT-CHECK  do the sources support each field? ≥ N independent, cross-language,
-               cross-alignment?              ── not enough / disagree ─────────► HUMAN
+   REVIEW / AUTO   manual: approve in the panel   ·   cron: auto-apply the confident, log the rest
                           ▼
-   RECONCILER  all pass + confident → auto-queue      else ─────────────────────► HUMAN
-                          ▼
-   HUMAN REVIEW   approve / edit / reject             ◄── the one required human step
-                          ▼
-   MERGER     (code) write events[] → seed.json · bump version · validate · PR to main
+   MERGER     (code) write events[] → seed.json · re-derive span · bump version · validate
 ```
+
+(`ENRICH` batches what were seven per-field agents; `VERIFY` batches fact-check + reconcile —
+so each candidate is **3 LLM calls** (resolver + enrich + verify), not ~9.)
 
 ---
 
 ## 4. The agent team
 
-Deterministic (code, no tokens): **Fetcher**, **Resolver lookup**, **Merger**, the **Watcher
-scheduler**, and all shape/enum/coordinate range checks. LLM agents below — each a single focused
-prompt with strict JSON out (`{verdict|value, confidence, reasons[], evidenceRefs[]}`), and none
-knows about the others (so each is separately testable/tunable).
+Deterministic (code, no tokens): **Fetcher**, **dedup**, the **Nominatim geocode**,
+`_gather_sources`, `derive_span`, and the **Merger** + `validate`. **Five** LLM agents, each a
+single focused prompt with strict JSON out. The seven old per-field enrichers and the
+fact-check + reconciler were **batched into two calls** (`enrich`, `verify`) to cut round-trips
+~3× — same guidance, one response.
 
 | Agent | Its one job | Key output |
 |-------|-------------|-----------|
-| **Scoper** *(backfill)* | turn "period + region + topic" into concrete research queries in the region's languages | query plan |
-| **Extractor** | pull discrete **events** (date · actor · action · place) out of fetched items; discard opinion/analysis | candidate events + citations |
-| **Resolver** *(LLM + code)* | match each candidate against the base by title/**aliases**/parties/region/date-overlap → *already-known* / *attach to conflict X* / *new* / *ambiguous* | routing decision |
-| **Classifier** | event `kind` (attack/atrocity/ceasefire/…) and, for a new conflict, its `type` — strictly per `src/utils/taxonomy.js` | kind + type |
-| **Severity** | `severity` 1–5 from the rubric given the cited human toll/intensity | 1–5 + evidence |
-| **Roles** | each involved country's `role` (aggressor/defender/victim/funder/proxy/occupier/mediator/sanctioner/sanctioned) — per event and rolled up to the conflict | party→role map |
-| **Geolocator** | name the event's place; a real geocoder (Nominatim, code) turns the name into lat/lng — **null** for genuinely place-less events (nationwide famine) | place → coords or null |
-| **Summarizer** | write the neutral 1–2 sentence event description and, for a new conflict, its longer summary | prose |
-| **Span** *(new conflicts only)* | read the conflict's overall **start/end dates** from the sources (not just this event's date); combined with the events' min/max so the span self-corrects as coverage fills in | start + end (or null) |
-| **Lifecycle** *(guardrail)* | is the proposed **status** change legal for this conflict's **type** (§6)? end vs de-escalation vs dormant vs regression | status + transition |
-| **Fact-check / Corroboration** | do the cited sources actually support each field? ≥ N independent, **cross-language, cross-alignment** sources? (§8) | pass/fail + credibility |
-| **Reconciler** | fold every verdict into one decision; route to auto-queue or human | decision + rationale |
+| **Scoper** | turn "period + region + topic" into concrete research queries in the region's languages | query plan + conflict ids to re-check |
+| **Extractor** | pull discrete **events** (date · actor · action · place) from fetched items; discard opinion; score each's **significance** 1–5 | candidate events + citations |
+| **Resolver** *(LLM + code)* | match each candidate against the base by title/**aliases**/parties/region/date-overlap → *already-known* / *attach* / *new* / *ambiguous* | routing decision |
+| **Enrich** | **one call** for the whole event: `kind` (+ new conflict `type`), `severity` 1–5, country `roles` (structural), `location` label, neutral `summary`, conflict `status` (as of today), and a new conflict's `span` — strictly per `taxonomy.js` | fully-described event |
+| **Verify** | **one call**: do the sources support it (≥N independent, cross-outlet/language — §8)? AND decide **auto-approve vs human** | verdict + confidence + decision |
+
+Code fills the gaps: **Nominatim** turns Enrich's place *label* into real lat/lng (an LLM
+recalls famous cities but collapses smaller ones); `_gather_sources` links every corroborating
+fetched article; `derive_span` reconciles the sourced span with the events' min/max so a
+conflict's duration self-corrects as coverage fills in.
 
 ---
 
@@ -174,26 +172,27 @@ Anything thinner → human. This is *not* an unconditional "new conflicts always
 rule — that would make the review queue scale with how much history is missing rather than
 with how uncertain any given founding claim actually is.
 
-**5d. Any enricher is unsure** (role contested, type genuinely dual, severity evidence thin,
-location unknown-but-expected): attach the field **provisionally**, mark low-confidence, and the
-Reconciler routes the whole proposal to **human** — never ship a contested value silently.
+**5d. A field is contested** (role genuinely dual, type ambiguous, severity evidence thin,
+location unknown-but-expected): `verify` catches it and routes the whole proposal to **human** with
+the open question attached — never ship a contested value silently.
 
 **5e. Lifecycle** (see §6): if it's unclear whether something truly ended → **do not close**
 (stay `active`/`dormant`); `resolved` requires positive evidence; any doubt → human.
 
-**5f. Reconciler:** all enrichers pass + corroborated + high confidence → **auto-queue**
-(still human-visible). Otherwise → **needs-human**, with the exact objection attached.
+**5f. Verify:** well-supported + corroborated + high confidence + nothing contested → **auto-approve**.
+Otherwise → **needs-human**, with the exact open question attached. Founding a *new* conflict needs a
+higher bar (strong, cross-corroborated) to auto-approve; anything thinner is held.
 
 Terminal fallback everywhere: **human review queue.** That is the guarantee there is no
 "idk what to do" state.
 
 ### 5g. What the pipeline knows vs how it stays unbiased
 
-The atlas's **existing data is used for one thing only — dedup/identity.** The Resolver sees the
-matched conflict *and its existing events*, so it can tell "already have this" from "this fills a
-gap", and never re-adds what you have. But **assessment is independent**: the Classifier, Severity,
-Roles, Geolocator, Summarizer and Fact-check agents judge each event **from its sources**, and are
-*not* shown your existing type/severity/role labels — so a scan never conforms new events to your
+The atlas's **existing data is used for dedup/identity and role consistency.** The Resolver sees
+the matched conflict *and its existing events*, so it can tell "already have this" from "this fills
+a gap". **Enrich** is shown the parent conflict's **type + existing parties/roles** so a country's
+role stays structural and doesn't flip event-to-event — but the event's *facts* (severity, summary,
+what happened) are judged **from its sources**, so a scan never conforms new events to your
 (possibly wrong) prior framing. And because a scan covers the **whole window/region**, it also
 surfaces conflicts you *don't* have (routed `new`), not only events of the one you asked about.
 
@@ -258,7 +257,7 @@ The whole point is a dataset you can trust, so sourcing is adversarial by design
   real and reachable today rather than a field nothing can set.
 - **Attribute, don't adopt.** Where sources genuinely disagree, the record states the range and
   **attributes** each framing ("Israel says… ; the UN Commission found…") rather than picking a
-  side. The Summarizer is instructed to neutral, attributed prose.
+  side. `enrich` writes the summary as neutral, attributed prose.
 - **Credibility weighting.** Structured feeds & wires high; state/partisan media usable but
   down-weighted and never sufficient alone. Single-source or same-alignment-only → held, not shipped.
 
@@ -303,17 +302,23 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
 ## 11. Tech (implemented)
 
 - **Python** (`conflict_updater/` package), pydantic models, plain JSON-file output (a DB later).
-- **LLM via LangChain**, provider-swappable in `llm.py` — **OpenAI by default** (`gpt-4o-mini`),
-  any langchain provider otherwise. Each agent = one prompt (`prompts.py`) + a strict pydantic
-  output schema; the model does the multilingual reading directly.
-- **Web search** via a swappable `SearchClient` (`search.py`, Tavily default) for discovery +
-  fact-check; ACLED/UCDP as structured anchors (later phase).
-- **Two entrypoints, one loop:**
-  - `scan(period, region?, topic?)` → CLI `python -m conflict_updater "1990..2003"` (bare period ==
-    scan; the weekly cron calls `scan week`). Output = a proposals JSON + a human-review markdown.
-  - `apply(proposals, seed)` (`merge.py`) → CLI `python -m conflict_updater apply out/proposals_*.json`.
-    Folds only **approved, non-provisional** proposals into `seed.json`, then `validate()`s the whole
-    dataset; if any invariant fails it writes nothing and exits non-zero. `--dry-run` reports only.
+- **LLM via LangChain**, provider-swappable in `llm.py` — OpenRouter / Google / OpenAI. Free models
+  ignore native structured output, so the OpenRouter path uses a **prompted-JSON** strategy (embed
+  the schema, parse tolerantly) + retry/backoff on 429s. **Three LLM calls per candidate** (resolver
+  + enrich + verify) after batching; each is one prompt in `prompts.py` + a strict pydantic schema.
+- **Web search** via a swappable `SearchClient` (`search.py`, Tavily default, advanced depth) for
+  discovery + corroboration; the fetcher tags each item with outlet (domain) + language.
+- **Real coordinates** via a swappable `GeocodeClient` (`geocode.py`, Nominatim/OpenStreetMap,
+  free/no-key) — code, not LLM memory.
+- **CLI (`cli.py`):**
+  - `scan <period> [--region] [--limit]` → proposals JSON + a numbered review markdown + coverage.
+  - `apply <proposals> [--approve N…] [--approve-all] [--dry-run]` → fold approved, non-provisional
+    items into `seed.json`; blocks only on incoherence **it** introduces (pre-existing seed issues
+    are noted, not blocking).
+  - `coverage` → the honesty map (found / quiet / blind per region-period).
+  - `auto <period>` → **hands-off**: scan, auto-apply only the confident items, write a digest.
+  - `serve` → the **local control panel** (`server.py` + `dashboard.html`): a browser dashboard
+    to run scans, review, apply, and browse the data. Local-only (holds keys, writes seed.json).
 - **The merger's coherence rules** (every case has one): attach appends the event, re-sorts by date,
   **raises** conflict severity to the event's (never lowers), unions `involvedCountries`, adds any new
   party+role (never clobbering an existing role), unions aliases, lets `status` change **only from
@@ -332,19 +337,23 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
 ## 12. Build roadmap
 
 - **Phase 0 (design):** this doc + agent specs + schemas + config templates. ✅ *done*
-- **Phase 1 — `scan()` on one past window:** Scoper + Extractor + Resolver + enrichers +
-  Reconciler, web-search only, run on **one region/decade**; emits a `review/*.md` diff, **no
-  merge**. A settled historical window is the safest first target — the answer is checkable.
+- **Phase 1 — `scan()` on one past window:** Scoper + Extractor + Resolver + enrich + verify,
+  web-search only, run on **one region/decade**; emits a `review/*.md` diff, **no merge**. A settled
+  historical window is the safest first target — the answer is checkable.
   ✅ *implemented + offline-tested (needs a live keyed run to trust-test against known history)*
 - **Phase 2 — the Merger + apply CLI:** `merge.apply()` + `merge.validate()` fold approved,
   non-provisional proposals into `seed.json` coherently (all rules in §11), human-gated.
   `scan → review → apply` is now a closed loop. ✅ *implemented + offline-tested.* Remaining:
   source-existence verification wired into the gate before an auto-approve.
-- **Phase 3 — automate it:** the recency gate + lifecycle dwell timers, then the **weekly cron**
-  that just calls `scan([last 7 days])`. Same code, now unattended.
-- **Phase 4:** multilingual source expansion + ACLED/UCDP anchors + cross-alignment corroboration
-  hardening; app surfaces `status`.
+- **Phase 3 — automate it:** ✅ the `auto` command (scan → auto-apply confident → digest) + a
+  **weekly GitHub Actions cron** (`.github/workflows/pipeline-weekly.yml`) that runs it in the cloud,
+  commits `seed.json` + the digest, and pushes → the live map updates. PC-independent, git-reversible.
+  Reliability note: free LLM tiers get upstream-throttled — an unattended cron wants a paid model
+  (~pennies/week) to be dependable.
+- **Phase 4:** the coverage ledger + significance ranking are in; still open — a coverage-driven
+  backfill crawler, ACLED/UCDP structured anchors, and explicit per-outlet alignment tagging.
 
-The order is deliberate: a past window trust-tests the whole agent team against known history
-before the **identical function** is ever pointed at "this week" and run on a schedule.
+The order held: past windows trust-tested the agent team against known history (dedup, continuation,
+tight-window quality all verified live) before the **identical function** was pointed at "this week"
+and put on a schedule.
 ```
