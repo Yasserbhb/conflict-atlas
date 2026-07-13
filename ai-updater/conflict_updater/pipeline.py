@@ -14,7 +14,6 @@ from .store import BaseConflict, load_base, pending_to_base, date_key, derive_sp
 from . import agents, dedup
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
-    FactCheckOutput, ReconcilerOutput,
 )
 
 
@@ -193,11 +192,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             sources=_gather_sources(cand, items),
         )
 
-        # 7. VERIFY — ONE call: fact-check the sources AND decide. Stored as fc/rec on the proposal.
+        # 7. VERIFY — ONE call: fact-check the sources AND decide. Stored as-is on the proposal.
         ver = agents.verify(llm, event, items, is_new)
-        fc = FactCheckOutput(verdict=ver.verdict, confidence=ver.confidence,
-                             independent_sources=ver.independent_sources, cross_alignment=ver.cross_alignment)
-        rec = ReconcilerOutput(decision=ver.decision, open_question=ver.open_question)
 
         if ambiguous:
             needs_human = True
@@ -250,8 +246,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             status=status,
             new_conflict=new_conflict,
             new_aliases=res.new_aliases,
-            factcheck=fc,
-            reconcile=rec,
+            verify=ver,
             needs_human=needs_human,
             provisional=provisional,
         ))

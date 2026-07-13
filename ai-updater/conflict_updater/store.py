@@ -226,7 +226,7 @@ def write_digest(log_dir: Path, result: ScanResult, applied: list, ok: bool) -> 
           f"[{p.event.kind}, sev {p.event.severity}]" for p in applied] or ["_(none this period)_"]
     L += ["", f"## ⏸ Held — found but too uncertain to auto-add ({len(human)})"]
     L += [f"- {p.event.date} {p.event.title}"
-          + (f" — ❔ {p.reconcile.open_question}" if (p.reconcile and p.reconcile.open_question) else "")
+          + (f" — ❔ {p.verify.open_question}" if (p.verify and p.verify.open_question) else "")
           for p in human] or ["_(none)_"]
     if result.dropped:
         L += ["", f"## ↩ Already in the atlas, skipped ({len(result.dropped)})"]
@@ -278,6 +278,6 @@ def _render_review(result: ScanResult, proposals_file: str = "proposals.json") -
 def _render_proposal(p: Proposal, num: int | None = None) -> str:
     tag = f"**[{num}]** " if num else ""
     where = f"→ attach to `{p.target_conflict_id}`" if p.kind == "attach" else "→ **NEW conflict**"
-    q = f"  \n  ❓ {p.reconcile.open_question}" if (p.reconcile and p.reconcile.open_question) else ""
+    q = f"  \n  ❓ {p.verify.open_question}" if (p.verify and p.verify.open_question) else ""
     prov = " _(provisional — too recent)_" if p.provisional else ""
     return f"- {tag}**{p.event.date} — {p.event.title}** [{p.event.kind}, sev {p.event.severity}] {where}{prov}{q}"

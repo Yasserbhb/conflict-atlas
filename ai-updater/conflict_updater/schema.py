@@ -151,21 +151,6 @@ class VerifyOutput(BaseModel):
     open_question: Optional[str] = None
 
 
-# kept as the shape stored on a Proposal (built from VerifyOutput)
-class FactCheckOutput(BaseModel):
-    verdict: Verdict
-    confidence: float = Field(ge=0.0, le=1.0)
-    independent_sources: int = 0
-    cross_alignment: bool = False
-    reasons: list[str] = Field(default_factory=list)
-
-
-class ReconcilerOutput(BaseModel):
-    decision: Literal["auto_approve", "needs_human"]
-    rationale: str = ""
-    open_question: Optional[str] = None
-
-
 # ---- the pipeline's output ----
 class Proposal(BaseModel):
     kind: Literal["attach", "new_conflict"]
@@ -175,8 +160,7 @@ class Proposal(BaseModel):
     status: Optional[Status] = None                    # status verdict (for conflict.status)
     new_conflict: Optional[Conflict] = None
     new_aliases: list[str] = Field(default_factory=list)
-    factcheck: Optional[FactCheckOutput] = None
-    reconcile: Optional[ReconcilerOutput] = None
+    verify: Optional[VerifyOutput] = None               # fact-check + auto-approve/needs-human verdict
     needs_human: bool = True
     provisional: bool = False  # held by the recency gate
 

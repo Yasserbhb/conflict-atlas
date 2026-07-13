@@ -28,8 +28,7 @@
     "lucide-react": "^1.23.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "topojson-client": "^3.1.0",
-    "uuid": "^14.0.1"
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

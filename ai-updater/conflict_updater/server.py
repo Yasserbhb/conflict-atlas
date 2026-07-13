@@ -82,15 +82,15 @@ def start_scan(period_start: str, period_end: str, region, limit: int) -> Job:
 
 def _item(p: dict) -> dict:
     e = p["event"]
-    fc = p.get("factcheck") or {}
+    ver = p.get("verify") or {}
     return {
         "date": e.get("date"), "title": e.get("title"), "kind": e.get("kind"),
         "severity": e.get("severity"),
         "target": p.get("target_conflict_id"), "is_new": bool(p.get("new_conflict")),
         "location": (e.get("location") or {}).get("label"),
         "sources": len(e.get("sources", [])),
-        "confidence": fc.get("confidence"),
-        "question": (p.get("reconcile") or {}).get("open_question"),
+        "confidence": ver.get("confidence"),
+        "question": ver.get("open_question"),
         "provisional": p.get("provisional", False),
     }
 
