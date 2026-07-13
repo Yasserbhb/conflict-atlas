@@ -33,4 +33,5 @@ ai-updater/out/
 venv/
 graphify-out
 .claude/*
+.claude/launch.json
 
