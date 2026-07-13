@@ -31,3 +31,6 @@ __pycache__/
 ai-updater/out/
 .venv/
 venv/
+graphify-out
+.claude/*
+
