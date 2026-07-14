@@ -58,6 +58,17 @@ class Event(BaseModel):
     parties: list[str] = Field(default_factory=list)  # ISO3 subset
     description: str = ""
     sources: list[Source] = Field(default_factory=list)
+    # Verify's corroboration verdict, carried onto the event so the app can show it (None for
+    # events created before this field existed, or that skipped Verify — see structured sources).
+    independent_sources: Optional[int] = None
+    cross_alignment: Optional[bool] = None
+
+
+class StatusEvent(BaseModel):
+    """One entry in a conflict's status timeline — when it changed and what caused it."""
+    status: Status
+    date: str                              # ISO date the status changed (the triggering event's date)
+    event_id: Optional[str] = None         # which event caused it; None for a non-event transition
 
 
 class Conflict(BaseModel):
@@ -69,6 +80,8 @@ class Conflict(BaseModel):
     end_date: Optional[str] = None
     ongoing: bool = True
     status: Status = "active"
+    status_history: list[StatusEvent] = Field(default_factory=list)
+    last_checked_at: Optional[str] = None  # ISO date this conflict was last touched by an applied proposal
     description: str = ""
     parties: list[Party] = Field(default_factory=list)
     involved_countries: list[str] = Field(default_factory=list)
@@ -114,6 +127,10 @@ class CandidateEvent(BaseModel):
     place: Optional[str] = None
     source_urls: list[str] = Field(default_factory=list)
     significance: int = Field(3, ge=1, le=5)  # historical consequence — used to rank/cap, not severity
+    # "structured" = came from a verified dataset (e.g. UCDP), not extracted from web text by
+    # the Extractor LLM — see structured_source.py. Downstream, this skips Extractor's job (the
+    # row is already structured) and, per the resolved trust policy, auto-approves.
+    source_kind: Literal["web", "structured"] = "web"
 
 
 class ExtractorOutput(BaseModel):

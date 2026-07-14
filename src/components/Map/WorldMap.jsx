@@ -45,12 +45,16 @@ export default function WorldMap() {
   const [transform, setTransform] = useState({ k: 1, x: 0, y: 0 });
   const svgRef = useRef(null);
   const zoomRef = useRef(null);
-  const worldRef = useRef(null);
 
-  const projection = d3.geoNaturalEarth1()
-    .scale(153)
-    .translate([WIDTH / 2, HEIGHT / 2]);
-  const pathGen = d3.geoPath().projection(projection);
+  // Stable across renders (only depend on the fixed WIDTH/HEIGHT constants) — memoized so
+  // child components receiving `projection` as a prop (EventPins, ConflictOverlay) don't see
+  // a new reference every render, and so the load-map effect below can list them as deps
+  // without re-running on every render.
+  const projection = useMemo(
+    () => d3.geoNaturalEarth1().scale(153).translate([WIDTH / 2, HEIGHT / 2]),
+    []
+  );
+  const pathGen = useMemo(() => d3.geoPath().projection(projection), [projection]);
 
   const { focusedConflictId } = state;
   // Apply the map filter bar (type / severity / ongoing) so the whole map
@@ -111,7 +115,7 @@ export default function WorldMap() {
       setCountryPaths(paths);
       setCentroids(cents);
     });
-  }, []);
+  }, [pathGen, projection]);
 
   // Zoom / pan behaviour
   useEffect(() => {
@@ -166,7 +170,7 @@ export default function WorldMap() {
         <rect width={WIDTH} height={HEIGHT} fill="#0d1215" />
         {/* Everything that should zoom/pan together */}
         <g transform={gTransform}>
-          {countryPaths.map(({ numId, alpha3, d }) => {
+          {countryPaths.map(({ numId, alpha3, d }, i) => {
             const severity = severityMap[alpha3] || 0;
             const isSelected = !!alpha3 && alpha3 === selectedCountryId;
             const isRelated = !!alpha3 && relatedIds.has(alpha3);
@@ -205,7 +209,7 @@ export default function WorldMap() {
 
             return (
               <path
-                key={numId}
+                key={`${numId}-${i}`}
                 d={d}
                 fill={fill}
                 stroke={stroke}

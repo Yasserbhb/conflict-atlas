@@ -14,6 +14,7 @@ export const initialState = {
   searchQuery: '',
   isLoading: true,
   showGraphView: false,
+  graphMode: 'country', // 'country' (ego-network, needs selectedCountryId) | 'conflicts' (relationship graph)
   showDataPanel: false,
 };
 
@@ -85,7 +86,7 @@ export function appReducer(state, action) {
     case 'SET_SEARCH':
       return { ...state, searchQuery: action.payload };
     case 'SHOW_GRAPH':
-      return { ...state, showGraphView: true };
+      return { ...state, showGraphView: true, graphMode: action.payload?.mode || 'country' };
     case 'HIDE_GRAPH':
       return { ...state, showGraphView: false };
     case 'SHOW_DATA_PANEL':

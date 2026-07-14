@@ -43,10 +43,13 @@ jobs:
         # OpenRouter free ~50/day. Raise toward 15 only if you have paid/higher quota.
         run: python -m conflict_updater auto week --limit 12
 
+      - name: Snapshot coverage for the public site
+        run: cp ai-updater/out/coverage.json src/data/coverage.json
+
       - name: Commit the update + findings log
         run: |
           git config user.name "conflict-atlas-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add src/data/seed.json ai-updater/log/
+          git add src/data/seed.json src/data/coverage.json ai-updater/log/
           git diff --cached --quiet || git commit -m "weekly: auto-update $(date -u +%Y-%m-%d)"
           git push

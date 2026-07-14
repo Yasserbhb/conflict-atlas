@@ -1,7 +1,16 @@
 import { SEVERITY_COLORS, TYPE_COLORS, TYPE_LABELS, ROLE_COLORS, ROLE_LABELS, CONFLICT_TYPES, ROLE_TYPES } from '../../utils/conflictColors';
 import { SEVERITY_LEVELS, TYPE_DEFINITIONS, ROLE_DEFINITIONS, KIND_DEFINITIONS } from '../../utils/taxonomy';
 import { KIND_META } from '../../utils/eventKinds';
+import coverageData from '../../data/coverage.json';
 import styles from './HelpView.module.css';
+
+// found = events surfaced | quiet = searched, nothing found (genuinely quiet/covered)
+// blind = search returned 0 results (UNKNOWN — a source gap, not proven empty)
+const COVERAGE_STATUS = {
+  found: { label: 'Found', className: 'covFound' },
+  quiet: { label: 'Quiet', className: 'covQuiet' },
+  blind: { label: 'Blind', className: 'covBlind' },
+};
 
 export default function HelpView() {
   return (
@@ -131,6 +140,35 @@ export default function HelpView() {
             <li><strong>Dating.</strong> Start / end years mark the main active period. "Ongoing" means active as of 2026. Frozen disputes keep their original start year.</li>
             <li><strong>Sources &amp; limits.</strong> Entries are concise, single-curator summaries meant as a <em>starting point</em> — not a citable authority. Where a conflict has sources attached they're listed in its detail panel; many don't yet. Use Edit mode to correct, cite, and refine anything.</li>
           </ul>
+        </section>
+
+        <section className={styles.section}>
+          <h2>Data coverage — what's actually been checked</h2>
+          <p className={styles.note}>
+            Alongside hand-authored entries, an automated pipeline scans for new and historical
+            events and proposes additions (a human — or a strict auto-approve bar — decides what
+            gets added). This is the honesty ledger of where it's looked: <em>found</em> means
+            events surfaced, <em>quiet</em> means it searched a real article pool and genuinely
+            found nothing new, and <em>blind</em> means the search itself came back empty — a
+            source gap, not proof there's nothing there.
+          </p>
+          {coverageData.length === 0 ? (
+            <p className={styles.note}>No scans logged yet — nothing has been searched.</p>
+          ) : (
+            <div className={styles.covTable}>
+              {coverageData.map((e, i) => {
+                const st = COVERAGE_STATUS[e.status] || COVERAGE_STATUS.blind;
+                return (
+                  <div key={i} className={styles.covRow}>
+                    <span className={styles.covRegion}>{e.region || '(any)'}</span>
+                    <span className={styles.covPeriod}>{e.period}</span>
+                    <span className={styles.covScanned}>{e.scanned_at}</span>
+                    <span className={`${styles.covStatus} ${styles[st.className]}`}>{st.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </section>
 
         <section className={styles.section}>

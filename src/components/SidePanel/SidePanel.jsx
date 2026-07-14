@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
 import { getNotesByCountry } from '../../db/queries';
 import { useCountryConflicts } from '../../hooks/useConflictFilter';
-import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, ROLE_COLORS, roleColor } from '../../utils/conflictColors';
+import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, roleColor } from '../../utils/conflictColors';
 import { X, Crosshair, Network } from 'lucide-react';
 import { formatDateRange, applyConflictFilters } from '../../utils/dateUtils';
 import { flagEmoji } from '../../utils/flags';
@@ -31,8 +31,6 @@ export default function SidePanel() {
     const ey = c.endDate ? parseInt(String(c.endDate).substring(0, 4)) : null;
     return sy <= timelineYear && (c.ongoing || ey === null || ey >= timelineYear);
   });
-  const warConflicts = allConflicts.filter((c) => ['war','civil_war','proxy_war'].includes(c.type));
-  const atrocities = allConflicts.filter((c) => ['genocide'].includes(c.type));
   const territories = allConflicts.filter((c) => ['occupation','disputed_territory'].includes(c.type));
 
   useEffect(() => {
@@ -54,17 +52,6 @@ export default function SidePanel() {
     }
   }
   const relatedCountries = [...relatedIds].map((id) => countries.find((c) => c.id === id)).filter(Boolean);
-
-  function getRole(conflict) {
-    const party = conflict.parties?.find((p) => p.countryId === selectedCountryId);
-    return party ? ROLE_LABELS[party.role] || party.role : '—';
-  }
-
-  const displayConflicts = tab === 'Conflicts'
-    ? activeConflicts
-    : tab === 'Territories'
-    ? territories
-    : [];
 
   return (
     <div className={styles.panel}>
@@ -105,7 +92,6 @@ export default function SidePanel() {
               <ConflictCard
                 key={c.id}
                 conflict={c}
-                role={getRole(c)}
                 mode={mode}
                 onEdit={() => dispatch({ type: 'OPEN_EDIT', payload: { kind: 'conflict', data: c } })}
                 countries={countries}
@@ -124,7 +110,6 @@ export default function SidePanel() {
               <ConflictCard
                 key={c.id}
                 conflict={c}
-                role={getRole(c)}
                 mode={mode}
                 onEdit={() => dispatch({ type: 'OPEN_EDIT', payload: { kind: 'conflict', data: c } })}
                 countries={countries}
@@ -191,7 +176,7 @@ export default function SidePanel() {
   );
 }
 
-function ConflictCard({ conflict, role, mode, onEdit, countries, selectedId, isFocused, onFocus }) {
+function ConflictCard({ conflict, mode, onEdit, countries, selectedId, isFocused, onFocus }) {
   const [expanded, setExpanded] = useState(false);
 
   // Focusing a conflict on the map auto-opens its full text here

@@ -1,0 +1,11 @@
+# Outlet allowlist for Source.alignment (ARCHITECTURE.md §8). A STARTER seed list, not a claim
+# of comprehensive or settled curation — which outlets count as which alignment is a genuine
+# editorial judgment call. Extend as needed; an outlet not listed here simply gets no alignment
+# tag (VERIFY's cross-alignment proxy already falls back to outlet/language diversity alone).
+reuters.com:        { lang: en, region: global, alignment: independent, credibility: high }
+apnews.com:         { lang: en, region: global, alignment: independent, credibility: high }
+bbc.com:            { lang: en, region: global, alignment: independent, credibility: high }
+aljazeera.com:      { lang: en, region: arab,   alignment: arab,        credibility: high }
+rt.com:             { lang: en, region: global, alignment: russian,     credibility: low }
+tasnimnews.com:     { lang: en, region: iran,   alignment: iranian,     credibility: medium }
+timesofisrael.com:  { lang: en, region: israel, alignment: israeli,     credibility: medium }

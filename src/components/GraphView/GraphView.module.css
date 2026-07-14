@@ -87,6 +87,22 @@
   flex-shrink: 0;
 }
 
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 8px 16px 0;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .overlay { padding: 10px; }
 }

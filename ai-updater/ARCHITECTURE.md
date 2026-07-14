@@ -202,7 +202,11 @@ surfaces conflicts you *don't* have (routed `new`), not only events of the one y
 
 Status is **derived from the event stream** and governed by a small generic phase set; each
 `type` carries a profile (`config/lifecycle.yml`) with its legal transitions, evidence bar,
-dwell timer, default terminal, and the *words* shown.
+dwell timer, default terminal, and the *words* shown. **Implemented as config-driven prompt
+context** (the profile is folded into Enrich's per-call context, `agents.enrich`'s
+`lifecycle_profile` param) — the LLM still makes the per-event status call, now steered by
+type-specific rules instead of one generic paragraph. A fully deterministic dwell-timer pass (no
+LLM call needed to notice a conflict's gone quiet) is a natural fast-follow, not yet built.
 
 `active` · `easing` (de-escalating) · `suspended` (explicit reversible pause) · `dormant`
 (inactive but unresolved / frozen) · `ended` (acts ceased, nothing to settle) · `resolved`
@@ -250,11 +254,20 @@ The whole point is a dataset you can trust, so sourcing is adversarial by design
   `alignment`, `credibility`).
 - **Cross-alignment corroboration.** A contested claim (casualty counts, *who started it*, the
   "genocide" label) may only enter if corroborated across sources of **different alignment** —
-  not just multiple outlets echoing one wire. Structured datasets (ACLED, UCDP) anchor the facts.
-  Until an explicit per-outlet alignment allowlist exists, the fact-checker uses a **measurable
-  proxy**: independent **outlets** (distinct domains, populated by the fetcher) and **languages**.
+  not just multiple outlets echoing one wire. `config/sources.yml` now exists as a real, if
+  partial, per-outlet alignment allowlist (a handful of seed entries — genuinely comprehensive
+  curation is ongoing editorial work, not a one-shot build) — `TavilySearch` tags each result's
+  `alignment` from it. For outlets not yet in that list, the fact-checker still falls back to its
+  **measurable proxy**: independent **outlets** (distinct domains) and **languages**.
   `cross_alignment` = corroboration across different outlets and/or languages, so the signal is
   real and reachable today rather than a field nothing can set.
+- **Structured datasets (UCDP, ACLED)** anchor the facts for a candidate event independently of
+  any news article. `structured_source.py` has the `StructuredSource` protocol + Null backend
+  wired into `scan()` today; `UcdpStructuredSource` is scaffolded but **not yet live** — the exact
+  UCDP GED API shape needs verifying against their current docs before it's pointed at the real
+  service (it raises `NotImplementedError` until then, rather than guess at a shape). **ACLED is
+  not started at all** — it requires the operator's own free API key registration, which is a
+  step only the project owner can take; there's no code for it yet, by design.
 - **Attribute, don't adopt.** Where sources genuinely disagree, the record states the range and
   **attributes** each framing ("Israel says… ; the UN Commission found…") rather than picking a
   side. `enrich` writes the summary as neutral, attributed prose.
@@ -350,8 +363,10 @@ Output conforms to `src/data/seed.json` so a merge is a **data** change:
   commits `seed.json` + the digest, and pushes → the live map updates. PC-independent, git-reversible.
   Reliability note: free LLM tiers get upstream-throttled — an unattended cron wants a paid model
   (~pennies/week) to be dependable.
-- **Phase 4:** the coverage ledger + significance ranking are in; still open — a coverage-driven
-  backfill crawler, ACLED/UCDP structured anchors, and explicit per-outlet alignment tagging.
+- **Phase 4:** the coverage ledger + significance ranking are in; explicit per-outlet alignment
+  tagging (`config/sources.yml`) and the structured-anchor plumbing (`structured_source.py`,
+  auto-approving) are now in too — UCDP's real HTTP client and any ACLED work are still open (see
+  §8). A coverage-driven backfill crawler is also still open.
 
 The order held: past windows trust-tested the agent team against known history (dedup, continuation,
 tight-window quality all verified live) before the **identical function** was pointed at "this week"

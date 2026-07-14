@@ -1,0 +1,38 @@
+[
+  {
+    "scanned_at": "2026-07-05",
+    "region": "Algeria",
+    "topic": null,
+    "period": "1870..1900",
+    "items": 57,
+    "events_found": 3,
+    "proposals": 3,
+    "dropped": 0,
+    "status": "found",
+    "limited_to": 3
+  },
+  {
+    "scanned_at": "2026-07-05",
+    "region": "Algeria",
+    "topic": null,
+    "period": "1940..1965",
+    "items": 57,
+    "events_found": 3,
+    "proposals": 1,
+    "dropped": 2,
+    "status": "found",
+    "limited_to": 3
+  },
+  {
+    "scanned_at": "2026-07-05",
+    "region": "Algeria",
+    "topic": null,
+    "period": "1871..1872",
+    "items": 53,
+    "events_found": 2,
+    "proposals": 2,
+    "dropped": 0,
+    "status": "found",
+    "limited_to": 2
+  }
+]

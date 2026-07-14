@@ -10,8 +10,9 @@ from .config import Settings, load_settings
 from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
 from .geocode import GeocodeClient, get_geocode
+from .structured_source import StructuredSource, get_structured_source
 from .store import BaseConflict, load_base, pending_to_base, date_key, derive_span
-from . import agents, dedup
+from . import agents, dedup, lifecycle
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
 )
@@ -103,8 +104,11 @@ def _is_latest_event(cand: CandidateEvent, parent) -> bool:
 
 def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
          base: list[BaseConflict], settings: Settings,
-         geocode: GeocodeClient | None = None) -> ScanResult:
+         geocode: GeocodeClient | None = None,
+         structured: StructuredSource | None = None) -> ScanResult:
     geocode = geocode or get_geocode(settings)
+    structured = structured or get_structured_source(settings)
+    profiles = lifecycle.load_profiles(settings.lifecycle_yml)
     by_id = {c.id: c for c in base}
     # New conflicts founded EARLIER IN THIS SCAN aren't in `base` yet (that only reflects
     # seed.json as of scan start) — track a BaseConflict view of each so a second event for
@@ -123,6 +127,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
     # 3. EXTRACTOR — items → discrete candidate events, most consequential first so a
     #    --limit cap keeps the important events (a revolt), not the footnotes (a decree).
     cands = agents.extractor(llm, items, req).events
+    # Structured anchors (UCDP/ACLED, ARCHITECTURE.md §8) — already structured rows, nothing
+    # for the Extractor to extract; feed them straight into the same candidate pool.
+    cands += structured.fetch(req.period_start, req.period_end, req.region)
     cands.sort(key=lambda c: c.significance, reverse=True)
     if settings.max_candidates and len(cands) > settings.max_candidates:
         cands = cands[: settings.max_candidates]
@@ -167,6 +174,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             parent_type=(parent.type if parent else None),
             parent_parties=(parent.parties if parent else None),
             current_status=(parent.status if parent else None),
+            lifecycle_profile=(profiles.get(parent.type) if parent else None),
         )
 
         # real coordinates (code, not model memory): an LLM recalls famous cities but collapses
@@ -192,28 +200,41 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             sources=_gather_sources(cand, items),
         )
 
-        # 7. VERIFY — ONE call: fact-check the sources AND decide. Stored as-is on the proposal.
-        ver = agents.verify(llm, event, items, is_new)
-
-        if ambiguous:
-            needs_human = True
-        elif is_new:
-            # Founding a brand-new conflict is riskier than attaching to an existing one, so it
-            # needs a HIGHER (not infinite) bar: strong multi-source, cross-aligned corroboration
-            # can still auto-create; anything thinner goes to a human.
-            strongly_corroborated = (
-                ver.verdict == "pass"
-                and ver.confidence >= settings.new_conflict_min_confidence
-                and ver.independent_sources >= settings.new_conflict_min_sources
-                and ver.cross_alignment
-            )
-            needs_human = (not strongly_corroborated) or ver.decision == "needs_human"
+        # 7. VERIFY — skipped for structured-sourced events: there's no web article pool to
+        # fact-check against, the dataset row IS the anchor. Per the resolved trust policy these
+        # auto-approve — except a genuine identity ambiguity from the Resolver (step 4) still
+        # routes to a human, since that's a separate concern the source's trustworthiness
+        # doesn't resolve.
+        if cand.source_kind == "structured":
+            ver = None
+            needs_human = ambiguous
         else:
-            needs_human = (
-                ver.decision == "needs_human"
-                or ver.verdict != "pass"
-                or ver.confidence < settings.auto_approve_confidence
-            )
+            ver = agents.verify(llm, event, items, is_new)
+            # Carry the corroboration verdict onto the event itself so the app can show it —
+            # verify() needs the fully-built event to fact-check, so this can't be done earlier.
+            event = event.model_copy(update={
+                "independent_sources": ver.independent_sources, "cross_alignment": ver.cross_alignment,
+            })
+
+            if ambiguous:
+                needs_human = True
+            elif is_new:
+                # Founding a brand-new conflict is riskier than attaching to an existing one, so it
+                # needs a HIGHER (not infinite) bar: strong multi-source, cross-aligned corroboration
+                # can still auto-create; anything thinner goes to a human.
+                strongly_corroborated = (
+                    ver.verdict == "pass"
+                    and ver.confidence >= settings.new_conflict_min_confidence
+                    and ver.independent_sources >= settings.new_conflict_min_sources
+                    and ver.cross_alignment
+                )
+                needs_human = (not strongly_corroborated) or ver.decision == "needs_human"
+            else:
+                needs_human = (
+                    ver.decision == "needs_human"
+                    or ver.verdict != "pass"
+                    or ver.confidence < settings.auto_approve_confidence
+                )
 
         new_conflict = None
         if is_new:

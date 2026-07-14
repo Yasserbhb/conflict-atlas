@@ -10,7 +10,7 @@ const S_W = 100, S_H = 40, S_PAD = 3;
 const yForSev = (s) => S_H - S_PAD - (s / 5) * (S_H - 2 * S_PAD);
 
 // A conflict's events, presented as an intensity sparkline + a narrative timeline.
-export default function EventTimeline({ events, conflict }) {
+export default function EventTimeline({ events }) {
   const [openId, setOpenId] = useState(null);
 
   const sorted = useMemo(
@@ -142,6 +142,12 @@ export default function EventTimeline({ events, conflict }) {
                         {url.replace(/^https?:\/\/(www\.)?/, '').slice(0, 42)}
                       </a>
                     ))}
+                    {e.independentSources != null && (
+                      <span className={styles.corroboration}>
+                        Corroborated by {e.independentSources} independent source{e.independentSources === 1 ? '' : 's'}
+                        {e.crossAlignment && ' across languages/outlets'}
+                      </span>
+                    )}
                   </div>
                 )}
               </div>

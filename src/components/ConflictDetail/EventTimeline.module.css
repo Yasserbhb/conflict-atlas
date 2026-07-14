@@ -223,3 +223,10 @@
   margin-right: 12px;
 }
 .src:hover { color: var(--accent-light); text-decoration: underline; }
+
+.corroboration {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
