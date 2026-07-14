@@ -1,13 +1,6 @@
 import { useMemo } from 'react';
 import { conflictColorForCountry } from '../../utils/conflictColors';
-
-// The aggressors / occupiers — the hostile actors
-const AGGRESSOR_ROLES = new Set(['aggressor', 'occupier']);
-// The ones on the receiving end — the battleground / targets
-const DEFENDER_ROLES = new Set(['victim', 'defender', 'sanctioned']);
-// External backers — they're INVOLVED but don't fight each other
-const SUPPORT_ROLES = new Set(['funder', 'proxy', 'sanctioner']);
-const MEDIATOR_ROLES = new Set(['mediator']);
+import { AGGRESSOR_ROLES, DEFENDER_ROLES, SUPPORT_ROLES, MEDIATOR_ROLES } from '../../utils/conflictEdges';
 
 function quadraticArc(x1, y1, x2, y2, curvature = 0.36) {
   const mx = (x1 + x2) / 2;

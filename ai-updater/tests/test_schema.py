@@ -1,4 +1,4 @@
-from conflict_updater.schema import Event, Conflict, Proposal, Location, Party, Source
+from conflict_updater.schema import Event, Conflict, Proposal, Location, Party, Source, StatusEvent
 
 
 def test_event_roundtrips():
@@ -35,3 +35,26 @@ def test_conflict_and_proposal():
                  event=Event(date="2001", title="e", kind="battle", severity=3))
     assert Proposal.model_validate_json(p.model_dump_json()).kind == "attach"
     assert "The X War" in c.aliases
+
+
+def test_status_history_roundtrips():
+    c = Conflict(
+        id="seed_y", title="Example Dispute", type="disputed_territory", severity=2,
+        start_date="1990", status="dormant",
+        status_history=[
+            StatusEvent(status="active", date="1990-01-01", event_id="seed_y_e1"),
+            StatusEvent(status="dormant", date="1995-06-01", event_id="seed_y_e2"),
+        ],
+        last_checked_at="2026-07-13",
+    )
+    back = Conflict.model_validate_json(c.model_dump_json())
+    assert len(back.status_history) == 2
+    assert back.status_history[0].status == "active"
+    assert back.status_history[1].event_id == "seed_y_e2"
+    assert back.last_checked_at == "2026-07-13"
+
+
+def test_status_history_defaults_empty():
+    c = Conflict(id="seed_z", title="Z", type="war", severity=1, start_date="2000")
+    assert c.status_history == []
+    assert c.last_checked_at is None

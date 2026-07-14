@@ -1,5 +1,7 @@
 """System prompts — one per agent. The taxonomy block mirrors the app's
-`src/utils/taxonomy.js`; keep them in sync (single source of truth is the app)."""
+`src/utils/taxonomy.js` — the app is the single source of truth; this is the copy.
+Kept in sync by `tests/test_taxonomy_sync.py`, which fails if the enum keys here (via
+schema.py's Literals) drift from taxonomy.js's or conflictColors.js's key sets."""
 
 TAXONOMY = """
 DEFINITIONS — classify STRICTLY by these (verbatim from the app's src/utils/taxonomy.js):

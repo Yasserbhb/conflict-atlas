@@ -78,6 +78,11 @@
 .sub span:first-child { font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px; }
 .dot { color: var(--text-muted); }
 .live { color: #fca5a5; background: rgba(239,68,68,0.15); padding: 1px 7px; border-radius: 20px; font-weight: 700; font-size: 9px; }
+.statusBadge {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 1px 7px; border-radius: 20px; border: 1px solid;
+  font-weight: 700; font-size: 9px; text-transform: uppercase; letter-spacing: 0.03em;
+}
 
 .closeBtn {
   display: inline-flex;

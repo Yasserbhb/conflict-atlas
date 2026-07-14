@@ -52,3 +52,15 @@ export const KIND_DEFINITIONS = {
   milestone: 'A turning point — a capital falling, a leader killed, independence, a war’s end.',
 };
 
+// A conflict's lifecycle phase, set by the ai-updater pipeline as it tracks a conflict over
+// time (see ai-updater/config/lifecycle.yml). Most conflicts predate this field and have none —
+// that's expected, not an error (see statusMeta.js's graceful-absence handling).
+export const STATUS_DEFINITIONS = {
+  active: 'Ongoing now — ties directly to a recent event, not just an unresolved status.',
+  easing: 'De-escalating, but still happening.',
+  suspended: 'An explicit, reversible pause — a ceasefire or truce, not a resolution.',
+  dormant: 'Frozen and unresolved — quiet, but can flare back up at any time.',
+  ended: 'Acts have ceased and there is nothing left to settle.',
+  resolved: 'A positive terminal event occurred — a treaty, a withdrawal, sanctions lifted. Quiet alone is never enough to call something resolved.',
+};
+

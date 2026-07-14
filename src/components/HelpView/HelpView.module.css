@@ -164,3 +164,39 @@
   color: var(--text-muted);
   margin: 12px 0 0;
 }
+
+/* ---- coverage table: what the ai-updater pipeline has actually scanned ---- */
+.covTable {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.covRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 12px;
+}
+
+.covRow:last-child { border-bottom: none; }
+
+.covRegion { color: #e2e8f0; font-weight: 600; }
+.covPeriod { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.covScanned { color: var(--text-muted); font-size: 11px; white-space: nowrap; }
+
+.covStatus {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.covFound { color: #82b8ab; background: rgba(130, 184, 171, 0.14); }
+.covQuiet { color: #94a3b8; background: rgba(148, 163, 184, 0.14); }
+.covBlind { color: #d9a441; background: rgba(217, 164, 65, 0.14); }

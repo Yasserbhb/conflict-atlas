@@ -1,0 +1,16 @@
+# Per-type lifecycle profiles (ARCHITECTURE.md §6). Folded into the Enrich agent's context so
+# status-transition wording is type-aware instead of one generic paragraph for every conflict.
+#
+# default_terminal: the phase sustained quiet settles into (never "resolved" — quiet isn't proof).
+# resolved_requires: the kind(s) of positive terminal event that can justify "resolved".
+# dwell_days: how long a type must stay quiet before the *wording* leans toward its terminal
+#   phase (advisory to the LLM this round, not an enforced timer — see fast-follow note in the
+#   plan for a deterministic version).
+# regression: the label used when a new event arrives after a quiet/terminal phase.
+war:                 { default_terminal: ended,    resolved_requires: [peace_treaty],               dwell_days: 45,  regression: "hostilities resumed" }
+civil_war:            { default_terminal: ended,    resolved_requires: [peace_treaty],               dwell_days: 45,  regression: "hostilities resumed" }
+genocide:             { default_terminal: ended,    resolved_requires: [accountability, cessation],  dwell_days: 90,  regression: "killings resumed" }
+occupation:           { default_terminal: dormant,  resolved_requires: [withdrawal],                 dwell_days: 180, regression: "re-occupation" }
+proxy_war:            { default_terminal: ended,    resolved_requires: [peace_treaty],                dwell_days: 60,  regression: "hostilities resumed" }
+sanctions:            { default_terminal: resolved, resolved_requires: [formally_lifted],              dwell_days: 30,  labels: { suspended: "temporarily lifted" } }
+disputed_territory:   { default_terminal: dormant,  resolved_requires: [treaty, demarcation],           dwell_days: 180, regression: "flare-up" }

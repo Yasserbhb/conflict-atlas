@@ -1,4 +1,5 @@
 import copy
+from datetime import date
 from conflict_updater import merge
 from conflict_updater.schema import Proposal, Event, Source, Party, Conflict
 
@@ -198,3 +199,55 @@ def test_validate_flags_incoherence():
     seed["conflicts"][0]["parties"].append({"countryId": "GBR", "role": "funder"})  # not in involvedCountries
     issues = merge.validate(seed)
     assert any("GBR" in i for i in issues)
+
+
+def test_attach_with_status_change_appends_to_status_history():
+    seed = _seed()  # seed_gaza starts status="active"
+    cf = _attach(event=Event(date="2025-01-19", title="Ceasefire", kind="ceasefire", severity=2,
+                             parties=["ISR", "PSE"]), status="suspended")
+    seed2, _ = merge.apply([cf], seed)
+    c = seed2["conflicts"][0]
+    assert c["statusHistory"] == [{"status": "suspended", "date": "2025-01-19", "eventId": c["events"][-1]["id"]}]
+
+
+def test_attach_without_status_change_leaves_history_untouched_but_bumps_last_checked():
+    seed = _seed()  # status already "active"
+    seed2, _ = merge.apply([_attach(status="active")], seed)
+    c = seed2["conflicts"][0]
+    assert c.get("statusHistory", []) == []
+    assert c["lastCheckedAt"] == date.today().isoformat()
+
+
+def test_event_to_app_emits_corroboration_fields_when_present():
+    seed = _seed()
+    ev = Event(date="2024-05-01", title="Strike on Rafah", kind="attack", severity=5,
+              parties=["ISR", "PSE"], sources=[Source(url="http://a")],
+              independent_sources=3, cross_alignment=True)
+    p = _attach(event=ev)
+    seed2, _ = merge.apply([p], seed)
+    added = seed2["conflicts"][0]["events"][-1]
+    assert added["independentSources"] == 3
+    assert added["crossAlignment"] is True
+
+
+def test_event_to_app_nulls_corroboration_fields_when_absent():
+    seed = _seed()
+    seed2, _ = merge.apply([_attach()], seed)  # default Event() has no corroboration fields set
+    added = seed2["conflicts"][0]["events"][-1]
+    assert added["independentSources"] is None
+    assert added["crossAlignment"] is None
+
+
+def test_new_conflict_emits_empty_status_history_and_null_last_checked():
+    seed = _seed()
+    nc = Conflict(id="seed_new_sand_war2", title="Sand War", type="war", severity=2,
+                  start_date="1963", ongoing=False, status="ended",
+                  parties=[Party(country_id="MAR", role="aggressor"), Party(country_id="DZA", role="defender")],
+                  involved_countries=["MAR", "DZA"],
+                  events=[Event(id="e1", date="1963-10-01", title="Clashes", kind="escalation",
+                                severity=2, parties=["MAR", "DZA"])])
+    p = Proposal(kind="new_conflict", event=nc.events[0], new_conflict=nc, needs_human=False)
+    seed2, _ = merge.apply([p], seed)
+    c = next(c for c in seed2["conflicts"] if c["id"] == "seed_new_sand_war2")
+    assert c["statusHistory"] == []
+    assert c["lastCheckedAt"] is None

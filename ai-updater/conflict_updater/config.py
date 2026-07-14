@@ -44,6 +44,11 @@ class Settings:
         default_factory=lambda: Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))))
     output_dir: Path = field(default_factory=lambda: Path(_get("OUTPUT_DIR", str(_HERE / "out"))))
     log_dir: Path = field(default_factory=lambda: Path(_get("LOG_DIR", str(_HERE / "log"))))  # committed digests
+    lifecycle_yml: Path = field(
+        default_factory=lambda: Path(_get("LIFECYCLE_YML", str(_HERE / "config" / "lifecycle.yml"))))
+    sources_yml: Path = field(
+        default_factory=lambda: Path(_get("SOURCES_YML", str(_HERE / "config" / "sources.yml"))))
+    structured_source_backend: str = _f("STRUCTURED_SOURCE_BACKEND", "none")  # none | ucdp
 
 
 def load_settings() -> Settings:

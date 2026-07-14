@@ -55,7 +55,7 @@ def resolver(llm: LLMClient, cand: CandidateEvent,
 
 def enrich(llm: LLMClient, cand: CandidateEvent, items: list[RawItem], is_new: bool, today: str,
            parent_type: Optional[str] = None, parent_parties: Optional[list] = None,
-           current_status: Optional[str] = None) -> EnrichOutput:
+           current_status: Optional[str] = None, lifecycle_profile: Optional[dict] = None) -> EnrichOutput:
     """One call: kind, type (if new), severity, roles, location, summary, status, span. Replaces the
     seven per-field enricher calls — same guidance, one round-trip."""
     ctx = ""
@@ -63,6 +63,16 @@ def enrich(llm: LLMClient, cand: CandidateEvent, items: list[RawItem], is_new: b
         ctx = ("\nParent conflict (keep type & roles consistent — do not flip):\n"
                f"  type={parent_type}\n  existing_parties={_j(parent_parties or [])}\n"
                f"  current_status={current_status or 'active'}")
+    if lifecycle_profile:
+        p = lifecycle_profile
+        ctx += (
+            f"\nLifecycle profile for type={parent_type} (config/lifecycle.yml — use THIS instead of a "
+            f"generic rule of thumb):\n"
+            f"  default_terminal={p.get('default_terminal')}  (what sustained quiet settles into, never 'resolved')\n"
+            f"  resolved_requires={p.get('resolved_requires')}  ('resolved' needs one of these, not just quiet)\n"
+            f"  dwell_days={p.get('dwell_days')}  (roughly how long quiet must last before leaning terminal)\n"
+            f"  regression_label={p.get('regression', 'resumed')!r}  (if this event follows a quiet/terminal phase)"
+        )
     user = (
         f"today={today}\nis_new_conflict={is_new}{ctx}\n\n"
         f"Event:\n{_j(cand)}\n\nEvidence snippets:\n{_j([i.snippet for i in items][:8])}"

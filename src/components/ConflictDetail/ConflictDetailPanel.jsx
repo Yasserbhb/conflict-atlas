@@ -4,6 +4,7 @@ import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, roleColor, severityColor } from 
 import { formatDateRange } from '../../utils/dateUtils';
 import { flagEmoji } from '../../utils/flags';
 import { TypeIcon } from '../../utils/typeIcons';
+import { statusMeta } from '../../utils/statusMeta';
 import EventTimeline from './EventTimeline';
 import styles from './ConflictDetailPanel.module.css';
 
@@ -32,6 +33,14 @@ export default function ConflictDetailPanel() {
   const wikiUrl = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(conflict.title)}`;
   const hasSources = (conflict.sources || []).length > 0;
 
+  // Pipeline-populated lifecycle status — most conflicts predate this field and have none,
+  // in which case statusMeta() returns null and nothing extra renders (the existing "● live"
+  // badge below already covers the common case).
+  const statusMetaInfo = statusMeta(conflict.status);
+  const lastStatusChange = conflict.statusHistory?.length > 0
+    ? conflict.statusHistory[conflict.statusHistory.length - 1]
+    : null;
+
   return (
     <div className={styles.panel}>
       <div className={styles.accent} style={{ background: `linear-gradient(90deg, ${typeColor}, transparent)` }} />
@@ -47,6 +56,14 @@ export default function ConflictDetailPanel() {
             <span className={styles.dot}>·</span>
             <span>{formatDateRange(conflict.startDate, conflict.endDate, conflict.ongoing)}</span>
             {conflict.ongoing && <span className={styles.live}>● live</span>}
+            {statusMetaInfo && (
+              <span className={styles.statusBadge} style={{ color: statusMetaInfo.color, borderColor: statusMetaInfo.color + '66' }}>
+                <statusMetaInfo.Icon size={11} strokeWidth={2.2} aria-hidden="true" />
+                {statusMetaInfo.label}
+                {conflict.status === 'resolved' && conflict.endDate && ` ${conflict.endDate.slice(0, 4)}`}
+                {conflict.status === 'dormant' && lastStatusChange && ` since ${lastStatusChange.date.slice(0, 4)}`}
+              </span>
+            )}
           </div>
         </div>
         <button className={styles.closeBtn} onClick={() => dispatch({ type: 'CLOSE_CONFLICT' })} aria-label="Close" title="Close"><X size={15} strokeWidth={2.2} aria-hidden="true" /></button>
@@ -64,7 +81,7 @@ export default function ConflictDetailPanel() {
       <div className={styles.body}>
         {conflict.description && <p className={styles.description}>{conflict.description}</p>}
 
-        {conflict.events?.length > 0 && <EventTimeline events={conflict.events} conflict={conflict} />}
+        {conflict.events?.length > 0 && <EventTimeline events={conflict.events} />}
 
         {/* Parties grouped by side */}
         {SIDES.map(({ label, roles }) => {

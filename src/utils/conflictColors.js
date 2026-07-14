@@ -15,7 +15,6 @@ export const TYPE_LABELS = {
   occupation: 'Occupation',
   proxy_war: 'Proxy War',
   sanctions: 'Sanctions',
-  funding: 'Foreign Funding',
   disputed_territory: 'Disputed Territory',
 };
 

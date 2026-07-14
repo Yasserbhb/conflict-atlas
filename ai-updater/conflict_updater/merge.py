@@ -11,6 +11,7 @@ stays in the review queue.
 from __future__ import annotations
 
 import re
+from datetime import date
 from .schema import Proposal, Event, Conflict
 from .store import date_key, derive_span, default_status
 
@@ -23,6 +24,7 @@ def _event_to_app(e: Event, eid: str) -> dict:
         "id": eid, "date": e.date, "title": e.title, "kind": e.kind, "severity": e.severity,
         "location": loc, "parties": list(e.parties), "description": e.description,
         "sources": [s.url for s in e.sources],
+        "independentSources": e.independent_sources, "crossAlignment": e.cross_alignment,
     }
 
 
@@ -30,6 +32,8 @@ def _conflict_to_app(c: Conflict) -> dict:
     return {
         "id": c.id, "title": c.title, "type": c.type, "severity": c.severity,
         "startDate": c.start_date, "endDate": c.end_date, "ongoing": c.ongoing, "status": c.status,
+        "statusHistory": [{"status": h.status, "date": h.date, "eventId": h.event_id} for h in c.status_history],
+        "lastCheckedAt": c.last_checked_at,
         "description": c.description,
         "parties": [{"countryId": p.country_id, "role": p.role} for p in c.parties],
         "involvedCountries": list(c.involved_countries),
@@ -97,9 +101,12 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
             for a in p.new_aliases:
                 if a not in al:
                     al.append(a)
-            if p.status and is_latest:                                   # status changes only from the latest event
+            if p.status and is_latest and p.status != c.get("status"):    # status changes only from the latest event
+                c.setdefault("statusHistory", []).append(
+                    {"status": p.status, "date": ev["date"], "eventId": ev["id"]})
                 c["status"] = p.status
                 c["ongoing"] = p.status not in _TERMINAL
+            c["lastCheckedAt"] = date.today().isoformat()                 # touched by this scan, status or not
             # span self-corrects from the (now updated) events + status: an earlier event pulls
             # startDate back; a terminal event closes endDate. Source-stated span is preserved.
             c["startDate"], c["endDate"] = derive_span(

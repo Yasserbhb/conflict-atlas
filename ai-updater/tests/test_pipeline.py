@@ -9,6 +9,14 @@ from conflict_updater.schema import (
 )
 from fakes import FakeLLM, FakeSearch, FakeGeocode
 
+
+class _FakeStructuredSource:
+    def __init__(self, events):
+        self._events = events
+
+    def fetch(self, period_start, period_end, region=None):
+        return list(self._events)
+
 BASE = [BaseConflict(id="seed_gaza", title="Gaza War", involved_countries=["ISR", "PSE"],
                      start=2023, status="active")]
 ITEMS = [
@@ -137,6 +145,74 @@ def test_new_conflict_with_a_sourced_end_date_is_closed_and_marked_ended():
     nc = res.proposals[0].new_conflict
     assert nc.start_date == "1881" and nc.end_date == "1899"
     assert nc.ongoing is False and nc.status == "ended"
+
+
+def test_enrich_receives_lifecycle_profile_context_for_a_known_type():
+    # BASE has no `type` set — use a war-typed parent so config/lifecycle.yml's "war" profile matches.
+    base_war = [BaseConflict(id="seed_gaza", title="Gaza War", type="war",
+                             involved_countries=["ISR", "PSE"], start=2023, status="active")]
+    captured = {}
+
+    def _capture_enrich(user):
+        captured["user"] = user
+        return _enrich()
+
+    _scan(_happy({EnrichOutput: _capture_enrich}), base=base_war)
+    assert "Lifecycle profile for type=war" in captured["user"]
+    assert "dwell_days=45" in captured["user"]
+    assert "hostilities resumed" in captured["user"]
+
+
+def test_structured_event_bypasses_verify_and_auto_approves():
+    structured_cand = CandidateEvent(
+        date="2024-03-01", title="UCDP-sourced clash", actors=["Israel", "Palestine"],
+        place="Gaza", source_urls=["https://ucdp.uu.se/event/123"], significance=3,
+        source_kind="structured",
+    )
+    fake_llm = FakeLLM(_happy({ExtractorOutput: ExtractorOutput(events=[])}))
+    res = scan(_req(), llm=fake_llm, search=FakeSearch(ITEMS), base=BASE, settings=Settings(),
+              geocode=FakeGeocode(), structured=_FakeStructuredSource([structured_cand]))
+
+    assert len(res.proposals) == 1
+    p = res.proposals[0]
+    assert p.needs_human is False
+    assert p.verify is None
+    assert "VerifyOutput" not in fake_llm.calls  # Verify's LLM call is skipped entirely
+
+
+def test_structured_event_still_escalates_on_resolver_ambiguity():
+    structured_cand = CandidateEvent(
+        date="2024-03-01", title="Unclear which conflict", actors=["A", "B"],
+        source_urls=["https://ucdp.uu.se/event/456"], significance=3, source_kind="structured",
+    )
+    fake_llm = FakeLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[]),
+        ResolverOutput: ResolverOutput(decision="ambiguous"),
+    }))
+    res = scan(_req(), llm=fake_llm, search=FakeSearch(ITEMS), base=BASE, settings=Settings(),
+              geocode=FakeGeocode(), structured=_FakeStructuredSource([structured_cand]))
+
+    assert res.proposals[0].needs_human is True  # identity ambiguity still needs a human
+    assert "VerifyOutput" not in fake_llm.calls
+
+
+def test_verify_corroboration_verdict_is_carried_onto_the_event():
+    res = _scan(_happy({VerifyOutput: _verify(independent_sources=4, cross_alignment=True)}))
+    p = res.proposals[0]
+    assert p.event.independent_sources == 4
+    assert p.event.cross_alignment is True
+
+
+def test_enrich_gets_no_lifecycle_context_when_parent_type_is_unknown():
+    # BASE (module-level fixture) has no `type` set at all — profiles.get(None) finds nothing.
+    captured = {}
+
+    def _capture_enrich(user):
+        captured["user"] = user
+        return _enrich()
+
+    _scan(_happy({EnrichOutput: _capture_enrich}))
+    assert "Lifecycle profile" not in captured["user"]
 
 
 def test_cap_keeps_the_most_significant_events():
