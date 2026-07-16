@@ -33,9 +33,9 @@
   "devDependencies": {
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^5.2.0",
     "oxlint": "^1.69.0",
-    "vite": "^5.4.21"
+    "vite": "^6.4.3"
   },
   "comment": "The optionalDependency below works around npm bug npm/cli#4828 on Windows. It is skipped automatically on macOS/Linux (which pull their own rollup binary via rollup's own optionalDependencies).",
   "optionalDependencies": {
