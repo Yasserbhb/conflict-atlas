@@ -5,13 +5,13 @@ import ConflictsView from './components/ConflictsView/ConflictsView';
 import StatsView from './components/StatsView/StatsView';
 import TimelineView from './components/TimelineView/TimelineView';
 import HelpView from './components/HelpView/HelpView';
+import PipelineView from './components/PipelineView/PipelineView';
 import TopBar from './components/TopBar/TopBar';
 import WorldMap from './components/Map/WorldMap';
 import MapFilterBar from './components/Map/MapFilterBar';
 import SidePanel from './components/SidePanel/SidePanel';
 import ConflictDetailPanel from './components/ConflictDetail/ConflictDetailPanel';
 import GraphView from './components/GraphView/GraphView';
-import EditModal from './components/EditModal/EditModal';
 import DataPanel from './components/DataPanel/DataPanel';
 import './styles/global.css';
 import styles from './App.module.css';
@@ -39,6 +39,8 @@ function ActiveView() {
       return <TimelineView />;
     case 'help':
       return <HelpView />;
+    case 'pipeline':
+      return <PipelineView />;
     default:
       return null;
   }
@@ -65,7 +67,6 @@ function AppShell() {
         </div>
       </div>
       {state.showGraphView && <GraphView />}
-      {state.editTarget && <EditModal />}
       {state.showDataPanel && <DataPanel />}
     </div>
   );

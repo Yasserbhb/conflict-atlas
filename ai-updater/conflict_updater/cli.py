@@ -25,7 +25,7 @@ from .llm import get_llm
 from .search import get_search
 from .store import (
     load_base, base_from_seed, write_result, load_seed_dict, write_seed_dict, load_proposals,
-    append_coverage, append_coverage_failure, load_coverage, render_coverage, accept_reviewed, write_digest,
+    append_coverage, append_coverage_failure, append_eval, write_run_summary, load_coverage, render_coverage, accept_reviewed, write_digest,
 )
 from .schema import ScanRequest
 from .pipeline import scan
@@ -104,8 +104,6 @@ def _cmd_auto(args) -> int:
         print(f"scan failed: {type(e).__name__}: {e}")
         print("logged as a blind window in the coverage ledger; seed.json untouched")
         return 1
-    append_coverage(_coverage_path(settings), result, limited=settings.max_candidates)
-
     # apply ONLY the auto-approved (needs_human=False, non-provisional) — the strict gate already
     # filtered these; everything uncertain is logged and held, never auto-added.
     seed = load_seed_dict(settings.seed_json)
@@ -118,7 +116,13 @@ def _cmd_auto(args) -> int:
         write_seed_dict(settings.seed_json, seed)
 
     digest = write_digest(settings.log_dir, result, applied, ok)
+    # Same content as the digest, shaped for the app to render natively so last week's
+    # findings are readable in the Pipeline view without a trip to GitHub.
+    write_run_summary(settings.output_dir, result, applied, ok)
     held = sum(1 for p in result.proposals if p.needs_human)
+    # Logged after the apply so the ledger records what actually landed, not just what was found.
+    append_coverage(_coverage_path(settings), result, limited=settings.max_candidates,
+                    applied=len(applied) if ok else 0, held=held)
     print(f"auto {start}..{end}: added {len(applied)}, held {held}, already-known {len(result.dropped)}")
     print(f"digest → {digest}")
     if not ok:
@@ -183,7 +187,12 @@ def _cmd_eval(args) -> int:
     out = settings.output_dir / f"eval_{start}_{end}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"\nreport → {out}")
+    # A compact row per run, small enough to commit and bundle so the site can show whether
+    # the pipeline is actually any good — not just that it ran.
+    hist_path = settings.output_dir / "eval_history.json"
+    hist = append_eval(hist_path, f"{start}..{end}", m, settings.llm_model, prompt_version())
+    print(f"\nreport  → {out}")
+    print(f"history → {hist_path} ({hist['ran_at']})")
     return 0
 
 

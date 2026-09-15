@@ -7,9 +7,10 @@ atrocities across history — from 1490 to the present.
 
 Two halves, documented together here:
 
-- **The app** — a React + D3 map you can browse, filter, scrub through time, and edit.
-- **The AI updater** — a Python pipeline of narrow LLM agents that keeps the dataset current and
-  honest, and can backfill the past on demand.
+- **The app** — a React + D3 map you browse, filter and scrub through time. Read-only: nobody
+  hand-edits the atlas, including its author.
+- **The AI updater** — a Python pipeline of narrow LLM agents that is the dataset's *only*
+  author. It keeps the atlas current, backfills the past on demand, and shows its working.
 
 ---
 
@@ -21,7 +22,7 @@ Two halves, documented together here:
   - [What it is](#what-it-is) · [The agent team](#the-agent-team) · [What makes it trustworthy](#what-makes-it-trustworthy)
   - [Running it](#running-the-pipeline) · [Evaluation](#evaluation) · [Coverage ledger](#coverage-ledger)
   - [Architecture decisions](#architecture-decisions)
-- [Deploying](#deploying) · [Troubleshooting](#troubleshooting) · [Disclaimer](#data-sources--disclaimer)
+- [Deploying & operations](#deploying--operations) · [Troubleshooting](#troubleshooting) · [Disclaimer](#data-sources--disclaimer)
 
 ---
 
@@ -40,11 +41,11 @@ Two halves, documented together here:
   century ticks, so dragging it also shows *when* the world was most at war.
 - **Relationships graph** — conflicts as nodes, edges where contemporaneous conflicts share
   belligerents. The force layout self-organises into eras.
-- **Edit mode** — add/edit conflicts (type, severity, dates, parties with roles, description,
-  tags, events) and personal notes per country.
-- **Export / import** the whole dataset as JSON.
+- **Pipeline** — the agents' own operations log: what each weekly run scanned, what it added,
+  what it held back, and a link to that run's full output.
+- **Export** the whole dataset as JSON.
 - **~240 conflicts / ~490 sourced events** across every region and era.
-- **Six views**: Map, Conflicts, Stats, Timeline, Relationships, Help.
+- **Seven views**: Map, Conflicts, Stats, Timeline, Relationships, Pipeline, Help.
 
 > **On borders:** the map always shows *modern* borders. Historical events are mapped onto the
 > country occupying that territory today (the Spanish Conquest → modern Mexico/Peru). Successor
@@ -73,8 +74,8 @@ npm run preview   # serve that build locally
 npm run lint      # oxlint
 ```
 
-> **Your data lives in your browser** (IndexedDB), per-browser and per-machine. Use **⬇ export**
-> in the top bar to save a JSON backup.
+> The dataset is cached in your browser (IndexedDB) on first load, so the map works offline.
+> **⬇ export** in the top bar downloads the whole thing as JSON.
 
 ## Tech stack
 
@@ -91,8 +92,7 @@ per-country CSS classes, handlers and transitions that a canvas charting library
 ## Data model
 
 Conflicts, countries and notes live in IndexedDB, seeded once from `src/data/seed.json`. Seed data
-is versioned: bumping `version` re-imports new entries without overwriting your edits. Seed IDs are
-prefixed `seed_`, yours `user_`.
+is versioned: bumping `version` re-imports new entries on a returning visitor's next load.
 
 A **conflict** aggregates **events**:
 
@@ -263,6 +263,15 @@ constant) and model, so a change in quality can be attributed to a prompt edit. 
 names exactly which curated events the pipeline failed to rediscover — that's where prompt work
 should start.
 
+**Running one without a terminal:** Actions → *Evaluate the agents* → **Run workflow**, pick a
+window, go. It publishes the headline numbers to the site's Pipeline page, prints them on the
+run's own summary, and attaches the full report (including the misses) as an artifact. It also
+runs itself monthly on the 15th.
+
+It is a *separate* workflow from the weekly update for quota reasons, not tidiness: a scan costs
+~`2 + 3N` LLM calls, so the weekly job at `--limit 12` already spends ~38. Running an eval in the
+same job would push a free tier past a typical ~50/day allowance and fail both.
+
 > Turn `LLM_CACHE=on` (the default for `eval`) so replaying a backtest after a prompt tweak only
 > pays for the calls that actually changed.
 
@@ -326,7 +335,7 @@ tests/   136 offline tests with fakes
 
 ---
 
-# Deploying
+# Deploying & operations
 
 A static single-page app — all user data lives in the browser — so it hosts anywhere:
 
@@ -334,9 +343,40 @@ A static single-page app — all user data lives in the browser — so it hosts 
 - **Netlify** — connect the repo; `netlify.toml` is already set up.
 - **Vercel** — zero config; auto-detects Vite.
 
-`.github/workflows/pipeline-weekly.yml` runs the updater every Monday 06:00 UTC, commits any
-auto-approved findings plus the coverage snapshot, and fails loudly if the scan errored (after
-publishing the blind-window row).
+**Actions is independent of Pages.** The weekly pipeline runs on a cron and commits to the repo
+regardless of where the site is hosted, so changing host costs exactly one workflow file.
+
+## Where the weekly run's output lives
+
+The pipeline produces three kinds of output, and they deliberately go to three different places:
+
+| Output | Destination | Why |
+|---|---|---|
+| `seed.json`, `coverage.json` | **Committed to the repo** | The site bundles these at build time, so they have to be in git |
+| Full digests, proposals, eval reports | **Actions artifact** (90 days) | Persistent and downloadable, but never pushed — the repo stays the dataset, not a log store |
+| A rendered weekly report | **Actions job summary** | Read it on the run's own page; nothing is stored in git at all |
+
+The **Pipeline view** in the app renders the committed coverage ledger as an operations log:
+last run, what was applied, what's held back, which windows came back blind, and which failed.
+It's visible to everyone — the atlas's claim is data rigour, and most projects making that
+claim can't show their working.
+
+### Why the dataset is in git rather than a database
+
+Committing data feels odd, but for this project it's the right call. The dataset is ~550KB,
+append-mostly, and its entire value is **provenance** — git gives versioned, attributable,
+revertible history of every change for free, which is exactly the property a conflict atlas
+needs. A database would buy querying, which nothing here needs (the app loads the whole dataset
+into IndexedDB anyway), in exchange for infrastructure to run, secure and back up.
+
+A container would be a step backwards for the persistence worry specifically: container
+filesystems are ephemeral, so anything written inside one is lost on restart unless you attach a
+volume or an external DB. Free container tiers also sleep. Git already gives durable, versioned
+storage with none of that.
+
+**When to revisit:** the moment you want shared server-side state, real authentication, or an
+approve-from-the-browser review flow. That needs a backend, and the natural step is Cloudflare
+Pages + Workers or Netlify Functions — not a container.
 
 # Troubleshooting
 
@@ -360,8 +400,8 @@ available historical summaries — deliberately concise, and for some events the
 and even the classifications (what counts as a "genocide") are **genuinely debated by historians**.
 Pre-modern events are mapped onto modern successor states, which is a simplification.
 
-Treat every entry as a prompt for your own further reading. Use **Edit mode** to correct and add
-sources. Nothing here represents an official position.
+Treat every entry as a prompt for your own further reading, and check the cited sources rather
+than the summary. Nothing here represents an official position.
 
 - Map geometry: [Natural Earth](https://www.naturalearthdata.com/) via
   [world-atlas](https://github.com/topojson/world-atlas) (public domain).

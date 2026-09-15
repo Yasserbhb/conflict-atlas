@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, useRef } from 'react';
 import { appReducer, initialState } from './appReducer';
-import { getAllConflicts, getAllCountries, saveConflict, deleteConflict, saveNote, deleteNote } from '../db/queries';
+import { getAllConflicts, getAllCountries } from '../db/queries';
 import { initSeed } from '../db/seed';
 
 const AppContext = createContext(null);
@@ -41,36 +41,9 @@ export function AppProvider({ children }) {
     return () => clearInterval(playRef.current);
   }, [state.isPlaying]);
 
-  async function handleSaveConflict(conflict) {
-    await saveConflict(conflict);
-    const conflicts = await getAllConflicts();
-    dispatch({ type: 'SET_CONFLICTS', payload: conflicts });
-    dispatch({ type: 'CLOSE_EDIT' });
-  }
-
-  async function handleDeleteConflict(id) {
-    await deleteConflict(id);
-    const conflicts = await getAllConflicts();
-    dispatch({ type: 'SET_CONFLICTS', payload: conflicts });
-  }
-
-  async function handleSaveNote(note) {
-    await saveNote(note);
-    dispatch({ type: 'CLOSE_EDIT' });
-  }
-
-  async function handleDeleteNote(id) {
-    await deleteNote(id);
-    dispatch({ type: 'CLOSE_EDIT' });
-  }
-
   const value = {
     state,
     dispatch,
-    handleSaveConflict,
-    handleDeleteConflict,
-    handleSaveNote,
-    handleDeleteNote,
     reloadData: loadData,
   };
 

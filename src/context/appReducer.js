@@ -1,6 +1,5 @@
 export const initialState = {
   view: 'map',
-  mode: 'view',
   mapFilters: { type: 'all', minSeverity: 1, ongoingOnly: false },
   timelineYear: 2026,
   isPlaying: false,
@@ -8,7 +7,6 @@ export const initialState = {
   focusedConflictId: null,
   openConflictId: null,
   activePanel: null,
-  editTarget: null,
   conflicts: [],
   countries: [],
   searchQuery: '',
@@ -32,8 +30,6 @@ export function appReducer(state, action) {
       return { ...state, conflicts: action.payload };
     case 'SET_COUNTRIES':
       return { ...state, countries: action.payload };
-    case 'SET_MODE':
-      return { ...state, mode: action.payload };
     case 'SET_TIMELINE_YEAR':
       return { ...state, timelineYear: action.payload };
     case 'SET_PLAYING':
@@ -79,10 +75,6 @@ export function appReducer(state, action) {
     }
     case 'CLOSE_CONFLICT':
       return { ...state, openConflictId: null, focusedConflictId: null };
-    case 'OPEN_EDIT':
-      return { ...state, editTarget: action.payload };
-    case 'CLOSE_EDIT':
-      return { ...state, editTarget: null };
     case 'SET_SEARCH':
       return { ...state, searchQuery: action.payload };
     case 'SHOW_GRAPH':
