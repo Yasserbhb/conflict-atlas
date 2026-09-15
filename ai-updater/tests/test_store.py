@@ -93,3 +93,53 @@ def test_write_digest_reports_added_and_held(tmp_path):
     assert "Added to the atlas (1)" in text and "Strike" in text
     assert "Held" in text and "Rumoured raid" in text
     assert "Already in the atlas" in text
+
+
+# ---- coverage ledger must record failures -------------------------------------------------
+# append_coverage() used to run only AFTER scan() returned, so a crashed scan wrote nothing.
+# Nine dead weeks left zero trace while the public coverage table kept showing stale rows.
+
+def test_failed_scan_is_recorded_as_a_blind_window(tmp_path):
+    from conflict_updater.store import append_coverage_failure, load_coverage
+    from conflict_updater.schema import ScanRequest
+
+    ledger = tmp_path / "coverage.json"
+    req = ScanRequest(period_start="2026-09-07", period_end="2026-09-14", region="Africa")
+    entry = append_coverage_failure(ledger, req, RuntimeError("model 404"), limited=12)
+
+    assert entry["status"] == "failed"
+    assert entry["period"] == "2026-09-07..2026-09-14"
+    assert entry["region"] == "Africa"
+    assert "RuntimeError: model 404" in entry["error"]
+    assert entry["limited_to"] == 12
+    assert load_coverage(ledger) == [entry], "must be persisted, not just returned"
+
+
+def test_failure_entries_append_rather_than_overwrite(tmp_path):
+    from conflict_updater.store import append_coverage_failure, load_coverage
+    from conflict_updater.schema import ScanRequest
+
+    ledger = tmp_path / "coverage.json"
+    for wk in ("2026-09-07", "2026-09-14"):
+        append_coverage_failure(ledger, ScanRequest(period_start=wk, period_end=wk), OSError("down"))
+    assert len(load_coverage(ledger)) == 2, "each dead week needs its own row"
+
+
+def test_every_entry_is_stamped_with_the_prompt_version(tmp_path):
+    from conflict_updater.store import append_coverage_failure
+    from conflict_updater.prompts import prompt_version
+    from conflict_updater.schema import ScanRequest
+
+    entry = append_coverage_failure(tmp_path / "c.json",
+                                    ScanRequest(period_start="a", period_end="b"), ValueError("x"))
+    assert entry["prompt_version"] == prompt_version()
+
+
+def test_error_text_is_truncated_so_a_huge_traceback_cannot_bloat_the_ledger(tmp_path):
+    from conflict_updater.store import append_coverage_failure
+    from conflict_updater.schema import ScanRequest
+
+    entry = append_coverage_failure(tmp_path / "c.json",
+                                    ScanRequest(period_start="a", period_end="b"),
+                                    RuntimeError("x" * 5000))
+    assert len(entry["error"]) <= 300

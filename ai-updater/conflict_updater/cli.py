@@ -24,14 +24,14 @@ from .config import load_settings
 from .llm import get_llm
 from .search import get_search
 from .store import (
-    load_base, write_result, load_seed_dict, write_seed_dict, load_proposals,
-    append_coverage, load_coverage, render_coverage, accept_reviewed, write_digest,
+    load_base, base_from_seed, write_result, load_seed_dict, write_seed_dict, load_proposals,
+    append_coverage, append_coverage_failure, load_coverage, render_coverage, accept_reviewed, write_digest,
 )
 from .schema import ScanRequest
 from .pipeline import scan
 from . import merge
 
-_SUBCOMMANDS = {"scan", "apply", "coverage", "serve", "auto"}
+_SUBCOMMANDS = {"scan", "apply", "coverage", "serve", "auto", "eval"}
 
 
 def _coverage_path(settings):
@@ -94,7 +94,16 @@ def _cmd_auto(args) -> int:
         settings = dataclasses.replace(settings, max_candidates=args.limit)
     req = ScanRequest(period_start=start, period_end=end, region=args.region, topic=args.topic)
     base = load_base(settings.seed_json)
-    result = scan(req, llm=get_llm(settings), search=get_search(settings), base=base, settings=settings)
+    try:
+        result = scan(req, llm=get_llm(settings), search=get_search(settings), base=base, settings=settings)
+    except Exception as e:  # noqa: BLE001
+        # Log the blind window before re-raising. The ledger is the only record anyone sees;
+        # a scan that dies silently is indistinguishable on the public site from a week that
+        # was genuinely quiet.
+        append_coverage_failure(_coverage_path(settings), req, e, limited=settings.max_candidates)
+        print(f"scan failed: {type(e).__name__}: {e}")
+        print("logged as a blind window in the coverage ledger; seed.json untouched")
+        return 1
     append_coverage(_coverage_path(settings), result, limited=settings.max_candidates)
 
     # apply ONLY the auto-approved (needs_human=False, non-provisional) — the strict gate already
@@ -115,6 +124,66 @@ def _cmd_auto(args) -> int:
     if not ok:
         print("apply skipped — would introduce incoherence (logged, seed untouched)")
         return 1
+    return 0
+
+
+def _cmd_eval(args) -> int:
+    """Backtest a window against the atlas's own curated events.
+
+    Removes the window's events from the base the pipeline reads, scans it, and scores what
+    comes back. Nothing is written to seed.json — this only measures.
+    """
+    import dataclasses, json
+    from .evaluate import prune, score, render
+    from .prompts import prompt_version
+
+    start, end = _parse_period(args.period)
+    settings = load_settings()
+    if args.limit:
+        settings = dataclasses.replace(settings, max_candidates=args.limit)
+    # Caching on by default here: a backtest is replayed constantly while tuning prompts, and
+    # re-paying for every call makes measurement too expensive to repeat.
+    if not args.no_cache:
+        settings = dataclasses.replace(settings, llm_cache="on")
+
+    seed = load_seed_dict(settings.seed_json)
+    pruned, gold = prune(seed, start, end)
+    removed = len(seed.get("conflicts", [])) - len(pruned.get("conflicts", []))
+    print(f"held out {len(gold)} event(s) in {start}..{end}; "
+          f"{removed} conflict(s) removed entirely, {len(pruned['conflicts'])} left in the base")
+    if not gold:
+        print("no curated events in that window — pick another period")
+        return 1
+
+    req = ScanRequest(period_start=start, period_end=end, region=args.region, topic=args.topic)
+    result = scan(req, llm=get_llm(settings), search=get_search(settings),
+                  base=base_from_seed(pruned), settings=settings)
+
+    m = score(result, gold)
+    print()
+    print(render(f"{start}..{end}", m))
+
+    # Persist the run so two prompt versions can be compared later. The misses are the most
+    # useful part of the report — they name exactly which curated events the pipeline failed
+    # to rediscover, which is where prompt work should start.
+    from .evaluate import same_event
+    matched_gold = {id(g) for g in gold
+                    if any(same_event(g, p.event) for p in result.proposals)}
+    payload = {
+        "period": f"{start}..{end}",
+        "prompt_version": prompt_version(),
+        "model": settings.llm_model,
+        "metrics": m,
+        "missed": [
+            {"date": g.date, "title": g.title, "conflict": g.conflict_title,
+             "expected": g.expected_decision}
+            for g in gold if id(g) not in matched_gold
+        ],
+    }
+    out = settings.output_dir / f"eval_{start}_{end}.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"\nreport → {out}")
     return 0
 
 
@@ -196,6 +265,14 @@ def main(argv=None) -> int:
     au.add_argument("--topic")
     au.add_argument("--limit", type=int, default=0)
     au.set_defaults(func=_cmd_auto)
+
+    ev = sub.add_parser("eval", help="backtest a window against the atlas's own curated events")
+    ev.add_argument("period", help='"1962..1968" | "2024-01-01..2024-12-31" | "YYYY-YYYY"')
+    ev.add_argument("--region")
+    ev.add_argument("--topic")
+    ev.add_argument("--limit", type=int, default=0, help="cap candidates processed (free-tier quota)")
+    ev.add_argument("--no-cache", action="store_true", help="bypass the LLM response cache")
+    ev.set_defaults(func=_cmd_eval)
 
     args = ap.parse_args(argv)
     return args.func(args)

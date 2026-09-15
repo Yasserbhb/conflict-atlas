@@ -2,96 +2,374 @@
 
 **🌍 Live site: [yasserbhb.github.io/conflict-atlas](https://yasserbhb.github.io/conflict-atlas/)**
 
-An interactive vector world map for exploring geopolitical conflicts, genocides, occupations, and atrocities across history — from 1490 to the present (2026).
+An interactive vector world map for exploring geopolitical conflicts, genocides, occupations, and
+atrocities across history — from 1490 to the present.
 
-Built as a personal learning tool: browse the map, dig into any country's involvements, read the structure of a single conflict, scrub a timeline through history, and add or edit your own entries.
+Two halves, documented together here:
+
+- **The app** — a React + D3 map you can browse, filter, scrub through time, and edit.
+- **The AI updater** — a Python pipeline of narrow LLM agents that keeps the dataset current and
+  honest, and can backfill the past on demand.
+
+---
+
+## Contents
+
+- [The app](#the-app)
+  - [Features](#features) · [Quick start](#quick-start) · [Tech stack](#tech-stack) · [Data model](#data-model)
+- [The AI updater](#the-ai-updater)
+  - [What it is](#what-it-is) · [The agent team](#the-agent-team) · [What makes it trustworthy](#what-makes-it-trustworthy)
+  - [Running it](#running-the-pipeline) · [Evaluation](#evaluation) · [Coverage ledger](#coverage-ledger)
+  - [Architecture decisions](#architecture-decisions)
+- [Deploying](#deploying) · [Troubleshooting](#troubleshooting) · [Disclaimer](#data-sources--disclaimer)
+
+---
+
+# The app
 
 ## Features
 
-- **Vector world map** (D3-geo, 50m Natural Earth data) with scroll-to-zoom and drag-to-pan.
-- **Three reading modes**, each with a clear legend:
-  - **Overview** — countries shaded by conflict severity (a heatmap of where the world is hot).
-  - **Country** — click a country to see thin "reach" lines radiating to every conflict it's involved in, colored by its role (solid = attacks, dashed = backs/involved).
-  - **Conflict** — focus one conflict and every party country fills with its role color (aggressor · victim · funder · sanctioner · mediator).
-- **Timeline slider (1490–2026)** with a play button to watch conflicts rise and fall.
-- **Edit mode** — add/edit conflicts (type, severity, dates, parties with roles, description, tags) and personal notes per country.
-- **Network graph** view of a country's connections.
-- **Export / import** your whole dataset as JSON.
-- **~240 pre-loaded conflicts** across every region and era (1490→2026), with descriptions, parties, and roles.
-- **Left sidebar** with five views: **Map**, **Conflicts** (searchable/filterable list), **Stats** (charts), **Timeline** (a per-year density histogram), and **Help**.
+- **Vector world map** (D3-geo, 50m Natural Earth) with scroll-to-zoom, drag-to-pan, a 10°
+  graticule and the projection's sphere outline.
+- **Three reading modes**, each with a legend:
+  - **Overview** — countries shaded by conflict severity.
+  - **Country** — click a country to see reach-lines radiating to every conflict it's involved
+    in, coloured by its role (solid = attacks, dashed = backs/involved).
+  - **Conflict** — focus one conflict; every party country fills with its role colour.
+- **Century rule (1490–2026)** — the year scrubber carries a conflict-density histogram and
+  century ticks, so dragging it also shows *when* the world was most at war.
+- **Relationships graph** — conflicts as nodes, edges where contemporaneous conflicts share
+  belligerents. The force layout self-organises into eras.
+- **Edit mode** — add/edit conflicts (type, severity, dates, parties with roles, description,
+  tags, events) and personal notes per country.
+- **Export / import** the whole dataset as JSON.
+- **~240 conflicts / ~490 sourced events** across every region and era.
+- **Six views**: Map, Conflicts, Stats, Timeline, Relationships, Help.
 
-> **Note on borders:** the map always shows *modern* borders. Historical events are mapped onto the country that occupies that territory today (e.g. the Spanish Conquest -> modern Mexico/Peru). Successor states use aliases (Russia = USSR, Turkey = Ottoman Empire, etc.).
+> **On borders:** the map always shows *modern* borders. Historical events are mapped onto the
+> country occupying that territory today (the Spanish Conquest → modern Mexico/Peru). Successor
+> states use aliases (Russia = USSR, Turkey = Ottoman Empire).
+
+## Quick start
+
+You don't need to be a developer. It runs entirely on your own computer — no account, no server.
+
+1. **Install Node.js** (once): the LTS build from [nodejs.org](https://nodejs.org).
+2. **Get the code**: *Code → Download ZIP*, or `git clone <repo-url>`.
+3. **In the project folder**:
+
+```bash
+npm install
+npm run dev
+```
+
+4. Open the printed link — usually **http://localhost:5173**.
+
+`Ctrl+C` stops it. Other scripts:
+
+```bash
+npm run build     # optimized static site in dist/
+npm run preview   # serve that build locally
+npm run lint      # oxlint
+```
+
+> **Your data lives in your browser** (IndexedDB), per-browser and per-machine. Use **⬇ export**
+> in the top bar to save a JSON backup.
 
 ## Tech stack
 
-- React 19 + Vite 5
-- D3 (geo, zoom, force) + TopoJSON
-- IndexedDB (via `idb`) for local persistence — no server, runs fully offline
-- CSS Modules
+React 19 · Vite 6 · D3 (geo, zoom, force) · TopoJSON · IndexedDB via `idb` · CSS Modules.
 
-## Running it (step by step)
+Fonts: Inter (UI), Newsreader (display), IBM Plex Mono (tabular figures — years and counts hold
+their width while scrubbing).
 
-You don't need to be a developer. It runs entirely on your own computer — no account, no server, and your data stays in your browser.
-
-**1. Install Node.js** (only once). Download the "LTS" version from **[nodejs.org](https://nodejs.org)** and install it. This gives you `node` and `npm`.
-
-**2. Get the code.** Either:
-   - Click the green **Code → Download ZIP** button on this repo and unzip it, **or**
-   - if you have Git: `git clone <this-repo-url>`
-
-**3. Open a terminal in the project folder** and run:
-
-```bash
-npm install      # downloads dependencies (first time only, ~30s)
-npm run dev      # starts the app
-```
-
-**4. Open the link it prints** — usually **http://localhost:5173** — in your browser. That's it.
-
-To stop the app, press `Ctrl+C` in the terminal. To start it again later, just `npm run dev`.
-
-### Build a shareable version
-
-```bash
-npm run build    # creates an optimized static site in dist/
-npm run preview  # serve that build locally to check it
-```
-
-The `dist/` folder is a plain static website you can drop onto any host (see **Deploying** below).
-
-> **Your data lives in your browser** (IndexedDB), per-browser and per-machine. Use the **⬇ export** button in the top bar to save a JSON backup, and import it on another machine.
+**Why D3 and not a charting library.** D3 is 13 functions across 2 files here; tree-shaking
+already strips everything unused, and ~73% of the JS bundle is `seed.json`, not library code.
+The map renders as React `<path>` elements with D3 doing only the projection maths — which keeps
+per-country CSS classes, handlers and transitions that a canvas charting library would take away.
 
 ## Data model
 
-Conflicts, countries, and notes live in IndexedDB, seeded once from `src/data/seed.json`. Seed data is versioned: bumping `seed.json`'s `version` re-imports new entries without overwriting your own edits. Seed entries use IDs prefixed `seed_`; your own use `user_`.
+Conflicts, countries and notes live in IndexedDB, seeded once from `src/data/seed.json`. Seed data
+is versioned: bumping `version` re-imports new entries without overwriting your edits. Seed IDs are
+prefixed `seed_`, yours `user_`.
 
-Each conflict has: `type`, `severity` (1-5), `startDate`/`endDate`/`ongoing`, a `description`, and `parties` (each a country + role). Roles drive the map colors.
+A **conflict** aggregates **events**:
 
-## Deploying
+```
+conflict  id · title · type · severity(1-5) · startDate/endDate/ongoing · status
+          description · parties[{countryId, role}] · involvedCountries[] · aliases[] · tags[]
+          statusHistory[] · lastCheckedAt
+  └ event id · date · title · kind · severity(1-5) · location{lat,lng,label}
+          description · sources[] · parties[] · independentSources · crossAlignment
+```
 
-It's a static single-page app (all data lives in the browser via IndexedDB), so it hosts anywhere:
+This is the key structural idea: **the atomic unit is a sourced event**, which either attaches to
+an existing conflict or founds a new one. "Something happened today" and "we're missing something
+from 1975" become the *same operation*.
 
-- **Netlify** — connect the repo; `netlify.toml` is already set up (`npm run build` → `dist/`).
-- **Vercel** — zero config; it auto-detects Vite.
-- **GitHub Pages** — set `base: '/<repo-name>/'` in `vite.config.js`, then publish `dist/`.
+Controlled vocabularies live in `src/utils/taxonomy.js` and are mirrored by the pipeline's
+`schema.py`. A test (`tests/test_taxonomy_sync.py`) fails if they drift.
 
-## Troubleshooting
+---
 
-- **`Cannot find module @rollup/rollup-win32-x64-msvc` on Windows** — a known npm bug ([npm/cli#4828](https://github.com/npm/cli/issues/4828)) that sometimes skips optional native binaries. Fix: `rm -rf node_modules package-lock.json && npm install`. (It's listed under `optionalDependencies` and is harmless/skipped on macOS & Linux.)
+# The AI updater
 
-## Data, sources & disclaimer
+Lives in [`ai-updater/`](ai-updater/). A team of narrow LLM agents plus web search that keeps the
+dataset current and honest. The credibility of this project is data rigour, not UI.
 
-This is an **educational tool**, not an authoritative record. The seeded conflicts are compiled from widely-available historical summaries to give a starting point — they are deliberately concise and, for some events, casualty figures and even classifications (e.g. what counts as a "genocide") are **genuinely debated by historians**. Pre-modern events are mapped onto modern successor states, which is a simplification.
+## What it is
 
-Treat every entry as a prompt for your own further reading, and use **Edit mode** to correct, refine, and add sources as you learn. Nothing here represents an official position.
+**One operation: `scan(period, region?, topic?)`.** The only input is a time window — a week or a
+century, same protocol, same agents. `scan("1924..2024", region="Africa")` fills a century;
+`scan("week")` is the routine update. The weekly cron is just an automatic caller of the same
+function.
 
-- Map geometry: [Natural Earth](https://www.naturalearthdata.com/) via [world-atlas](https://github.com/topojson/world-atlas) (public domain).
-- Built with [D3](https://d3js.org/), [React](https://react.dev/), and [Vite](https://vite.dev/).
+Recency is a per-event rule, not a mode: an event dated in the last ~7 days is held **provisional**
+until it corroborates.
 
-## License
+## The agent team
 
-[MIT](LICENSE) © Yasser Bouhai. Note: the license covers the **code**; historical facts themselves are not copyrightable.
+Five focused prompts, strict JSON out. **Three LLM calls per candidate** (plus two per scan):
 
-## Versions
+| Agent | Job |
+|---|---|
+| **Scoper** | window → search queries (multi-language) + which existing conflicts to re-check |
+| **Extractor** | articles → dated candidate events, ranked by historical significance |
+| **Resolver** | dedup decision: `known` / `attach` / `new` / `ambiguous` |
+| **Enrich** | one call: kind · type · severity · roles · location · summary · status · span |
+| **Verify** | one call: fact-check against sources **and** decide auto-approve vs needs-human |
 
-See [CHANGELOG.md](CHANGELOG.md) for the version history.
+Deterministic code — not the LLM — does fetching, candidate dedup, geocoding (Nominatim),
+source-linking, span derivation and the merge. `dedup.py` narrows 240 conflicts to ≤5 plausible
+matches *before* any LLM sees the problem.
+
+## What makes it trustworthy
+
+1. **No dead-ends.** Every decision node has exactly three outcomes: proceed, drop-as-noise, or
+   escalate to the human review queue. Nothing is silently invented or dropped.
+2. **Quiet ≠ resolved.** Status is a type-aware state machine (`active · easing · suspended ·
+   dormant · ended · resolved`) driven by `config/lifecycle.yml`. `resolved` needs a *positive*
+   terminal event; any resumption snaps back to `active`. Only the **latest** event may move
+   status, so backfilling an old battle can't reopen a finished war.
+3. **Tiered trust.** Founding a new conflict needs a strictly higher bar than attaching an event
+   (confidence ≥ 0.9 + ≥3 independent sources + cross-alignment, vs ≥ 0.8) — a wrong new conflict
+   is far harder to undo.
+4. **Multilingual, anti-bias sourcing.** `config/sources.yml` tags outlets by alignment. A
+   contested claim only enters if corroborated **across alignments**; disagreements are
+   attributed, not adopted.
+5. **Coherent writes only.** After folding proposals in, `merge.validate()` re-checks the whole
+   dataset (parties ⊆ involvedCountries, ISO dates, severity 1–5, no `ongoing && ended`). On any
+   issue *this run introduced*, it writes nothing and exits non-zero. Pre-existing issues are
+   tolerated, so the gate blocks regressions without demanding perfection first.
+6. **Everything is reversible** — git history is the undo log.
+
+## Running the pipeline
+
+```bash
+cd ai-updater
+python -m pytest                      # 136 offline tests — no API key needed
+
+pip install -r requirements.txt
+cp .env.example .env                  # add your keys
+
+python -m conflict_updater "1990..2003" --region Africa   # scan: fill the past
+python -m conflict_updater week                           # scan: routine update
+#   → read out/review_*.md, then:
+python -m conflict_updater apply out/proposals_*.json --approve 1 3 5
+python -m conflict_updater apply out/proposals_*.json --dry-run   # report only
+
+python -m conflict_updater auto week --limit 12   # hands-off (what the weekly cron runs)
+python -m conflict_updater coverage               # what's been searched, and how it came back
+python -m conflict_updater eval "2024..2026"      # backtest against curated events
+python -m conflict_updater serve                  # local control panel
+```
+
+`scan` writes to `out/`: `proposals_*.json` (machine-readable) and `review_*.md` (the human queue
+— only uncertain or contested items need you).
+
+### Configuration
+
+Key `.env` settings:
+
+| Variable | Notes |
+|---|---|
+| `LLM_PROVIDER` | `openrouter` · `openai` · `google` |
+| `LLM_MODEL` | **Accepts a comma-separated fallback chain**: `primary:free,backup:free` |
+| `SEARCH_BACKEND` | `tavily` · `none` |
+| `AUTO_APPROVE_CONFIDENCE` | default `0.8` — see [Evaluation](#evaluation) before trusting it |
+| `LLM_CACHE` | `off` (default) · `on` — content-addressed response cache |
+
+> **Pin a fallback chain.** Nine consecutive weekly runs once died because a single pinned free
+> model slug was withdrawn by the provider and there was nothing to fall back to. Later entries in
+> the chain are tried only when the earlier one is gone or exhausted — never for a bad prompt,
+> which would just burn a second quota.
+
+### Resilience
+
+- A failure on one candidate is recorded and the scan **continues** — one bad LLM call costs a
+  single event, not the whole run's spent quota.
+- A scan that dies entirely still writes a `failed` row to the coverage ledger before exiting, so
+  a dead week is visible rather than silent.
+
+## Evaluation
+
+The pipeline was well-engineered but **completely unmeasured** for a long time — writing to a
+public dataset on the strength of a confidence threshold nobody had validated. That's what
+`eval` is for.
+
+**The unlock:** `seed.json` already holds ~490 hand-curated, fully-sourced events. That's a
+labelled evaluation set that cost nothing to produce.
+
+```bash
+python -m conflict_updater eval "2024..2026" --limit 20
+```
+
+It removes every event in the window from the base the pipeline reads, scans that window, and
+scores what comes back:
+
+```
+  extraction   precision 0.812  recall 0.640  F1 0.716
+  resolution   accuracy  0.900
+  event kind   accuracy  0.750
+  severity     within ±1 0.850
+
+  Verify calibration (stated vs observed):
+    range        n   stated   observed
+    0.80-0.90   12    0.85     0.583  << overconfident
+```
+
+Two things make or break the honesty of these numbers, and both are handled:
+
+- **Hold-out is mandatory.** If the gold events stay in the base, the Resolver correctly answers
+  "known" and drops them, and the run measures nothing. Conflicts left with no events are removed
+  entirely, so the pipeline doesn't get a free attach target it never earned.
+- **Expectations differ per event.** An event whose conflict survives pruning should *attach*; one
+  whose conflict vanished should found a *new* one. Scoring them identically would punish the
+  pipeline for being right.
+
+**Calibration is the highest-value metric.** The whole auto-approve gate is one inequality
+(`confidence >= AUTO_APPROVE_CONFIDENCE`). If the model's stated 0.8 doesn't correspond to being
+right 80% of the time, that threshold is arbitrary. Free reasoning models are typically
+overconfident. Measure before trusting it; the fix, if needed, is just moving the number.
+
+What this measures well: **resolution and enrichment**. What it measures only loosely:
+**extraction on historical windows** — searching the web today for 1962 returns retrospective
+encyclopaedia coverage, not contemporaneous reporting. Recent windows are the honest test of the
+full weekly path.
+
+Each run writes `out/eval_*.json` stamped with the **prompt version** (a hash of every prompt
+constant) and model, so a change in quality can be attributed to a prompt edit. The `missed` list
+names exactly which curated events the pipeline failed to rediscover — that's where prompt work
+should start.
+
+> Turn `LLM_CACHE=on` (the default for `eval`) so replaying a backtest after a prompt tweak only
+> pays for the calls that actually changed.
+
+## Coverage ledger
+
+Search *samples* — it can never tell you "I found everything." So every scan appends to
+`out/coverage.json`, turning silence into a record:
+
+- **found** — events surfaced.
+- **quiet** — searched a real article pool, nothing extractable (genuinely quiet or already covered).
+- **blind** — search returned **0** results: *unknown*, a source gap — **not** proof nothing happened.
+- **failed** — the scan itself errored. The truest possible blind.
+
+A snapshot is published to `src/data/coverage.json` and shown on the app's Help page, so the site
+is honest about where its coverage is thin.
+
+## Architecture decisions
+
+**LangChain is kept, deliberately thinly.** Its entire surface here is five symbols
+(`ChatOpenAI`, `ChatGoogleGenerativeAI`, `SystemMessage`, `HumanMessage`,
+`with_structured_output`), and the OpenRouter path bypasses its structured output altogether —
+many free models ignore native `response_format` and emit markdown or reasoning prose, so JSON is
+requested in the prompt and parsed here. LangChain earns its place as a provider adapter and
+nothing more. Dropping it for direct SDK calls is defensible cleanup, not a fix.
+
+**LangGraph is *not* used, on purpose.** LangGraph manages state machines with branching, cycles
+and durable checkpoints. This flow is strictly linear with one loop — no conditional routing
+between agents, no agent calling another, no cycle. The two features that would genuinely apply
+are cheaper to get directly: checkpointing is a `try/except` plus the response cache, and
+human-in-the-loop is already a file-based review queue that is inspectable, diffable, and survives
+a restart. Adopting it would add a DSL and subtract readability.
+
+**Every external service sits behind Protocol + factory + Null** (`search`, `geocode`,
+`structured_source`, `llm`, `cache`), which is why 136 tests run fully offline with no API keys.
+
+**The Resolver is *not* skipped when dedup returns no candidates,** even though that would save a
+call per new event. It would make a 0.25-threshold fuzzy heuristic the sole authority on founding
+new conflicts — the most expensive error the pipeline can make.
+
+### Layout
+
+```
+conflict_updater/
+  schema.py           pydantic models (domain + every agent's I/O)
+  prompts.py          one system prompt per agent + prompt_version()
+  agents.py           the five agents
+  dedup.py            deterministic candidate finder (the cheap half of the Resolver)
+  pipeline.py         scan() — discovery, with per-candidate failure isolation
+  merge.py            apply()/validate() — the coherent write-back into seed.json
+  evaluate.py         backtest harness: hold-out, matching, metrics, calibration
+  cache.py            content-addressed LLM response cache (SQLite)
+  llm.py              swappable LLM client + model fallback chain
+  search.py           swappable web search + outlet alignment tagging
+  geocode.py          Nominatim lookup           structured_source.py  UCDP/ACLED anchors
+  lifecycle.py        per-type status profiles   store.py  seed I/O + coverage ledger
+  config.py           env settings               cli.py / __main__.py  entrypoints
+  server.py           local control panel
+config/  lifecycle.yml · sources.yml
+tests/   136 offline tests with fakes
+```
+
+---
+
+# Deploying
+
+A static single-page app — all user data lives in the browser — so it hosts anywhere:
+
+- **GitHub Pages** — what the live site uses; `.github/workflows/deploy.yml` builds and publishes.
+- **Netlify** — connect the repo; `netlify.toml` is already set up.
+- **Vercel** — zero config; auto-detects Vite.
+
+`.github/workflows/pipeline-weekly.yml` runs the updater every Monday 06:00 UTC, commits any
+auto-approved findings plus the coverage snapshot, and fails loudly if the scan errored (after
+publishing the blind-window row).
+
+# Troubleshooting
+
+**`Cannot find native binding` for rollup or oxlint on Windows** — a known npm bug
+([npm/cli#4828](https://github.com/npm/cli/issues/4828)) that sometimes skips optional native
+binaries. Both are listed under `optionalDependencies` and skipped harmlessly on macOS/Linux. The
+oxlint binding is **pinned to oxlint's exact version** — they ship in lockstep and a caret range
+resolves to a binding the wrapper can't load. If it breaks:
+
+```bash
+rm -rf node_modules package-lock.json && npm install
+```
+
+**A weekly run failed** — check `src/data/coverage.json` for a `failed` row; it carries the error.
+The run is also red in the Actions tab.
+
+# Data, sources & disclaimer
+
+This is an **educational tool**, not an authoritative record. Entries are compiled from widely
+available historical summaries — deliberately concise, and for some events the casualty figures
+and even the classifications (what counts as a "genocide") are **genuinely debated by historians**.
+Pre-modern events are mapped onto modern successor states, which is a simplification.
+
+Treat every entry as a prompt for your own further reading. Use **Edit mode** to correct and add
+sources. Nothing here represents an official position.
+
+- Map geometry: [Natural Earth](https://www.naturalearthdata.com/) via
+  [world-atlas](https://github.com/topojson/world-atlas) (public domain).
+- Built with [D3](https://d3js.org/), [React](https://react.dev/) and [Vite](https://vite.dev/).
+
+# License
+
+[MIT](LICENSE) © Yasser Bouhai. The licence covers the **code**; historical facts are not
+copyrightable.
+
+Version history: [CHANGELOG.md](CHANGELOG.md).

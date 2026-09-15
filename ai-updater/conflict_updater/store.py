@@ -79,7 +79,12 @@ def derive_span(event_dates, status, stated_start=None, stated_end=None):
 
 
 def load_base(seed_json: Path) -> list[BaseConflict]:
-    data = json.loads(Path(seed_json).read_text(encoding="utf-8"))
+    return base_from_seed(json.loads(Path(seed_json).read_text(encoding="utf-8")))
+
+
+def base_from_seed(data: dict) -> list[BaseConflict]:
+    """Same as load_base but from an already-loaded dict — lets the backtest build a base from
+    a pruned copy of the seed without writing it to disk first."""
     out: list[BaseConflict] = []
     for c in data.get("conflicts", []):
         out.append(BaseConflict(
@@ -150,6 +155,15 @@ def accept_reviewed(proposals: list[Proposal], indices=None, approve_all: bool =
 # ---- coverage ledger: a persistent record of what we've searched, so "we looked and found
 #      nothing" is distinguishable from "search returned nothing" and from "never scanned" ----
 
+def _prompt_version() -> str:
+    """Imported lazily so store.py stays importable without the prompts module loaded."""
+    try:
+        from .prompts import prompt_version
+        return prompt_version()
+    except Exception:
+        return "unknown"
+
+
 def _coverage_status(stats: dict) -> str:
     if stats.get("items", 0) == 0:
         return "blind"    # search returned 0 results — UNKNOWN, not proven empty (source gap)
@@ -181,9 +195,43 @@ def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0) -> 
         "proposals": s.get("proposals", 0),
         "dropped": s.get("dropped", 0),        # already-known events
         "status": _coverage_status(s),
+        "prompt_version": _prompt_version(),
     }
     if limited:
         entry["limited_to"] = limited          # a capped scan is NOT evidence of completeness
+    if s.get("failed"):
+        entry["failed"] = s["failed"]          # partial scan — some candidates raised
+    ledger = load_coverage(ledger_path)
+    ledger.append(entry)
+    p = Path(ledger_path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return entry
+
+
+def append_coverage_failure(ledger_path: Path, req, error: Exception, limited: int = 0) -> dict:
+    """Record a scan that raised before it could produce a result.
+
+    Without this the ledger is blind to exactly the gap it exists to expose: a crashed scan
+    used to write nothing at all, so nine consecutive dead weeks left the public coverage
+    table showing stale rows as though everything were fine. A failed scan is the truest
+    possible "blind" — we know nothing about the window, and now we say so.
+    """
+    entry = {
+        "scanned_at": date.today().isoformat(),
+        "region": req.region or "(any)",
+        "topic": req.topic,
+        "period": f"{req.period_start}..{req.period_end}",
+        "items": 0,
+        "events_found": 0,
+        "proposals": 0,
+        "dropped": 0,
+        "status": "failed",
+        "error": f"{type(error).__name__}: {error}"[:300],
+        "prompt_version": _prompt_version(),
+    }
+    if limited:
+        entry["limited_to"] = limited
     ledger = load_coverage(ledger_path)
     ledger.append(entry)
     p = Path(ledger_path)

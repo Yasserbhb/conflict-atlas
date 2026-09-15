@@ -119,3 +119,18 @@ VERIFY_SYS = (
     "with a one-line open_question. Never rubber-stamp a contested claim; being a new conflict is not by "
     "itself a reason to route to a human (the caller applies a higher evidence bar for that)."
 )
+
+
+def prompt_version() -> str:
+    """Short hash of every prompt constant in this module.
+
+    Recorded on each coverage entry and digest so a change in output quality can be attributed
+    to a prompt edit. Without it, "results got worse around week 9" is unanswerable — you can
+    see the seed history but not which instructions produced it.
+    """
+    import hashlib
+    h = hashlib.sha256()
+    for name in sorted(k for k in globals() if k.isupper() and isinstance(globals()[k], str)):
+        h.update(name.encode())
+        h.update(globals()[name].encode("utf-8", "replace"))
+    return h.hexdigest()[:12]

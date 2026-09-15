@@ -298,3 +298,55 @@ def test_geocode_overrides_the_llms_guessed_coordinates():
 def test_geocode_miss_falls_back_to_llms_guess():
     res = _scan(_happy(), geocode=FakeGeocode())
     assert res.proposals[0].event.location.lat == 31.5
+
+
+# ---- failure isolation -------------------------------------------------------------------
+# Before this, the per-candidate loop had no try/except: an LLM failure on candidate 7 of 12
+# discarded candidates 1-6 as well, along with the quota already spent on them. That is why
+# nine consecutive weekly runs produced nothing at all instead of partial results.
+
+class _FlakyLLM(FakeLLM):
+    """Raises on the Nth Enrich call, succeeds otherwise."""
+
+    def __init__(self, responses, fail_on_title: str):
+        super().__init__(responses)
+        self.fail_on_title = fail_on_title
+
+    def structured(self, model, system, user):
+        if model.__name__ == "EnrichOutput" and self.fail_on_title in user:
+            raise RuntimeError("provider exploded")
+        return super().structured(model, system, user)
+
+
+def _two_candidates():
+    return _happy({
+        ExtractorOutput: ExtractorOutput(events=[
+            CandidateEvent(date="2024-05-01", title="GOOD strike on Gaza City",
+                           actors=["Israel"], place="Gaza", source_urls=["http://a"]),
+            CandidateEvent(date="2024-05-02", title="BOOM strike on Gaza City",
+                           actors=["Israel"], place="Gaza", source_urls=["http://b"]),
+        ]),
+    })
+
+
+def test_one_failing_candidate_does_not_discard_the_others():
+    llm = _FlakyLLM(_two_candidates(), fail_on_title="BOOM")
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert len(res.proposals) == 1, "the healthy candidate must still produce a proposal"
+    assert "GOOD" in res.proposals[0].event.title
+    assert res.stats["failed"] == 1
+    assert len(res.failed) == 1 and "RuntimeError" in res.failed[0]
+
+
+def test_failed_candidates_are_named_in_the_result():
+    llm = _FlakyLLM(_two_candidates(), fail_on_title="BOOM")
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert "BOOM" in res.failed[0], "the failure must say which candidate it was"
+    assert "provider exploded" in res.failed[0]
+
+
+def test_a_clean_scan_reports_no_failures():
+    res = _scan(_happy())
+    assert res.failed == [] and res.stats["failed"] == 0
