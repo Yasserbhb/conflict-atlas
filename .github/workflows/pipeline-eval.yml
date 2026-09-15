@@ -1,0 +1,123 @@
+name: Evaluate the agents
+
+# Measures whether the pipeline is any GOOD, as opposed to whether it ran — that's the weekly
+# job's business. It holds out every curated event in a window, rescans that window, and scores
+# what comes back against what it removed. seed.json is never touched: the hold-out happens in
+# memory and nothing is written to the atlas.
+#
+# Separate from the weekly run because of quota, not tidiness. A scan costs ~2 + 3N LLM calls,
+# so the weekly job at --limit 12 already spends ~38. Adding an eval to the same run would put
+# a free tier well past a typical ~50/day allowance and fail both. Monthly, on a different day,
+# at a smaller limit keeps each inside its own budget.
+
+on:
+  schedule:
+    - cron: "0 9 15 * *"     # the 15th, 09:00 UTC — the weekly job runs Mondays at 06:00
+  workflow_dispatch:          # ...and a Run button, which is the main way to use this
+    inputs:
+      period:
+        description: 'Window to backtest, e.g. "2024..2026" or "1962..1968"'
+        required: true
+        default: "2024..2026"
+      limit:
+        description: "Max candidates to process (quota guard)"
+        required: false
+        default: "8"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pipeline-eval
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -r ai-updater/requirements.txt
+
+      - name: Backtest
+        working-directory: ai-updater
+        env:
+          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: |
+          python -m conflict_updater eval \
+            "${{ github.event.inputs.period || '2024..2026' }}" \
+            --limit "${{ github.event.inputs.limit || 8 }}"
+
+      - name: Publish the numbers to the site
+        if: always()
+        run: cp ai-updater/out/eval_history.json src/data/eval-history.json || true
+
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "conflict-atlas-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add src/data/eval-history.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "eval: backtest $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Report
+        # The headline numbers on the run's own page, so a backtest is readable without
+        # downloading anything.
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          h = pathlib.Path("ai-updater/out/eval_history.json")
+          rows = json.loads(h.read_text(encoding="utf-8")) if h.exists() else []
+          if not rows:
+              print("## Backtest\n\nNo result — the run failed before scoring.")
+          else:
+              e = rows[-1]
+              pc = lambda v: "n/a" if v is None else f"{v*100:.0f}%"
+              print(f"## Backtest — {e['period']}")
+              print()
+              print(f"**{e.get('gold')} curated events held out**  ·  model `{e.get('model')}`  "
+                    f"·  prompts `{e.get('prompt_version')}`")
+              print()
+              print("| precision | recall | F1 | resolution | kind | severity ±1 |")
+              print("|---:|---:|---:|---:|---:|---:|")
+              print(f"| {pc(e.get('precision'))} | {pc(e.get('recall'))} | {pc(e.get('f1'))} "
+                    f"| {pc(e.get('resolution_accuracy'))} | {pc(e.get('kind_accuracy'))} "
+                    f"| {pc(e.get('severity_within_1'))} |")
+              cal = e.get("calibration") or []
+              if cal:
+                  print()
+                  print("### Is the stated confidence honest?")
+                  print("| stated | events | claimed | actually right | |")
+                  print("|---|---:|---:|---:|---|")
+                  for r in cal:
+                      gap = r["observed"] - r["stated_mid"]
+                      verdict = ("too few to tell" if r["n"] < 5
+                                 else "overconfident" if gap < -0.15
+                                 else "underconfident" if gap > 0.15
+                                 else "well calibrated")
+                      print(f"| {r['range']} | {r['n']} | {r['stated_mid']*100:.0f}% "
+                            f"| {r['observed']*100:.0f}% | {verdict} |")
+          PY
+
+      - name: Archive the full report
+        # Includes which curated events the pipeline FAILED to rediscover — the most useful
+        # part for improving prompts, and too bulky to commit.
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-run-${{ github.run_number }}
+          path: ai-updater/out/
+          retention-days: 90
+          if-no-files-found: ignore

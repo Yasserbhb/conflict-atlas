@@ -263,6 +263,15 @@ constant) and model, so a change in quality can be attributed to a prompt edit. 
 names exactly which curated events the pipeline failed to rediscover — that's where prompt work
 should start.
 
+**Running one without a terminal:** Actions → *Evaluate the agents* → **Run workflow**, pick a
+window, go. It publishes the headline numbers to the site's Pipeline page, prints them on the
+run's own summary, and attaches the full report (including the misses) as an artifact. It also
+runs itself monthly on the 15th.
+
+It is a *separate* workflow from the weekly update for quota reasons, not tidiness: a scan costs
+~`2 + 3N` LLM calls, so the weekly job at `--limit 12` already spends ~38. Running an eval in the
+same job would push a free tier past a typical ~50/day allowance and fail both.
+
 > Turn `LLM_CACHE=on` (the default for `eval`) so replaying a backtest after a prompt tweak only
 > pays for the calls that actually changed.
 
