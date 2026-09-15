@@ -12,12 +12,18 @@ const H = 500;
 // Cross-conflict edge kinds, in render priority (an edge can qualify for more than one kind —
 // the highest-priority one wins the line style, rather than stacking).
 const EDGE_STYLE = {
-  alias:                { stroke: '#d9a441', width: 2.2, dash: null,  opacity: 0.85 },
-  'belligerent-hostile': { stroke: '#ef4444', width: 1.2, dash: null,  opacity: 0.55 },
-  'belligerent-support': { stroke: '#64748b', width: 0.8, dash: '4 3', opacity: 0.4 },
-  'time-overlap':        { stroke: '#334155', width: 0.4, dash: null,  opacity: 0.25 },
-  'same-type':           { stroke: '#334155', width: 0.5, dash: '2 2', opacity: 0.25 },
+  alias:                 { stroke: '#c9a227', width: 2.2, dash: null,  opacity: 0.85 },
+  'belligerent-hostile': { stroke: '#b5503c', width: 1.1, dash: null,  opacity: 0.5 },
+  'belligerent-support': { stroke: '#7e8c93', width: 0.8, dash: '4 3', opacity: 0.35 },
+  'time-overlap':        { stroke: '#3a4a54', width: 0.4, dash: null,  opacity: 0.22 },
+  'same-type':           { stroke: '#3a4a54', width: 0.5, dash: '2 2', opacity: 0.22 },
 };
+
+// Two conflicts sharing a country only counts as a relationship if they were actually
+// contemporaneous. Without this, every conflict the USA or Britain ever touched links to
+// every other one across five centuries, and the graph collapses into a single hairball
+// where nothing is legible. A generation of slack lets a war and its direct sequel connect.
+const CONTEMPORARY_SLACK_YEARS = 25;
 const EDGE_PRIORITY = ['alias', 'belligerent-hostile', 'belligerent-support', 'time-overlap', 'same-type'];
 const primaryKind = (kinds) => EDGE_PRIORITY.find((k) => kinds.has(k)) || 'belligerent-support';
 
@@ -34,8 +40,22 @@ function buildConflictGraph(conflicts, { showTimeOverlap, showSameType }) {
     edgeMap.get(key).kinds.add(kind);
   };
 
-  // 1. Shared belligerent (always on) — two conflicts sharing a country. Hostile if that
-  // country is an active belligerent (either side) in either conflict; otherwise support.
+  // Spans, used to keep "shared belligerent" edges between conflicts that actually coexisted.
+  const span = new Map();
+  for (const c of conflicts) {
+    const s = parseInt(String(c.startDate).slice(0, 4), 10);
+    const e = c.ongoing ? 2026 : parseInt(String(c.endDate || c.startDate).slice(0, 4), 10);
+    if (!isNaN(s)) span.set(c.id, { start: s, end: isNaN(e) ? s : e });
+  }
+  const contemporary = (a, b) => {
+    const x = span.get(a), y = span.get(b);
+    if (!x || !y) return false;
+    return x.start - CONTEMPORARY_SLACK_YEARS <= y.end && y.start - CONTEMPORARY_SLACK_YEARS <= x.end;
+  };
+
+  // 1. Shared belligerent (always on) — two CONTEMPORANEOUS conflicts sharing a country.
+  // Hostile if that country is an active belligerent (either side) in either conflict;
+  // otherwise support.
   const byCountry = new Map();
   for (const c of conflicts) {
     for (const p of c.parties || []) {
@@ -46,6 +66,7 @@ function buildConflictGraph(conflicts, { showTimeOverlap, showSameType }) {
   for (const entries of byCountry.values()) {
     for (let i = 0; i < entries.length; i++) {
       for (let j = i + 1; j < entries.length; j++) {
+        if (!contemporary(entries[i].conflictId, entries[j].conflictId)) continue;
         const hostile = classifyParty(entries[i].role) === 'hostile' || classifyParty(entries[j].role) === 'hostile';
         addEdge(entries[i].conflictId, entries[j].conflictId, hostile ? 'belligerent-hostile' : 'belligerent-support');
       }

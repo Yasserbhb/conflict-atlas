@@ -4,7 +4,31 @@
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  background: #0d1215;
+  background: var(--map-ocean);
+}
+
+/* Water. A full step darker than land, so continents read as land and not as cut-outs. */
+.ocean {
+  fill: var(--map-ocean);
+}
+
+/* The projection's own outline — the edge of the globe, not of the viewport. */
+.sphere {
+  fill: none;
+  stroke: var(--map-graticule);
+  stroke-width: 0.8;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Meridians and parallels at 10°. Faint enough to sit under the data, present enough
+   that the map reads as a chart of a sphere rather than shapes on a dark field. */
+.graticule {
+  fill: none;
+  stroke: var(--map-graticule);
+  stroke-width: 0.5;
+  stroke-dasharray: 1.5 2.5;
+  pointer-events: none;
+  vector-effect: non-scaling-stroke;
 }
 
 .mapSvg {
