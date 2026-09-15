@@ -3,6 +3,7 @@ pipeline's output (proposals + a human-readable review queue)."""
 from __future__ import annotations
 
 import json
+import os
 import re
 from datetime import date
 from pathlib import Path
@@ -155,6 +156,21 @@ def accept_reviewed(proposals: list[Proposal], indices=None, approve_all: bool =
 # ---- coverage ledger: a persistent record of what we've searched, so "we looked and found
 #      nothing" is distinguishable from "search returned nothing" and from "never scanned" ----
 
+def _run_url() -> Optional[str]:
+    """Deep link to the GitHub Actions run that produced this entry, when running in CI.
+
+    This is what turns the ledger from a summary into something you can act on: a failed row in
+    the app links straight to that run's own log output, instead of leaving you to hunt for it
+    in the Actions tab. Absent when run locally, and the UI simply omits the link.
+    """
+    server = os.environ.get("GITHUB_SERVER_URL")
+    repo = os.environ.get("GITHUB_REPOSITORY")
+    run_id = os.environ.get("GITHUB_RUN_ID")
+    if server and repo and run_id:
+        return f"{server}/{repo}/actions/runs/{run_id}"
+    return None
+
+
 def _prompt_version() -> str:
     """Imported lazily so store.py stays importable without the prompts module loaded."""
     try:
@@ -203,6 +219,7 @@ def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0,
         "dropped": s.get("dropped", 0),        # already-known events
         "status": _coverage_status(s),
         "prompt_version": _prompt_version(),
+        "run_url": _run_url(),
     }
     if limited:
         entry["limited_to"] = limited          # a capped scan is NOT evidence of completeness
@@ -240,6 +257,7 @@ def append_coverage_failure(ledger_path: Path, req, error: Exception, limited: i
         "status": "failed",
         "error": f"{type(error).__name__}: {error}"[:300],
         "prompt_version": _prompt_version(),
+        "run_url": _run_url(),
     }
     if limited:
         entry["limited_to"] = limited

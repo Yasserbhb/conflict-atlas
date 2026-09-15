@@ -10,6 +10,8 @@ import styles from './PipelineView.module.css';
 // per-run output (full digests, proposals, eval reports) is uploaded as a GitHub Actions
 // artifact instead, so the repo only ever carries the dataset itself.
 
+const REPO = 'https://github.com/Yasserbhb/conflict-atlas';
+
 const STATUS = {
   found:  { label: 'Found',  Icon: CheckCircle2,  cls: 'ok',      hint: 'events surfaced' },
   quiet:  { label: 'Quiet',  Icon: Moon,          cls: 'quiet',   hint: 'real article pool, nothing extractable' },
@@ -34,6 +36,11 @@ export default function PipelineView() {
           What the agents did, from the coverage ledger the weekly job publishes.
           Full logs live with each run in the Actions tab, not in the repo.
         </p>
+        <a className={styles.actionsLink} href={`${REPO}/actions/workflows/pipeline-weekly.yml`}
+           target="_blank" rel="noreferrer">
+          <ExternalLink size={12} strokeWidth={2} aria-hidden="true" />
+          Open the weekly run history on GitHub
+        </a>
       </header>
 
       {!last ? (
@@ -68,7 +75,7 @@ export default function PipelineView() {
                     <th>Scanned</th><th>Window</th><th>Region</th><th>Status</th>
                     <th className={styles.num}>Articles</th><th className={styles.num}>Found</th>
                     <th className={styles.num}>Applied</th><th className={styles.num}>Held</th>
-                    <th className={styles.num}>Errored</th><th>Prompts</th>
+                    <th className={styles.num}>Errored</th><th>Prompts</th><th>Logs</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -90,6 +97,13 @@ export default function PipelineView() {
                         <td className={`${styles.num} ${styles.mono}`}>{r.held ?? '—'}</td>
                         <td className={`${styles.num} ${styles.mono}`}>{r.failed ?? 0}</td>
                         <td className={`${styles.mono} ${styles.dim}`}>{r.prompt_version || '—'}</td>
+                        <td>
+                          {r.run_url
+                            ? <a className={styles.rowLink} href={r.run_url} target="_blank" rel="noreferrer">
+                                view run <ExternalLink size={10} strokeWidth={2} aria-hidden="true" />
+                              </a>
+                            : <span className={styles.dim}>local</span>}
+                        </td>
                       </tr>
                     );
                   })}
@@ -114,11 +128,33 @@ export default function PipelineView() {
             </p>
           </section>
 
-          <p className={styles.footer}>
-            <ExternalLink size={12} strokeWidth={2} aria-hidden="true" />
-            Per-run digests, proposals and eval reports are attached to each weekly run as an
-            artifact — downloadable for 90 days, never committed.
-          </p>
+          <section>
+            <h2 className={styles.h2}>Where the logs are</h2>
+            <p className={styles.note}>
+              Each row above links to the run that produced it. On a run's page you get three
+              things, none of which are stored in the repo:
+            </p>
+            <ul className={styles.where}>
+              <li>
+                <strong>Summary</strong> — a rendered report of that week: what was found,
+                applied, held, and the digest. This is the page to read.
+              </li>
+              <li>
+                <strong>The job's step output</strong> — expand
+                <em> Scan the week…</em> for the pipeline's actual console output, candidate by
+                candidate. This is your terminal.
+              </li>
+              <li>
+                <strong>Artifacts</strong> (bottom of the page) —
+                <code>pipeline-run-N.zip</code> with the full digests, proposals and eval
+                reports. Downloadable for 90 days.
+              </li>
+            </ul>
+            <p className={styles.note}>
+              A run is only red when the scan itself failed — the blind-window row is committed
+              first either way, so this table never goes quietly out of date.
+            </p>
+          </section>
         </>
       )}
     </div>

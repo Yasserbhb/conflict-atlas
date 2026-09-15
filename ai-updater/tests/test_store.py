@@ -143,3 +143,27 @@ def test_error_text_is_truncated_so_a_huge_traceback_cannot_bloat_the_ledger(tmp
                                     ScanRequest(period_start="a", period_end="b"),
                                     RuntimeError("x" * 5000))
     assert len(entry["error"]) <= 300
+
+
+def test_ledger_row_links_to_its_actions_run(tmp_path, monkeypatch):
+    # A failed row is only actionable if you can reach that run's actual log output from it.
+    from conflict_updater.store import append_coverage_failure
+    from conflict_updater.schema import ScanRequest
+
+    monkeypatch.setenv("GITHUB_SERVER_URL", "https://github.com")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "Yasserbhb/conflict-atlas")
+    monkeypatch.setenv("GITHUB_RUN_ID", "42")
+    entry = append_coverage_failure(tmp_path / "c.json",
+                                    ScanRequest(period_start="a", period_end="b"), OSError("x"))
+    assert entry["run_url"] == "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42"
+
+
+def test_run_url_is_absent_when_not_running_in_ci(tmp_path, monkeypatch):
+    from conflict_updater.store import append_coverage_failure
+    from conflict_updater.schema import ScanRequest
+
+    for k in ("GITHUB_SERVER_URL", "GITHUB_REPOSITORY", "GITHUB_RUN_ID"):
+        monkeypatch.delenv(k, raising=False)
+    entry = append_coverage_failure(tmp_path / "c.json",
+                                    ScanRequest(period_start="a", period_end="b"), OSError("x"))
+    assert entry["run_url"] is None, "a local run has no Actions URL to point at"
