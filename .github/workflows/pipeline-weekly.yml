@@ -69,6 +69,55 @@ jobs:
           git diff --cached --quiet || git commit -m "weekly: auto-update $(date -u +%Y-%m-%d)"
           git push
 
+      - name: Weekly report
+        # Renders on the run's own page in the Actions tab. This is the "where do I read what
+        # happened last week" answer that needs no commit and no server: GitHub stores it with
+        # the run, and nothing lands in the repo.
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          led = pathlib.Path("ai-updater/out/coverage.json")
+          rows = json.loads(led.read_text(encoding="utf-8")) if led.exists() else []
+          if not rows:
+              print("## Weekly conflict update\n\nNo ledger entry was written — the run failed before scanning.")
+          else:
+              e = rows[-1]
+              ok = e.get("status") != "failed"
+              print(f"## Weekly conflict update — {'✅' if ok else '❌'} {e.get('status')}")
+              print()
+              print(f"**Window** `{e.get('period')}`  ·  **prompts** `{e.get('prompt_version')}`")
+              print()
+              if not ok:
+                  print(f"> {e.get('error')}")
+              else:
+                  print("| articles | events found | already known | applied | held for review | errored |")
+                  print("|---:|---:|---:|---:|---:|---:|")
+                  print(f"| {e.get('items',0)} | {e.get('events_found',0)} | {e.get('dropped',0)} "
+                        f"| {e.get('applied',0)} | {e.get('held',0)} | {e.get('failed',0)} |")
+              print()
+              print(f"_{len(rows)} scans in the ledger._")
+          # the human-readable digest, if this run produced one
+          logs = sorted(pathlib.Path("ai-updater/log").glob("*.md")) if pathlib.Path("ai-updater/log").exists() else []
+          if logs:
+              print("\n<details><summary>Latest digest</summary>\n")
+              print(logs[-1].read_text(encoding="utf-8")[:6000])
+              print("\n</details>")
+          PY
+
+      - name: Archive run logs
+        # Artifacts persist with the run and are downloadable, but are NEVER committed. This is
+        # where the bulky per-run output lives so the repo only ever carries the dataset itself.
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-run-${{ github.run_number }}
+          path: |
+            ai-updater/out/
+            ai-updater/log/
+          retention-days: 90
+          if-no-files-found: ignore
+
       - name: Surface failure
         # Turns the run red so the notification fires, but only after the blind window has
         # been committed and published.

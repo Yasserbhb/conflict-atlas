@@ -182,8 +182,15 @@ def load_coverage(ledger_path: Path) -> list[dict]:
         return []
 
 
-def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0) -> dict:
-    """Record one scan attempt in the ledger. Returns the entry."""
+def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0,
+                    applied: int | None = None, held: int | None = None) -> dict:
+    """Record one scan attempt in the ledger. Returns the entry.
+
+    `applied`/`held` are the outcome of the auto-apply step and are only known by the caller,
+    so they are passed in rather than read off the result. Recording them here keeps the
+    ledger a complete run log — one file that answers "did it run, what did it find, and what
+    actually landed" — instead of needing a second history file alongside it.
+    """
     s = result.stats
     entry = {
         "scanned_at": date.today().isoformat(),
@@ -201,6 +208,10 @@ def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0) -> 
         entry["limited_to"] = limited          # a capped scan is NOT evidence of completeness
     if s.get("failed"):
         entry["failed"] = s["failed"]          # partial scan — some candidates raised
+    if applied is not None:
+        entry["applied"] = applied             # auto-approved and written to seed.json
+    if held is not None:
+        entry["held"] = held                   # routed to human review, still waiting
     ledger = load_coverage(ledger_path)
     ledger.append(entry)
     p = Path(ledger_path)

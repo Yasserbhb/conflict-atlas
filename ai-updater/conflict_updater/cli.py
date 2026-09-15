@@ -104,8 +104,6 @@ def _cmd_auto(args) -> int:
         print(f"scan failed: {type(e).__name__}: {e}")
         print("logged as a blind window in the coverage ledger; seed.json untouched")
         return 1
-    append_coverage(_coverage_path(settings), result, limited=settings.max_candidates)
-
     # apply ONLY the auto-approved (needs_human=False, non-provisional) — the strict gate already
     # filtered these; everything uncertain is logged and held, never auto-added.
     seed = load_seed_dict(settings.seed_json)
@@ -119,6 +117,9 @@ def _cmd_auto(args) -> int:
 
     digest = write_digest(settings.log_dir, result, applied, ok)
     held = sum(1 for p in result.proposals if p.needs_human)
+    # Logged after the apply so the ledger records what actually landed, not just what was found.
+    append_coverage(_coverage_path(settings), result, limited=settings.max_candidates,
+                    applied=len(applied) if ok else 0, held=held)
     print(f"auto {start}..{end}: added {len(applied)}, held {held}, already-known {len(result.dropped)}")
     print(f"digest → {digest}")
     if not ok:

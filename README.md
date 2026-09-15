@@ -16,12 +16,12 @@ Two halves, documented together here:
 ## Contents
 
 - [The app](#the-app)
-  - [Features](#features) · [Quick start](#quick-start) · [Tech stack](#tech-stack) · [Data model](#data-model)
+  - [Features](#features) · [Quick start](#quick-start) · [Maintainer mode](#maintainer-mode) · [Tech stack](#tech-stack) · [Data model](#data-model)
 - [The AI updater](#the-ai-updater)
   - [What it is](#what-it-is) · [The agent team](#the-agent-team) · [What makes it trustworthy](#what-makes-it-trustworthy)
   - [Running it](#running-the-pipeline) · [Evaluation](#evaluation) · [Coverage ledger](#coverage-ledger)
   - [Architecture decisions](#architecture-decisions)
-- [Deploying](#deploying) · [Troubleshooting](#troubleshooting) · [Disclaimer](#data-sources--disclaimer)
+- [Deploying & operations](#deploying--operations) · [Troubleshooting](#troubleshooting) · [Disclaimer](#data-sources--disclaimer)
 
 ---
 
@@ -75,6 +75,24 @@ npm run lint      # oxlint
 
 > **Your data lives in your browser** (IndexedDB), per-browser and per-machine. Use **⬇ export**
 > in the top bar to save a JSON backup.
+
+## Maintainer mode
+
+Visitors see a site to **read**. Edit mode and the Pipeline view are hidden from them.
+
+| Where | State |
+|---|---|
+| `npm run dev` | Always on — this is where data is authored, so the toggle is never in the way |
+| Deployed site | Off. `?maintainer=1` turns it on and remembers it in that browser; `?maintainer=0` turns it off |
+
+**This is a clarity boundary, not a security one, and the distinction matters.** Every edit this
+app makes lands in the viewer's own IndexedDB and never leaves their browser — there are no
+network writes anywhere in `src/db/`. A visitor reaching Edit could not alter the published
+dataset or anyone else's copy. What it *could* do is imply "contribute here" when nothing they
+type will ever reach the atlas. Hiding it makes the site honest about what it is.
+
+Because the site is static and the repo is public, **nothing secret may ever be placed behind
+this flag.** Anything genuinely requiring protection needs a server, and there isn't one.
 
 ## Tech stack
 
@@ -326,7 +344,7 @@ tests/   136 offline tests with fakes
 
 ---
 
-# Deploying
+# Deploying & operations
 
 A static single-page app — all user data lives in the browser — so it hosts anywhere:
 
@@ -334,9 +352,39 @@ A static single-page app — all user data lives in the browser — so it hosts 
 - **Netlify** — connect the repo; `netlify.toml` is already set up.
 - **Vercel** — zero config; auto-detects Vite.
 
-`.github/workflows/pipeline-weekly.yml` runs the updater every Monday 06:00 UTC, commits any
-auto-approved findings plus the coverage snapshot, and fails loudly if the scan errored (after
-publishing the blind-window row).
+**Actions is independent of Pages.** The weekly pipeline runs on a cron and commits to the repo
+regardless of where the site is hosted, so changing host costs exactly one workflow file.
+
+## Where the weekly run's output lives
+
+The pipeline produces three kinds of output, and they deliberately go to three different places:
+
+| Output | Destination | Why |
+|---|---|---|
+| `seed.json`, `coverage.json` | **Committed to the repo** | The site bundles these at build time, so they have to be in git |
+| Full digests, proposals, eval reports | **Actions artifact** (90 days) | Persistent and downloadable, but never pushed — the repo stays the dataset, not a log store |
+| A rendered weekly report | **Actions job summary** | Read it on the run's own page; nothing is stored in git at all |
+
+The **Pipeline view** (maintainer-only, in the app) renders the committed coverage ledger as an
+operations log: last run, what was applied, what's held for review, which windows came back
+blind, and which failed.
+
+### Why the dataset is in git rather than a database
+
+Committing data feels odd, but for this project it's the right call. The dataset is ~550KB,
+append-mostly, and its entire value is **provenance** — git gives versioned, attributable,
+revertible history of every change for free, which is exactly the property a conflict atlas
+needs. A database would buy querying, which nothing here needs (the app loads the whole dataset
+into IndexedDB anyway), in exchange for infrastructure to run, secure and back up.
+
+A container would be a step backwards for the persistence worry specifically: container
+filesystems are ephemeral, so anything written inside one is lost on restart unless you attach a
+volume or an external DB. Free container tiers also sleep. Git already gives durable, versioned
+storage with none of that.
+
+**When to revisit:** the moment you want shared server-side state, real authentication, or an
+approve-from-the-browser review flow. That needs a backend, and the natural step is Cloudflare
+Pages + Workers or Netlify Functions — not a container.
 
 # Troubleshooting
 
