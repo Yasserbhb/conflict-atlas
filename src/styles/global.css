@@ -16,6 +16,20 @@
   --text-secondary: #9fadab;
   --text-muted: #6f7e7c;
 
+  /* Type roles. Inter carries the UI; Newsreader gives the atlas its voice at display
+     sizes; Plex Mono sets anything that should line up in a column (years, counts). */
+  --font-ui: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Newsreader Variable', 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Cartography. Ocean and unaffected land were near-identical before, so the map read
+     as shapes floating in undifferentiated dark rather than as a chart of the world. */
+  --map-ocean: #080c0e;
+  --map-land: #1b2328;
+  --map-land-muted: #141b1f;
+  --map-graticule: rgba(126, 152, 163, 0.10);
+  --map-coast: #0a0f11;
+
   /* muted teal accent */
   --accent: #56988a;
   --accent-light: #82b8ab;
@@ -54,7 +68,7 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-ui);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   background: var(--bg-deep);
   color: var(--text-primary);

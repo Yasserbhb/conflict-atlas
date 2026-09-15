@@ -14,6 +14,11 @@ import styles from './WorldMap.module.css';
 const WIDTH = 960;
 const HEIGHT = 500;
 
+// Land that has no conflict in the current year. Kept a clear step above the ocean so the
+// continents read as land rather than as holes — see --map-land / --map-ocean in global.css.
+const LAND_QUIET = '#1b2328';
+const LAND_BACKDROP = '#141b1f';   // non-party countries while a single conflict is focused
+
 // Parsed map is expensive (756KB TopoJSON -> ~180 path strings). Cache it at
 // module level so switching away and back to the Map view is instant.
 let MAP_CACHE = null;
@@ -55,6 +60,11 @@ export default function WorldMap() {
     []
   );
   const pathGen = useMemo(() => d3.geoPath().projection(projection), [projection]);
+
+  // Graticule + sphere outline: the difference between "shapes on black" and a projection
+  // of a globe. Both are static geometry, so generate the path strings once.
+  const graticulePath = useMemo(() => pathGen(d3.geoGraticule10()), [pathGen]);
+  const spherePath = useMemo(() => pathGen({ type: 'Sphere' }), [pathGen]);
 
   const { focusedConflictId } = state;
   // Apply the map filter bar (type / severity / ongoing) so the whole map
@@ -167,9 +177,11 @@ export default function WorldMap() {
         className={styles.mapSvg}
         preserveAspectRatio="xMidYMid meet"
       >
-        <rect width={WIDTH} height={HEIGHT} fill="#0d1215" />
+        <rect width={WIDTH} height={HEIGHT} className={styles.ocean} />
         {/* Everything that should zoom/pan together */}
         <g transform={gTransform}>
+          <path d={spherePath} className={styles.sphere} />
+          <path d={graticulePath} className={styles.graticule} />
           {countryPaths.map(({ numId, alpha3, d }, i) => {
             const severity = severityMap[alpha3] || 0;
             const isSelected = !!alpha3 && alpha3 === selectedCountryId;
@@ -177,7 +189,7 @@ export default function WorldMap() {
             const hasSev = severity > 0;
             const roleFill = roleFillMap[alpha3];
 
-            const sevFill = hasSev ? severityColor(severity) : '#1f272c';
+            const sevFill = hasSev ? severityColor(severity) : LAND_QUIET;
             let fill, stroke, strokeWidth, opacity = 1;
 
             if (focusedConflict) {
@@ -185,11 +197,11 @@ export default function WorldMap() {
               // the map stays visible but neutral (flat land, no severity colors).
               if (roleFill) {
                 fill = roleFill;
-                stroke = isSelected ? '#ffffff' : '#0d1215';
+                stroke = isSelected ? '#ffffff' : 'var(--map-coast)';
                 strokeWidth = isSelected ? 1.6 : 0.6;
               } else {
-                fill = '#171e22';
-                stroke = '#0d1215';
+                fill = LAND_BACKDROP;
+                stroke = 'var(--map-coast)';
                 strokeWidth = 0.4;
               }
             } else if (selectedCountryId) {
@@ -198,12 +210,12 @@ export default function WorldMap() {
               fill = sevFill;
               const involved = isSelected || isRelated;
               opacity = involved ? 1 : 0.16;
-              stroke = isSelected ? '#38bdf8' : '#0d1215';
+              stroke = isSelected ? '#7fd1c4' : 'var(--map-coast)';
               strokeWidth = isSelected ? 1.6 : 0.4;
             } else {
               // Overview
               fill = sevFill;
-              stroke = '#0d1215';
+              stroke = 'var(--map-coast)';
               strokeWidth = 0.4;
             }
 

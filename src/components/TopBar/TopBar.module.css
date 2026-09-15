@@ -30,11 +30,14 @@
   display: block;
 }
 
+/* The wordmark is where the atlas gets its voice. A serif at a moderate weight reads as a
+   reference work; the 800-weight sans it replaced read as a product dashboard. */
 .logoText {
-  font-size: 14px;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
   color: #f1f5f9;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   white-space: nowrap;
 }
 
