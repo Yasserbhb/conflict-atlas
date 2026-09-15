@@ -1,4 +1,4 @@
-"""Per-type lifecycle profiles (config/lifecycle.yml, ARCHITECTURE.md §6). A static config
+"""Per-type lifecycle profiles (config/lifecycle.yml, README: 'What makes it trustworthy'). A static config
 file, not a swappable backend — no Protocol/factory, just a loader."""
 from __future__ import annotations
 

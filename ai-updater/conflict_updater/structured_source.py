@@ -1,4 +1,4 @@
-"""Structured conflict-data anchors (ARCHITECTURE.md §8) — a verified dataset row fed straight
+"""Structured conflict-data anchors (README: 'The AI updater') — a verified dataset row fed straight
 in as a CandidateEvent(source_kind="structured"), skipping the Extractor LLM call entirely (the
 row is already structured: date/actors/place/fatalities, nothing to extract from raw text).
 

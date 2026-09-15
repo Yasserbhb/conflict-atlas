@@ -41,15 +41,38 @@ jobs:
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         # ~3 LLM calls per candidate now (batched), so 12 candidates ≈ 38 calls — inside the
         # OpenRouter free ~50/day. Raise toward 15 only if you have paid/higher quota.
+        #
+        # LLM_MODEL accepts a comma-separated fallback chain ("primary:free,backup:free").
+        # A single pinned slug is how nine consecutive runs died: OpenRouter withdrew the
+        # ":free" variant and there was nothing to fall back to.
+        #
+        # `auto` now returns 1 (rather than raising) when the scan itself fails, having first
+        # written a "failed" row to the coverage ledger. continue-on-error lets the commit step
+        # below publish that row — a dead week has to be visible on the site, not just in an
+        # inbox nobody reads. The "Surface failure" step still fails the run afterwards.
+        continue-on-error: true
+        id: scan
         run: python -m conflict_updater auto week --limit 12
 
       - name: Snapshot coverage for the public site
-        run: cp ai-updater/out/coverage.json src/data/coverage.json
+        # Runs even after a failed scan: the ledger entry recording the blind window is
+        # exactly what needs publishing.
+        if: always()
+        run: cp ai-updater/out/coverage.json src/data/coverage.json || true
 
       - name: Commit the update + findings log
+        if: always()
         run: |
           git config user.name "conflict-atlas-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add src/data/seed.json src/data/coverage.json ai-updater/log/
+          git add src/data/seed.json src/data/coverage.json ai-updater/log/ 2>/dev/null || true
           git diff --cached --quiet || git commit -m "weekly: auto-update $(date -u +%Y-%m-%d)"
           git push
+
+      - name: Surface failure
+        # Turns the run red so the notification fires, but only after the blind window has
+        # been committed and published.
+        if: steps.scan.outcome == 'failure'
+        run: |
+          echo "::error::Weekly scan failed — a 'failed' row was written to the coverage ledger."
+          exit 1

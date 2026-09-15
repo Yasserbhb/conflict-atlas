@@ -1,4 +1,4 @@
-# Per-type lifecycle profiles (ARCHITECTURE.md §6). Folded into the Enrich agent's context so
+# Per-type lifecycle profiles (README: 'What makes it trustworthy'). Folded into the Enrich agent's context so
 # status-transition wording is type-aware instead of one generic paragraph for every conflict.
 #
 # default_terminal: the phase sustained quiet settles into (never "resolved" — quiet isn't proof).

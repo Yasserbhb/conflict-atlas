@@ -186,4 +186,7 @@ class ScanResult(BaseModel):
     request: ScanRequest
     proposals: list[Proposal] = Field(default_factory=list)
     dropped: list[str] = Field(default_factory=list)   # reasons things were dropped
+    # Candidates whose processing raised. Recorded rather than fatal, so one bad LLM call
+    # costs a single event instead of the whole scan.
+    failed: list[str] = Field(default_factory=list)
     stats: dict = Field(default_factory=dict)

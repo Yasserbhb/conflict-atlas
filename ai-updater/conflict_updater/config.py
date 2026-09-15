@@ -49,6 +49,10 @@ class Settings:
     sources_yml: Path = field(
         default_factory=lambda: Path(_get("SOURCES_YML", str(_HERE / "config" / "sources.yml"))))
     structured_source_backend: str = _f("STRUCTURED_SOURCE_BACKEND", "none")  # none | ucdp
+    # Cache LLM responses by prompt hash. Off for weekly runs (every week is new content, so
+    # it would only ever miss); on for evaluation and backtests, where the same prompts are
+    # replayed constantly and re-paying for them makes measurement too expensive to repeat.
+    llm_cache: str = _f("LLM_CACHE", "off")  # off | on
 
 
 def load_settings() -> Settings:

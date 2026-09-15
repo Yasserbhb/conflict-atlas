@@ -127,7 +127,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
     # 3. EXTRACTOR — items → discrete candidate events, most consequential first so a
     #    --limit cap keeps the important events (a revolt), not the footnotes (a decree).
     cands = agents.extractor(llm, items, req).events
-    # Structured anchors (UCDP/ACLED, ARCHITECTURE.md §8) — already structured rows, nothing
+    # Structured anchors (UCDP/ACLED, README: 'The AI updater') — already structured rows, nothing
     # for the Extractor to extract; feed them straight into the same candidate pool.
     cands += structured.fetch(req.period_start, req.period_end, req.region)
     cands.sort(key=lambda c: c.significance, reverse=True)
@@ -136,9 +136,13 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
     proposals: list[Proposal] = []
     dropped: list[str] = []
+    failed: list[str] = []
 
-    for i, cand in enumerate(cands, 1):
-        print(f"  [{i}/{len(cands)}] {cand.date} {cand.title[:60]}")
+    # One candidate, start to finish. A nested function so it closes over the scan's locals
+    # (llm, items, settings, geocode, profiles, by_id, pending_bases) without threading a
+    # dozen arguments through; it mutates pending_bases/dropped in place, which closures do
+    # fine since nothing is rebound.
+    def _process(cand) -> Proposal | None:
         # 4. RESOLVER — dedup lookup (code) then decide (LLM). Pending new conflicts from
         # earlier in this same scan are included so a follow-up event attaches to them.
         pool = base + list(pending_bases.values())
@@ -147,7 +151,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
         if res.decision == "known":
             dropped.append(f"already known: {cand.date} {cand.title}")
-            continue
+            return None
 
         is_new = res.decision == "new" or (
             res.decision == "attach"
@@ -259,7 +263,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             # visible (as a BaseConflict) to later candidates in this same scan
             pending_bases[new_conflict.id] = pending_to_base(new_conflict)
 
-        proposals.append(Proposal(
+        return Proposal(
             kind="new_conflict" if is_new else "attach",
             target_conflict_id=target_id,
             event=event,
@@ -270,7 +274,21 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             verify=ver,
             needs_human=needs_human,
             provisional=provisional,
-        ))
+        )
+
+    for i, cand in enumerate(cands, 1):
+        print(f"  [{i}/{len(cands)}] {cand.date} {cand.title[:60]}")
+        # An LLM/network failure on one candidate must not discard the ones already done —
+        # that is how a single mid-scan 429 used to throw away a whole run's spent quota.
+        try:
+            proposal = _process(cand)
+        except Exception as e:  # noqa: BLE001 — provider-agnostic; record and keep going
+            failed.append(f"{cand.date} {cand.title}: {type(e).__name__}: {e}")
+            print(f"      ! failed: {type(e).__name__}: {e}")
+            continue
+        if proposal is not None:
+            proposals.append(proposal)
+
 
     stats = {
         "queries": len(plan.queries),
@@ -280,8 +298,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         "auto_approved": sum(1 for p in proposals if not p.needs_human),
         "needs_human": sum(1 for p in proposals if p.needs_human),
         "dropped": len(dropped),
+        "failed": len(failed),
     }
-    return ScanResult(request=req, proposals=proposals, dropped=dropped, stats=stats)
+    return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 
 
 def run(period_start: str, period_end: str, region=None, topic=None) -> ScanResult:
