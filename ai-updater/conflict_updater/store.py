@@ -269,6 +269,43 @@ def append_coverage_failure(ledger_path: Path, req, error: Exception, limited: i
     return entry
 
 
+def append_eval(history_path: Path, period: str, metrics: dict, model: str,
+                prompt_version: str) -> dict:
+    """Append one backtest to the eval history.
+
+    Deliberately a few hundred bytes per run — headline numbers only, no per-event detail —
+    because this file is committed and bundled into the app so quality can be shown on the
+    site. The full report (including which curated events were missed) stays in out/ and is
+    archived as a run artifact.
+    """
+    entry = {
+        "ran_at": date.today().isoformat(),
+        "period": period,
+        "model": model,
+        "prompt_version": prompt_version,
+        "run_url": _run_url(),
+        "gold": metrics.get("gold"),
+        "precision": metrics.get("precision"),
+        "recall": metrics.get("recall"),
+        "f1": metrics.get("f1"),
+        "resolution_accuracy": metrics.get("resolution_accuracy"),
+        "kind_accuracy": metrics.get("kind_accuracy"),
+        "severity_within_1": metrics.get("severity_within_1"),
+        "calibration": metrics.get("calibration", []),
+    }
+    p = Path(history_path)
+    try:
+        history = json.loads(p.read_text(encoding="utf-8"))
+        if not isinstance(history, list):
+            history = []
+    except Exception:
+        history = []
+    history.append(entry)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return entry
+
+
 def render_coverage(ledger: list[dict]) -> str:
     if not ledger:
         return "No scans logged yet — nothing has been searched.\n"
@@ -314,6 +351,53 @@ def write_digest(log_dir: Path, result: ScanResult, applied: list, ok: bool) -> 
     log_dir.mkdir(parents=True, exist_ok=True)
     path = log_dir / f"{r.period_start}_{r.period_end}.md"
     path.write_text("\n".join(L) + "\n", encoding="utf-8")
+    return path
+
+
+def write_run_summary(out_dir: Path, result: ScanResult, applied: list, ok: bool) -> Path:
+    """The last run's findings as structured JSON, for the app to render natively.
+
+    The markdown digest next to this is the archival record; this is the same content shaped so
+    the Pipeline page can show what the agents did WITHOUT sending you to GitHub. Only the most
+    recent run is kept — history stays in log/ and in each run's artifact — so the bundle grows
+    by a fixed few KB rather than one digest per week forever.
+    """
+    r = result.request
+    human = [p for p in result.proposals if p.needs_human]
+    summary = {
+        "period": f"{r.period_start}..{r.period_end}",
+        "region": r.region,
+        "ran_at": date.today().isoformat(),
+        "ok": ok,
+        "run_url": _run_url(),
+        "stats": result.stats,
+        "added": [
+            {
+                "date": p.event.date,
+                "title": p.event.title,
+                "conflict": p.target_conflict_id or "new conflict",
+                "kind": p.event.kind,
+                "severity": p.event.severity,
+                "sources": [s.url for s in p.event.sources][:4],
+            }
+            for p in applied
+        ],
+        "held": [
+            {
+                "date": p.event.date,
+                "title": p.event.title,
+                # why it was held — the single most useful line in the whole digest
+                "question": (p.verify.open_question if p.verify else None),
+                "confidence": (p.verify.confidence if p.verify else None),
+            }
+            for p in human
+        ],
+        "already_known": list(result.dropped)[:20],
+        "errored": list(result.failed)[:20],
+    }
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "latest_run.json"
+    path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
 
 

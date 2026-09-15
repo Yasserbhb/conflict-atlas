@@ -167,3 +167,68 @@ def test_run_url_is_absent_when_not_running_in_ci(tmp_path, monkeypatch):
     entry = append_coverage_failure(tmp_path / "c.json",
                                     ScanRequest(period_start="a", period_end="b"), OSError("x"))
     assert entry["run_url"] is None, "a local run has no Actions URL to point at"
+
+
+# ---- the run summary the app renders ------------------------------------------------------
+# The Pipeline page shows last week's findings in-app rather than sending you to GitHub, so
+# this JSON is what a reader actually sees.
+
+def _summary_result():
+    from conflict_updater.schema import (
+        ScanResult, ScanRequest, Proposal, Event, Source, VerifyOutput,
+    )
+    held = Proposal(
+        kind="attach", target_conflict_id="seed_gaza",
+        event=Event(date="2026-09-09", title="Disputed strike reported"),
+        verify=VerifyOutput(verdict="uncertain", confidence=0.4, independent_sources=1,
+                            cross_alignment=False, decision="needs_human",
+                            open_question="Is there independent reporting of this strike?"),
+        needs_human=True,
+    )
+    applied = Proposal(
+        kind="attach", target_conflict_id="seed_gaza",
+        event=Event(date="2026-09-10", title="Corroborated strike", kind="attack", severity=4,
+                    sources=[Source(url="http://a"), Source(url="http://b")]),
+        verify=VerifyOutput(verdict="pass", confidence=0.95, independent_sources=3,
+                            cross_alignment=True, decision="auto_approve"),
+        needs_human=False,
+    )
+    res = ScanResult(
+        request=ScanRequest(period_start="2026-09-07", period_end="2026-09-14"),
+        proposals=[applied, held], dropped=["already known: x"], stats={"items": 40},
+    )
+    return res, [applied]
+
+
+def test_run_summary_separates_what_landed_from_what_was_held(tmp_path):
+    import json
+    from conflict_updater.store import write_run_summary
+    res, applied = _summary_result()
+    path = write_run_summary(tmp_path, res, applied, ok=True)
+    s = json.loads(path.read_text(encoding="utf-8"))
+
+    assert path.name == "latest_run.json", "the app imports a fixed filename"
+    assert s["period"] == "2026-09-07..2026-09-14"
+    assert [e["title"] for e in s["added"]] == ["Corroborated strike"]
+    assert [e["title"] for e in s["held"]] == ["Disputed strike reported"]
+
+
+def test_held_events_carry_the_question_that_stopped_them(tmp_path):
+    import json
+    from conflict_updater.store import write_run_summary
+    res, applied = _summary_result()
+    s = json.loads(write_run_summary(tmp_path, res, applied, ok=True).read_text(encoding="utf-8"))
+    # the single most useful line on the page: why it wasn't published
+    assert s["held"][0]["question"] == "Is there independent reporting of this strike?"
+    assert s["held"][0]["confidence"] == 0.4
+
+
+def test_run_summary_is_overwritten_not_appended(tmp_path):
+    import json
+    from conflict_updater.store import write_run_summary
+    res, applied = _summary_result()
+    write_run_summary(tmp_path, res, applied, ok=True)
+    path = write_run_summary(tmp_path, res, [], ok=True)      # a later run with nothing applied
+    s = json.loads(path.read_text(encoding="utf-8"))
+    assert isinstance(s, dict), "only the latest run is kept, so the bundle stays a fixed size"
+    assert s["added"] == []

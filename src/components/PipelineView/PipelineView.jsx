@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
-import { Activity, AlertTriangle, CheckCircle2, EyeOff, Moon, ExternalLink } from 'lucide-react';
+import { Activity, AlertTriangle, CheckCircle2, EyeOff, Moon, ExternalLink, Plus, Pause } from 'lucide-react';
 import coverage from '../../data/coverage.json';
+import evalHistory from '../../data/eval-history.json';
+import latestRun from '../../data/latest-run.json';
 import styles from './PipelineView.module.css';
 
 // The agents' operations log, from the coverage ledger the weekly job publishes. Shown to
@@ -21,6 +23,8 @@ const STATUS = {
 };
 
 const meta = (s) => STATUS[s] || { label: s || 'unknown', Icon: Activity, cls: 'quiet', hint: '' };
+
+const pct = (v) => (v == null ? '—' : `${Math.round(v * 100)}%`);
 
 export default function PipelineView() {
   const rows = useMemo(() => [...coverage].reverse(), []);   // newest first
@@ -46,7 +50,7 @@ export default function PipelineView() {
 
       {!last ? (
         <div className={styles.empty}>
-          No scans logged yet. Run <code>python -m conflict_updater auto week</code> to record one.
+          Nothing logged yet — the agents haven't completed a run.
         </div>
       ) : (
         <>
@@ -66,6 +70,8 @@ export default function PipelineView() {
               </div>
             </div>
           )}
+
+          <LastRun run={latestRun} />
 
           <section>
             <h2 className={styles.h2}>Run history</h2>
@@ -116,17 +122,53 @@ export default function PipelineView() {
           <section>
             <h2 className={styles.h2}>Quality</h2>
             <p className={styles.note}>
-              Backtest the pipeline against the atlas's own curated events — no labelling needed,
-              since every seeded event is already sourced and dated.
+              Running is not the same as being right. The pipeline is backtested against the
+              atlas's own curated events: hold out every event in a window, rescan that window,
+              and score what comes back. No labelling is needed — every seeded event is already
+              sourced and dated.
             </p>
-            <pre className={styles.cmd}>python -m conflict_updater eval "2024..2026" --limit 20</pre>
-            <p className={styles.note}>
-              It reports extraction precision/recall, resolution accuracy, and <strong>Verify
-              calibration</strong> — whether a stated confidence of 0.8 really means right 80% of
-              the time. The auto-approve gate depends entirely on that number, so it is the one
-              measurement worth running before trusting anything else here. Reports are written to{' '}
-              <code>ai-updater/out/eval_*.json</code> and archived with each run.
-            </p>
+
+            {evalHistory.length === 0 ? (
+              <div className={styles.empty}>
+                <strong>Not measured yet.</strong> No backtest has been published, so nothing on
+                this page should be read as evidence that the agents are accurate — only that
+                they ran.
+              </div>
+            ) : (
+              <>
+                <div className={styles.tableWrap}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th>Ran</th><th>Window</th>
+                        <th className={styles.num}>Events</th>
+                        <th className={styles.num}>Precision</th><th className={styles.num}>Recall</th>
+                        <th className={styles.num}>F1</th><th className={styles.num}>Resolution</th>
+                        <th className={styles.num}>Kind</th><th className={styles.num}>Severity ±1</th>
+                        <th>Prompts</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...evalHistory].reverse().map((e, i) => (
+                        <tr key={i}>
+                          <td className={styles.mono}>{e.ran_at}</td>
+                          <td className={styles.mono}>{e.period}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{e.gold ?? '—'}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{pct(e.precision)}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{pct(e.recall)}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{pct(e.f1)}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{pct(e.resolution_accuracy)}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{pct(e.kind_accuracy)}</td>
+                          <td className={`${styles.num} ${styles.mono}`}>{pct(e.severity_within_1)}</td>
+                          <td className={`${styles.mono} ${styles.dim}`}>{e.prompt_version || '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <Calibration rows={evalHistory[evalHistory.length - 1].calibration || []} />
+              </>
+            )}
           </section>
 
           <section>
@@ -159,6 +201,104 @@ export default function PipelineView() {
         </>
       )}
     </div>
+  );
+}
+
+// Whether a stated confidence actually means what it says. The auto-approve gate is a single
+// threshold on this number, so if the model claims 0.85 and is right half the time, everything
+// that gets published rests on a number that means nothing.
+// Last week's actual findings, rendered here rather than behind a link. The same content the
+// markdown digest carries, shaped as JSON by the pipeline so it can be read without leaving.
+function LastRun({ run }) {
+  if (!run || !run.ran_at) return null;
+  const added = run.added || [];
+  const held = run.held || [];
+  if (!added.length && !held.length) return null;
+  return (
+    <section>
+      <h2 className={styles.h2}>What the last run found</h2>
+      <p className={styles.note}>
+        {run.period} · {added.length} added to the atlas, {held.length} held back.
+      </p>
+
+      {added.length > 0 && (
+        <>
+          <h3 className={styles.h3}><Plus size={12} strokeWidth={2.5} aria-hidden="true" /> Added</h3>
+          <ul className={styles.findings}>
+            {added.map((e, i) => (
+              <li key={i}>
+                <span className={styles.fDate}>{e.date}</span>
+                <span className={styles.fTitle}>{e.title}</span>
+                <span className={styles.fMeta}>{e.kind} · severity {e.severity} · {e.conflict}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {held.length > 0 && (
+        <>
+          <h3 className={styles.h3}><Pause size={12} strokeWidth={2.5} aria-hidden="true" /> Held back</h3>
+          <p className={styles.note}>
+            Found, but not corroborated well enough to publish. Each one names the question that
+            stopped it.
+          </p>
+          <ul className={styles.findings}>
+            {held.map((e, i) => (
+              <li key={i}>
+                <span className={styles.fDate}>{e.date}</span>
+                <span className={styles.fTitle}>{e.title}</span>
+                {e.question && <span className={styles.fQuestion}>{e.question}</span>}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </section>
+  );
+}
+
+function Calibration({ rows }) {
+  if (!rows.length) return null;
+  return (
+    <>
+      <h3 className={styles.h3}>Is the agents' confidence honest?</h3>
+      <p className={styles.note}>
+        Events are published automatically when the fact-checker's confidence clears a fixed bar.
+        That only means something if a stated 80% really is right 80% of the time.
+      </p>
+      <div className={styles.tableWrap}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Stated confidence</th><th className={styles.num}>Events</th>
+              <th className={styles.num}>Claimed</th><th className={styles.num}>Actually right</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r, i) => {
+              const gap = r.observed - r.stated_mid;
+              const weak = r.n < 5;
+              const label = weak ? 'too few to tell'
+                : gap < -0.15 ? 'overconfident'
+                : gap > 0.15 ? 'underconfident'
+                : 'well calibrated';
+              const cls = weak ? 'quiet' : gap < -0.15 ? 'failed' : gap > 0.15 ? 'blind' : 'ok';
+              return (
+                <tr key={i}>
+                  <td className={styles.mono}>{r.range}</td>
+                  <td className={`${styles.num} ${styles.mono}`}>{r.n}</td>
+                  <td className={`${styles.num} ${styles.mono}`}>{pct(r.stated_mid)}</td>
+                  <td className={`${styles.num} ${styles.mono}`}>{pct(r.observed)}</td>
+                  <td><span className={`${styles.pill} ${styles[cls]}`}>{label}</span></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 

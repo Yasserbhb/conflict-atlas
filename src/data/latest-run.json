@@ -1,0 +1,63 @@
+{
+  "period": "2026-07-06..2026-07-13",
+  "region": null,
+  "ran_at": "2026-07-13",
+  "ok": true,
+  "run_url": null,
+  "stats": {
+    "queries": 6,
+    "items": 70,
+    "candidates": 10,
+    "proposals": 10,
+    "auto_approved": 3,
+    "needs_human": 7,
+    "dropped": 0
+  },
+  "added": [],
+  "held": [
+    {
+      "date": "2026-07-09",
+      "title": "United States launches massive wave of air strikes against Iran",
+      "question": "Do any reputable news outlets explicitly report that the United States launched a large-scale air campaign against Iran on 9 July 2026?",
+      "confidence": null
+    },
+    {
+      "date": "2026-07-12",
+      "title": "United States bombs Iranian targets; Iran retaliates against Gulf states",
+      "question": "Do any reliable news outlets report that the United States bombed Iranian targets and Iran retaliated against Gulf states on July 12, 2026?",
+      "confidence": null
+    },
+    {
+      "date": "2026-07-13",
+      "title": "Iran attacks Bahrain, Kuwait and Jordan following US bombings",
+      "question": "Is there any independent reporting confirming Iran's IRGC attacked Bahrain, Kuwait, and Jordan on 13 July 2026?",
+      "confidence": null
+    },
+    {
+      "date": "2026-07-06",
+      "title": "Israeli airstrike on al‑Mawasi tent kills two Palestinians",
+      "question": "Is there any additional independent reporting confirming the July 6, 2026 al‑Mawasi tent strike?",
+      "confidence": null
+    },
+    {
+      "date": "2026-07-06",
+      "title": "Israeli bombing of Nabatieh kills at least four people",
+      "question": "What is the confirmed casualty count from the Nabatieh strike on July 6, 2026?",
+      "confidence": null
+    },
+    {
+      "date": "2026-07-06",
+      "title": "Houthis launch Hodeidah offensive in Yemen",
+      "question": "Are there additional independent reports confirming the Houthi offensive in Hodeidah on 6 July 2026?",
+      "confidence": null
+    },
+    {
+      "date": "2026-07-07",
+      "title": "Iran attacks three commercial vessels in the Strait of Hormuz",
+      "question": "Can we find a direct, contemporaneous report confirming that Iran's IRGC launched missile attacks on three commercial vessels in the Strait of Hormuz on 7 July 2026?",
+      "confidence": null
+    }
+  ],
+  "already_known": [],
+  "errored": []
+}

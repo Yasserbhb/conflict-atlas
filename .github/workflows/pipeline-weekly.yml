@@ -54,18 +54,22 @@ jobs:
         id: scan
         run: python -m conflict_updater auto week --limit 12
 
-      - name: Snapshot coverage for the public site
+      - name: Snapshot coverage + quality for the public site
         # Runs even after a failed scan: the ledger entry recording the blind window is
-        # exactly what needs publishing.
+        # exactly what needs publishing. The eval history is only present once a backtest has
+        # been run, so its copy is best-effort.
         if: always()
-        run: cp ai-updater/out/coverage.json src/data/coverage.json || true
+        run: |
+          cp ai-updater/out/coverage.json src/data/coverage.json || true
+          cp ai-updater/out/eval_history.json src/data/eval-history.json || true
+          cp ai-updater/out/latest_run.json src/data/latest-run.json || true
 
       - name: Commit the update + findings log
         if: always()
         run: |
           git config user.name "conflict-atlas-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add src/data/seed.json src/data/coverage.json ai-updater/log/ 2>/dev/null || true
+          git add src/data/seed.json src/data/coverage.json src/data/eval-history.json src/data/latest-run.json ai-updater/log/ 2>/dev/null || true
           git diff --cached --quiet || git commit -m "weekly: auto-update $(date -u +%Y-%m-%d)"
           git push
 
