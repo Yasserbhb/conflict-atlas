@@ -200,3 +200,13 @@
 .covFound { color: #82b8ab; background: rgba(130, 184, 171, 0.14); }
 .covQuiet { color: #94a3b8; background: rgba(148, 163, 184, 0.14); }
 .covBlind { color: #d9a441; background: rgba(217, 164, 65, 0.14); }
+
+/* The pipeline runs in a public repo, so its whole history is readable. Linking it turns
+   "you can see what I do" from an accident of hosting into a stated property of the project. */
+.auditLink {
+  color: var(--accent-light);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-border);
+}
+
+.auditLink:hover { border-bottom-color: var(--accent-light); }

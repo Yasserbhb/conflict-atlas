@@ -169,15 +169,27 @@ export default function HelpView() {
               })}
             </div>
           )}
+          <p className={styles.note}>
+            Every one of those scans is auditable. The pipeline runs in the open — you can read
+            its full output, week by week, including the runs that found nothing and the ones
+            that failed:{' '}
+            <a
+              href="https://github.com/Yasserbhb/conflict-atlas/actions/workflows/pipeline-weekly.yml"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.auditLink}
+            >
+              see how this dataset is maintained
+            </a>.
+          </p>
         </section>
 
         <section className={styles.section}>
           <h2>Getting around</h2>
           <ul className={styles.list}>
-            <li><strong>Left sidebar</strong> — switch between Map, Conflicts list, Stats, Timeline, and Help.</li>
+            <li><strong>Left sidebar</strong> — switch between Map, Conflicts list, Stats, Timeline, Relationships, and Help.</li>
             <li><strong>Timeline slider</strong> (top) — scrub 1490→2026; ▶ animates history.</li>
             <li><strong>Map</strong> — scroll to zoom, drag to pan, "Reset view" to recenter.</li>
-            <li><strong>Edit mode</strong> (top bar) — add or edit conflicts and write notes per country.</li>
             <li><strong>Export / import</strong> (top bar) — save your whole dataset as JSON or load it back.</li>
           </ul>
         </section>
