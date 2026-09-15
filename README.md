@@ -74,8 +74,8 @@ npm run preview   # serve that build locally
 npm run lint      # oxlint
 ```
 
-> **Your data lives in your browser** (IndexedDB), per-browser and per-machine. Use **⬇ export**
-> in the top bar to save a JSON backup.
+> The dataset is cached in your browser (IndexedDB) on first load, so the map works offline.
+> **⬇ export** in the top bar downloads the whole thing as JSON.
 
 ## Tech stack
 
