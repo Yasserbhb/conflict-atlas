@@ -1,4 +1,4 @@
-import { X, Network, Pencil, ExternalLink } from 'lucide-react';
+import { X, Network, ExternalLink } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { TYPE_LABELS, TYPE_COLORS, ROLE_LABELS, roleColor, severityColor } from '../../utils/conflictColors';
 import { formatDateRange } from '../../utils/dateUtils';
@@ -17,7 +17,7 @@ const SIDES = [
 
 export default function ConflictDetailPanel() {
   const { state, dispatch } = useApp();
-  const { openConflictId, conflicts, countries, mode } = state;
+  const { openConflictId, conflicts, countries } = state;
 
   const conflict = conflicts.find((c) => c.id === openConflictId);
   if (!conflict) return null;
@@ -143,11 +143,6 @@ export default function ConflictDetailPanel() {
       </div>
 
       <div className={styles.footer}>
-        {mode === 'edit' && (
-          <button className={styles.editBtn} onClick={() => dispatch({ type: 'OPEN_EDIT', payload: { kind: 'conflict', data: conflict } })}>
-            <Pencil size={13} strokeWidth={2} aria-hidden="true" /> Edit
-          </button>
-        )}
         <button className={styles.graphBtn} onClick={() => {
           const first = conflict.parties?.[0]?.countryId;
           if (first) dispatch({ type: 'SELECT_COUNTRY', payload: first });

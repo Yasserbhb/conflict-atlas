@@ -46,29 +46,6 @@ export async function deleteConflict(id) {
 }
 
 // --- Notes ---
-export async function getNotesByCountry(countryId) {
-  const db = await getDB();
-  return db.getAllFromIndex('notes', 'countryId', countryId);
-}
-
-export async function getNotesByConflict(conflictId) {
-  const db = await getDB();
-  return db.getAllFromIndex('notes', 'conflictId', conflictId);
-}
-
-export async function saveNote(note) {
-  const db = await getDB();
-  const now = new Date().toISOString();
-  const record = { ...note, updatedAt: now, createdAt: note.createdAt || now };
-  await db.put('notes', record);
-  return record;
-}
-
-export async function deleteNote(id) {
-  const db = await getDB();
-  return db.delete('notes', id);
-}
-
 // --- Settings ---
 export async function getSettings() {
   const db = await getDB();

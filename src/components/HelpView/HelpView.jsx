@@ -138,7 +138,7 @@ export default function HelpView() {
             <li><strong>Type is the primary character</strong> of an event. Many conflicts genuinely fit more than one (a civil war with genocidal phases); each entry is filed under its most defining type and the detail text notes the rest.</li>
             <li><strong>Borders are always today's.</strong> Pre-modern events are mapped onto the modern countries that occupy that land, so a 1490 event appears on a 2026 map. This is a deliberate simplification and distorts historical geography.</li>
             <li><strong>Dating.</strong> Start / end years mark the main active period. "Ongoing" means active as of 2026. Frozen disputes keep their original start year.</li>
-            <li><strong>Sources &amp; limits.</strong> Entries are concise, single-curator summaries meant as a <em>starting point</em> — not a citable authority. Where a conflict has sources attached they're listed in its detail panel; many don't yet. Use Edit mode to correct, cite, and refine anything.</li>
+            <li><strong>Sources &amp; limits.</strong> Entries are concise, single-curator summaries meant as a <em>starting point</em> — not a citable authority. Where a conflict has sources attached they're listed in its detail panel; many don't yet. Treat every entry as a prompt for your own further reading, and check the sources rather than the summary.</li>
           </ul>
         </section>
 
@@ -146,8 +146,8 @@ export default function HelpView() {
           <h2>Data coverage — what's actually been checked</h2>
           <p className={styles.note}>
             Alongside hand-authored entries, an automated pipeline scans for new and historical
-            events and proposes additions (a human — or a strict auto-approve bar — decides what
-            gets added). This is the honesty ledger of where it's looked: <em>found</em> means
+            events and adds the confidently-corroborated ones on its own; anything thinner is held
+            back rather than published. This is the honesty ledger of where it's looked: <em>found</em> means
             events surfaced, <em>quiet</em> means it searched a real article pool and genuinely
             found nothing new, and <em>blind</em> means the search itself came back empty — a
             source gap, not proof there's nothing there.
@@ -187,10 +187,10 @@ export default function HelpView() {
         <section className={styles.section}>
           <h2>Getting around</h2>
           <ul className={styles.list}>
-            <li><strong>Left sidebar</strong> — switch between Map, Conflicts list, Stats, Timeline, Relationships, and Help.</li>
+            <li><strong>Left sidebar</strong> — Map, Conflicts, Stats, Timeline, Relationships, Pipeline, and Help.</li>
             <li><strong>Timeline slider</strong> (top) — scrub 1490→2026; ▶ animates history.</li>
             <li><strong>Map</strong> — scroll to zoom, drag to pan, "Reset view" to recenter.</li>
-            <li><strong>Export / import</strong> (top bar) — save your whole dataset as JSON or load it back.</li>
+            <li><strong>Export</strong> (top bar) — download the whole dataset as JSON.</li>
           </ul>
         </section>
 

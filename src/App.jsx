@@ -12,7 +12,6 @@ import MapFilterBar from './components/Map/MapFilterBar';
 import SidePanel from './components/SidePanel/SidePanel';
 import ConflictDetailPanel from './components/ConflictDetail/ConflictDetailPanel';
 import GraphView from './components/GraphView/GraphView';
-import EditModal from './components/EditModal/EditModal';
 import DataPanel from './components/DataPanel/DataPanel';
 import './styles/global.css';
 import styles from './App.module.css';
@@ -68,7 +67,6 @@ function AppShell() {
         </div>
       </div>
       {state.showGraphView && <GraphView />}
-      {state.editTarget && <EditModal />}
       {state.showDataPanel && <DataPanel />}
     </div>
   );

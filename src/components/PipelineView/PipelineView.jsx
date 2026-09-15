@@ -3,8 +3,9 @@ import { Activity, AlertTriangle, CheckCircle2, EyeOff, Moon, ExternalLink } fro
 import coverage from '../../data/coverage.json';
 import styles from './PipelineView.module.css';
 
-// Maintainer-only. Reads the coverage ledger the weekly job publishes — the same file the Help
-// page summarises for visitors, but shown here as an operations log rather than a caveat.
+// The agents' operations log, from the coverage ledger the weekly job publishes. Shown to
+// everyone: the atlas's claim is data rigour, and most projects making that claim can't show
+// their working. This can — including the weeks that found nothing and the runs that failed.
 //
 // Deliberately NOT a live dashboard: it renders a file committed by the last run. The bulky
 // per-run output (full digests, proposals, eval reports) is uploaded as a GitHub Actions

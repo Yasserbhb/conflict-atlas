@@ -7,16 +7,17 @@ atrocities across history — from 1490 to the present.
 
 Two halves, documented together here:
 
-- **The app** — a React + D3 map you can browse, filter, scrub through time, and edit.
-- **The AI updater** — a Python pipeline of narrow LLM agents that keeps the dataset current and
-  honest, and can backfill the past on demand.
+- **The app** — a React + D3 map you browse, filter and scrub through time. Read-only: nobody
+  hand-edits the atlas, including its author.
+- **The AI updater** — a Python pipeline of narrow LLM agents that is the dataset's *only*
+  author. It keeps the atlas current, backfills the past on demand, and shows its working.
 
 ---
 
 ## Contents
 
 - [The app](#the-app)
-  - [Features](#features) · [Quick start](#quick-start) · [Maintainer mode](#maintainer-mode) · [Tech stack](#tech-stack) · [Data model](#data-model)
+  - [Features](#features) · [Quick start](#quick-start) · [Tech stack](#tech-stack) · [Data model](#data-model)
 - [The AI updater](#the-ai-updater)
   - [What it is](#what-it-is) · [The agent team](#the-agent-team) · [What makes it trustworthy](#what-makes-it-trustworthy)
   - [Running it](#running-the-pipeline) · [Evaluation](#evaluation) · [Coverage ledger](#coverage-ledger)
@@ -40,11 +41,11 @@ Two halves, documented together here:
   century ticks, so dragging it also shows *when* the world was most at war.
 - **Relationships graph** — conflicts as nodes, edges where contemporaneous conflicts share
   belligerents. The force layout self-organises into eras.
-- **Edit mode** — add/edit conflicts (type, severity, dates, parties with roles, description,
-  tags, events) and personal notes per country.
-- **Export / import** the whole dataset as JSON.
+- **Pipeline** — the agents' own operations log: what each weekly run scanned, what it added,
+  what it held back, and a link to that run's full output.
+- **Export** the whole dataset as JSON.
 - **~240 conflicts / ~490 sourced events** across every region and era.
-- **Six views**: Map, Conflicts, Stats, Timeline, Relationships, Help.
+- **Seven views**: Map, Conflicts, Stats, Timeline, Relationships, Pipeline, Help.
 
 > **On borders:** the map always shows *modern* borders. Historical events are mapped onto the
 > country occupying that territory today (the Spanish Conquest → modern Mexico/Peru). Successor
@@ -76,24 +77,6 @@ npm run lint      # oxlint
 > **Your data lives in your browser** (IndexedDB), per-browser and per-machine. Use **⬇ export**
 > in the top bar to save a JSON backup.
 
-## Maintainer mode
-
-Visitors see a site to **read**. Edit mode and the Pipeline view are hidden from them.
-
-| Where | State |
-|---|---|
-| `npm run dev` | Always on — this is where data is authored, so the toggle is never in the way |
-| Deployed site | Off. `?maintainer=1` turns it on and remembers it in that browser; `?maintainer=0` turns it off |
-
-**This is a clarity boundary, not a security one, and the distinction matters.** Every edit this
-app makes lands in the viewer's own IndexedDB and never leaves their browser — there are no
-network writes anywhere in `src/db/`. A visitor reaching Edit could not alter the published
-dataset or anyone else's copy. What it *could* do is imply "contribute here" when nothing they
-type will ever reach the atlas. Hiding it makes the site honest about what it is.
-
-Because the site is static and the repo is public, **nothing secret may ever be placed behind
-this flag.** Anything genuinely requiring protection needs a server, and there isn't one.
-
 ## Tech stack
 
 React 19 · Vite 6 · D3 (geo, zoom, force) · TopoJSON · IndexedDB via `idb` · CSS Modules.
@@ -109,8 +92,7 @@ per-country CSS classes, handlers and transitions that a canvas charting library
 ## Data model
 
 Conflicts, countries and notes live in IndexedDB, seeded once from `src/data/seed.json`. Seed data
-is versioned: bumping `version` re-imports new entries without overwriting your edits. Seed IDs are
-prefixed `seed_`, yours `user_`.
+is versioned: bumping `version` re-imports new entries on a returning visitor's next load.
 
 A **conflict** aggregates **events**:
 
@@ -365,9 +347,10 @@ The pipeline produces three kinds of output, and they deliberately go to three d
 | Full digests, proposals, eval reports | **Actions artifact** (90 days) | Persistent and downloadable, but never pushed — the repo stays the dataset, not a log store |
 | A rendered weekly report | **Actions job summary** | Read it on the run's own page; nothing is stored in git at all |
 
-The **Pipeline view** (maintainer-only, in the app) renders the committed coverage ledger as an
-operations log: last run, what was applied, what's held for review, which windows came back
-blind, and which failed.
+The **Pipeline view** in the app renders the committed coverage ledger as an operations log:
+last run, what was applied, what's held back, which windows came back blind, and which failed.
+It's visible to everyone — the atlas's claim is data rigour, and most projects making that
+claim can't show their working.
 
 ### Why the dataset is in git rather than a database
 
@@ -408,8 +391,8 @@ available historical summaries — deliberately concise, and for some events the
 and even the classifications (what counts as a "genocide") are **genuinely debated by historians**.
 Pre-modern events are mapped onto modern successor states, which is a simplification.
 
-Treat every entry as a prompt for your own further reading. Use **Edit mode** to correct and add
-sources. Nothing here represents an official position.
+Treat every entry as a prompt for your own further reading, and check the cited sources rather
+than the summary. Nothing here represents an official position.
 
 - Map geometry: [Natural Earth](https://www.naturalearthdata.com/) via
   [world-atlas](https://github.com/topojson/world-atlas) (public domain).
