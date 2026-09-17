@@ -11,8 +11,11 @@ from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
 from .geocode import GeocodeClient, get_geocode
 from .structured_source import StructuredSource, get_structured_source
+from .dates import in_window
 from .store import BaseConflict, load_base, pending_to_base, date_key, derive_span
 from . import agents, dedup, lifecycle
+from . import judge as judge_mod
+from .judge import Judge, NullJudge as _NullJudge, get_judge
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
 )
@@ -95,6 +98,22 @@ def _gather_sources(cand: CandidateEvent, items: list[RawItem]) -> list[Source]:
     return out[:8]
 
 
+def _count_corroboration(sources) -> tuple[int, bool]:
+    """How many genuinely independent outlets back this event, and do they span alignments.
+
+    Arithmetic, not judgement — so it is done here rather than asked of a model. Two sources from
+    the same outlet are one voice; `alignment` comes from config/sources.yml via search.py, so
+    "reported by both Reuters and Tasnim" is checkable rather than assertable.
+    """
+    outlets, alignments = set(), set()
+    for s in sources or []:
+        outlets.add((s.outlet or s.url or "").lower())
+        if s.alignment:
+            alignments.add(s.alignment.lower())
+    outlets.discard("")
+    return len(outlets), len(alignments) > 1
+
+
 def _is_latest_event(cand: CandidateEvent, parent) -> bool:
     """True if this event is the most recent in its conflict — only then may it move status."""
     if not parent or not parent.events:
@@ -105,9 +124,15 @@ def _is_latest_event(cand: CandidateEvent, parent) -> bool:
 def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
          base: list[BaseConflict], settings: Settings,
          geocode: GeocodeClient | None = None,
-         structured: StructuredSource | None = None) -> ScanResult:
+         structured: StructuredSource | None = None,
+         judge: Judge | None = None) -> ScanResult:
     geocode = geocode or get_geocode(settings)
     structured = structured or get_structured_source(settings)
+    # Typed decisions — resolver choice, event kind, severity, roles, status, verify
+    # verdict + confidence. NullJudge by default, which leaves every judgement with
+    # the LLM exactly as before.
+    judge = judge if judge is not None else get_judge(settings)
+    _j = judge if not isinstance(judge, _NullJudge) else None
     profiles = lifecycle.load_profiles(settings.lifecycle_yml)
     by_id = {c.id: c for c in base}
     # New conflicts founded EARLIER IN THIS SCAN aren't in `base` yet (that only reflects
@@ -120,19 +145,67 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
     # 2. FETCHER — run the queries
     items: list[RawItem] = []
-    for q in plan.queries:
+    # Cap the query list in CODE. The prompt asks for at most 6, but nothing enforced it, and
+    # each query is a billed search — an over-eager Scoper silently multiplies the day's cost.
+    queries = plan.queries[: settings.max_queries] if settings.max_queries else plan.queries
+    over_budget = len(plan.queries) - len(queries)
+    if over_budget:
+        print(f"  scoper asked for {len(plan.queries)} queries; capped at {settings.max_queries}")
+    for q in queries:
         items.extend(search.search(q.query, q.lang))
     items = _dedupe_items(items)
 
+    # 2b. TRIAGE — which of these articles actually report a datable event?
+    # Search returns a wide net: for one day it is typically ~70 articles, most of them
+    # analysis, background or unrelated. Handing all of them to the Extractor in one structured
+    # call is both expensive and unreliable — measured at ~32k tokens, and free models simply
+    # return nothing. This is a selection, not a generation, so a judge answers it: one parallel
+    # call, one yes/no per article, ~1s for the whole pool. The Extractor then reads a handful.
+    triaged = items
+    if _j is not None and items:
+        state = {f"a{i}": {"title": it.title, "snippet": (it.snippet or "")[:400]}
+                 for i, it in enumerate(items)}
+        qs = {f"a{i}": judge_mod.noul(
+                f"Does `a{i}` report a specific, datable armed-conflict event (a strike, battle, "
+                f"massacre, ceasefire, treaty, offensive, displacement) that happened within "
+                f"{req.period_start}..{req.period_end}? Analysis, opinion, background and "
+                f"anniversary pieces do not count.")
+              for i in range(len(items))}
+        try:
+            verdicts = _j.ask(state, qs)
+            keep = [items[i] for i in range(len(items))
+                    if isinstance(verdicts[f"a{i}"].value, float)
+                    and verdicts[f"a{i}"].value >= settings.triage_threshold]
+            # An empty triage is a real answer ("we read the pool, nothing reports an event"),
+            # but a judge outage would look identical — so only trust it if it answered at all.
+            if any(v.value is not None for v in verdicts.values()):
+                triaged = keep
+        except Exception as e:  # noqa: BLE001 — triage is an optimisation, never a hard gate
+            print(f"  triage unavailable ({type(e).__name__}); extracting from the full pool")
+    triaged_out = len(items) - len(triaged)
+
     # 3. EXTRACTOR — items → discrete candidate events, most consequential first so a
     #    --limit cap keeps the important events (a revolt), not the footnotes (a decree).
-    cands = agents.extractor(llm, items, req).events
+    cands = agents.extractor(llm, triaged, req).events if triaged else []
     # Structured anchors (UCDP/ACLED, README: 'The AI updater') — already structured rows, nothing
     # for the Extractor to extract; feed them straight into the same candidate pool.
     cands += structured.fetch(req.period_start, req.period_end, req.region)
+
+    # The window was enforced by PROMPT only ("Only events dated within ..."), and nothing checked
+    # it. Over a week that drift is a nuisance; over 365 daily runs it is how the same event gets
+    # recorded on several days. Enforce it in code.
+    in_range = [c for c in cands if in_window(c.date, req.period_start, req.period_end)]
+    out_of_window = len(cands) - len(in_range)
+    cands = in_range
+
+    # Select by significance (a --limit cap should keep the revolt, not the decree) ...
     cands.sort(key=lambda c: c.significance, reverse=True)
     if settings.max_candidates and len(cands) > settings.max_candidates:
         cands = cands[: settings.max_candidates]
+    # ... but EXECUTE oldest-first. Status may only move on the chronologically latest event, and
+    # pending_bases/_is_latest_event both assume forward order — processing by significance would
+    # let a minor early event decide a conflict's status after a major later one already did.
+    cands.sort(key=lambda c: date_key(c.date))
 
     proposals: list[Proposal] = []
     dropped: list[str] = []
@@ -147,7 +220,25 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # earlier in this same scan are included so a follow-up event attaches to them.
         pool = base + list(pending_bases.values())
         candidates = dedup.find_candidates(pool, cand)
-        res = agents.resolver(llm, cand, candidates)
+
+        # Cheap duplicate/continuation check BEFORE any LLM spend. find_candidates already
+        # returned these conflicts with their events, so the data is in hand: if this repeats an
+        # event one of them already has, drop it here rather than paying Resolver + Enrich +
+        # Verify to reach the same conclusion. Under a daily scan this is the common case, not
+        # the rare one — the same operation is reported every morning.
+        for parent_c, _score in candidates:
+            hit = dedup.duplicate_of(
+                parent_c.events, cand.date, cand.title,
+                continuation_days=settings.continuation_days,
+                floor=settings.duplicate_title_floor,
+            )
+            if hit:
+                dropped.append(
+                    f"already recorded: {cand.date} {cand.title} "
+                    f"(matches {parent_c.id} {hit.get('date')} {hit.get('title')})")
+                return None
+
+        res = agents.resolver(llm, cand, candidates, judge=_j)
 
         if res.decision == "known":
             dropped.append(f"already known: {cand.date} {cand.title}")
@@ -179,6 +270,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             parent_parties=(parent.parties if parent else None),
             current_status=(parent.status if parent else None),
             lifecycle_profile=(profiles.get(parent.type) if parent else None),
+            judge=_j,
         )
 
         # real coordinates (code, not model memory): an LLM recalls famous cities but collapses
@@ -213,11 +305,20 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             ver = None
             needs_human = ambiguous
         else:
-            ver = agents.verify(llm, event, items, is_new)
-            # Carry the corroboration verdict onto the event itself so the app can show it —
-            # verify() needs the fully-built event to fact-check, so this can't be done earlier.
+            ver = agents.verify(llm, event, items, is_new, judge=_j,
+                                auto_approve_confidence=settings.auto_approve_confidence)
+
+            # COUNT the corroboration rather than believing the model's count. These two numbers
+            # gate new-conflict auto-approval, and they were being asserted by an LLM even though
+            # they are exactly computable: Source already carries .outlet and .alignment, filled
+            # from config/sources.yml. A hallucinated "3 independent sources" could found a
+            # conflict on one article. Overwrite the model's values with the real ones.
+            n_sources, cross = _count_corroboration(event.sources)
+            ver = ver.model_copy(update={"independent_sources": n_sources, "cross_alignment": cross})
+            # Carry it onto the event too so the app can show it — verify() needs the fully-built
+            # event to fact-check, so this can't be done earlier.
             event = event.model_copy(update={
-                "independent_sources": ver.independent_sources, "cross_alignment": ver.cross_alignment,
+                "independent_sources": n_sources, "cross_alignment": cross,
             })
 
             if ambiguous:
@@ -239,6 +340,16 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                     or ver.verdict != "pass"
                     or ver.confidence < settings.auto_approve_confidence
                 )
+
+        # A daily scan surfaces small incidents constantly. Gate on SIGNIFICANCE — historical
+        # consequence — not on severity: a ceasefire is severity 1 and significance 5, and it
+        # belongs in the atlas far more than a routine exchange of fire does. Held, not dropped,
+        # so nothing is lost; it just doesn't publish itself.
+        if not needs_human and cand.significance < settings.min_significance_auto:
+            needs_human = True
+            dropped.append(
+                f"held (significance {cand.significance} < {settings.min_significance_auto}): "
+                f"{cand.date} {cand.title}")
 
         new_conflict = None
         if is_new:
@@ -291,7 +402,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
 
     stats = {
-        "queries": len(plan.queries),
+        "queries": len(queries),
+        "queries_dropped": over_budget,
         "items": len(items),
         "candidates": len(cands),
         "proposals": len(proposals),
@@ -299,6 +411,11 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         "needs_human": sum(1 for p in proposals if p.needs_human),
         "dropped": len(dropped),
         "failed": len(failed),
+        # Candidates the extractor returned dated outside the requested window. Non-zero means
+        # the prompt drifted and the code caught it — worth seeing rather than silently fixing.
+        "out_of_window": out_of_window,
+        # Articles the triage judged irrelevant before the Extractor saw them.
+        "triaged_out": triaged_out,
     }
     return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 

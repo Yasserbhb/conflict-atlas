@@ -14,6 +14,7 @@ import re
 from datetime import date
 from .schema import Proposal, Event, Conflict
 from .store import date_key, derive_span, default_status
+from .dedup import duplicate_of
 
 _TERMINAL = {"ended", "resolved"}
 
@@ -53,7 +54,8 @@ def _bump(v: str) -> str:
     return ".".join(parts)
 
 
-def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = False):
+def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = False,
+          continuation_days: int = 3, duplicate_title_floor: float = 0.85):
     """Mutate `seed` in place with the approved proposals. Returns (seed, report)."""
     by_id = {c["id"]: c for c in seed.get("conflicts", [])}
     report: list[str] = []
@@ -80,6 +82,18 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
                 report.append(f"skip ({why} — target {p.target_conflict_id}): {p.event.title}")
                 continue
             events = c.setdefault("events", [])
+            # The authoritative duplicate guard. Every write path — auto, apply, the dashboard —
+            # routes through here, so this is the one place that can actually promise an event
+            # is not recorded twice. It used to be an unconditional append, which left dedup
+            # resting entirely on the Resolver LLM answering "known"; that is a coin flip to
+            # stake a public dataset on, and a daily scan re-reads the same story for days.
+            hit = duplicate_of(events, p.event.date, p.event.title, p.event.kind,
+                               continuation_days, duplicate_title_floor)
+            if hit:
+                report.append(
+                    f"skip (already recorded as {hit.get('date')} {hit.get('title')!r}): "
+                    f"{p.event.date} {p.event.title}")
+                continue
             ev = _event_to_app(p.event, f"{c['id']}_e{len(events) + 1}")
             events.append(ev)
             # is this now the most recent event? (only the latest may change current status)
@@ -121,7 +135,25 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
                 report.append("skip (new_conflict has no body)")
                 continue
             if p.new_conflict.id in by_id:
-                report.append(f"skip (id already exists {p.new_conflict.id})")
+                # This conflict was founded by an earlier run (a day-2 scan slugifies the same
+                # title to the same id). Skipping used to discard the PROPOSAL — and the event
+                # lives inside new_conflict.events, so the event was silently lost with it.
+                # Fold the events into the conflict that already exists instead.
+                existing = by_id[p.new_conflict.id]
+                kept = existing.setdefault("events", [])
+                added = 0
+                for e in p.new_conflict.events:
+                    if duplicate_of(kept, e.date, e.title, e.kind,
+                                    continuation_days, duplicate_title_floor):
+                        continue
+                    kept.append(_event_to_app(e, f"{existing['id']}_e{len(kept) + 1}"))
+                    added += 1
+                if added:
+                    kept.sort(key=lambda x: date_key(x.get("date")))
+                    existing["severity"] = max(existing.get("severity", 0), p.new_conflict.severity)
+                    applied += 1
+                report.append(
+                    f"fold into existing {p.new_conflict.id}: +{added} event(s)")
                 continue
             app = _conflict_to_app(p.new_conflict)
             seed.setdefault("conflicts", []).append(app)
@@ -138,6 +170,12 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
 def validate(seed: dict) -> list[str]:
     """Invariants the merged dataset must satisfy. Empty list == coherent."""
     issues: list[str] = []
+    # Every country code must be one the APP knows. Internal consistency is not enough: a code
+    # like "UK" or "Palestine" is perfectly self-consistent, passes every other check here, and
+    # then renders as nothing at all — no name in the side panel, no fill on the map. An event
+    # attributed to a country the atlas cannot draw has effectively lost that country, silently.
+    # Agents emit these from a prompt, so this is the gate that catches an invented one.
+    known = {c.get("id") for c in seed.get("countries", []) if c.get("id")}
     for c in seed.get("conflicts", []):
         inv = set(c.get("involvedCountries", []))
         party_ids = {p.get("countryId") for p in c.get("parties", [])}
@@ -154,4 +192,12 @@ def validate(seed: dict) -> list[str]:
                 issues.append(f"{c['id']}/{e.get('id')}: bad severity {sev}")
         if c.get("ongoing") and c.get("status") in _TERMINAL:
             issues.append(f"{c['id']}: ongoing=true but status={c.get('status')}")
+
+        # Unknown or malformed country codes. Only checked when the seed actually carries a
+        # country list, so a stripped-down fixture does not fail for the wrong reason.
+        for cid in sorted(inv):
+            if not isinstance(cid, str) or not re.fullmatch(r"[A-Z]{3}", cid):
+                issues.append(f"{c['id']}: malformed country code {cid!r} (want ISO 3166-1 alpha-3)")
+            elif known and cid not in known:
+                issues.append(f"{c['id']}: country {cid} is not in the atlas — it would render as nothing")
     return issues

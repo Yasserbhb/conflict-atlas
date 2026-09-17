@@ -28,13 +28,13 @@ def test_failover_on_model_gone_or_exhausted(msg):
 
 
 @pytest.mark.parametrize("msg", [
-    "did not return schema-valid JSON for ScoperOutput",
     "Connection reset by peer",
     "invalid api key",
 ])
 def test_no_failover_on_errors_another_model_would_also_hit(msg):
-    # A bad prompt or a broken key fails identically on the next model, so falling over
-    # would just burn a second quota for the same failure.
+    # A broken key or a dead socket fails identically on the next model, so falling over would
+    # just burn a second quota for the same failure. (A schema failure is NOT in this list —
+    # see test_failover_when_a_model_cannot_produce_the_structured_output.)
     assert _should_failover(Exception(msg)) is False
 
 
@@ -84,16 +84,16 @@ def test_stops_at_the_first_working_model():
     assert tried == ["first"], "later models must not be called once one succeeds"
 
 
-def test_a_prompt_error_propagates_instead_of_burning_the_next_quota():
+def test_an_auth_error_propagates_instead_of_burning_the_next_quota():
     tried = []
 
     def behaviour(name):
         tried.append(name)
-        raise Exception("did not return schema-valid JSON for Out")
+        raise Exception("invalid api key")
 
-    with pytest.raises(Exception, match="schema-valid"):
+    with pytest.raises(Exception, match="invalid api key"):
         _llm("first,second", behaviour).structured(Out, "sys", "user")
-    assert tried == ["first"], "must not try the second model for a non-failover error"
+    assert tried == ["first"], "a broken key fails the same everywhere — do not retry it"
 
 
 def test_raises_the_last_error_when_every_model_is_gone():
@@ -148,3 +148,44 @@ def test_a_corrupt_cache_entry_falls_through_to_a_real_call(tmp_path):
     llm = _llm("m", lambda n: Out(value="recovered"), cache=cache)
     assert llm.structured(Out, "sys", "user").value == "recovered"
     cache.close()
+
+
+def test_failover_when_a_model_cannot_produce_the_structured_output():
+    # Originally excluded as "a bad prompt fails the same everywhere". It isn't: a model that
+    # returns an empty reply on a hard structured task is failing at the task, and the next
+    # model in the chain genuinely can succeed. Found by a live run, not by reasoning.
+    assert _should_failover(Exception(
+        "model did not return schema-valid JSON for ExtractorOutput: empty model reply")) is True
+
+
+def test_a_weak_model_falls_through_to_a_stronger_one():
+    tried = []
+
+    def behaviour(name):
+        tried.append(name)
+        if name == "weak":
+            raise ValueError("model did not return schema-valid JSON for Out: empty model reply")
+        return Out(value=name)
+
+    assert _llm("weak,strong", behaviour).structured(Out, "sys", "user").value == "strong"
+    assert tried == ["weak", "strong"]
+
+
+def test_an_empty_reply_is_not_retried_against_the_same_model():
+    """An empty reply means the model produced nothing, not that it produced bad JSON.
+    Re-sending the whole prompt to scold it about JSON pays the input tokens twice for the same
+    outcome — measured at ~128k tokens for one failing extraction across retries and failover."""
+    sent = []
+
+    class _Client:
+        def __init__(self, name): self.name = name
+        def invoke(self, msgs):
+            sent.append(self.name)
+            class _R: content = ""          # empty, every time
+            return _R()
+
+    llm = LangChainLLM(provider="openrouter", model="solo")
+    llm._client = lambda n: _Client(n)
+    with pytest.raises(ValueError, match="empty model reply"):
+        llm.structured(Out, "sys", "user")
+    assert sent == ["solo"], "one attempt, not two — the prompt must not be re-sent"

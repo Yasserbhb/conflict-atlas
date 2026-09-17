@@ -28,6 +28,7 @@ from .store import (
     append_coverage, append_coverage_failure, append_eval, write_run_summary, load_coverage, render_coverage, accept_reviewed, write_digest,
 )
 from .schema import ScanRequest
+from . import cursor, dates
 from .pipeline import scan
 from . import merge
 
@@ -35,7 +36,7 @@ _SUBCOMMANDS = {"scan", "apply", "coverage", "serve", "auto", "eval"}
 
 
 def _coverage_path(settings):
-    return settings.output_dir / "coverage.json"
+    return settings.coverage_json
 
 
 def _parse_period(text: str) -> tuple[str, str]:
@@ -84,51 +85,103 @@ def _cmd_serve(args) -> int:
     return 0
 
 
-def _cmd_auto(args) -> int:
-    """Hands-off: scan, AUTO-APPLY only the confidently-corroborated items, log the rest.
-    This is what the weekly cron runs — no human in the loop, everything reversible via git."""
-    import dataclasses
-    start, end = _parse_period(args.period)
-    settings = load_settings()
-    if args.limit:
-        settings = dataclasses.replace(settings, max_candidates=args.limit)
+def _run_one(settings, start: str, end: str, args) -> tuple[int, dict]:
+    """Scan ONE window and apply what clears the bar. Returns (exit_code, summary)."""
     req = ScanRequest(period_start=start, period_end=end, region=args.region, topic=args.topic)
     base = load_base(settings.seed_json)
     try:
-        result = scan(req, llm=get_llm(settings), search=get_search(settings), base=base, settings=settings)
+        result = scan(req, llm=get_llm(settings), search=get_search(settings),
+                      base=base, settings=settings)
     except Exception as e:  # noqa: BLE001
-        # Log the blind window before re-raising. The ledger is the only record anyone sees;
-        # a scan that dies silently is indistinguishable on the public site from a week that
-        # was genuinely quiet.
+        # Record the blind window before giving up. The ledger is the only record anyone sees,
+        # and it is also what the cursor reads — a day that dies silently would look identical
+        # to a day that was genuinely quiet, and would never be retried.
         append_coverage_failure(_coverage_path(settings), req, e, limited=settings.max_candidates)
-        print(f"scan failed: {type(e).__name__}: {e}")
-        print("logged as a blind window in the coverage ledger; seed.json untouched")
-        return 1
-    # apply ONLY the auto-approved (needs_human=False, non-provisional) — the strict gate already
-    # filtered these; everything uncertain is logged and held, never auto-added.
+        print(f"  scan failed: {type(e).__name__}: {e}")
+        return 1, {"applied": 0, "held": 0, "status": "failed"}
+
     seed = load_seed_dict(settings.seed_json)
     before = set(merge.validate(seed))
     applied = [p for p in result.proposals if not p.needs_human and not p.provisional]
-    seed, _ = merge.apply(result.proposals, seed)
+    seed, _ = merge.apply(result.proposals, seed,
+                          continuation_days=settings.continuation_days,
+                          duplicate_title_floor=settings.duplicate_title_floor)
     new_issues = sorted(set(merge.validate(seed)) - before)
     ok = not new_issues
-    if ok and applied:
+    dry = getattr(args, "dry_run", False)
+    if ok and applied and not dry:
         write_seed_dict(settings.seed_json, seed)
 
-    digest = write_digest(settings.log_dir, result, applied, ok)
-    # Same content as the digest, shaped for the app to render natively so last week's
-    # findings are readable in the Pipeline view without a trip to GitHub.
+    write_digest(settings.log_dir, result, applied, ok)
+    write_result(result, settings.output_dir)      # the proposal bodies, for `apply --approve`
     write_run_summary(settings.output_dir, result, applied, ok)
     held = sum(1 for p in result.proposals if p.needs_human)
-    # Logged after the apply so the ledger records what actually landed, not just what was found.
-    append_coverage(_coverage_path(settings), result, limited=settings.max_candidates,
-                    applied=len(applied) if ok else 0, held=held)
-    print(f"auto {start}..{end}: added {len(applied)}, held {held}, already-known {len(result.dropped)}")
-    print(f"digest → {digest}")
+    # After the apply, so the ledger records what actually LANDED, not just what was found.
+    entry = append_coverage(_coverage_path(settings), result, limited=settings.max_candidates,
+                            applied=0 if (not ok or dry) else len(applied), held=held)
+    print(f"  {start}..{end}: {entry['status']} — added {0 if dry else len(applied)}, "
+          f"held {held}, already-known {len(result.dropped)}"
+          + ("  [dry run — seed.json untouched]" if dry else ""))
     if not ok:
-        print("apply skipped — would introduce incoherence (logged, seed untouched)")
-        return 1
-    return 0
+        print("  apply skipped — would introduce incoherence (logged, seed untouched)")
+        return 1, {"applied": 0, "held": held, "status": "incoherent"}
+    return 0, {"applied": 0 if dry else len(applied), "held": held, "status": entry["status"]}
+
+
+def _cmd_auto(args) -> int:
+    """Hands-off: scan, AUTO-APPLY only the confidently-corroborated items, log the rest.
+
+    `auto cursor` is what the daily cron runs. It asks one question: what is the oldest day we
+    have not checked yet? Days already recorded in the coverage ledger are skipped; a day that
+    failed or came back blind is retried; a day that can never be searched is left behind after
+    a few attempts so it cannot stall everything queued behind it.
+    """
+    import dataclasses
+    settings = load_settings()
+    if args.limit:
+        settings = dataclasses.replace(settings, max_candidates=args.limit)
+
+    if args.period != "cursor":
+        start, end = _parse_period(args.period)
+        return _run_one(settings, start, end, args)[0]
+
+    # --- cursor mode -------------------------------------------------------------------------
+    ledger = load_coverage(_coverage_path(settings))
+    start_date = cursor.parse_start(settings.pipeline_start_date)
+    max_days = args.days or settings.pipeline_max_days_per_run
+    todo = cursor.next_days(ledger, start_date, date.today(),
+                            settle_days=settings.t_settle_days, max_days=max_days,
+                            region=args.region, topic=args.topic,
+                            max_attempts=settings.coverage_max_attempts)
+    prog = cursor.progress(ledger, start_date, date.today(), settings.t_settle_days,
+                           args.region, args.topic, settings.coverage_max_attempts)
+    print(f"cursor: {prog['done']}/{prog['eligible']} days checked "
+          f"({prog['start']} .. {prog['horizon']}), {prog['remaining']} remaining")
+    # The horizon moves forward one day per day. If a run cannot process more than one day, the
+    # gap never closes — it just travels. Worth saying out loud rather than discovering months
+    # later that the atlas is permanently stuck in January.
+    if prog["remaining"] > max_days and max_days <= 1:
+        print("  WARNING: --days 1 advances as fast as the horizon, so this backlog will never "
+              "close. Raise --days, or set PIPELINE_START_DATE closer to today.")
+    elif prog["remaining"] > 30:
+        gain = max(1, max_days - 1)
+        print(f"  backlog of {prog['remaining']} days; at --days {max_days} that closes in "
+              f"~{prog['remaining'] // gain} runs. Backfill older periods with a range scan instead.")
+    if not todo:
+        print("nothing to do — every settled day has been checked")
+        return 0
+
+    rc = 0
+    for d in todo:
+        s, e = dates.day_period(d)
+        code, _ = _run_one(settings, s, e, args)
+        if code:
+            # Stop the batch on the first failure so a dead provider doesn't burn the whole
+            # day's quota. The day stays unrecorded-as-done, so the next run picks it up.
+            rc = code
+            break
+    return rc
+
 
 
 def _cmd_eval(args) -> int:
@@ -209,7 +262,9 @@ def _cmd_apply(args) -> int:
 
     seed = load_seed_dict(seed_path)
     before = set(merge.validate(seed))   # pre-existing issues we didn't cause
-    seed, report = merge.apply(proposals, seed, include_provisional=args.include_provisional)
+    seed, report = merge.apply(proposals, seed, include_provisional=args.include_provisional,
+                               continuation_days=settings.continuation_days,
+                               duplicate_title_floor=settings.duplicate_title_floor)
     new_issues = sorted(set(merge.validate(seed)) - before)   # block only on issues WE introduced
 
     for line in report:
@@ -269,10 +324,14 @@ def main(argv=None) -> int:
     v.set_defaults(func=_cmd_serve)
 
     au = sub.add_parser("auto", help="hands-off: scan, auto-apply confident items, log the rest")
-    au.add_argument("period", help='"week" | "1990..2003" | "YYYY-YYYY"')
+    au.add_argument("period", help='"cursor" (daily; the oldest unchecked day) | "week" | "1990..2003" | "YYYY-YYYY"')
     au.add_argument("--region")
     au.add_argument("--topic")
     au.add_argument("--limit", type=int, default=0)
+    au.add_argument("--days", type=int, default=0,
+                    help="cursor mode: how many unchecked days to process this run")
+    au.add_argument("--dry-run", action="store_true",
+                    help="scan, log and record coverage, but never write seed.json")
     au.set_defaults(func=_cmd_auto)
 
     ev = sub.add_parser("eval", help="backtest a window against the atlas's own curated events")

@@ -4,6 +4,10 @@ langchain-openai>=0.2        # provider: openai (gpt-4o-mini, ...)
 langchain-google-genai>=2.0  # provider: google/gemini (free tier — gemini-2.0-flash)
 pydantic>=2.7
 
+# Typed decisions (choices, scores, confidences) — see judge.py. Only imported when
+# JUDGE_BACKEND=jev; the whole suite runs offline without it.
+typesafe-sdk>=0.6
+
 # Web search (pick one backend; Tavily is the default)
 tavily-python>=0.5
 

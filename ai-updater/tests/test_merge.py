@@ -251,3 +251,128 @@ def test_new_conflict_emits_empty_status_history_and_null_last_checked():
     c = next(c for c in seed2["conflicts"] if c["id"] == "seed_new_sand_war2")
     assert c["statusHistory"] == []
     assert c["lastCheckedAt"] is None
+
+
+# ---- the authoritative duplicate guard ------------------------------------------------------
+# merge.apply is the chokepoint every write path routes through — auto, apply, the dashboard —
+# so it is the only place that can actually promise an event is not recorded twice. It used to
+# append unconditionally, leaving dedup resting entirely on the Resolver LLM saying "known".
+
+def _dup_seed(events=None):
+    return {
+        "version": "1.0.0",
+        "conflicts": [{
+            "id": "c1", "title": "A War", "type": "war", "severity": 3,
+            "startDate": "2024-01-01", "ongoing": True, "status": "active",
+            "involvedCountries": ["ISR"], "parties": [{"countryId": "ISR", "role": "aggressor"}],
+            "events": events or [],
+        }],
+    }
+
+
+def _dup_attach(date="2024-05-01", title="Strike on the capital", kind="attack"):
+    from conflict_updater.schema import Event, Proposal
+    return Proposal(kind="attach", target_conflict_id="c1", needs_human=False,
+                    event=Event(date=date, title=title, kind=kind, severity=3, parties=["ISR"]))
+
+
+def test_applying_the_same_proposal_twice_adds_one_event():
+    seed = _dup_seed()
+    seed, _ = merge.apply([_dup_attach()], seed)
+    seed, report = merge.apply([_dup_attach()], seed)
+    assert len(seed["conflicts"][0]["events"]) == 1
+    assert any("already recorded" in r for r in report)
+
+
+def test_the_next_days_report_of_the_same_operation_is_not_a_second_event():
+    seed = _dup_seed()
+    seed, _ = merge.apply([_dup_attach(date="2024-05-01")], seed)
+    seed, _ = merge.apply([_dup_attach(date="2024-05-02")], seed)      # same title, same kind
+    assert len(seed["conflicts"][0]["events"]) == 1
+
+
+def test_a_different_event_on_the_same_day_is_kept():
+    seed = _dup_seed()
+    seed, _ = merge.apply([_dup_attach(title="Strike on the capital")], seed)
+    seed, _ = merge.apply([_dup_attach(title="Ceasefire talks open abroad", kind="milestone")], seed)
+    assert len(seed["conflicts"][0]["events"]) == 2
+
+
+def test_an_escalation_days_later_is_not_swallowed_as_continuation():
+    seed = _dup_seed()
+    seed, _ = merge.apply([_dup_attach(date="2024-05-01", kind="attack")], seed)
+    seed, _ = merge.apply([_dup_attach(date="2024-05-02", kind="ceasefire")], seed)
+    assert len(seed["conflicts"][0]["events"]) == 2, "a change of kind is a real development"
+
+
+# ---- a re-founded conflict must not take its event down with it -----------------------------
+
+def test_a_new_conflict_whose_id_exists_folds_its_events_in():
+    from conflict_updater.schema import Conflict, Event, Proposal
+    seed = _dup_seed(events=[{"id": "c1_e1", "date": "2024-01-02", "title": "Opening shots"}])
+    body = Conflict(id="c1", title="A War", type="war", severity=4, start_date="2024-06-01",
+                    events=[Event(date="2024-06-01", title="A later battle", kind="battle")])
+    seed, report = merge.apply(
+        [Proposal(kind="new_conflict", new_conflict=body, needs_human=False,
+                  event=body.events[0])], seed)
+    titles = [e["title"] for e in seed["conflicts"][0]["events"]]
+    assert "A later battle" in titles, "the event used to be discarded along with the skipped conflict"
+    assert len(seed["conflicts"]) == 1, "and no duplicate conflict is created"
+    assert any("fold into existing" in r for r in report)
+
+
+def test_folding_does_not_re_add_an_event_already_present():
+    from conflict_updater.schema import Conflict, Event, Proposal
+    seed = _dup_seed(events=[{"id": "c1_e1", "date": "2024-06-01", "title": "A later battle",
+                              "kind": "battle"}])
+    body = Conflict(id="c1", title="A War", type="war", severity=4, start_date="2024-06-01",
+                    events=[Event(date="2024-06-01", title="A later battle", kind="battle")])
+    seed, _ = merge.apply(
+        [Proposal(kind="new_conflict", new_conflict=body, needs_human=False,
+                  event=body.events[0])], seed)
+    assert len(seed["conflicts"][0]["events"]) == 1
+
+
+# ---- countries must be ones the atlas can actually draw --------------------------------------
+# Internal consistency is not enough. "UK" or "Palestine" is perfectly self-consistent, passes
+# every other invariant, and then renders as nothing — no name in the panel, no fill on the map.
+# An event attributed to a country the app cannot draw has silently lost that country.
+
+def _seed_countries(codes, known=("ISR", "PSE", "UKR")):
+    return {"countries": [{"id": k} for k in known],
+            "conflicts": [{"id": "c1", "involvedCountries": list(codes),
+                           "parties": [], "events": []}]}
+
+
+def test_a_real_country_code_passes():
+    assert merge.validate(_seed_countries(["ISR", "PSE"])) == []
+
+
+def test_a_country_name_instead_of_a_code_is_caught():
+    issues = merge.validate(_seed_countries(["ISR", "Palestine"]))
+    assert any("malformed" in i and "Palestine" in i for i in issues)
+
+
+def test_a_two_letter_code_is_caught():
+    issues = merge.validate(_seed_countries(["ISR", "UK"]))
+    assert any("malformed" in i for i in issues), "UK is not alpha-3; GBR is"
+
+
+def test_a_well_formed_code_the_atlas_does_not_know_is_caught():
+    # Right shape, wrong answer — this is the one that would render as nothing with no error.
+    issues = merge.validate(_seed_countries(["ISR", "XKX"]))
+    assert any("not in the atlas" in i and "XKX" in i for i in issues)
+
+
+def test_the_check_is_skipped_when_a_fixture_carries_no_country_list():
+    # Most test fixtures here have no `countries` key; they must not fail for the wrong reason.
+    seed = {"conflicts": [{"id": "c1", "involvedCountries": ["ISR"], "parties": [], "events": []}]}
+    assert merge.validate(seed) == []
+
+
+def test_the_real_atlas_has_no_unknown_countries():
+    import json, pathlib
+    seed = json.loads((pathlib.Path(__file__).resolve().parents[2] / "src" / "data" / "seed.json")
+                      .read_text(encoding="utf-8"))
+    bad = [i for i in merge.validate(seed) if "not in the atlas" in i or "malformed" in i]
+    assert bad == [], f"the published atlas references countries it cannot draw: {bad[:5]}"

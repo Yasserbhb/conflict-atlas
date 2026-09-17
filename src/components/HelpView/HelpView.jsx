@@ -174,7 +174,7 @@ export default function HelpView() {
             its full output, week by week, including the runs that found nothing and the ones
             that failed:{' '}
             <a
-              href="https://github.com/Yasserbhb/conflict-atlas/actions/workflows/pipeline-weekly.yml"
+              href="https://github.com/Yasserbhb/conflict-atlas/actions/workflows/pipeline-daily.yml"
               target="_blank"
               rel="noreferrer"
               className={styles.auditLink}

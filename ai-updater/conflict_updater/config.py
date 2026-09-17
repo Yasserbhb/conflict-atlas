@@ -25,6 +25,10 @@ class Settings:
     search_backend: str = _f("SEARCH_BACKEND", "tavily")
     search_depth: str = _f("SEARCH_DEPTH", "advanced")            # tavily: basic (1 credit) | advanced (2, fuller)
     search_max_results: int = field(default_factory=lambda: int(_get("SEARCH_MAX_RESULTS", "12")))  # articles/query
+    # Hard cap on searches per scan. The Scoper prompt says "at most 6", but a prompt is not a
+    # budget: the code iterated whatever list came back, and every query is a paid Tavily search
+    # (2 credits at advanced depth). Same class of bug as the window filter — enforce it here.
+    max_queries: int = field(default_factory=lambda: int(_get("MAX_QUERIES", "6")))
     geocode_backend: str = _f("GEOCODE_BACKEND", "nominatim")  # nominatim | none
 
     t_settle_days: int = field(default_factory=lambda: int(_get("T_SETTLE_DAYS", "7")))
@@ -44,6 +48,14 @@ class Settings:
         default_factory=lambda: Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))))
     output_dir: Path = field(default_factory=lambda: Path(_get("OUTPUT_DIR", str(_HERE / "out"))))
     log_dir: Path = field(default_factory=lambda: Path(_get("LOG_DIR", str(_HERE / "log"))))  # committed digests
+    # The coverage ledger lives in the TRACKED app data, not in the gitignored out/ dir.
+    # It used to be written to out/coverage.json and copied into src/data at commit time, which
+    # silently destroyed it: out/ is gitignored, so a CI checkout starts with no ledger,
+    # load_coverage() returns [], and the run publishes a one-row file over the whole history.
+    # It is also the state a day-cursor reads to know which days are already done, so it has to
+    # survive between runs.
+    coverage_json: Path = field(
+        default_factory=lambda: Path(_get("COVERAGE_JSON", str(_HERE.parent / "src" / "data" / "coverage.json"))))
     lifecycle_yml: Path = field(
         default_factory=lambda: Path(_get("LIFECYCLE_YML", str(_HERE / "config" / "lifecycle.yml"))))
     sources_yml: Path = field(
@@ -53,6 +65,38 @@ class Settings:
     # it would only ever miss); on for evaluation and backtests, where the same prompts are
     # replayed constantly and re-paying for them makes measurement too expensive to repeat.
     llm_cache: str = _f("LLM_CACHE", "off")  # off | on
+
+    # ---- daily cursor + duplicate guard ----
+    # Where the cursor starts walking. Keep this RECENT. The cursor's job is staying current,
+    # not excavating history: it advances at most `pipeline_max_days_per_run` per run while the
+    # settle horizon advances one day per day, so a start date far in the past is a backlog the
+    # daily job may never close. Filling an old period is a separate, deliberate operation —
+    # `scan "1974..1975"` — which searches a range in one pass instead of a day at a time.
+    pipeline_start_date: str = _f("PIPELINE_START_DATE", "2026-09-01")
+    # Days per run. This MUST be > 1 for the cursor to recover from anything: at 1 it advances
+    # exactly as fast as the horizon, so a single missed run is a gap that never closes.
+    pipeline_max_days_per_run: int = field(default_factory=lambda: int(_get("PIPELINE_MAX_DAYS_PER_RUN", "3")))
+    # After this many inconclusive attempts a day is left behind, so one permanently
+    # un-searchable date cannot stall every day queued behind it.
+    coverage_max_attempts: int = field(default_factory=lambda: int(_get("COVERAGE_MAX_ATTEMPTS", "3")))
+    # An event within this many days of an existing one, with a near-identical title and the same
+    # kind, is the same continuing operation rather than a new event.
+    continuation_days: int = field(default_factory=lambda: int(_get("CONTINUATION_DAYS", "3")))
+    duplicate_title_floor: float = field(default_factory=lambda: float(_get("DUPLICATE_TITLE_FLOOR", "0.85")))
+    # Minimum historical CONSEQUENCE (not violence) for an event to be applied without review.
+    # significance and severity are different fields: a ceasefire is severity 1, significance 5.
+    min_significance_auto: int = field(default_factory=lambda: int(_get("MIN_SIGNIFICANCE_AUTO", "3")))
+
+    # ---- typed decisions (TypeSafe / Jev) ----
+    # Which backend answers the CHOICE / SCORE / CONFIDENCE questions — resolver decision,
+    # event kind, conflict type, severity, party roles, status, significance, verify verdict.
+    # The LLM keeps the prose: search queries, event titles, summaries, open questions.
+    # "none" (default) leaves every judgement with the LLM, exactly as before.
+    judge_backend: str = _f("JUDGE_BACKEND", "none")   # none | jev
+    judge_model: str = _f("JUDGE_MODEL", "")
+    # An article is passed to the Extractor when the judge puts it at least this likely to
+    # report a datable event. Low enough to be generous — the Extractor still decides.
+    triage_threshold: float = field(default_factory=lambda: float(_get("TRIAGE_THRESHOLD", "0.6")))
 
 
 def load_settings() -> Settings:

@@ -41,7 +41,7 @@ Two halves, documented together here:
   century ticks, so dragging it also shows *when* the world was most at war.
 - **Relationships graph** — conflicts as nodes, edges where contemporaneous conflicts share
   belligerents. The force layout self-organises into eras.
-- **Pipeline** — the agents' own operations log: what each weekly run scanned, what it added,
+- **Pipeline** — the agents' own operations log: what each daily run scanned, what it added,
   what it held back, and a link to that run's full output.
 - **Export** the whole dataset as JSON.
 - **~240 conflicts / ~490 sourced events** across every region and era.
@@ -120,25 +120,40 @@ dataset current and honest. The credibility of this project is data rigour, not 
 
 ## What it is
 
-**One operation: `scan(period, region?, topic?)`.** The only input is a time window — a week or a
+**One operation: `scan(period, region?, topic?)`.** The only input is a time window — a day or a
 century, same protocol, same agents. `scan("1924..2024", region="Africa")` fills a century;
-`scan("week")` is the routine update. The weekly cron is just an automatic caller of the same
-function.
+the daily cron scans one day.
 
-Recency is a per-event rule, not a mode: an event dated in the last ~7 days is held **provisional**
-until it corroborates.
+**The unit of work is a day, and the question is always the same: have we checked this one yet?**
+A day the coverage ledger records as checked is skipped. A day that failed, or that search could
+not see, is retried. A day that can never be searched is left behind after a few attempts so it
+cannot stall everything queued behind it.
+
+The day it scans is deliberately about a week behind today, and that is structural rather than a
+delay for its own sake: an event newer than `T_SETTLE_DAYS` is marked *provisional* and excluded
+from the applied set, so a job scanning "today" would run forever and never add anything. The lag
+also gives claims time to be corroborated or retracted before they are recorded.
 
 ## The agent team
 
 Five focused prompts, strict JSON out. **Three LLM calls per candidate** (plus two per scan):
 
-| Agent | Job |
-|---|---|
-| **Scoper** | window → search queries (multi-language) + which existing conflicts to re-check |
-| **Extractor** | articles → dated candidate events, ranked by historical significance |
-| **Resolver** | dedup decision: `known` / `attach` / `new` / `ambiguous` |
-| **Enrich** | one call: kind · type · severity · roles · location · summary · status · span |
-| **Verify** | one call: fact-check against sources **and** decide auto-approve vs needs-human |
+| Stage | Job | Answered by |
+|---|---|---|
+| **Scoper** | window → search queries (multi-language) | LLM — writing |
+| **Triage** | which of ~70 fetched articles report a datable event | **judge** — one parallel call |
+| **Extractor** | the surviving articles → dated candidate events | LLM — writing |
+| **Resolver** | which existing conflict this belongs to, or none | **judge** — one Choice |
+| **Enrich** | kind · type · severity · roles · status | **judge** — all in one call |
+| | the one-sentence summary | LLM — writing |
+| **Verify** | verdict + how sure it is | **judge** — Choice + calibrated confidence |
+
+**The split is the design: anything that is a choice, a score or a confidence goes to a typed
+model; the LLM keeps only prose.** It is not stylistic. `AUTO_APPROVE_CONFIDENCE` gates everything
+this pipeline publishes on one number, and when an LLM writes `confidence: 0.85` that is a token
+it generated — nothing ties it to being right 85% of the time. A System One model derives
+confidence from the probability distribution over the options. Set `JUDGE_BACKEND=none` and every
+judgement falls back to the LLM.
 
 Deterministic code — not the LLM — does fetching, candidate dedup, geocoding (Nominatim),
 source-linking, span derivation and the merge. `dedup.py` narrows 240 conflicts to ≤5 plausible
@@ -174,12 +189,12 @@ pip install -r requirements.txt
 cp .env.example .env                  # add your keys
 
 python -m conflict_updater "1990..2003" --region Africa   # scan: fill the past
-python -m conflict_updater week                           # scan: routine update
+python -m conflict_updater auto cursor --days 1           # the daily run
 #   → read out/review_*.md, then:
 python -m conflict_updater apply out/proposals_*.json --approve 1 3 5
 python -m conflict_updater apply out/proposals_*.json --dry-run   # report only
 
-python -m conflict_updater auto week --limit 12   # hands-off (what the weekly cron runs)
+python -m conflict_updater auto cursor --days 1 --limit 5 --dry-run   # what the cron runs
 python -m conflict_updater coverage               # what's been searched, and how it came back
 python -m conflict_updater eval "2024..2026"      # backtest against curated events
 python -m conflict_updater serve                  # local control panel
@@ -196,21 +211,82 @@ Key `.env` settings:
 |---|---|
 | `LLM_PROVIDER` | `openrouter` · `openai` · `google` |
 | `LLM_MODEL` | **Accepts a comma-separated fallback chain**: `primary:free,backup:free` |
+| `JUDGE_BACKEND` | `jev` · `none` — who answers the choices, scores and confidences |
+| `TYPESAFE_API_KEY` | from [console.typesafe.ai](https://console.typesafe.ai/) |
 | `SEARCH_BACKEND` | `tavily` · `none` |
+| `PIPELINE_START_DATE` | where the day cursor begins walking forward |
+| `MIN_SIGNIFICANCE_AUTO` | default `3` — historical **consequence**, not violence |
 | `AUTO_APPROVE_CONFIDENCE` | default `0.8` — see [Evaluation](#evaluation) before trusting it |
+| `MAX_QUERIES` | default `6` — a real cap on billed searches per scan |
 | `LLM_CACHE` | `off` (default) · `on` — content-addressed response cache |
 
-> **Pin a fallback chain.** Nine consecutive weekly runs once died because a single pinned free
+### Secrets the scheduled runs need
+
+Both workflows read these from **Settings → Secrets and variables → Actions**:
+
+| Secret | Used for |
+|---|---|
+| `LLM_MODEL` | the fallback chain — pin two or three working slugs, not one |
+| `OPENROUTER_API_KEY` | Scoper, Extractor, summaries |
+| `TAVILY_API_KEY` | the article search |
+| `TYPESAFE_API_KEY` | every typed decision |
+
+`LLM_PROVIDER` and `GOOGLE_API_KEY`/`OPENAI_API_KEY` are only needed if you switch provider.
+
+> **Pin a fallback chain.** Nine consecutive runs once died because a single pinned free
 > model slug was withdrawn by the provider and there was nothing to fall back to. Later entries in
 > the chain are tried only when the earlier one is gone or exhausted — never for a bad prompt,
 > which would just burn a second quota.
+
+### What it does once deployed
+
+Each run asks for the oldest day it has not checked, **but never one newer than
+`today - T_SETTLE_DAYS`**. With the defaults that means it is always working on a day about a
+week old, which is deliberate: an event newer than that is marked provisional and excluded from
+the applied set, so a job scanning "today" would run forever and never add anything.
+
+With `PIPELINE_START_DATE=2026-09-01` and `--days 3`, deploying today leaves a ~10-day backlog
+that closes in about four runs; after that it tracks the horizon, scanning one new day per day.
+
+**`--days` must be greater than 1.** At 1 the cursor advances exactly as fast as the horizon, so
+it never closes a backlog and never recovers from a missed run — the gap just travels forward
+with it. At 3 it gains two days per run and heals on its own. The CLI prints a warning if the
+configured backlog cannot be closed.
+
+**The cursor is for staying current, not for excavating history.** Backfilling 2026 from January
+at one-to-three days per run would take months and mostly rediscover nothing, because searching
+the live web for an old date returns retrospective coverage rather than that day's reporting.
+Fill an old period deliberately instead, in one pass over a range:
+
+```bash
+python -m conflict_updater scan "2026-01-01..2026-03-31"
+```
+
+### What a day costs
+
+Measured, with `--limit 5`. Let **N** be the candidates processed and **Q** the Scoper's queries.
+
+| Service | Per day | Notes |
+|---|---|---|
+| **Tavily** | `Q` ≈ **6** | one search per query; capped by `MAX_QUERIES` because the prompt limit was never enforced |
+| **LLM** | `2 + N` ≈ **7 calls**, ~15-20k tokens | Scoper, Extractor, and one summary per candidate |
+| **Jev** | `1 + 3N` ≈ **16 calls** | triage, then resolve/classify/verify per candidate — fractions of a cent |
+| **Nominatim** | ≤ N | only for events with a place |
+
+Three things move the count: a duplicate caught by the pre-Resolver guard costs **nothing**; an
+event the Resolver calls `known` costs **one Jev call** and stops there; and an Extractor that
+fails over to the second model costs **two LLM calls** instead of one.
+
+A "call" can be more than one HTTP request — the prompted path retries once on malformed JSON,
+and `_with_backoff` retries up to five times on rate limits. That is why a day can take twenty
+minutes on a free tier despite only ~7 LLM calls: the backoff ladder is 8→16→32→64→128s.
 
 ### Resilience
 
 - A failure on one candidate is recorded and the scan **continues** — one bad LLM call costs a
   single event, not the whole run's spent quota.
 - A scan that dies entirely still writes a `failed` row to the coverage ledger before exiting, so
-  a dead week is visible rather than silent.
+  a dead day is visible rather than silent.
 
 ## Evaluation
 
@@ -256,7 +332,7 @@ overconfident. Measure before trusting it; the fix, if needed, is just moving th
 What this measures well: **resolution and enrichment**. What it measures only loosely:
 **extraction on historical windows** — searching the web today for 1962 returns retrospective
 encyclopaedia coverage, not contemporaneous reporting. Recent windows are the honest test of the
-full weekly path.
+full daily path.
 
 Each run writes `out/eval_*.json` stamped with the **prompt version** (a hash of every prompt
 constant) and model, so a change in quality can be attributed to a prompt edit. The `missed` list
@@ -268,8 +344,8 @@ window, go. It publishes the headline numbers to the site's Pipeline page, print
 run's own summary, and attaches the full report (including the misses) as an artifact. It also
 runs itself monthly on the 15th.
 
-It is a *separate* workflow from the weekly update for quota reasons, not tidiness: a scan costs
-~`2 + 3N` LLM calls, so the weekly job at `--limit 12` already spends ~38. Running an eval in the
+It is a *separate* workflow from the daily update for quota reasons, not tidiness: a scan costs
+~`2 + 3N` LLM calls, so the daily job at `--limit 5` spends ~17. Running an eval in the
 same job would push a free tier past a typical ~50/day allowance and fail both.
 
 > Turn `LLM_CACHE=on` (the default for `eval`) so replaying a backtest after a prompt tweak only
@@ -343,10 +419,10 @@ A static single-page app — all user data lives in the browser — so it hosts 
 - **Netlify** — connect the repo; `netlify.toml` is already set up.
 - **Vercel** — zero config; auto-detects Vite.
 
-**Actions is independent of Pages.** The weekly pipeline runs on a cron and commits to the repo
+**Actions is independent of Pages.** The daily pipeline runs on a cron and commits to the repo
 regardless of where the site is hosted, so changing host costs exactly one workflow file.
 
-## Where the weekly run's output lives
+## Where each run's output lives
 
 The pipeline produces three kinds of output, and they deliberately go to three different places:
 
@@ -354,7 +430,7 @@ The pipeline produces three kinds of output, and they deliberately go to three d
 |---|---|---|
 | `seed.json`, `coverage.json` | **Committed to the repo** | The site bundles these at build time, so they have to be in git |
 | Full digests, proposals, eval reports | **Actions artifact** (90 days) | Persistent and downloadable, but never pushed — the repo stays the dataset, not a log store |
-| A rendered weekly report | **Actions job summary** | Read it on the run's own page; nothing is stored in git at all |
+| A rendered run report | **Actions job summary** | Read it on the run's own page; nothing is stored in git at all |
 
 The **Pipeline view** in the app renders the committed coverage ledger as an operations log:
 last run, what was applied, what's held back, which windows came back blind, and which failed.
@@ -390,7 +466,8 @@ resolves to a binding the wrapper can't load. If it breaks:
 rm -rf node_modules package-lock.json && npm install
 ```
 
-**A weekly run failed** — check `src/data/coverage.json` for a `failed` row; it carries the error.
+**A run failed** — check `src/data/coverage.json` for a `failed` row; it carries the error, and
+the cursor retries that day on the next run.
 The run is also red in the Actions tab.
 
 # Data, sources & disclaimer

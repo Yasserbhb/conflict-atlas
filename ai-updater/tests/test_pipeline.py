@@ -24,6 +24,8 @@ ITEMS = [
             outlet="reuters.com", alignment="independent"),
     RawItem(title="Gaza City hit", url="http://b", snippet="strike reported",
             outlet="aljazeera.com", alignment="arab"),
+    RawItem(title="Strike on Gaza City confirmed", url="http://c", snippet="strike reported",
+            outlet="apnews.com", alignment="independent"),
 ]
 
 
@@ -62,12 +64,22 @@ def _happy(override=None):
     return r
 
 
-def _req():
-    return ScanRequest(period_start="2024-01-01", period_end="2024-12-31")
+def _req(period=("1800-01-01", "2030-12-31")):
+    # Deliberately wide. scan() now drops candidates dated outside the request window (it used to
+    # be a prompt instruction with nothing enforcing it), and most tests here are about slug
+    # collisions, capping or status — not dates. A window that spans their fixtures keeps them
+    # testing what they are about. The filter itself is covered by its own tests below.
+    return ScanRequest(period_start=period[0], period_end=period[1])
 
 
-def _scan(responses, base=BASE, settings=None, geocode=None):
-    return scan(_req(), llm=FakeLLM(responses), search=FakeSearch(ITEMS), base=base,
+def _scan(responses, base=BASE, settings=None, geocode=None, period=("1800-01-01", "2030-12-31"),
+          items=None, cand_sources=None):
+    if cand_sources is not None:
+        ev = responses[ExtractorOutput].events[0]
+        responses = dict(responses)
+        responses[ExtractorOutput] = ExtractorOutput(
+            events=[ev.model_copy(update={"source_urls": cand_sources})])
+    return scan(_req(period), llm=FakeLLM(responses), search=FakeSearch(items or ITEMS), base=base,
                 settings=settings or Settings(), geocode=geocode or FakeGeocode())
 
 
@@ -103,14 +115,16 @@ def test_thinly_sourced_new_conflict_needs_human():
 
 
 def test_strongly_corroborated_new_conflict_can_auto_approve():
+    # Three DISTINCT outlets across two alignments actually exist in ITEMS — the bar is met by
+    # the evidence, not by the model saying so.
     res = _scan(_happy({
         ResolverOutput: ResolverOutput(decision="new"),
         EnrichOutput: _enrich(conflict_type="war"),
-        VerifyOutput: _verify(confidence=0.95, independent_sources=3, cross_alignment=True,
-                              decision="auto_approve"),
-    }))
+        VerifyOutput: _verify(confidence=0.95, decision="auto_approve"),
+    }), cand_sources=["http://a", "http://b", "http://c"])
     p = res.proposals[0]
     assert p.kind == "new_conflict" and p.needs_human is False
+    assert p.verify.independent_sources == 3
 
 
 def test_verify_can_still_veto_a_strongly_corroborated_new_conflict():
@@ -196,11 +210,24 @@ def test_structured_event_still_escalates_on_resolver_ambiguity():
     assert "VerifyOutput" not in fake_llm.calls
 
 
-def test_verify_corroboration_verdict_is_carried_onto_the_event():
-    res = _scan(_happy({VerifyOutput: _verify(independent_sources=4, cross_alignment=True)}))
+def test_corroboration_is_counted_from_the_sources_not_claimed_by_the_model():
+    # The model asserts 4 independent sources; only 2 distinct outlets actually back the event.
+    # These numbers gate new-conflict auto-approval, so the count has to win.
+    res = _scan(_happy({VerifyOutput: _verify(independent_sources=4, cross_alignment=False)}))
     p = res.proposals[0]
-    assert p.event.independent_sources == 4
-    assert p.event.cross_alignment is True
+    assert p.event.independent_sources == 2, "a hallucinated count must not reach the atlas"
+    assert p.event.cross_alignment is True, "reuters(independent) + aljazeera(arab) really is cross-aligned"
+    assert p.verify.independent_sources == 2, "the gate sees the counted value too"
+
+
+def test_one_outlet_cited_twice_counts_once():
+    res = _scan(_happy({VerifyOutput: _verify()}), items=[
+        RawItem(title="Strike", url="http://a1", snippet="x", outlet="reuters.com", alignment="independent"),
+        RawItem(title="Strike", url="http://a2", snippet="x", outlet="reuters.com", alignment="independent"),
+    ], cand_sources=["http://a1", "http://a2"])
+    p = res.proposals[0]
+    assert p.event.independent_sources == 1, "two URLs from one outlet are one voice"
+    assert p.event.cross_alignment is False
 
 
 def test_enrich_gets_no_lifecycle_context_when_parent_type_is_unknown():
@@ -350,3 +377,122 @@ def test_failed_candidates_are_named_in_the_result():
 def test_a_clean_scan_reports_no_failures():
     res = _scan(_happy())
     assert res.failed == [] and res.stats["failed"] == 0
+
+
+# ---- the window is enforced in code, not asked for in a prompt ------------------------------
+
+def test_an_out_of_window_candidate_never_reaches_the_resolver():
+    # The extractor is TOLD the window, but nothing used to check. Over 365 daily runs that drift
+    # is how one event gets recorded on several days.
+    llm = FakeLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[
+            CandidateEvent(date="2024-05-01", title="Inside the window",
+                           actors=["Israel"], place="Gaza", source_urls=["http://a"]),
+            CandidateEvent(date="2019-01-01", title="Years outside the window",
+                           actors=["Israel"], place="Gaza", source_urls=["http://b"]),
+        ]),
+    }))
+    res = scan(ScanRequest(period_start="2024-01-01", period_end="2024-12-31"),
+               llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert [p.event.title for p in res.proposals] == ["Inside the window"]
+    assert res.stats["out_of_window"] == 1
+    assert llm.calls.count("ResolverOutput") == 1, "the dropped candidate must cost no LLM calls"
+
+
+def test_a_single_day_window_keeps_only_that_day():
+    llm = FakeLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[
+            CandidateEvent(date="2024-05-01", title="That day", actors=["X"], source_urls=["http://a"]),
+            CandidateEvent(date="2024-05-02", title="The next day", actors=["X"], source_urls=["http://b"]),
+        ]),
+    }))
+    res = scan(ScanRequest(period_start="2024-05-01", period_end="2024-05-01"),
+               llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert [p.event.title for p in res.proposals] == ["That day"]
+
+
+def test_candidates_are_processed_oldest_first_regardless_of_significance():
+    # Status may only move on the chronologically latest event, so execution order must be by
+    # date even though SELECTION (what survives --limit) is by significance.
+    seen = []
+
+    class _OrderLLM(FakeLLM):
+        def structured(self, model, system, user):
+            if model.__name__ == "ResolverOutput":
+                seen.append("2024-01-05" if "2024-01-05" in user else "2024-07-07")
+            return super().structured(model, system, user)
+
+    llm = _OrderLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[
+            CandidateEvent(date="2024-07-07", title="Later but trivial",
+                           actors=["X"], source_urls=["http://a"], significance=1),
+            CandidateEvent(date="2024-01-05", title="Earlier and major",
+                           actors=["X"], source_urls=["http://b"], significance=5),
+        ]),
+    }))
+    scan(ScanRequest(period_start="2024-01-01", period_end="2024-12-31"),
+         llm=llm, search=FakeSearch(ITEMS), base=BASE,
+         settings=Settings(), geocode=FakeGeocode())
+    assert seen == ["2024-01-05", "2024-07-07"]
+
+
+# ---- duplicates cost nothing to reject ------------------------------------------------------
+
+def test_an_event_the_conflict_already_has_is_dropped_before_any_llm_spend():
+    base = [BaseConflict(id="seed_gaza", title="Gaza War", involved_countries=["ISR", "PSE"],
+                         start=2023, status="active",
+                         events=[{"date": "2024-05-01", "title": "Israeli strike on Gaza City"}])]
+    llm = FakeLLM(_happy())
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=base,
+               settings=Settings(), geocode=FakeGeocode())
+    assert res.proposals == []
+    assert any("already recorded" in d for d in res.dropped)
+    assert "ResolverOutput" not in llm.calls, "a known duplicate must not cost Resolver/Enrich/Verify"
+
+
+def test_a_continuing_operation_is_not_recorded_again_the_next_day():
+    base = [BaseConflict(id="seed_gaza", title="Gaza War", involved_countries=["ISR"],
+                         start=2023, status="active",
+                         events=[{"date": "2024-04-30", "title": "Israeli strike on Gaza City",
+                                  "kind": "attack"}])]
+    llm = FakeLLM(_happy())          # candidate is 2024-05-01, same title, same kind
+    res = scan(_req(), llm=llm, search=FakeSearch(ITEMS), base=base,
+               settings=Settings(), geocode=FakeGeocode())
+    assert res.proposals == [], "day two of the same operation is the same thread, not a new event"
+
+
+def test_a_genuinely_different_event_on_the_same_day_still_gets_through():
+    base = [BaseConflict(id="seed_gaza", title="Gaza War", involved_countries=["ISR"],
+                         start=2023, status="active",
+                         events=[{"date": "2024-05-01", "title": "Ceasefire talks open in Cairo",
+                                  "kind": "milestone"}])]
+    res = _scan(_happy(), base=base)
+    assert len(res.proposals) == 1, "the guard is precision-tuned; it must not swallow real events"
+
+
+# ---- consequence, not violence --------------------------------------------------------------
+
+def test_a_low_consequence_event_is_held_rather_than_published():
+    res = _scan(_happy({
+        ExtractorOutput: ExtractorOutput(events=[CandidateEvent(
+            date="2024-05-01", title="Routine exchange of fire", actors=["Israel"],
+            place="Gaza", source_urls=["http://a"], significance=1)]),
+    }))
+    p = res.proposals[0]
+    assert p.needs_human is True, "a daily scan must not fill the atlas with minor incidents"
+    assert any("significance" in d for d in res.dropped)
+
+
+def test_a_low_severity_but_high_consequence_event_still_publishes():
+    # A ceasefire is severity 1 and significance 5. Gating on severity would throw away exactly
+    # the events a historical atlas most wants.
+    res = _scan(_happy({
+        ExtractorOutput: ExtractorOutput(events=[CandidateEvent(
+            date="2024-05-01", title="Ceasefire signed", actors=["Israel"], place="Gaza",
+            source_urls=["http://a", "http://b"], significance=5)]),
+        EnrichOutput: _enrich(event_kind="ceasefire", severity=1),
+    }))
+    p = res.proposals[0]
+    assert p.event.severity == 1 and p.needs_human is False
