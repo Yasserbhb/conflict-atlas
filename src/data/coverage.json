@@ -34,5 +34,20 @@
     "dropped": 0,
     "status": "found",
     "limited_to": 2
+  },
+  {
+    "scanned_at": "2026-09-17",
+    "region": "(any)",
+    "topic": null,
+    "period": "2026-06-01..2026-06-01",
+    "items": 0,
+    "events_found": 0,
+    "proposals": 0,
+    "dropped": 0,
+    "status": "failed",
+    "error": "OpenAIRateLimitError: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1789689600000'}, '",
+    "prompt_version": "9859edb2bcf8",
+    "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35286125314",
+    "limited_to": 5
   }
 ]
