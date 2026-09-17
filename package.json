@@ -19,7 +19,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test src/**/*.test.js"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
