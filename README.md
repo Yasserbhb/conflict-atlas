@@ -211,14 +211,51 @@ Key `.env` settings:
 |---|---|
 | `LLM_PROVIDER` | `openrouter` · `openai` · `google` |
 | `LLM_MODEL` | **Accepts a comma-separated fallback chain**: `primary:free,backup:free` |
+| `JUDGE_BACKEND` | `jev` · `none` — who answers the choices, scores and confidences |
+| `TYPESAFE_API_KEY` | from [console.typesafe.ai](https://console.typesafe.ai/) |
 | `SEARCH_BACKEND` | `tavily` · `none` |
+| `PIPELINE_START_DATE` | where the day cursor begins walking forward |
+| `MIN_SIGNIFICANCE_AUTO` | default `3` — historical **consequence**, not violence |
 | `AUTO_APPROVE_CONFIDENCE` | default `0.8` — see [Evaluation](#evaluation) before trusting it |
+| `MAX_QUERIES` | default `6` — a real cap on billed searches per scan |
 | `LLM_CACHE` | `off` (default) · `on` — content-addressed response cache |
+
+### Secrets the scheduled runs need
+
+Both workflows read these from **Settings → Secrets and variables → Actions**:
+
+| Secret | Used for |
+|---|---|
+| `LLM_MODEL` | the fallback chain — pin two or three working slugs, not one |
+| `OPENROUTER_API_KEY` | Scoper, Extractor, summaries |
+| `TAVILY_API_KEY` | the article search |
+| `TYPESAFE_API_KEY` | every typed decision |
+
+`LLM_PROVIDER` and `GOOGLE_API_KEY`/`OPENAI_API_KEY` are only needed if you switch provider.
 
 > **Pin a fallback chain.** Nine consecutive runs once died because a single pinned free
 > model slug was withdrawn by the provider and there was nothing to fall back to. Later entries in
 > the chain are tried only when the earlier one is gone or exhausted — never for a bad prompt,
 > which would just burn a second quota.
+
+### What a day costs
+
+Measured, with `--limit 5`. Let **N** be the candidates processed and **Q** the Scoper's queries.
+
+| Service | Per day | Notes |
+|---|---|---|
+| **Tavily** | `Q` ≈ **6** | one search per query; capped by `MAX_QUERIES` because the prompt limit was never enforced |
+| **LLM** | `2 + N` ≈ **7 calls**, ~15-20k tokens | Scoper, Extractor, and one summary per candidate |
+| **Jev** | `1 + 3N` ≈ **16 calls** | triage, then resolve/classify/verify per candidate — fractions of a cent |
+| **Nominatim** | ≤ N | only for events with a place |
+
+Three things move the count: a duplicate caught by the pre-Resolver guard costs **nothing**; an
+event the Resolver calls `known` costs **one Jev call** and stops there; and an Extractor that
+fails over to the second model costs **two LLM calls** instead of one.
+
+A "call" can be more than one HTTP request — the prompted path retries once on malformed JSON,
+and `_with_backoff` retries up to five times on rate limits. That is why a day can take twenty
+minutes on a free tier despite only ~7 LLM calls: the backoff ladder is 8→16→32→64→128s.
 
 ### Resilience
 
