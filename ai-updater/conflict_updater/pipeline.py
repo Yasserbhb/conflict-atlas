@@ -14,6 +14,7 @@ from .structured_source import StructuredSource, get_structured_source
 from .dates import in_window
 from .store import BaseConflict, load_base, pending_to_base, date_key, derive_span
 from . import agents, dedup, lifecycle
+from . import judge as judge_mod
 from .judge import Judge, NullJudge as _NullJudge, get_judge
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
@@ -148,9 +149,38 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         items.extend(search.search(q.query, q.lang))
     items = _dedupe_items(items)
 
+    # 2b. TRIAGE — which of these articles actually report a datable event?
+    # Search returns a wide net: for one day it is typically ~70 articles, most of them
+    # analysis, background or unrelated. Handing all of them to the Extractor in one structured
+    # call is both expensive and unreliable — measured at ~32k tokens, and free models simply
+    # return nothing. This is a selection, not a generation, so a judge answers it: one parallel
+    # call, one yes/no per article, ~1s for the whole pool. The Extractor then reads a handful.
+    triaged = items
+    if _j is not None and items:
+        state = {f"a{i}": {"title": it.title, "snippet": (it.snippet or "")[:400]}
+                 for i, it in enumerate(items)}
+        qs = {f"a{i}": judge_mod.noul(
+                f"Does `a{i}` report a specific, datable armed-conflict event (a strike, battle, "
+                f"massacre, ceasefire, treaty, offensive, displacement) that happened within "
+                f"{req.period_start}..{req.period_end}? Analysis, opinion, background and "
+                f"anniversary pieces do not count.")
+              for i in range(len(items))}
+        try:
+            verdicts = _j.ask(state, qs)
+            keep = [items[i] for i in range(len(items))
+                    if isinstance(verdicts[f"a{i}"].value, float)
+                    and verdicts[f"a{i}"].value >= settings.triage_threshold]
+            # An empty triage is a real answer ("we read the pool, nothing reports an event"),
+            # but a judge outage would look identical — so only trust it if it answered at all.
+            if any(v.value is not None for v in verdicts.values()):
+                triaged = keep
+        except Exception as e:  # noqa: BLE001 — triage is an optimisation, never a hard gate
+            print(f"  triage unavailable ({type(e).__name__}); extracting from the full pool")
+    triaged_out = len(items) - len(triaged)
+
     # 3. EXTRACTOR — items → discrete candidate events, most consequential first so a
     #    --limit cap keeps the important events (a revolt), not the footnotes (a decree).
-    cands = agents.extractor(llm, items, req).events
+    cands = agents.extractor(llm, triaged, req).events if triaged else []
     # Structured anchors (UCDP/ACLED, README: 'The AI updater') — already structured rows, nothing
     # for the Extractor to extract; feed them straight into the same candidate pool.
     cands += structured.fetch(req.period_start, req.period_end, req.region)
@@ -377,6 +407,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # Candidates the extractor returned dated outside the requested window. Non-zero means
         # the prompt drifted and the code caught it — worth seeing rather than silently fixing.
         "out_of_window": out_of_window,
+        # Articles the triage judged irrelevant before the Extractor saw them.
+        "triaged_out": triaged_out,
     }
     return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 

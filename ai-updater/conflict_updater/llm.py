@@ -192,10 +192,18 @@ def _with_backoff(call, *, retries: int = 5, base: float = 8.0):
 
 
 def _should_failover(e: Exception) -> bool:
-    """True when trying a DIFFERENT model could plausibly help: the model is gone, gated, or
-    its quota is spent. A schema/prompt error would fail identically on the next model, so it
-    propagates rather than burning a second quota."""
+    """True when trying a DIFFERENT model could plausibly help.
+
+    Three cases: the model is gone, its quota is spent, or it could not produce the structured
+    output at all. That last one was originally excluded on the grounds that a bad prompt would
+    fail identically everywhere — but that is not what it turned out to mean in practice. A model
+    returning an EMPTY reply after two prompted retries is a capability failure on a hard
+    structured task (extracting every event from an article pool), and a different model really
+    does succeed where one returns nothing. Measured, not assumed.
+    """
     msg = str(e).lower()
+    if "did not return schema-valid json" in msg or "empty model reply" in msg:
+        return True
     return any(t in msg for t in (
         "404", "not found", "no endpoints", "unavailable", "decommissioned", "deprecated",
         "is not a valid model", "does not exist", "no allowed providers",

@@ -87,6 +87,9 @@ class Settings:
     # "none" (default) leaves every judgement with the LLM, exactly as before.
     judge_backend: str = _f("JUDGE_BACKEND", "none")   # none | jev
     judge_model: str = _f("JUDGE_MODEL", "")
+    # An article is passed to the Extractor when the judge puts it at least this likely to
+    # report a datable event. Low enough to be generous — the Extractor still decides.
+    triage_threshold: float = field(default_factory=lambda: float(_get("TRIAGE_THRESHOLD", "0.6")))
 
 
 def load_settings() -> Settings:
