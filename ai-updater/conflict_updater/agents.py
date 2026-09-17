@@ -39,13 +39,31 @@ def extractor(llm: LLMClient, items: list[RawItem], req: ScanRequest) -> Extract
     return llm.structured(ExtractorOutput, P.EXTRACTOR_SYS, user)
 
 
+def _nearest_events(events: list[dict], around: str, k: int) -> list[dict]:
+    """The k events closest in time to `around`, returned in date order."""
+    from .dates import key as date_key
+    target = date_key(around)
+    closest = sorted(events or [], key=lambda e: abs_key(date_key(e.get("date")), target))[:k]
+    return sorted(closest, key=lambda e: date_key(e.get("date")))
+
+
+def abs_key(a: str, b: str) -> int:
+    """Crude distance between two padded date keys — good enough to rank nearness, and it needs
+    no real date parsing so mixed-precision and malformed dates can't raise here."""
+    return abs(int(a.replace("-", "") or 0) - int(b.replace("-", "") or 0))
+
+
 def resolver(llm: LLMClient, cand: CandidateEvent,
              candidates: list[tuple[BaseConflict, float]]) -> ResolverOutput:
     cand_list = [
         {
             "id": c.id, "title": c.title, "aliases": c.aliases, "match_score": round(s, 2),
             # the conflict's EXISTING events, so the resolver can tell known-vs-gap
-            "existing_events": [f"{e.get('date')}: {e.get('title')}" for e in c.events][:30],
+            # Nearest the candidate's date, not the first 30 in seed order. For a conflict with
+            # hundreds of events the recent ones — exactly what a duplicate would match — used to
+            # fall outside the slice, which made "known" unreachable and let duplicates through.
+            "existing_events": [f"{e.get('date')}: {e.get('title')}"
+                                for e in _nearest_events(c.events, cand.date, 30)],
         }
         for c, s in candidates
     ]

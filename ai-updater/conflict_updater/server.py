@@ -57,7 +57,7 @@ def _run_scan(job: Job, period_start: str, period_end: str, region, limit: int):
             result = scan(req, llm=get_llm(settings), search=get_search(settings),
                           base=base, settings=settings)
             write_result(result, settings.output_dir)
-            append_coverage(settings.output_dir / "coverage.json", result, limited=settings.max_candidates)
+            append_coverage(settings.coverage_json, result, limited=settings.max_candidates)
             s = result.stats
             job.detail = (f"{s.get('proposals', 0)} proposals "
                           f"({s.get('needs_human', 0)} to review), {s.get('dropped', 0)} already-known")
@@ -170,7 +170,7 @@ def overview() -> dict:
         "seed": _seed_stats(settings.seed_json),
         "provider": {"llm": f"{settings.llm_provider}:{settings.llm_model}",
                      "search": settings.search_backend},
-        "coverage": load_coverage(out_dir / "coverage.json"),
+        "coverage": load_coverage(load_settings().coverage_json),
         "pending": _pending(out_dir),
         "recent": _recent(out_dir),
         "jobs": jobs,

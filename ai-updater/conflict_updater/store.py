@@ -11,6 +11,9 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 from .schema import ScanResult, Proposal, Conflict
+# Ordering semantics live in dates.py; re-exported here because merge.py and
+# pipeline.py import date_key from store.
+from .dates import key as date_key  # noqa: F401
 
 
 class BaseConflict(BaseModel):
@@ -49,16 +52,6 @@ def default_status(c: dict) -> str:
         return "ended"
     return "active"
 
-
-def date_key(d: Optional[str]) -> str:
-    """Total-order key for mixed-precision ISO dates so '1871' and '1871-05-01' compare
-    correctly ('1871' < '1871-05-01' lexicographically, but a bare year should mean the
-    whole year — pad the unknown parts)."""
-    p = (d or "").split("-")
-    y = (p[0] if p and p[0] else "0000").zfill(4)
-    m = (p[1] if len(p) > 1 else "00").zfill(2)
-    day = (p[2] if len(p) > 2 else "00").zfill(2)
-    return f"{y}-{m}-{day}"
 
 
 def derive_span(event_dates, status, stated_start=None, stated_end=None):

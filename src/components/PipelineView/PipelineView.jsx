@@ -41,7 +41,7 @@ export default function PipelineView() {
           What the agents did, from the coverage ledger the weekly job publishes.
           Full logs live with each run in the Actions tab, not in the repo.
         </p>
-        <a className={styles.actionsLink} href={`${REPO}/actions/workflows/pipeline-weekly.yml`}
+        <a className={styles.actionsLink} href={`${REPO}/actions/workflows/pipeline-daily.yml`}
            target="_blank" rel="noreferrer">
           <ExternalLink size={12} strokeWidth={2} aria-hidden="true" />
           Open the weekly run history on GitHub

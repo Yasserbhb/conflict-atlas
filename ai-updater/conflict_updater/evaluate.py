@@ -30,6 +30,8 @@ from difflib import SequenceMatcher
 from typing import Optional
 
 
+from .dates import in_window, span as _span  # single source of date meaning
+
 _WORD = re.compile(r"[a-z0-9]+")
 
 
@@ -61,34 +63,6 @@ class Scored:
     missed: list[GoldEvent] = field(default_factory=list)
     spurious: list = field(default_factory=list)            # proposals matching no gold event
 
-
-def _span(d: str) -> tuple[str, str]:
-    """A mixed-precision ISO date as the [earliest, latest] it could mean.
-
-    `date_key` pads missing parts with zeros, which is right for ordering but wrong for
-    containment: a bare "1965" becomes "1965-00-00" and sorts BEFORE "1965-01-01", so a
-    year-only event would fall outside its own year. Most of the atlas's older events carry
-    only a year, so treating them as a range rather than a point is what keeps them in the
-    gold set at all.
-    """
-    p = [x for x in str(d or "").split("-") if x != ""]
-    if not p:
-        return ("9999-99-99", "0000-00-00")     # unparseable: overlaps nothing
-    y = p[0].zfill(4)
-    if len(p) == 1:
-        return (f"{y}-01-01", f"{y}-12-31")
-    m = p[1].zfill(2)
-    if len(p) == 2:
-        return (f"{y}-{m}-01", f"{y}-{m}-31")
-    return (f"{y}-{m}-{p[2].zfill(2)}",) * 2
-
-
-def in_window(d: str, start: str, end: str) -> bool:
-    """True when the date could fall inside the window, at whatever precision each side gives."""
-    lo, hi = _span(d)
-    wlo, _ = _span(start)
-    _, whi = _span(end)
-    return lo <= whi and wlo <= hi
 
 
 def extract_gold(seed: dict, start: str, end: str) -> list[GoldEvent]:

@@ -1,20 +1,29 @@
-name: Weekly conflict update
+name: Daily conflict update
 
-# Runs in the cloud on a schedule — your PC does not need to be on. It scans the past
-# week, AUTO-APPLIES only the confidently-corroborated findings to seed.json, writes a
-# plain-English digest to ai-updater/log/, and pushes (which redeploys the live map).
-# Everything is reversible via git history. Nothing here needs a human.
+# Runs in the cloud on a schedule — your PC does not need to be on.
+#
+# One question per run: what is the oldest day we have not checked yet? Days already recorded in
+# the coverage ledger are skipped, a day that failed or came back blind is retried, and a day that
+# can never be searched is left behind after a few attempts so it cannot stall the queue.
+#
+# The day it scans is deliberately about a week behind today. That is not a delay for its own sake:
+# an event newer than T_SETTLE_DAYS is marked provisional and excluded from the applied set, so a
+# job that scanned "today" would run forever and never add anything. The lag also gives claims time
+# to be corroborated or retracted before they are recorded, which suits a historical atlas.
+#
+# AUTO-APPLIES only the confidently-corroborated findings, writes a digest to ai-updater/log/, and
+# pushes (which redeploys the live map). Everything is reversible via git history.
 
 on:
   schedule:
-    - cron: "0 6 * * 1"      # every Monday 06:00 UTC
+    - cron: "0 6 * * *"      # every day, 06:00 UTC
   workflow_dispatch: {}        # ...and a manual "Run" button for testing
 
 permissions:
   contents: write
 
 concurrency:
-  group: weekly-update
+  group: daily-update
   cancel-in-progress: false
 
 jobs:
@@ -30,7 +39,7 @@ jobs:
       - name: Install pipeline
         run: pip install -r ai-updater/requirements.txt
 
-      - name: Scan the week and auto-apply confident findings
+      - name: Scan the next unchecked day and auto-apply confident findings
         working-directory: ai-updater
         env:
           LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
@@ -39,8 +48,9 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-        # ~3 LLM calls per candidate now (batched), so 12 candidates ≈ 38 calls — inside the
-        # OpenRouter free ~50/day. Raise toward 15 only if you have paid/higher quota.
+        # ~3 LLM calls per candidate (batched), so a day at --limit 5 costs ~17 calls — inside a
+        # typical free ~50/day allowance. --days >1 drains a backlog and multiplies that cost, so
+        # raise the two together only if the quota allows.
         #
         # LLM_MODEL accepts a comma-separated fallback chain ("primary:free,backup:free").
         # A single pinned slug is how nine consecutive runs died: OpenRouter withdrew the
@@ -48,19 +58,23 @@ jobs:
         #
         # `auto` now returns 1 (rather than raising) when the scan itself fails, having first
         # written a "failed" row to the coverage ledger. continue-on-error lets the commit step
-        # below publish that row — a dead week has to be visible on the site, not just in an
+        # below publish that row — a dead day has to be visible on the site, not just in an
         # inbox nobody reads. The "Surface failure" step still fails the run afterwards.
         continue-on-error: true
         id: scan
-        run: python -m conflict_updater auto week --limit 12
+        run: python -m conflict_updater auto cursor --days 1 --limit 5
 
-      - name: Snapshot coverage + quality for the public site
-        # Runs even after a failed scan: the ledger entry recording the blind window is
-        # exactly what needs publishing. The eval history is only present once a backtest has
-        # been run, so its copy is best-effort.
+      - name: Snapshot quality + last run for the public site
+        # NOT coverage.json — the pipeline now writes the ledger straight to the tracked
+        # src/data/coverage.json. Copying it from the gitignored out/ dir used to DESTROY it:
+        # a CI checkout has no out/, so load_coverage() returned [] and the run published a
+        # one-row file over the entire history. The ledger is also what the day-cursor reads to
+        # know which days are done, so it has to survive between runs.
+        #
+        # These two are still snapshots: they are genuine run artifacts, and the eval history
+        # only exists once a backtest has been run, so its copy is best-effort.
         if: always()
         run: |
-          cp ai-updater/out/coverage.json src/data/coverage.json || true
           cp ai-updater/out/eval_history.json src/data/eval-history.json || true
           cp ai-updater/out/latest_run.json src/data/latest-run.json || true
 
@@ -70,10 +84,11 @@ jobs:
           git config user.name "conflict-atlas-bot"
           git config user.email "bot@users.noreply.github.com"
           git add src/data/seed.json src/data/coverage.json src/data/eval-history.json src/data/latest-run.json ai-updater/log/ 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "weekly: auto-update $(date -u +%Y-%m-%d)"
+          git diff --cached --quiet || git commit -m "daily: auto-update $(date -u +%Y-%m-%d)"
+          git pull --rebase --autostash || true   # a push race must not stall the cursor
           git push
 
-      - name: Weekly report
+      - name: Daily report
         # Renders on the run's own page in the Actions tab. This is the "where do I read what
         # happened last week" answer that needs no commit and no server: GitHub stores it with
         # the run, and nothing lands in the repo.
@@ -81,14 +96,14 @@ jobs:
         run: |
           python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json, pathlib
-          led = pathlib.Path("ai-updater/out/coverage.json")
+          led = pathlib.Path("src/data/coverage.json")   # the tracked ledger, written directly
           rows = json.loads(led.read_text(encoding="utf-8")) if led.exists() else []
           if not rows:
-              print("## Weekly conflict update\n\nNo ledger entry was written — the run failed before scanning.")
+              print("## Daily conflict update\n\nNo ledger entry was written — the run failed before scanning.")
           else:
               e = rows[-1]
               ok = e.get("status") != "failed"
-              print(f"## Weekly conflict update — {'✅' if ok else '❌'} {e.get('status')}")
+              print(f"## Daily conflict update — {'✅' if ok else '❌'} {e.get('status')}")
               print()
               print(f"**Window** `{e.get('period')}`  ·  **prompts** `{e.get('prompt_version')}`")
               print()
@@ -127,5 +142,5 @@ jobs:
         # been committed and published.
         if: steps.scan.outcome == 'failure'
         run: |
-          echo "::error::Weekly scan failed — a 'failed' row was written to the coverage ledger."
+          echo "::error::Daily scan failed — a 'failed' row was written to the coverage ledger."
           exit 1

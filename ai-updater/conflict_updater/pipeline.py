@@ -11,6 +11,7 @@ from .llm import LLMClient, get_llm
 from .search import SearchClient, get_search
 from .geocode import GeocodeClient, get_geocode
 from .structured_source import StructuredSource, get_structured_source
+from .dates import in_window
 from .store import BaseConflict, load_base, pending_to_base, date_key, derive_span
 from . import agents, dedup, lifecycle
 from .schema import (
@@ -95,6 +96,22 @@ def _gather_sources(cand: CandidateEvent, items: list[RawItem]) -> list[Source]:
     return out[:8]
 
 
+def _count_corroboration(sources) -> tuple[int, bool]:
+    """How many genuinely independent outlets back this event, and do they span alignments.
+
+    Arithmetic, not judgement — so it is done here rather than asked of a model. Two sources from
+    the same outlet are one voice; `alignment` comes from config/sources.yml via search.py, so
+    "reported by both Reuters and Tasnim" is checkable rather than assertable.
+    """
+    outlets, alignments = set(), set()
+    for s in sources or []:
+        outlets.add((s.outlet or s.url or "").lower())
+        if s.alignment:
+            alignments.add(s.alignment.lower())
+    outlets.discard("")
+    return len(outlets), len(alignments) > 1
+
+
 def _is_latest_event(cand: CandidateEvent, parent) -> bool:
     """True if this event is the most recent in its conflict — only then may it move status."""
     if not parent or not parent.events:
@@ -130,9 +147,22 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
     # Structured anchors (UCDP/ACLED, README: 'The AI updater') — already structured rows, nothing
     # for the Extractor to extract; feed them straight into the same candidate pool.
     cands += structured.fetch(req.period_start, req.period_end, req.region)
+
+    # The window was enforced by PROMPT only ("Only events dated within ..."), and nothing checked
+    # it. Over a week that drift is a nuisance; over 365 daily runs it is how the same event gets
+    # recorded on several days. Enforce it in code.
+    in_range = [c for c in cands if in_window(c.date, req.period_start, req.period_end)]
+    out_of_window = len(cands) - len(in_range)
+    cands = in_range
+
+    # Select by significance (a --limit cap should keep the revolt, not the decree) ...
     cands.sort(key=lambda c: c.significance, reverse=True)
     if settings.max_candidates and len(cands) > settings.max_candidates:
         cands = cands[: settings.max_candidates]
+    # ... but EXECUTE oldest-first. Status may only move on the chronologically latest event, and
+    # pending_bases/_is_latest_event both assume forward order — processing by significance would
+    # let a minor early event decide a conflict's status after a major later one already did.
+    cands.sort(key=lambda c: date_key(c.date))
 
     proposals: list[Proposal] = []
     dropped: list[str] = []
@@ -147,6 +177,24 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # earlier in this same scan are included so a follow-up event attaches to them.
         pool = base + list(pending_bases.values())
         candidates = dedup.find_candidates(pool, cand)
+
+        # Cheap duplicate/continuation check BEFORE any LLM spend. find_candidates already
+        # returned these conflicts with their events, so the data is in hand: if this repeats an
+        # event one of them already has, drop it here rather than paying Resolver + Enrich +
+        # Verify to reach the same conclusion. Under a daily scan this is the common case, not
+        # the rare one — the same operation is reported every morning.
+        for parent_c, _score in candidates:
+            hit = dedup.duplicate_of(
+                parent_c.events, cand.date, cand.title,
+                continuation_days=settings.continuation_days,
+                floor=settings.duplicate_title_floor,
+            )
+            if hit:
+                dropped.append(
+                    f"already recorded: {cand.date} {cand.title} "
+                    f"(matches {parent_c.id} {hit.get('date')} {hit.get('title')})")
+                return None
+
         res = agents.resolver(llm, cand, candidates)
 
         if res.decision == "known":
@@ -214,10 +262,18 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             needs_human = ambiguous
         else:
             ver = agents.verify(llm, event, items, is_new)
-            # Carry the corroboration verdict onto the event itself so the app can show it —
-            # verify() needs the fully-built event to fact-check, so this can't be done earlier.
+
+            # COUNT the corroboration rather than believing the model's count. These two numbers
+            # gate new-conflict auto-approval, and they were being asserted by an LLM even though
+            # they are exactly computable: Source already carries .outlet and .alignment, filled
+            # from config/sources.yml. A hallucinated "3 independent sources" could found a
+            # conflict on one article. Overwrite the model's values with the real ones.
+            n_sources, cross = _count_corroboration(event.sources)
+            ver = ver.model_copy(update={"independent_sources": n_sources, "cross_alignment": cross})
+            # Carry it onto the event too so the app can show it — verify() needs the fully-built
+            # event to fact-check, so this can't be done earlier.
             event = event.model_copy(update={
-                "independent_sources": ver.independent_sources, "cross_alignment": ver.cross_alignment,
+                "independent_sources": n_sources, "cross_alignment": cross,
             })
 
             if ambiguous:
@@ -239,6 +295,16 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                     or ver.verdict != "pass"
                     or ver.confidence < settings.auto_approve_confidence
                 )
+
+        # A daily scan surfaces small incidents constantly. Gate on SIGNIFICANCE — historical
+        # consequence — not on severity: a ceasefire is severity 1 and significance 5, and it
+        # belongs in the atlas far more than a routine exchange of fire does. Held, not dropped,
+        # so nothing is lost; it just doesn't publish itself.
+        if not needs_human and cand.significance < settings.min_significance_auto:
+            needs_human = True
+            dropped.append(
+                f"held (significance {cand.significance} < {settings.min_significance_auto}): "
+                f"{cand.date} {cand.title}")
 
         new_conflict = None
         if is_new:
@@ -299,6 +365,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         "needs_human": sum(1 for p in proposals if p.needs_human),
         "dropped": len(dropped),
         "failed": len(failed),
+        # Candidates the extractor returned dated outside the requested window. Non-zero means
+        # the prompt drifted and the code caught it — worth seeing rather than silently fixing.
+        "out_of_window": out_of_window,
     }
     return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 

@@ -64,3 +64,52 @@ def find_candidates(base: list[BaseConflict], cand: CandidateEvent, k: int = 5, 
     scored = [(c, sc) for c, sc in scored if sc >= floor]
     scored.sort(key=lambda t: t[1], reverse=True)
     return scored[:k]
+
+
+# ---- duplicate / continuation guard --------------------------------------------------------
+# A weekly scan rarely saw the same event twice. A daily one does constantly: the same strike is
+# reported for days, and an ongoing operation generates near-identical headlines every morning.
+# Nothing in merge.apply checked for this — it appended unconditionally — so duplicate prevention
+# rested entirely on the Resolver LLM answering "known".
+#
+# "Continuation" is not a separate concept: it is this same check with a date tolerance instead of
+# exact-day equality. That is deliberate. Giving Event a duration would ripple into seed.json and
+# the React app for a problem a comparison already solves.
+
+def _title_ratio(a: str, b: str) -> float:
+    return SequenceMatcher(None, _norm(a), _norm(b)).ratio()
+
+
+def duplicate_of(existing: list[dict], date: str, title: str, kind: str | None = None,
+                 continuation_days: int = 3, floor: float = 0.85) -> dict | None:
+    """The existing event this one repeats, or None.
+
+    Two bands, because they are different mistakes:
+      * **same day** — a straightforward duplicate; titles must match at `floor`.
+      * **within `continuation_days`** — the ongoing-operation case. Held to a stricter title
+        match AND the same `kind`, so a genuine escalation ("ceasefire" after days of "attack")
+        is not swallowed as more of the same.
+
+    Floors are deliberately high. This runs as a precision guard — suppressing a real distinct
+    event is worse than letting one through to the Resolver, which gets the same judgement anyway.
+    Note `evaluate.same_event` looks similar but is tuned for recall in scoring (0.45/0.6); using
+    it here would drop genuinely different same-day events.
+    """
+    from .dates import as_day
+    d = as_day(date)
+    for e in existing or []:
+        etitle = e.get("title") or ""
+        if not etitle:
+            continue
+        edate = e.get("date")
+        if edate == date:
+            if _title_ratio(title, etitle) >= floor:
+                return e
+            continue
+        ed = as_day(edate)
+        if d is None or ed is None:
+            continue
+        if abs((d - ed).days) <= continuation_days:
+            if _title_ratio(title, etitle) >= max(floor, 0.9) and (kind is None or e.get("kind") == kind):
+                return e
+    return None
