@@ -51,6 +51,12 @@ jobs:
           # Typed decisions — resolver match, event kind, severity, roles, status,
           # and the verify verdict + its confidence. See judge.py.
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+          # Where the cursor starts walking, and how many days it drains per run. Set them as repo
+          # VARIABLES (Settings > Secrets and variables > Actions > Variables) to move the window
+          # without editing code. A start date far in the past is a backlog the daily job may
+          # never close -- fill old periods with a one-off `scan "1974..1975"` instead.
+          PIPELINE_START_DATE: ${{ vars.PIPELINE_START_DATE || '2026-06-01' }}
+          PIPELINE_MAX_DAYS_PER_RUN: ${{ vars.PIPELINE_MAX_DAYS_PER_RUN || '3' }}
           JUDGE_BACKEND: ${{ vars.JUDGE_BACKEND || 'jev' }}
         # ~3 LLM calls per candidate (batched), so a day at --limit 5 costs ~17 calls — inside a
         # typical free ~50/day allowance. --days >1 drains a backlog and multiplies that cost, so
@@ -66,7 +72,7 @@ jobs:
         # inbox nobody reads. The "Surface failure" step still fails the run afterwards.
         continue-on-error: true
         id: scan
-        run: python -m conflict_updater auto cursor --days 3 --limit 5
+        run: python -m conflict_updater auto cursor --limit 5
 
       - name: Snapshot quality + last run for the public site
         # NOT coverage.json — the pipeline now writes the ledger straight to the tracked
