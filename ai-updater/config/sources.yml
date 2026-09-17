@@ -1,11 +1,96 @@
-# Outlet allowlist for Source.alignment (README: 'What makes it trustworthy'). A STARTER seed list, not a claim
-# of comprehensive or settled curation — which outlets count as which alignment is a genuine
-# editorial judgment call. Extend as needed; an outlet not listed here simply gets no alignment
-# tag (VERIFY's cross-alignment proxy already falls back to outlet/language diversity alone).
-reuters.com:        { lang: en, region: global, alignment: independent, credibility: high }
-apnews.com:         { lang: en, region: global, alignment: independent, credibility: high }
-bbc.com:            { lang: en, region: global, alignment: independent, credibility: high }
-aljazeera.com:      { lang: en, region: arab,   alignment: arab,        credibility: high }
-rt.com:             { lang: en, region: global, alignment: russian,     credibility: low }
-tasnimnews.com:     { lang: en, region: iran,   alignment: iranian,     credibility: medium }
-timesofisrael.com:  { lang: en, region: israel, alignment: israeli,     credibility: medium }
+# Outlet alignment, used for the cross-alignment corroboration check (README: 'What makes it
+# trustworthy'). An unlisted outlet simply gets no alignment tag and still counts toward the
+# independent-outlet tally — this file only decides whether reporting SPANS perspectives.
+#
+# `alignment` is not a credibility score. It answers one question: if two outlets both report a
+# contested claim, are they two genuinely different vantage points, or the same one twice? A
+# claim corroborated only by outlets sharing an alignment has not really been corroborated.
+#
+# `credibility` is separate and advisory. `low` does not mean "false" — a state broadcaster is
+# often the first and only source for what a state did, and excluding it would blind the atlas to
+# one side of every war it fights. It means "treat as a claim by this actor, not as a finding".
+#
+# This is an editorial judgement, and a contestable one. It is versioned here so it can be argued
+# with rather than buried in a prompt.
+
+# ---- global wire services and broadsheets: the default reference points ----
+reuters.com:          { lang: en, region: global, alignment: independent, credibility: high }
+apnews.com:           { lang: en, region: global, alignment: independent, credibility: high }
+afp.com:              { lang: fr, region: global, alignment: independent, credibility: high }
+bbc.com:              { lang: en, region: global, alignment: independent, credibility: high }
+bbc.co.uk:            { lang: en, region: global, alignment: independent, credibility: high }
+theguardian.com:      { lang: en, region: uk,     alignment: independent, credibility: high }
+ft.com:               { lang: en, region: uk,     alignment: independent, credibility: high }
+economist.com:        { lang: en, region: uk,     alignment: independent, credibility: high }
+nytimes.com:          { lang: en, region: us,     alignment: western,     credibility: high }
+washingtonpost.com:   { lang: en, region: us,     alignment: western,     credibility: high }
+wsj.com:              { lang: en, region: us,     alignment: western,     credibility: high }
+cnn.com:              { lang: en, region: us,     alignment: western,     credibility: medium }
+dw.com:               { lang: de, region: europe, alignment: western,     credibility: high }
+france24.com:         { lang: fr, region: europe, alignment: western,     credibility: high }
+lemonde.fr:           { lang: fr, region: europe, alignment: western,     credibility: high }
+elpais.com:           { lang: es, region: europe, alignment: western,     credibility: high }
+spiegel.de:           { lang: de, region: europe, alignment: western,     credibility: high }
+
+# ---- specialist conflict and humanitarian reporting ----
+# Often the only outlets covering a war nobody else is covering that week.
+thenewhumanitarian.org: { lang: en, region: global, alignment: independent, credibility: high }
+icrc.org:             { lang: en, region: global, alignment: humanitarian, credibility: high }
+un.org:               { lang: en, region: global, alignment: multilateral, credibility: high }
+ohchr.org:            { lang: en, region: global, alignment: multilateral, credibility: high }
+reliefweb.int:        { lang: en, region: global, alignment: multilateral, credibility: high }
+hrw.org:              { lang: en, region: global, alignment: humanitarian, credibility: high }
+amnesty.org:          { lang: en, region: global, alignment: humanitarian, credibility: high }
+crisisgroup.org:      { lang: en, region: global, alignment: independent,  credibility: high }
+acleddata.com:        { lang: en, region: global, alignment: independent,  credibility: high }
+
+# ---- Middle East ----
+aljazeera.com:        { lang: en, region: arab,   alignment: arab,     credibility: high }
+aljazeera.net:        { lang: ar, region: arab,   alignment: arab,     credibility: high }
+alarabiya.net:        { lang: ar, region: gulf,   alignment: gulf,     credibility: medium }
+thenationalnews.com:  { lang: en, region: gulf,   alignment: gulf,     credibility: medium }
+middleeasteye.net:    { lang: en, region: arab,   alignment: arab,     credibility: medium }
+haaretz.com:          { lang: en, region: israel, alignment: israeli,  credibility: high }
+timesofisrael.com:    { lang: en, region: israel, alignment: israeli,  credibility: medium }
+jpost.com:            { lang: en, region: israel, alignment: israeli,  credibility: medium }
+wafa.ps:              { lang: ar, region: palestine, alignment: palestinian, credibility: medium }
+maannews.net:         { lang: ar, region: palestine, alignment: palestinian, credibility: medium }
+tasnimnews.com:       { lang: en, region: iran,   alignment: iranian,  credibility: low }
+presstv.ir:           { lang: en, region: iran,   alignment: iranian,  credibility: low }
+irna.ir:              { lang: fa, region: iran,   alignment: iranian,  credibility: low }
+anadoluagency.com:    { lang: en, region: turkey, alignment: turkish,  credibility: medium }
+aa.com.tr:            { lang: tr, region: turkey, alignment: turkish,  credibility: medium }
+
+# ---- Russia / Ukraine ----
+# State outlets on both sides are tagged low credibility and kept: a war reported only from one
+# capital is a war reported from one side.
+rt.com:               { lang: en, region: russia,  alignment: russian,   credibility: low }
+tass.com:             { lang: en, region: russia,  alignment: russian,   credibility: low }
+ria.ru:               { lang: ru, region: russia,  alignment: russian,   credibility: low }
+meduza.io:            { lang: ru, region: russia,  alignment: independent, credibility: high }
+themoscowtimes.com:   { lang: en, region: russia,  alignment: independent, credibility: medium }
+kyivindependent.com:  { lang: en, region: ukraine, alignment: ukrainian, credibility: high }
+pravda.com.ua:        { lang: uk, region: ukraine, alignment: ukrainian, credibility: medium }
+unian.info:           { lang: en, region: ukraine, alignment: ukrainian, credibility: medium }
+
+# ---- Africa ----
+sudantribune.com:     { lang: en, region: africa, alignment: african,     credibility: medium }
+dabangasudan.org:     { lang: en, region: africa, alignment: african,     credibility: medium }
+nation.africa:        { lang: en, region: africa, alignment: african,     credibility: medium }
+mg.co.za:             { lang: en, region: africa, alignment: african,     credibility: medium }
+allafrica.com:        { lang: en, region: africa, alignment: african,     credibility: medium }
+ethiopianreporter.com: { lang: en, region: africa, alignment: african,     credibility: medium }
+
+# ---- Asia ----
+scmp.com:             { lang: en, region: asia,   alignment: chinese,     credibility: medium }
+xinhuanet.com:        { lang: en, region: china,  alignment: chinese,     credibility: low }
+globaltimes.cn:       { lang: en, region: china,  alignment: chinese,     credibility: low }
+thehindu.com:         { lang: en, region: india,  alignment: indian,      credibility: high }
+dawn.com:             { lang: en, region: pakistan, alignment: pakistani, credibility: medium }
+irrawaddy.com:        { lang: en, region: asia,   alignment: independent, credibility: medium }
+koreaherald.com:      { lang: en, region: asia,   alignment: korean,      credibility: medium }
+
+# ---- Latin America ----
+clarin.com:           { lang: es, region: latam,  alignment: latam,       credibility: medium }
+eluniversal.com.mx:   { lang: es, region: latam,  alignment: latam,       credibility: medium }
+telesurenglish.net:   { lang: en, region: latam,  alignment: latam,       credibility: low }
