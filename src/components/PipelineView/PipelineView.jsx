@@ -99,6 +99,8 @@ export default function PipelineView() {
         <Card label="Failed runs" value={failures} note={`of ${rows.length} logged`} warn={failures > 0} />
       </section>
 
+      <Trends days={days} />
+
       <LastRun run={latestRun} today={today} />
 
       <section>
@@ -248,6 +250,72 @@ function Calendar({ days, win, prog }) {
         )}
       </div>
     </section>
+  );
+}
+
+/* ---- cost and yield, day by day --------------------------------------------------------- */
+
+// What a week of running actually cost and produced. The ledger is the only durable per-run
+// record — latest_run.json is overwritten every run — so this is the one place a trend can come
+// from. `queries` is the billed search count: the number that matters when the bill arrives, and
+// the one nobody could check when 110 searches appeared unexplained.
+const TRENDS = [
+  { key: 'queries', label: 'Searches', note: 'billed per query' },
+  { key: 'items', label: 'Articles', note: 'returned by search' },
+  { key: 'triaged_out', label: 'Dropped early', note: 'before any LLM spend' },
+  { key: 'applied', label: 'Events added', note: 'cleared every gate' },
+];
+
+function Trends({ days }) {
+  const all = useMemo(() => TRENDS.map((t) => ({ ...t, pts: cov.series(days, t.key) })), [days]);
+  // Nothing has run day-wise yet: an empty chart says less than no chart.
+  if (!all[0].pts.length) return null;
+  const nDays = all[0].pts.length;
+
+  return (
+    <section>
+      <div className={styles.h2Row}>
+        <h2 className={styles.h2}>Cost and yield</h2>
+        <span className={styles.h2Note}>over {nDays} checked {nDays === 1 ? 'day' : 'days'}</span>
+      </div>
+      <div className={styles.trends}>
+        {all.map((t) => (
+          <div key={t.key} className={styles.trend}>
+            <div className={styles.cardLabel}>{t.label}</div>
+            <div className={styles.trendTop}>
+              <span className={styles.cardValue}>{cov.total(t.pts)}</span>
+              <span className={styles.trendAvg}>
+                {(cov.total(t.pts) / nDays).toFixed(1)}/day
+              </span>
+            </div>
+            <Spark pts={t.pts} />
+            <div className={styles.cardNote}>{t.note}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// A bar per day. Inline SVG rather than a charting library: four sparklines do not justify a
+// dependency, and the atlas already ships enough JavaScript.
+function Spark({ pts }) {
+  const max = Math.max(1, ...pts.map((p) => p.value));
+  const w = 3, gap = 1.6;
+  const width = pts.length * (w + gap);
+  return (
+    <svg className={styles.spark} viewBox={`0 0 ${width} 24`} preserveAspectRatio="none"
+         role="img" aria-label={`${pts.length} days, highest ${max}`}>
+      {pts.map((p, i) => {
+        const h = Math.max(1, (p.value / max) * 22);
+        return (
+          <rect key={p.day} x={i * (w + gap)} y={24 - h} width={w} height={h} rx="1"
+                className={p.status === 'failed' ? styles.sparkBad : styles.sparkBar}>
+            <title>{`${p.day}: ${p.value}`}</title>
+          </rect>
+        );
+      })}
+    </svg>
   );
 }
 

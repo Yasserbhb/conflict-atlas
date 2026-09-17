@@ -472,3 +472,25 @@
   .findings li { grid-template-columns: 1fr; }
   .fMeta, .fQuestion { grid-column: 1; }
 }
+
+/* ---- cost & yield sparklines ---- */
+.trends {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.trend {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 12px 14px 11px;
+}
+
+.trendTop { display: flex; align-items: baseline; gap: 7px; }
+.trendTop .cardValue { margin: 4px 0 2px; }
+.trendAvg { font-size: 10.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+.spark { display: block; width: 100%; height: 24px; margin: 5px 0 6px; }
+.sparkBar { fill: var(--accent); opacity: 0.75; }
+.sparkBad { fill: #c4705c; }
