@@ -80,6 +80,14 @@ class Settings:
     # significance and severity are different fields: a ceasefire is severity 1, significance 5.
     min_significance_auto: int = field(default_factory=lambda: int(_get("MIN_SIGNIFICANCE_AUTO", "3")))
 
+    # ---- typed decisions (TypeSafe / Jev) ----
+    # Which backend answers the CHOICE / SCORE / CONFIDENCE questions — resolver decision,
+    # event kind, conflict type, severity, party roles, status, significance, verify verdict.
+    # The LLM keeps the prose: search queries, event titles, summaries, open questions.
+    # "none" (default) leaves every judgement with the LLM, exactly as before.
+    judge_backend: str = _f("JUDGE_BACKEND", "none")   # none | jev
+    judge_model: str = _f("JUDGE_MODEL", "")
+
 
 def load_settings() -> Settings:
     # optional .env support without a hard dependency

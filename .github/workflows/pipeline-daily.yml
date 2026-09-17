@@ -48,6 +48,10 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          # Typed decisions — resolver match, event kind, severity, roles, status,
+          # and the verify verdict + its confidence. See judge.py.
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+          JUDGE_BACKEND: ${{ vars.JUDGE_BACKEND || 'jev' }}
         # ~3 LLM calls per candidate (batched), so a day at --limit 5 costs ~17 calls — inside a
         # typical free ~50/day allowance. --days >1 drains a backlog and multiplies that cost, so
         # raise the two together only if the quota allows.

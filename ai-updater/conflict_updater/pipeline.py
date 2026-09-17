@@ -14,6 +14,7 @@ from .structured_source import StructuredSource, get_structured_source
 from .dates import in_window
 from .store import BaseConflict, load_base, pending_to_base, date_key, derive_span
 from . import agents, dedup, lifecycle
+from .judge import Judge, NullJudge as _NullJudge, get_judge
 from .schema import (
     ScanRequest, ScanResult, Proposal, Event, Source, Conflict, RawItem, CandidateEvent,
 )
@@ -122,9 +123,15 @@ def _is_latest_event(cand: CandidateEvent, parent) -> bool:
 def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
          base: list[BaseConflict], settings: Settings,
          geocode: GeocodeClient | None = None,
-         structured: StructuredSource | None = None) -> ScanResult:
+         structured: StructuredSource | None = None,
+         judge: Judge | None = None) -> ScanResult:
     geocode = geocode or get_geocode(settings)
     structured = structured or get_structured_source(settings)
+    # Typed decisions — resolver choice, event kind, severity, roles, status, verify
+    # verdict + confidence. NullJudge by default, which leaves every judgement with
+    # the LLM exactly as before.
+    judge = judge if judge is not None else get_judge(settings)
+    _j = judge if not isinstance(judge, _NullJudge) else None
     profiles = lifecycle.load_profiles(settings.lifecycle_yml)
     by_id = {c.id: c for c in base}
     # New conflicts founded EARLIER IN THIS SCAN aren't in `base` yet (that only reflects
@@ -195,7 +202,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                     f"(matches {parent_c.id} {hit.get('date')} {hit.get('title')})")
                 return None
 
-        res = agents.resolver(llm, cand, candidates)
+        res = agents.resolver(llm, cand, candidates, judge=_j)
 
         if res.decision == "known":
             dropped.append(f"already known: {cand.date} {cand.title}")
@@ -227,6 +234,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             parent_parties=(parent.parties if parent else None),
             current_status=(parent.status if parent else None),
             lifecycle_profile=(profiles.get(parent.type) if parent else None),
+            judge=_j,
         )
 
         # real coordinates (code, not model memory): an LLM recalls famous cities but collapses
@@ -261,7 +269,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             ver = None
             needs_human = ambiguous
         else:
-            ver = agents.verify(llm, event, items, is_new)
+            ver = agents.verify(llm, event, items, is_new, judge=_j,
+                                auto_approve_confidence=settings.auto_approve_confidence)
 
             # COUNT the corroboration rather than believing the model's count. These two numbers
             # gate new-conflict auto-approval, and they were being asserted by an LLM even though
