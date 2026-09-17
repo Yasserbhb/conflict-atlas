@@ -214,6 +214,13 @@ def append_coverage(ledger_path: Path, result: ScanResult, limited: int = 0,
         "prompt_version": _prompt_version(),
         "run_url": _run_url(),
     }
+    # The FULL stats dict, not just the four fields above. Those four were chosen for a weekly
+    # table; under a daily cursor the ledger is the only durable per-run record (latest_run.json
+    # is overwritten every run, and the digest footer is markdown nobody can chart). Keeping the
+    # whole dict here is what lets the site show cost and triage over time instead of one day at
+    # a time — notably `queries`, which is the billed-search count, and `triaged_out`.
+    entry["stats"] = dict(s)
+
     if limited:
         entry["limited_to"] = limited          # a capped scan is NOT evidence of completeness
     if s.get("failed"):

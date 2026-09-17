@@ -232,3 +232,40 @@ def test_run_summary_is_overwritten_not_appended(tmp_path):
     s = json.loads(path.read_text(encoding="utf-8"))
     assert isinstance(s, dict), "only the latest run is kept, so the bundle stays a fixed size"
     assert s["added"] == []
+
+
+def test_the_ledger_keeps_the_whole_stats_dict(tmp_path):
+    """The ledger is the only durable per-run record, so it must carry the cost numbers.
+
+    `queries` is the billed-search count and `triaged_out` is what the cheap filter saved; neither
+    had a home before. latest_run.json is overwritten every run and the digest footer is markdown,
+    so without this a week of running leaves nothing chartable.
+    """
+    from conflict_updater.schema import ScanRequest, ScanResult
+    from conflict_updater.store import append_coverage
+
+    res = ScanResult(
+        request=ScanRequest(period_start="2026-06-01", period_end="2026-06-01"),
+        proposals=[], dropped=[], failed=[],
+        stats={"queries": 6, "items": 68, "triaged_out": 59, "out_of_window": 4,
+               "candidates": 5, "proposals": 5, "dropped": 1},
+    )
+    entry = append_coverage(tmp_path / "coverage.json", res, applied=2, held=3)
+    assert entry["stats"]["queries"] == 6
+    assert entry["stats"]["triaged_out"] == 59
+    assert entry["stats"]["out_of_window"] == 4
+    assert entry["items"] == 68, "the flat fields the table reads must still be there"
+    assert entry["applied"] == 2 and entry["held"] == 3
+
+
+def test_the_stored_stats_cannot_be_mutated_from_outside(tmp_path):
+    # dict(s), not s — the result object outlives this call and is written to disk separately.
+    from conflict_updater.schema import ScanRequest, ScanResult
+    from conflict_updater.store import append_coverage
+
+    stats = {"queries": 6, "items": 10, "candidates": 1, "proposals": 1, "dropped": 0}
+    res = ScanResult(request=ScanRequest(period_start="2026-06-01", period_end="2026-06-01"),
+                     proposals=[], dropped=[], failed=[], stats=stats)
+    entry = append_coverage(tmp_path / "coverage.json", res)
+    stats["queries"] = 999
+    assert entry["stats"]["queries"] == 6

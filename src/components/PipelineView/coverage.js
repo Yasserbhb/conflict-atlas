@@ -75,3 +75,21 @@ export function progress(days, from, horizon, daysPerRun = 3) {
   const drain = Math.max(1, daysPerRun - 1);
   return { checked, total, remaining, etaRuns: Math.ceil(remaining / drain) };
 }
+
+/** Per-day values for one metric, oldest first.
+ *
+ * Reads `row.stats` first and falls back to the flat ledger fields, because rows written before
+ * the pipeline stored the whole stats dict only have the four hand-picked ones. Without the
+ * fallback the site would show a blank chart for its own history.
+ */
+export function series(days, key) {
+  const flat = { items: 'items', candidates: 'events_found', proposals: 'proposals',
+                 dropped: 'dropped', applied: 'applied', held: 'held' };
+  return [...days.keys()].sort().map((day) => {
+    const r = days.get(day);
+    const v = r.stats?.[key] ?? (flat[key] ? r[flat[key]] : undefined);
+    return { day, value: typeof v === 'number' ? v : 0, status: r.status };
+  });
+}
+
+export const total = (pts) => pts.reduce((n, p) => n + p.value, 0);

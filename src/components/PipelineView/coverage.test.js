@@ -73,3 +73,27 @@ test('a blind or failed day still counts as checked on the calendar', () => {
   const p = cov.progress(days, cov.parse('2026-06-01'), cov.parse('2026-06-01'), 3);
   assert.equal(p.checked, 1);
 });
+
+test('a metric series reads stats, and falls back for rows written before stats existed', () => {
+  const days = cov.byDay([
+    // an old row: no stats dict, only the four flat fields
+    row('2026-06-01..2026-06-01', 'found', { items: 40, events_found: 3, applied: 1 }),
+    // a new row: the whole dict
+    row('2026-06-02..2026-06-02', 'found', {
+      items: 68, applied: 2, stats: { items: 68, queries: 6, triaged_out: 59 },
+    }),
+  ]);
+  assert.deepEqual(cov.series(days, 'items').map((p) => p.value), [40, 68]);
+  assert.deepEqual(cov.series(days, 'applied').map((p) => p.value), [1, 2]);
+  // queries only exists on the newer row; the older one must read 0, not undefined or NaN
+  assert.deepEqual(cov.series(days, 'queries').map((p) => p.value), [0, 6]);
+  assert.equal(cov.total(cov.series(days, 'triaged_out')), 59);
+});
+
+test('a series is ordered oldest first regardless of ledger order', () => {
+  const days = cov.byDay([
+    row('2026-06-03..2026-06-03', 'found', { items: 3 }),
+    row('2026-06-01..2026-06-01', 'found', { items: 1 }),
+  ]);
+  assert.deepEqual(cov.series(days, 'items').map((p) => p.day), ['2026-06-01', '2026-06-03']);
+});
