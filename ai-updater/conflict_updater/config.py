@@ -25,6 +25,10 @@ class Settings:
     search_backend: str = _f("SEARCH_BACKEND", "tavily")
     search_depth: str = _f("SEARCH_DEPTH", "advanced")            # tavily: basic (1 credit) | advanced (2, fuller)
     search_max_results: int = field(default_factory=lambda: int(_get("SEARCH_MAX_RESULTS", "12")))  # articles/query
+    # Hard cap on searches per scan. The Scoper prompt says "at most 6", but a prompt is not a
+    # budget: the code iterated whatever list came back, and every query is a paid Tavily search
+    # (2 credits at advanced depth). Same class of bug as the window filter — enforce it here.
+    max_queries: int = field(default_factory=lambda: int(_get("MAX_QUERIES", "6")))
     geocode_backend: str = _f("GEOCODE_BACKEND", "nominatim")  # nominatim | none
 
     t_settle_days: int = field(default_factory=lambda: int(_get("T_SETTLE_DAYS", "7")))

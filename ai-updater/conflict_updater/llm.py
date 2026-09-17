@@ -139,6 +139,16 @@ class LangChainLLM:
                 return parsed
             except Exception as e:  # noqa: BLE001
                 last_err = e
+                # An EMPTY reply is not malformed JSON — the model produced nothing, usually
+                # because the task was too big for it. Scolding it about JSON and re-sending
+                # the whole prompt just pays the input tokens again for the same outcome, so
+                # fail fast and let the model fallback chain take its turn. Measured: one
+                # failing extraction re-sent a ~32k-token prompt four times (two retries
+                # here, twice over after failover) to learn nothing.
+                if not (text or "").strip():
+                    raise ValueError(
+                        f"model did not return schema-valid JSON for {model.__name__}: "
+                        f"empty model reply") from e
                 sys += "\n\nYour previous reply was not valid JSON for the schema. Return ONLY the JSON object."
         raise ValueError(f"model did not return schema-valid JSON for {model.__name__}: {last_err}")
 

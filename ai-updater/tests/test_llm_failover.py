@@ -169,3 +169,23 @@ def test_a_weak_model_falls_through_to_a_stronger_one():
 
     assert _llm("weak,strong", behaviour).structured(Out, "sys", "user").value == "strong"
     assert tried == ["weak", "strong"]
+
+
+def test_an_empty_reply_is_not_retried_against_the_same_model():
+    """An empty reply means the model produced nothing, not that it produced bad JSON.
+    Re-sending the whole prompt to scold it about JSON pays the input tokens twice for the same
+    outcome — measured at ~128k tokens for one failing extraction across retries and failover."""
+    sent = []
+
+    class _Client:
+        def __init__(self, name): self.name = name
+        def invoke(self, msgs):
+            sent.append(self.name)
+            class _R: content = ""          # empty, every time
+            return _R()
+
+    llm = LangChainLLM(provider="openrouter", model="solo")
+    llm._client = lambda n: _Client(n)
+    with pytest.raises(ValueError, match="empty model reply"):
+        llm.structured(Out, "sys", "user")
+    assert sent == ["solo"], "one attempt, not two — the prompt must not be re-sent"

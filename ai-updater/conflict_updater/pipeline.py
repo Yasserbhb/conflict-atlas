@@ -145,7 +145,13 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
     # 2. FETCHER — run the queries
     items: list[RawItem] = []
-    for q in plan.queries:
+    # Cap the query list in CODE. The prompt asks for at most 6, but nothing enforced it, and
+    # each query is a billed search — an over-eager Scoper silently multiplies the day's cost.
+    queries = plan.queries[: settings.max_queries] if settings.max_queries else plan.queries
+    over_budget = len(plan.queries) - len(queries)
+    if over_budget:
+        print(f"  scoper asked for {len(plan.queries)} queries; capped at {settings.max_queries}")
+    for q in queries:
         items.extend(search.search(q.query, q.lang))
     items = _dedupe_items(items)
 
@@ -396,7 +402,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
 
 
     stats = {
-        "queries": len(plan.queries),
+        "queries": len(queries),
+        "queries_dropped": over_budget,
         "items": len(items),
         "candidates": len(cands),
         "proposals": len(proposals),
