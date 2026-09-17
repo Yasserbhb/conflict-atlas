@@ -54,9 +54,10 @@ def test_a_quiet_day_is_also_done():
 
 
 def test_gaps_are_filled_oldest_first():
+    # Two of the three slots go to the oldest gaps; the third is the reserved newest day.
     ledger = [_row("2026-01-10"), _row("2026-01-12")]
     days = next_days(ledger, date(2026, 1, 10), TODAY, settle_days=7, max_days=3)
-    assert days == [date(2026, 1, 11), date(2026, 1, 13), date(2026, 1, 14)]
+    assert days == [date(2026, 1, 11), date(2026, 1, 13), date(2026, 1, 25)]
 
 
 def test_max_days_caps_the_batch():
@@ -215,3 +216,50 @@ def test_a_backlog_drains_oldest_first(tmp_path):
         append_coverage(ledger_path, _result(todo[0].isoformat()), applied=0, held=0)
     assert seen == [date(2026, 1, 10), date(2026, 1, 11), date(2026, 1, 12), date(2026, 1, 13)]
     assert seen == sorted(seen), "order is load-bearing: status may only move on the latest event"
+
+
+# ---- one slot per run is reserved for the newest day --------------------------------------
+
+def _d(s):
+    from datetime import date
+    return date.fromisoformat(s)
+
+
+def test_the_newest_settled_day_is_covered_even_with_a_huge_backlog():
+    # The point of the reservation: a hundred-day backfill must not mean a hundred days before
+    # the atlas shows anything from this month.
+    todo = next_days([], _d("2026-06-01"), _d("2026-09-17"), settle_days=7, max_days=3)
+    assert todo == [_d("2026-06-01"), _d("2026-06-02"), _d("2026-09-10")]
+
+
+def test_days_are_still_returned_oldest_first():
+    # Load-bearing: _run_one applies them in order, and an older day must not be applied after a
+    # newer one within the same run.
+    todo = next_days([], _d("2026-06-01"), _d("2026-09-17"), settle_days=7, max_days=3)
+    assert todo == sorted(todo)
+
+
+def test_the_reserved_slot_never_scans_the_same_day_twice():
+    # When the backlog is small enough that the oldest slots already reach the newest day, the
+    # newest must not be appended a second time.
+    todo = next_days([], _d("2026-09-08"), _d("2026-09-17"), settle_days=7, max_days=3)
+    assert todo == [_d("2026-09-08"), _d("2026-09-09"), _d("2026-09-10")]
+    assert len(todo) == len(set(todo))
+
+
+def test_a_checked_newest_day_hands_its_slot_to_the_backlog():
+    ledger = [{"period": "2026-09-10..2026-09-10", "region": "(any)", "status": "found"}]
+    todo = next_days(ledger, _d("2026-06-01"), _d("2026-09-17"), settle_days=7, max_days=3)
+    assert _d("2026-09-10") not in todo
+    assert todo == [_d("2026-06-01"), _d("2026-06-02"), _d("2026-09-09")]
+
+
+def test_keep_current_off_is_strictly_oldest_first():
+    todo = next_days([], _d("2026-06-01"), _d("2026-09-17"), settle_days=7, max_days=3,
+                            keep_current=False)
+    assert todo == [_d("2026-06-01"), _d("2026-06-02"), _d("2026-06-03")]
+
+
+def test_one_day_per_run_still_means_one_day():
+    todo = next_days([], _d("2026-06-01"), _d("2026-09-17"), settle_days=7, max_days=1)
+    assert todo == [_d("2026-06-01")]

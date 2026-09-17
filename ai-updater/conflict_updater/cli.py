@@ -157,16 +157,17 @@ def _cmd_auto(args) -> int:
                            args.region, args.topic, settings.coverage_max_attempts)
     print(f"cursor: {prog['done']}/{prog['eligible']} days checked "
           f"({prog['start']} .. {prog['horizon']}), {prog['remaining']} remaining")
-    # The horizon moves forward one day per day. If a run cannot process more than one day, the
-    # gap never closes — it just travels. Worth saying out loud rather than discovering months
-    # later that the atlas is permanently stuck in January.
+    # One slot per run goes to the NEWEST settled day, so the map is current immediately; the
+    # rest drain the backlog oldest-first. That means the backlog closes at (max_days - 1) days
+    # per run, and at max_days 1 there is no backlog slot at all and it never closes.
     if prog["remaining"] > max_days and max_days <= 1:
-        print("  WARNING: --days 1 advances as fast as the horizon, so this backlog will never "
+        print("  WARNING: --days 1 only ever covers the newest day, so this backlog will never "
               "close. Raise --days, or set PIPELINE_START_DATE closer to today.")
     elif prog["remaining"] > 30:
         gain = max(1, max_days - 1)
-        print(f"  backlog of {prog['remaining']} days; at --days {max_days} that closes in "
-              f"~{prog['remaining'] // gain} runs. Backfill older periods with a range scan instead.")
+        print(f"  backlog of {prog['remaining']} days; the newest day is covered every run, and "
+              f"at --days {max_days} the rest closes in ~{prog['remaining'] // gain} runs. "
+              f"Backfill anything older with a range scan instead.")
     if not todo:
         print("nothing to do — every settled day has been checked")
         return 0

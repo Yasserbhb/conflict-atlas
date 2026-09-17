@@ -67,12 +67,14 @@ class Settings:
     llm_cache: str = _f("LLM_CACHE", "off")  # off | on
 
     # ---- daily cursor + duplicate guard ----
-    # Where the cursor starts walking. Keep this RECENT. The cursor's job is staying current,
-    # not excavating history: it advances at most `pipeline_max_days_per_run` per run while the
-    # settle horizon advances one day per day, so a start date far in the past is a backlog the
-    # daily job may never close. Filling an old period is a separate, deliberate operation —
-    # `scan "1974..1975"` — which searches a range in one pass instead of a day at a time.
-    pipeline_start_date: str = _f("PIPELINE_START_DATE", "2026-09-01")
+    # Where the cursor starts walking. The backlog between this and the settle horizon is drained
+    # oldest-first, EXCEPT for one slot per run reserved for the newest settled day (see
+    # cursor.next_days), so the atlas stays current from the very first run no matter how far back
+    # this reaches, and history fills in behind it. Each run therefore nets
+    # `pipeline_max_days_per_run - 1` days off the backlog while the horizon adds one.
+    # Centuries are still a range scan rather than a cursor job: `scan "1974..1975"` searches the
+    # whole span in one pass, and day-stepping deep history mostly rediscovers encyclopedia pages.
+    pipeline_start_date: str = _f("PIPELINE_START_DATE", "2026-06-01")
     # Days per run. This MUST be > 1 for the cursor to recover from anything: at 1 it advances
     # exactly as fast as the horizon, so a single missed run is a gap that never closes.
     pipeline_max_days_per_run: int = field(default_factory=lambda: int(_get("PIPELINE_MAX_DAYS_PER_RUN", "3")))

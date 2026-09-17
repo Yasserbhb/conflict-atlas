@@ -89,20 +89,30 @@ def latest_eligible(today: date, settle_days: int) -> date:
 
 def next_days(ledger: list[dict], start: date, today: date, settle_days: int = 7,
               max_days: int = 1, region: Optional[str] = None, topic: Optional[str] = None,
-              max_attempts: int = 3) -> list[date]:
+              max_attempts: int = 3, keep_current: bool = True) -> list[date]:
     """The next days to scan: oldest first, never newer than the settle horizon, capped at
-    `max_days`. Returns [] when everything eligible has been checked."""
+    `max_days`. Returns [] when everything eligible has been checked.
+
+    `keep_current` reserves ONE of those slots for the NEWEST eligible day, spending the rest on
+    the oldest unchecked ones. Without it a strictly oldest-first cursor starves the present: a
+    hundred-day backlog means a hundred days before the atlas shows anything from this month,
+    which is the opposite of what a daily job is for. With it, the most recent settled day is
+    always covered and history fills in behind it.
+
+    This is safe to do only because chronology is enforced where the data is written, not by the
+    order days happen to be scanned in: `merge.apply` recomputes `is_latest` from the conflict's
+    own events, so a backfilled June event arriving after September already landed cannot move
+    the status backwards. The span self-corrects the same way.
+    """
     horizon = latest_eligible(today, settle_days)
     if start > horizon or max_days <= 0:
         return []
-    out: list[date] = []
-    for d in days_between(start, horizon):
-        if is_done(ledger, day_period(d), region, topic, max_attempts):
-            continue
-        out.append(d)
-        if len(out) >= max_days:
-            break
-    return out
+    pending = [d for d in days_between(start, horizon)
+               if not is_done(ledger, day_period(d), region, topic, max_attempts)]
+    if not keep_current or max_days < 2 or len(pending) <= max_days:
+        return pending[:max_days]
+    # oldest (max_days - 1), plus the newest. `pending` is ordered, so this stays oldest-first.
+    return pending[:max_days - 1] + [pending[-1]]
 
 
 def progress(ledger: list[dict], start: date, today: date, settle_days: int = 7,
