@@ -67,12 +67,15 @@ class Settings:
     llm_cache: str = _f("LLM_CACHE", "off")  # off | on
 
     # ---- daily cursor + duplicate guard ----
-    # The unit of work is one day. The cursor walks forward from this date, skipping days the
-    # coverage ledger already records as checked.
-    pipeline_start_date: str = _f("PIPELINE_START_DATE", "2026-01-01")
-    # Days processed per run. 1 keeps pace once current; raise to drain a backlog, bounded by
-    # quota (each day costs roughly 2 + 3 x --limit LLM calls).
-    pipeline_max_days_per_run: int = field(default_factory=lambda: int(_get("PIPELINE_MAX_DAYS_PER_RUN", "1")))
+    # Where the cursor starts walking. Keep this RECENT. The cursor's job is staying current,
+    # not excavating history: it advances at most `pipeline_max_days_per_run` per run while the
+    # settle horizon advances one day per day, so a start date far in the past is a backlog the
+    # daily job may never close. Filling an old period is a separate, deliberate operation —
+    # `scan "1974..1975"` — which searches a range in one pass instead of a day at a time.
+    pipeline_start_date: str = _f("PIPELINE_START_DATE", "2026-09-01")
+    # Days per run. This MUST be > 1 for the cursor to recover from anything: at 1 it advances
+    # exactly as fast as the horizon, so a single missed run is a gap that never closes.
+    pipeline_max_days_per_run: int = field(default_factory=lambda: int(_get("PIPELINE_MAX_DAYS_PER_RUN", "3")))
     # After this many inconclusive attempts a day is left behind, so one permanently
     # un-searchable date cannot stall every day queued behind it.
     coverage_max_attempts: int = field(default_factory=lambda: int(_get("COVERAGE_MAX_ATTEMPTS", "3")))

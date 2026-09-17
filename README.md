@@ -238,6 +238,30 @@ Both workflows read these from **Settings → Secrets and variables → Actions*
 > the chain are tried only when the earlier one is gone or exhausted — never for a bad prompt,
 > which would just burn a second quota.
 
+### What it does once deployed
+
+Each run asks for the oldest day it has not checked, **but never one newer than
+`today - T_SETTLE_DAYS`**. With the defaults that means it is always working on a day about a
+week old, which is deliberate: an event newer than that is marked provisional and excluded from
+the applied set, so a job scanning "today" would run forever and never add anything.
+
+With `PIPELINE_START_DATE=2026-09-01` and `--days 3`, deploying today leaves a ~10-day backlog
+that closes in about four runs; after that it tracks the horizon, scanning one new day per day.
+
+**`--days` must be greater than 1.** At 1 the cursor advances exactly as fast as the horizon, so
+it never closes a backlog and never recovers from a missed run — the gap just travels forward
+with it. At 3 it gains two days per run and heals on its own. The CLI prints a warning if the
+configured backlog cannot be closed.
+
+**The cursor is for staying current, not for excavating history.** Backfilling 2026 from January
+at one-to-three days per run would take months and mostly rediscover nothing, because searching
+the live web for an old date returns retrospective coverage rather than that day's reporting.
+Fill an old period deliberately instead, in one pass over a range:
+
+```bash
+python -m conflict_updater scan "2026-01-01..2026-03-31"
+```
+
 ### What a day costs
 
 Measured, with `--limit 5`. Let **N** be the candidates processed and **Q** the Scoper's queries.

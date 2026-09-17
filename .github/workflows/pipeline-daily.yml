@@ -66,7 +66,7 @@ jobs:
         # inbox nobody reads. The "Surface failure" step still fails the run afterwards.
         continue-on-error: true
         id: scan
-        run: python -m conflict_updater auto cursor --days 1 --limit 5
+        run: python -m conflict_updater auto cursor --days 3 --limit 5
 
       - name: Snapshot quality + last run for the public site
         # NOT coverage.json — the pipeline now writes the ledger straight to the tracked
