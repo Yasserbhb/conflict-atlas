@@ -170,6 +170,12 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
 def validate(seed: dict) -> list[str]:
     """Invariants the merged dataset must satisfy. Empty list == coherent."""
     issues: list[str] = []
+    # Every country code must be one the APP knows. Internal consistency is not enough: a code
+    # like "UK" or "Palestine" is perfectly self-consistent, passes every other check here, and
+    # then renders as nothing at all — no name in the side panel, no fill on the map. An event
+    # attributed to a country the atlas cannot draw has effectively lost that country, silently.
+    # Agents emit these from a prompt, so this is the gate that catches an invented one.
+    known = {c.get("id") for c in seed.get("countries", []) if c.get("id")}
     for c in seed.get("conflicts", []):
         inv = set(c.get("involvedCountries", []))
         party_ids = {p.get("countryId") for p in c.get("parties", [])}
@@ -186,4 +192,12 @@ def validate(seed: dict) -> list[str]:
                 issues.append(f"{c['id']}/{e.get('id')}: bad severity {sev}")
         if c.get("ongoing") and c.get("status") in _TERMINAL:
             issues.append(f"{c['id']}: ongoing=true but status={c.get('status')}")
+
+        # Unknown or malformed country codes. Only checked when the seed actually carries a
+        # country list, so a stripped-down fixture does not fail for the wrong reason.
+        for cid in sorted(inv):
+            if not isinstance(cid, str) or not re.fullmatch(r"[A-Z]{3}", cid):
+                issues.append(f"{c['id']}: malformed country code {cid!r} (want ISO 3166-1 alpha-3)")
+            elif known and cid not in known:
+                issues.append(f"{c['id']}: country {cid} is not in the atlas — it would render as nothing")
     return issues

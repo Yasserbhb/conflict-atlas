@@ -331,3 +331,48 @@ def test_folding_does_not_re_add_an_event_already_present():
         [Proposal(kind="new_conflict", new_conflict=body, needs_human=False,
                   event=body.events[0])], seed)
     assert len(seed["conflicts"][0]["events"]) == 1
+
+
+# ---- countries must be ones the atlas can actually draw --------------------------------------
+# Internal consistency is not enough. "UK" or "Palestine" is perfectly self-consistent, passes
+# every other invariant, and then renders as nothing — no name in the panel, no fill on the map.
+# An event attributed to a country the app cannot draw has silently lost that country.
+
+def _seed_countries(codes, known=("ISR", "PSE", "UKR")):
+    return {"countries": [{"id": k} for k in known],
+            "conflicts": [{"id": "c1", "involvedCountries": list(codes),
+                           "parties": [], "events": []}]}
+
+
+def test_a_real_country_code_passes():
+    assert merge.validate(_seed_countries(["ISR", "PSE"])) == []
+
+
+def test_a_country_name_instead_of_a_code_is_caught():
+    issues = merge.validate(_seed_countries(["ISR", "Palestine"]))
+    assert any("malformed" in i and "Palestine" in i for i in issues)
+
+
+def test_a_two_letter_code_is_caught():
+    issues = merge.validate(_seed_countries(["ISR", "UK"]))
+    assert any("malformed" in i for i in issues), "UK is not alpha-3; GBR is"
+
+
+def test_a_well_formed_code_the_atlas_does_not_know_is_caught():
+    # Right shape, wrong answer — this is the one that would render as nothing with no error.
+    issues = merge.validate(_seed_countries(["ISR", "XKX"]))
+    assert any("not in the atlas" in i and "XKX" in i for i in issues)
+
+
+def test_the_check_is_skipped_when_a_fixture_carries_no_country_list():
+    # Most test fixtures here have no `countries` key; they must not fail for the wrong reason.
+    seed = {"conflicts": [{"id": "c1", "involvedCountries": ["ISR"], "parties": [], "events": []}]}
+    assert merge.validate(seed) == []
+
+
+def test_the_real_atlas_has_no_unknown_countries():
+    import json, pathlib
+    seed = json.loads((pathlib.Path(__file__).resolve().parents[2] / "src" / "data" / "seed.json")
+                      .read_text(encoding="utf-8"))
+    bad = [i for i in merge.validate(seed) if "not in the atlas" in i or "malformed" in i]
+    assert bad == [], f"the published atlas references countries it cannot draw: {bad[:5]}"
