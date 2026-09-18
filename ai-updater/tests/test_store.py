@@ -173,13 +173,14 @@ def test_run_url_is_absent_when_not_running_in_ci(tmp_path, monkeypatch):
 # The Pipeline page shows last week's findings in-app rather than sending you to GitHub, so
 # this JSON is what a reader actually sees.
 
-def _summary_result():
+def _summary_result(period=("2026-09-07", "2026-09-14"), needs_human=False):
     from conflict_updater.schema import (
         ScanResult, ScanRequest, Proposal, Event, Source, VerifyOutput,
     )
     held = Proposal(
         kind="attach", target_conflict_id="seed_gaza",
-        event=Event(date="2026-09-09", title="Disputed strike reported"),
+        event=Event(date="2026-09-09", title="Disputed strike reported",
+                    sources=[Source(url="http://held-a"), Source(url="http://held-b")]),
         verify=VerifyOutput(verdict="uncertain", confidence=0.4, independent_sources=1,
                             cross_alignment=False, decision="needs_human",
                             open_question="Is there independent reporting of this strike?"),
@@ -194,10 +195,10 @@ def _summary_result():
         needs_human=False,
     )
     res = ScanResult(
-        request=ScanRequest(period_start="2026-09-07", period_end="2026-09-14"),
+        request=ScanRequest(period_start=period[0], period_end=period[1]),
         proposals=[applied, held], dropped=["already known: x"], stats={"items": 40},
     )
-    return res, [applied]
+    return res, ([] if needs_human else [applied])
 
 
 def test_run_summary_separates_what_landed_from_what_was_held(tmp_path):
@@ -223,15 +224,56 @@ def test_held_events_carry_the_question_that_stopped_them(tmp_path):
     assert s["held"][0]["confidence"] == 0.4
 
 
-def test_run_summary_is_overwritten_not_appended(tmp_path):
+def test_a_new_run_replaces_the_previous_one(tmp_path):
     import json
     from conflict_updater.store import write_run_summary
     res, applied = _summary_result()
-    write_run_summary(tmp_path, res, applied, ok=True)
-    path = write_run_summary(tmp_path, res, [], ok=True)      # a later run with nothing applied
+    write_run_summary(tmp_path, res, applied, ok=True, run_id="run-1")
+    path = write_run_summary(tmp_path, res, [], ok=True, run_id="run-2")
     s = json.loads(path.read_text(encoding="utf-8"))
-    assert isinstance(s, dict), "only the latest run is kept, so the bundle stays a fixed size"
-    assert s["added"] == []
+    assert isinstance(s, dict), "only the current run is kept, so the bundle stays a fixed size"
+    assert s["added"] == [], "a new run must not inherit the last one's findings"
+
+
+def test_every_day_of_one_run_survives(tmp_path):
+    """The cursor scans several days per run, one write each.
+
+    With a fixed filename and a plain overwrite, the last day erased the rest: a live run found
+    3 held events on a backfilled June day and 5 on the newest day, and the site showed only 5.
+    """
+    import json
+    from conflict_updater.store import write_run_summary
+    res_a, applied_a = _summary_result(period=("2024-05-01", "2024-05-01"))
+    res_b, _ = _summary_result(period=("2024-09-11", "2024-09-11"))
+    write_run_summary(tmp_path, res_a, applied_a, ok=True, run_id="run-1")
+    path = write_run_summary(tmp_path, res_b, [], ok=True, run_id="run-1")
+    s = json.loads(path.read_text(encoding="utf-8"))
+    assert s["days"] == ["2024-05-01..2024-05-01", "2024-09-11..2024-09-11"]
+    assert len(s["added"]) == len(applied_a), "the earlier day's findings must still be there"
+    assert s["period"] == "2024-05-01..2024-09-11", "the span covers the whole run"
+    assert all(e.get("day") for e in s["added"]), "each finding says which day it came from"
+
+
+def test_rewriting_a_day_does_not_double_its_events(tmp_path):
+    import json
+    from conflict_updater.store import write_run_summary
+    res, applied = _summary_result()
+    write_run_summary(tmp_path, res, applied, ok=True, run_id="run-1")
+    path = write_run_summary(tmp_path, res, applied, ok=True, run_id="run-1")
+    s = json.loads(path.read_text(encoding="utf-8"))
+    assert len(s["added"]) == len(applied)
+
+
+def test_held_events_carry_their_sources(tmp_path):
+    # The held ones are exactly what a human has to adjudicate, and they were the only ones
+    # shipped without sources — the page could say "unsure about this" and give you no way to check.
+    import json
+    from conflict_updater.store import write_run_summary
+    res, _ = _summary_result(needs_human=True)
+    path = write_run_summary(tmp_path, res, [], ok=True, run_id="run-1")
+    s = json.loads(path.read_text(encoding="utf-8"))
+    assert s["held"], "the fixture must actually hold something"
+    assert s["held"][0]["sources"], "a held event without its sources cannot be reviewed"
 
 
 def test_the_ledger_keeps_the_whole_stats_dict(tmp_path):

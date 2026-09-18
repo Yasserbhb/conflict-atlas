@@ -354,25 +354,64 @@ def write_digest(log_dir: Path, result: ScanResult, applied: list, ok: bool) -> 
     return path
 
 
-def write_run_summary(out_dir: Path, result: ScanResult, applied: list, ok: bool) -> Path:
-    """The last run's findings as structured JSON, for the app to render natively.
+def write_run_summary(out_dir: Path, result: ScanResult, applied: list, ok: bool,
+                      run_id: str | None = None) -> Path:
+    """The current run's findings as structured JSON, for the app to render natively.
 
-    The markdown digest next to this is the archival record; this is the same content shaped so
-    the Pipeline page can show what the agents did WITHOUT sending you to GitHub. Only the most
-    recent run is kept — history stays in log/ and in each run's artifact — so the bundle grows
-    by a fixed few KB rather than one digest per week forever.
+    ACCUMULATES across the days of one run. The cursor scans several days per run and calls this
+    once per day; with a fixed filename and a plain overwrite, day three silently erased days one
+    and two, so the site showed a third of what the run found — three held events from a
+    backfilled June day were invisible while the page looked complete. The name made sense when a
+    run WAS one period; under a day cursor it quietly came to mean "last day of the last run".
+
+    Days of one run are identified by `run_id` — the CI run URL, stable across the whole job. A
+    new run id starts a fresh file, so this never grows without bound.
+
+    The markdown digests in log/ remain the per-day archival record; this is the same content
+    shaped for the page, and only the current run is kept.
     """
     r = result.request
     human = [p for p in result.proposals if p.needs_human]
+    day = f"{r.period_start}..{r.period_end}"
+    run_id = run_id or _run_url() or f"local-{date.today().isoformat()}"
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "latest_run.json"
+    prev: dict = {}
+    if path.exists():
+        try:
+            prev = json.loads(path.read_text(encoding="utf-8"))
+        except (ValueError, OSError):
+            prev = {}                       # a corrupt file must not stop the scan
+    if prev.get("run_id") != run_id:        # a different run — start over
+        prev = {}
+
+    days = sorted(set(list(prev.get("days") or []) + [day]))
+
+    # Idempotent per day: re-writing a day replaces its entries rather than doubling them, so a
+    # retry inside one run cannot make the page show an event twice.
+    def _other_days(key):
+        return [e for e in (prev.get(key) or []) if e.get("day") != day]
+
+    stats = dict(prev.get("stats") or {})
+    for k, v in (result.stats or {}).items():
+        if isinstance(v, (int, float)):
+            stats[k] = stats.get(k, 0) + v
+
     summary = {
-        "period": f"{r.period_start}..{r.period_end}",
+        "run_id": run_id,
+        # The SPAN the run covered. A cursor run mixes backfill with the newest settled day, so
+        # this is deliberately not contiguous — `days` is the precise list.
+        "period": f"{days[0].split('..')[0]}..{days[-1].split('..')[-1]}",
+        "days": days,
         "region": r.region,
         "ran_at": date.today().isoformat(),
-        "ok": ok,
+        "ok": bool(prev.get("ok", True)) and ok,
         "run_url": _run_url(),
-        "stats": result.stats,
-        "added": [
+        "stats": stats,
+        "added": _other_days("added") + [
             {
+                "day": day,
                 "date": p.event.date,
                 "title": p.event.title,
                 "conflict": p.target_conflict_id or "new conflict",
@@ -382,21 +421,24 @@ def write_run_summary(out_dir: Path, result: ScanResult, applied: list, ok: bool
             }
             for p in applied
         ],
-        "held": [
+        "held": _other_days("held") + [
             {
+                "day": day,
                 "date": p.event.date,
                 "title": p.event.title,
                 # why it was held — the single most useful line in the whole digest
                 "question": (p.verify.open_question if p.verify else None),
                 "confidence": (p.verify.confidence if p.verify else None),
+                # The held events are the ones a human actually has to adjudicate, and they were
+                # the only ones shipped WITHOUT their sources — so the page could say "we are
+                # unsure about this" and give you no way to check it.
+                "sources": [s.url for s in p.event.sources][:4],
             }
             for p in human
         ],
-        "already_known": list(result.dropped)[:20],
-        "errored": list(result.failed)[:20],
+        "already_known": (list(prev.get("already_known") or []) + list(result.dropped))[:60],
+        "errored": (list(prev.get("errored") or []) + list(result.failed))[:20],
     }
-    out_dir.mkdir(parents=True, exist_ok=True)
-    path = out_dir / "latest_run.json"
     path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
 
