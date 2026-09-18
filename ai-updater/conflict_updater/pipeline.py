@@ -198,6 +198,42 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
     out_of_window = len(cands) - len(in_range)
     cands = in_range
 
+    # 3b. SIGNIFICANCE — judged here, not asserted by the Extractor.
+    #
+    # This is the atlas's flood control, and until now it was a no-op: CandidateEvent.significance
+    # DEFAULTS to 3 and the gate was `< 3`, so anything the Extractor didn't explicitly score fell
+    # exactly on the pass side of its own threshold. The result is what a day of live running
+    # showed — five proposals for one day, three of them routine overnight drone strikes on
+    # Ukraine. The atlas holds 489 events across five centuries and gives the whole of WWII 15;
+    # at that rate one year of scanning would add three times the entire dataset in war reporting.
+    #
+    # A degree on a fixed scale is a score, so a judge answers it — one parallel call for the whole
+    # batch, the same shape as the article triage above. Gating HERE rather than after Verify is
+    # both cheaper (nothing routine reaches Resolver/Enrich/Verify) and more honest: significance
+    # is a property of the event, not a tiebreak applied to things that already passed a fact check.
+    if _j is not None and cands:
+        state = {f"c{i}": {"date": c.date, "title": c.title, "action": c.action,
+                           "actors": c.actors, "place": c.place} for i, c in enumerate(cands)}
+        state["conflict_context"] = (
+            "These are candidate events for a historical conflict atlas, not a news feed.")
+        try:
+            scored = _j.ask(state, {f"c{i}": judge_mod.significance_q(f"`c{i}`")
+                                    for i in range(len(cands))})
+            for i, c in enumerate(cands):
+                v = scored.get(f"c{i}")
+                if v is not None and v.value:
+                    c.significance = v.value
+        except Exception as e:  # noqa: BLE001 — fail open, exactly as triage does
+            print(f"  significance unavailable ({type(e).__name__}); using the extractor's values")
+
+    # Drop what a chronicle of this conflict would not record. Logged, not silently discarded —
+    # the digest shows every one with its score, so a bar set too high is visible rather than
+    # looking like a quiet day.
+    routine = [c for c in cands if c.significance < settings.min_significance_auto]
+    if routine:
+        cands = [c for c in cands if c.significance >= settings.min_significance_auto]
+
+
     # Select by significance (a --limit cap should keep the revolt, not the decree) ...
     cands.sort(key=lambda c: c.significance, reverse=True)
     if settings.max_candidates and len(cands) > settings.max_candidates:
@@ -210,6 +246,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
     proposals: list[Proposal] = []
     dropped: list[str] = []
     failed: list[str] = []
+    for c in routine:
+        dropped.append(f"routine (significance {c.significance} < "
+                       f"{settings.min_significance_auto}): {c.date} {c.title}")
 
     # One candidate, start to finish. A nested function so it closes over the scan's locals
     # (llm, items, settings, geocode, profiles, by_id, pending_bases) without threading a
@@ -341,15 +380,6 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                     or ver.confidence < settings.auto_approve_confidence
                 )
 
-        # A daily scan surfaces small incidents constantly. Gate on SIGNIFICANCE — historical
-        # consequence — not on severity: a ceasefire is severity 1 and significance 5, and it
-        # belongs in the atlas far more than a routine exchange of fire does. Held, not dropped,
-        # so nothing is lost; it just doesn't publish itself.
-        if not needs_human and cand.significance < settings.min_significance_auto:
-            needs_human = True
-            dropped.append(
-                f"held (significance {cand.significance} < {settings.min_significance_auto}): "
-                f"{cand.date} {cand.title}")
 
         new_conflict = None
         if is_new:
@@ -416,6 +446,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         "out_of_window": out_of_window,
         # Articles the triage judged irrelevant before the Extractor saw them.
         "triaged_out": triaged_out,
+        # Candidate events a chronicle of their conflict would not record. This is the number to
+        # watch: high means the bar is doing its job, zero over several days means it is not.
+        "routine": len(routine),
     }
     return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 

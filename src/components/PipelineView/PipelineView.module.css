@@ -494,3 +494,29 @@
 .spark { display: block; width: 100%; height: 24px; margin: 5px 0 6px; }
 .sparkBar { fill: var(--accent); opacity: 0.75; }
 .sparkBad { fill: #c4705c; }
+
+/* ---- confidence + sources on a finding ---- */
+.conf {
+  margin-left: 7px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+}
+/* a near-miss and a flat rejection used to look identical */
+.confNear { color: #b8935a; border-color: rgba(184, 147, 90, 0.4); }
+
+/* margin, not a :only-child override — :only-child ignores text nodes, so it matches
+   exactly the case that needs the gap. */
+.srcs { display: inline-flex; gap: 6px; flex-wrap: wrap; margin-left: 8px; }
+.src {
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--border-light);
+  font-size: 10.5px;
+}
+.src:hover { color: var(--accent-light); border-bottom-color: var(--accent-border); }

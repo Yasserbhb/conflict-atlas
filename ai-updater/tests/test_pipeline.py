@@ -426,8 +426,10 @@ def test_candidates_are_processed_oldest_first_regardless_of_significance():
 
     llm = _OrderLLM(_happy({
         ExtractorOutput: ExtractorOutput(events=[
-            CandidateEvent(date="2024-07-07", title="Later but trivial",
-                           actors=["X"], source_urls=["http://a"], significance=1),
+            # Both clear the significance bar — otherwise the trivial one is dropped before the
+            # loop and this stops testing ordering. Selection order is still significance-first.
+            CandidateEvent(date="2024-07-07", title="Later but less consequential",
+                           actors=["X"], source_urls=["http://a"], significance=3),
             CandidateEvent(date="2024-01-05", title="Earlier and major",
                            actors=["X"], source_urls=["http://b"], significance=5),
         ]),
@@ -474,15 +476,28 @@ def test_a_genuinely_different_event_on_the_same_day_still_gets_through():
 
 # ---- consequence, not violence --------------------------------------------------------------
 
-def test_a_low_consequence_event_is_held_rather_than_published():
-    res = _scan(_happy({
+def test_a_routine_event_is_dropped_before_anything_is_spent_on_it():
+    """The atlas's flood control, and the reason it exists.
+
+    A live day produced five proposals, three of them routine overnight drone strikes in an
+    ongoing war. The atlas gives the whole of WWII 15 events; at that rate a year of scanning
+    would add three times the entire five-century dataset in war reporting.
+
+    Routine events must not reach Resolver/Enrich/Verify at all — gating them after a fact check
+    is both wasted spend and the wrong question, since significance is a property of the event
+    rather than a tiebreak among things that already passed.
+    """
+    llm = FakeLLM(_happy({
         ExtractorOutput: ExtractorOutput(events=[CandidateEvent(
             date="2024-05-01", title="Routine exchange of fire", actors=["Israel"],
             place="Gaza", source_urls=["http://a"], significance=1)]),
     }))
-    p = res.proposals[0]
-    assert p.needs_human is True, "a daily scan must not fill the atlas with minor incidents"
-    assert any("significance" in d for d in res.dropped)
+    res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert res.proposals == [], "a routine incident must not become a proposal"
+    assert res.stats["routine"] == 1
+    assert any("routine (significance 1" in d for d in res.dropped),         "and it must be logged, so a bar set too high looks different from a quiet day"
+    assert "ResolverOutput" not in llm.calls, "nothing should have been spent resolving it"
 
 
 def test_a_low_severity_but_high_consequence_event_still_publishes():
@@ -496,3 +511,80 @@ def test_a_low_severity_but_high_consequence_event_still_publishes():
     }))
     p = res.proposals[0]
     assert p.event.severity == 1 and p.needs_human is False
+
+
+def test_significance_is_judged_not_taken_from_the_extractor():
+    """The bug this whole gate existed to prevent, and didn't.
+
+    CandidateEvent.significance DEFAULTS to 3 and the gate was `< 3`, so anything the Extractor
+    did not explicitly score landed exactly on the pass side of its own threshold. The question
+    was built in judge.py, tested there, and never called — so every typed score went to the
+    judge except the one the flood control depended on.
+    """
+    from conflict_updater.judge import Judgement
+
+    class _SigJudge:
+        """Answers significance only; abstains on everything else, as NullJudge does."""
+
+        def __init__(self, score):
+            self.score = score
+            self.asked = []
+
+        def ask(self, state, questions):
+            self.asked.append(questions)
+            return {q: Judgement(self.score if q.startswith("c") else None) for q in questions}
+
+    # The Extractor claims this matters (5). The judge says it is routine continuation (1).
+    j = _SigJudge(1)
+    llm = FakeLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[CandidateEvent(
+            date="2024-05-01", title="Overnight drone strikes continue", actors=["Russia"],
+            place="Kyiv", source_urls=["http://a"], significance=5)]),
+    }))
+    res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode(), judge=j)
+    assert res.stats["routine"] == 1, "the judge's score must win over the extractor's claim"
+    assert res.proposals == []
+    # and the reverse: a judge that rates it consequential lets it through
+    j2 = _SigJudge(4)
+    llm2 = FakeLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[CandidateEvent(
+            date="2024-05-01", title="Ceasefire signed", actors=["Israel"], place="Gaza",
+            source_urls=["http://a", "http://b"], significance=1)]),
+    }))
+    res2 = scan(_req(("1800-01-01", "2030-12-31")), llm=llm2, search=FakeSearch(ITEMS), base=BASE,
+                settings=Settings(), geocode=FakeGeocode(), judge=j2)
+    assert res2.stats["routine"] == 0, "a low extractor score must not veto a judged-major event"
+    assert len(res2.proposals) == 1
+
+
+def test_a_judge_outage_does_not_silently_empty_the_scan():
+    """A TypeSafe outage must look like "no judge", not like "no events".
+
+    `system_one` used to be called outside any try, so a rate limit or a network blip propagated
+    out of JevJudge.ask and failed every candidate in resolver/enrich/verify — a red run with an
+    empty atlas, indistinguishable from a genuinely quiet day. The guard belongs inside ask(),
+    which is the single point all five agents route through.
+    """
+    from conflict_updater.judge import JevJudge
+
+    class _DeadClient:
+        def system_one(self, **kw):
+            raise RuntimeError("503 from the judge")
+
+    broken = JevJudge.__new__(JevJudge)          # bypass __init__: no SDK, no key, no network
+    broken._client, broken._model = _DeadClient(), None
+    assert all(v.value is None for v in
+               broken.ask({}, {"x": __import__("conflict_updater.judge", fromlist=["judge"])
+                               .significance_q()}).values())
+
+    _Broken = lambda: broken  # noqa: E731 - the pipeline just needs something with .ask
+
+    llm = FakeLLM(_happy({
+        ExtractorOutput: ExtractorOutput(events=[CandidateEvent(
+            date="2024-05-01", title="Ceasefire signed", actors=["Israel"], place="Gaza",
+            source_urls=["http://a", "http://b"], significance=4)]),
+    }))
+    res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode(), judge=_Broken())
+    assert len(res.proposals) == 1, "a judge outage must not look like a quiet day"

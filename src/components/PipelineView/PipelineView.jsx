@@ -21,6 +21,7 @@ import styles from './PipelineView.module.css';
 const REPO = 'https://github.com/Yasserbhb/conflict-atlas';
 const SETTLE_DAYS = 7;          // T_SETTLE_DAYS — mirrors config.py
 const DAYS_PER_RUN = 3;         // PIPELINE_MAX_DAYS_PER_RUN
+const AUTO_APPROVE = 0.8;      // AUTO_APPROVE_CONFIDENCE — mirrors config.py
 const HISTORY_ROWS = 40;        // the table is the appendix; the calendar is the story
 
 const STATUS = {
@@ -319,6 +320,33 @@ function Spark({ pts }) {
   );
 }
 
+// The number the whole gate turns on, shown as a number rather than buried in a sentence. A
+// near-miss and a flat rejection read completely differently and used to look identical.
+function Confidence({ value }) {
+  if (typeof value !== 'number') return null;
+  const near = value >= AUTO_APPROVE - 0.1 && value < AUTO_APPROVE;
+  return (
+    <span className={`${styles.conf} ${near ? styles.confNear : ''}`}
+          title={near ? `just short of the ${AUTO_APPROVE} bar` : `the bar is ${AUTO_APPROVE}`}>
+      {value.toFixed(2)}
+    </span>
+  );
+}
+
+// Held events are the ones needing a human, and they used to ship without their sources — the
+// page could say "we are unsure about this" and give you no way to check.
+function Sources({ urls }) {
+  if (!urls || !urls.length) return null;
+  const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
+  return (
+    <span className={styles.srcs}>
+      {urls.map((u) => (
+        <a key={u} className={styles.src} href={u} target="_blank" rel="noreferrer">{host(u)}</a>
+      ))}
+    </span>
+  );
+}
+
 /* ---- what the last run actually did -------------------------------------------------------- */
 
 const FUNNEL = [
@@ -334,13 +362,19 @@ function LastRun({ run, today }) {
   const held = run.held || [];
   const s = run.stats || {};
   const steps = FUNNEL.filter(([k]) => s[k] != null);
+  const nDays = (run.days || []).length;
 
   return (
     <section>
       <div className={styles.h2Row}>
         <h2 className={styles.h2}>The last run, step by step</h2>
         <span className={styles.h2Note}>
-          <span className={styles.mono}>{run.period}</span> · {ago(run.ran_at, today)}
+          {/* A run is several days, not one. `days` is the precise list; `period` is only the
+              span, and a cursor run mixes backfill with the newest day, so it is not contiguous. */}
+          {nDays > 1
+            ? <>{nDays} days · <span className={styles.mono}>{run.days.map((d) => d.split('..')[0]).join(', ')}</span></>
+            : <span className={styles.mono}>{run.period}</span>}
+          {' · '}{ago(run.ran_at, today)}
         </span>
       </div>
 
@@ -366,6 +400,14 @@ function LastRun({ run, today }) {
         </div>
       )}
 
+      {s.routine > 0 && (
+        <p className={styles.note}>
+          {s.routine} candidate {s.routine === 1 ? 'event was' : 'events were'} dropped as routine —
+          the continuation of ongoing fighting that a history of the conflict would not record.
+          This is the bar that keeps the atlas a historical record rather than a news feed.
+        </p>
+      )}
+
       {s.triaged_out > 0 && (
         <p className={styles.note}>
           {s.triaged_out} of those articles were dropped before any expensive step, by a typed
@@ -382,7 +424,10 @@ function LastRun({ run, today }) {
               <li key={i}>
                 <span className={styles.fDate}>{e.date}</span>
                 <span className={styles.fTitle}>{e.title}</span>
-                <span className={styles.fMeta}>{e.kind} · severity {e.severity} · {e.conflict}</span>
+                <span className={styles.fMeta}>
+                  {e.kind} · severity {e.severity} · {e.conflict}
+                  <Sources urls={e.sources} />
+                </span>
               </li>
             ))}
           </ul>
@@ -393,14 +438,20 @@ function LastRun({ run, today }) {
         <>
           <h3 className={styles.h3}><Pause size={12} strokeWidth={2.5} aria-hidden="true" />Held back</h3>
           <p className={styles.note}>
-            Found, but not corroborated well enough to publish. Each one names what stopped it.
+            Found, but not corroborated well enough to publish. The bar is{' '}
+            <span className={styles.mono}>{AUTO_APPROVE.toFixed(2)}</span>. Each one shows how sure
+            the fact-check was and links the sources it read, so you can check it yourself.
           </p>
           <ul className={styles.findings}>
             {held.map((e, i) => (
               <li key={i}>
                 <span className={styles.fDate}>{e.date}</span>
-                <span className={styles.fTitle}>{e.title}</span>
+                <span className={styles.fTitle}>
+                  {e.title}
+                  <Confidence value={e.confidence} />
+                </span>
                 {e.question && <span className={styles.fQuestion}>{e.question}</span>}
+                <span className={styles.fMeta}><Sources urls={e.sources} /></span>
               </li>
             ))}
           </ul>

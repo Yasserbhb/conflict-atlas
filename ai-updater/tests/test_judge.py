@@ -47,7 +47,18 @@ def test_severity_and_significance_ask_different_questions():
     # The whole flood-control design rests on these being distinct: a ceasefire is severity 1 and
     # significance 5.
     assert J.severity_q()["criteria"] != J.significance_q()["criteria"]
-    assert "not severity" in J.significance_q()["instructions"]
+    sig = J.significance_q()["instructions"].lower()
+    assert "not severity" in sig, "the distinction has to be stated, not implied"
+    # The failure mode seen live: routine continuation of an ongoing war scored high because it
+    # was violent and widely covered. Both have to be ruled out explicitly.
+    assert "routine" in sig and "reported" in sig
+
+
+def test_significance_can_name_which_candidate_it_is_judging():
+    # A day's candidates are scored in ONE parallel call, so each question must identify its own.
+    q = J.significance_q("`c3`")
+    assert "`c3`" in q["instructions"]
+    assert len(q["criteria"]) == 5
 
 
 # ---- the null backend keeps everything offline ----------------------------------------------

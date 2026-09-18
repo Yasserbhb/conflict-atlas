@@ -122,14 +122,28 @@ def severity_q() -> dict:
          "a massacre, siege or campaign killing very large numbers"])
 
 
-def significance_q() -> dict:
+def significance_q(ref: str = "this event") -> dict:
+    """How much this event MATTERS to the conflict's story. The atlas's flood control.
+
+    `ref` names which candidate is being judged when several are scored in one parallel call.
+
+    The distinction from severity is the whole point and is easy to get backwards. Bloodshed is
+    not the question: a ceasefire, a treaty, a capital changing hands or a commander killed can
+    all be pivotal without a large death toll, while the fourth month of nightly strikes in an
+    ongoing war can kill many and change nothing. The test is whether a chronicle of THIS
+    conflict, written later, would record it — not whether it made the news that morning.
+    """
     return score(
-        "How historically CONSEQUENTIAL is this event — would a history of this conflict "
-        "mention it? This is not severity: a ceasefire may kill nobody and still be pivotal.",
-        ["routine, would not be recorded",
-         "minor, of interest only in a detailed chronology",
-         "notable, a history of this conflict would mention it",
-         "a turning point in the conflict",
+        f"How historically CONSEQUENTIAL is {ref} to its conflict — would a history of that "
+        "conflict record it? This is NOT severity and NOT how widely it was reported. A "
+        "ceasefire, a treaty, a territorial change or the death of a leader can be decisive "
+        "with few or no casualties. Routine continuation of ongoing fighting is not "
+        "consequential however violent it is, or however many outlets covered it.",
+        ["routine continuation of ongoing fighting; a chronicle would not record it",
+         "minor, of interest only in a day-by-day chronology of this conflict",
+         "notable — a history of this conflict would mention it: a significant strike, a "
+         "town changing hands, a leader killed, talks opening or collapsing",
+         "a turning point: a front collapses, a party enters or leaves, a ceasefire takes hold",
          "a defining event that shapes the whole conflict"])
 
 
@@ -153,8 +167,18 @@ class JevJudge:
         return Noul(instructions=spec["instructions"])
 
     def ask(self, state: dict, questions: dict) -> dict[str, Judgement]:
-        resp = self._client.system_one(
-            state=state, questions={k: self._build(v) for k, v in questions.items()})
+        try:
+            resp = self._client.system_one(
+                state=state, questions={k: self._build(v) for k, v in questions.items()})
+        except Exception as e:  # noqa: BLE001
+            # An outage, a rate limit or a bad payload must degrade to "no opinion", not take the
+            # scan down. Every caller already reads Judgement(None) as "use the LLM's own answer",
+            # so this is the one place that has to hold for that fallback to mean anything.
+            # Guarding here rather than at each call site is deliberate: resolver, enrich and
+            # verify all call this, and a try/except around each would be the same fix four times
+            # and still miss the fifth caller.
+            print(f"  judge unavailable ({type(e).__name__}); falling back to the LLM")
+            return {qid: Judgement(None) for qid in questions}
         out: dict[str, Judgement] = {}
         for qid, spec in questions.items():
             kind = spec["kind"]
