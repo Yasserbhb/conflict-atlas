@@ -88,6 +88,12 @@ class Settings:
     # Minimum historical CONSEQUENCE (not violence) for an event to be applied without review.
     # significance and severity are different fields: a ceasefire is severity 1, significance 5.
     min_significance_auto: int = field(default_factory=lambda: int(_get("MIN_SIGNIFICANCE_AUTO", "3")))
+    # How many existing conflicts the Resolver may choose between, and how similar one must be to
+    # make the list. Deliberately generous: the Resolver has an explicit "none of these" option, so
+    # a spurious candidate costs one more option to weigh, while a MISSING one is unrecoverable --
+    # it founds a duplicate conflict and nothing merges them afterwards.
+    dedup_k: int = field(default_factory=lambda: int(_get("DEDUP_K", "8")))
+    dedup_floor: float = field(default_factory=lambda: float(_get("DEDUP_FLOOR", "0.18")))
 
     # ---- typed decisions (TypeSafe / Jev) ----
     # Which backend answers the CHOICE / SCORE / CONFIDENCE questions — resolver decision,

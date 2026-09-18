@@ -26,6 +26,9 @@ class BaseConflict(BaseModel):
     involved_countries: list[str] = Field(default_factory=list)
     parties: list[dict] = Field(default_factory=list)  # [{countryId, role}] — for structural roles
     tags: list[str] = Field(default_factory=list)
+    # involved_countries resolved to real names, because dedup.score has to compare them against
+    # free-text actors from an article. Resolved once at load time so score() needs no plumbing.
+    country_names: list[str] = Field(default_factory=list)
     start: Optional[int] = None
     end: Optional[int] = None
     status: str = "active"
@@ -79,8 +82,16 @@ def load_base(seed_json: Path) -> list[BaseConflict]:
 def base_from_seed(data: dict) -> list[BaseConflict]:
     """Same as load_base but from an already-loaded dict — lets the backtest build a base from
     a pruned copy of the seed without writing it to disk first."""
+    # ISO3 -> the country's real name(s). A candidate event's actors are free text lifted from an
+    # article ("United States", "the Houthis") and will never say "USA", so a conflict's
+    # involvedCountries are useless for matching until they are resolved back to names.
+    names: dict[str, list[str]] = {}
+    for c in data.get("countries", []):
+        if c.get("id"):
+            names[c["id"]] = [n for n in [c.get("name"), *(c.get("aliases") or [])] if n]
     out: list[BaseConflict] = []
     for c in data.get("conflicts", []):
+        ids = c.get("involvedCountries") or [p.get("countryId") for p in c.get("parties", [])]
         out.append(BaseConflict(
             id=c["id"],
             title=c.get("title", ""),
@@ -89,6 +100,7 @@ def base_from_seed(data: dict) -> list[BaseConflict]:
             involved_countries=c.get("involvedCountries", []),
             parties=c.get("parties", []),
             tags=c.get("tags", []),
+            country_names=[n for i in ids if i for n in names.get(i, [])],
             start=_year(c.get("startDate")),
             end=_year(c.get("endDate")),
             status=default_status(c),

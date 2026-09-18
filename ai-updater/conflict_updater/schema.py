@@ -125,6 +125,11 @@ class CandidateEvent(BaseModel):
     action: str = ""
     actors: list[str] = Field(default_factory=list)  # free-text actor names, not yet ISO3
     place: Optional[str] = None
+    # What the SOURCE says this event is part of, in its own words: "the ongoing conflict between
+    # Israel and Hezbollah", "the Second World War". Evidence, not inference — empty when the
+    # article gives none. This is what lets the resolver find a parent whose title was taken from
+    # some other incident, and what seeds a new conflict's name and aliases.
+    context: str = ""
     source_urls: list[str] = Field(default_factory=list)
     significance: int = Field(3, ge=1, le=5)  # historical consequence — used to rank/cap, not severity
     # "structured" = came from a verified dataset (e.g. UCDP), not extracted from web text by
@@ -177,6 +182,9 @@ class Proposal(BaseModel):
     status: Optional[Status] = None                    # status verdict (for conflict.status)
     new_conflict: Optional[Conflict] = None
     new_aliases: list[str] = Field(default_factory=list)
+    # When the resolver could not choose, WHICH conflicts it was choosing between. Without this a
+    # reviewer sees "attach to None" and has no idea what the tie was.
+    tied_candidates: list[dict] = Field(default_factory=list)
     verify: Optional[VerifyOutput] = None               # fact-check + auto-approve/needs-human verdict
     needs_human: bool = True
     provisional: bool = False  # held by the recency gate

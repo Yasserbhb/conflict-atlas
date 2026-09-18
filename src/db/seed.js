@@ -1,5 +1,5 @@
 import { getDB } from './database';
-import { getSettings, saveSettings, saveConflict } from './queries';
+import { getSettings, saveSettings, saveConflict, deleteConflict } from './queries';
 import seedData from '../data/seed.json';
 
 export async function initSeed() {
@@ -31,6 +31,19 @@ export async function initSeed() {
       if (!existing) await saveConflict(conflict);
     }
   }
+
+  // Drop seed conflicts that seed.json no longer has.
+  //
+  // This import was add-only, and the app reads getAllConflicts() from IndexedDB rather than from
+  // seed.json — so anything ever imported stayed forever. A conflict removed upstream (renamed,
+  // merged into another, or gone because the dataset was rebuilt) kept rendering on every machine
+  // that had seen it, and its events were counted twice: once in the stale record and once inside
+  // whichever conflict absorbed them. Only `seed_` ids are touched; `user_` conflicts are theirs.
+  const keep = new Set(seedData.conflicts.map((c) => c.id));
+  const stale = (await db.getAllKeys('conflicts'))
+    .filter((id) => typeof id === 'string' && id.startsWith('seed_') && !keep.has(id));
+  for (const id of stale) await deleteConflict(id);
+  if (stale.length) console.info(`[seed] removed ${stale.length} conflict(s) no longer in seed.json`);
 
   await saveSettings({ ...settings, lastImportedSeedVersion: seedData.version });
 }
