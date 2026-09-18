@@ -16,7 +16,10 @@ name: Daily conflict update
 
 on:
   schedule:
-    - cron: "0 6 * * *"      # every day, 06:00 UTC
+    # 06:23, not 06:00. GitHub's scheduler is shared and best-effort, and the top of the hour
+    # is its most contended minute — jobs queued there are delayed and sometimes dropped
+    # entirely. An odd minute is GitHub's own advice and costs nothing.
+    - cron: "23 6 * * *"     # every day, 06:23 UTC
   workflow_dispatch: {}        # ...and a manual "Run" button for testing
 
 permissions:

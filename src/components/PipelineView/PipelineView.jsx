@@ -159,7 +159,7 @@ function HealthStrip({ last, lastRan, stale, today, prog }) {
       </div>
       <div className={styles.healthRight}>
         <Clock size={11} strokeWidth={2} aria-hidden="true" />
-        next run 06:00 UTC
+        next run 06:23 UTC
         {prog.remaining > 0 && <> · backlog clears in ~{prog.etaRuns} runs</>}
       </div>
     </div>
