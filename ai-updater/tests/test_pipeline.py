@@ -588,3 +588,21 @@ def test_a_judge_outage_does_not_silently_empty_the_scan():
     res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
                settings=Settings(), geocode=FakeGeocode(), judge=_Broken())
     assert len(res.proposals) == 1, "a judge outage must not look like a quiet day"
+
+
+def test_a_run_records_when_it_fell_back_to_another_model():
+    """A degraded run must not look like a clean one.
+
+    The failover prints a line and carries on, so a scan half-answered by the free backup is
+    indistinguishable in the ledger from one answered entirely by the model you configured.
+    Measured live: z-ai/glm-5.3-flash intermittently returns an empty reply on structured calls.
+    """
+    llm = FakeLLM(_happy())
+    res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert res.stats["model_failovers"] == 0
+
+    llm.failovers = 2
+    res2 = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+                settings=Settings(), geocode=FakeGeocode())
+    assert res2.stats["model_failovers"] == 2

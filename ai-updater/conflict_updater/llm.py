@@ -43,6 +43,10 @@ class LangChainLLM:
         # gone or exhausted -- never for a bad prompt, which would just burn a second quota.
         self._models = [m.strip() for m in str(model).split(",") if m.strip()] or [str(model)]
         self._clients: dict[str, object] = {}
+        # How often a call fell through to a later model. A degraded run is otherwise invisible:
+        # the failover prints a line nobody reads, the scan succeeds, and the ledger cannot tell
+        # you that half of it was answered by the free backup instead of the model you paid for.
+        self.failovers = 0
         if provider not in ("openai", "google", "gemini", "openrouter"):
             raise ValueError(f"unknown LLM_PROVIDER={provider!r}; wire it in llm.py")
         # Many free/reasoning models ignore native response_format and emit markdown or
@@ -92,6 +96,7 @@ class LangChainLLM:
                 last = e
                 if i == len(self._models) - 1 or not _should_failover(e):
                     raise
+                self.failovers += 1
                 print(f"  ... model {name!r} unavailable ({type(e).__name__}); "
                       f"falling back to {self._models[i + 1]!r}")
         raise last  # unreachable: the loop either returns or raises

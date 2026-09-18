@@ -494,6 +494,10 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # Candidate events a chronicle of their conflict would not record. This is the number to
         # watch: high means the bar is doing its job, zero over several days means it is not.
         "routine": len(routine),
+        # Calls that fell through to a backup model. Non-zero means part of this run was answered
+        # by something other than the model configured first -- measured live on a reasoning model
+        # that intermittently returns an empty reply. Silent otherwise.
+        "model_failovers": getattr(llm, "failovers", 0),
     }
     return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 
