@@ -1,61 +1,53 @@
 {
-  "period": "2026-07-06..2026-07-13",
+  "period": "2026-09-11..2026-09-11",
   "region": null,
-  "ran_at": "2026-07-13",
+  "ran_at": "2026-09-18",
   "ok": true,
-  "run_url": null,
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35327950721",
   "stats": {
     "queries": 6,
-    "items": 70,
-    "candidates": 10,
-    "proposals": 10,
-    "auto_approved": 3,
-    "needs_human": 7,
-    "dropped": 0
+    "queries_dropped": 0,
+    "items": 72,
+    "candidates": 5,
+    "proposals": 5,
+    "auto_approved": 0,
+    "needs_human": 5,
+    "dropped": 0,
+    "failed": 0,
+    "out_of_window": 0,
+    "triaged_out": 55
   },
   "added": [],
   "held": [
     {
-      "date": "2026-07-09",
-      "title": "United States launches massive wave of air strikes against Iran",
-      "question": "Do any reputable news outlets explicitly report that the United States launched a large-scale air campaign against Iran on 9 July 2026?",
-      "confidence": null
+      "date": "2026-09-11",
+      "title": "Russian overnight drone and missile wave on Ukraine",
+      "question": "fact-check returned 'uncertain' at confidence 0.20; only 56% of its claims are backed by the cited sources",
+      "confidence": 0.2
     },
     {
-      "date": "2026-07-12",
-      "title": "United States bombs Iranian targets; Iran retaliates against Gulf states",
-      "question": "Do any reliable news outlets report that the United States bombed Iranian targets and Iran retaliated against Gulf states on July 12, 2026?",
-      "confidence": null
+      "date": "2026-09-11",
+      "title": "Russian FAB bombs hit Kramatorsk residential areas",
+      "question": "fact-check returned 'pass' at confidence 0.77; only 80% of its claims are backed by the cited sources",
+      "confidence": 0.77
     },
     {
-      "date": "2026-07-13",
-      "title": "Iran attacks Bahrain, Kuwait and Jordan following US bombings",
-      "question": "Is there any independent reporting confirming Iran's IRGC attacked Bahrain, Kuwait, and Jordan on 13 July 2026?",
-      "confidence": null
+      "date": "2026-09-11",
+      "title": "Houthis capture Bab-el-Mandeb strait and Perim island",
+      "question": "fact-check returned 'pass' at confidence 0.60; only 72% of its claims are backed by the cited sources",
+      "confidence": 0.6
     },
     {
-      "date": "2026-07-06",
-      "title": "Israeli airstrike on al‑Mawasi tent kills two Palestinians",
-      "question": "Is there any additional independent reporting confirming the July 6, 2026 al‑Mawasi tent strike?",
-      "confidence": null
+      "date": "2026-09-11",
+      "title": "Israeli airstrike on car in Gaza kills two Hamas engineers",
+      "question": "fact-check returned 'pass' at confidence 0.48; only 62% of its claims are backed by the cited sources",
+      "confidence": 0.48
     },
     {
-      "date": "2026-07-06",
-      "title": "Israeli bombing of Nabatieh kills at least four people",
-      "question": "What is the confirmed casualty count from the Nabatieh strike on July 6, 2026?",
-      "confidence": null
-    },
-    {
-      "date": "2026-07-06",
-      "title": "Houthis launch Hodeidah offensive in Yemen",
-      "question": "Are there additional independent reports confirming the Houthi offensive in Hodeidah on 6 July 2026?",
-      "confidence": null
-    },
-    {
-      "date": "2026-07-07",
-      "title": "Iran attacks three commercial vessels in the Strait of Hormuz",
-      "question": "Can we find a direct, contemporaneous report confirming that Iran's IRGC launched missile attacks on three commercial vessels in the Strait of Hormuz on 7 July 2026?",
-      "confidence": null
+      "date": "2026-09-11",
+      "title": "Russian drones attack Kyiv gas stations, two killed",
+      "question": "fact-check returned 'uncertain' at confidence 0.50; only 36% of its claims are backed by the cited sources",
+      "confidence": 0.5
     }
   ],
   "already_known": [],
