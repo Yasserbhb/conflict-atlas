@@ -149,32 +149,35 @@ def _cmd_auto(args) -> int:
     ledger = load_coverage(_coverage_path(settings))
     start_date = cursor.parse_start(settings.pipeline_start_date)
     max_days = args.days or settings.pipeline_max_days_per_run
-    todo = cursor.next_days(ledger, start_date, date.today(),
-                            settle_days=settings.t_settle_days, max_days=max_days,
-                            region=args.region, topic=args.topic,
-                            max_attempts=settings.coverage_max_attempts)
+    # Windows, not days: one day this century, widening with age (see dates.window_days). A day
+    # in 1823 has no day-specific reporting to find, and stepping three centuries one day at a
+    # time is tens of thousands of billed searches.
+    todo = cursor.next_windows(ledger, start_date, date.today(),
+                               settle_days=settings.t_settle_days, max_windows=max_days,
+                               region=args.region, topic=args.topic,
+                               max_attempts=settings.coverage_max_attempts)
     prog = cursor.progress(ledger, start_date, date.today(), settings.t_settle_days,
                            args.region, args.topic, settings.coverage_max_attempts)
-    print(f"cursor: {prog['done']}/{prog['eligible']} days checked "
-          f"({prog['start']} .. {prog['horizon']}), {prog['remaining']} remaining")
+    print(f"cursor: {prog['done']}/{prog['eligible']} windows checked "
+          f"({prog['start']} .. {prog['horizon']}, {prog['days']} calendar days), "
+          f"{prog['remaining']} remaining")
     # One slot per run goes to the NEWEST settled day, so the map is current immediately; the
     # rest drain the backlog oldest-first. That means the backlog closes at (max_days - 1) days
     # per run, and at max_days 1 there is no backlog slot at all and it never closes.
     if prog["remaining"] > max_days and max_days <= 1:
-        print("  WARNING: --days 1 only ever covers the newest day, so this backlog will never "
-              "close. Raise --days, or set PIPELINE_START_DATE closer to today.")
+        print("  WARNING: --days 1 only ever covers the newest window, so this backlog will "
+              "never close. Raise --days, or set PIPELINE_START_DATE closer to today.")
     elif prog["remaining"] > 30:
         gain = max(1, max_days - 1)
-        print(f"  backlog of {prog['remaining']} days; the newest day is covered every run, and "
-              f"at --days {max_days} the rest closes in ~{prog['remaining'] // gain} runs. "
-              f"Backfill anything older with a range scan instead.")
+        print(f"  backlog of {prog['remaining']} windows; the newest is covered every run, and "
+              f"at --days {max_days} the rest closes in ~{prog['remaining'] // gain} runs.")
     if not todo:
-        print("nothing to do — every settled day has been checked")
+        print("nothing to do — every settled window has been checked")
         return 0
 
     rc = 0
-    for d in todo:
-        s, e = dates.day_period(d)
+    for a, b in todo:
+        s, e = a.isoformat(), b.isoformat()
         code, _ = _run_one(settings, s, e, args)
         if code:
             # Stop the batch on the first failure so a dead provider doesn't burn the whole

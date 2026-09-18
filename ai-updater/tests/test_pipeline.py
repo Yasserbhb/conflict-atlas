@@ -102,11 +102,16 @@ def test_uncertain_verify_routes_to_human():
 
 
 def test_thinly_sourced_new_conflict_needs_human():
-    # 2 independent sources is below the higher bar a NEW conflict needs (default 3) → held.
+    """A NEW conflict on ONE outlet is held, however confident the fact-check was.
+
+    Founding a conflict is harder to undo than attaching an event — a wrong id, title, type and
+    party list all enter the atlas at once — so it needs corroboration the attach path does not.
+    The bar is NEW_CONFLICT_MIN_SOURCES distinct outlets, currently 2; one is below it.
+    """
     res = _scan(_happy({
         ResolverOutput: ResolverOutput(decision="new"),
         EnrichOutput: _enrich(conflict_type="war"),
-    }))
+    }), cand_sources=["http://only-one-outlet"])
     p = res.proposals[0]
     assert p.kind == "new_conflict" and p.new_conflict is not None
     assert p.needs_human is True
