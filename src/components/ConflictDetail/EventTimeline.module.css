@@ -230,3 +230,17 @@
   color: var(--text-muted);
   margin-top: 4px;
 }
+
+/* An event the fact-check was not confident about.
+   The publishing bar is deliberately low, so this is what keeps that honest: the reader can see
+   which entries only just cleared it, instead of every event looking equally settled. */
+.unsure {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #b8935a;
+  cursor: help;
+}

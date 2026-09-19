@@ -33,14 +33,17 @@ class Settings:
 
     t_settle_days: int = field(default_factory=lambda: int(_get("T_SETTLE_DAYS", "7")))
     n_min_sources: int = field(default_factory=lambda: int(_get("N_MIN_SOURCES", "2")))
-    # 0.70, not 0.80. The number was never calibrated -- nothing has ever checked whether a stated
-    # 0.8 means right 80% of the time -- so it was arbitrary in the first place, and set high
-    # enough that a whole live day produced 5 held events and 0 published, including one at 0.77
-    # that was plainly real. An atlas that publishes nothing is not being careful, it is being
-    # useless. Every write is a git commit and every held event keeps its reason, so this is a
-    # reversible experiment rather than a one-way bet. Raise it again once the backtest can say
-    # what the number actually means.
-    auto_approve_confidence: float = field(default_factory=lambda: float(_get("AUTO_APPROVE_CONFIDENCE", "0.70")))
+    # 0.50. This started at 0.80, was never calibrated, and produced a live day of 5 held events
+    # and 0 published. It has been lowered twice on judgement rather than measurement, and the
+    # honest consequence is that the atlas now publishes things the fact-check was only half sure
+    # about. That is a deliberate trade: an atlas nobody can add to is worse than one that shows
+    # its uncertainty, and every event now carries its confidence through to the page so a reader
+    # can see which entries only just cleared the bar.
+    #
+    # Reversible by construction -- every write is a git commit, every held event keeps its
+    # reason. Raise it once the backtest can say what the number means.
+    auto_approve_confidence: float = field(
+        default_factory=lambda: float(_get("AUTO_APPROVE_CONFIDENCE", "0.50")))
     max_candidates: int = field(default_factory=lambda: int(_get("MAX_CANDIDATES", "0")))  # 0 = no cap (quota)
 
     # Founding a brand-new conflict is riskier than attaching an event to one that already
