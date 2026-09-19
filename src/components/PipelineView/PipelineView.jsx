@@ -21,7 +21,7 @@ import styles from './PipelineView.module.css';
 const REPO = 'https://github.com/Yasserbhb/conflict-atlas';
 const SETTLE_DAYS = 7;          // T_SETTLE_DAYS — mirrors config.py
 const DAYS_PER_RUN = 3;         // PIPELINE_MAX_DAYS_PER_RUN
-const AUTO_APPROVE = 0.8;      // AUTO_APPROVE_CONFIDENCE — mirrors config.py
+const AUTO_APPROVE = 0.70;      // AUTO_APPROVE_CONFIDENCE — mirrors config.py
 const HISTORY_ROWS = 40;        // the table is the appendix; the calendar is the story
 
 const STATUS = {

@@ -33,16 +33,23 @@ class Settings:
 
     t_settle_days: int = field(default_factory=lambda: int(_get("T_SETTLE_DAYS", "7")))
     n_min_sources: int = field(default_factory=lambda: int(_get("N_MIN_SOURCES", "2")))
-    auto_approve_confidence: float = field(default_factory=lambda: float(_get("AUTO_APPROVE_CONFIDENCE", "0.8")))
+    # 0.70, not 0.80. The number was never calibrated -- nothing has ever checked whether a stated
+    # 0.8 means right 80% of the time -- so it was arbitrary in the first place, and set high
+    # enough that a whole live day produced 5 held events and 0 published, including one at 0.77
+    # that was plainly real. An atlas that publishes nothing is not being careful, it is being
+    # useless. Every write is a git commit and every held event keeps its reason, so this is a
+    # reversible experiment rather than a one-way bet. Raise it again once the backtest can say
+    # what the number actually means.
+    auto_approve_confidence: float = field(default_factory=lambda: float(_get("AUTO_APPROVE_CONFIDENCE", "0.70")))
     max_candidates: int = field(default_factory=lambda: int(_get("MAX_CANDIDATES", "0")))  # 0 = no cap (quota)
 
     # Founding a brand-new conflict is riskier than attaching an event to one that already
     # exists (wrong id/title/type/parties are harder to undo), so it needs a HIGHER bar to
     # auto-approve — not an unconditional human-review flag regardless of evidence quality.
     new_conflict_min_confidence: float = field(
-        default_factory=lambda: float(_get("NEW_CONFLICT_MIN_CONFIDENCE", "0.9")))
+        default_factory=lambda: float(_get("NEW_CONFLICT_MIN_CONFIDENCE", "0.80")))
     new_conflict_min_sources: int = field(
-        default_factory=lambda: int(_get("NEW_CONFLICT_MIN_SOURCES", "3")))
+        default_factory=lambda: int(_get("NEW_CONFLICT_MIN_SOURCES", "2")))
 
     seed_json: Path = field(
         default_factory=lambda: Path(_get("SEED_JSON", str(_HERE.parent / "src" / "data" / "seed.json"))))
@@ -88,6 +95,12 @@ class Settings:
     # Minimum historical CONSEQUENCE (not violence) for an event to be applied without review.
     # significance and severity are different fields: a ceasefire is severity 1, significance 5.
     min_significance_auto: int = field(default_factory=lambda: int(_get("MIN_SIGNIFICANCE_AUTO", "3")))
+    # How many existing conflicts the Resolver may choose between, and how similar one must be to
+    # make the list. Deliberately generous: the Resolver has an explicit "none of these" option, so
+    # a spurious candidate costs one more option to weigh, while a MISSING one is unrecoverable --
+    # it founds a duplicate conflict and nothing merges them afterwards.
+    dedup_k: int = field(default_factory=lambda: int(_get("DEDUP_K", "8")))
+    dedup_floor: float = field(default_factory=lambda: float(_get("DEDUP_FLOOR", "0.18")))
 
     # ---- typed decisions (TypeSafe / Jev) ----
     # Which backend answers the CHOICE / SCORE / CONFIDENCE questions — resolver decision,

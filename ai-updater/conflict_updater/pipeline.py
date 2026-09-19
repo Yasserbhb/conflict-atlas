@@ -25,6 +25,27 @@ def _slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", (s or "").lower()).strip("_")[:40] or "unnamed"
 
 
+def _alias_set(offered: list[str], context: str, own_name: str | None) -> list[str]:
+    """The names to record for a conflict: whatever the resolver offered, plus the name the
+    ARTICLE used for it.
+
+    This is the self-reinforcing half of the design. Every event that attaches teaches its parent
+    another name the sources actually use, so the next event that says "WWII" matches a conflict
+    titled "Second World War" without anything clever happening. Retrieval improves with exposure.
+
+    `own_name` is the conflict's own title when founding — never store a conflict's title as its
+    own alias.
+    """
+    out: list[str] = []
+    for raw in [*offered, context]:
+        n = dedup.clean_name(raw)
+        if not n or (own_name and n.casefold() == own_name.casefold()):
+            continue
+        if not any(n.casefold() == e.casefold() for e in out):
+            out.append(n)
+    return out
+
+
 def _unique_new_id(title: str, *taken) -> str:
     """A `seed_new_<slug>` id guaranteed not to collide with any existing or pending conflict,
     so two same-scan foundings whose titles slugify identically don't share an id (which would
@@ -258,7 +279,8 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # 4. RESOLVER — dedup lookup (code) then decide (LLM). Pending new conflicts from
         # earlier in this same scan are included so a follow-up event attaches to them.
         pool = base + list(pending_bases.values())
-        candidates = dedup.find_candidates(pool, cand)
+        candidates = dedup.find_candidates(pool, cand,
+                                           k=settings.dedup_k, floor=settings.dedup_floor)
 
         # Cheap duplicate/continuation check BEFORE any LLM spend. find_candidates already
         # returned these conflicts with their events, so the data is in hand: if this repeats an
@@ -288,7 +310,25 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             and res.conflict_id not in by_id and res.conflict_id not in pending_bases
         )
         target_id = res.conflict_id if not is_new else None
-        ambiguous = res.decision == "ambiguous"
+
+        # An ambiguous resolution used to run the full Enrich AND Verify before the flag was
+        # applied at the end -- paying for both to reach a conclusion already known, and then
+        # handing the reviewer "attach to None" with no record of what it was torn between.
+        # Stop here instead, and carry the candidates so the digest can show the tie.
+        if res.decision == "ambiguous":
+            tied = [{"id": c.id, "title": c.title, "score": round(sc, 2)} for c, sc in candidates[:5]]
+            dropped.append(
+                f"ambiguous ({res.reason or 'no reason given'}): {cand.date} {cand.title}"
+                + (f" -- between {', '.join(t['id'] for t in tied)}" if tied else ""))
+            return Proposal(
+                kind="attach", target_conflict_id=None,
+                event=Event(date=cand.date, title=cand.title,
+                            description=cand.action or "",
+                            sources=_gather_sources(cand, items)),
+                tied_candidates=tied, needs_human=True,
+                provisional=_is_recent(cand.date, settings.t_settle_days),
+            )
+        ambiguous = False
 
         # 5. RECENCY gate (per event, by its date)
         provisional = _is_recent(cand.date, settings.t_settle_days)
@@ -386,9 +426,14 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             if en.end_date and status not in ("ended", "resolved"):
                 status = "ended"                        # sources show the conflict concluded
             start_date, end_date = derive_span([event.date], status, en.start_date, en.end_date)
+            # Name the conflict from what the SOURCES called it, not from the one incident that
+            # happened to be scanned first. This is the difference between founding "World War II"
+            # and founding "German invasion of Poland" — and the latter is a container nothing
+            # later matches, which is how one war becomes fifteen conflicts.
+            name = dedup.clean_name(cand.context) or cand.title
             new_conflict = Conflict(
-                id=_unique_new_id(cand.title, by_id, pending_bases),
-                title=cand.title,               # provisional — a human renames on review
+                id=_unique_new_id(name, by_id, pending_bases),
+                title=name,                     # provisional — a human renames on review
                 type=en.conflict_type or "war",
                 severity=en.severity,
                 start_date=start_date,          # earliest of the sourced span and the events
@@ -398,7 +443,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
                 description=en.summary,
                 parties=en.parties,
                 involved_countries=[p.country_id for p in en.parties],
-                aliases=res.new_aliases,
+                aliases=_alias_set(res.new_aliases, cand.context, name),
                 events=[event],
             )
             # visible (as a BaseConflict) to later candidates in this same scan
@@ -411,7 +456,7 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             roles=en.parties,
             status=status,
             new_conflict=new_conflict,
-            new_aliases=res.new_aliases,
+            new_aliases=_alias_set(res.new_aliases, cand.context, None),
             verify=ver,
             needs_human=needs_human,
             provisional=provisional,
@@ -449,6 +494,10 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
         # Candidate events a chronicle of their conflict would not record. This is the number to
         # watch: high means the bar is doing its job, zero over several days means it is not.
         "routine": len(routine),
+        # Calls that fell through to a backup model. Non-zero means part of this run was answered
+        # by something other than the model configured first -- measured live on a reasoning model
+        # that intermittently returns an empty reply. Silent otherwise.
+        "model_failovers": getattr(llm, "failovers", 0),
     }
     return ScanResult(request=req, proposals=proposals, dropped=dropped, failed=failed, stats=stats)
 

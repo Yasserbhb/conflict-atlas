@@ -102,11 +102,16 @@ def test_uncertain_verify_routes_to_human():
 
 
 def test_thinly_sourced_new_conflict_needs_human():
-    # 2 independent sources is below the higher bar a NEW conflict needs (default 3) → held.
+    """A NEW conflict on ONE outlet is held, however confident the fact-check was.
+
+    Founding a conflict is harder to undo than attaching an event — a wrong id, title, type and
+    party list all enter the atlas at once — so it needs corroboration the attach path does not.
+    The bar is NEW_CONFLICT_MIN_SOURCES distinct outlets, currently 2; one is below it.
+    """
     res = _scan(_happy({
         ResolverOutput: ResolverOutput(decision="new"),
         EnrichOutput: _enrich(conflict_type="war"),
-    }))
+    }), cand_sources=["http://only-one-outlet"])
     p = res.proposals[0]
     assert p.kind == "new_conflict" and p.new_conflict is not None
     assert p.needs_human is True
@@ -588,3 +593,21 @@ def test_a_judge_outage_does_not_silently_empty_the_scan():
     res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
                settings=Settings(), geocode=FakeGeocode(), judge=_Broken())
     assert len(res.proposals) == 1, "a judge outage must not look like a quiet day"
+
+
+def test_a_run_records_when_it_fell_back_to_another_model():
+    """A degraded run must not look like a clean one.
+
+    The failover prints a line and carries on, so a scan half-answered by the free backup is
+    indistinguishable in the ledger from one answered entirely by the model you configured.
+    Measured live: z-ai/glm-5.3-flash intermittently returns an empty reply on structured calls.
+    """
+    llm = FakeLLM(_happy())
+    res = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+               settings=Settings(), geocode=FakeGeocode())
+    assert res.stats["model_failovers"] == 0
+
+    llm.failovers = 2
+    res2 = scan(_req(("1800-01-01", "2030-12-31")), llm=llm, search=FakeSearch(ITEMS), base=BASE,
+                settings=Settings(), geocode=FakeGeocode())
+    assert res2.stats["model_failovers"] == 2

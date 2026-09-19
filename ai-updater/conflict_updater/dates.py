@@ -114,3 +114,49 @@ def days_between(start: date, end: date) -> Iterator[date]:
     while cur <= end:
         yield cur
         cur += timedelta(days=1)
+
+
+# ---- how wide a scan window should be, by era -----------------------------------------------
+# Day-by-day is right for this year and wrong for 1823. Two reasons, both about sources rather
+# than taste:
+#
+#   * A query for a specific day in 1823 does not return that day's reporting — there isn't any
+#     online. It returns retrospective encyclopedia pages, which describe a period. Asking for a
+#     decade asks the question the sources can actually answer.
+#   * Event density collapses with age. The atlas holds 489 events across five centuries; walking
+#     the 1700s a day at a time is ~36,500 scans to find a handful of events, at two Tavily
+#     credits per query.
+#
+# So the window widens with age. Boundaries are derived from the window's own start date, so they
+# are deterministic and the coverage ledger's "start..end" keys stay stable between runs.
+# Changing this table re-cuts those windows and previously-scanned periods stop matching — which
+# is recoverable (they simply get rescanned) but not free.
+_ERAS = [
+    (2000, 1),        # this century: one day
+    (1950, 7),        # a week
+    (1900, 30),       # a month
+    (1800, 91),       # a quarter
+    (1500, 365),      # a year
+]
+_DEEP = 3652         # before 1500: a decade
+
+
+def window_days(year: int) -> int:
+    """How many days one scan should cover, for a window starting in `year`."""
+    for floor, n in _ERAS:
+        if year >= floor:
+            return n
+    return _DEEP
+
+
+def windows_between(start: date, horizon: date):
+    """Successive scan windows from `start` up to `horizon`, each sized for its own era.
+
+    Yields (first_day, last_day) inclusive. Consecutive and non-overlapping, so every day between
+    the two ends is covered exactly once.
+    """
+    cur = start
+    while cur <= horizon:
+        end = min(cur + timedelta(days=window_days(cur.year) - 1), horizon)
+        yield cur, end
+        cur = end + timedelta(days=1)

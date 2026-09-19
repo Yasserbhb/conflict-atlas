@@ -125,7 +125,7 @@ def test_progress_counts_the_backlog():
 
 def test_progress_when_nothing_is_eligible_yet():
     p = progress([], date(2026, 3, 1), TODAY, settle_days=7)
-    assert p == {"eligible": 0, "done": 0, "remaining": 0,
+    assert p == {"eligible": 0, "done": 0, "remaining": 0, "days": 0,
                  "start": "2026-03-01", "horizon": "2026-01-25"}
 
 
@@ -263,3 +263,65 @@ def test_keep_current_off_is_strictly_oldest_first():
 def test_one_day_per_run_still_means_one_day():
     todo = next_days([], _d("2026-06-01"), _d("2026-09-17"), settle_days=7, max_days=1)
     assert todo == [_d("2026-06-01")]
+
+
+# ---- scan windows widen with age ------------------------------------------------------------
+
+def test_a_window_is_a_day_now_and_a_decade_before_1500():
+    """A query for one day in 1823 returns retrospective encyclopedia pages, not that day's
+    reporting — there is none online. And walking three centuries a day at a time is tens of
+    thousands of billed searches to find a handful of events."""
+    from conflict_updater.dates import window_days
+    assert window_days(2026) == 1
+    assert window_days(1999) == 7
+    assert window_days(1945) == 30
+    assert window_days(1860) == 91
+    assert window_days(1700) == 365
+    assert window_days(1490) > 3000
+
+
+def test_windows_tile_the_span_without_gaps_or_overlap():
+    # Every calendar day between the ends must be covered exactly once, or the cursor either
+    # rescans (paying twice) or skips history silently.
+    from datetime import timedelta
+    from conflict_updater.dates import windows_between
+    ws = list(windows_between(date(1850, 1, 1), date(1853, 12, 31)))
+    assert ws[0][0] == date(1850, 1, 1)
+    assert ws[-1][1] == date(1853, 12, 31)
+    for (a1, b1), (a2, _) in zip(ws, ws[1:]):
+        assert b1 < a2, "windows must not overlap"
+        assert a2 - b1 == timedelta(days=1), "and must leave no gap"
+
+
+def test_deep_history_costs_scans_not_days():
+    """Two centuries of backfill should be ~a thousand scans, not ~a hundred thousand.
+
+    Each scan is billed search, so this is the difference between a backfill that is possible and
+    one that is not. The modern era deliberately stays at one day per scan — the saving is meant
+    to come from the old centuries, not from coarsening the present.
+    """
+    from conflict_updater.dates import windows_between
+    deep = sum(1 for _ in windows_between(date(1700, 1, 1), date(1950, 1, 1)))
+    days = (date(1950, 1, 1) - date(1700, 1, 1)).days
+    assert deep < 1500, f"{deep} windows"
+    assert days / deep > 50, f"only {days / deep:.0f}x fewer scans than days"
+
+    modern = list(windows_between(date(2020, 1, 1), date(2020, 1, 10)))
+    assert all(a == b for a, b in modern), "this century stays day-by-day"
+
+
+def test_progress_counts_windows_not_days():
+    # A 200-year backfill is a few hundred scans, not 73,000 outstanding items.
+    p = progress([], date(1800, 1, 1), date(2000, 1, 1), settle_days=7)
+    assert p["days"] > 70000, "two centuries of calendar days"
+    assert p["eligible"] < p["days"] / 15, "but far fewer scans to do"
+    assert p["remaining"] == p["eligible"]
+
+
+def test_the_newest_window_is_still_reserved_across_eras():
+    from conflict_updater.cursor import next_windows
+    ws = next_windows([], date(1850, 1, 1), date(2026, 2, 1), settle_days=7, max_windows=3)
+    assert len(ws) == 3
+    assert ws[0][0] == date(1850, 1, 1), "oldest first"
+    assert ws[-1][1] == date(2026, 1, 25), "and the newest settled window"
+    assert ws[-1][0] == ws[-1][1], "which this century is a single day"

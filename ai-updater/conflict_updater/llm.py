@@ -43,6 +43,10 @@ class LangChainLLM:
         # gone or exhausted -- never for a bad prompt, which would just burn a second quota.
         self._models = [m.strip() for m in str(model).split(",") if m.strip()] or [str(model)]
         self._clients: dict[str, object] = {}
+        # How often a call fell through to a later model. A degraded run is otherwise invisible:
+        # the failover prints a line nobody reads, the scan succeeds, and the ledger cannot tell
+        # you that half of it was answered by the free backup instead of the model you paid for.
+        self.failovers = 0
         if provider not in ("openai", "google", "gemini", "openrouter"):
             raise ValueError(f"unknown LLM_PROVIDER={provider!r}; wire it in llm.py")
         # Many free/reasoning models ignore native response_format and emit markdown or
@@ -68,7 +72,17 @@ class LangChainLLM:
                 model=model, temperature=self._temperature,
                 base_url="https://openrouter.ai/api/v1",
                 api_key=os.environ.get("OPENROUTER_API_KEY", ""),
-                max_tokens=8000,  # reasoning models spend tokens thinking before the JSON
+                max_tokens=24000,  # reasoning + a large structured reply must BOTH fit
+                # Turn REASONING OFF. A reasoning model handed 36 articles spends its whole
+                # output budget thinking and returns empty `content` — measured on
+                # z-ai/glm-5.3-flash, which extracts 10 articles fine and returns nothing at 36.
+                # Raising max_tokens does not fix it; the thinking simply expands to fill it.
+                #
+                # Nothing here wants prose reasoning: every call asks for one JSON object against
+                # a schema, and the judgements that need weighing go to Jev, not to this. Reasoning
+                # tokens are also billed as output, so this is cheaper as well as more reliable.
+                # OpenRouter ignores the field for models that do not reason.
+                model_kwargs={"reasoning": {"effort": "low"}},
             )
         self._clients[model] = c
         return c
@@ -82,6 +96,7 @@ class LangChainLLM:
                 last = e
                 if i == len(self._models) - 1 or not _should_failover(e):
                     raise
+                self.failovers += 1
                 print(f"  ... model {name!r} unavailable ({type(e).__name__}); "
                       f"falling back to {self._models[i + 1]!r}")
         raise last  # unreachable: the loop either returns or raises
@@ -129,7 +144,7 @@ class LangChainLLM:
         for attempt in range(2):
             msgs = [SystemMessage(content=sys), HumanMessage(content=user)]
             resp = _with_backoff(lambda: client.invoke(msgs))
-            text = resp.content if hasattr(resp, "content") else str(resp)
+            text = _content_text(resp)
             try:
                 parsed = model.model_validate(_extract_json(text))
                 try:
@@ -151,6 +166,36 @@ class LangChainLLM:
                         f"empty model reply") from e
                 sys += "\n\nYour previous reply was not valid JSON for the schema. Return ONLY the JSON object."
         raise ValueError(f"model did not return schema-valid JSON for {model.__name__}: {last_err}")
+
+
+def _content_text(resp) -> str:
+    """The assistant's TEXT, whatever shape the provider returned it in.
+
+    A reasoning model does not answer with a string. LangChain surfaces its reply as a LIST of
+    content blocks -- the thinking in one, the actual answer in another -- so `resp.content` is a
+    list and every string operation downstream raises. Measured on z-ai/glm-5.3-flash, where
+    reasoning cannot even be turned off: the endpoint rejects `reasoning: {enabled: false}` with
+    "Reasoning is mandatory for this endpoint".
+
+    Reasoning blocks are dropped rather than concatenated. They are prose about JSON, and feeding
+    them to the parser is how a reply that contains a perfectly good object still fails to parse.
+    """
+    c = getattr(resp, "content", resp)
+    if isinstance(c, str):
+        return c
+    if isinstance(c, list):
+        out = []
+        for part in c:
+            if isinstance(part, str):
+                out.append(part)
+            elif isinstance(part, dict):
+                if part.get("type") in ("reasoning", "thinking", "reasoning_content"):
+                    continue
+                t = part.get("text") or part.get("content") or ""
+                if isinstance(t, str):
+                    out.append(t)
+        return chr(10).join(p for p in out if p)
+    return str(c)
 
 
 def _extract_json(text: str) -> dict:

@@ -19,6 +19,21 @@ from .dedup import duplicate_of
 _TERMINAL = {"ended", "resolved"}
 
 
+def _next_event_id(conflict_id: str, events: list[dict]) -> str:
+    """The next free `<conflict>_eN`.
+
+    Was `len(events) + 1`, which assumes the suffixes are dense. They are not:
+    `seed_sudan_civil_war` holds _e1, _e3, _e4 — three events, highest suffix four — so the next
+    append minted _e4 a SECOND time. Duplicate ids inside one conflict, live in the data today.
+    """
+    n = 0
+    for e in events or []:
+        m = re.match(rf"^{re.escape(conflict_id)}_e(\d+)$", str(e.get("id") or ""))
+        if m:
+            n = max(n, int(m.group(1)))
+    return f"{conflict_id}_e{n + 1}"
+
+
 def _event_to_app(e: Event, eid: str) -> dict:
     loc = None if e.location is None else {"lat": e.location.lat, "lng": e.location.lng, "label": e.location.label}
     return {
@@ -94,7 +109,7 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
                     f"skip (already recorded as {hit.get('date')} {hit.get('title')!r}): "
                     f"{p.event.date} {p.event.title}")
                 continue
-            ev = _event_to_app(p.event, f"{c['id']}_e{len(events) + 1}")
+            ev = _event_to_app(p.event, _next_event_id(c["id"], events))
             events.append(ev)
             # is this now the most recent event? (only the latest may change current status)
             is_latest = all(date_key(ev["date"]) >= date_key(e.get("date")) for e in events)
@@ -146,7 +161,7 @@ def apply(proposals: list[Proposal], seed: dict, *, include_provisional: bool = 
                     if duplicate_of(kept, e.date, e.title, e.kind,
                                     continuation_days, duplicate_title_floor):
                         continue
-                    kept.append(_event_to_app(e, f"{existing['id']}_e{len(kept) + 1}"))
+                    kept.append(_event_to_app(e, _next_event_id(existing["id"], kept)))
                     added += 1
                 if added:
                     kept.sort(key=lambda x: date_key(x.get("date")))
