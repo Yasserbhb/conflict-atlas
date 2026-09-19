@@ -62,6 +62,10 @@ class Event(BaseModel):
     # events created before this field existed, or that skipped Verify — see structured sources).
     independent_sources: Optional[int] = None
     cross_alignment: Optional[bool] = None
+    # How sure the fact-check was. Published alongside the event rather than kept in the pipeline,
+    # because the publishing bar is low enough now that a reader deserves to know which entries
+    # are solid and which only just cleared it. An atlas that shows its working has to show this.
+    confidence: Optional[float] = None
 
 
 class StatusEvent(BaseModel):

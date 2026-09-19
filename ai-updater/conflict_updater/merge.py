@@ -41,6 +41,7 @@ def _event_to_app(e: Event, eid: str) -> dict:
         "location": loc, "parties": list(e.parties), "description": e.description,
         "sources": [s.url for s in e.sources],
         "independentSources": e.independent_sources, "crossAlignment": e.cross_alignment,
+        "confidence": e.confidence,
     }
 
 

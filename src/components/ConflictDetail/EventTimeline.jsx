@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ExternalLink } from 'lucide-react';
+import { ChevronDown, ExternalLink, HelpCircle } from 'lucide-react';
 import { dateToValue, formatEventDate } from '../../utils/dateUtils';
 import { severityColor } from '../../utils/conflictColors';
 import { kindMeta } from '../../utils/eventKinds';
@@ -7,6 +7,12 @@ import styles from './EventTimeline.module.css';
 
 // sparkline geometry, in viewBox units
 const S_W = 100, S_H = 40, S_PAD = 3;
+
+// Below this, the fact-check was closer to a coin flip than a finding, and the reader is told so.
+// The publishing bar is 0.50 (AUTO_APPROVE_CONFIDENCE) -- deliberately low, because an atlas
+// nobody can add to is worse than one that shows its uncertainty. That trade is only honest if
+// the uncertainty is actually visible, which is what this is.
+const UNSURE_BELOW = 0.75;
 const yForSev = (s) => S_H - S_PAD - (s / 5) * (S_H - 2 * S_PAD);
 
 // A conflict's events, presented as an intensity sparkline + a narrative timeline.
@@ -146,6 +152,13 @@ export default function EventTimeline({ events }) {
                       <span className={styles.corroboration}>
                         Corroborated by {e.independentSources} independent source{e.independentSources === 1 ? '' : 's'}
                         {e.crossAlignment && ' across languages/outlets'}
+                      </span>
+                    )}
+                    {typeof e.confidence === 'number' && e.confidence < UNSURE_BELOW && (
+                      <span className={styles.unsure}
+                            title={`The automated fact-check rated this ${e.confidence.toFixed(2)} out of 1. It cleared the bar to publish, but only just.`}>
+                        <HelpCircle size={11} strokeWidth={2.2} aria-hidden="true" />
+                        Not firmly established &mdash; the fact-check was {Math.round(e.confidence * 100)}% sure
                       </span>
                     )}
                   </div>

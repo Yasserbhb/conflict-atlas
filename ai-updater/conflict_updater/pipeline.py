@@ -398,6 +398,9 @@ def scan(req: ScanRequest, *, llm: LLMClient, search: SearchClient,
             # event to fact-check, so this can't be done earlier.
             event = event.model_copy(update={
                 "independent_sources": n_sources, "cross_alignment": cross,
+                # And how sure the check was. The publishing bar is low enough now that a reader
+                # deserves to see which entries are solid and which only just cleared it.
+                "confidence": ver.confidence,
             })
 
             if ambiguous:
