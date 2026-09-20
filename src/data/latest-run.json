@@ -1,112 +1,125 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35439205534",
-  "period": "2026-06-03..2026-09-12",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35502847951",
+  "period": "2026-06-05..2026-09-13",
   "days": [
-    "2026-06-03..2026-06-03",
-    "2026-06-04..2026-06-04",
-    "2026-09-12..2026-09-12"
+    "2026-06-05..2026-06-05",
+    "2026-06-06..2026-06-06",
+    "2026-09-13..2026-09-13"
   ],
   "region": null,
-  "ran_at": "2026-09-19",
+  "ran_at": "2026-09-20",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35439205534",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35502847951",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 216,
+    "items": 215,
     "candidates": 5,
     "proposals": 5,
-    "auto_approved": 0,
-    "needs_human": 5,
-    "dropped": 15,
+    "auto_approved": 1,
+    "needs_human": 4,
+    "dropped": 24,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 155,
-    "routine": 15
+    "triaged_out": 191,
+    "routine": 24,
+    "model_failovers": 0
   },
-  "added": [],
+  "added": [
+    {
+      "day": "2026-06-05..2026-06-05",
+      "date": "2026-06-05",
+      "title": "Israel announces killing of four senior Hamas security officials and arrest of another",
+      "conflict": "seed_gaza_war",
+      "kind": "attack",
+      "severity": 3,
+      "sources": [
+        "https://acleddata.com/update/middle-east-overview-june-2026",
+        "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+        "https://www.msf.org/war-and-conflict",
+        "https://www.youtube.com/watch?v=zXkhcwwTbq4"
+      ]
+    }
+  ],
   "held": [
     {
-      "day": "2026-06-03..2026-06-03",
-      "date": "2026-06-03",
-      "title": "Israel-Lebanon conditional ceasefire agreement",
-      "question": "fact-check returned 'uncertain' at confidence 0.60; only 30% of its claims are backed by the cited sources",
-      "confidence": 0.6,
+      "day": "2026-06-05..2026-06-05",
+      "date": "2026-06-05",
+      "title": "Hezbollah attacks Israeli forces in southern Lebanon, destroying a Merkava tank and killing a captain",
+      "question": "fact-check returned 'fail' at confidence 0.74; only 8% of its claims are backed by the cited sources",
+      "confidence": 0.74,
       "sources": [
-        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-3-2026",
-        "https://www.unitedagainstnucleariran.com/press-releases/what-theyre-saying-about-iran-war-june-3-2026",
-        "https://www.thehindu.com/news/international/usa-iran-war-updates-israel-lebanon-ceasefire-hezbollah-june-4-2026/article71059457.ece",
-        "https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire"
+        "https://acleddata.com/update/middle-east-overview-june-2026",
+        "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-july-2026",
+        "https://www.cfr.org/global-conflict-tracker/conflict/power-struggle-sudan"
       ]
     },
     {
-      "day": "2026-06-03..2026-06-03",
-      "date": "2026-06-03",
-      "title": "Iran attack on Kuwait International Airport",
-      "question": "fact-check returned 'pass' at confidence 0.55; only 41% of its claims are backed by the cited sources",
-      "confidence": 0.55,
+      "day": "2026-06-05..2026-06-05",
+      "date": "2026-06-05",
+      "title": "Ukrainian drone drops munition near Dniprovska external power line of Zaporizhzhia NPP during ceasefire regime",
+      "question": "fact-check returned 'pass' at confidence 0.15; only 65% of its claims are backed by the cited sources",
+      "confidence": 0.15,
       "sources": [
-        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-3-2026",
-        "https://www.unitedagainstnucleariran.com/press-releases/what-theyre-saying-about-iran-war-june-3-2026",
-        "https://www.thehindu.com/news/international/usa-iran-war-updates-israel-lebanon-ceasefire-hezbollah-june-4-2026/article71059457.ece",
-        "https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire"
+        "https://acleddata.com/update/middle-east-overview-june-2026",
+        "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-july-2026",
+        "https://www.cfr.org/global-conflict-tracker/conflict/power-struggle-sudan"
       ]
     },
     {
-      "day": "2026-06-04..2026-06-04",
-      "date": "2026-06-04",
-      "title": "Lebanon-Israel ceasefire agreement announced",
-      "question": "fact-check returned 'fail' at confidence 0.43; only 12% of its claims are backed by the cited sources",
-      "confidence": 0.43,
+      "day": "2026-06-05..2026-06-05",
+      "date": "2026-06-05",
+      "title": "Russian forces capture Komsomolskoye in Zaporizhzhia Oblast",
+      "question": "fact-check returned 'pass' at confidence 0.14; only 73% of its claims are backed by the cited sources",
+      "confidence": 0.14,
       "sources": [
-        "https://donnavincenza.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged",
-        "https://custommapposter.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged/14457",
-        "https://honestreviewsfrance.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged",
-        "https://mikewoodham.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged"
+        "https://acleddata.com/update/middle-east-overview-june-2026",
+        "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-july-2026",
+        "https://www.cfr.org/global-conflict-tracker/conflict/power-struggle-sudan"
       ]
     },
     {
-      "day": "2026-06-04..2026-06-04",
-      "date": "2026-06-04",
-      "title": "US House passes war powers resolution on Iran",
-      "question": "fact-check returned 'fail' at confidence 0.93; only 10% of its claims are backed by the cited sources",
-      "confidence": 0.93,
+      "day": "2026-06-06..2026-06-06",
+      "date": "2026-06-06",
+      "title": "Russian forces capture Komsomolskoye in Zaporizhzhia region",
+      "question": "fact-check returned 'fail' at confidence 0.88; only 11% of its claims are backed by the cited sources",
+      "confidence": 0.88,
       "sources": [
-        "https://donnavincenza.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged",
-        "https://custommapposter.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged/14457",
-        "https://honestreviewsfrance.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged",
-        "https://mikewoodham.com/article/uae-reports-drone-and-missile-attack-as-iran-war-ceasefire-is-challenged"
-      ]
-    },
-    {
-      "day": "2026-06-04..2026-06-04",
-      "date": "2026-06-04",
-      "title": "Zelensky proposes Putin personal meeting to end war",
-      "question": "fact-check returned 'pass' at confidence 0.54; only 81% of its claims are backed by the cited sources",
-      "confidence": 0.54,
-      "sources": [
-        "https://www.aa.com.tr/en/world/morning-briefing-june-4-2026/3955938",
-        "https://www.letemps.ch/monde/en-direct-guerre-en-ukraine-varsovie-et-kiev-jouent-l-apaisement-a-une-conference-cle-sur-la-reconstruction-de-l-ukraine",
-        "https://www.rfi.fr/ru/%D1%83%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0/20260604-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%83%D0%B4%D0%B0%D1%80%D1%8B-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9-%D0%B0%D1%80%D0%BC%D0%B8%D0%B8-%D0%BF%D0%BE-%D1%83%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B5-%D1%80%D0%B0%D0%BA%D0%B5%D1%82%D0%B0%D0%BC%D0%B8-%D0%B8-%D0%B4%D1%80%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-1562-%D0%B9-%D0%B4%D0%B5%D0%BD%D1%8C-%D0%B2%D0%BE%D0%B9%D0%BD%D1%8B"
+        "https://www.detroitnews.com/story/news/world/2026/06/08/israeli-military-kills-in-gaz-expands-control-zone-locals-say/90458415007",
+        "https://acleddata.com/update/ukraine-war-situation-update-6-12-june-2026",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-6-12-june-2026",
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-6-2026"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 1 < 3): 2026-06-03 Hezbollah rocket attacks on IDF in northern Israel",
-    "routine (significance 1 < 3): 2026-06-03 IDF airstrike targeting vehicle in Khalde, Lebanon",
-    "routine (significance 2 < 3): 2026-06-03 Ukrainian drone attack on Moscow-Simferopol bus",
-    "routine (significance 2 < 3): 2026-06-03 Ukrainian drone/missile attack on Saint Petersburg oil terminal",
-    "routine (significance 2 < 3): 2026-06-04 Fresh Israeli and Hezbollah strikes in Lebanon after ceasefire",
-    "routine (significance 1 < 3): 2026-06-04 Explosions reported in Crimea",
-    "routine (significance 1 < 3): 2026-06-04 Russian drone attacks on Ukraine causing infrastructure damage",
-    "routine (significance 2 < 3): 2026-09-12 Russian combined missile and drone night attack on Ukraine",
-    "routine (significance 1 < 3): 2026-09-12 Russian Shahed and KAB attacks across multiple Ukrainian regions",
-    "routine (significance 2 < 3): 2026-09-12 Russian missile and drone attack on Kryvyi Rih (ArcelorMittal)",
-    "routine (significance 2 < 3): 2026-09-12 Russian airstrikes on Odessa",
-    "routine (significance 2 < 3): 2026-09-12 Ukrainian drone attack on Samara region",
-    "routine (significance 1 < 3): 2026-09-12 Ukrainian mass drone attack on Russian regions",
-    "routine (significance 2 < 3): 2026-09-12 Poland raises military aviation alert due to Russian attacks on western Ukraine",
-    "routine (significance 1 < 3): 2026-09-12 Armed clash in Guayas, Ecuador"
+    "routine (significance 1 < 3): 2026-06-05 Israeli strikes across Gaza kill 11 since dawn, raising ceasefire-period toll to 947",
+    "routine (significance 2 < 3): 2026-06-05 Israeli airstrikes intensify on south Lebanon and the Beqaa",
+    "routine (significance 1 < 3): 2026-06-05 Ukrainian drone strike hits area near fuel station in Lgov, Kursk region, wounding two civilians",
+    "routine (significance 1 < 3): 2026-06-05 Russian air defense repels fifth drone attack on Sevastopol, downing nine Ukrainian drones",
+    "routine (significance 1 < 3): 2026-06-05 Ukrainian drone attack on Yasnye Zori village, Belgorod district, wounds two civilians",
+    "routine (significance 1 < 3): 2026-06-05 Russia intercepts 106 Ukrainian drones over Russian regions and Black Sea",
+    "routine (significance 1 < 3): 2026-06-05 Russian forces destroy 49 Ukrainian drones over Bryansk Oblast",
+    "routine (significance 2 < 3): 2026-06-05 Ukraine launches massed drone strike on college in Starobilsk, Luhansk region",
+    "routine (significance 1 < 3): 2026-06-05 Ukrainian drones hit occupied Uhledar (Vuhledar), fire reported at substation",
+    "routine (significance 2 < 3): 2026-06-05 Ukraine attacks Russian commercial ships in the Sea of Azov, killing Azerbaijanis",
+    "routine (significance 1 < 3): 2026-06-05 Ukraine attacks Kursk Oblast, Donetsk region and Moscow overnight",
+    "routine (significance 1 < 3): 2026-06-05 Heavy fighting along Ukrainian front lines",
+    "routine (significance 1 < 3): 2026-06-05 Twirwaneho fighters clash with FARDC and FDNB in villages around Minembwe",
+    "routine (significance 1 < 3): 2026-06-06 Israeli drone strike on tent sheltering displaced Palestinians kills 6 in Gaza City",
+    "routine (significance 2 < 3): 2026-09-13 Russian strikes kill at least 11 civilians across Ukraine",
+    "routine (significance 2 < 3): 2026-09-13 Ukraine strikes Russian oil refineries and drone relay stations",
+    "routine (significance 2 < 3): 2026-09-13 Russian drone strikes passenger train at Lutsk station",
+    "routine (significance 1 < 3): 2026-09-13 Russian attack on Sumy kills 2, injures 8",
+    "routine (significance 2 < 3): 2026-09-13 Israel kills two Hamas engineers in Gaza City strike",
+    "routine (significance 1 < 3): 2026-09-13 Israeli strikes hit eastern al-Bureij camp",
+    "routine (significance 1 < 3): 2026-09-13 Israeli airstrikes on El-Kantara in southern Lebanon",
+    "routine (significance 1 < 3): 2026-09-13 Yemeni government forces intensify airstrikes on Houthi positions",
+    "routine (significance 1 < 3): 2026-09-13 Houthi shelling kills civilian in Taiz",
+    "routine (significance 2 < 3): 2026-09-13 Zelensky says willing to meet Putin at December G20 summit"
   ],
   "errored": []
 }

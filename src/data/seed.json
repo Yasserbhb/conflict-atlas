@@ -1,5 +1,5 @@
 {
-  "version": "2.19.2",
+  "version": "2.19.3",
   "countries": [
     {
       "id": "AFG",
@@ -5216,6 +5216,36 @@
           ]
         },
         {
+          "id": "seed_gaza_war_e9",
+          "date": "2026-06-05",
+          "title": "Israel announces killing of four senior Hamas security officials and arrest of another",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": -37.7137478,
+            "lng": 145.0748898,
+            "label": "Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "Israel announced that its forces and Shin Bet killed four senior Hamas security officials and arrested another in the Gaza Strip, part of intensified strikes on Hamas figures since the October 2025 ceasefire.",
+          "sources": [
+            "https://acleddata.com/update/middle-east-overview-june-2026",
+            "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+            "https://www.msf.org/war-and-conflict",
+            "https://www.youtube.com/watch?v=zXkhcwwTbq4",
+            "https://www.cfr.org/global-conflict-tracker/conflict/israeli-palestinian-conflict",
+            "https://www.hodhodpal.ps/post?id=25907&slug=%D9%85%D9%84%D8%AE%D8%B5-%D9%84%D9%84%D8%A3%D8%AD%D8%AF%D8%A7%D8%AB-%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-5-%D9%8A%D9%88%D9%86%D9%8A%D9%88-2026",
+            "https://www.aljazeera.com/news/2026/6/5/pervasive-fear-grips-gaza-as-israeli-attacks-persist-despite-ceasefire",
+            "https://www.gov.uk/government/publications/palestine-country-policy-and-information-notes/country-bulletin-security-situation-in-gaza-palestine-june-2026-accessible"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.67
+        },
+        {
           "id": "seed_gaza_war_e8",
           "date": "2026-06-23",
           "title": "UN inquiry: deliberate targeting of Gaza's children",
@@ -5231,7 +5261,11 @@
             "https://en.wikipedia.org/wiki/2025_UNHRC_Commission_of_Inquiry_report_on_Gaza_genocide"
           ]
         }
-      ]
+      ],
+      "aliases": [
+        "Gaza war"
+      ],
+      "lastCheckedAt": "2026-09-20"
     },
     {
       "id": "seed_western_sahara",
