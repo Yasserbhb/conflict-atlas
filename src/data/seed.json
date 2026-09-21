@@ -1,5 +1,5 @@
 {
-  "version": "2.19.3",
+  "version": "2.19.4",
   "countries": [
     {
       "id": "AFG",
@@ -5019,8 +5019,44 @@
           "sources": [
             "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)"
           ]
+        },
+        {
+          "id": "seed_sudan_civil_war_e5",
+          "date": "2026-06-09",
+          "title": "Legal complaint filed against RSF in Kenya for war crimes",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": -1.302398,
+            "lng": 36.8288509,
+            "label": "Nairobi, Kenya"
+          },
+          "parties": [
+            "SDN"
+          ],
+          "description": "Legal Action Worldwide, representing victims, filed a complaint in Kenya against Sudan's Rapid Support Forces for war crimes — the first such legal action against the group outside Sudan.",
+          "sources": [
+            "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Sudanese_civil_war_(2026)",
+            "https://en.wikipedia.org/wiki/2026_Mali_attacks"
+          ],
+          "independentSources": 2,
+          "crossAlignment": false,
+          "confidence": 0.72
         }
-      ]
+      ],
+      "aliases": [
+        "Sudanese civil war"
+      ],
+      "statusHistory": [
+        {
+          "status": "active",
+          "date": "2026-06-09",
+          "eventId": "seed_sudan_civil_war_e5"
+        }
+      ],
+      "status": "active",
+      "lastCheckedAt": "2026-09-21"
     },
     {
       "id": "seed_gaza_war",

@@ -1,144 +1,68 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35508060034",
-  "period": "2026-06-07..2026-09-10",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35602413959",
+  "period": "2026-06-09..2026-09-14",
   "days": [
-    "2026-06-07..2026-06-07",
-    "2026-06-08..2026-06-08",
-    "2026-09-10..2026-09-10"
+    "2026-06-09..2026-06-09",
+    "2026-06-10..2026-06-10",
+    "2026-09-14..2026-09-14"
   ],
   "region": null,
-  "ran_at": "2026-09-20",
+  "ran_at": "2026-09-21",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35508060034",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35602413959",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
     "items": 216,
-    "candidates": 6,
-    "proposals": 6,
-    "auto_approved": 0,
-    "needs_human": 6,
-    "dropped": 32,
+    "candidates": 1,
+    "proposals": 1,
+    "auto_approved": 1,
+    "needs_human": 0,
+    "dropped": 21,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 183,
-    "routine": 32,
+    "triaged_out": 193,
+    "routine": 21,
     "model_failovers": 0
   },
-  "added": [],
-  "held": [
+  "added": [
     {
-      "day": "2026-06-07..2026-06-07",
-      "date": "2026-06-07",
-      "title": "Iran launches about 10 ballistic missiles at northern Israel",
-      "question": "fact-check returned 'fail' at confidence 0.84; only 9% of its claims are backed by the cited sources",
-      "confidence": 0.84,
+      "day": "2026-06-09..2026-06-09",
+      "date": "2026-06-09",
+      "title": "Legal complaint filed against RSF in Kenya for war crimes",
+      "conflict": "seed_sudan_civil_war",
+      "kind": "milestone",
+      "severity": 2,
       "sources": [
-        "https://www.youtube.com/watch?v=rj9cM5ssyII",
-        "https://english.aawsat.com/arab-world/5291985-fate-gaza-strip-eclipsed-middle-east-war",
-        "https://acleddata.com/update/middle-east-overview-june-2026",
-        "https://www.britannica.com/event/2026-Iran-war"
-      ]
-    },
-    {
-      "day": "2026-09-10..2026-09-10",
-      "date": "2026-09-10",
-      "title": "Ukraine's deepest strike hits Yamal gas facilities in Novy Urengoy",
-      "question": "fact-check returned 'uncertain' at confidence 0.38; only 39% of its claims are backed by the cited sources",
-      "confidence": 0.38,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-10-2026",
-        "https://www.youtube.com/watch?v=ipSr4wm88gw",
-        "https://www.pbs.org/video/russian-invasion-sot-1780429076",
-        "https://www.aljazeera.com/news/2026/9/12/russia-strikes-cargo-vessels-steel-plants-across-ukraine"
-      ]
-    },
-    {
-      "day": "2026-09-10..2026-09-10",
-      "date": "2026-09-10",
-      "title": "Ukrainian strike hits frigate Admiral Essen in Novorossiysk and Black Sea coast targets",
-      "question": "fact-check returned 'pass' at confidence 0.30; only 44% of its claims are backed by the cited sources",
-      "confidence": 0.3,
-      "sources": [
-        "https://www.youtube.com/watch?v=ipSr4wm88gw",
-        "https://www.pbs.org/video/russian-invasion-sot-1780429076",
-        "https://www.atlanticcouncil.org/war-in-ukraine",
-        "https://acleddata.com/monitor/ukraine-conflict-monitor"
-      ]
-    },
-    {
-      "day": "2026-09-10..2026-09-10",
-      "date": "2026-09-10",
-      "title": "Ukrainian drone strike on Engels-2 airbase destroys Tu-95 strategic bombers",
-      "question": "fact-check returned 'uncertain' at confidence 0.40; only 31% of its claims are backed by the cited sources",
-      "confidence": 0.4,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-10-2026",
-        "https://www.youtube.com/watch?v=ipSr4wm88gw",
-        "https://www.pbs.org/video/russian-invasion-sot-1780429076",
-        "https://www.atlanticcouncil.org/war-in-ukraine"
-      ]
-    },
-    {
-      "day": "2026-09-10..2026-09-10",
-      "date": "2026-09-10",
-      "title": "Iranian missiles target US warships and Muwaffaq Salti Airbase",
-      "question": "fact-check returned 'pass' at confidence 0.26; only 56% of its claims are backed by the cited sources",
-      "confidence": 0.26,
-      "sources": [
-        "https://www.youtube.com/watch?v=ipSr4wm88gw",
-        "https://acleddata.com/monitor/ukraine-conflict-monitor",
-        "https://www.youtube.com/watch?v=PjxM41sm4NI",
-        "https://www.youtube.com/watch?v=04OwI3c6Cj8"
-      ]
-    },
-    {
-      "day": "2026-09-10..2026-09-10",
-      "date": "2026-09-10",
-      "title": "Houthis capture port city of Mokha",
-      "question": "fact-check returned 'uncertain' at confidence 0.32; only 52% of its claims are backed by the cited sources",
-      "confidence": 0.32,
-      "sources": [
-        "https://www.youtube.com/watch?v=ipSr4wm88gw",
-        "https://acleddata.com/monitor/ukraine-conflict-monitor",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-1-2026",
-        "https://www.youtube.com/watch?v=04OwI3c6Cj8"
+        "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine",
+        "https://en.wikipedia.org/wiki/Timeline_of_the_Sudanese_civil_war_(2026)",
+        "https://en.wikipedia.org/wiki/2026_Mali_attacks"
       ]
     }
   ],
+  "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-06-07 Ukrainian SSO strikes oil depot in Edy-Kuyu and marine oil terminal in Feodosia, Crimea",
-    "routine (significance 2 < 3): 2026-06-07 Russia launches 236-drone strike on Ukraine overnight June 6-7",
-    "routine (significance 2 < 3): 2026-06-07 Russian drone strikes spent nuclear fuel storage site in Ukraine",
-    "routine (significance 1 < 3): 2026-06-07 196 combat clashes along the front on June 7",
-    "routine (significance 2 < 3): 2026-06-07 Russian drone kills Ukrainian police bomb technician near Chystovodivka, Kharkiv Oblast",
-    "routine (significance 2 < 3): 2026-06-07 Russian forces advance deeply into Kostyantynivka sector",
-    "routine (significance 1 < 3): 2026-06-07 Shooting attack near Tzur Yitzhak in central Israel",
-    "routine (significance 2 < 3): 2026-06-07 Ukrainian drone strikes Zovskaya power station in Donetsk region",
-    "routine (significance 1 < 3): 2026-06-08 Russian air defenses intercept 95 Ukrainian drones over Russian regions",
-    "routine (significance 2 < 3): 2026-06-08 Ukrainian drone attack on Novorossiysk, strike reported on Grushovaya industrial site",
-    "routine (significance 2 < 3): 2026-06-08 Russian strike hits Ukrposhta and Nova Poshta warehouses in Kharkiv",
-    "routine (significance 2 < 3): 2026-06-08 Ukrainian 'Behemoth' drone strike on the Chongar bridge",
-    "routine (significance 2 < 3): 2026-06-08 Russian missile and drone strikes hit Odesa region, including Zatoka",
-    "routine (significance 1 < 3): 2026-06-08 NATO aircraft shoot down drone over Latvia",
-    "routine (significance 2 < 3): 2026-06-08 Ukrainian drone explodes in Moldova",
-    "routine (significance 2 < 3): 2026-06-08 Russian drone hits passenger train locomotive in massed overnight attack on Crimea and Sevastopol",
-    "routine (significance 1 < 3): 2026-06-08 Russian forces advance near Kriva Luka east of Slovyansk",
-    "routine (significance 2 < 3): 2026-06-08 Russian forces reported consolidating across Kostiantynivka",
-    "routine (significance 2 < 3): 2026-06-08 Powerful explosion reported in Belgorod",
-    "routine (significance 1 < 3): 2026-06-08 Russian MoD claims 'Dnipro' group struck three Ukrainian brigades in Zaporizhzhia region",
-    "routine (significance 2 < 3): 2026-06-08 Putin names condition for meeting with Zelensky",
-    "routine (significance 1 < 3): 2026-06-08 Israeli strike near tent encampment in Mawasi area of Khan Younis kills two",
-    "routine (significance 2 < 3): 2026-06-08 Israeli airstrike near Jabalia refugee camp kills three, including an 8-year-old boy",
-    "routine (significance 1 < 3): 2026-06-08 Israeli airstrike near Al-Aqsa Hospital in Deir al-Balah kills one",
-    "routine (significance 2 < 3): 2026-06-08 Israeli military expands 'Yellow Zone' control area in Gaza",
-    "routine (significance 2 < 3): 2026-06-08 AFC/M23-Twirwaneho coalition seizes three localities in Fizi and Mwenga territories, South Kivu",
-    "routine (significance 2 < 3): 2026-06-08 Drone strike on a market in North Kordofan kills 11 civilians in Sudan",
-    "routine (significance 2 < 3): 2026-09-10 Ukrainian forces strike Russian drone command posts in occupied Zaporizhia Oblast",
-    "routine (significance 2 < 3): 2026-09-10 IDF air strikes on Gaza City and Hamas weapons facilities",
-    "routine (significance 2 < 3): 2026-09-10 Ukrainian drone attack sparks fires in Makhachkala port",
-    "routine (significance 2 < 3): 2026-09-10 USV attack on Sochi embankment injures eight",
-    "routine (significance 1 < 3): 2026-09-10 FARDC and AFC/M23 rebels clash at Kibati"
+    "routine (significance 1 < 3): 2026-06-09 Russian strikes kill 5 in Ukraine",
+    "routine (significance 1 < 3): 2026-06-09 Ukrainian forces strike Russian manpower concentration near Novohryhorivka",
+    "routine (significance 2 < 3): 2026-06-09 Rocket launch from Lebanon toward northern Israel",
+    "routine (significance 1 < 3): 2026-06-09 SAF intercepts RSF drones over Khartoum",
+    "routine (significance 2 < 3): 2026-06-09 SAF drone strike destroys Ardamata Bridge in Geneina",
+    "routine (significance 2 < 3): 2026-06-09 SAF airstrikes on RSF and SPLM positions in El Karmak",
+    "routine (significance 2 < 3): 2026-06-09 Houthis reannounce blockade of Israeli shipping in the Red Sea",
+    "routine (significance 1 < 3): 2026-06-09 Israeli strike kills 8-year-old Palestinian boy in Gaza",
+    "routine (significance 2 < 3): 2026-06-09 Israel reopens Gaza border crossings",
+    "routine (significance 1 < 3): 2026-06-10 Russian overnight strikes hit Kharkiv and Odesa",
+    "routine (significance 1 < 3): 2026-06-10 Ukrainian drones cause fires at infrastructure sites in Vladimir Oblast",
+    "routine (significance 2 < 3): 2026-06-10 Reported Ukrainian missile strikes on Cheboksary defense plant and Novokuybyshevsk refinery",
+    "routine (significance 2 < 3): 2026-06-10 Attack on the Arabat Spit–Henichesk bridge in occupied Kherson Oblast",
+    "routine (significance 2 < 3): 2026-06-10 Village residents who drove off conscription officers taken to police",
+    "routine (significance 1 < 3): 2026-06-10 US and Iran resume mutual strikes",
+    "routine (significance 1 < 3): 2026-09-14 Russian forces launch 208 combat engagements across Ukrainian front over past 24 hours",
+    "routine (significance 2 < 3): 2026-09-14 Ukraine strikes Russian drone storage and launch site in occupied Donetsk City",
+    "routine (significance 2 < 3): 2026-09-14 Ukrainian Marine Corps spokesperson says Russian offensive activity in Kherson direction has virtually ceased",
+    "routine (significance 1 < 3): 2026-09-14 Israeli strikes across Gaza kill at least two and injure several",
+    "routine (significance 1 < 3): 2026-09-14 Israeli gunfire and airstrikes in southern Gaza kill one Palestinian and wound six",
+    "routine (significance 2 < 3): 2026-09-14 Reported large Houthi missile and drone attack on target in southern Saudi Arabia"
   ],
   "errored": []
 }
