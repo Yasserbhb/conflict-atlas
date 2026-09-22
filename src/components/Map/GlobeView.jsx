@@ -198,9 +198,22 @@ export default function GlobeView() {
   }, [dispatch]);
 
   // Push data updates without re-creating the chart/globe (keeps rotation smooth).
+  //
+  // echarts-gl's globe component re-runs its full render() — including reloading
+  // baseTexture — on EVERY setOption call, not just ones that touch `globe`. Its
+  // texture loader tags each image with a `__textureid__` the first time it's
+  // used and caches the GPU texture by that id; on a cache HIT (i.e. the exact
+  // same canvas seen again, which happens on every subsequent setOption here) it
+  // skips the callback that re-enables the texture on the material, so the globe
+  // goes blank white from the second setOption call onward. Deleting the tag
+  // before every call forces a fresh (if wasteful) reload each time, which is the
+  // only way found to keep the texture visible — see graphicGL.js's
+  // Material.prototype.setTextureImage / loadTexture for the actual bug.
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart || !texture) return;
+
+    delete texture.__textureid__;
 
     chart.setOption({
       backgroundColor: 'transparent',
