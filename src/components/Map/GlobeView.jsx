@@ -2,22 +2,23 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as echarts from 'echarts/core';
 import { GlobeComponent } from 'echarts-gl/components';
-import { Lines3DChart } from 'echarts-gl/charts';
+import { Lines3DChart, Scatter3DChart } from 'echarts-gl/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 import Ray from 'claygl/src/math/Ray';
 import { useApp } from '../../context/AppContext';
 import { useConflictFilter, useCountrySeverity } from '../../hooks/useConflictFilter';
-import { applyConflictFilters } from '../../utils/dateUtils';
+import { applyConflictFilters, parseYear } from '../../utils/dateUtils';
 import { buildConflictEdges } from '../../utils/conflictEdges';
 import { loadCountryGeo, renderCountryTexture } from '../../utils/countryGeo';
 import { severityColor, conflictColorForCountry, roleColor } from '../../utils/conflictColors';
+import { kindMeta } from '../../utils/eventKinds';
 import styles from './GlobeView.module.css';
 
 // Matches WorldMap's LAND_BACKDROP: non-party countries while a conflict is focused —
 // a flat, neutral backdrop so the role-colored parties stand out against it.
 const LAND_BACKDROP = '#141b1f';
 
-echarts.use([GlobeComponent, Lines3DChart, CanvasRenderer]);
+echarts.use([GlobeComponent, Lines3DChart, Scatter3DChart, CanvasRenderer]);
 
 function hexToRgb(hex) {
   const h = hex.replace('#', '');
@@ -151,6 +152,26 @@ export default function GlobeView() {
     return result;
   }, [lonLat, activeConflicts, selectedCountryId, showAllConflicts, focusedConflict]);
 
+  // The focused conflict's individual events at their real coordinates — the globe's
+  // counterpart to the 2D map's EventPins. Events reveal as the timeline reaches them;
+  // the current year's event(s) render larger, standing in for the map's CSS pulse.
+  const eventPoints = useMemo(() => {
+    if (!focusedConflict?.events?.length) return [];
+    return focusedConflict.events
+      .filter((e) => e.location && e.location.lat != null && e.location.lng != null)
+      .map((e) => {
+        const year = parseYear(e.date);
+        const shown = year == null || year <= timelineYear;
+        const current = year === timelineYear;
+        return {
+          name: e.title,
+          value: [e.location.lng, e.location.lat, 0],
+          itemStyle: { color: kindMeta(e.kind).color, opacity: shown ? 1 : 0.12 },
+          symbolSize: current ? 14 : 8,
+        };
+      });
+  }, [focusedConflict, timelineYear]);
+
   // Create the chart once, mounted for the lifetime of this component.
   useEffect(() => {
     if (!containerRef.current) return;
@@ -268,9 +289,15 @@ export default function GlobeView() {
           lineStyle: { opacity: 0.5 },
           data: arcs,
         },
+        {
+          type: 'scatter3D',
+          coordinateSystem: 'globe',
+          data: eventPoints,
+          emphasis: { itemStyle: { color: '#fff' } },
+        },
       ],
     });
-  }, [arcs, texture]);
+  }, [arcs, eventPoints, texture]);
 
   return (
     <div className={styles.globeContainer}>
