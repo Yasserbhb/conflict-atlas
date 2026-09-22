@@ -7,10 +7,7 @@ import TimelineView from './components/TimelineView/TimelineView';
 import HelpView from './components/HelpView/HelpView';
 import PipelineView from './components/PipelineView/PipelineView';
 import TopBar from './components/TopBar/TopBar';
-import WorldMap from './components/Map/WorldMap';
-import MapFilterBar from './components/Map/MapFilterBar';
-import SidePanel from './components/SidePanel/SidePanel';
-import ConflictDetailPanel from './components/ConflictDetail/ConflictDetailPanel';
+import MapSection from './components/Map/MapSection';
 import GraphView from './components/GraphView/GraphView';
 import DataPanel from './components/DataPanel/DataPanel';
 import './styles/global.css';
@@ -20,17 +17,7 @@ function ActiveView() {
   const { state } = useApp();
   switch (state.view) {
     case 'map':
-      return (
-        <div className={styles.mapView}>
-          <MapFilterBar />
-          <div className={styles.main}>
-            <WorldMap />
-            {state.openConflictId
-              ? <ConflictDetailPanel />
-              : state.selectedCountryId && <SidePanel />}
-          </div>
-        </div>
-      );
+      return <MapSection />;
     case 'conflicts':
       return <ConflictsView />;
     case 'stats':
