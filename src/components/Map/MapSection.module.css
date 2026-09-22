@@ -1,0 +1,38 @@
+.modeSwitch {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  background: rgba(15, 20, 23, 0.85);
+  border: 1px solid var(--accent-border);
+  border-radius: 9px;
+  padding: 3px;
+  z-index: 5;
+}
+
+.modeBtn {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.modeBtn:hover {
+  color: var(--text-secondary);
+}
+
+.modeBtnActive {
+  background: var(--accent-dim);
+  color: var(--accent-light);
+}
+
+@media (max-width: 768px) {
+  .modeSwitch { bottom: 8px; }
+}

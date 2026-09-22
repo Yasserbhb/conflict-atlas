@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
-import * as topojson from 'topojson-client';
 import { useApp } from '../../context/AppContext';
 import { useCountrySeverity, useConflictFilter } from '../../hooks/useConflictFilter';
 import { applyConflictFilters } from '../../utils/dateUtils';
-import { numericToAlpha3 } from '../../utils/isoLookup';
+import { loadCountryGeo } from '../../utils/countryGeo';
 import { severityColor, roleColor } from '../../utils/conflictColors';
 import ConflictOverlay from './ConflictOverlay';
 import EventPins from './EventPins';
-import MapLegend from './MapLegend';
 import styles from './WorldMap.module.css';
 
 const WIDTH = 960;
@@ -22,23 +20,6 @@ const LAND_BACKDROP = '#141b1f';   // non-party countries while a single conflic
 // Parsed map is expensive (756KB TopoJSON -> ~180 path strings). Cache it at
 // module level so switching away and back to the Map view is instant.
 let MAP_CACHE = null;
-
-// Countries whose d3.geoCentroid() is pulled far from their mainland
-// by overseas territories — [longitude, latitude]
-const CENTROID_OVERRIDES = {
-  FRA: [2.35, 46.2],
-  USA: [-98.0, 39.5],
-  DNK: [10.0, 56.0],
-  NOR: [15.5, 65.0],
-  NLD: [5.3, 52.3],
-  GBR: [-1.5, 52.5],
-  PRT: [-8.2, 39.5],
-  ESP: [-3.7, 40.4],
-  RUS: [60.0, 61.0],
-  AUS: [134.5, -25.5],
-  CAN: [-96.0, 60.0],
-  NZL: [172.5, -41.5],
-};
 
 export default function WorldMap() {
   const { state, dispatch } = useApp();
@@ -105,19 +86,14 @@ export default function WorldMap() {
       setCentroids(MAP_CACHE.centroids);
       return;
     }
-    d3.json(`${import.meta.env.BASE_URL}data/countries-50m.json`).then((world) => {
-      const geo = topojson.feature(world, world.objects.countries);
+    loadCountryGeo().then(({ features, lonLat }) => {
       const paths = [];
       const cents = {};
-      for (const feature of geo.features) {
-        const numId = parseInt(feature.id);
-        const alpha3 = numericToAlpha3(numId);
+      for (const { numId, alpha3, feature } of features) {
         const d = pathGen(feature);
         if (d) paths.push({ numId, alpha3, d });
-        if (alpha3) {
-          const override = CENTROID_OVERRIDES[alpha3];
-          const lonLat = override || d3.geoCentroid(feature);
-          const proj = projection(lonLat);
+        if (alpha3 && lonLat[alpha3]) {
+          const proj = projection(lonLat[alpha3]);
           if (proj) cents[alpha3] = proj;
         }
       }
@@ -284,7 +260,6 @@ export default function WorldMap() {
         )}
       </div>
       <div className={styles.bordersNote}>Modern borders shown — historical events are mapped to today's countries</div>
-      <MapLegend />
     </div>
   );
 }
