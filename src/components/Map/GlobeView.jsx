@@ -10,8 +10,12 @@ import { useConflictFilter, useCountrySeverity } from '../../hooks/useConflictFi
 import { applyConflictFilters } from '../../utils/dateUtils';
 import { buildConflictEdges } from '../../utils/conflictEdges';
 import { loadCountryGeo, renderCountryTexture } from '../../utils/countryGeo';
-import { severityColor, conflictColorForCountry } from '../../utils/conflictColors';
+import { severityColor, conflictColorForCountry, roleColor } from '../../utils/conflictColors';
 import styles from './GlobeView.module.css';
+
+// Matches WorldMap's LAND_BACKDROP: non-party countries while a conflict is focused —
+// a flat, neutral backdrop so the role-colored parties stand out against it.
+const LAND_BACKDROP = '#141b1f';
 
 echarts.use([GlobeComponent, Lines3DChart, CanvasRenderer]);
 
@@ -32,7 +36,7 @@ const GLOBE_CENTER = { array: [0, 0, 0] };
 
 export default function GlobeView() {
   const { state, dispatch } = useApp();
-  const { conflicts, timelineYear, selectedCountryId } = state;
+  const { conflicts, timelineYear, selectedCountryId, focusedConflictId } = state;
 
   const containerRef = useRef(null);
   const chartRef = useRef(null);
@@ -79,24 +83,44 @@ export default function GlobeView() {
     return set;
   }, [activeConflicts, selectedCountryId]);
 
-  // The globe's choropleth: countries painted by severity directly into the sphere's
-  // texture, same rule as the 2D map's land fill ("Fill = severity"), same spotlight
-  // fade when a country is selected.
+  // A conflict opened from anywhere (search, timeline, stats, graph, a country's side
+  // panel…) — the 2D map switches its whole fill rule for this: parties colored by
+  // role, everyone else neutral. Mirrored here so opening a conflict shows the same
+  // "these are the countries involved" picture on the globe as it does on the map.
+  const focusedConflict = useMemo(
+    () => (focusedConflictId ? conflicts.find((c) => c.id === focusedConflictId) : null),
+    [conflicts, focusedConflictId]
+  );
+  const roleFillMap = useMemo(() => {
+    const m = {};
+    if (focusedConflict) {
+      for (const p of focusedConflict.parties || []) m[p.countryId] = roleColor(p.role);
+    }
+    return m;
+  }, [focusedConflict]);
+
+  // The globe's choropleth: countries painted directly into the sphere's texture.
+  // Same two rules as the 2D map's land fill: "Fill = role" while a conflict is
+  // focused, "Fill = severity" otherwise (with the selection spotlight fade).
   const texture = useMemo(() => {
     if (!features) return null;
     return renderCountryTexture(features, (alpha3) => {
+      if (focusedConflict) {
+        return roleFillMap[alpha3] || LAND_BACKDROP;
+      }
       const severity = severityMap[alpha3] || 0;
       const base = severity > 0 ? severityColor(severity) : '#1b2328';
       const involved = !selectedCountryId || alpha3 === selectedCountryId || relatedIds.has(alpha3);
       return involved ? base : fade(base, 0.35);
     }, selectedCountryId);
-  }, [features, severityMap, selectedCountryId, relatedIds]);
+  }, [features, severityMap, selectedCountryId, relatedIds, focusedConflict, roleFillMap]);
 
   // Arcs between conflict parties — same aggressor/defender/support logic and role
   // coloring as the 2D map's ConflictOverlay. Hidden by default; either a selected
-  // country (reach mode, like the map) or "show all conflicts" reveals them.
+  // country (reach mode, like the map) or "show all conflicts" reveals them. Also
+  // hidden while a conflict is focused, matching the map (role fill replaces arcs there).
   const arcs = useMemo(() => {
-    if (!lonLat) return [];
+    if (!lonLat || focusedConflict) return [];
     if (!showAllConflicts && !selectedCountryId) return [];
 
     const drawn = new Set();
@@ -125,7 +149,7 @@ export default function GlobeView() {
       }
     }
     return result;
-  }, [lonLat, activeConflicts, selectedCountryId, showAllConflicts]);
+  }, [lonLat, activeConflicts, selectedCountryId, showAllConflicts, focusedConflict]);
 
   // Create the chart once, mounted for the lifetime of this component.
   useEffect(() => {
