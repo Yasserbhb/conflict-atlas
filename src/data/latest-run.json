@@ -1,96 +1,55 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35723224472",
-  "period": "2026-06-11..2026-09-15",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35856339955",
+  "period": "2026-06-13..2026-09-16",
   "days": [
-    "2026-06-11..2026-06-11",
-    "2026-06-12..2026-06-12",
-    "2026-09-15..2026-09-15"
+    "2026-06-13..2026-06-13",
+    "2026-06-14..2026-06-14",
+    "2026-09-16..2026-09-16"
   ],
   "region": null,
-  "ran_at": "2026-09-22",
+  "ran_at": "2026-09-23",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35723224472",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/35856339955",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 212,
-    "candidates": 3,
-    "proposals": 3,
+    "items": 215,
+    "candidates": 0,
+    "proposals": 0,
     "auto_approved": 0,
-    "needs_human": 3,
-    "dropped": 25,
+    "needs_human": 0,
+    "dropped": 22,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 191,
-    "routine": 25,
+    "triaged_out": 190,
+    "routine": 22,
     "model_failovers": 0
   },
   "added": [],
-  "held": [
-    {
-      "day": "2026-09-15..2026-09-15",
-      "date": "2026-09-15",
-      "title": "Houthis seize Mayyun Island and port of Mocha",
-      "question": "fact-check returned 'uncertain' at confidence 0.32; only 32% of its claims are backed by the cited sources",
-      "confidence": 0.32,
-      "sources": [
-        "https://www.youtube.com/watch?v=oMtQOx4-uIk",
-        "https://www.statista.com/topics/13125/conflicts-worldwide-2025",
-        "https://understandingwar.org/research/middle-east/iran-update-september-15-2026",
-        "https://www.youtube.com/watch?v=jBTWEpXTxjg"
-      ]
-    },
-    {
-      "day": "2026-09-15..2026-09-15",
-      "date": "2026-09-15",
-      "title": "IDF takes full control of Ali Taher Ridge in southern Lebanon",
-      "question": "fact-check returned 'uncertain' at confidence 0.21; only 59% of its claims are backed by the cited sources",
-      "confidence": 0.21,
-      "sources": [
-        "https://www.the-world-now.com/current-wars",
-        "https://www.youtube.com/watch?v=jBTWEpXTxjg"
-      ]
-    },
-    {
-      "day": "2026-09-15..2026-09-15",
-      "date": "2026-09-15",
-      "title": "Trump announces Russia-Ukraine agreement not to strike energy infrastructure",
-      "question": "fact-check returned 'fail' at confidence 0.96; only 6% of its claims are backed by the cited sources",
-      "confidence": 0.96,
-      "sources": [
-        "https://www.the-world-now.com/current-wars",
-        "https://www.statista.com/topics/13125/conflicts-worldwide-2025",
-        "https://understandingwar.org/research/middle-east/iran-update-september-15-2026",
-        "https://www.atlanticcouncil.org/issue/conflict"
-      ]
-    }
-  ],
+  "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-06-11 Russian drone strike hit Konotop railway depot, killing one worker and wounding four",
-    "routine (significance 2 < 3): 2026-06-11 Ukrainian strikes damaged three bridges on roads leading to Crimea in southern Kherson region",
-    "routine (significance 2 < 3): 2026-06-11 Russian missile strike on Poltava destroyed an agro-industrial facility; city left without power and gas",
-    "routine (significance 2 < 3): 2026-06-11 Russian Defense Ministry claimed capture of eastern Kostiantynivka",
-    "routine (significance 2 < 3): 2026-06-11 Ukrainian strike destroyed the 'Defense of Sevastopol 1854-1855' panorama building",
-    "routine (significance 1 < 3): 2026-06-11 Russian forces advancing in Krasny Liman entered urban fighting in the city's Zavodskoy district",
-    "routine (significance 2 < 3): 2026-06-11 Russian forces claimed capture of the village Okhrimovka in Kharkiv region",
-    "routine (significance 1 < 3): 2026-06-11 Russia launched a massed ballistic missile strike on a large Ukrainian regional city",
-    "routine (significance 1 < 3): 2026-06-11 General Staff reported 251 combat clashes over past day amid heavy Russian air and drone strikes",
-    "routine (significance 1 < 3): 2026-06-12 Russian long-range artillery shelling of Sumy City injures six residents",
-    "routine (significance 1 < 3): 2026-06-12 Ukrainian drone strikes keep Russian logistics near Donetsk City under fire control",
-    "routine (significance 2 < 3): 2026-06-12 Occupied DNR bans nighttime passenger transportation in occupied Donetsk Oblast",
-    "routine (significance 2 < 3): 2026-06-12 Russian drone attack on Shostka community kills one woman",
-    "routine (significance 1 < 3): 2026-06-12 Russia launches 117 drones at Ukraine overnight",
-    "routine (significance 2 < 3): 2026-06-12 Russian strikes hit Sumy Oblast railway infrastructure, killing a railway worker",
-    "routine (significance 2 < 3): 2026-06-12 Russian forces capture the settlement of Pryiut in Donetsk Oblast",
-    "routine (significance 2 < 3): 2026-06-12 Ukrainian strikes hit petrochemical plants in Tatarstan and Samara Oblast",
-    "routine (significance 1 < 3): 2026-06-12 Moscow repels mass drone attack, destroying ten drones approaching the capital",
-    "routine (significance 2 < 3): 2026-09-15 Houthi missile and drone attack on King Khaled air base",
-    "routine (significance 2 < 3): 2026-09-15 IDF orders investigation into leak of classified materials used in Gaza documentary",
-    "routine (significance 1 < 3): 2026-09-15 Israeli strikes across Gaza kill four Palestinians",
-    "routine (significance 2 < 3): 2026-09-15 Ukrainian drone strike on Syzran oil refinery",
-    "routine (significance 1 < 3): 2026-09-15 Russian drone attack on Kyiv hits gas stations",
-    "routine (significance 2 < 3): 2026-09-15 Ukraine's 'Vivaldi' operation on the Lyman axis",
-    "routine (significance 1 < 3): 2026-09-15 262 combat clashes along the Ukraine front over past day"
+    "routine (significance 2 < 3): 2026-06-13 Ukrainian forces recapture three villages near Dnipropetrovsk border",
+    "routine (significance 2 < 3): 2026-06-13 Ukrainian drone strike kills one at Temryuk port infrastructure",
+    "routine (significance 2 < 3): 2026-06-13 Ukrainian drones strike Yany Kapu and Titan electrical substations in Crimea",
+    "routine (significance 2 < 3): 2026-06-13 Ukrainian drones hit Yefimovka oil pumping station, causing fire",
+    "routine (significance 2 < 3): 2026-06-13 Assassination attempt on Andrey Pinchuk with parcel bomb",
+    "routine (significance 1 < 3): 2026-06-13 Russian guided bombs strike Shevchenkove near Kupiansk",
+    "routine (significance 1 < 3): 2026-06-13 Russia launches 118 drones against Ukraine overnight",
+    "routine (significance 1 < 3): 2026-06-13 RSF drone strikes hit three fuel stations in El Obeid",
+    "routine (significance 1 < 3): 2026-06-13 Sudanese army repels fourth RSF-SPLM attack on Qeissan",
+    "routine (significance 1 < 3): 2026-06-13 RSF shelling of Abu Zaeima area kills five civilians",
+    "routine (significance 2 < 3): 2026-06-14 Israeli airstrikes hit southern Beirut suburbs and south Lebanon, killing five",
+    "routine (significance 1 < 3): 2026-06-14 RSF drone attacks intensify on El Obeid, targeting fuel stations",
+    "routine (significance 1 < 3): 2026-06-14 Sudanese army repels large RSF assault on Amura area, Blue Nile",
+    "routine (significance 1 < 3): 2026-06-14 Sudanese army airstrikes on RSF and SPLM-N positions in South Kordofan",
+    "routine (significance 2 < 3): 2026-06-14 RSF attack burns eight villages near Umm Kher reservoir in Amboro, North Darfur",
+    "routine (significance 2 < 3): 2026-09-16 Ukraine launches a new ground offensive in northern Donetsk",
+    "routine (significance 2 < 3): 2026-09-16 War-damaged residential building collapses in Tal al-Hawa, Gaza City, killing 21",
+    "routine (significance 2 < 3): 2026-09-16 Israeli airstrikes kill at least five Palestinians, including two children and a Hamas armed commander",
+    "routine (significance 2 < 3): 2026-09-16 UN warns of possible Israeli war crimes, estimating 8,000 bodies under Gaza rubble",
+    "routine (significance 2 < 3): 2026-09-16 Massive Ukrainian drone attack on Moscow and Moscow region kills two and damages the Moscow refinery",
+    "routine (significance 1 < 3): 2026-09-16 Russian night strike hits Kyiv, targeting Radionix, a Fire Point warehouse and Bi-Mobile",
+    "routine (significance 1 < 3): 2026-09-16 Russian strikes hit Ukrainian logistics centres and Odesa region port infrastructure"
   ],
   "errored": []
 }
