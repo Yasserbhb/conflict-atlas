@@ -1,5 +1,5 @@
 {
-  "version": "2.19.4",
+  "version": "2.19.5",
   "countries": [
     {
       "id": "AFG",
@@ -4801,8 +4801,50 @@
           "sources": [
             "https://en.wikipedia.org/wiki/2026_United_States%E2%80%93Ukraine%E2%80%93Russia_meetings_in_Geneva"
           ]
+        },
+        {
+          "id": "seed_ukraine_war_e10",
+          "date": "2026-06-18",
+          "title": "Ukraine launches largest drone attack on Moscow since start of war, striking Moscow Oil Refinery",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 55.7078,
+            "lng": 37.8586,
+            "label": "Moscow Oil Refinery, Moscow, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine launched its largest drone attack on Moscow since the start of the war, striking the Moscow Oil Refinery for the second time in a week and disrupting flights at the city's airports; one civilian was killed and at least 22 injured. Zelenskyy described the strikes as a fair response to Russian attacks on Ukraine.",
+          "sources": [
+            "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-13-19-june-2026",
+            "https://www.aljazeera.com/news/2026/6/25/as-ukraine-seizes-first-chance-to-win-war-horrors-come-home-to-russia",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_June_2026_%E2%80%93_31_August_2026)",
+            "https://www.russiamatters.org/news/russia-review/russia-review-june-12-18-2026",
+            "https://macspaunday.substack.com/p/june-18-2026-foreign-office-news",
+            "https://www.hawaiitribune-herald.com/2026/06/19/nation-world-news/ukraine-brings-the-war-to-moscow-as-huge-blasts-shake-refinery",
+            "https://acleddata.com/update/ukraine-war-situation-update-27-june-3-july-2026",
+            "https://www.russiamatters.org/news/russia-review/russia-review-june-26-july-2-2026"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.8
         }
-      ]
+      ],
+      "aliases": [
+        "Russo-Ukrainian war"
+      ],
+      "statusHistory": [
+        {
+          "status": "active",
+          "date": "2026-06-18",
+          "eventId": "seed_ukraine_war_e10"
+        }
+      ],
+      "status": "active",
+      "lastCheckedAt": "2026-09-25"
     },
     {
       "id": "seed_drc_m23",
