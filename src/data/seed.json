@@ -1,5 +1,5 @@
 {
-  "version": "2.19.5",
+  "version": "2.19.6",
   "countries": [
     {
       "id": "AFG",
@@ -10975,6 +10975,26 @@
           ]
         },
         {
+          "id": "seed_israel_iran_war_e9",
+          "date": "2026-02-28",
+          "title": "Minab school strike kills ~120 children",
+          "kind": "atrocity",
+          "severity": 4,
+          "location": {
+            "lat": 27.15,
+            "lng": 57.08,
+            "label": "Minab, Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "A missile destroyed an elementary school in Minab, killing about 156 civilians including some 120 children; investigations attribute the strike to the US.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/2026_Minab_school_attack"
+          ]
+        },
+        {
           "id": "seed_israel_iran_war_e6",
           "date": "2026-03-01",
           "title": "Iran retaliates against Israel and US bases",
@@ -11015,6 +11035,36 @@
           ]
         },
         {
+          "id": "seed_israel_iran_war_e10",
+          "date": "2026-06-23",
+          "title": "Israeli strikes hit Iranian steel plants, yellowcake plant and heavy water reactor",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 32.6707877,
+            "lng": 51.6650002,
+            "label": "Isfahan, Iran"
+          },
+          "parties": [
+            "ISR",
+            "IRN"
+          ],
+          "description": "Israeli strikes hit Iranian industrial and nuclear-related sites, including the Mobarakeh Steel Company in Isfahan, Khouzestan Steel Company in Ahvaz, a yellowcake plant near Yazd, and the IR-40 heavy water reactor at Arak.",
+          "sources": [
+            "https://havanatimes.org/news/international-news-briefs-for-tuesday-june-23-2026",
+            "https://understandingwar.org/research/middle-east/iran-update-special-report-june-23-2026",
+            "https://baike.baidu.com/en/item/2026%20United%20States%E2%80%93Israel%E2%80%93Iran%20Conflict/3884991",
+            "https://www.thehindu.com/news/international/west-asia-war-iran-us-conflict-israel-lebanon-strikes-washington-tehran-peace-talks-strait-of-hormuz-live-updates-june-23-2026/article71135989.ece",
+            "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+            "https://www.thedailyfile.org/post/sunday-june-7-2026-the-gaza-strip",
+            "https://www.arabnews.com/tag/gaza-strip"
+          ],
+          "independentSources": 7,
+          "crossAlignment": false,
+          "confidence": 0.61
+        },
+        {
           "id": "seed_israel_iran_war_e8",
           "date": "2026-06-28",
           "title": "US and Iran agree to cease attacks",
@@ -11029,28 +11079,12 @@
           "sources": [
             "https://en.wikipedia.org/wiki/2026_Iran_war"
           ]
-        },
-        {
-          "id": "seed_israel_iran_war_e9",
-          "date": "2026-02-28",
-          "title": "Minab school strike kills ~120 children",
-          "kind": "atrocity",
-          "severity": 4,
-          "location": {
-            "lat": 27.15,
-            "lng": 57.08,
-            "label": "Minab, Iran"
-          },
-          "parties": [
-            "USA",
-            "IRN"
-          ],
-          "description": "A missile destroyed an elementary school in Minab, killing about 156 civilians including some 120 children; investigations attribute the strike to the US.",
-          "sources": [
-            "https://en.wikipedia.org/wiki/2026_Minab_school_attack"
-          ]
         }
-      ]
+      ],
+      "aliases": [
+        "2026 Iran war"
+      ],
+      "lastCheckedAt": "2026-09-28"
     },
     {
       "id": "seed_us_venezuela",

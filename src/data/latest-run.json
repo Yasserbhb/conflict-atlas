@@ -1,83 +1,105 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36318029337",
-  "period": "2026-06-21..2026-09-20",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36433232977",
+  "period": "2026-06-23..2026-09-21",
   "days": [
-    "2026-06-21..2026-06-21",
-    "2026-06-22..2026-06-22",
-    "2026-09-20..2026-09-20"
+    "2026-06-23..2026-06-23",
+    "2026-06-24..2026-06-24",
+    "2026-09-21..2026-09-21"
   ],
   "region": null,
-  "ran_at": "2026-09-27",
+  "ran_at": "2026-09-28",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36318029337",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36433232977",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 214,
-    "candidates": 3,
-    "proposals": 3,
+    "items": 215,
+    "candidates": 4,
+    "proposals": 4,
     "auto_approved": 1,
-    "needs_human": 2,
-    "dropped": 23,
+    "needs_human": 3,
+    "dropped": 17,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 180,
-    "routine": 23,
+    "triaged_out": 190,
+    "routine": 17,
     "model_failovers": 0
   },
-  "added": [],
+  "added": [
+    {
+      "day": "2026-06-23..2026-06-23",
+      "date": "2026-06-23",
+      "title": "Israeli strikes hit Iranian steel plants, yellowcake plant and heavy water reactor",
+      "conflict": "seed_israel_iran_war",
+      "kind": "attack",
+      "severity": 4,
+      "sources": [
+        "https://havanatimes.org/news/international-news-briefs-for-tuesday-june-23-2026",
+        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-23-2026",
+        "https://baike.baidu.com/en/item/2026%20United%20States%E2%80%93Israel%E2%80%93Iran%20Conflict/3884991",
+        "https://www.thehindu.com/news/international/west-asia-war-iran-us-conflict-israel-lebanon-strikes-washington-tehran-peace-talks-strait-of-hormuz-live-updates-june-23-2026/article71135989.ece"
+      ]
+    }
+  ],
   "held": [
     {
-      "day": "2026-06-21..2026-06-21",
-      "date": "2026-06-21",
-      "title": "Massive Ukrainian drone barrage on Crimea and Krasnodar Krai kills five",
-      "question": "fact-check returned 'fail' at confidence 1.00; only 2% of its claims are backed by the cited sources",
-      "confidence": 1.0,
+      "day": "2026-06-23..2026-06-23",
+      "date": "2026-06-23",
+      "title": "Israeli strikes hit Tehran, South Pars gas field and Caspian naval vessels",
+      "question": "fact-check returned 'pass' at confidence 0.48; only 52% of its claims are backed by the cited sources",
+      "confidence": 0.48,
       "sources": [
-        "https://www.gov.uk/government/publications/palestine-country-policy-and-information-notes/country-bulletin-security-situation-in-gaza-palestine-june-2026-accessible",
-        "https://www.facebook.com/iltvisraelnews/videos/iltv-news-flash-june-21-2026israels-leadership-has-reportedly-ordered-the-idf-to/1023934620130050",
-        "https://www.youtube.com/watch?v=rBOhXx3wE3E",
-        "https://www.youtube.com/watch?v=KVEXmiAL2Q0"
+        "https://havanatimes.org/news/international-news-briefs-for-tuesday-june-23-2026",
+        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-23-2026",
+        "https://www.thedailyfile.org/en/data/data-march-2-2026-june-23-2026-lebanon",
+        "https://baike.baidu.com/en/item/2026%20United%20States%E2%80%93Israel%E2%80%93Iran%20Conflict/3884991"
       ]
     },
     {
-      "day": "2026-06-22..2026-06-22",
-      "date": "2026-06-22",
-      "title": "US–Iran talks in Switzerland make progress on Strait of Hormuz; Iran says Lebanon hostilities deal progressing",
-      "question": "fact-check returned 'uncertain' at confidence 0.28; only 25% of its claims are backed by the cited sources",
-      "confidence": 0.28,
+      "day": "2026-06-24..2026-06-24",
+      "date": "2026-06-24",
+      "title": "Fourth Division seizes rebel stronghold of Joseph Tuka on the Nile",
+      "question": "fact-check returned 'uncertain' at confidence 0.38; only 47% of its claims are backed by the cited sources",
+      "confidence": 0.38,
       "sources": [
-        "https://www.youtube.com/watch?v=MT8v5hw2N0Y",
-        "https://www.10things.news/p/10-things-global-news-22nd-june-2026",
-        "https://www.fightfoodcrises.net/articles/weekly-brief-22-june-2026",
-        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-22-2026"
+        "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
+        "https://orsam.org.tr/en/yayinlar/the-course-of-the-war-in-sudan-june-2026",
+        "https://www.youtube.com/watch?v=H_ou2lXqbKg",
+        "https://www.aljazeera.net/where/mideast/arab/sudan"
+      ]
+    },
+    {
+      "day": "2026-09-21..2026-09-21",
+      "date": "2026-09-21",
+      "title": "Ukraine launches largest-ever drone attack on Moscow",
+      "question": "fact-check returned 'uncertain' at confidence 0.14; only 50% of its claims are backed by the cited sources",
+      "confidence": 0.14,
+      "sources": [
+        "https://www.aljazeera.com/news/2026/9/21/israeli-attacks-on-gaza-kill-three-including-a-child",
+        "https://www.bbc.com/news/articles/cvp8d00j9gg5o",
+        "https://www.npr.org/2026/09/24/nx-s1-5979943/conflict-israel-and-gaza-at-the-2026-un-general-assembly",
+        "https://en.wikipedia.org/wiki/Timeline_of_the_Israeli%E2%80%93Palestinian_conflict_in_2026"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 1 < 3): 2026-06-21 Israeli bombardment of southern Gaza Strip kills two Palestinians",
-    "routine (significance 1 < 3): 2026-06-21 Russian overnight missile and drone attack on Ukraine",
-    "routine (significance 2 < 3): 2026-06-21 Crimea suspends fuel sales after Ukrainian strikes",
-    "routine (significance 2 < 3): 2026-06-21 Ukrainian drone strike hits fuel tanker near occupied Horlivka",
-    "routine (significance 1 < 3): 2026-06-21 RSF drone strike on Kosti fuel station kills civilians",
-    "routine (significance 1 < 3): 2026-06-21 RSF drones destroy fuel stations in Umm Rawaba and Er-Rahad",
-    "routine (significance 1 < 3): 2026-06-21 Sudanese army repels RSF drone attack on Dilling",
-    "routine (significance 2 < 3): 2026-06-21 European Union urges RSF to halt attacks on El Obeid",
-    "routine (significance 2 < 3): 2026-06-22 Russian drone strike hits Turkish-linked cargo ship Victress in the Black Sea, killing an Egyptian crew member",
-    "routine (significance 1 < 3): 2026-06-22 Russian drone attack kills a family of three in Sumy region",
-    "routine (significance 1 < 3): 2026-06-22 Russian missile strike on agricultural enterprise in Odesa region kills one, wounds three",
-    "routine (significance 2 < 3): 2026-06-22 Ukrainian drones attack occupied Crimea and Berdyansk overnight",
-    "routine (significance 2 < 3): 2026-06-22 Ukrainian drone attack on Moscow and region",
-    "routine (significance 1 < 3): 2026-06-22 Russian forces strike Zaporizhzhia twice overnight",
-    "routine (significance 1 < 3): 2026-06-22 Sudanese army airstrikes on RSF positions in North and West Kordofan",
-    "routine (significance 2 < 3): 2026-06-22 Poland strips Zelensky of national honour in WWII dispute",
-    "routine (significance 1 < 3): 2026-09-20 Russian drone strikes hit Ukraine overnight September 19-20",
-    "routine (significance 2 < 3): 2026-09-20 Ukrainian forces conduct largest combined missile and drone strike package",
-    "routine (significance 1 < 3): 2026-09-20 Israeli man killed in West Bank after shooting attack; Israeli operation in the West Bank",
-    "routine (significance 1 < 3): 2026-09-20 Violent clashes between Wazalendo and AFC/M23 in Irhambi-Katana",
-    "routine (significance 2 < 3): 2026-09-20 Attack on South Sudan oil pipeline kills seven",
-    "routine (significance 2 < 3): 2026-09-20 Yemeni government troops retake areas from the Houthis",
-    "routine (significance 1 < 3): 2026-09-20 Coalition conducts 35 targeting operations against Houthis in Marib within 24 hours"
+    "routine (significance 1 < 3): 2026-06-23 Israeli forces kill 2 in Nabatieh al-Fawqa, southern Lebanon",
+    "routine (significance 2 < 3): 2026-06-23 IDF engages Hezbollah fighters near Ali al Taher",
+    "routine (significance 1 < 3): 2026-06-23 US military strikes boat in the Caribbean, killing two",
+    "routine (significance 2 < 3): 2026-06-23 UN warns of imminent mass atrocities in el-Obeid as RSF encircles city",
+    "routine (significance 1 < 3): 2026-06-23 RSF drone attack kills 2 at displacement camp in el-Obeid",
+    "routine (significance 1 < 3): 2026-06-23 Russian ballistic missile strike on Kryvyi Rih kills 4",
+    "routine (significance 1 < 3): 2026-06-23 Russian drone strike kills three of a family in Sumy region",
+    "routine (significance 1 < 3): 2026-06-23 Russia attacks Zaporizhzhia and Sumy overnight",
+    "routine (significance 1 < 3): 2026-06-23 Woman killed by downed drone fragment on Odesa beach",
+    "routine (significance 1 < 3): 2026-06-23 Ukrainian drones attack infrastructure in Rostov oblast",
+    "routine (significance 2 < 3): 2026-06-23 Iranian missile and drone salvos hit Israel, Kuwait and UAE during 2026 Iran war",
+    "routine (significance 2 < 3): 2026-06-24 Russian forces storm Kozacha Lopan and Petro-Ivanivka in Kharkiv Oblast",
+    "routine (significance 1 < 3): 2026-06-24 Fighting on the North-Sloboda and Kursk directions",
+    "routine (significance 2 < 3): 2026-06-24 Sudanese army airstrikes destroy 20 combat vehicles around El Obeid",
+    "routine (significance 2 < 3): 2026-06-24 Drone strike kills at least 13 people in Sudan",
+    "routine (significance 1 < 3): 2026-09-21 Russian overnight strikes across Ukraine kill three and cut power to ~100,000",
+    "routine (significance 2 < 3): 2026-09-21 Macron meets Zelensky on sidelines of UN General Assembly"
   ],
   "errored": []
 }
