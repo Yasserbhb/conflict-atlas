@@ -1,105 +1,78 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36433232977",
-  "period": "2026-06-23..2026-09-21",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36571957714",
+  "period": "2026-06-25..2026-09-22",
   "days": [
-    "2026-06-23..2026-06-23",
-    "2026-06-24..2026-06-24",
-    "2026-09-21..2026-09-21"
+    "2026-06-25..2026-06-25",
+    "2026-06-26..2026-06-26",
+    "2026-09-22..2026-09-22"
   ],
   "region": null,
-  "ran_at": "2026-09-28",
+  "ran_at": "2026-09-29",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36433232977",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36571957714",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 215,
-    "candidates": 4,
-    "proposals": 4,
+    "items": 216,
+    "candidates": 3,
+    "proposals": 3,
     "auto_approved": 1,
-    "needs_human": 3,
-    "dropped": 17,
+    "needs_human": 2,
+    "dropped": 18,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 190,
-    "routine": 17,
+    "triaged_out": 197,
+    "routine": 18,
     "model_failovers": 0
   },
-  "added": [
-    {
-      "day": "2026-06-23..2026-06-23",
-      "date": "2026-06-23",
-      "title": "Israeli strikes hit Iranian steel plants, yellowcake plant and heavy water reactor",
-      "conflict": "seed_israel_iran_war",
-      "kind": "attack",
-      "severity": 4,
-      "sources": [
-        "https://havanatimes.org/news/international-news-briefs-for-tuesday-june-23-2026",
-        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-23-2026",
-        "https://baike.baidu.com/en/item/2026%20United%20States%E2%80%93Israel%E2%80%93Iran%20Conflict/3884991",
-        "https://www.thehindu.com/news/international/west-asia-war-iran-us-conflict-israel-lebanon-strikes-washington-tehran-peace-talks-strait-of-hormuz-live-updates-june-23-2026/article71135989.ece"
-      ]
-    }
-  ],
+  "added": [],
   "held": [
     {
-      "day": "2026-06-23..2026-06-23",
-      "date": "2026-06-23",
-      "title": "Israeli strikes hit Tehran, South Pars gas field and Caspian naval vessels",
-      "question": "fact-check returned 'pass' at confidence 0.48; only 52% of its claims are backed by the cited sources",
-      "confidence": 0.48,
+      "day": "2026-06-25..2026-06-25",
+      "date": "2026-06-25",
+      "title": "FARDC special forces and Wazalendo regained Kalingi, Kawera and Kitavi from Twirwaneho",
+      "question": "fact-check returned 'pass' at confidence 0.34; only 42% of its claims are backed by the cited sources",
+      "confidence": 0.34,
       "sources": [
-        "https://havanatimes.org/news/international-news-briefs-for-tuesday-june-23-2026",
-        "https://understandingwar.org/research/middle-east/iran-update-special-report-june-23-2026",
-        "https://www.thedailyfile.org/en/data/data-march-2-2026-june-23-2026-lebanon",
-        "https://baike.baidu.com/en/item/2026%20United%20States%E2%80%93Israel%E2%80%93Iran%20Conflict/3884991"
+        "https://en.wikipedia.org/wiki/Timeline_of_the_M23_campaign_(2026)",
+        "https://www.criticalthreats.org/analysis/drc-fardc-m23-russia-wagner-mali-burkina-niger-rsf-chad-sudan-fgs-somalia-ghana-aes-ecowas-africa-file-february-26-2026",
+        "https://fr.wikipedia.org/wiki/Conflit_du_M23",
+        "https://acleddata.com/report/m23-rebels-take-hold-eastern-congo-islamic-state-capitalizing-chaos"
       ]
     },
     {
-      "day": "2026-06-24..2026-06-24",
-      "date": "2026-06-24",
-      "title": "Fourth Division seizes rebel stronghold of Joseph Tuka on the Nile",
-      "question": "fact-check returned 'uncertain' at confidence 0.38; only 47% of its claims are backed by the cited sources",
-      "confidence": 0.38,
+      "day": "2026-09-22..2026-09-22",
+      "date": "2026-09-22",
+      "title": "Denmark, Greenland, and US sign agreement expanding US military access to Greenland",
+      "question": null,
+      "confidence": 0.58,
       "sources": [
-        "https://en.wikipedia.org/wiki/Timeline_of_the_2026_Iran_war",
-        "https://orsam.org.tr/en/yayinlar/the-course-of-the-war-in-sudan-june-2026",
-        "https://www.youtube.com/watch?v=H_ou2lXqbKg",
-        "https://www.aljazeera.net/where/mideast/arab/sudan"
-      ]
-    },
-    {
-      "day": "2026-09-21..2026-09-21",
-      "date": "2026-09-21",
-      "title": "Ukraine launches largest-ever drone attack on Moscow",
-      "question": "fact-check returned 'uncertain' at confidence 0.14; only 50% of its claims are backed by the cited sources",
-      "confidence": 0.14,
-      "sources": [
-        "https://www.aljazeera.com/news/2026/9/21/israeli-attacks-on-gaza-kill-three-including-a-child",
-        "https://www.bbc.com/news/articles/cvp8d00j9gg5o",
-        "https://www.npr.org/2026/09/24/nx-s1-5979943/conflict-israel-and-gaza-at-the-2026-un-general-assembly",
-        "https://en.wikipedia.org/wiki/Timeline_of_the_Israeli%E2%80%93Palestinian_conflict_in_2026"
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_22",
+        "https://www.justsecurity.org/158424/early-edition-september-22-2026",
+        "https://www.congress.gov/crs-product/R48887",
+        "https://www.thedefensenews.com/news-details/IRGC-Strikes-on-Iraqs-Kurdistan-Region-Prevent-Kurdish-Offensive-in-2026-Conflict"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 1 < 3): 2026-06-23 Israeli forces kill 2 in Nabatieh al-Fawqa, southern Lebanon",
-    "routine (significance 2 < 3): 2026-06-23 IDF engages Hezbollah fighters near Ali al Taher",
-    "routine (significance 1 < 3): 2026-06-23 US military strikes boat in the Caribbean, killing two",
-    "routine (significance 2 < 3): 2026-06-23 UN warns of imminent mass atrocities in el-Obeid as RSF encircles city",
-    "routine (significance 1 < 3): 2026-06-23 RSF drone attack kills 2 at displacement camp in el-Obeid",
-    "routine (significance 1 < 3): 2026-06-23 Russian ballistic missile strike on Kryvyi Rih kills 4",
-    "routine (significance 1 < 3): 2026-06-23 Russian drone strike kills three of a family in Sumy region",
-    "routine (significance 1 < 3): 2026-06-23 Russia attacks Zaporizhzhia and Sumy overnight",
-    "routine (significance 1 < 3): 2026-06-23 Woman killed by downed drone fragment on Odesa beach",
-    "routine (significance 1 < 3): 2026-06-23 Ukrainian drones attack infrastructure in Rostov oblast",
-    "routine (significance 2 < 3): 2026-06-23 Iranian missile and drone salvos hit Israel, Kuwait and UAE during 2026 Iran war",
-    "routine (significance 2 < 3): 2026-06-24 Russian forces storm Kozacha Lopan and Petro-Ivanivka in Kharkiv Oblast",
-    "routine (significance 1 < 3): 2026-06-24 Fighting on the North-Sloboda and Kursk directions",
-    "routine (significance 2 < 3): 2026-06-24 Sudanese army airstrikes destroy 20 combat vehicles around El Obeid",
-    "routine (significance 2 < 3): 2026-06-24 Drone strike kills at least 13 people in Sudan",
-    "routine (significance 1 < 3): 2026-09-21 Russian overnight strikes across Ukraine kill three and cut power to ~100,000",
-    "routine (significance 2 < 3): 2026-09-21 Macron meets Zelensky on sidelines of UN General Assembly"
+    "routine (significance 1 < 3): 2026-06-25 Russian drone strike hits a gas station in Sumy",
+    "routine (significance 2 < 3): 2026-06-25 France detained a Russia-linked oil tanker",
+    "routine (significance 2 < 3): 2026-06-25 Russian forces captured nine Ukrainian strongholds near Krasny Liman",
+    "routine (significance 1 < 3): 2026-06-25 M23 repelled an attack on Loashi village",
+    "routine (significance 2 < 3): 2026-06-25 US Treasury sanctioned Gasabo Gold Refinery and associated mining companies",
+    "routine (significance 1 < 3): 2026-06-26 Ukrainian forces record 256 combat clashes with Russian troops over 24 hours",
+    "routine (significance 1 < 3): 2026-06-26 Palestinian youth dies of wounds from Israeli strike on al-Nasr neighborhood, Gaza City",
+    "routine (significance 2 < 3): 2026-06-26 FARDC and Wazalendo launch offensive against M23 near Ngungu and Kibabi II, Masisi Territory",
+    "routine (significance 2 < 3): 2026-06-26 M23-aligned militia repels pro-government offensive on Minembwe, South Kivu",
+    "routine (significance 1 < 3): 2026-06-26 Fighting continues between Wazalendo and M23 near Walikale",
+    "routine (significance 2 < 3): 2026-09-22 Ethiopian airstrikes kill 14 civilians in Alamata, Tigray",
+    "routine (significance 1 < 3): 2026-09-22 Saudi airstrikes kill six civilians in Mokha, Yemen",
+    "routine (significance 2 < 3): 2026-09-22 Colombia deploys troops to Santa Marta after ACSN attacks",
+    "routine (significance 1 < 3): 2026-09-22 Russian drone and missile strikes against Ukraine overnight",
+    "routine (significance 1 < 3): 2026-09-22 Ukrainian strikes on Russian vehicles in occupied Zaporizhia Oblast",
+    "routine (significance 1 < 3): 2026-09-22 Russian glide bomb strike on Khotin, Sumy Oblast",
+    "routine (significance 1 < 3): 2026-09-22 248 combat engagements along Ukrainian front line",
+    "routine (significance 1 < 3): 2026-09-22 Russian shelling kills civilian in Kramatorsk"
   ],
   "errored": []
 }
