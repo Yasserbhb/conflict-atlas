@@ -1,5 +1,5 @@
 {
-  "version": "2.19.6",
+  "version": "2.19.7",
   "countries": [
     {
       "id": "AFG",
@@ -4831,10 +4831,71 @@
           "independentSources": 7,
           "crossAlignment": true,
           "confidence": 0.8
+        },
+        {
+          "id": "seed_ukraine_war_e11",
+          "date": "2026-06-28",
+          "title": "Ukraine strikes Slavyansk and Yaroslavl oil refineries",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 45.133,
+            "lng": 38.317,
+            "label": "Slavyansk-on-Kuban, Krasnodar Krai, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine says its long-range drones struck the Slavyansk oil refinery in Krasnodar Krai and the Yaroslavl refinery overnight, starting fires as part of its campaign against Russian energy infrastructure. President Putin acknowledged a fuel deficit and vowed to strengthen protection of oil facilities.",
+          "sources": [
+            "https://34.ua/en/ukraine-news-june-28-2026",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-28-2026",
+            "https://www.aljazeera.com/news/2026/6/28/ukraine-says-it-attacked-two-russian-oil-refineries",
+            "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28?action=share",
+            "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28",
+            "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine/alerts?page=3",
+            "https://www.facebook.com/MalaysiaGenZ/posts/the-ukraine-war-front-line-remained-largely-frozen-in-june-extending-a-longer-te/1846786076496440",
+            "https://empr.media/news/war/russia-ukraine-war-june-2026-timeline"
+          ],
+          "independentSources": 7,
+          "crossAlignment": false,
+          "confidence": 0.71
+        },
+        {
+          "id": "seed_ukraine_war_e12",
+          "date": "2026-06-28",
+          "title": "Putin acknowledges fuel deficit after Ukrainian refinery strikes",
+          "kind": "milestone",
+          "severity": 3,
+          "location": {
+            "lat": 45.26,
+            "lng": 38.32,
+            "label": "Slavyansk-on-Kuban oil refinery, Krasnodar Krai, Russia"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Overnight on June 27–28, 2026, Ukrainian long-range drones struck the Slavyansk oil refinery in Krasnodar Krai and the Yaroslavl refinery, some 300 and 700 km from the front line, starting major fires according to Ukraine's General Staff. The strikes are part of President Zelensky's announced 40-day campaign against Russian energy infrastructure aimed at pressuring Moscow toward ending the war.",
+          "sources": [
+            "https://34.ua/en/ukraine-news-june-28-2026",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-28-2026",
+            "https://www.aljazeera.com/news/2026/6/28/ukraine-says-it-attacked-two-russian-oil-refineries",
+            "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28?action=share",
+            "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28",
+            "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine/alerts?page=3",
+            "https://www.facebook.com/MalaysiaGenZ/posts/the-ukraine-war-front-line-remained-largely-frozen-in-june-extending-a-longer-te/1846786076496440",
+            "https://empr.media/news/war/russia-ukraine-war-june-2026-timeline"
+          ],
+          "independentSources": 7,
+          "crossAlignment": false,
+          "confidence": 0.77
         }
       ],
       "aliases": [
-        "Russo-Ukrainian war"
+        "Russo-Ukrainian war",
+        "Russia-Ukraine war"
       ],
       "statusHistory": [
         {
@@ -4844,7 +4905,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-09-25"
+      "lastCheckedAt": "2026-09-30"
     },
     {
       "id": "seed_drc_m23",
