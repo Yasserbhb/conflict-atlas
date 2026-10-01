@@ -1,150 +1,59 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36716489799",
-  "period": "2026-06-27..2026-09-23",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36868616966",
+  "period": "2026-06-29..2026-09-24",
   "days": [
-    "2026-06-27..2026-06-27",
-    "2026-06-28..2026-06-28",
-    "2026-09-23..2026-09-23"
+    "2026-06-29..2026-06-29",
+    "2026-06-30..2026-06-30",
+    "2026-09-24..2026-09-24"
   ],
   "region": null,
-  "ran_at": "2026-09-30",
+  "ran_at": "2026-10-01",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36716489799",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/36868616966",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 216,
-    "candidates": 7,
-    "proposals": 7,
-    "auto_approved": 2,
-    "needs_human": 5,
-    "dropped": 22,
+    "items": 205,
+    "candidates": 0,
+    "proposals": 0,
+    "auto_approved": 0,
+    "needs_human": 0,
+    "dropped": 26,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 116,
-    "routine": 22,
+    "triaged_out": 168,
+    "routine": 26,
     "model_failovers": 0
   },
-  "added": [
-    {
-      "day": "2026-06-28..2026-06-28",
-      "date": "2026-06-28",
-      "title": "Ukraine strikes Slavyansk and Yaroslavl oil refineries",
-      "conflict": "seed_ukraine_war",
-      "kind": "attack",
-      "severity": 3,
-      "sources": [
-        "https://34.ua/en/ukraine-news-june-28-2026",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-28-2026",
-        "https://www.aljazeera.com/news/2026/6/28/ukraine-says-it-attacked-two-russian-oil-refineries",
-        "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28?action=share"
-      ]
-    },
-    {
-      "day": "2026-06-28..2026-06-28",
-      "date": "2026-06-28",
-      "title": "Putin acknowledges fuel deficit after Ukrainian refinery strikes",
-      "conflict": "seed_ukraine_war",
-      "kind": "milestone",
-      "severity": 3,
-      "sources": [
-        "https://34.ua/en/ukraine-news-june-28-2026",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-28-2026",
-        "https://www.aljazeera.com/news/2026/6/28/ukraine-says-it-attacked-two-russian-oil-refineries",
-        "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28?action=share"
-      ]
-    }
-  ],
-  "held": [
-    {
-      "day": "2026-06-27..2026-06-27",
-      "date": "2026-06-27",
-      "title": "Congo and Rwanda sign US-brokered peace deal",
-      "question": "fact-check returned 'pass' at confidence 0.34; only 46% of its claims are backed by the cited sources",
-      "confidence": 0.34,
-      "sources": [
-        "https://www.ochaopt.org/content/humanitarian-situation-report-18-september-2026",
-        "https://www.axios.com/2026/06/27/ukraine-drone-strikes-russia-refineries",
-        "https://www.cfr.org/global-conflict-tracker/conflict/violent-extremism-sahel",
-        "https://www.criticalthreats.org/briefs/congo-war-security-review"
-      ]
-    },
-    {
-      "day": "2026-06-27..2026-06-27",
-      "date": "2026-06-27",
-      "title": "Sudanese Joint Force recaptures Abu Qamra town in North Darfur from RSF",
-      "question": "fact-check returned 'fail' at confidence 1.00; only 2% of its claims are backed by the cited sources",
-      "confidence": 1.0,
-      "sources": [
-        "https://www.usnews.com/news/world/articles/2026-06-28/israeli-strikes-and-shelling-in-gaza-kill-at-least-4-palestinians-health-workers-say",
-        "https://www.gov.uk/government/publications/palestine-country-policy-and-information-notes/country-bulletin-security-situation-in-gaza-palestine-june-2026-accessible",
-        "https://www.aljazeera.com/news/2026/6/27/israeli-drone-attack-kills-young-girl-in-gaza-safe-zone",
-        "https://www.ochaopt.org/content/humanitarian-situation-report-18-september-2026"
-      ]
-    },
-    {
-      "day": "2026-06-28..2026-06-28",
-      "date": "2026-06-28",
-      "title": "Sudanese army and Joint Force capture Zarqa base in North Darfur",
-      "question": "fact-check returned 'fail' at confidence 1.00; only 3% of its claims are backed by the cited sources",
-      "confidence": 1.0,
-      "sources": [
-        "https://34.ua/en/ukraine-news-june-28-2026",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-28-2026",
-        "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28?action=share",
-        "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28"
-      ]
-    },
-    {
-      "day": "2026-06-28..2026-06-28",
-      "date": "2026-06-28",
-      "title": "Joint Force announces control of Abu Qumra, North Darfur",
-      "question": "fact-check returned 'uncertain' at confidence 0.16; only 37% of its claims are backed by the cited sources",
-      "confidence": 0.16,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-june-28-2026",
-        "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28?action=share",
-        "https://ukrainesarmsmonitor.substack.com/p/arms-trends-in-ukraine-22-june-28",
-        "https://empr.media/news/war/russia-ukraine-war-june-2026-timeline"
-      ]
-    },
-    {
-      "day": "2026-09-23..2026-09-23",
-      "date": "2026-09-23",
-      "title": "Board of Peace unveils $2.4bn Gaza reconstruction plan",
-      "question": "fact-check returned 'uncertain' at confidence 0.21; only 52% of its claims are backed by the cited sources",
-      "confidence": 0.21,
-      "sources": [
-        "https://www.politico.com/news/2026/09/23/russia-launches-all-day-bombing-attack-on-kyiv",
-        "https://en.wikipedia.org/wiki/Gaza%E2%80%93Israel_conflict",
-        "https://www.aljazeera.com/news/2026/9/23/board-of-peace-plans-2-4bn-gaza-reconstruction-as-israel-kills-seven",
-        "https://www.npr.org/2026/09/24/nx-s1-5979943/conflict-israel-and-gaza-at-the-2026-un-general-assembly"
-      ]
-    }
-  ],
+  "added": [],
+  "held": [],
   "already_known": [
-    "routine (significance 1 < 3): 2026-06-27 Ukraine and Russia exchange overnight strikes killing at least five",
-    "routine (significance 2 < 3): 2026-06-27 Ukrainian FP-5 Flamingo missile strike on Titan-Barrikady plant in Volgograd",
-    "routine (significance 2 < 3): 2026-06-27 Ukrainian strikes on Russian command post and fuel warehouse in Belgorod Oblast",
-    "routine (significance 2 < 3): 2026-06-27 Ukrainian strike wounds commander of Russian 36th Motorized Rifle Regiment near Dmytrivka",
-    "routine (significance 1 < 3): 2026-06-27 Russian strikes on Ukrainian fuel and infrastructure targets",
-    "routine (significance 2 < 3): 2026-06-27 Sudanese army air strikes destroy dozens of RSF vehicles across Kordofan",
-    "routine (significance 1 < 3): 2026-06-27 RSF soldier reportedly killed in North Darfur battles",
-    "routine (significance 2 < 3): 2026-06-28 Ukraine returns 160 servicemen from Russian captivity",
-    "routine (significance 2 < 3): 2026-06-28 Ukraine strikes railway bridge near Ichki in occupied Crimea",
-    "routine (significance 2 < 3): 2026-06-28 Ukraine strikes Russian ammunition depot near Amvrosiivka",
-    "routine (significance 1 < 3): 2026-06-28 Russian strikes kill civilians in Zaporizhzhia, Kharkiv and Sumy",
-    "routine (significance 1 < 3): 2026-06-28 Israeli strikes kill four Palestinians in Gaza",
-    "routine (significance 1 < 3): 2026-06-28 Israeli forces raid West Bank towns and arrest Palestinians",
-    "routine (significance 1 < 3): 2026-06-28 Sudanese army conducts sweep operation in Karmak axis, Blue Nile",
-    "routine (significance 2 < 3): 2026-06-28 Sudanese Air Force destroys RSF fuel convoy near El Obeid",
-    "routine (significance 2 < 3): 2026-09-23 Russia launches all-day drone attack on Kyiv",
-    "routine (significance 1 < 3): 2026-09-23 Russian aerial bomb attack kills four in Donetsk region village",
-    "routine (significance 1 < 3): 2026-09-23 Russian glide bomb strikes on Sumy City injure seven",
-    "routine (significance 2 < 3): 2026-09-23 Ukrainian strike on Russian fuel depot near Kundryuche",
-    "routine (significance 2 < 3): 2026-09-23 Russian strikes hit Ukraine's digital infrastructure in Kyiv and Odesa",
-    "routine (significance 2 < 3): 2026-09-23 Jihadist ambushes kill dozens of Nigerien soldiers",
-    "routine (significance 1 < 3): 2026-09-23 Israeli strikes kill seven Palestinians across Gaza"
+    "routine (significance 1 < 3): 2026-06-29 Russian missile and drone strikes kill at least eight civilians across Ukraine",
+    "routine (significance 2 < 3): 2026-06-29 Israeli airstrike kills three Palestinians including a child in Deir al-Balah",
+    "routine (significance 1 < 3): 2026-06-29 Israeli forces kill 15-year-old Palestinian during West Bank raid in Al-Bireh",
+    "routine (significance 2 < 3): 2026-06-29 M23 pushes Wazalendo fighters out of positions near Ziralo and Lumbishi",
+    "routine (significance 1 < 3): 2026-06-29 Ukrainian drones downed over Moscow",
+    "routine (significance 1 < 3): 2026-06-29 Russian air defenses down 209 Ukrainian drones overnight",
+    "routine (significance 2 < 3): 2026-06-29 Ukrainian Unmanned Systems Forces report strikes on 31 Russian air defense assets in June",
+    "routine (significance 1 < 3): 2026-06-29 RSF drone strikes on El Obeid escalate, killing civilians",
+    "routine (significance 1 < 3): 2026-06-30 Israeli strikes on Gaza kill at least eight people",
+    "routine (significance 2 < 3): 2026-06-30 Smotrich calls for Israeli settlements in northern Gaza as Israel claims two-thirds of the Strip",
+    "routine (significance 1 < 3): 2026-06-30 Israeli soldiers kill 15-year-old Palestinian boy in al-Bireh",
+    "routine (significance 2 < 3): 2026-06-30 Ukraine launches major overnight drone attack on Moscow",
+    "routine (significance 2 < 3): 2026-06-30 Ukraine strikes Russian satellite communication center for second time",
+    "routine (significance 1 < 3): 2026-06-30 Ukrainian strikes hit Russian substations and military assets in occupied Crimea and Donetsk",
+    "routine (significance 1 < 3): 2026-06-30 Russia launches 154 drones against Ukraine overnight",
+    "routine (significance 2 < 3): 2026-06-30 Russian forces claim capture of Malinovka, Lesnoye and Rovnoye",
+    "routine (significance 1 < 3): 2026-09-24 Russian overnight drone and missile strikes across Ukraine kill at least eight",
+    "routine (significance 2 < 3): 2026-09-24 Russian strikes hit Kyiv drone factories, telecoms and Odesa port logistics, and tankers",
+    "routine (significance 2 < 3): 2026-09-24 Ukrainian long-range strikes damage Russian energy and industrial sites in Rostov and Krasnodar",
+    "routine (significance 2 < 3): 2026-09-24 Ukrainian SBU strikes Russian drone lab and ammunition depot in occupied Kherson Oblast",
+    "routine (significance 1 < 3): 2026-09-24 Israeli airstrike on Gaza kills Palestinian girl",
+    "routine (significance 2 < 3): 2026-09-24 Sudanese army downs Chinese-made RSF strategic drone near al-Kokeiti",
+    "routine (significance 2 < 3): 2026-09-24 RSF drone attacks on El Obeid kill two and wound dozens",
+    "routine (significance 1 < 3): 2026-09-24 Sudanese army repels RSF attack on al-Kaili area in Blue Nile",
+    "routine (significance 2 < 3): 2026-09-24 RSF attacks oil pipeline in South Kordofan",
+    "routine (significance 1 < 3): 2026-09-24 RSF drones target Atbara airport"
   ],
   "errored": []
 }
