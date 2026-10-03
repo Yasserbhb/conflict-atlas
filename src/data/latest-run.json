@@ -1,87 +1,119 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37008504700",
-  "period": "2026-07-01..2026-09-25",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37120633687",
+  "period": "2026-07-03..2026-09-26",
   "days": [
-    "2026-07-01..2026-07-01",
-    "2026-07-02..2026-07-02",
-    "2026-09-25..2026-09-25"
+    "2026-07-03..2026-07-03",
+    "2026-07-04..2026-07-04",
+    "2026-09-26..2026-09-26"
   ],
   "region": null,
-  "ran_at": "2026-10-02",
+  "ran_at": "2026-10-03",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37008504700",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37120633687",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
     "items": 214,
-    "candidates": 2,
-    "proposals": 2,
-    "auto_approved": 0,
-    "needs_human": 2,
-    "dropped": 27,
+    "candidates": 5,
+    "proposals": 5,
+    "auto_approved": 2,
+    "needs_human": 3,
+    "dropped": 17,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 181,
-    "routine": 27,
+    "triaged_out": 187,
+    "routine": 17,
     "model_failovers": 0
   },
-  "added": [],
-  "held": [
+  "added": [
     {
-      "day": "2026-09-25..2026-09-25",
-      "date": "2026-09-25",
-      "title": "Sudanese army and allies recapture Sodari town in North Kordofan",
-      "question": "fact-check returned 'pass' at confidence 0.34; only 3% of its claims are backed by the cited sources",
-      "confidence": 0.34,
+      "day": "2026-07-04..2026-07-04",
+      "date": "2026-07-04",
+      "title": "Ukrainian strike hits St. Petersburg Oil Terminal and Kronstadt Naval Base",
+      "conflict": "seed_ukraine_war",
+      "kind": "attack",
+      "severity": 3,
       "sources": [
-        "https://www.russiamatters.org/news/russia-review/russia-review-sept-18-25-2026-0",
-        "https://www.sudanspost.com/territorial-control-map-as-of-september-25-2026",
-        "https://sudantribune.com/article/319265",
-        "https://sudantribune.com/article/319247"
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
+        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+        "https://www.youtube.com/watch?v=rnHA38F8izQ"
       ]
     },
     {
-      "day": "2026-09-25..2026-09-25",
-      "date": "2026-09-25",
-      "title": "RSF commander defects with fighters to Sudanese army",
-      "question": "fact-check returned 'uncertain' at confidence 0.28; only 51% of its claims are backed by the cited sources",
-      "confidence": 0.28,
+      "day": "2026-07-04..2026-07-04",
+      "date": "2026-07-04",
+      "title": "Ukraine launches massive drone attack on Russia with ~400-500 drones",
+      "conflict": "seed_ukraine_war",
+      "kind": "attack",
+      "severity": 4,
       "sources": [
-        "https://www.aljazeera.com/news/2026/9/25/us-seeking-to-revive-russia-ukraine-ceasefire-talks",
-        "https://www.russiamatters.org/news/russia-review/russia-review-sept-18-25-2026-0",
-        "https://www.fdd.org/overnight-brief/september-25-2026",
-        "https://www.sudanspost.com/territorial-control-map-as-of-september-25-2026"
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
+        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+        "https://www.youtube.com/watch?v=rnHA38F8izQ"
+      ]
+    }
+  ],
+  "held": [
+    {
+      "day": "2026-07-03..2026-07-03",
+      "date": "2026-07-03",
+      "title": "Russia reports capturing Kostyantynivka",
+      "question": "fact-check returned 'pass' at confidence 0.49; only 76% of its claims are backed by the cited sources",
+      "confidence": 0.49,
+      "sources": [
+        "https://acleddata.com/update/ukraine-war-situation-update-27-june-3-july-2026",
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-3-2026",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-27-june-3-july-2026",
+        "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_June_2026_%E2%80%93_31_August_2026)"
+      ]
+    },
+    {
+      "day": "2026-07-04..2026-07-04",
+      "date": "2026-07-04",
+      "title": "Russia announces complete capture of Kostiantynivka",
+      "question": "fact-check returned 'uncertain' at confidence 0.57; only 37% of its claims are backed by the cited sources",
+      "confidence": 0.57,
+      "sources": [
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
+        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+        "https://www.youtube.com/watch?v=rnHA38F8izQ"
+      ]
+    },
+    {
+      "day": "2026-07-04..2026-07-04",
+      "date": "2026-07-04",
+      "title": "Russian forces capture Zimlyany Yar and Losivka in northeastern Kharkiv Oblast",
+      "question": "fact-check returned 'uncertain' at confidence 0.37; only 46% of its claims are backed by the cited sources",
+      "confidence": 0.37,
+      "sources": [
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
+        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+        "https://www.youtube.com/watch?v=rnHA38F8izQ"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-07-01 Ukrainian strike destroys road bridge across Malyi Kalchik River near Hranitne",
-    "routine (significance 2 < 3): 2026-07-01 Ukrainian drone strikes destroy bridge on H-20 Rostov-Crimea Highway near Kremenivka",
-    "routine (significance 2 < 3): 2026-07-01 Ukraine strikes Ufa Oil Refinery for second time in a week",
-    "routine (significance 2 < 3): 2026-07-01 Ukraine strikes JSC Scientific Research Institute of Physical Measurements in Penza",
-    "routine (significance 1 < 3): 2026-07-01 Russian drone strike hits minibus in Kherson, killing two",
-    "routine (significance 2 < 3): 2026-07-01 Denmark announces new large-scale military aid package for Ukraine",
-    "routine (significance 2 < 3): 2026-07-01 Russian ballistic missile strike on Odesa Oblast kills two, wounds 15",
-    "routine (significance 1 < 3): 2026-07-01 Russian strikes hit Kharkiv, killing civilians",
-    "routine (significance 2 < 3): 2026-07-01 Russian KAB strikes destroy Prosianyi grain elevator in Dnipropetrovsk Oblast",
-    "routine (significance 1 < 3): 2026-07-01 Russian overnight strikes hit Kyiv, Zaporizhzhia and Kherson",
-    "routine (significance 1 < 3): 2026-07-01 Russian TOS-1A strike destroys Ukrainian strongpoint near Krasny Liman",
-    "routine (significance 2 < 3): 2026-07-01 Russia suspends operation of several border crossings with Finland and Baltic states",
-    "routine (significance 1 < 3): 2026-07-01 Ukrainian drone attack burns 22 trucks at parking lot in Donetsk City",
-    "routine (significance 2 < 3): 2026-07-02 Russia launches massive overnight missile and drone attack on Kyiv",
-    "routine (significance 2 < 3): 2026-07-02 Ukraine strikes one of Russia's largest oil refineries in Nizhny Novgorod region",
-    "routine (significance 2 < 3): 2026-07-02 Ukraine strikes Starobisheve thermal power plant in occupied Donetsk Oblast",
-    "routine (significance 1 < 3): 2026-07-02 Russian FAB glide bomb strike on Shevchenkove kills one",
-    "routine (significance 1 < 3): 2026-07-02 Ukraine strikes Russian command and observation post near Vilshana",
-    "routine (significance 2 < 3): 2026-07-02 Germany officially charges Ukrainian citizen over Nord Stream sabotage",
-    "routine (significance 1 < 3): 2026-07-02 Another Russian Ka-52 helicopter lost, pilot reportedly killed",
-    "routine (significance 1 < 3): 2026-09-25 Russian daytime strikes on Kyiv kill five",
-    "routine (significance 2 < 3): 2026-09-25 Russian drone hits residential building in Kyiv's Pecherskyi district, killing teenager",
-    "routine (significance 2 < 3): 2026-09-25 Ukraine strikes Novoshakhtinsky and Lukoil-Perm oil refineries",
-    "routine (significance 2 < 3): 2026-09-25 Russian drone strikes hit Ukrainian logistics and defense-industrial sites",
-    "routine (significance 2 < 3): 2026-09-25 Russian strikes hit Kyiv telecommunications centers and drone component plants",
-    "routine (significance 2 < 3): 2026-09-25 Sudanese army drone strike kills nine civilians in North Kordofan",
-    "routine (significance 1 < 3): 2026-09-25 Houthi forces clash with Yemeni government-aligned forces along Taiz-Aden route"
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian strikes hit Saky airfield for second time, damaging seven aircraft",
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian forces strike nine substations in occupied Crimea, causing power outages",
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian strike on Hvardiiske airfield drone hangars",
+    "routine (significance 1 < 3): 2026-07-03 Russian missile and drone strikes kill at least five across Ukraine",
+    "routine (significance 2 < 3): 2026-07-03 Ukraine declares day of mourning for July 2 Kyiv bombardment as death toll rises to 30",
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian missile strike on Belgorod thermal power plant substation",
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian strikes hit 12 Russian substations in 48 hours",
+    "routine (significance 2 < 3): 2026-07-03 Remotely detonated mine blast wounds Kursk region officials",
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian strikes on Russian military assets in occupied Zaporizhia and Donetsk oblasts",
+    "routine (significance 2 < 3): 2026-07-03 Ukrainian drone attack hits passenger bus and Belarusian trucks in Bryansk Oblast",
+    "routine (significance 1 < 3): 2026-07-03 Russian overnight barrage launches 570 drones and missiles at Ukraine",
+    "routine (significance 2 < 3): 2026-07-03 Ukraine confirms strike on Kostovo oil refinery near Nizhny Novgorod",
+    "routine (significance 1 < 3): 2026-07-04 Ukrainian forces strike two Russian command posts near Shakhtarske",
+    "routine (significance 2 < 3): 2026-07-04 Russian drone and missile strikes hit Ukrainian energy and industrial sites",
+    "routine (significance 1 < 3): 2026-09-26 Russian drone and missile strikes kill four across Ukraine, including two women in Zaporizhzhia",
+    "routine (significance 2 < 3): 2026-09-26 Russian strike on Kyiv damages data center supporting mobile internet and Starlink",
+    "routine (significance 2 < 3): 2026-09-26 Sudan Doctors Network accuses RSF of looting and destroying Sudri hospital"
   ],
   "errored": []
 }

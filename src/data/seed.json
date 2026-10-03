@@ -1,5 +1,5 @@
 {
-  "version": "2.19.7",
+  "version": "2.19.8",
   "countries": [
     {
       "id": "AFG",
@@ -4891,6 +4891,66 @@
           "independentSources": 7,
           "crossAlignment": false,
           "confidence": 0.77
+        },
+        {
+          "id": "seed_ukraine_war_e13",
+          "date": "2026-07-04",
+          "title": "Ukrainian strike hits St. Petersburg Oil Terminal and Kronstadt Naval Base",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 59.9606739,
+            "lng": 30.1586551,
+            "label": "St. Petersburg, Russia"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Overnight July 3-4, Ukraine launched hundreds of long-range drones striking the St. Petersburg Oil Terminal and the Kronstadt Naval Base, causing fires at both sites; Zelensky confirmed hits on oil infrastructure and military targets. Russia's defense ministry said nearly 500 drones were involved in the attack.",
+          "sources": [
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
+            "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
+            "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+            "https://www.youtube.com/watch?v=rnHA38F8izQ",
+            "https://www.youtube.com/watch?v=53cFeuLUY3I",
+            "https://en.wikipedia.org/wiki/Deep_strike_campaign",
+            "https://abcnews.com/International/ukraine-launches-major-drone-attack-russia/story?id=134470108",
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_July_4"
+          ],
+          "independentSources": 6,
+          "crossAlignment": true,
+          "confidence": 0.69
+        },
+        {
+          "id": "seed_ukraine_war_e14",
+          "date": "2026-07-04",
+          "title": "Ukraine launches massive drone attack on Russia with ~400-500 drones",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 59.9606739,
+            "lng": 30.1586551,
+            "label": "St. Petersburg, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine launched a massive overnight drone attack with roughly 400-500 long-range drones targeting Russian oil infrastructure and military sites, including the St. Petersburg oil terminal and Kronstadt naval base, with around 200 drones reported toward Moscow. The strike continued Ukraine's sustained campaign against Russia's oil refining and export capacity.",
+          "sources": [
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
+            "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
+            "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+            "https://www.youtube.com/watch?v=rnHA38F8izQ",
+            "https://www.youtube.com/watch?v=53cFeuLUY3I",
+            "https://en.wikipedia.org/wiki/Deep_strike_campaign",
+            "https://abcnews.com/International/ukraine-launches-major-drone-attack-russia/story?id=134470108",
+            "https://www.facebook.com/ucctoronto/posts/-urgent-july-4-2026-ukrainian-long-range-drones-reportedly-struck-the-st-petersb/1455543103281420"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.67
         }
       ],
       "aliases": [
@@ -4905,7 +4965,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-09-30"
+      "lastCheckedAt": "2026-10-03"
     },
     {
       "id": "seed_drc_m23",
