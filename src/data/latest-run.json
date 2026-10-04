@@ -1,119 +1,61 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37120633687",
-  "period": "2026-07-03..2026-09-26",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37202193144",
+  "period": "2026-07-05..2026-09-27",
   "days": [
-    "2026-07-03..2026-07-03",
-    "2026-07-04..2026-07-04",
-    "2026-09-26..2026-09-26"
+    "2026-07-05..2026-07-05",
+    "2026-07-06..2026-07-06",
+    "2026-09-27..2026-09-27"
   ],
   "region": null,
-  "ran_at": "2026-10-03",
+  "ran_at": "2026-10-04",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37120633687",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37202193144",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 214,
-    "candidates": 5,
-    "proposals": 5,
+    "items": 215,
+    "candidates": 2,
+    "proposals": 2,
     "auto_approved": 2,
-    "needs_human": 3,
-    "dropped": 17,
+    "needs_human": 0,
+    "dropped": 16,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 187,
-    "routine": 17,
+    "triaged_out": 190,
+    "routine": 16,
     "model_failovers": 0
   },
   "added": [
     {
-      "day": "2026-07-04..2026-07-04",
-      "date": "2026-07-04",
-      "title": "Ukrainian strike hits St. Petersburg Oil Terminal and Kronstadt Naval Base",
-      "conflict": "seed_ukraine_war",
-      "kind": "attack",
-      "severity": 3,
+      "day": "2026-07-06..2026-07-06",
+      "date": "2026-07-06",
+      "title": "Hamas-backed Gaza government resigns",
+      "conflict": "seed_gaza_war",
+      "kind": "milestone",
+      "severity": 2,
       "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
-        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
-        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
-        "https://www.youtube.com/watch?v=rnHA38F8izQ"
-      ]
-    },
-    {
-      "day": "2026-07-04..2026-07-04",
-      "date": "2026-07-04",
-      "title": "Ukraine launches massive drone attack on Russia with ~400-500 drones",
-      "conflict": "seed_ukraine_war",
-      "kind": "attack",
-      "severity": 4,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
-        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
-        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
-        "https://www.youtube.com/watch?v=rnHA38F8izQ"
+        "https://en.wikipedia.org/wiki/Gaza_war"
       ]
     }
   ],
-  "held": [
-    {
-      "day": "2026-07-03..2026-07-03",
-      "date": "2026-07-03",
-      "title": "Russia reports capturing Kostyantynivka",
-      "question": "fact-check returned 'pass' at confidence 0.49; only 76% of its claims are backed by the cited sources",
-      "confidence": 0.49,
-      "sources": [
-        "https://acleddata.com/update/ukraine-war-situation-update-27-june-3-july-2026",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-3-2026",
-        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-27-june-3-july-2026",
-        "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_June_2026_%E2%80%93_31_August_2026)"
-      ]
-    },
-    {
-      "day": "2026-07-04..2026-07-04",
-      "date": "2026-07-04",
-      "title": "Russia announces complete capture of Kostiantynivka",
-      "question": "fact-check returned 'uncertain' at confidence 0.57; only 37% of its claims are backed by the cited sources",
-      "confidence": 0.57,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
-        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
-        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
-        "https://www.youtube.com/watch?v=rnHA38F8izQ"
-      ]
-    },
-    {
-      "day": "2026-07-04..2026-07-04",
-      "date": "2026-07-04",
-      "title": "Russian forces capture Zimlyany Yar and Losivka in northeastern Kharkiv Oblast",
-      "question": "fact-check returned 'uncertain' at confidence 0.37; only 46% of its claims are backed by the cited sources",
-      "confidence": 0.37,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-4-2026",
-        "https://acleddata.com/update/ukraine-war-situation-update-4-10-july-2026",
-        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
-        "https://www.youtube.com/watch?v=rnHA38F8izQ"
-      ]
-    }
-  ],
+  "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian strikes hit Saky airfield for second time, damaging seven aircraft",
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian forces strike nine substations in occupied Crimea, causing power outages",
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian strike on Hvardiiske airfield drone hangars",
-    "routine (significance 1 < 3): 2026-07-03 Russian missile and drone strikes kill at least five across Ukraine",
-    "routine (significance 2 < 3): 2026-07-03 Ukraine declares day of mourning for July 2 Kyiv bombardment as death toll rises to 30",
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian missile strike on Belgorod thermal power plant substation",
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian strikes hit 12 Russian substations in 48 hours",
-    "routine (significance 2 < 3): 2026-07-03 Remotely detonated mine blast wounds Kursk region officials",
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian strikes on Russian military assets in occupied Zaporizhia and Donetsk oblasts",
-    "routine (significance 2 < 3): 2026-07-03 Ukrainian drone attack hits passenger bus and Belarusian trucks in Bryansk Oblast",
-    "routine (significance 1 < 3): 2026-07-03 Russian overnight barrage launches 570 drones and missiles at Ukraine",
-    "routine (significance 2 < 3): 2026-07-03 Ukraine confirms strike on Kostovo oil refinery near Nizhny Novgorod",
-    "routine (significance 1 < 3): 2026-07-04 Ukrainian forces strike two Russian command posts near Shakhtarske",
-    "routine (significance 2 < 3): 2026-07-04 Russian drone and missile strikes hit Ukrainian energy and industrial sites",
-    "routine (significance 1 < 3): 2026-09-26 Russian drone and missile strikes kill four across Ukraine, including two women in Zaporizhzhia",
-    "routine (significance 2 < 3): 2026-09-26 Russian strike on Kyiv damages data center supporting mobile internet and Starlink",
-    "routine (significance 2 < 3): 2026-09-26 Sudan Doctors Network accuses RSF of looting and destroying Sudri hospital"
+    "routine (significance 2 < 3): 2026-07-05 Russian Geran-4 drone strike on Dyakivka electrical substation",
+    "routine (significance 1 < 3): 2026-07-05 Russian drone and missile strikes across Ukraine on night of July 4-5",
+    "routine (significance 2 < 3): 2026-07-05 Ukrainian strike on Russian ammunition depot near Dovzhansk",
+    "routine (significance 2 < 3): 2026-07-05 Ukrainian strikes on electrical substation transformers in occupied Luhansk Oblast",
+    "routine (significance 1 < 3): 2026-07-05 DRC accuses Rwandan forces and M23 of drone strikes in North and South Kivu",
+    "routine (significance 1 < 3): 2026-07-05 Houthi attack kills at least 15 Yemeni government soldiers",
+    "routine (significance 2 < 3): 2026-07-06 Russian massed missile and drone strike on Kyiv",
+    "routine (significance 2 < 3): 2026-07-06 Ukrainian drone attack on Russian energy infrastructure",
+    "routine (significance 2 < 3): 2026-07-06 Ukrainian drone hits public transport in Belgorod region",
+    "routine (significance 2 < 3): 2026-09-27 Russian overnight strikes kill eight across Ukraine",
+    "routine (significance 2 < 3): 2026-09-27 Russian forces capture Khrypuny in Kharkiv region",
+    "routine (significance 2 < 3): 2026-09-27 Israeli airstrikes on Hezbollah infrastructure in south Lebanon",
+    "routine (significance 2 < 3): 2026-09-27 Saudi airstrike on market in Taiz kills seven",
+    "routine (significance 1 < 3): 2026-09-27 Drone shot down west of Tena, North Kordofan",
+    "routine (significance 1 < 3): 2026-09-27 Heavy fighting erupts in Rugezi and Gipimo, Fizi",
+    "routine (significance 1 < 3): 2026-09-27 JNIM attack on army base in central Mali kills 10 soldiers"
   ],
   "errored": []
 }

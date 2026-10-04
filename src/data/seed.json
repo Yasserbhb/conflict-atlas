@@ -1,5 +1,5 @@
 {
-  "version": "2.19.8",
+  "version": "2.19.9",
   "countries": [
     {
       "id": "AFG",
@@ -5459,12 +5459,43 @@
           "sources": [
             "https://en.wikipedia.org/wiki/2025_UNHRC_Commission_of_Inquiry_report_on_Gaza_genocide"
           ]
+        },
+        {
+          "id": "seed_gaza_war_e10",
+          "date": "2026-07-06",
+          "title": "Hamas-backed Gaza government resigns",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": -23.328398,
+            "lng": 32.8066057,
+            "label": "Gaza"
+          },
+          "parties": [
+            "PSE",
+            "ISR"
+          ],
+          "description": "The Hamas-backed Gaza government resigned in order to hand administrative power to Palestinian technocrats, a political restructuring amid the Gaza war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Gaza_war"
+          ],
+          "independentSources": 1,
+          "crossAlignment": false,
+          "confidence": 0.77
         }
       ],
       "aliases": [
         "Gaza war"
       ],
-      "lastCheckedAt": "2026-09-20"
+      "lastCheckedAt": "2026-10-04",
+      "statusHistory": [
+        {
+          "status": "active",
+          "date": "2026-07-06",
+          "eventId": "seed_gaza_war_e10"
+        }
+      ],
+      "status": "active"
     },
     {
       "id": "seed_western_sahara",
