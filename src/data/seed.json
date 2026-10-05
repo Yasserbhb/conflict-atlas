@@ -1,5 +1,5 @@
 {
-  "version": "2.19.9",
+  "version": "2.19.10",
   "countries": [
     {
       "id": "AFG",
@@ -4606,6 +4606,10 @@
         {
           "countryId": "CHN",
           "role": "funder"
+        },
+        {
+          "countryId": "TUR",
+          "role": "funder"
         }
       ],
       "involvedCountries": [
@@ -4617,7 +4621,8 @@
         "FRA",
         "PRK",
         "IRN",
-        "CHN"
+        "CHN",
+        "TUR"
       ],
       "tags": [
         "nato",
@@ -4951,11 +4956,65 @@
           "independentSources": 7,
           "crossAlignment": true,
           "confidence": 0.67
+        },
+        {
+          "id": "seed_ukraine_war_e15",
+          "date": "2026-07-08",
+          "title": "Ukrainian strikes hit tankers in the Azov Sea; Russia bans diesel exports",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 46.196729,
+            "lng": 36.7357066,
+            "label": "Azov Sea"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukrainian strikes hit tankers in the Azov Sea, with Ukraine reporting nine tankers struck, amid a Russian fuel crisis that prompted Moscow to ban diesel exports.",
+          "sources": [
+            "https://ru.wikipedia.org/wiki/%D0%A5%D1%80%D0%BE%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F_%D0%B2%D1%82%D0%BE%D1%80%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8_%D0%BD%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D1%83_(%D0%B8%D1%8E%D0%BB%D1%8C_2026)"
+          ],
+          "independentSources": 1,
+          "crossAlignment": false,
+          "confidence": 0.61
+        },
+        {
+          "id": "seed_ukraine_war_e16",
+          "date": "2026-07-08",
+          "title": "NATO countries pledge €70 billion in military aid to Ukraine for 2026",
+          "kind": "treaty",
+          "severity": 2,
+          "location": {
+            "lat": 39.9207759,
+            "lng": 32.8540497,
+            "label": "Ankara, Turkey"
+          },
+          "parties": [
+            "TUR",
+            "UKR",
+            "USA",
+            "GBR",
+            "DEU",
+            "FRA"
+          ],
+          "description": "At the NATO summit in Ankara, member states drafted a declaration pledging €70 billion in military aid to Ukraine for 2026, with equivalent support planned for 2027. The pledge continues sustained Western material backing for Ukraine's defence against the Russian invasion.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_July_8",
+            "https://www.youtube.com/watch?v=sJca3G1NXyc",
+            "https://www.youtube.com/watch?v=k9AAvzP_HL8",
+            "https://www.aljazeera.net/where/mideast/arab/sudan"
+          ],
+          "independentSources": 3,
+          "crossAlignment": false,
+          "confidence": 0.5
         }
       ],
       "aliases": [
         "Russo-Ukrainian war",
-        "Russia-Ukraine war"
+        "Russia-Ukraine war",
+        "Russian invasion of Ukraine"
       ],
       "statusHistory": [
         {
@@ -4965,7 +5024,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-03"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "seed_drc_m23",
@@ -10772,12 +10831,17 @@
         {
           "countryId": "TUR",
           "role": "funder"
+        },
+        {
+          "countryId": "USA",
+          "role": "sanctioner"
         }
       ],
       "involvedCountries": [
         "SYR",
         "ISR",
-        "TUR"
+        "TUR",
+        "USA"
       ],
       "tags": [
         "transition",
@@ -10787,7 +10851,44 @@
         "airstrikes",
         "post-assad"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_syria_transition_e1",
+          "date": "2026-07-08",
+          "title": "US announces removal of Syria as 'state sponsor of terrorism'",
+          "kind": "sanction",
+          "severity": 1,
+          "location": {
+            "lat": 38.8950982,
+            "lng": -77.0363849,
+            "label": "Washington, D.C., United States"
+          },
+          "parties": [
+            "USA",
+            "SYR"
+          ],
+          "description": "US Secretary of State Marco Rubio notified Congress that Syria will be removed from the US list of 'state sponsors of terrorism', ending a designation held since 1979 under the Assad regime. The move is part of shifting US policy toward Syria in the aftermath of the Syrian civil war.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_July_8"
+          ],
+          "independentSources": 1,
+          "crossAlignment": false,
+          "confidence": 0.87
+        }
+      ],
+      "aliases": [
+        "Aftermath of the Syrian civil war"
+      ],
+      "statusHistory": [
+        {
+          "status": "active",
+          "date": "2026-07-08",
+          "eventId": "seed_syria_transition_e1"
+        }
+      ],
+      "status": "active",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "seed_lebanon_war_2024",
