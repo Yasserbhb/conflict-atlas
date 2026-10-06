@@ -1,139 +1,105 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37327886219",
-  "period": "2026-07-07..2026-09-28",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37470401692",
+  "period": "2026-07-09..2026-09-29",
   "days": [
-    "2026-07-07..2026-07-07",
-    "2026-07-08..2026-07-08",
-    "2026-09-28..2026-09-28"
+    "2026-07-09..2026-07-09",
+    "2026-07-10..2026-07-10",
+    "2026-09-29..2026-09-29"
   ],
   "region": null,
-  "ran_at": "2026-10-05",
+  "ran_at": "2026-10-06",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37327886219",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/37470401692",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 212,
-    "candidates": 6,
-    "proposals": 6,
-    "auto_approved": 4,
-    "needs_human": 2,
-    "dropped": 42,
+    "items": 215,
+    "candidates": 4,
+    "proposals": 4,
+    "auto_approved": 1,
+    "needs_human": 3,
+    "dropped": 17,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 160,
-    "routine": 42,
+    "triaged_out": 189,
+    "routine": 17,
     "model_failovers": 0
   },
   "added": [
     {
-      "day": "2026-07-08..2026-07-08",
-      "date": "2026-07-08",
-      "title": "US announces removal of Syria as 'state sponsor of terrorism'",
-      "conflict": "seed_syria_transition",
+      "day": "2026-07-10..2026-07-10",
+      "date": "2026-07-10",
+      "title": "Russia bans gasoline and diesel fuel exports amid Ukrainian strikes",
+      "conflict": "seed_ukraine_war",
       "kind": "sanction",
-      "severity": 1,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_July_8"
-      ]
-    },
-    {
-      "day": "2026-07-08..2026-07-08",
-      "date": "2026-07-08",
-      "title": "Ukrainian strikes hit tankers in the Azov Sea; Russia bans diesel exports",
-      "conflict": "seed_ukraine_war",
-      "kind": "attack",
-      "severity": 3,
-      "sources": [
-        "https://ru.wikipedia.org/wiki/%D0%A5%D1%80%D0%BE%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F_%D0%B2%D1%82%D0%BE%D1%80%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8_%D0%BD%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D1%83_(%D0%B8%D1%8E%D0%BB%D1%8C_2026)"
-      ]
-    },
-    {
-      "day": "2026-07-08..2026-07-08",
-      "date": "2026-07-08",
-      "title": "NATO countries pledge €70 billion in military aid to Ukraine for 2026",
-      "conflict": "seed_ukraine_war",
-      "kind": "treaty",
       "severity": 2,
       "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_July_8",
-        "https://www.youtube.com/watch?v=sJca3G1NXyc",
-        "https://www.youtube.com/watch?v=k9AAvzP_HL8",
-        "https://www.aljazeera.net/where/mideast/arab/sudan"
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-10-2026",
+        "https://www.aljazeera.com/news/2026/7/10/russian-attacks-kill-four-as-ukraine-continues-to-target-oil-infrastructure",
+        "https://www.youtube.com/watch?v=az83XTvHnc4",
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026"
       ]
     }
   ],
   "held": [
     {
-      "day": "2026-07-08..2026-07-08",
-      "date": "2026-07-08",
-      "title": "Iranian state media releases footage of Ali Khamenei's compound hit in airstrike",
-      "question": "fact-check returned 'pass' at confidence 0.30; only 44% of its claims are backed by the cited sources",
-      "confidence": 0.3,
+      "day": "2026-07-09..2026-07-09",
+      "date": "2026-07-09",
+      "title": "Russia reportedly captures Konstantinovka and Mykolaivka",
+      "question": "fact-check returned 'uncertain' at confidence 0.45; only 52% of its claims are backed by the cited sources",
+      "confidence": 0.45,
       "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_July_8",
-        "https://en.wikipedia.org/wiki/Timeline_of_the_Israeli%E2%80%93Palestinian_conflict_in_2026",
-        "https://www.aljazeera.com/news/2026/7/8/israeli-air-strikes-in-gaza-kill-eight-including-two-children",
-        "https://www.aljazeera.com/news/2026/7/9/israeli-attacks-on-gaza-kill-10-people-in-24-hours-despite-ceasefire"
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-9-2026",
+        "https://www.youtube.com/watch?v=mW9TRS0wn4M",
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-29-2026",
+        "https://www.youtube.com/watch?v=aZkTkc-ALOQ&xstg=CAMSBhUD_LL2Hw%3D%3D"
       ]
     },
     {
-      "day": "2026-07-08..2026-07-08",
-      "date": "2026-07-08",
-      "title": "Ukraine destroys Russian Su-35 fighter, second of the war",
-      "question": "fact-check returned 'pass' at confidence 0.37; only 65% of its claims are backed by the cited sources",
-      "confidence": 0.37,
+      "day": "2026-07-10..2026-07-10",
+      "date": "2026-07-10",
+      "title": "RSF captures Kulbus after SAF withdrawal",
+      "question": "fact-check returned 'pass' at confidence 0.27; only 56% of its claims are backed by the cited sources",
+      "confidence": 0.27,
       "sources": [
-        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-july-2026",
-        "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
-        "https://www.aljazeera.net/where/mideast/arab/sudan",
-        "https://ru.wikipedia.org/wiki/%D0%A5%D1%80%D0%BE%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F_%D0%B2%D1%82%D0%BE%D1%80%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8_%D0%BD%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D1%83_(%D0%B8%D1%8E%D0%BB%D1%8C_2026)"
+        "https://www.youtube.com/watch?v=az83XTvHnc4",
+        "https://www.russiamatters.org/news/russia-review/russia-review-july-10-17-2026",
+        "https://www.youtube.com/watch?v=aZkTkc-ALOQ",
+        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-july-2026"
+      ]
+    },
+    {
+      "day": "2026-09-29..2026-09-29",
+      "date": "2026-09-29",
+      "title": "Israel kills Hamas northern Gaza brigade commander Izz al-Din Bik in Gaza City strike",
+      "question": "fact-check returned 'pass' at confidence 0.09; only 42% of its claims are backed by the cited sources",
+      "confidence": 0.09,
+      "sources": [
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-september-29-2026",
+        "https://www.aljazeera.com/news/2026/9/29/russian-strike-hits-ukraines-academy-of-sciences-in-kyiv-killing-2",
+        "https://crimea-platform.org/en/news/weekly-update-on-the-situation-in-occupied-crimea-on-september-29-2026",
+        "https://www.i24news.tv/ar/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/middle-east/artc-9fb05f35"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-07-07 Ukraine strikes eight Russian shadow fleet tankers in Sea of Azov",
-    "routine (significance 2 < 3): 2026-07-07 Ukrainian strikes hit 44 electrical facilities in occupied Crimea and southern Ukraine",
-    "routine (significance 1 < 3): 2026-07-07 Ukraine strikes Russian depots near Volnovakha and Yasynuvata",
-    "routine (significance 1 < 3): 2026-07-07 Russian overnight attacks kill seven across Ukraine",
-    "routine (significance 2 < 3): 2026-07-07 Ukrainian drone attack kills one in Saratov region",
-    "routine (significance 2 < 3): 2026-07-07 Ukrainian drones hit Nizhnekamsk, Tatarstan",
-    "routine (significance 1 < 3): 2026-07-07 Russian strike kills two at residential building in Kharkiv region",
-    "routine (significance 1 < 3): 2026-07-07 Russian drone strike hits gas station in Kharkiv",
-    "routine (significance 1 < 3): 2026-07-07 219 combat clashes on the frontline",
-    "routine (significance 1 < 3): 2026-07-07 Russian drones target Belgorod, Moscow, and Kryvyi Rih",
-    "routine (significance 2 < 3): 2026-07-07 NATO summit opens in Ankara",
-    "routine (significance 2 < 3): 2026-07-08 US conducts new airstrikes against Iran, at least 14 killed in two days",
-    "routine (significance 2 < 3): 2026-07-08 Israel says Hamas Nukhba commander Mohammed Abu Taima killed in airstrike in southern Gaza",
-    "routine (significance 1 < 3): 2026-07-08 Israeli air strikes in Gaza kill eight, including two children",
-    "routine (significance 1 < 3): 2026-07-08 Israeli strike on displaced persons' tent near Turkish slaughterhouse kills 4",
-    "routine (significance 2 < 3): 2026-07-08 World Central Kitchen aid driver killed by Israeli forces near Kerem Shalom",
-    "routine (significance 2 < 3): 2026-07-08 Israeli drone strike impacts UNRWA office compound in western Gaza City",
-    "routine (significance 1 < 3): 2026-07-08 Israeli bombing of civilian vehicle in Sabra neighborhood kills people",
-    "routine (significance 1 < 3): 2026-07-08 RSF drone strike kills 10 people traveling to a wedding near Omdurman",
-    "routine (significance 1 < 3): 2026-07-08 Death toll from Damascus bombings rises to 1 killed, 36 injured",
-    "routine (significance 1 < 3): 2026-07-08 Pakistan says 42 security personnel killed in Balochistan militant attacks since July 6",
-    "routine (significance 2 < 3): 2026-07-08 US to resume consular services in Karachi and Lahore",
-    "routine (significance 2 < 3): 2026-07-08 Russia launches massive overnight attack on Ukraine with ballistic missiles and 169 drones",
-    "routine (significance 2 < 3): 2026-07-08 Russian ballistic missile strike on Kyiv kills one woman, damages tram depot",
-    "routine (significance 1 < 3): 2026-07-08 Russian strike on Kharkiv kills two and wounds about 20, including children",
-    "routine (significance 1 < 3): 2026-07-08 Russian strike on Mykolaiv region kills woman and her 15-year-old daughter",
-    "routine (significance 1 < 3): 2026-07-08 219 combat clashes on the front line over the past day",
-    "routine (significance 2 < 3): 2026-07-08 Ukrainian drone attack on Moscow; over 430 drones reported downed across Russia",
-    "routine (significance 2 < 3): 2026-07-08 Ukrainian strikes hit Saratov oil refinery, forcing it to halt operations",
-    "routine (significance 2 < 3): 2026-07-08 Fire at Borisoglebsk military airfield in Voronezh region",
-    "routine (significance 2 < 3): 2026-07-08 Ukrainian strikes hit Blue Stream compressor station and Belgorod energy infrastructure",
-    "routine (significance 2 < 3): 2026-07-08 Ukraine says it struck two bridges in Crimea and defense plants in Bryansk",
-    "routine (significance 1 < 3): 2026-07-08 Russian forces shell Kherson public and civilian transport",
-    "routine (significance 2 < 3): 2026-09-28 Russian forces use Ukrainian civilians as human shields during retreat into gas pipeline near Kupyansk",
-    "routine (significance 2 < 3): 2026-09-28 Russian guided aerial bomb hits apartment block in Kharkiv, injuring 22",
-    "routine (significance 2 < 3): 2026-09-28 Russian drone strike hits National Academy of Sciences building in Kyiv, killing at least two",
-    "routine (significance 1 < 3): 2026-09-28 Russia launches mass drone attacks on Kyiv and other Ukrainian cities",
-    "routine (significance 2 < 3): 2026-09-28 Ukrainian long-range drones strike two oil depots in Russia's Krasnodar Krai",
-    "routine (significance 2 < 3): 2026-09-28 Ukrainian drone attack collapses part of railway bridge in Bryansk Oblast",
-    "routine (significance 2 < 3): 2026-09-28 Russian Colonel General Alexander Lapin becomes deputy prime minister of Tatarstan",
-    "routine (significance 2 < 3): 2026-09-28 Ukraine's GUR reports Russia intends to test new 800-km range ballistic missile by end of 2026",
-    "routine (significance 1 < 3): 2026-09-28 Two Palestinians killed in Israeli airstrike on downtown Gaza City"
+    "routine (significance 2 < 3): 2026-07-09 Ukrainian strike on Russian training ground near Oleksandrivka",
+    "routine (significance 2 < 3): 2026-07-09 Ukrainian strikes on energy facilities in occupied Kherson Oblast",
+    "routine (significance 2 < 3): 2026-07-09 Ukrainian overnight strikes on 45 Russian military targets in occupied Crimea",
+    "routine (significance 2 < 3): 2026-07-09 Ukrainian strikes on Stavropol and Tver oil depots",
+    "routine (significance 2 < 3): 2026-07-09 US warns Ukraine of massive Russian bombardment within 72 hours",
+    "routine (significance 2 < 3): 2026-07-09 Russian drone strikes across southern and central Ukraine",
+    "routine (significance 2 < 3): 2026-07-09 US strikes on Iran and Iranian retaliatory attacks on US targets in the Gulf",
+    "routine (significance 1 < 3): 2026-07-10 Russian air strikes kill five in Kramatorsk and Zaporizhzhia",
+    "routine (significance 1 < 3): 2026-07-10 Ukrainian drone strike kills oil tanker crew member in Sea of Azov campaign",
+    "routine (significance 1 < 3): 2026-07-10 Ukrainian drones again strike Ilsky refinery in Russia",
+    "routine (significance 2 < 3): 2026-09-29 Russian drone strike hits National Academy of Sciences in Kyiv, killing at least two",
+    "routine (significance 1 < 3): 2026-09-29 Russian drone attack on Dnipro business centre kills three",
+    "routine (significance 1 < 3): 2026-09-29 Russian attack on Zaporizhzhia infrastructure wounds 32",
+    "routine (significance 2 < 3): 2026-09-29 Zelenskyy says Ukraine struck Russian oil facilities in Krasnodar region and two defence plants",
+    "routine (significance 2 < 3): 2026-09-29 Israeli strike kills Islamic Jihad commander Musab al-Balbisi in Jabalia camp",
+    "routine (significance 2 < 3): 2026-09-29 IDF kills Hamas financial operative Shadi Abu Hasira in Gaza City strike",
+    "routine (significance 2 < 3): 2026-09-29 Israeli settlers riot in Galud village, wounding three border guards"
   ],
   "errored": []
 }

@@ -1,5 +1,5 @@
 {
-  "version": "2.19.10",
+  "version": "2.19.11",
   "countries": [
     {
       "id": "AFG",
@@ -5009,6 +5009,36 @@
           "independentSources": 3,
           "crossAlignment": false,
           "confidence": 0.5
+        },
+        {
+          "id": "seed_ukraine_war_e17",
+          "date": "2026-07-10",
+          "title": "Russia bans gasoline and diesel fuel exports amid Ukrainian strikes",
+          "kind": "sanction",
+          "severity": 2,
+          "location": {
+            "lat": 55.625578,
+            "lng": 37.6063916,
+            "label": "Moscow, Russia"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Russia's deputy prime minister announced a ban on gasoline and diesel exports, citing fuel shortages caused by Ukrainian drone strikes on energy infrastructure. The move came amid an intensified Ukrainian campaign against Russian oil facilities, shadow-fleet tankers, and supply routes to occupied Crimea.",
+          "sources": [
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-10-2026",
+            "https://www.aljazeera.com/news/2026/7/10/russian-attacks-kill-four-as-ukraine-continues-to-target-oil-infrastructure",
+            "https://www.youtube.com/watch?v=az83XTvHnc4",
+            "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-4-10-july-2026",
+            "https://www.kyivpost.com/post/80241",
+            "https://www.aljazeera.com/news/2026/7/10/trump-grants-kyiv-patriots-licences-whats-next-in-the-russia-ukraine-war",
+            "https://www.russiamatters.org/news/russia-review/russia-review-july-10-17-2026",
+            "https://www.pbs.org/wnet/amanpour-and-company/video/july-10-2026-b79qvy"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.78
         }
       ],
       "aliases": [
@@ -5024,7 +5054,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-05"
+      "lastCheckedAt": "2026-10-06"
     },
     {
       "id": "seed_drc_m23",
