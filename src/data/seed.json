@@ -1,5 +1,5 @@
 {
-  "version": "2.19.11",
+  "version": "2.19.12",
   "countries": [
     {
       "id": "AFG",
@@ -11362,12 +11362,51 @@
           "sources": [
             "https://en.wikipedia.org/wiki/2026_Iran_war"
           ]
+        },
+        {
+          "id": "seed_israel_iran_war_e11",
+          "date": "2026-07-11",
+          "title": "US strikes 140 Iranian military targets in third round of strikes",
+          "kind": "offensive",
+          "severity": 3,
+          "location": {
+            "lat": 26.57,
+            "lng": 56.25,
+            "label": "Strait of Hormuz / Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN",
+            "QAT"
+          ],
+          "description": "US Central Command struck 140 Iranian military targets in a third round of strikes after IRGC forces fired a warning shot at a merchant ship and declared the Strait of Hormuz closed. Mediators including Qatar, Saudi Arabia, and Pakistan sought to resume talks as hostilities resumed following a ceasefire.",
+          "sources": [
+            "https://www.cfr.org/global-conflict-tracker/conflict/confrontation-between-united-states-and-iran/alerts?page=2",
+            "https://understandingwar.org/research/middle-east/iran-update-special-report-july-11-2026",
+            "https://www.cnn.com/2026/07/11/world/live-news/iran-war-trump",
+            "https://www.aljazeera.com/news/liveblog/2026/7/11/iran-war-live-us-demands-iran-publicly-state-strait-of-hormuz-open-for-all",
+            "https://www.criticalthreats.org/analysis/iran-update-special-report-july-11-2026",
+            "https://acleddata.com/update/middle-east-overview-july-2026",
+            "https://www.cfr.org/global-conflict-tracker/region/middle-east-and-north-africa"
+          ],
+          "independentSources": 6,
+          "crossAlignment": true,
+          "confidence": 0.79
         }
       ],
       "aliases": [
-        "2026 Iran war"
+        "2026 Iran war",
+        "US-Iran conflict"
       ],
-      "lastCheckedAt": "2026-09-28"
+      "lastCheckedAt": "2026-10-07",
+      "statusHistory": [
+        {
+          "status": "active",
+          "date": "2026-07-11",
+          "eventId": "seed_israel_iran_war_e11"
+        }
+      ],
+      "status": "active"
     },
     {
       "id": "seed_us_venezuela",
