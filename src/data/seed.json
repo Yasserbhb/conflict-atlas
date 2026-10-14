@@ -1,5 +1,5 @@
 {
-  "version": "2.19.14",
+  "version": "2.19.15",
   "countries": [
     {
       "id": "AFG",
@@ -5571,12 +5571,42 @@
           "independentSources": 1,
           "crossAlignment": false,
           "confidence": 0.77
+        },
+        {
+          "id": "seed_gaza_war_e11",
+          "date": "2026-07-25",
+          "title": "Israeli airstrike kills head of Hamas-led police in northern Gaza",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 31.5217809,
+            "lng": 34.4451044,
+            "label": "Sheikh Radwan, Gaza City"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "An Israeli airstrike killed Brigadier-General Abdel-Nasser al-Maqadma, head of the Hamas-led police and governor of northern Gaza, in Gaza City's Sheikh Radwan area, according to medics and police officials.",
+          "sources": [
+            "https://www.aljazeera.com/news/2026/7/25/head-of-hamas-led-police-in-northern-gaza-killed-by-israeli-strike",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Israeli%E2%80%93Palestinian_conflict_in_2026",
+            "https://www.thedailyfile.org/en/the-daily-files/saturday-july-25-2026-the-gaza-strip",
+            "https://www.aljazeera.com/news/2026/7/26/israeli-air-strike-on-a-vehicle-in-gaza-kills-two-hamas-security-officials",
+            "https://www.aljazeera.com/news/2026/7/24/israel-bombs-gaza-after-displacement-orders-kills-two-palestinians",
+            "https://electronicintifada.net/content/palestine-pictures-july-2026/51574",
+            "https://www.cfr.org/global-conflict-tracker/conflict/israeli-palestinian-conflict",
+            "https://acleddata.com/expert-comment/what-driving-recent-surge-israeli-strikes-gaza"
+          ],
+          "independentSources": 6,
+          "crossAlignment": true,
+          "confidence": 0.92
         }
       ],
       "aliases": [
         "Gaza war"
       ],
-      "lastCheckedAt": "2026-10-04",
+      "lastCheckedAt": "2026-10-14",
       "statusHistory": [
         {
           "status": "active",
