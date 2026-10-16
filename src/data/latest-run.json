@@ -1,133 +1,85 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/38728658038",
-  "period": "2026-07-26..2026-10-08",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/38894333644",
+  "period": "2026-07-28..2026-10-09",
   "days": [
-    "2026-07-26..2026-07-26",
-    "2026-07-27..2026-07-27",
-    "2026-10-08..2026-10-08"
+    "2026-07-28..2026-07-28",
+    "2026-07-29..2026-07-29",
+    "2026-10-09..2026-10-09"
   ],
   "region": null,
-  "ran_at": "2026-10-15",
+  "ran_at": "2026-10-16",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/38728658038",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/38894333644",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 215,
-    "candidates": 6,
-    "proposals": 6,
-    "auto_approved": 0,
-    "needs_human": 6,
-    "dropped": 21,
+    "items": 214,
+    "candidates": 2,
+    "proposals": 2,
+    "auto_approved": 2,
+    "needs_human": 0,
+    "dropped": 26,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 170,
-    "routine": 21,
+    "triaged_out": 175,
+    "routine": 26,
     "model_failovers": 0
   },
-  "added": [],
-  "held": [
+  "added": [
     {
-      "day": "2026-07-26..2026-07-26",
-      "date": "2026-07-26",
-      "title": "Ukrainian drone strike on Tyumen oil refinery confirmed",
-      "question": "fact-check returned 'fail' at confidence 0.56; only 11% of its claims are backed by the cited sources",
-      "confidence": 0.56,
+      "day": "2026-07-28..2026-07-28",
+      "date": "2026-07-28",
+      "title": "Zelensky meets Trump in Washington to discuss air defenses and ending the war",
+      "conflict": "seed_ukraine_war",
+      "kind": "milestone",
+      "severity": 2,
       "sources": [
-        "https://www.youtube.com/watch?v=2MsjX3vaWM8",
-        "https://mickryan.substack.com/p/deepening-dilemmas-ukraines-new-commands",
-        "https://www.aljazeera.com/news/2026/7/26/freeze-the-conflict-drones-slow-kazakh-oil-flow-amid-russia-ukraine-war",
-        "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine"
+        "https://x.com/TheStudyofWar/status/2082251028229947577"
       ]
     },
     {
-      "day": "2026-07-26..2026-07-26",
-      "date": "2026-07-26",
-      "title": "Sudanese army and allied forces retake Bara from RSF",
-      "question": "fact-check returned 'pass' at confidence 0.09; only 52% of its claims are backed by the cited sources",
-      "confidence": 0.09,
+      "day": "2026-07-29..2026-07-29",
+      "date": "2026-07-29",
+      "title": "Russia launches large-scale missile and drone strike across Ukraine",
+      "conflict": "seed_ukraine_war",
+      "kind": "attack",
+      "severity": 4,
       "sources": [
-        "https://mickryan.substack.com/p/deepening-dilemmas-ukraines-new-commands",
-        "https://www.cfr.org/global-conflict-tracker/conflict/conflict-ukraine",
-        "https://www.russiamatters.org/news/russia-ukraine-war-report-card/russia-ukraine-war-report-card-oct-14-2026",
-        "https://www.aljazeera.com/news/2026/10/15/russia-says-ukraine-resumes-attacks-on-oil-refineries"
-      ]
-    },
-    {
-      "day": "2026-07-27..2026-07-27",
-      "date": "2026-07-27",
-      "title": "SAF claims full control of Khartoum–El-Obeid highway",
-      "question": "fact-check returned 'pass' at confidence 0.49; only 67% of its claims are backed by the cited sources",
-      "confidence": 0.49,
-      "sources": [
-        "https://www.facebook.com/InstitutefortheStudyofWar/posts/russian-offensive-campaign-assessment-july-27-2026-russian-president-vladimir-pu/1483374890501450",
-        "https://www.aljazeera.com/news/2026/8/27/three-killed-in-strikes-on-gaza-as-israel-renews-threats-over-kite-flying",
-        "https://en.wikipedia.org/wiki/Timeline_of_the_Sudanese_civil_war_(2026)",
-        "https://sudantribune.com/article/317979"
-      ]
-    },
-    {
-      "day": "2026-07-27..2026-07-27",
-      "date": "2026-07-27",
-      "title": "Putin decrees increase of Russian armed forces to 2,426,000 personnel",
-      "question": "fact-check returned 'uncertain' at confidence 0.20; only 15% of its claims are backed by the cited sources",
-      "confidence": 0.2,
-      "sources": [
-        "https://www.aljazeera.com/news/2026/7/27/russia-and-ukraine-trade-attacks-killing-10-including-child-in-chernihiv",
-        "https://www.usnews.com/news/world/articles/2026-07-27/russian-attacks-in-southeastern-dnipropetrovsk-region-kill-three-regional-governor-says",
-        "https://www.facebook.com/InstitutefortheStudyofWar/posts/russian-offensive-campaign-assessment-july-27-2026-russian-president-vladimir-pu/1483374890501450",
-        "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-july-27-2026"
-      ]
-    },
-    {
-      "day": "2026-10-08..2026-10-08",
-      "date": "2026-10-08",
-      "title": "Ukraine launches 399-drone strike deep inside Russia",
-      "question": "fact-check returned 'uncertain' at confidence 0.38; only 23% of its claims are backed by the cited sources",
-      "confidence": 0.38,
-      "sources": [
-        "https://www.youtube.com/watch?v=gJYSgq7Pi08",
-        "https://www.aljazeera.com/news/2026/10/8/russia-attack-in-ukraines-kramatorsk-kills-12",
-        "https://www.aljazeera.com/news/2026/10/9/ukraine-pushes-russia-back-in-donetsk-as-military-civilian-casualties-soar",
-        "https://www.lemonde.fr/en/international/article/2026/10/08/russian-strike-on-buses-kills-30-in-ukrainian-city_6758396_4.html"
-      ]
-    },
-    {
-      "day": "2026-10-08..2026-10-08",
-      "date": "2026-10-08",
-      "title": "Russian forces capture Hannopillia in Kharkiv cauldron",
-      "question": "fact-check returned 'uncertain' at confidence 0.25; only 39% of its claims are backed by the cited sources",
-      "confidence": 0.25,
-      "sources": [
-        "https://www.youtube.com/watch?v=gJYSgq7Pi08",
-        "https://www.aljazeera.com/news/2026/10/8/russia-attack-in-ukraines-kramatorsk-kills-12",
-        "https://www.aljazeera.com/news/2026/10/9/ukraine-pushes-russia-back-in-donetsk-as-military-civilian-casualties-soar",
-        "https://www.lemonde.fr/en/international/article/2026/10/08/russian-strike-on-buses-kills-30-in-ukrainian-city_6758396_4.html"
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-30-2026",
+        "https://www.youtube.com/watch?v=aZkTkc-ALOQ",
+        "https://www.russiamatters.org/news/russia-ukraine-war-report-card/russia-ukraine-war-report-card-july-29-2026",
+        "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_June_2026_%E2%80%93_31_August_2026)"
       ]
     }
   ],
+  "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-07-26 Russia launches ballistic missile attack on Kyiv",
-    "routine (significance 2 < 3): 2026-07-26 Ukraine strikes Russian targets in occupied Crimea and Donetsk Oblast",
-    "routine (significance 1 < 3): 2026-07-26 231 combat clashes along the front line in Ukraine",
-    "routine (significance 1 < 3): 2026-07-26 Russian strikes kill civilians in Kharkiv, Sumy and Donetsk Oblast",
-    "routine (significance 2 < 3): 2026-07-26 Battle for Kostiantynivka house of culture continues",
-    "routine (significance 2 < 3): 2026-07-26 Houthis fire missiles and drones at Saudi oil facilities",
-    "routine (significance 1 < 3): 2026-07-27 Russian strikes kill six in Ukraine, including child at Chernihiv supermarket",
-    "routine (significance 1 < 3): 2026-07-27 Ukrainian drone strike kills four in occupied Horlivka",
-    "routine (significance 2 < 3): 2026-07-27 Ukrainian drone strikes hit Russian oil facilities in Rostov, Yaroslavl and Udmurtia",
-    "routine (significance 1 < 3): 2026-07-27 Russian attacks in eastern Ukraine kill seven",
-    "routine (significance 1 < 3): 2026-07-27 Ukrainian drone strike kills one in Russia's Belgorod region",
-    "routine (significance 2 < 3): 2026-07-27 Hemedti grants RSF field commanders operational autonomy",
-    "routine (significance 1 < 3): 2026-07-27 RSF drone attack on El-Obeid",
-    "routine (significance 2 < 3): 2026-07-27 Ukrainian drone attack on Rostov-on-Don kills five",
-    "routine (significance 1 < 3): 2026-07-27 Russian strike on Zaporizhzhia kills one",
-    "routine (significance 2 < 3): 2026-07-27 Israeli strike kills two Hamas security officials in Deir al-Balah",
-    "routine (significance 2 < 3): 2026-10-08 Russian strike on two public buses kills 30 in Kramatorsk",
-    "routine (significance 2 < 3): 2026-10-08 Russian forces claim evacuation of over 4,000 Ukrainian civilians from frontline Donetsk settlements",
-    "routine (significance 1 < 3): 2026-10-08 Israeli strikes kill three Palestinians in Gaza",
-    "routine (significance 1 < 3): 2026-10-08 Jihadist attack kills at least 40 civilians in central Mali",
-    "routine (significance 1 < 3): 2026-10-08 Attack on refugee convoy kills 25 men in Burkina Faso"
+    "routine (significance 1 < 3): 2026-07-28 Russian strikes kill nine and injure almost 70 across Ukraine",
+    "routine (significance 1 < 3): 2026-07-28 Russia launches 131 drones against Ukraine overnight",
+    "routine (significance 2 < 3): 2026-07-28 Ukrainian long-range strikes hit fuel depot in Udmurtia and warehouses in Crimea and Luhansk Oblast",
+    "routine (significance 2 < 3): 2026-07-28 Israeli strike on Al-Muttaqin Mosque in Gaza City kills at least one Palestinian and destroys the mosque",
+    "routine (significance 1 < 3): 2026-07-28 Israeli airstrike hits Abu Amra family residence in Deir al-Balah",
+    "routine (significance 2 < 3): 2026-07-28 Sudanese army reports losing ~900 soldiers and 30 senior officers in recent Kordofan battles against RSF",
+    "routine (significance 2 < 3): 2026-07-29 Ukrainian GBU-64 strike kills at least 18 Russian personnel in Lysychansk",
+    "routine (significance 1 < 3): 2026-07-29 Ukraine strikes four more Russian oil tankers overnight",
+    "routine (significance 2 < 3): 2026-07-29 Ukrainian strikes on industrial sites in Russia and Crimea kill at least three",
+    "routine (significance 2 < 3): 2026-07-29 Ukraine says it hits two major Russian oil refineries",
+    "routine (significance 2 < 3): 2026-07-29 Israeli strike on mosque in Gaza City kills one, wounds dozens",
+    "routine (significance 2 < 3): 2026-07-29 Israeli strikes across Gaza kill at least six including children",
+    "routine (significance 2 < 3): 2026-07-29 Saudi-US strikes kill 20 Iran-backed militants in Iraq",
+    "routine (significance 2 < 3): 2026-07-29 Drone strike targets LNG tanker at port of Damietta, Egypt",
+    "routine (significance 1 < 3): 2026-07-29 RSF attack kills nine civilians in Sudan",
+    "routine (significance 2 < 3): 2026-07-29 Israeli forces destroy Hezbollah underground headquarters in southern Lebanon",
+    "routine (significance 2 < 3): 2026-07-29 Russian strikes hit Ukrainian port infrastructure in Mykolaiv and shipping near Odesa",
+    "routine (significance 1 < 3): 2026-07-29 Ukrainian drone attack sets Wildberries warehouse ablaze in Penza",
+    "routine (significance 2 < 3): 2026-10-09 Drone strike kills at least 30 at displacement camp in Ed Damazin",
+    "routine (significance 1 < 3): 2026-10-09 Russian strikes across Ukraine kill 3",
+    "routine (significance 2 < 3): 2026-10-09 Ukrainian drone strike on Moscow region closes four airports",
+    "routine (significance 2 < 3): 2026-10-09 Russian airstrike on Kramatorsk kills dozens at bus stop",
+    "routine (significance 2 < 3): 2026-10-09 Russian forces capture Annopillia in Kharkiv oblast",
+    "routine (significance 2 < 3): 2026-10-09 South Korea recalls its ambassador from Ukraine",
+    "routine (significance 1 < 3): 2026-10-09 Ukrainian strikes kill two in Belgorod oblast, wound nine in Kaluga",
+    "routine (significance 2 < 3): 2026-10-09 Two Latvians arrested after breaching RAF Molesworth base"
   ],
   "errored": []
 }

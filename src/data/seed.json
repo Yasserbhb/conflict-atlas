@@ -1,5 +1,5 @@
 {
-  "version": "2.19.15",
+  "version": "2.19.17",
   "countries": [
     {
       "id": "AFG",
@@ -5039,12 +5039,67 @@
           "independentSources": 7,
           "crossAlignment": true,
           "confidence": 0.78
+        },
+        {
+          "id": "seed_ukraine_war_e18",
+          "date": "2026-07-28",
+          "title": "Zelensky meets Trump in Washington to discuss air defenses and ending the war",
+          "kind": "milestone",
+          "severity": 2,
+          "location": {
+            "lat": 38.8950982,
+            "lng": -77.0363849,
+            "label": "Washington, DC"
+          },
+          "parties": [
+            "UKR",
+            "USA"
+          ],
+          "description": "Ukrainian President Zelensky met with US President Trump in Washington on July 28, 2026, to discuss strengthening Ukrainian air defenses and diplomatic efforts to end Russia's war against Ukraine.",
+          "sources": [
+            "https://x.com/TheStudyofWar/status/2082251028229947577"
+          ],
+          "independentSources": 1,
+          "crossAlignment": false,
+          "confidence": 0.89
+        },
+        {
+          "id": "seed_ukraine_war_e19",
+          "date": "2026-07-29",
+          "title": "Russia launches large-scale missile and drone strike across Ukraine",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 50.45,
+            "lng": 30.52,
+            "label": "Kyiv, Ukraine (strikes across deep rear)"
+          },
+          "parties": [
+            "RUS",
+            "UKR",
+            "PRK"
+          ],
+          "description": "Russian forces conducted a large overnight strike series on Ukraine with dozens of missiles and ~151 drones targeting the deep rear, causing high civilian casualties and exploiting Ukraine's interceptor shortage; Russia used a North Korean-provided ballistic missile for the first time since summer 2025.",
+          "sources": [
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-july-30-2026",
+            "https://www.youtube.com/watch?v=aZkTkc-ALOQ",
+            "https://www.russiamatters.org/news/russia-ukraine-war-report-card/russia-ukraine-war-report-card-july-29-2026",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_June_2026_%E2%80%93_31_August_2026)",
+            "https://www.cnn.com/2026/08/09/europe/russia-ukraine-escalation-aerial-strikes-intl-vis",
+            "https://www.facebook.com/InstitutefortheStudyofWar/posts/russian-offensive-campaign-assessment-july-29-2026-russias-superior-aviation-cap/1485423880296551",
+            "https://www.themoscowtimes.com/2026/07/29/at-least-3-dead-in-russia-and-crimea-after-ukraine-strikes-industrial-sites-a93363",
+            "https://united24media.com/war-in-ukraine/russia-launches-126-ballistic-missiles-in-july-marking-highest-monthly-surge-of-the-year-21276"
+          ],
+          "independentSources": 8,
+          "crossAlignment": true,
+          "confidence": 0.56
         }
       ],
       "aliases": [
         "Russo-Ukrainian war",
         "Russia-Ukraine war",
-        "Russian invasion of Ukraine"
+        "Russian invasion of Ukraine",
+        "Russia's war against Ukraine"
       ],
       "statusHistory": [
         {
@@ -5054,7 +5109,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-06"
+      "lastCheckedAt": "2026-10-16"
     },
     {
       "id": "seed_drc_m23",
