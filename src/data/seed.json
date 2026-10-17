@@ -1,5 +1,5 @@
 {
-  "version": "2.19.17",
+  "version": "2.19.18",
   "countries": [
     {
       "id": "AFG",
@@ -4610,6 +4610,10 @@
         {
           "countryId": "TUR",
           "role": "funder"
+        },
+        {
+          "countryId": "POL",
+          "role": "victim"
         }
       ],
       "involvedCountries": [
@@ -4622,7 +4626,8 @@
         "PRK",
         "IRN",
         "CHN",
-        "TUR"
+        "TUR",
+        "POL"
       ],
       "tags": [
         "nato",
@@ -5093,6 +5098,37 @@
           "independentSources": 8,
           "crossAlignment": true,
           "confidence": 0.56
+        },
+        {
+          "id": "seed_ukraine_war_e20",
+          "date": "2026-07-30",
+          "title": "Russian missile crashes in eastern Poland",
+          "kind": "attack",
+          "severity": 2,
+          "location": {
+            "lat": 50.4638685,
+            "lng": 17.0372984,
+            "label": "eastern Poland"
+          },
+          "parties": [
+            "RUS",
+            "UKR",
+            "POL"
+          ],
+          "description": "A Russian cruise missile crossed into Polish airspace during strikes on Ukraine, leaving a crater and debris in a field in eastern Poland; NATO scrambled jets in response.",
+          "sources": [
+            "https://www.cfr.org/reports/conflicts-watch-2026",
+            "https://www.aljazeera.com/news/2026/7/30/russia-ballistic-missile-strikes-on-kyiv-come-after-zelenskyys-warning",
+            "https://www.youtube.com/watch?v=aZkTkc-ALOQ",
+            "https://www.npr.org/2026/07/30/g-s1-136276/russia-ukraine-war",
+            "https://www.facebook.com/InstitutefortheStudyofWar/posts/russian-offensive-campaign-assessment-july-30-2026-russian-forces-conducted-a-la/1486507913521481",
+            "https://acleddata.com/spotlight-areas/ukraine-conflict-monitor/ukraine-war-situation-updates",
+            "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-july-30-2026",
+            "https://understandingwar.org/research/russia-ukraine/russian-occupation-update-july-30-2026"
+          ],
+          "independentSources": 8,
+          "crossAlignment": true,
+          "confidence": 0.8
         }
       ],
       "aliases": [
@@ -5109,7 +5145,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-16"
+      "lastCheckedAt": "2026-10-17"
     },
     {
       "id": "seed_drc_m23",
@@ -11557,14 +11593,47 @@
           "independentSources": 6,
           "crossAlignment": true,
           "confidence": 0.67
+        },
+        {
+          "id": "seed_israel_iran_war_e13",
+          "date": "2026-07-30",
+          "title": "US launches heavy new wave of airstrikes against Iran",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 32.6475314,
+            "lng": 54.5643516,
+            "label": "Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN",
+            "ISR",
+            "QAT"
+          ],
+          "description": "The United States launched a heavy new wave of airstrikes across Iran, targeting military command centers, missile and drone facilities, and coastal surveillance sites, in response to Iran's ballistic missile attack on a US base in Jordan. The strikes followed several days of reduced military activity in the US-Iran conflict.",
+          "sources": [
+            "https://www.youtube.com/watch?v=hH1OURAsVQo",
+            "https://www.jewishdallas.org/news/israel-update-july-30-2026",
+            "https://www.youtube.com/watch?v=15Z7A4shzXs",
+            "https://www.youtube.com/watch?v=fgT1HHDtHZ0",
+            "https://www.youtube.com/watch?v=f-O7HIrLc8k",
+            "https://www.aljazeera.com/news/2026/7/30/russia-ballistic-missile-strikes-on-kyiv-come-after-zelenskyys-warning",
+            "https://www.youtube.com/watch?v=aZkTkc-ALOQ",
+            "https://www.npr.org/2026/07/30/g-s1-136276/russia-ukraine-war"
+          ],
+          "independentSources": 4,
+          "crossAlignment": false,
+          "confidence": 0.58
         }
       ],
       "aliases": [
         "2026 Iran war",
         "US-Iran conflict",
-        "US-Iran war"
+        "US-Iran war",
+        "Iran war"
       ],
-      "lastCheckedAt": "2026-10-09",
+      "lastCheckedAt": "2026-10-17",
       "statusHistory": [
         {
           "status": "active",
