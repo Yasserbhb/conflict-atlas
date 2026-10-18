@@ -1,141 +1,84 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/39026486636",
-  "period": "2026-07-30..2026-10-10",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/39122521606",
+  "period": "2026-08-01..2026-10-11",
   "days": [
-    "2026-07-30..2026-07-30",
-    "2026-07-31..2026-07-31",
-    "2026-10-10..2026-10-10"
+    "2026-08-01..2026-08-01",
+    "2026-08-02..2026-08-02",
+    "2026-10-11..2026-10-11"
   ],
   "region": null,
-  "ran_at": "2026-10-17",
+  "ran_at": "2026-10-18",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/39026486636",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/39122521606",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 216,
-    "candidates": 6,
-    "proposals": 6,
-    "auto_approved": 2,
-    "needs_human": 4,
-    "dropped": 27,
+    "items": 215,
+    "candidates": 2,
+    "proposals": 2,
+    "auto_approved": 0,
+    "needs_human": 2,
+    "dropped": 24,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 184,
-    "routine": 27,
+    "triaged_out": 180,
+    "routine": 24,
     "model_failovers": 0
   },
-  "added": [
-    {
-      "day": "2026-07-30..2026-07-30",
-      "date": "2026-07-30",
-      "title": "US launches heavy new wave of airstrikes against Iran",
-      "conflict": "seed_israel_iran_war",
-      "kind": "offensive",
-      "severity": 4,
-      "sources": [
-        "https://www.youtube.com/watch?v=hH1OURAsVQo",
-        "https://www.jewishdallas.org/news/israel-update-july-30-2026",
-        "https://www.youtube.com/watch?v=15Z7A4shzXs",
-        "https://www.youtube.com/watch?v=fgT1HHDtHZ0"
-      ]
-    },
-    {
-      "day": "2026-07-30..2026-07-30",
-      "date": "2026-07-30",
-      "title": "Russian missile crashes in eastern Poland",
-      "conflict": "seed_ukraine_war",
-      "kind": "attack",
-      "severity": 2,
-      "sources": [
-        "https://www.cfr.org/reports/conflicts-watch-2026",
-        "https://www.aljazeera.com/news/2026/7/30/russia-ballistic-missile-strikes-on-kyiv-come-after-zelenskyys-warning",
-        "https://www.youtube.com/watch?v=aZkTkc-ALOQ",
-        "https://www.npr.org/2026/07/30/g-s1-136276/russia-ukraine-war"
-      ]
-    }
-  ],
+  "added": [],
   "held": [
     {
-      "day": "2026-07-30..2026-07-30",
-      "date": "2026-07-30",
-      "title": "Suspected Iranian drone strike hits US-owned gas tanker at Damietta, Egypt",
-      "question": "fact-check returned 'pass' at confidence 0.25; only 30% of its claims are backed by the cited sources",
-      "confidence": 0.25,
+      "day": "2026-10-11..2026-10-11",
+      "date": "2026-10-11",
+      "title": "Trump declares energy ceasefire; Russia launches 850 drones and 39 missiles on Ukraine over 24 hours",
+      "question": "fact-check returned 'uncertain' at confidence 0.33; only 23% of its claims are backed by the cited sources",
+      "confidence": 0.33,
       "sources": [
-        "https://www.youtube.com/watch?v=hH1OURAsVQo",
-        "https://www.jewishdallas.org/news/israel-update-july-30-2026",
-        "https://www.youtube.com/watch?v=15Z7A4shzXs",
-        "https://www.youtube.com/watch?v=fgT1HHDtHZ0"
+        "https://www.facebook.com/ukrinform.english/posts/over-the-past-day-on-october-11-264-clashes-between-the-ukrainian-defense-forces/1760462806079807",
+        "https://www.ukrinform.net/rubric-ato/4173219-ukrainian-defense-forces-strike-russian-repair-unit-supply-depots-and-troop-concentration-areas.html",
+        "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-11-2026",
+        "https://www.nationalreview.com/photos/ukraine-at-war-october-2026"
       ]
     },
     {
-      "day": "2026-07-31..2026-07-31",
-      "date": "2026-07-31",
-      "title": "Trump announces Hamas disarmament deal framework",
-      "question": "fact-check returned 'fail' at confidence 1.00; only 3% of its claims are backed by the cited sources",
-      "confidence": 1.0,
+      "day": "2026-10-11..2026-10-11",
+      "date": "2026-10-11",
+      "title": "US-Russia diesel fuel supply deal announced",
+      "question": "fact-check returned 'uncertain' at confidence 0.37; only 24% of its claims are backed by the cited sources",
+      "confidence": 0.37,
       "sources": [
-        "https://www.cfr.org/global-conflict-tracker/conflict/violence-democratic-republic-congo",
-        "https://www.bbc.com/news/articles/cmy0z00wr14xo",
-        "https://ru.euronews.com/2026/07/31/trump-anonsiroval-istoricheskuyu-sdelku-po-razoruzheniyu-hamas"
-      ]
-    },
-    {
-      "day": "2026-10-10..2026-10-10",
-      "date": "2026-10-10",
-      "title": "Trump-Putin phone call on Ukraine settlement; Trump says Ukraine needs a new president",
-      "question": "fact-check returned 'uncertain' at confidence 0.14; only 26% of its claims are backed by the cited sources",
-      "confidence": 0.14,
-      "sources": [
-        "https://acleddata.com/expert-comment/are-mass-casualty-events-and-power-outages-going-increase-ukraine",
-        "https://www.youtube.com/watch?v=DpT1aIj2tKE&xstg=CAMSBhUDzO3xHw%3D%3D",
+        "https://www.ukrinform.net/rubric-ato/4173219-ukrainian-defense-forces-strike-russian-repair-unit-supply-depots-and-troop-concentration-areas.html",
+        "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-11-2026",
         "https://www.aljazeera.com/news/2026/10/16/ukraine-repels-russian-forces-as-us-support-wavers-energy-strikes-escalate",
-        "https://www.ksat.com/news/world/2026/10/10/russian-attacks-kill-7-in-ukraine-after-trump-strikes-diesel-deal-with-putin"
-      ]
-    },
-    {
-      "day": "2026-10-10..2026-10-10",
-      "date": "2026-10-10",
-      "title": "Russia partially lifts ban on diesel fuel exports after US suspends sanctions on Russian diesel",
-      "question": "fact-check returned 'fail' at confidence 0.52; only 11% of its claims are backed by the cited sources",
-      "confidence": 0.52,
-      "sources": [
-        "https://voennoedelo.com/en/posts/id20795-russia-ukraine-frontline-update-october-10-2026",
-        "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-10-2026-6acac61e77f69",
-        "https://acleddata.com/expert-comment/are-mass-casualty-events-and-power-outages-going-increase-ukraine",
-        "https://www.youtube.com/watch?v=DpT1aIj2tKE&xstg=CAMSBhUDzO3xHw%3D%3D"
+        "https://www.youtube.com/watch?v=CRRIP7_qY-M"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-07-30 Jordan intercepts five Iranian missiles",
-    "routine (significance 2 < 3): 2026-07-30 Netanyahu meets US defense leaders in Washington",
-    "routine (significance 2 < 3): 2026-07-30 Russian missile and drone barrage across Ukraine kills at least 10",
-    "routine (significance 2 < 3): 2026-07-30 Russia captures Vodyanske and Mala Slobidka",
-    "routine (significance 1 < 3): 2026-07-30 Israeli strikes on Gaza kill four including two children",
-    "routine (significance 2 < 3): 2026-07-30 Sudanese army air campaign destroys RSF convoys in North Darfur and North Kordofan",
-    "routine (significance 2 < 3): 2026-07-30 RSF executes 14 of its commanders after losses in Kordofan",
-    "routine (significance 1 < 3): 2026-07-30 Sudanese army expands offensive against RSF strongholds in Kordofan",
-    "routine (significance 2 < 3): 2026-07-31 Ukrainian forces strike Russian command post near Bakhmut",
-    "routine (significance 2 < 3): 2026-07-31 Ukrainian strike on ammunition depot near Naumivka in occupied Crimea",
-    "routine (significance 2 < 3): 2026-07-31 Ukrainian strike on Yevpatoria aircraft factory",
-    "routine (significance 2 < 3): 2026-07-31 Russian attack on Radushne near Kryvyi Rih reportedly used North Korean ballistic missile",
-    "routine (significance 2 < 3): 2026-07-31 Ukraine strikes Iranian cargo vessel in the Caspian Sea",
-    "routine (significance 1 < 3): 2026-07-31 Russian attack on Nikopol district kills two",
-    "routine (significance 2 < 3): 2026-07-31 RSF force surrenders with full equipment to Sudanese army in Omdurman",
-    "routine (significance 1 < 3): 2026-10-10 Russian airstrike destroys residential building in Zaporizhzhia",
-    "routine (significance 2 < 3): 2026-10-10 Ukrainian drone strike sets fire to NZNP oil-loading terminal in Rostov-on-Don",
-    "routine (significance 2 < 3): 2026-10-10 Ukrainian long-range strikes damage railway bridge between Rostov-on-Don and Bataysk",
-    "routine (significance 2 < 3): 2026-10-10 Ukraine strikes Russian NCO training center near Khorly",
-    "routine (significance 2 < 3): 2026-10-10 Russian forces advance near Dobropolye, Sumy, and Zaporizhzhia directions",
-    "routine (significance 2 < 3): 2026-10-10 Russian forces claim control of Lukashovo and Lobanovo in Kharkiv Oblast",
-    "routine (significance 1 < 3): 2026-10-10 Russian drone attack damages apartment blocks and infrastructure in Rostov-on-Don",
-    "routine (significance 2 < 3): 2026-10-10 Russian missile and drone strikes hit Kyiv region, western Ukraine, and a data center in Kyiv",
-    "routine (significance 2 < 3): 2026-10-10 Kyiv mayor Klitschko says the city is in 'survival mode' and urges residents to leave",
-    "routine (significance 2 < 3): 2026-10-10 Ukrainian forces strike Zaporizhzhia thermal power plant and Enerhodar medical facility",
-    "routine (significance 1 < 3): 2026-10-10 Sudanese army drone strikes kill 16 civilians in West Kordofan",
-    "routine (significance 2 < 3): 2026-10-10 UN humanitarian coordinator condemns drone strike next to displacement site in Wad Al Mahi, Blue Nile State"
+    "routine (significance 2 < 3): 2026-08-01 Russian missile and drone attack on Kyiv kills at least nine",
+    "routine (significance 2 < 3): 2026-08-01 Ukrainian strikes on Russian logistics and military assets in occupied south",
+    "routine (significance 2 < 3): 2026-08-01 Israeli strikes kill seven across Gaza and destroy medical supply warehouse",
+    "routine (significance 1 < 3): 2026-08-01 Fighting between AFC/M23 and Wazalendo in Shango, Masisi",
+    "routine (significance 2 < 3): 2026-08-01 Russian forces reportedly capture Virivka and advance on six fronts",
+    "routine (significance 2 < 3): 2026-08-02 Ukrainian drone strikes kill at least five across Russia and set fire to Wildberries warehouse in Samara region",
+    "routine (significance 2 < 3): 2026-08-02 Ukraine's Defense Forces strike the Saratov oil refinery",
+    "routine (significance 1 < 3): 2026-08-02 Russian strikes kill at least five in Ukraine, hitting Zaporizhzhia and Kharkiv",
+    "routine (significance 2 < 3): 2026-08-02 Russia confirms overnight strikes on Ukrainian ports",
+    "routine (significance 2 < 3): 2026-08-02 Russian forces capture village of Sukhetske and advance on Dobropillia axis",
+    "routine (significance 1 < 3): 2026-08-02 Russian KAB strikes hit Zaporizhzhia, wounding 11",
+    "routine (significance 2 < 3): 2026-08-02 Romania scrambles F-16s as Russian drone crosses Danube River border",
+    "routine (significance 2 < 3): 2026-08-02 Man opens fire on draft officers in Odesa",
+    "routine (significance 2 < 3): 2026-08-02 Israeli strikes kill at least 19 Palestinians in Gaza",
+    "routine (significance 2 < 3): 2026-08-02 Israeli airstrike near Al-Aqsa Hospital damages medical supplies",
+    "routine (significance 2 < 3): 2026-10-11 Russian missile strike on Kyiv wounds at least eight",
+    "routine (significance 2 < 3): 2026-10-11 Russian forces capture Lukashovo and Lobanovka in Kharkiv region",
+    "routine (significance 2 < 3): 2026-10-11 Russian forces restore control over Yegorovka, Danilovka and Ostapovskoye on Dnieper direction",
+    "routine (significance 2 < 3): 2026-10-11 Ukrainian forces push Russians back in northern Zarechnoye near Krasny Liman",
+    "routine (significance 2 < 3): 2026-10-11 Ukrainian strikes hit Russian repair unit and supply depots",
+    "routine (significance 2 < 3): 2026-10-11 Russian strikes hit Ukrainian data centers, port infrastructure and vessels",
+    "routine (significance 2 < 3): 2026-10-11 Russian jet-powered drone reaches Lviv for the first time",
+    "routine (significance 1 < 3): 2026-10-11 Drone strike kills three in Ukrainian city",
+    "routine (significance 1 < 3): 2026-10-11 264 frontline clashes recorded in Ukraine over past day"
   ],
   "errored": []
 }
