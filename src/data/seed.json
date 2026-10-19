@@ -1,5 +1,5 @@
 {
-  "version": "2.19.18",
+  "version": "2.19.19",
   "countries": [
     {
       "id": "AFG",
@@ -5129,13 +5129,40 @@
           "independentSources": 8,
           "crossAlignment": true,
           "confidence": 0.8
+        },
+        {
+          "id": "seed_ukraine_war_e21",
+          "date": "2026-08-03",
+          "title": "Russia claims capture of Bilyi Kolodiaz and Uspenivka in Kharkiv region",
+          "kind": "offensive",
+          "severity": 4,
+          "location": {
+            "lat": 50.0322551,
+            "lng": 36.2188012,
+            "label": "Kharkiv region, Ukraine"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Russia's Defence Ministry announced its forces had captured the settlements of Bilyi Kolodiaz and Uspenivka in Ukraine's Kharkiv region, amid continued heavy fighting and mutual strikes.",
+          "sources": [
+            "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-august-3-2026",
+            "https://www.aljazeera.com/news/2026/8/3/more-than-10-killed-as-russia-and-ukraine-trade-heavy-attacks",
+            "https://newsukraine.rbc.ua/news/russia-s-losses-in-ukraine-as-of-august-3-1785685949.html",
+            "https://www.cfr.org/global-conflict-tracker/conflict/violent-extremism-sahel"
+          ],
+          "independentSources": 4,
+          "crossAlignment": false,
+          "confidence": 0.64
         }
       ],
       "aliases": [
         "Russo-Ukrainian war",
         "Russia-Ukraine war",
         "Russian invasion of Ukraine",
-        "Russia's war against Ukraine"
+        "Russia's war against Ukraine",
+        "Ukraine war"
       ],
       "statusHistory": [
         {
@@ -5145,7 +5172,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-17"
+      "lastCheckedAt": "2026-10-19"
     },
     {
       "id": "seed_drc_m23",
