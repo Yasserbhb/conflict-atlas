@@ -1,63 +1,71 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/39948395300",
-  "period": "2026-08-11..2026-10-16",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40088830651",
+  "period": "2026-08-13..2026-08-13",
   "days": [
-    "2026-08-11..2026-08-11",
-    "2026-08-12..2026-08-12",
-    "2026-10-16..2026-10-16"
+    "2026-08-13..2026-08-13"
   ],
   "region": null,
-  "ran_at": "2026-10-23",
-  "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/39948395300",
+  "ran_at": "2026-10-24",
+  "ok": false,
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40088830651",
   "stats": {
-    "queries": 18,
+    "queries": 6,
     "queries_dropped": 0,
-    "items": 216,
-    "candidates": 0,
-    "proposals": 0,
-    "auto_approved": 0,
-    "needs_human": 0,
-    "dropped": 30,
-    "failed": 0,
+    "items": 72,
+    "candidates": 3,
+    "proposals": 2,
+    "auto_approved": 1,
+    "needs_human": 1,
+    "dropped": 9,
+    "failed": 1,
     "out_of_window": 0,
-    "triaged_out": 168,
-    "routine": 30,
-    "model_failovers": 0
+    "triaged_out": 53,
+    "routine": 9,
+    "model_failovers": 1
   },
-  "added": [],
-  "held": [],
-  "already_known": [
-    "routine (significance 1 < 3): 2026-08-11 Russian attacks across Ukraine killed at least 12 people and wounded dozens",
-    "routine (significance 2 < 3): 2026-08-11 Ukrainian forces struck a Russian command and observation post near Terebreno",
-    "routine (significance 2 < 3): 2026-08-11 Ukrainian forces struck a Russian TOS-1A thermobaric artillery system in Titovka",
-    "routine (significance 2 < 3): 2026-08-11 Ukrainian forces struck two substations and a gas station in occupied Berdyansk",
-    "routine (significance 2 < 3): 2026-08-11 Ukrainian drones hit oil refineries in Oryol and Komsomolsk-on-Amur",
-    "routine (significance 2 < 3): 2026-08-11 Ukrainian forces hit two S-400 missile launchers and an Orion UAV control antenna in Crimea",
-    "routine (significance 1 < 3): 2026-08-11 Russian forces attacked Ukrainian cities with missiles and drones",
-    "routine (significance 1 < 3): 2026-08-11 FARDC repelled M23 attacks on positions",
-    "routine (significance 2 < 3): 2026-08-11 Houthi strike killed three crew members of a cargo ship in the Red Sea",
-    "routine (significance 1 < 3): 2026-08-11 Artillery fire on the north of Al Bureij refugee camp",
-    "routine (significance 1 < 3): 2026-08-11 Heavy fire in the east and south of Khan Yunis District",
-    "routine (significance 1 < 3): 2026-08-11 Ukrainian forces stopped four enemy assaults in the Northern Slobozhanshchyk and Kursk directions",
-    "routine (significance 1 < 3): 2026-08-12 Russian drone and missile strikes across Ukraine",
-    "routine (significance 2 < 3): 2026-08-12 Israeli air strikes in Gaza resume after week-long lull",
-    "routine (significance 2 < 3): 2026-08-12 Israeli forces seize three-storey house in Ya'bad as military post",
-    "routine (significance 1 < 3): 2026-08-12 Israeli shelling of southern Lebanon towns",
-    "routine (significance 1 < 3): 2026-08-12 Palestinian killed in Israeli strike on Gaza",
-    "routine (significance 2 < 3): 2026-08-12 Russian forces capture Shcherbakovka in Kharkiv oblast",
-    "routine (significance 2 < 3): 2026-08-12 Russian combined drone and missile strike on Ukrainian military and port infrastructure",
-    "routine (significance 1 < 3): 2026-08-12 Russian air defenses down over 1,000 Ukrainian drones in a day",
-    "routine (significance 2 < 3): 2026-08-12 Drone strikes hit Khartoum, Atbara and El Obeid in Sudan",
-    "routine (significance 2 < 3): 2026-10-16 Russian drone strikes kill three and cut power to over 1 million across Ukraine",
-    "routine (significance 2 < 3): 2026-10-16 Ukrainian forces strike Russian radar and EW systems in Bryansk Oblast",
-    "routine (significance 2 < 3): 2026-10-16 Sudanese army drone strike on Nyala livestock market reportedly kills 30 civilians",
-    "routine (significance 2 < 3): 2026-10-16 RSF media official Bashar Al-Nahli killed in Kordofan airstrike",
-    "routine (significance 2 < 3): 2026-10-16 Russian strikes on Lutsk described as largest attack of the war, leaving city without power and water",
-    "routine (significance 2 < 3): 2026-10-16 Russian strikes hit energy facility near Kharkiv, leaving 280,000 without power",
-    "routine (significance 1 < 3): 2026-10-16 Putin ordered continuation of strikes on Ukrainian infrastructure; Gerashimov claimed 2,000-strong Ukrainian grouping destroyed in Kharkiv Oblast",
-    "routine (significance 2 < 3): 2026-10-16 Ukrainian strike reportedly hits Gazprom's Surgut plant",
-    "routine (significance 1 < 3): 2026-10-16 Israeli settlers attack Palestinians and journalists during olive harvest near Ramallah"
+  "added": [
+    {
+      "day": "2026-08-13..2026-08-13",
+      "date": "2026-08-13",
+      "title": "RSF and SPLM-N advance into Kurmuk, Blue Nile state, as army withdraws",
+      "conflict": "seed_sudan_civil_war",
+      "kind": "offensive",
+      "severity": 3,
+      "sources": [
+        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-august-2026",
+        "https://sudantribune.com/article/317352",
+        "https://www.instagram.com/reel/DcD3ig6IonB",
+        "https://www.aljazeera.com/news/2026/8/13/sudan-army-says-rsf-advance-on-key-town-bordering-ethiopia"
+      ]
+    }
   ],
-  "errored": []
+  "held": [
+    {
+      "day": "2026-08-13..2026-08-13",
+      "date": "2026-08-13",
+      "title": "Israeli airstrike kills Hamas cell commander in northern Gaza, first strike in over a week",
+      "question": "fact-check returned 'uncertain' at confidence 0.61; only 66% of its claims are backed by the cited sources",
+      "confidence": 0.61,
+      "sources": [
+        "https://www.aljazeera.com/news/2026/8/13/russian-strike-sparks-fire-at-ukraine-port-zelenskyy-seeks-interceptors",
+        "https://kyivindependent.com",
+        "https://www.democracynow.org/2026/8/13/headlines",
+        "https://www.aljazeera.com/features/2026/8/13/israel-trucks-out-gazas-rubble-to-hide-genocide-and-redraw-the-map"
+      ]
+    }
+  ],
+  "already_known": [
+    "routine (significance 2 < 3): 2026-08-13 Ukrainian large strike on Russian oil infrastructure and Wildberries facilities in Bashkortostan",
+    "routine (significance 1 < 3): 2026-08-13 Ukraine reports 198 frontline clashes; Russia conducts 55 airstrikes",
+    "routine (significance 1 < 3): 2026-08-13 Russian aerial bombs strike Kramatorsk, killing one and injuring 15",
+    "routine (significance 2 < 3): 2026-08-13 Israeli strikes in Gaza kill two people, first fatalities in more than a week",
+    "routine (significance 2 < 3): 2026-08-13 Settlers besiege Palestinian homes in Qusra, cutting water and power for a fourth day",
+    "routine (significance 2 < 3): 2026-08-13 Sudanese army repels RSF assault on Jabra al-Sheikh with heavy artillery and drones",
+    "routine (significance 2 < 3): 2026-08-13 Russia and Ukraine exchange bodies of fallen soldiers; Ukraine receives 261 bodies",
+    "routine (significance 2 < 3): 2026-08-13 Russian overnight drone attack on Ukraine hits Chernihiv, Kharkiv, Odesa region; passenger train struck, two railway crew killed",
+    "routine (significance 2 < 3): 2026-08-13 Russian forces capture Petrivka in Donetsk region"
+  ],
+  "errored": [
+    "2026-08-13 Ukrainian drones strike Novorossiysk naval base, hitting Black Sea Fleet frigates and port terminals; child killed: OpenAIModelNotFoundError: Error code: 404 - {'error': {'message': 'This model is unavailable for free. The paid version is available now - use this slug instead: nex-agi/nex-n2.5-mini', 'code': 404}, 'user_id': 'user_39xKkJFrx6Ak86055Uh8SSpdFHg'}"
+  ]
 }
