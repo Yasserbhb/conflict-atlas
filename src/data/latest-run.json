@@ -1,71 +1,65 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40088830651",
-  "period": "2026-08-13..2026-08-13",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40189826988",
+  "period": "2026-08-14..2026-10-18",
   "days": [
-    "2026-08-13..2026-08-13"
+    "2026-08-14..2026-08-14",
+    "2026-08-15..2026-08-15",
+    "2026-10-18..2026-10-18"
   ],
   "region": null,
-  "ran_at": "2026-10-24",
-  "ok": false,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40088830651",
+  "ran_at": "2026-10-25",
+  "ok": true,
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40189826988",
   "stats": {
-    "queries": 6,
+    "queries": 18,
     "queries_dropped": 0,
-    "items": 72,
-    "candidates": 3,
+    "items": 211,
+    "candidates": 2,
     "proposals": 2,
     "auto_approved": 1,
     "needs_human": 1,
-    "dropped": 9,
-    "failed": 1,
+    "dropped": 18,
+    "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 53,
-    "routine": 9,
-    "model_failovers": 1
+    "triaged_out": 178,
+    "routine": 18,
+    "model_failovers": 0
   },
-  "added": [
-    {
-      "day": "2026-08-13..2026-08-13",
-      "date": "2026-08-13",
-      "title": "RSF and SPLM-N advance into Kurmuk, Blue Nile state, as army withdraws",
-      "conflict": "seed_sudan_civil_war",
-      "kind": "offensive",
-      "severity": 3,
-      "sources": [
-        "https://orsam.org.tr/en/yayinlar/course-of-the-war-in-sudan-august-2026",
-        "https://sudantribune.com/article/317352",
-        "https://www.instagram.com/reel/DcD3ig6IonB",
-        "https://www.aljazeera.com/news/2026/8/13/sudan-army-says-rsf-advance-on-key-town-bordering-ethiopia"
-      ]
-    }
-  ],
+  "added": [],
   "held": [
     {
-      "day": "2026-08-13..2026-08-13",
-      "date": "2026-08-13",
-      "title": "Israeli airstrike kills Hamas cell commander in northern Gaza, first strike in over a week",
-      "question": "fact-check returned 'uncertain' at confidence 0.61; only 66% of its claims are backed by the cited sources",
-      "confidence": 0.61,
+      "day": "2026-08-15..2026-08-15",
+      "date": "2026-08-15",
+      "title": "Israeli airstrikes on Ansar and Deir al-Zahrani kill 11 in deepest strike into south Lebanon since ceasefire",
+      "question": "fact-check returned 'uncertain' at confidence 0.28; only 35% of its claims are backed by the cited sources",
+      "confidence": 0.28,
       "sources": [
-        "https://www.aljazeera.com/news/2026/8/13/russian-strike-sparks-fire-at-ukraine-port-zelenskyy-seeks-interceptors",
-        "https://kyivindependent.com",
-        "https://www.democracynow.org/2026/8/13/headlines",
-        "https://www.aljazeera.com/features/2026/8/13/israel-trucks-out-gazas-rubble-to-hide-genocide-and-redraw-the-map"
+        "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-15-21-august-2026",
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_15",
+        "https://acleddata.com/update/ukraine-war-situation-update-15-21-august-2026",
+        "https://en.wikipedia.org/wiki/Portal:Current_events/August_2026"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-08-13 Ukrainian large strike on Russian oil infrastructure and Wildberries facilities in Bashkortostan",
-    "routine (significance 1 < 3): 2026-08-13 Ukraine reports 198 frontline clashes; Russia conducts 55 airstrikes",
-    "routine (significance 1 < 3): 2026-08-13 Russian aerial bombs strike Kramatorsk, killing one and injuring 15",
-    "routine (significance 2 < 3): 2026-08-13 Israeli strikes in Gaza kill two people, first fatalities in more than a week",
-    "routine (significance 2 < 3): 2026-08-13 Settlers besiege Palestinian homes in Qusra, cutting water and power for a fourth day",
-    "routine (significance 2 < 3): 2026-08-13 Sudanese army repels RSF assault on Jabra al-Sheikh with heavy artillery and drones",
-    "routine (significance 2 < 3): 2026-08-13 Russia and Ukraine exchange bodies of fallen soldiers; Ukraine receives 261 bodies",
-    "routine (significance 2 < 3): 2026-08-13 Russian overnight drone attack on Ukraine hits Chernihiv, Kharkiv, Odesa region; passenger train struck, two railway crew killed",
-    "routine (significance 2 < 3): 2026-08-13 Russian forces capture Petrivka in Donetsk region"
+    "routine (significance 1 < 3): 2026-08-14 Military operations and attacks in Ukraine",
+    "routine (significance 2 < 3): 2026-08-14 Russian strikes on Ukrainian infrastructure",
+    "routine (significance 1 < 3): 2026-08-14 Pro-Congolese forces repel M23 attacks",
+    "routine (significance 1 < 3): 2026-08-14 Clashes between FARDC and M23",
+    "routine (significance 1 < 3): 2026-08-14 Russian strikes on Zaporizhzhia",
+    "routine (significance 1 < 3): 2026-08-14 Combat clashes in Ukraine",
+    "routine (significance 1 < 3): 2026-08-14 Drone attacks and military strikes in Ukraine",
+    "routine (significance 1 < 3): 2026-08-14 Aerial strikes and military attacks in Ukraine",
+    "routine (significance 1 < 3): 2026-08-14 UAV attacks across Ukraine",
+    "routine (significance 1 < 3): 2026-08-15 Russia and Ukraine exchange overnight drone and missile strikes across multiple regions",
+    "routine (significance 1 < 3): 2026-08-15 Russian strikes kill civilians across Ukraine, including a baby in Dnipropetrovsk",
+    "routine (significance 2 < 3): 2026-08-15 Russia's Vostok Group claims capture of 19 settlements in summer campaign",
+    "routine (significance 1 < 3): 2026-08-15 OHCHR verifies reports of new Houthi-claimed attacks on Yemen's Hudaydah port on August 14–15",
+    "routine (significance 1 < 3): 2026-10-18 Russian forces conducted massive strikes using precision weapons and drones against Ukrainian targets",
+    "routine (significance 1 < 3): 2026-10-18 173 combat engagements occurred along the frontline",
+    "routine (significance 2 < 3): 2026-10-18 Russian forces liberated several settlements and advanced in various regions",
+    "routine (significance 2 < 3): 2026-10-18 Haitian gang members ambushed a vehicle carrying Salvadoran air force technicians",
+    "routine (significance 1 < 3): 2026-10-18 Military personnel from an international security mission were ambushed"
   ],
-  "errored": [
-    "2026-08-13 Ukrainian drones strike Novorossiysk naval base, hitting Black Sea Fleet frigates and port terminals; child killed: OpenAIModelNotFoundError: Error code: 404 - {'error': {'message': 'This model is unavailable for free. The paid version is available now - use this slug instead: nex-agi/nex-n2.5-mini', 'code': 404}, 'user_id': 'user_39xKkJFrx6Ak86055Uh8SSpdFHg'}"
-  ]
+  "errored": []
 }
