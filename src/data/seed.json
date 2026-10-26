@@ -1,5 +1,5 @@
 {
-  "version": "2.19.19",
+  "version": "2.19.20",
   "countries": [
     {
       "id": "AFG",
@@ -5155,6 +5155,36 @@
           "independentSources": 4,
           "crossAlignment": false,
           "confidence": 0.64
+        },
+        {
+          "id": "seed_ukraine_war_e22",
+          "date": "2026-08-16",
+          "title": "Ukraine launches one of its largest aerial attacks of the war on Russia",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 55.625578,
+            "lng": 37.6063916,
+            "label": "Moscow, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine launched hundreds of drones across Russia overnight on August 16, 2026, one of its largest aerial attacks of the war; Russia said it downed 822 drones, with roughly 600 reported headed toward Moscow, and at least six people were killed in the Rostov and Moscow regions. Russia meanwhile struck Kyiv, Kryvyi Rih, Kremenchuk and Sumy with missiles and drones, killing several Ukrainians.",
+          "sources": [
+            "https://www.pbs.org/newshour/world/ukraine-launches-one-of-its-largest-aerial-attacks-of-the-war-killing-at-least-6-people-in-russia",
+            "https://www.aljazeera.com/news/2026/8/16/russian-strikes-kill-ukrainian-woman-as-nato-jet-downs-drone-over-romania",
+            "https://www.youtube.com/watch?v=RDaOf1fQcPM",
+            "https://www.npr.org/2026/08/16/nx-s1-5933006/ukraine-aerial-attack-6-dead-russia",
+            "https://www.cnn.com/2026/08/15/europe/russia-moscow-ukraine-air-attack-intl",
+            "https://www.kosu.org/news/2026-08-16/ukraine-launches-one-of-its-largest-aerial-attacks-of-the-war-killing-at-least-6-people-in-russia",
+            "https://www.bbc.com/news/live/c61k110gny00t",
+            "https://www.opb.org/article/2026/08/16/ukraine-launches-one-of-its-largest-aerial-attacks-of-the-war-killing-at-least-6-people-in-russia"
+          ],
+          "independentSources": 8,
+          "crossAlignment": true,
+          "confidence": 0.61
         }
       ],
       "aliases": [
@@ -5172,7 +5202,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-19"
+      "lastCheckedAt": "2026-10-26"
     },
     {
       "id": "seed_drc_m23",
