@@ -3900,5 +3900,20 @@
     "prompt_version": "212a0fe5934b",
     "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/40879620932",
     "limited_to": 5
+  },
+  {
+    "scanned_at": "2026-10-30",
+    "region": "(any)",
+    "topic": null,
+    "period": "2026-08-24..2026-08-24",
+    "items": 0,
+    "events_found": 0,
+    "proposals": 0,
+    "dropped": 0,
+    "status": "failed",
+    "error": "ForbiddenError: This request exceeds your plan's set usage limit. Please upgrade your plan or contact support@tavily.com",
+    "prompt_version": "212a0fe5934b",
+    "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41060093798",
+    "limited_to": 5
   }
 ]
