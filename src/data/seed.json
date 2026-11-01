@@ -1,5 +1,5 @@
 {
-  "version": "2.19.20",
+  "version": "2.19.21",
   "countries": [
     {
       "id": "AFG",
@@ -5185,6 +5185,33 @@
           "independentSources": 8,
           "crossAlignment": true,
           "confidence": 0.61
+        },
+        {
+          "id": "seed_ukraine_war_e23",
+          "date": "2026-08-24",
+          "title": "UK PM Burnham, visiting Kyiv, approves supplying Ukraine classified Storm Shadow missile blueprints",
+          "kind": "intervention",
+          "severity": 2,
+          "location": {
+            "lat": 50.4500336,
+            "lng": 30.5241361,
+            "label": "Kyiv, Ukraine"
+          },
+          "parties": [
+            "GBR",
+            "UKR"
+          ],
+          "description": "During a visit to Kyiv for Ukraine's 35th Independence Day and a 'Coalition of the Willing' meeting, UK Prime Minister Andy Burnham approved supplying Ukraine classified blueprints for the Storm Shadow missile. The move deepens British material support as Russia continues escalating missile and drone attacks.",
+          "sources": [
+            "https://www.youtube.com/watch?v=mUCs0GF-Eik",
+            "https://www.aljazeera.com/news/2026/8/24/ukraines-allies-convene-in-kyiv-as-zelenskyy-seeks-air-defence-boost",
+            "https://www.vaticannews.va/en/world/news/2026-08/ukraine-marks-grim-war-anniversary.html",
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_24",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_June_2026_%E2%80%93_31_August_2026)"
+          ],
+          "independentSources": 4,
+          "crossAlignment": false,
+          "confidence": 0.6
         }
       ],
       "aliases": [
@@ -5202,7 +5229,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-26"
+      "lastCheckedAt": "2026-11-01"
     },
     {
       "id": "seed_drc_m23",
