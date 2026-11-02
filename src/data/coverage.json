@@ -4023,5 +4023,36 @@
     "limited_to": 5,
     "applied": 0,
     "held": 0
+  },
+  {
+    "scanned_at": "2026-11-02",
+    "region": "(any)",
+    "topic": null,
+    "period": "2026-08-26..2026-08-26",
+    "items": 70,
+    "events_found": 2,
+    "proposals": 2,
+    "dropped": 8,
+    "status": "found",
+    "prompt_version": "212a0fe5934b",
+    "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41478334149",
+    "stats": {
+      "queries": 6,
+      "queries_dropped": 0,
+      "items": 70,
+      "candidates": 2,
+      "proposals": 2,
+      "auto_approved": 2,
+      "needs_human": 0,
+      "dropped": 8,
+      "failed": 0,
+      "out_of_window": 0,
+      "triaged_out": 55,
+      "routine": 8,
+      "model_failovers": 0
+    },
+    "limited_to": 5,
+    "applied": 0,
+    "held": 0
   }
 ]

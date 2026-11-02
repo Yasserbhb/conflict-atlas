@@ -1,96 +1,68 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41311755626",
-  "period": "2026-08-24..2026-10-25",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41478334149",
+  "period": "2026-08-26..2026-08-26",
   "days": [
-    "2026-08-24..2026-08-24",
-    "2026-08-25..2026-08-25",
-    "2026-10-25..2026-10-25"
+    "2026-08-26..2026-08-26"
   ],
   "region": null,
-  "ran_at": "2026-11-01",
-  "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41311755626",
+  "ran_at": "2026-11-02",
+  "ok": false,
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41478334149",
   "stats": {
-    "queries": 18,
+    "queries": 6,
     "queries_dropped": 0,
-    "items": 215,
-    "candidates": 3,
-    "proposals": 3,
-    "auto_approved": 1,
-    "needs_human": 2,
-    "dropped": 21,
+    "items": 70,
+    "candidates": 2,
+    "proposals": 2,
+    "auto_approved": 2,
+    "needs_human": 0,
+    "dropped": 8,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 177,
-    "routine": 21,
+    "triaged_out": 55,
+    "routine": 8,
     "model_failovers": 0
   },
   "added": [
     {
-      "day": "2026-08-24..2026-08-24",
-      "date": "2026-08-24",
-      "title": "UK PM Burnham, visiting Kyiv, approves supplying Ukraine classified Storm Shadow missile blueprints",
-      "conflict": "seed_ukraine_war",
-      "kind": "intervention",
+      "day": "2026-08-26..2026-08-26",
+      "date": "2026-08-26",
+      "title": "Gaza ceasefire envoy warns Security Council truce failure would be 'point of no return'",
+      "conflict": "seed_gaza_war",
+      "kind": "ceasefire",
       "severity": 2,
       "sources": [
-        "https://www.youtube.com/watch?v=mUCs0GF-Eik",
-        "https://www.aljazeera.com/news/2026/8/24/ukraines-allies-convene-in-kyiv-as-zelenskyy-seeks-air-defence-boost",
-        "https://www.vaticannews.va/en/world/news/2026-08/ukraine-marks-grim-war-anniversary.html",
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_24"
-      ]
-    }
-  ],
-  "held": [
-    {
-      "day": "2026-08-25..2026-08-25",
-      "date": "2026-08-25",
-      "title": "Putin grants state authority to nationalize critical infrastructure amid Ukraine drone threats",
-      "question": "fact-check returned 'pass' at confidence 0.31; only 32% of its claims are backed by the cited sources",
-      "confidence": 0.31,
-      "sources": [
-        "https://chronoleus.com/timeline/russia-ukraine-war--military-operations",
-        "https://www.statista.com/statistics/1293492/ukraine-war-casualties",
-        "https://acleddata.com/monitor/ukraine-conflict-monitor",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-august-25-2026"
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_26",
+        "https://www.justsecurity.org/155288/early-edition-august-26-2026",
+        "https://www.democracynow.org/2026/8/26/headlines",
+        "https://en.wikipedia.org/wiki/2026_Iran_war"
       ]
     },
     {
-      "day": "2026-08-25..2026-08-25",
-      "date": "2026-08-25",
-      "title": "Joint ceasefire verification mission deployed to Minembwe, DRC",
-      "question": "fact-check returned 'pass' at confidence 0.38; only 39% of its claims are backed by the cited sources",
-      "confidence": 0.38,
+      "day": "2026-08-26..2026-08-26",
+      "date": "2026-08-26",
+      "title": "Iran resumes talks with Oman over Strait of Hormuz",
+      "conflict": "seed_israel_iran_war",
+      "kind": "treaty",
+      "severity": 1,
       "sources": [
-        "https://actualite.cd/2026/10/02/est-de-la-rdc-lafcm23-conserve-un-controle-etendu-sur-une-large-partie-du-nord-kivu",
-        "https://www.securitycouncilreport.org/monthly-forecast/2026-09/democratic-republic-of-the-congo-35.php",
-        "https://www.dw.com/fr/minembwe-mission-de-controle-accords-paix-fardc-afc-rebelles-bukavu/a-78492460",
-        "https://www.aljazeera.com/news/2026/8/23/dr-congo-m23-rebels-agree-on-roadmap-for-peace-talks"
+        "https://www.democracynow.org/2026/8/26/headlines",
+        "https://en.wikipedia.org/wiki/2026_Iran_war",
+        "https://www.britannica.com/event/2026-Iran-war",
+        "https://acleddata.com/update/middle-east-overview-april-2026"
       ]
     }
   ],
+  "held": [],
   "already_known": [
-    "routine (significance 1 < 3): 2026-08-24 Russian missile strike kills three near Kharkiv",
-    "routine (significance 2 < 3): 2026-08-24 Jet-powered drone hits passenger train in Odesa Oblast; Russian attacks kill 5, injure 44 across Ukraine over past day",
-    "routine (significance 2 < 3): 2026-08-24 Ukrainian drones strike Krasnodar furniture centre and Ozon facilities in Adygea, Nevinnomyssk, Tyube; MiG-29 damaged at Millerovo air base",
-    "routine (significance 2 < 3): 2026-08-24 Russian forces capture Dolinka and Novokonstantynivka, advance near Dobropillya, Druzhkivka, Kupiansk",
-    "routine (significance 2 < 3): 2026-08-24 Russian strikes destroy mall, port facilities and oil depots in Odesa region",
-    "routine (significance 2 < 3): 2026-08-24 Israeli strikes across Gaza kill at least seven, including two children, hitting water plant, mosque and tents of displaced people",
-    "routine (significance 1 < 3): 2026-08-24 Israeli drone strike on tent near al-Deirawi Mosque in Deir al-Balah kills Palestinian man",
-    "routine (significance 1 < 3): 2026-08-24 US Southern Command strike kills two on vessel in eastern Pacific during Operation Southern Spear",
-    "routine (significance 1 < 3): 2026-08-24 Drone strikes hit Sudan's Nyala after cargo plane arrival",
-    "routine (significance 2 < 3): 2026-08-24 Chad says Sudan-linked aircraft and drones struck more than 100 km inside its territory",
-    "routine (significance 2 < 3): 2026-08-25 Russia's Battlegroup North destroys 245 Ukrainian drones near Sumy",
-    "routine (significance 1 < 3): 2026-08-25 Russia launches 873 strikes on Zaporizhzhia region, killing two",
-    "routine (significance 2 < 3): 2026-08-25 Russian artillery attack on Izium injures five",
-    "routine (significance 2 < 3): 2026-08-25 Russian airstrike on Kramatorsk injures 12, including an infant",
-    "routine (significance 2 < 3): 2026-08-25 M23 and Twirwaneho offensive captures FARDC-Wazalendo positions at Bijombo",
-    "routine (significance 2 < 3): 2026-10-25 Israeli strikes across Gaza kill at least seven, including three at Islamic University in Gaza City",
-    "routine (significance 1 < 3): 2026-10-25 Russian strikes on Ukraine kill four and injure 28",
-    "routine (significance 2 < 3): 2026-10-25 Russian ballistic missile attack on Kyiv destroys Optima-Farm pharma warehouses, kills two",
-    "routine (significance 2 < 3): 2026-10-25 Ukraine strikes Russian industrial plants with Storm Shadow missiles",
-    "routine (significance 1 < 3): 2026-10-25 Russia strikes Epicentr stores in Zaporizhzhia and Poltava",
-    "routine (significance 2 < 3): 2026-10-25 Ukrainian forces advance in Oleksandrivka direction"
+    "routine (significance 1 < 3): 2026-08-26 Ukrainian strike kills nine on bus in occupied Luhansk",
+    "routine (significance 2 < 3): 2026-08-26 Overnight Ukrainian drone attack destroys Wildberries depot in Tambov Oblast",
+    "routine (significance 1 < 3): 2026-08-26 Ukrainian drone strikes kill three in Lipetsk and Belgorod Oblasts",
+    "routine (significance 1 < 3): 2026-08-26 Russian strikes hit five vessels and ports in Ukraine",
+    "routine (significance 1 < 3): 2026-08-26 Russian missile and drone strikes hit six Ukrainian oblasts",
+    "routine (significance 2 < 3): 2026-08-26 Israeli strikes kill at least seven across Gaza",
+    "routine (significance 1 < 3): 2026-08-26 Israeli airstrike kills Palestinian in Khan Younis tent for displaced people",
+    "routine (significance 1 < 3): 2026-08-26 Wildfires kill twelve in northeastern Algeria"
   ],
   "errored": []
 }
