@@ -1,5 +1,5 @@
 {
-  "version": "2.19.21",
+  "version": "2.19.23",
   "countries": [
     {
       "id": "AFG",
@@ -5212,6 +5212,36 @@
           "independentSources": 4,
           "crossAlignment": false,
           "confidence": 0.6
+        },
+        {
+          "id": "seed_ukraine_war_e24",
+          "date": "2026-08-28",
+          "title": "Ukraine strikes Russian strategic bomber at Engels-2 Airbase",
+          "kind": "attack",
+          "severity": 2,
+          "location": {
+            "lat": 51.482,
+            "lng": 46.208,
+            "label": "Engels-2 Airbase, Saratov Oblast, Russia"
+          },
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukrainian forces struck a Russian strategic bomber at the Engels-2 Airbase in Saratov Oblast, demonstrating the ability to hit heavily defended targets deep inside Russia.",
+          "sources": [
+            "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-22-28-august-2026",
+            "https://www.russiamatters.org/news/russia-review/russia-review-aug-28-sept-4-2026",
+            "https://acleddata.com/monitor/ukraine-conflict-monitor",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-august-28-2026",
+            "https://www.dailysabah.com/world/europe/local-truce-changes-little-as-russia-returns-to-pummeling-ukraine",
+            "https://www.facebook.com/InstitutefortheStudyofWar/posts/russian-offensive-campaign-assessment-august-28-2026-ukrainian-forces-struck-a-r/1513087907530148",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-august-29-2026",
+            "https://www.lvivherald.com/post/ukraine-russia-conflict-front-and-rear-lines-summary-assessment-early-august-2026"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.67
         }
       ],
       "aliases": [
@@ -5229,7 +5259,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-11-01"
+      "lastCheckedAt": "2026-11-03"
     },
     {
       "id": "seed_drc_m23",
@@ -5776,12 +5806,42 @@
           "independentSources": 6,
           "crossAlignment": true,
           "confidence": 0.92
+        },
+        {
+          "id": "seed_gaza_war_e12",
+          "date": "2026-08-27",
+          "title": "Hamas commander killed in Khan Yunis strike",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 31.346,
+            "lng": 34.306,
+            "label": "Khan Yunis, Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "The IDF confirmed it killed Al-Qassam Brigades commander Ismail Mohammad Ibrahim Barim, who held three hostages, in a strike in Khan Yunis. The strike occurred during the October 2025 ceasefire, which Israel's continued operations have repeatedly violated.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_27",
+            "https://www.youtube.com/watch?v=7RU1jXCdrFc",
+            "https://www.cfr.org/global-conflict-tracker/conflict/israeli-palestinian-conflict",
+            "https://www.britannica.com/event/2026-Iran-war",
+            "https://www.britannica.com/event/Israel-Hamas-War",
+            "https://www.aljazeera.com/news/2026/8/27/three-killed-in-strikes-on-gaza-as-israel-renews-threats-over-kite-flying",
+            "https://www.youtube.com/watch?v=TrWhtNvnDCA",
+            "https://www.aljazeera.com/news/2026/8/28/israeli-strikes-kill-five-people-including-three-from-one-family-in-gaza"
+          ],
+          "independentSources": 5,
+          "crossAlignment": false,
+          "confidence": 0.68
         }
       ],
       "aliases": [
         "Gaza war"
       ],
-      "lastCheckedAt": "2026-10-14",
+      "lastCheckedAt": "2026-11-03",
       "statusHistory": [
         {
           "status": "active",
