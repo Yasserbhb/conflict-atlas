@@ -1,5 +1,5 @@
 {
-  "version": "2.19.23",
+  "version": "2.19.25",
   "countries": [
     {
       "id": "AFG",
@@ -5836,12 +5836,40 @@
           "independentSources": 5,
           "crossAlignment": false,
           "confidence": 0.68
+        },
+        {
+          "id": "seed_gaza_war_e13",
+          "date": "2026-08-29",
+          "title": "IDF kills Nukhba Force commander Hani Abd al-Hai Fakhri Mazloum and Hamas sniper Hassan Zidan Hassan Deiri in separate strikes in northern Gaza Strip",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 31.53,
+            "lng": 34.48,
+            "label": "Northern Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "The IDF confirmed killing Nukhba Force commander Hani Abd al-Hai Fakhri Mazloum and Hamas sniper Hassan Zidan Hassan Deiri in separate strikes in the northern Gaza Strip.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_29",
+            "https://en.wikipedia.org/wiki/Portal:Current_events/August_2026",
+            "https://www.youtube.com/watch?v=N6fGLjeLVSg",
+            "https://www.cfr.org/reports/conflicts-watch-2026",
+            "https://www.britannica.com/event/2026-Iran-war",
+            "https://acleddata.com/update/middle-east-overview-april-2026"
+          ],
+          "independentSources": 5,
+          "crossAlignment": false,
+          "confidence": 0.74
         }
       ],
       "aliases": [
         "Gaza war"
       ],
-      "lastCheckedAt": "2026-11-03",
+      "lastCheckedAt": "2026-11-04",
       "statusHistory": [
         {
           "status": "active",
@@ -10878,7 +10906,43 @@
         "ayotzinapa",
         "weapons"
       ],
-      "sources": []
+      "sources": [],
+      "events": [
+        {
+          "id": "seed_mexican_drug_war_e1",
+          "date": "2026-08-30",
+          "title": "Mexican security forces kill Los Reyes cartel leader Luis Enrique Barragán Chávez",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 19.6775568,
+            "lng": -102.55709,
+            "label": "Tocumbo, Michoacán, Mexico"
+          },
+          "parties": [
+            "MEX"
+          ],
+          "description": "Mexican security forces killed Los Reyes cartel leader Luis Enrique Barragán Chávez and his bodyguard during an operation in Tocumbo, Michoacán, after coming under gunfire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30"
+          ],
+          "independentSources": 1,
+          "crossAlignment": false,
+          "confidence": 0.73
+        }
+      ],
+      "aliases": [
+        "Mexican drug war"
+      ],
+      "statusHistory": [
+        {
+          "status": "active",
+          "date": "2026-08-30",
+          "eventId": "seed_mexican_drug_war_e1"
+        }
+      ],
+      "status": "active",
+      "lastCheckedAt": "2026-11-04"
     },
     {
       "id": "seed_libyan_civil_war",
@@ -11453,13 +11517,18 @@
         {
           "countryId": "QAT",
           "role": "victim"
+        },
+        {
+          "countryId": "JOR",
+          "role": "victim"
         }
       ],
       "involvedCountries": [
         "ISR",
         "USA",
         "IRN",
-        "QAT"
+        "QAT",
+        "JOR"
       ],
       "tags": [
         "nuclear",
@@ -11769,6 +11838,67 @@
           "independentSources": 4,
           "crossAlignment": false,
           "confidence": 0.58
+        },
+        {
+          "id": "seed_israel_iran_war_e14",
+          "date": "2026-08-30",
+          "title": "US strikes Iranian rocket launchers on Larak Island",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 26.28,
+            "lng": 56.28,
+            "label": "Larak Island, Strait of Hormuz, Iran"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "US forces struck two IRGC rocket launchers on Larak Island in the Strait of Hormuz, the first US military action in over a month, reportedly targeting launchers being prepared to fire rockets carrying sea mines. Iran vowed retaliation, and the IRGC responded hours later with missile and drone strikes on US bases in Jordan.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30",
+            "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+            "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
+            "https://www.opb.org/article/2026/08/30/us-strikes-iranian-rocket-launchers-on-the-strait-of-hormuz-in-first-military-action-in-weeks",
+            "https://www.congress.gov/crs-product/R48887",
+            "https://www.aljazeera.com/news/2026/8/30/us-strikes-irans-lark-island-in-first-attack-in-weeks",
+            "https://www.reuters.com/world/middle-east/us-forces-strike-two-iranian-launchers-irans-larak-island-us-official-says-2026-08-30",
+            "https://en.wikipedia.org/wiki/2026_Iran_war"
+          ],
+          "independentSources": 5,
+          "crossAlignment": true,
+          "confidence": 0.91
+        },
+        {
+          "id": "seed_israel_iran_war_e15",
+          "date": "2026-08-30",
+          "title": "Iran launches ballistic missiles at US military bases in Jordan",
+          "kind": "attack",
+          "severity": 4,
+          "location": {
+            "lat": 31.83,
+            "lng": 36.35,
+            "label": "Al Azraq base, Jordan"
+          },
+          "parties": [
+            "IRN",
+            "USA",
+            "JOR"
+          ],
+          "description": "Hours after US forces struck IRGC rocket launchers on Larak Island, Iran retaliated with a ballistic missile and drone attack on the King Hussein and Al Azraq bases in Jordan, which host US forces. Iranian authorities stated the exchange resulted in deaths, though figures remain contested.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30",
+            "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+            "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
+            "https://www.congress.gov/crs-product/R48887",
+            "https://www.aljazeera.com/news/2026/8/30/us-strikes-irans-lark-island-in-first-attack-in-weeks",
+            "https://en.wikipedia.org/wiki/2026_Iran_war",
+            "https://www.aljazeera.com/news/liveblog/2026/8/30/iran-war-live-iran-pledges-to-stand-firm-against-unjust-us-sanctions",
+            "https://www.cfr.org/global-conflict-tracker/conflict/violence-democratic-republic-congo"
+          ],
+          "independentSources": 4,
+          "crossAlignment": false,
+          "confidence": 0.74
         }
       ],
       "aliases": [
@@ -11777,7 +11907,7 @@
         "US-Iran war",
         "Iran war"
       ],
-      "lastCheckedAt": "2026-10-17",
+      "lastCheckedAt": "2026-11-04",
       "statusHistory": [
         {
           "status": "active",
