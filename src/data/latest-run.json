@@ -1,147 +1,58 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41849697678",
-  "period": "2026-08-29..2026-10-28",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42047844752",
+  "period": "2026-08-31..2026-10-29",
   "days": [
-    "2026-08-29..2026-08-29",
-    "2026-08-30..2026-08-30",
-    "2026-10-28..2026-10-28"
+    "2026-08-31..2026-08-31",
+    "2026-09-01..2026-09-01",
+    "2026-10-29..2026-10-29"
   ],
   "region": null,
-  "ran_at": "2026-11-04",
+  "ran_at": "2026-11-05",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/41849697678",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42047844752",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 215,
-    "candidates": 7,
-    "proposals": 7,
-    "auto_approved": 4,
-    "needs_human": 3,
-    "dropped": 24,
+    "items": 211,
+    "candidates": 0,
+    "proposals": 0,
+    "auto_approved": 0,
+    "needs_human": 0,
+    "dropped": 25,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 169,
-    "routine": 24,
+    "triaged_out": 177,
+    "routine": 25,
     "model_failovers": 0
   },
-  "added": [
-    {
-      "day": "2026-08-29..2026-08-29",
-      "date": "2026-08-29",
-      "title": "IDF kills Nukhba Force commander Hani Abd al-Hai Fakhri Mazloum and Hamas sniper Hassan Zidan Hassan Deiri in separate strikes in northern Gaza Strip",
-      "conflict": "seed_gaza_war",
-      "kind": "attack",
-      "severity": 3,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_29",
-        "https://en.wikipedia.org/wiki/Portal:Current_events/August_2026",
-        "https://www.youtube.com/watch?v=N6fGLjeLVSg",
-        "https://www.cfr.org/reports/conflicts-watch-2026"
-      ]
-    },
-    {
-      "day": "2026-08-30..2026-08-30",
-      "date": "2026-08-30",
-      "title": "Mexican security forces kill Los Reyes cartel leader Luis Enrique Barragán Chávez",
-      "conflict": "seed_mexican_drug_war",
-      "kind": "attack",
-      "severity": 3,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30"
-      ]
-    },
-    {
-      "day": "2026-08-30..2026-08-30",
-      "date": "2026-08-30",
-      "title": "US strikes Iranian rocket launchers on Larak Island",
-      "conflict": "seed_israel_iran_war",
-      "kind": "attack",
-      "severity": 3,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30",
-        "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
-        "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
-        "https://www.opb.org/article/2026/08/30/us-strikes-iranian-rocket-launchers-on-the-strait-of-hormuz-in-first-military-action-in-weeks"
-      ]
-    },
-    {
-      "day": "2026-08-30..2026-08-30",
-      "date": "2026-08-30",
-      "title": "Iran launches ballistic missiles at US military bases in Jordan",
-      "conflict": "seed_israel_iran_war",
-      "kind": "attack",
-      "severity": 4,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30",
-        "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
-        "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
-        "https://www.congress.gov/crs-product/R48887"
-      ]
-    }
-  ],
-  "held": [
-    {
-      "day": "2026-08-29..2026-08-29",
-      "date": "2026-08-29",
-      "title": "Nigerien coup attempt: mutinous soldiers attack Diori Hamani International Airport and the Presidential Palace in Niamey",
-      "question": "fact-check returned 'pass' at confidence 0.48; only 64% of its claims are backed by the cited sources",
-      "confidence": 0.48,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_29",
-        "https://www.financialafrik.com/2026/08/29/niger-nuit-de-feu-a-niamey-le-general-tiani-face-a-une-attaque-dampleur",
-        "https://www.ouest-france.fr/monde/niger/tirs-detonations-television-nationale-coupee-ce-que-lon-sait-des-affrontements-au-niger-3e632d6c-a38d-11f1-94d9-ff4da0548a19"
-      ]
-    },
-    {
-      "day": "2026-08-30..2026-08-30",
-      "date": "2026-08-30",
-      "title": "Nigerien army regains control of airbase attacked by mutinous soldiers",
-      "question": null,
-      "confidence": 0.61,
-      "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_August_30"
-      ]
-    },
-    {
-      "day": "2026-10-28..2026-10-28",
-      "date": "2026-10-28",
-      "title": "Localized Russia-Ukraine ceasefire in Kherson Oblast enables civilian evacuations",
-      "question": "fact-check returned 'pass' at confidence 0.48; only 39% of its claims are backed by the cited sources",
-      "confidence": 0.48,
-      "sources": [
-        "https://ua.news/en/war-vs-rf/karta-boiovikh-dii-v-ukrayini-na-28-zhovtnia-2026-roku-ta-naigariachishi-napriamki",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-october-28-2026",
-        "https://united24media.com/war-in-ukraine/ukraines-medium-range-strikes-hit-russian-drone-bases-air-defenses-and-ammunition-depots-in-october-24074",
-        "https://www.pbs.org/newshour/world/a-brief-ceasefire-between-russia-and-ukraine-opens-a-perilous-escape-window-from-khersons-riverside-kill-zone"
-      ]
-    }
-  ],
+  "added": [],
+  "held": [],
   "already_known": [
-    "routine (significance 1 < 3): 2026-08-29 Ukrainian drone attack on Shebekino kills three people and damages residential buildings",
-    "routine (significance 2 < 3): 2026-08-29 Tanker struck by unknown projectile while transiting the Strait of Hormuz near Khasab, Oman",
-    "routine (significance 2 < 3): 2026-08-29 Israel strikes Shuhada al-Aqsa Hospital in Deir al-Balah, killing three people",
-    "routine (significance 2 < 3): 2026-08-29 Hijacked cargo ship MV LUTUF freed by Somali and Turkish forces off the coast of Somalia",
-    "routine (significance 2 < 3): 2026-08-29 Tuareg rebels free 60 Malian soldiers in exchange for defector officer Inkinane Ag Attaher",
-    "routine (significance 2 < 3): 2026-08-29 Russian strike on Ukraine's Kyiv region kills at least 27 people",
-    "routine (significance 1 < 3): 2026-08-29 Russian attack on Odesa kills one person and injures three others",
-    "routine (significance 2 < 3): 2026-08-29 Russian strike hits warehouse, detonation ignites residential buildings and a care home for people with disabilities, killing dozens",
-    "routine (significance 1 < 3): 2026-08-30 RSF attacks in Bara kill five civilians and displace thousands",
-    "routine (significance 2 < 3): 2026-08-30 Syrian security forces kill ex-Assad army commander Firas Abdul Karim Hammoud during arrest attempt",
-    "routine (significance 2 < 3): 2026-08-30 Ukrainian missile strike on Belgorod kills two",
-    "routine (significance 1 < 3): 2026-08-30 Israeli airstrike kills two Palestinians, including a three-year-old child, in central Gaza",
-    "routine (significance 2 < 3): 2026-08-30 Russia attacks Ukraine with Iskander-M ballistic missiles and 130 drones overnight",
-    "routine (significance 1 < 3): 2026-08-30 Russian strikes hit Kyiv, causing fires and casualties",
-    "routine (significance 2 < 3): 2026-08-30 RSF splinter force of ~200 fighters arrives in Umm Durman",
-    "routine (significance 1 < 3): 2026-10-28 191 combat engagements recorded on Ukraine front lines; Pokrovsk most active",
-    "routine (significance 2 < 3): 2026-10-28 Ukrainian strikes hit NAK Azot chemical plant in Novomoskovsk and Novolipetsk Metallurgical Plant",
-    "routine (significance 2 < 3): 2026-10-28 Russian strikes hit Kyiv and rear regions of Ukraine",
-    "routine (significance 2 < 3): 2026-10-28 Putin holds phone calls with Finnish and Norwegian leaders who demanded an end to attacks on Ukrainian energy",
-    "routine (significance 2 < 3): 2026-10-28 Drone strikes hit fuel depots and power plant in El Manaqil and Hayya",
-    "routine (significance 2 < 3): 2026-10-28 RSF and SPLM-N drone attacks on Kadugli injure eight",
-    "routine (significance 2 < 3): 2026-10-28 Sudan accuses Ethiopia of drone strikes on civilian infrastructure and power stations",
-    "routine (significance 2 < 3): 2026-10-28 Sudanese army repels RSF and SPLM-N assault in Blue Nile, seizes 15 combat vehicles",
-    "routine (significance 2 < 3): 2026-10-28 Rights group reports over 100 killed in Sudanese army drone strike on Nyala market"
+    "routine (significance 2 < 3): 2026-08-31 US strikes Iranian rocket launchers on Larak island",
+    "routine (significance 2 < 3): 2026-08-31 Iran attacks US bases in Jordan",
+    "routine (significance 2 < 3): 2026-08-31 Iranian drone intercepted over UAE; Iran claims attack on Al Minhad Air Base",
+    "routine (significance 2 < 3): 2026-08-31 US says demining of Strait of Hormuz shipping lanes completed",
+    "routine (significance 2 < 3): 2026-08-31 Israeli airstrikes kill at least five people in Gaza",
+    "routine (significance 1 < 3): 2026-08-31 Russian strikes batter Kyiv for fifth straight day; guided bomb hits Sloviansk",
+    "routine (significance 2 < 3): 2026-08-31 Ukraine tightens Kyiv security amid Russian drone attacks",
+    "routine (significance 1 < 3): 2026-08-31 Ukraine strikes Belgorod Oblast overnight",
+    "routine (significance 2 < 3): 2026-08-31 Russian airstrike on underground school in Komyshuvakha kills 31",
+    "routine (significance 2 < 3): 2026-08-31 Sudanese army accused of airstrike inside Chad",
+    "routine (significance 2 < 3): 2026-08-31 Israel and Greece sign €3 billion arms deal",
+    "routine (significance 2 < 3): 2026-08-31 26th SCO summit opens in Bishkek",
+    "routine (significance 1 < 3): 2026-09-01 Russian drone and missile barrage kills at least 12 in Kyiv",
+    "routine (significance 1 < 3): 2026-09-01 Russia launches 99 strike drones at Ukraine during the day",
+    "routine (significance 2 < 3): 2026-09-01 Russian forces capture Chervona Krynytsia in Zaporizhzhia Oblast",
+    "routine (significance 2 < 3): 2026-09-01 Russian forces capture Novopavlivka in Zaporizhzhia Oblast",
+    "routine (significance 2 < 3): 2026-09-01 Ukrainian strike on Novatek's Ust-Luga oil export terminal",
+    "routine (significance 2 < 3): 2026-09-01 Ukrainian strikes on Russian drone launch sites in occupied Donetsk City",
+    "routine (significance 2 < 3): 2026-09-01 Ukrainian strikes on Russian drone sites and communications hub in occupied Crimea",
+    "routine (significance 2 < 3): 2026-09-01 Israeli operation to kidnap Hamas security officer in Gaza City",
+    "routine (significance 1 < 3): 2026-09-01 Evacuation in western Gaza City after Israeli attack",
+    "routine (significance 2 < 3): 2026-10-29 Houthis claim six simultaneous attacks on Saudi refineries, airports and military HQ",
+    "routine (significance 2 < 3): 2026-10-29 Ballistic missile debris falls in Riyadh after two missiles intercepted",
+    "routine (significance 2 < 3): 2026-10-29 IRGC says three tankers hit mines in Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-10-29 Israeli strikes kill at least two in Gaza amid ceasefire"
   ],
   "errored": []
 }
