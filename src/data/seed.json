@@ -1,5 +1,5 @@
 {
-  "version": "2.19.25",
+  "version": "2.19.26",
   "countries": [
     {
       "id": "AFG",
@@ -11234,10 +11234,40 @@
           "independentSources": 1,
           "crossAlignment": false,
           "confidence": 0.87
+        },
+        {
+          "id": "seed_syria_transition_e2",
+          "date": "2026-09-03",
+          "title": "UN Security Council told Syria has begun destroying clandestine chemical weapons",
+          "kind": "milestone",
+          "severity": 1,
+          "location": {
+            "lat": 40.7128,
+            "lng": -74.006,
+            "label": "New York (UN Security Council)"
+          },
+          "parties": [
+            "SYR"
+          ],
+          "description": "At a UN Security Council meeting, officials said Syria has begun destroying clandestine chemical weapons left over from Bashar al-Assad's regime.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_3",
+            "https://www.cbsnews.com/live-updates/us-iran-war-trump-dismisses-diplomacy-tehran-says-wedding-hit-in-strike",
+            "https://www.fdd.org/overnight-brief/september-3-2026",
+            "https://www.facebook.com/iltvisraelnews/posts/iltv-news-flash-november-3-2026the-us-launches-airstrikes-on-irans-qeshm-island-/1561017916055597",
+            "https://www.aljazeera.com/news/2026/9/3/israel-kills-3-in-gaza-as-far-right-minister-plans-for-palestinian-removals",
+            "https://havanatimes.org/news/international-news-briefs-for-thursday-september-3-2026",
+            "https://www.democracynow.org/2026/9/3/headlines",
+            "https://www.businessinsider.com/ukraine-special-forces-units-clashed-downtonw-shootout-gur-sbu-2026-9"
+          ],
+          "independentSources": 8,
+          "crossAlignment": false,
+          "confidence": 0.79
         }
       ],
       "aliases": [
-        "Aftermath of the Syrian civil war"
+        "Aftermath of the Syrian civil war",
+        "aftermath of the Syrian civil war"
       ],
       "statusHistory": [
         {
@@ -11247,7 +11277,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-05"
+      "lastCheckedAt": "2026-11-06"
     },
     {
       "id": "seed_lebanon_war_2024",
@@ -11521,6 +11551,14 @@
         {
           "countryId": "JOR",
           "role": "victim"
+        },
+        {
+          "countryId": "KWT",
+          "role": "victim"
+        },
+        {
+          "countryId": "ARE",
+          "role": "victim"
         }
       ],
       "involvedCountries": [
@@ -11528,7 +11566,9 @@
         "USA",
         "IRN",
         "QAT",
-        "JOR"
+        "JOR",
+        "KWT",
+        "ARE"
       ],
       "tags": [
         "nuclear",
@@ -11899,6 +11939,38 @@
           "independentSources": 4,
           "crossAlignment": false,
           "confidence": 0.74
+        },
+        {
+          "id": "seed_israel_iran_war_e16",
+          "date": "2026-09-03",
+          "title": "Iran launches drone and missile attack on US bases in Kuwait and UAE",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 29.3759,
+            "lng": 47.9774,
+            "label": "Ahmad al-Jaber Air Base, Kuwait"
+          },
+          "parties": [
+            "IRN",
+            "USA",
+            "KWT",
+            "ARE"
+          ],
+          "description": "Iran's military fired drones and missiles at US facilities at Ahmad al-Jaber Air Base in Kuwait and Al Minhad Air Base in the UAE, in retaliation for US strikes that killed at least 19 people. US officials said the attacks did not impact military facilities used by US forces, though Kuwaiti authorities reported damage to a residential building in Kuwait City.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_3",
+            "https://understandingwar.org/research/middle-east/iran-update-september-3-2026",
+            "https://www.cbsnews.com/live-updates/us-iran-war-trump-dismisses-diplomacy-tehran-says-wedding-hit-in-strike",
+            "https://www.facebook.com/newshour/videos/iran-attacked-american-bases-and-allies-across-the-persian-gulf-region-on-wednes/1062375126764316",
+            "https://www.reuters.com/world/middle-east/iran-war-escalation-raises-concern-over-civilian-death-toll-2026-09-03",
+            "https://en.wikipedia.org/wiki/2026_United_States-led_conflict_with_pro-Iranian_Iraqi_militias",
+            "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-thursday-september-3-2026-silver-prices-rise-following-short-lived-airstrikes-111653911.html",
+            "https://apnews.com/article/iran-us-strikes-hormuz-trump-september-2-2026-cc891e22860d7a53bf7ade9a3d74c0ae"
+          ],
+          "independentSources": 7,
+          "crossAlignment": false,
+          "confidence": 0.8
         }
       ],
       "aliases": [
@@ -11907,7 +11979,7 @@
         "US-Iran war",
         "Iran war"
       ],
-      "lastCheckedAt": "2026-11-04",
+      "lastCheckedAt": "2026-11-06",
       "statusHistory": [
         {
           "status": "active",
