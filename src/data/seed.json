@@ -1,5 +1,5 @@
 {
-  "version": "2.19.26",
+  "version": "2.19.28",
   "countries": [
     {
       "id": "AFG",
@@ -5242,6 +5242,27 @@
           "independentSources": 7,
           "crossAlignment": true,
           "confidence": 0.67
+        },
+        {
+          "id": "seed_ukraine_war_e25",
+          "date": "2026-09-05",
+          "title": "Ukraine announced a three-day limited ceasefire",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": null,
+          "parties": [
+            "UKR",
+            "RUS"
+          ],
+          "description": "Ukraine announced a three-day limited ceasefire along the entire front line, amid US-mediated peace talks with envoys visiting Moscow and Kyiv. Russian strikes continued during the period.",
+          "sources": [
+            "https://www.aa.com.tr/en/world/morning-briefing-sept-5-2026/4047911",
+            "https://www.aljazeera.com/news/2026/9/5/at-least-5-killed-in-russian-attacks-on-ukraine-as-us-envoys-visit-moscow",
+            "https://www.youtube.com/watch?v=w-XYPNO4W1Y"
+          ],
+          "independentSources": 3,
+          "crossAlignment": true,
+          "confidence": 0.5
         }
       ],
       "aliases": [
@@ -5259,7 +5280,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-11-03"
+      "lastCheckedAt": "2026-11-07"
     },
     {
       "id": "seed_drc_m23",
@@ -5864,12 +5885,42 @@
           "independentSources": 5,
           "crossAlignment": false,
           "confidence": 0.74
+        },
+        {
+          "id": "seed_gaza_war_e14",
+          "date": "2026-09-04",
+          "title": "IDF kills Nukhba Force commander in Khan Yunis airstrike",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 31.399528,
+            "lng": 34.3032397,
+            "label": "Khan Yunis, Gaza Strip"
+          },
+          "parties": [
+            "ISR",
+            "PSE"
+          ],
+          "description": "The IDF said it killed Mohammad Mahmoud Marshad al-Qadi, a Hamas Nukhba Force commander who took part in the October 7 attack on the Sufa post, in an airstrike in Khan Yunis.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_4",
+            "https://www.youtube.com/watch?v=l9g2UcdA8mM",
+            "https://www.fdd.org/overnight-brief/september-4-2026",
+            "https://www.democracynow.org/2026/9/4/headlines",
+            "https://www.russiamatters.org/news/russia-review/russia-review-sept-4-11-2026",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-updates-september-2026-present",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_September_2026_%E2%80%93_present)",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Israeli%E2%80%93Palestinian_conflict_in_2026"
+          ],
+          "independentSources": 6,
+          "crossAlignment": false,
+          "confidence": 0.74
         }
       ],
       "aliases": [
         "Gaza war"
       ],
-      "lastCheckedAt": "2026-11-04",
+      "lastCheckedAt": "2026-11-07",
       "statusHistory": [
         {
           "status": "active",
@@ -11507,10 +11558,43 @@
           "independentSources": 7,
           "crossAlignment": true,
           "confidence": 0.59
+        },
+        {
+          "id": "seed_lebanon_war_2024_e10",
+          "date": "2026-09-04",
+          "title": "Israel frees four prisoners via Red Cross under Israel–Lebanon ceasefire efforts",
+          "kind": "ceasefire",
+          "severity": 1,
+          "location": {
+            "lat": 30.8124247,
+            "lng": 34.8594762,
+            "label": "Israel"
+          },
+          "parties": [
+            "ISR",
+            "LBN",
+            "IRN",
+            "USA"
+          ],
+          "description": "Israel released four prisoners, including two Syrian citizens, via the International Committee of the Red Cross as part of efforts to revive U.S.-backed Israel–Lebanon peace talks under the 2026 ceasefire.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_4",
+            "https://www.ncr-iran.org/en/news/iran-news-in-brief-september-4-2026",
+            "https://www.cfr.org/reports/conflicts-watch-2026",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-updates-september-2026-present",
+            "https://www.youtube.com/watch?v=rjbN-tRI2Ww",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_September_2026_%E2%80%93_present)",
+            "https://www.washingtonpost.com/israel-hamas-war",
+            "https://www.hrw.org/news/2026/10/10/gaza-ceasefire-anniversary-marks-year-of-failed-promises"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.7
         }
       ],
       "aliases": [
-        "2026 Lebanon war"
+        "2026 Lebanon war",
+        "2026 Israel–Lebanon ceasefire"
       ],
       "statusHistory": [
         {
@@ -11520,7 +11604,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-10-09"
+      "lastCheckedAt": "2026-11-07"
     },
     {
       "id": "seed_israel_iran_war",
@@ -11971,6 +12055,36 @@
           "independentSources": 7,
           "crossAlignment": false,
           "confidence": 0.8
+        },
+        {
+          "id": "seed_israel_iran_war_e17",
+          "date": "2026-09-05",
+          "title": "US Central Command struck three Iranian oil tankers",
+          "kind": "attack",
+          "severity": 3,
+          "location": {
+            "lat": 24.2138029,
+            "lng": 58.9845823,
+            "label": "Gulf of Oman"
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "US Central Command said its forces destroyed three Iranian oil tankers linked to the IRGC, including one in the Gulf of Oman, after alleged Iranian missile attacks on US naval vessels. Iran did not confirm the alleged attacks on US warships.",
+          "sources": [
+            "https://jinsa.org/wp-content/uploads/2026/09/Iran-War-Update-9.8.26.pdf",
+            "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_5",
+            "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+            "https://en.wikipedia.org/wiki/2026_Iran_war",
+            "http://crow.house.gov/media/press-releases/crow-presses-pentagon-over-civilian-casualties-during-trump-s-iran-war",
+            "https://www.facebook.com/iltvisraelnews/posts/iltv-news-flash-september-6-2026a-dramatic-escalation-in-the-strait-of-hormuz-as/1502609965229726",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Israeli%E2%80%93Palestinian_conflict_in_2026",
+            "https://www.iranntv.com/1000970-%D8%AA%D9%86%D8%B4-%D8%AF%D8%B1-%D9%87%D8%B1%D9%85%D8%B2-%D8%AA%D8%B4%D8%AF%DB%8C%D8%AF-%D9%86%D8%A8%D8%B1%D8%AF%D9%87%D8%A7%DB%8C-%DB%8C%D9%85%D9%86-%D9%88-%DA%AF%D8%B3%D8%AA%D8%B1%D8%B4-%D9%81%D8%B4%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%DB%8C-%D8%A2%D8%AE%D8%B1%DB%8C%D9%86-%D8%AA%D8%AD%D9%88%D9%84%D8%A7%D8%AA-%D8%AC%D9%86%DA%AF-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D9%88-%D8%B1%DA%98%DB%8C%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86"
+          ],
+          "independentSources": 5,
+          "crossAlignment": false,
+          "confidence": 0.72
         }
       ],
       "aliases": [
@@ -11979,7 +12093,7 @@
         "US-Iran war",
         "Iran war"
       ],
-      "lastCheckedAt": "2026-11-06",
+      "lastCheckedAt": "2026-11-07",
       "statusHistory": [
         {
           "status": "active",

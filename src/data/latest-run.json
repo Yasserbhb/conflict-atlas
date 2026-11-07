@@ -1,84 +1,129 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42233330950",
-  "period": "2026-09-02..2026-10-30",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42375844327",
+  "period": "2026-09-04..2026-10-31",
   "days": [
-    "2026-09-02..2026-09-02",
-    "2026-09-03..2026-09-03",
-    "2026-10-30..2026-10-30"
+    "2026-09-04..2026-09-04",
+    "2026-09-05..2026-09-05",
+    "2026-10-31..2026-10-31"
   ],
   "region": null,
-  "ran_at": "2026-11-06",
+  "ran_at": "2026-11-07",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42233330950",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42375844327",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 212,
-    "candidates": 2,
-    "proposals": 2,
-    "auto_approved": 2,
-    "needs_human": 0,
-    "dropped": 22,
+    "items": 211,
+    "candidates": 6,
+    "proposals": 6,
+    "auto_approved": 4,
+    "needs_human": 2,
+    "dropped": 13,
     "failed": 0,
-    "out_of_window": 0,
-    "triaged_out": 179,
-    "routine": 22,
+    "out_of_window": 19,
+    "triaged_out": 177,
+    "routine": 13,
     "model_failovers": 0
   },
   "added": [
     {
-      "day": "2026-09-03..2026-09-03",
-      "date": "2026-09-03",
-      "title": "Iran launches drone and missile attack on US bases in Kuwait and UAE",
+      "day": "2026-09-04..2026-09-04",
+      "date": "2026-09-04",
+      "title": "Israel frees four prisoners via Red Cross under Israel–Lebanon ceasefire efforts",
+      "conflict": "seed_lebanon_war_2024",
+      "kind": "ceasefire",
+      "severity": 1,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_4",
+        "https://www.ncr-iran.org/en/news/iran-news-in-brief-september-4-2026",
+        "https://www.cfr.org/reports/conflicts-watch-2026",
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-updates-september-2026-present"
+      ]
+    },
+    {
+      "day": "2026-09-04..2026-09-04",
+      "date": "2026-09-04",
+      "title": "IDF kills Nukhba Force commander in Khan Yunis airstrike",
+      "conflict": "seed_gaza_war",
+      "kind": "attack",
+      "severity": 3,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_4",
+        "https://www.youtube.com/watch?v=l9g2UcdA8mM",
+        "https://www.fdd.org/overnight-brief/september-4-2026",
+        "https://www.democracynow.org/2026/9/4/headlines"
+      ]
+    },
+    {
+      "day": "2026-09-05..2026-09-05",
+      "date": "2026-09-05",
+      "title": "US Central Command struck three Iranian oil tankers",
       "conflict": "seed_israel_iran_war",
       "kind": "attack",
       "severity": 3,
       "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_3",
-        "https://understandingwar.org/research/middle-east/iran-update-september-3-2026",
-        "https://www.cbsnews.com/live-updates/us-iran-war-trump-dismisses-diplomacy-tehran-says-wedding-hit-in-strike",
-        "https://www.facebook.com/newshour/videos/iran-attacked-american-bases-and-allies-across-the-persian-gulf-region-on-wednes/1062375126764316"
+        "https://jinsa.org/wp-content/uploads/2026/09/Iran-War-Update-9.8.26.pdf",
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_5",
+        "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+        "https://en.wikipedia.org/wiki/2026_Iran_war"
       ]
     },
     {
-      "day": "2026-09-03..2026-09-03",
-      "date": "2026-09-03",
-      "title": "UN Security Council told Syria has begun destroying clandestine chemical weapons",
-      "conflict": "seed_syria_transition",
-      "kind": "milestone",
-      "severity": 1,
+      "day": "2026-09-05..2026-09-05",
+      "date": "2026-09-05",
+      "title": "Ukraine announced a three-day limited ceasefire",
+      "conflict": "seed_ukraine_war",
+      "kind": "ceasefire",
+      "severity": 2,
       "sources": [
-        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_3",
-        "https://www.cbsnews.com/live-updates/us-iran-war-trump-dismisses-diplomacy-tehran-says-wedding-hit-in-strike",
-        "https://www.fdd.org/overnight-brief/september-3-2026",
-        "https://www.facebook.com/iltvisraelnews/posts/iltv-news-flash-november-3-2026the-us-launches-airstrikes-on-irans-qeshm-island-/1561017916055597"
+        "https://www.aa.com.tr/en/world/morning-briefing-sept-5-2026/4047911",
+        "https://www.aljazeera.com/news/2026/9/5/at-least-5-killed-in-russian-attacks-on-ukraine-as-us-envoys-visit-moscow",
+        "https://www.youtube.com/watch?v=w-XYPNO4W1Y"
       ]
     }
   ],
-  "held": [],
+  "held": [
+    {
+      "day": "2026-09-04..2026-09-04",
+      "date": "2026-09-04",
+      "title": "Ukraine orders temporary ceasefire ahead of US-brokered peace talks",
+      "question": "fact-check returned 'pass' at confidence 0.49; only 73% of its claims are backed by the cited sources",
+      "confidence": 0.49,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_4",
+        "https://www.npr.org/2026/09/04/nx-s1-5958529/the-news-roundup-for-september-4-2026",
+        "https://www.russiamatters.org/news/russia-review/russia-review-sept-4-11-2026",
+        "https://www.youtube.com/watch?v=rjbN-tRI2Ww"
+      ]
+    },
+    {
+      "day": "2026-09-05..2026-09-05",
+      "date": "2026-09-05",
+      "title": "Ukraine and Russia reached a temporary agreement to halt long-range strikes",
+      "question": "fact-check returned 'pass' at confidence 0.38; only 71% of its claims are backed by the cited sources",
+      "confidence": 0.38,
+      "sources": [
+        "https://www.aa.com.tr/en/world/morning-briefing-sept-5-2026/4047911",
+        "https://www.facebook.com/GoLocalProv/posts/5-big-news-stories-overnight-saturday-september-5-2026/1712814837513790",
+        "https://en.wikipedia.org/wiki/Portal:Current_events/2026_September_5",
+        "https://www.aljazeera.com/news/2026/9/5/at-least-5-killed-in-russian-attacks-on-ukraine-as-us-envoys-visit-moscow"
+      ]
+    }
+  ],
   "already_known": [
-    "routine (significance 1 < 3): 2026-09-02 Russian drone and missile strikes hit Kyiv, Odesa and Dnipro, killing civilians",
-    "routine (significance 2 < 3): 2026-09-02 Air strike hits UN food convoy near Dilling, South Kordofan",
-    "routine (significance 2 < 3): 2026-09-02 Israeli special forces raid captures Hamas leader in Gaza City; airstrikes kill four Palestinians",
-    "routine (significance 2 < 3): 2026-09-02 IDF destroys Gaza terror tunnel east of Yellow Line",
-    "routine (significance 2 < 3): 2026-09-02 Iranian missile and drone attacks trigger sirens in Kuwait",
-    "routine (significance 2 < 3): 2026-09-02 Two tankers attacked in overnight run through Strait of Hormuz",
-    "routine (significance 2 < 3): 2026-09-03 Colombian judge orders suspension of airstrikes on guerrilla camps",
-    "routine (significance 2 < 3): 2026-09-03 ISM militants attack hunting camp in Niassa Province, Mozambique",
-    "routine (significance 1 < 3): 2026-09-03 Bandit attack in Kebbe, Sokoto State, Nigeria",
-    "routine (significance 2 < 3): 2026-09-03 Russia to close Goethe-Institut centers in retaliation for German measures",
-    "routine (significance 2 < 3): 2026-09-03 Israeli strikes kill at least three in Gaza",
-    "routine (significance 2 < 3): 2026-09-03 Russian forces capture Kazachya Lopan and Sviatohirsk",
-    "routine (significance 2 < 3): 2026-09-03 Ukrainian naval drone strikes Russian ship Nefrit in Port of Sochi",
-    "routine (significance 2 < 3): 2026-09-03 Russian strike hits Ukrainian ammunition depot in Khmelnytskyi",
-    "routine (significance 2 < 3): 2026-09-03 Houthi offensive launched in Taiz Governorate",
-    "routine (significance 2 < 3): 2026-09-03 Danish conscripts deployed to Greenland for the first time",
-    "routine (significance 2 < 3): 2026-09-03 German police investigate second grid sabotage attempt in 24 hours",
-    "routine (significance 1 < 3): 2026-09-03 Israel Police kill three in Bayt Rima, West Bank",
-    "routine (significance 1 < 3): 2026-10-30 Israeli strike hits building west of Jabalia in northern Gaza",
-    "routine (significance 2 < 3): 2026-10-30 Multiple tankers and drones struck around the Strait of Hormuz",
-    "routine (significance 1 < 3): 2026-10-30 Armed attack wounds two Guatemalan soldiers on Ixchiguán–Tajumulco border",
-    "routine (significance 1 < 3): 2026-10-30 Police operation in Madre de Dios ends in clash leaving four dead and two officers wounded"
+    "routine (significance 2 < 3): 2026-09-04 Russian drone strike on SBU headquarters in Kyiv targeting acting head Oleksandr Poklad",
+    "routine (significance 1 < 3): 2026-09-04 Drone attack kills three soldiers in Ocaña, Colombia",
+    "routine (significance 1 < 3): 2026-09-04 Pakistan says 48 Baloch separatists killed in raids",
+    "routine (significance 2 < 3): 2026-09-04 Nine killed in Nigerian security operation to rescue kidnapping victims",
+    "routine (significance 1 < 3): 2026-09-04 Over 120 killed in Houthi–Yemeni government clashes in western Yemen",
+    "routine (significance 2 < 3): 2026-09-04 Israeli police kill Palestinian in Jerusalem; army blocks aid for Qusra",
+    "routine (significance 2 < 3): 2026-09-04 Ukrainian drones strike Sochi region, damaging oil base and reportedly an S-400 position",
+    "routine (significance 2 < 3): 2026-09-04 Ukrainian drones strike Avangard and SPP plants in Sterlitamak, Russia",
+    "routine (significance 2 < 3): 2026-09-04 Ukraine strikes Russian missile system in occupied Crimea",
+    "routine (significance 1 < 3): 2026-09-05 Yemen conducted 15 airstrikes against Houthi rebel positions",
+    "routine (significance 1 < 3): 2026-09-05 Israeli authorities conducted airstrikes in southern Lebanon",
+    "routine (significance 1 < 3): 2026-09-05 Russian forces conducted missile and drone attacks on Ukraine",
+    "routine (significance 2 < 3): 2026-09-05 Russian missile strike killed four people in Kamianske"
   ],
   "errored": []
 }
