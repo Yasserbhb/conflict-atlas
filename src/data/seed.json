@@ -1,5 +1,5 @@
 {
-  "version": "2.19.28",
+  "version": "2.19.29",
   "countries": [
     {
       "id": "AFG",
@@ -12085,6 +12085,34 @@
           "independentSources": 5,
           "crossAlignment": false,
           "confidence": 0.72
+        },
+        {
+          "id": "seed_israel_iran_war_e18",
+          "date": "2026-09-08",
+          "title": "US Treasury suspends Iran licences for bunkering, ship repairs and overflight payments",
+          "kind": "sanction",
+          "severity": 1,
+          "location": {
+            "lat": 38.8950982,
+            "lng": -77.0363849,
+            "label": "Washington, D.C."
+          },
+          "parties": [
+            "USA",
+            "IRN"
+          ],
+          "description": "The US Treasury suspended Iran-related licences for bunkering, emergency ship repairs and overflight payments, tightening economic pressure amid the 2026 Iran war.",
+          "sources": [
+            "https://thewarrecord.com/iran-war/day/2026-09-08",
+            "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
+            "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+            "https://understandingwar.org/research/middle-east/iran-update-september-9-2026",
+            "https://www.dw.com/en/who-are-sudans-rsf/video-75947606",
+            "https://www.cfr.org/global-conflict-tracker/conflict/violence-democratic-republic-congo"
+          ],
+          "independentSources": 5,
+          "crossAlignment": false,
+          "confidence": 0.52
         }
       ],
       "aliases": [
@@ -12093,7 +12121,7 @@
         "US-Iran war",
         "Iran war"
       ],
-      "lastCheckedAt": "2026-11-07",
+      "lastCheckedAt": "2026-11-09",
       "statusHistory": [
         {
           "status": "active",

@@ -1,90 +1,91 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42485504183",
-  "period": "2026-09-06..2026-11-01",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42655514554",
+  "period": "2026-09-08..2026-11-02",
   "days": [
-    "2026-09-06..2026-09-06",
-    "2026-09-07..2026-09-07",
-    "2026-11-01..2026-11-01"
+    "2026-09-08..2026-09-08",
+    "2026-09-09..2026-09-09",
+    "2026-11-02..2026-11-02"
   ],
   "region": null,
-  "ran_at": "2026-11-08",
+  "ran_at": "2026-11-09",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42485504183",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/42655514554",
   "stats": {
     "queries": 18,
     "queries_dropped": 0,
-    "items": 202,
-    "candidates": 4,
-    "proposals": 3,
-    "auto_approved": 0,
-    "needs_human": 3,
-    "dropped": 17,
+    "items": 205,
+    "candidates": 2,
+    "proposals": 2,
+    "auto_approved": 1,
+    "needs_human": 1,
+    "dropped": 29,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 158,
-    "routine": 16,
+    "triaged_out": 161,
+    "routine": 29,
     "model_failovers": 0
   },
-  "added": [],
+  "added": [
+    {
+      "day": "2026-09-08..2026-09-08",
+      "date": "2026-09-08",
+      "title": "US Treasury suspends Iran licences for bunkering, ship repairs and overflight payments",
+      "conflict": "seed_israel_iran_war",
+      "kind": "sanction",
+      "severity": 1,
+      "sources": [
+        "https://thewarrecord.com/iran-war/day/2026-09-08",
+        "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
+        "https://en.wikipedia.org/wiki/Casualties_of_the_2026_Iran_war",
+        "https://understandingwar.org/research/middle-east/iran-update-september-9-2026"
+      ]
+    }
+  ],
   "held": [
     {
-      "day": "2026-09-06..2026-09-06",
-      "date": "2026-09-06",
-      "title": "IRGC fires ballistic missiles at US Navy warships in Strait of Hormuz",
-      "question": "fact-check returned 'uncertain' at confidence 0.34; only 35% of its claims are backed by the cited sources",
-      "confidence": 0.34,
+      "day": "2026-09-08..2026-09-08",
+      "date": "2026-09-08",
+      "title": "US forces destroy five Iranian oil tankers",
+      "question": "fact-check returned 'uncertain' at confidence 0.31; only 62% of its claims are backed by the cited sources",
+      "confidence": 0.31,
       "sources": [
-        "https://www.youtube.com/watch?v=-jqypW4rcwU",
-        "https://www.globalsecurity.org/military/ops/iran-war-20260906.htm",
-        "https://www.facebook.com/iltvisraelnews/videos/iltv-news-flash-september-6-2026a-dramatic-escalation-in-the-strait-of-hormuz-as/1041159608972607",
+        "https://www.democracynow.org/2026/9/8/headlines",
+        "https://www.justsecurity.org/156556/early-edition-september-8-2026",
+        "https://thewarrecord.com/iran-war/day/2026-09-08",
         "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran"
-      ]
-    },
-    {
-      "day": "2026-09-06..2026-09-06",
-      "date": "2026-09-06",
-      "title": "Iran to announce 'exclusion zone' near Strait of Hormuz",
-      "question": "fact-check returned 'pass' at confidence 0.40; only 44% of its claims are backed by the cited sources",
-      "confidence": 0.4,
-      "sources": [
-        "https://www.globalsecurity.org/military/ops/iran-war-20260906.htm",
-        "https://www.facebook.com/iltvisraelnews/videos/iltv-news-flash-september-6-2026a-dramatic-escalation-in-the-strait-of-hormuz-as/1041159608972607",
-        "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
-        "https://www.chicagotribune.com/2026/09/06/iran-claims-a-strike-on-a-us-ship-in-the-strait-of-hormuz-but-the-us-denies-it"
-      ]
-    },
-    {
-      "day": "2026-09-06..2026-09-06",
-      "date": "2026-09-06",
-      "title": "Temporary 'day of silence' on strikes over Moscow and Kyiv during US envoys' talks",
-      "question": "fact-check returned 'uncertain' at confidence 0.18; only 29% of its claims are backed by the cited sources",
-      "confidence": 0.18,
-      "sources": [
-        "https://www.globalsecurity.org/military/ops/iran-war-20260906.htm",
-        "https://en.wikipedia.org/wiki/September_2026_United_States_strikes_on_Iran",
-        "https://en.wikipedia.org/wiki/2026_United_States-led_conflict_with_pro-Iranian_Iraqi_militias",
-        "https://azpbs.org/horizon/2026/09/u-s-launches-new-strikes-on-iranian-targets-six-months-into-iran-war"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-09-06 IRGC claims attack on US naval drone and remotely operated vessel near Hormuz",
-    "routine (significance 2 < 3): 2026-09-06 Israeli strikes kill four in southern Lebanon",
-    "routine (significance 1 < 3): 2026-09-06 Israeli airstrike on vehicle wounds people west of Gaza City",
-    "routine (significance 2 < 3): 2026-09-06 Heavy fighting between Yemeni government forces and Houthis kills over 140",
-    "routine (significance 2 < 3): 2026-09-06 Russia attacks Ukraine with over 100 drones and missiles overnight",
-    "routine (significance 2 < 3): 2026-09-06 Massive Ukrainian drone wave hits Russia: 258 drones downed, Rostov and Ryazan struck",
-    "routine (significance 1 < 3): 2026-09-06 Iran raises gasoline prices for heaviest consumers",
-    "already known: 2026-09-06 US CENTCOM strikes three Iranian oil tankers in Strait of Hormuz",
-    "routine (significance 1 < 3): 2026-09-07 Israeli attacks on Gaza kill five Palestinians, including two children",
-    "routine (significance 1 < 3): 2026-09-07 Palestinian stabs Israeli resident at Maoz Yehuda farm",
-    "routine (significance 2 < 3): 2026-09-07 Russian forces advance in DNR, Zaporizhzhia, Sumy and Kharkiv regions",
-    "routine (significance 2 < 3): 2026-11-01 Massive Russian drone and missile attack on Ukraine",
-    "routine (significance 2 < 3): 2026-11-01 Ukrainian drone strikes hit Russian oil refinery in Samara region and facility in Kstovo",
-    "routine (significance 1 < 3): 2026-11-01 Russian drone strike hits apartment building in Vasyscheve, Kharkiv region",
-    "routine (significance 1 < 3): 2026-11-01 Daytime Russian drone attack on Ukraine with 326 UAVs and S8000 missiles",
-    "routine (significance 1 < 3): 2026-11-01 Russian drone attack on Kyiv region wounds two",
-    "routine (significance 1 < 3): 2026-11-01 Russian strike on Poltava region hits homes in Hradyzk community"
+    "routine (significance 2 < 3): 2026-09-08 Russia launches massive missile and drone attack on Kyiv, killing at least five",
+    "routine (significance 2 < 3): 2026-09-08 Iran fires 20 ballistic missiles at Jordan's Muwaffaq Salti Airbase",
+    "routine (significance 2 < 3): 2026-09-08 Houthi attacks on Saudi cities and energy facilities wound 73",
+    "routine (significance 1 < 3): 2026-09-08 Saudi strikes on northern Yemen kill or wound 14",
+    "routine (significance 2 < 3): 2026-09-08 Israeli strikes on Kfar Roummane, southern Lebanon, kill at least 11-12",
+    "routine (significance 1 < 3): 2026-09-08 Israeli strikes kill four in Gaza",
+    "routine (significance 1 < 3): 2026-09-08 Israeli troops kill two Palestinians in West Bank",
+    "routine (significance 2 < 3): 2026-09-08 IRGC Navy warns tankers near Kuwaiti and Bahraini ports to evacuate",
+    "routine (significance 2 < 3): 2026-09-08 Qatari LNG tanker Al Marrouna crosses Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-09-09 Russian missile and drone strike on Kyiv kills five",
+    "routine (significance 1 < 3): 2026-09-09 Russian attacks across Ukraine kill at least eight",
+    "routine (significance 2 < 3): 2026-09-09 Ukrainian strikes on Novorossiysk naval base raise death toll to four",
+    "routine (significance 2 < 3): 2026-09-09 Sudanese army destroys rebel air defense system east of El Koma",
+    "routine (significance 2 < 3): 2026-11-02 Russian airstrike on school shelter in Komyshuvakha kills dozens",
+    "routine (significance 1 < 3): 2026-11-02 Russian overnight drone and missile attacks across Ukraine",
+    "routine (significance 2 < 3): 2026-11-02 US airstrikes on Iranian targets in the Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-11-02 Salvadoran-led offensive in Haiti's Plain of the Cul-de-Sac",
+    "routine (significance 2 < 3): 2026-11-02 Israeli withdrawal from areas around Hebron",
+    "routine (significance 1 < 3): 2026-11-02 Israeli strike hits car in Gaza City",
+    "routine (significance 2 < 3): 2026-11-02 RSF drone strikes on aid distribution stations in Kassala and Northern states",
+    "routine (significance 1 < 3): 2026-11-02 Truck bombing near military base in Planadas, Colombia",
+    "routine (significance 1 < 3): 2026-11-02 Mass shootings at drug rehabilitation centres in Mazatlán",
+    "routine (significance 2 < 3): 2026-11-02 IED thrown at home of Lima mayor-elect Marcelino Huamán Cano",
+    "routine (significance 1 < 3): 2026-11-02 Houthi drone strikes on Saudi-backed forces",
+    "routine (significance 1 < 3): 2026-11-02 Clashes between Saudi-led coalition and Houthis in al-Jawf",
+    "routine (significance 1 < 3): 2026-11-02 FPV drone strike on civilian car in Kramatorsk",
+    "routine (significance 2 < 3): 2026-11-02 Drone strike on medical facility in Kherson",
+    "routine (significance 1 < 3): 2026-11-02 191 combat clashes along the Ukrainian front line",
+    "routine (significance 2 < 3): 2026-11-02 Cyberattack on Ukraine's Air Alert app and Russian Emergency Ministry"
   ],
   "errored": []
 }
