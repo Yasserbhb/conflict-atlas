@@ -1,5 +1,5 @@
 {
-  "version": "2.19.29",
+  "version": "2.19.30",
   "countries": [
     {
       "id": "AFG",
@@ -5263,6 +5263,36 @@
           "independentSources": 3,
           "crossAlignment": true,
           "confidence": 0.5
+        },
+        {
+          "id": "seed_ukraine_war_e26",
+          "date": "2026-10-23",
+          "title": "Ukraine and Russia agree on localized ceasefire in Oleshky",
+          "kind": "ceasefire",
+          "severity": 2,
+          "location": {
+            "lat": 46.6260908,
+            "lng": 32.7220187,
+            "label": "Oleshky, Kherson Oblast, Ukraine"
+          },
+          "parties": [
+            "RUS",
+            "UKR"
+          ],
+          "description": "Ukraine and Russia agreed on a localized ceasefire in the Russian-occupied town of Oleshky, enabling essential supplies to reach civilians and safe evacuations after months of siege. The pause was limited to the front-line city, with broader territorial and security questions unresolved.",
+          "sources": [
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-october-23-2026",
+            "https://www.aljazeera.com/news/2026/10/23/russia-drops-cluster-bombs-on-ukraine-as-kyiv-consolidates-front-line",
+            "https://acleddata.com/update/ukraine-war-situation-update-17-23-october-2026",
+            "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-october-24-2026",
+            "https://reliefweb.int/report/ukraine/ukraine-war-situation-update-17-23-october-2026",
+            "https://en.wikipedia.org/wiki/Timeline_of_the_Russo-Ukrainian_war_(1_September_2026_%E2%80%93_present)",
+            "https://mod.gov.ua/en/news/ukraine-strikes-russian-defense-industry-october-2026",
+            "https://www.lemonde.fr/en/international/article/2026/10/23/russia-and-ukraine-agree-to-truce-in-oleshky_6762538_4.html"
+          ],
+          "independentSources": 7,
+          "crossAlignment": true,
+          "confidence": 0.76
         }
       ],
       "aliases": [
@@ -5280,7 +5310,7 @@
         }
       ],
       "status": "active",
-      "lastCheckedAt": "2026-11-07"
+      "lastCheckedAt": "2026-11-11"
     },
     {
       "id": "seed_drc_m23",
