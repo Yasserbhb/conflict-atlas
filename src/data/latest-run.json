@@ -1,73 +1,36 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43247014686",
-  "period": "2026-10-24..2026-11-05",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43444906094",
+  "period": "2026-11-06..2026-11-06",
   "days": [
-    "2026-10-24..2026-10-24",
-    "2026-10-26..2026-10-26",
-    "2026-11-05..2026-11-05"
+    "2026-11-06..2026-11-06"
   ],
   "region": null,
-  "ran_at": "2026-11-12",
+  "ran_at": "2026-11-13",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43247014686",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43444906094",
   "stats": {
-    "queries": 18,
+    "queries": 6,
     "queries_dropped": 0,
-    "items": 215,
-    "candidates": 2,
-    "proposals": 2,
+    "items": 72,
+    "candidates": 0,
+    "proposals": 0,
     "auto_approved": 0,
-    "needs_human": 2,
-    "dropped": 13,
+    "needs_human": 0,
+    "dropped": 5,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 198,
-    "routine": 13,
+    "triaged_out": 69,
+    "routine": 5,
     "model_failovers": 0
   },
   "added": [],
-  "held": [
-    {
-      "day": "2026-10-26..2026-10-26",
-      "date": "2026-10-26",
-      "title": "RSF captures El Fasher after 18-month siege",
-      "question": "fact-check returned 'fail' at confidence 1.00; only 1% of its claims are backed by the cited sources",
-      "confidence": 1.0,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-october-26-2026",
-        "https://mod.gov.ua/en/news/ukraine-strikes-russian-defense-industry-october-2026",
-        "https://acleddata.com/update/ukraine-war-situation-update-17-23-october-2026",
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-october-24-2026"
-      ]
-    },
-    {
-      "day": "2026-11-05..2026-11-05",
-      "date": "2026-11-05",
-      "title": "RSF drone strikes and capture of Sali in Blue Nile reported",
-      "question": "fact-check returned 'fail' at confidence 0.96; only 5% of its claims are backed by the cited sources",
-      "confidence": 0.96,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-5-2026",
-        "https://www.aljazeera.com/news/2026/11/5/russia-says-it-hit-ukrainian-postal-hub-and-ship-as-ukraine-strikes-ryazan",
-        "https://www.usnews.com/news/business/articles/2026-11-05/russia-and-ukraine-trade-airstrikes-as-reconstruction-and-security-talks-resume-in-brussels",
-        "https://newsukraine.rbc.ua/news"
-      ]
-    }
-  ],
+  "held": [],
   "already_known": [
-    "routine (significance 1 < 3): 2026-10-24 181 combat engagements on Ukrainian front lines over past 24 hours, heaviest in Kostiantynivka sector",
-    "routine (significance 2 < 3): 2026-10-24 Ukrainian strikes hit Yeysk Airfield and Tolyattikauchuk petrochemical plant",
-    "routine (significance 1 < 3): 2026-10-24 Russian drone strike wave against Ukraine overnight October 23-24",
-    "routine (significance 2 < 3): 2026-10-24 Ukrainian drone attack on Belgorod injures 14",
-    "routine (significance 2 < 3): 2026-10-26 RSF launches massive assault on SAF 6th Infantry Division in El Fasher",
-    "routine (significance 2 < 3): 2026-10-26 Ukrainian strike on Russian communications hub in occupied Melitopol",
-    "routine (significance 2 < 3): 2026-10-26 Ukrainian strikes on Voronezh aircraft plant and chemical plant",
-    "routine (significance 1 < 3): 2026-10-26 Russian strike injures four in Zaporizhzhia",
-    "routine (significance 2 < 3): 2026-11-05 Ukrainian drone strikes hit Ryazan Oil Refinery and industrial sites in Ryazan City",
-    "routine (significance 1 < 3): 2026-11-05 Russia strikes Ukrainian postal logistics hub, power substation, and cargo ship",
-    "routine (significance 2 < 3): 2026-11-05 Ukraine strikes Russian drone launch site in occupied Crimea",
-    "routine (significance 2 < 3): 2026-11-05 Ukraine raises death toll from Russian strike on Zaporizhia region to 42",
-    "routine (significance 2 < 3): 2026-11-05 Sudanese army recaptures Kazqil and Abu Quod areas in North Kordofan"
+    "routine (significance 1 < 3): 2026-11-06 180 frontline clashes recorded across Ukraine's front on November 6",
+    "routine (significance 2 < 3): 2026-11-06 Ukrainian drone strike sets fire at Afipsky Oil Refinery in Krasnodar Krai",
+    "routine (significance 2 < 3): 2026-11-06 Ukrainian strikes hit Iskander missile launchers and Pantsir-S1 in Bryansk Oblast",
+    "routine (significance 2 < 3): 2026-11-06 Ukrainian Neptune missile strike on Proton-Electrotex plant in Oryol",
+    "routine (significance 2 < 3): 2026-11-06 Russian ballistic missile strike on Kyiv with 36 missiles damages Northern Bridge"
   ],
   "errored": []
 }
