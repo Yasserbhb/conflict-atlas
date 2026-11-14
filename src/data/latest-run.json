@@ -1,13 +1,13 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43444906094",
-  "period": "2026-11-06..2026-11-06",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43600697727",
+  "period": "2026-11-07..2026-11-07",
   "days": [
-    "2026-11-06..2026-11-06"
+    "2026-11-07..2026-11-07"
   ],
   "region": null,
-  "ran_at": "2026-11-13",
+  "ran_at": "2026-11-14",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43444906094",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43600697727",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
@@ -16,21 +16,27 @@
     "proposals": 0,
     "auto_approved": 0,
     "needs_human": 0,
-    "dropped": 5,
+    "dropped": 11,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 69,
-    "routine": 5,
+    "triaged_out": 52,
+    "routine": 11,
     "model_failovers": 0
   },
   "added": [],
   "held": [],
   "already_known": [
-    "routine (significance 1 < 3): 2026-11-06 180 frontline clashes recorded across Ukraine's front on November 6",
-    "routine (significance 2 < 3): 2026-11-06 Ukrainian drone strike sets fire at Afipsky Oil Refinery in Krasnodar Krai",
-    "routine (significance 2 < 3): 2026-11-06 Ukrainian strikes hit Iskander missile launchers and Pantsir-S1 in Bryansk Oblast",
-    "routine (significance 2 < 3): 2026-11-06 Ukrainian Neptune missile strike on Proton-Electrotex plant in Oryol",
-    "routine (significance 2 < 3): 2026-11-06 Russian ballistic missile strike on Kyiv with 36 missiles damages Northern Bridge"
+    "routine (significance 2 < 3): 2026-11-07 Russian missile strike damages Kyiv's Northern Bridge",
+    "routine (significance 2 < 3): 2026-11-07 Russia fires 36 ballistic missiles at Kyiv overnight",
+    "routine (significance 2 < 3): 2026-11-07 Ukraine strikes Saratov Oil Refinery",
+    "routine (significance 1 < 3): 2026-11-07 Ukraine strikes defense industrial warehouse in Rostov Oblast",
+    "routine (significance 2 < 3): 2026-11-07 Ukraine strikes Iskander launchers and Proton-Electrotex plant",
+    "routine (significance 2 < 3): 2026-11-07 Death toll from Komyshuvakha aid center strike rises to 55",
+    "routine (significance 2 < 3): 2026-11-07 Russian drone and missile attacks wound nine across Ukraine",
+    "routine (significance 1 < 3): 2026-11-07 Houthis launch ballistic missiles at Saudi infrastructure targets",
+    "routine (significance 2 < 3): 2026-11-07 Government forces repel Houthi counterattack in Wadi Halhalan",
+    "routine (significance 1 < 3): 2026-11-07 Saudi airstrikes kill 11 in Sanaa Governorate",
+    "routine (significance 1 < 3): 2026-11-07 Government forces shoot down Houthi drone over Taiz"
   ],
   "errored": []
 }
