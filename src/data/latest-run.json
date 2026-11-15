@@ -1,42 +1,39 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43600697727",
-  "period": "2026-11-07..2026-11-07",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43722039584",
+  "period": "2026-11-08..2026-11-08",
   "days": [
-    "2026-11-07..2026-11-07"
+    "2026-11-08..2026-11-08"
   ],
   "region": null,
-  "ran_at": "2026-11-14",
+  "ran_at": "2026-11-15",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43600697727",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43722039584",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
-    "items": 72,
+    "items": 70,
     "candidates": 0,
     "proposals": 0,
     "auto_approved": 0,
     "needs_human": 0,
-    "dropped": 11,
+    "dropped": 8,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 52,
-    "routine": 11,
+    "triaged_out": 51,
+    "routine": 8,
     "model_failovers": 0
   },
   "added": [],
   "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-07 Russian missile strike damages Kyiv's Northern Bridge",
-    "routine (significance 2 < 3): 2026-11-07 Russia fires 36 ballistic missiles at Kyiv overnight",
-    "routine (significance 2 < 3): 2026-11-07 Ukraine strikes Saratov Oil Refinery",
-    "routine (significance 1 < 3): 2026-11-07 Ukraine strikes defense industrial warehouse in Rostov Oblast",
-    "routine (significance 2 < 3): 2026-11-07 Ukraine strikes Iskander launchers and Proton-Electrotex plant",
-    "routine (significance 2 < 3): 2026-11-07 Death toll from Komyshuvakha aid center strike rises to 55",
-    "routine (significance 2 < 3): 2026-11-07 Russian drone and missile attacks wound nine across Ukraine",
-    "routine (significance 1 < 3): 2026-11-07 Houthis launch ballistic missiles at Saudi infrastructure targets",
-    "routine (significance 2 < 3): 2026-11-07 Government forces repel Houthi counterattack in Wadi Halhalan",
-    "routine (significance 1 < 3): 2026-11-07 Saudi airstrikes kill 11 in Sanaa Governorate",
-    "routine (significance 1 < 3): 2026-11-07 Government forces shoot down Houthi drone over Taiz"
+    "routine (significance 1 < 3): 2026-11-08 Russia suffers record daily casualties of 2,980 in a single day",
+    "routine (significance 1 < 3): 2026-11-08 Russia launches overnight drone and missile attack across Ukraine",
+    "routine (significance 2 < 3): 2026-11-08 Russian strikes on energy infrastructure leave 600,000+ without power in Dnipropetrovsk",
+    "routine (significance 2 < 3): 2026-11-08 Russian ballistic missiles strike Kyiv, damaging Northern Bridge",
+    "routine (significance 2 < 3): 2026-11-08 Ukrainian drones hit key bridge and power facilities in Russia's Rostov Oblast",
+    "routine (significance 2 < 3): 2026-11-08 Ukraine strikes Russian rear regions in mass drone attack",
+    "routine (significance 1 < 3): 2026-11-08 Russian forces advance south of Dobropillia",
+    "routine (significance 1 < 3): 2026-11-08 Heavy fighting continues along the frontline with 127 combat engagements"
   ],
   "errored": []
 }
