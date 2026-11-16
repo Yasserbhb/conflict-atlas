@@ -1,39 +1,51 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43722039584",
-  "period": "2026-11-08..2026-11-08",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43902040100",
+  "period": "2026-11-09..2026-11-09",
   "days": [
-    "2026-11-08..2026-11-08"
+    "2026-11-09..2026-11-09"
   ],
   "region": null,
-  "ran_at": "2026-11-15",
+  "ran_at": "2026-11-16",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43722039584",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43902040100",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
-    "items": 70,
-    "candidates": 0,
-    "proposals": 0,
+    "items": 71,
+    "candidates": 1,
+    "proposals": 1,
     "auto_approved": 0,
-    "needs_human": 0,
-    "dropped": 8,
+    "needs_human": 1,
+    "dropped": 6,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 51,
-    "routine": 8,
+    "triaged_out": 64,
+    "routine": 6,
     "model_failovers": 0
   },
   "added": [],
-  "held": [],
+  "held": [
+    {
+      "day": "2026-11-09..2026-11-09",
+      "date": "2026-11-09",
+      "title": "Ukraine strikes Kirishi refinery near St. Petersburg",
+      "question": "fact-check returned 'uncertain' at confidence 0.31; only 34% of its claims are backed by the cited sources",
+      "confidence": 0.31,
+      "sources": [
+        "https://www.justsecurity.org/163775/early-edition-november-9-2026",
+        "https://www.fdd.org/overnight-brief/november-9-2026",
+        "https://medium.com/@dylan_combellick/ukraine-update-november-9-a35b75625a18",
+        "https://warstrikes.com/report/2026-11-09"
+      ]
+    }
+  ],
   "already_known": [
-    "routine (significance 1 < 3): 2026-11-08 Russia suffers record daily casualties of 2,980 in a single day",
-    "routine (significance 1 < 3): 2026-11-08 Russia launches overnight drone and missile attack across Ukraine",
-    "routine (significance 2 < 3): 2026-11-08 Russian strikes on energy infrastructure leave 600,000+ without power in Dnipropetrovsk",
-    "routine (significance 2 < 3): 2026-11-08 Russian ballistic missiles strike Kyiv, damaging Northern Bridge",
-    "routine (significance 2 < 3): 2026-11-08 Ukrainian drones hit key bridge and power facilities in Russia's Rostov Oblast",
-    "routine (significance 2 < 3): 2026-11-08 Ukraine strikes Russian rear regions in mass drone attack",
-    "routine (significance 1 < 3): 2026-11-08 Russian forces advance south of Dobropillia",
-    "routine (significance 1 < 3): 2026-11-08 Heavy fighting continues along the frontline with 127 combat engagements"
+    "routine (significance 1 < 3): 2026-11-09 Russian missile and drone strikes hit energy infrastructure around Kyiv",
+    "routine (significance 1 < 3): 2026-11-09 Russia launches 317 drones against Ukraine overnight",
+    "routine (significance 2 < 3): 2026-11-09 Ukrainian drones attack Morozov defence plant",
+    "routine (significance 2 < 3): 2026-11-09 Russian forces advance near Kupiansk and Orikhiv",
+    "routine (significance 2 < 3): 2026-11-09 Russian Defense Ministry jet lands at Ben-Gurion Airport",
+    "routine (significance 2 < 3): 2026-11-09 Shots fired from Sirik area toward Strait of Hormuz"
   ],
   "errored": []
 }
