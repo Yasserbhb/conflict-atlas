@@ -1,51 +1,51 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43902040100",
-  "period": "2026-11-09..2026-11-09",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44122366048",
+  "period": "2026-11-10..2026-11-10",
   "days": [
-    "2026-11-09..2026-11-09"
+    "2026-11-10..2026-11-10"
   ],
   "region": null,
-  "ran_at": "2026-11-16",
+  "ran_at": "2026-11-17",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/43902040100",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44122366048",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
-    "items": 71,
-    "candidates": 1,
-    "proposals": 1,
-    "auto_approved": 0,
+    "items": 72,
+    "candidates": 2,
+    "proposals": 2,
+    "auto_approved": 1,
     "needs_human": 1,
     "dropped": 6,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 64,
+    "triaged_out": 56,
     "routine": 6,
     "model_failovers": 0
   },
   "added": [],
   "held": [
     {
-      "day": "2026-11-09..2026-11-09",
-      "date": "2026-11-09",
-      "title": "Ukraine strikes Kirishi refinery near St. Petersburg",
-      "question": "fact-check returned 'uncertain' at confidence 0.31; only 34% of its claims are backed by the cited sources",
-      "confidence": 0.31,
+      "day": "2026-11-10..2026-11-10",
+      "date": "2026-11-10",
+      "title": "Russia claims capture of Nikolske in Sumy region",
+      "question": "fact-check returned 'fail' at confidence 0.91; only 9% of its claims are backed by the cited sources",
+      "confidence": 0.91,
       "sources": [
-        "https://www.justsecurity.org/163775/early-edition-november-9-2026",
-        "https://www.fdd.org/overnight-brief/november-9-2026",
-        "https://medium.com/@dylan_combellick/ukraine-update-november-9-a35b75625a18",
-        "https://warstrikes.com/report/2026-11-09"
+        "https://empr.media/news/war/russia-ukraine-war-updates-key-developments-as-of-november-10-2026",
+        "https://medium.com/@boyopopov/ukraine-war-daily-10-november-2026-peace-talks-begin-in-abu-dhabi-as-russia-strikes-ukraines-c30396ad70fb",
+        "https://www.youtube.com/watch?v=2Rak-9Z3m00",
+        "https://newsukraine.rbc.ua/news/russia-strikes-ukraine-with-2-missiles-and-1787983982.html"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 1 < 3): 2026-11-09 Russian missile and drone strikes hit energy infrastructure around Kyiv",
-    "routine (significance 1 < 3): 2026-11-09 Russia launches 317 drones against Ukraine overnight",
-    "routine (significance 2 < 3): 2026-11-09 Ukrainian drones attack Morozov defence plant",
-    "routine (significance 2 < 3): 2026-11-09 Russian forces advance near Kupiansk and Orikhiv",
-    "routine (significance 2 < 3): 2026-11-09 Russian Defense Ministry jet lands at Ben-Gurion Airport",
-    "routine (significance 2 < 3): 2026-11-09 Shots fired from Sirik area toward Strait of Hormuz"
+    "routine (significance 2 < 3): 2026-11-10 Russian strikes hit five major electricity substations across Ukraine",
+    "routine (significance 1 < 3): 2026-11-10 Russian forces launch dozens of assaults across eastern Ukraine front lines",
+    "routine (significance 2 < 3): 2026-11-10 Israeli strikes kill seven Palestinians across Gaza",
+    "routine (significance 1 < 3): 2026-11-10 IDF says it struck and eliminated terrorists in Gaza",
+    "routine (significance 2 < 3): 2026-11-10 New Knesset sworn in with Netanyahu, Eisenkot and Lieberman",
+    "routine (significance 2 < 3): 2026-11-10 Lewis Hamilton tours Rafah crossing and aid warehouses in Egypt"
   ],
   "errored": []
 }
