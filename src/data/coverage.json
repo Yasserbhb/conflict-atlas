@@ -5139,5 +5139,20 @@
     "limited_to": 5,
     "applied": 0,
     "held": 1
+  },
+  {
+    "scanned_at": "2026-11-18",
+    "region": "(any)",
+    "topic": null,
+    "period": "2026-11-11..2026-11-11",
+    "items": 0,
+    "events_found": 0,
+    "proposals": 0,
+    "dropped": 0,
+    "status": "failed",
+    "error": "BadRequestError: Query is missing.",
+    "prompt_version": "212a0fe5934b",
+    "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44339343822",
+    "limited_to": 5
   }
 ]
