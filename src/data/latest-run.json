@@ -1,51 +1,40 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44122366048",
-  "period": "2026-11-10..2026-11-10",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44559458797",
+  "period": "2026-11-11..2026-11-12",
   "days": [
-    "2026-11-10..2026-11-10"
+    "2026-11-11..2026-11-11",
+    "2026-11-12..2026-11-12"
   ],
   "region": null,
-  "ran_at": "2026-11-17",
+  "ran_at": "2026-11-19",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44122366048",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44559458797",
   "stats": {
-    "queries": 6,
+    "queries": 12,
     "queries_dropped": 0,
-    "items": 72,
-    "candidates": 2,
-    "proposals": 2,
-    "auto_approved": 1,
-    "needs_human": 1,
-    "dropped": 6,
+    "items": 143,
+    "candidates": 0,
+    "proposals": 0,
+    "auto_approved": 0,
+    "needs_human": 0,
+    "dropped": 8,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 56,
-    "routine": 6,
+    "triaged_out": 134,
+    "routine": 8,
     "model_failovers": 0
   },
   "added": [],
-  "held": [
-    {
-      "day": "2026-11-10..2026-11-10",
-      "date": "2026-11-10",
-      "title": "Russia claims capture of Nikolske in Sumy region",
-      "question": "fact-check returned 'fail' at confidence 0.91; only 9% of its claims are backed by the cited sources",
-      "confidence": 0.91,
-      "sources": [
-        "https://empr.media/news/war/russia-ukraine-war-updates-key-developments-as-of-november-10-2026",
-        "https://medium.com/@boyopopov/ukraine-war-daily-10-november-2026-peace-talks-begin-in-abu-dhabi-as-russia-strikes-ukraines-c30396ad70fb",
-        "https://www.youtube.com/watch?v=2Rak-9Z3m00",
-        "https://newsukraine.rbc.ua/news/russia-strikes-ukraine-with-2-missiles-and-1787983982.html"
-      ]
-    }
-  ],
+  "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-10 Russian strikes hit five major electricity substations across Ukraine",
-    "routine (significance 1 < 3): 2026-11-10 Russian forces launch dozens of assaults across eastern Ukraine front lines",
-    "routine (significance 2 < 3): 2026-11-10 Israeli strikes kill seven Palestinians across Gaza",
-    "routine (significance 1 < 3): 2026-11-10 IDF says it struck and eliminated terrorists in Gaza",
-    "routine (significance 2 < 3): 2026-11-10 New Knesset sworn in with Netanyahu, Eisenkot and Lieberman",
-    "routine (significance 2 < 3): 2026-11-10 Lewis Hamilton tours Rafah crossing and aid warehouses in Egypt"
+    "routine (significance 1 < 3): 2026-11-11 Israeli air attack killed at least five Palestinians in Gaza",
+    "routine (significance 1 < 3): 2026-11-11 Russian forces conducted 43 air strikes and 142 drone drops against Ukraine",
+    "routine (significance 1 < 3): 2026-11-11 Ukrainian forces continued long-range strike campaign against Russian critical infrastructure",
+    "routine (significance 1 < 3): 2026-11-11 Russian forces launched 163 drones and S8000 Banderol/Dan-T loitering munitions and one Kh-59/69 cruise missile against Ukraine",
+    "routine (significance 1 < 3): 2026-11-11 Ukrainian forces destroyed several Russian IFVs near Nova Poltavka during a mechanized assault",
+    "routine (significance 1 < 3): 2026-11-11 Russian forces struck infrastructure in Dnipropetrovsk and Odesa regions",
+    "routine (significance 1 < 3): 2026-11-11 Heavy fighting reported in the Ozyornoye – Dibrova sector",
+    "routine (significance 2 < 3): 2026-11-12 Houthis claim five drone strikes inside Saudi Arabia"
   ],
   "errored": []
 }
