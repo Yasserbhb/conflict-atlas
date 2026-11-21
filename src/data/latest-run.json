@@ -1,55 +1,38 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44764401297",
-  "period": "2026-11-13..2026-11-13",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44915448115",
+  "period": "2026-11-14..2026-11-14",
   "days": [
-    "2026-11-13..2026-11-13"
+    "2026-11-14..2026-11-14"
   ],
   "region": null,
-  "ran_at": "2026-11-20",
+  "ran_at": "2026-11-21",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44764401297",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44915448115",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
     "items": 72,
-    "candidates": 1,
-    "proposals": 1,
+    "candidates": 0,
+    "proposals": 0,
     "auto_approved": 0,
-    "needs_human": 1,
-    "dropped": 10,
+    "needs_human": 0,
+    "dropped": 7,
     "failed": 0,
     "out_of_window": 0,
     "triaged_out": 58,
-    "routine": 10,
+    "routine": 7,
     "model_failovers": 0
   },
   "added": [],
-  "held": [
-    {
-      "day": "2026-11-13..2026-11-13",
-      "date": "2026-11-13",
-      "title": "Putin proposes ceasefire in Kostiantynivka area",
-      "question": "fact-check returned 'uncertain' at confidence 0.19; only 27% of its claims are backed by the cited sources",
-      "confidence": 0.19,
-      "sources": [
-        "https://www.aljazeera.com/news/2026/11/13/russias-demands-come-from-different-reality-as-war-efforts-stagnates",
-        "https://www.ochaopt.org/content/humanitarian-situation-report-13-november-2026",
-        "https://www.youtube.com/watch?v=RaEHjuhED1w",
-        "https://life.ru/p/1953678"
-      ]
-    }
-  ],
+  "held": [],
   "already_known": [
-    "routine (significance 1 < 3): 2026-11-13 Ukraine reports record Russian casualties in early November",
-    "routine (significance 2 < 3): 2026-11-13 Russian jet drone strike damages hospital in Kyiv",
-    "routine (significance 2 < 3): 2026-11-13 Houthis claim drone strike on Saudi East-West Pipeline pumping station",
-    "routine (significance 2 < 3): 2026-11-13 Iran launches drones at US radar infrastructure in Bahrain",
-    "routine (significance 2 < 3): 2026-11-13 IRGC Navy claims gas carrier struck naval mine in Strait of Hormuz",
-    "routine (significance 1 < 3): 2026-11-13 Israeli strikes and gunfire kill four Palestinians in Gaza",
-    "routine (significance 2 < 3): 2026-11-13 Israeli airstrike on Jabalia refugee camp kills at least 10",
-    "routine (significance 1 < 3): 2026-11-13 273 combat clashes across Ukrainian front lines",
-    "routine (significance 2 < 3): 2026-11-13 Russian forces capture Sobolivka in Kharkiv Oblast",
-    "routine (significance 2 < 3): 2026-11-13 Russian forces force Konka river near Novopavlivka in Zaporizhzhia"
+    "routine (significance 2 < 3): 2026-11-14 Russian drone strike hits train car at Lozova station, killing railway workers",
+    "routine (significance 1 < 3): 2026-11-14 171 combat clashes along Ukrainian front line",
+    "routine (significance 2 < 3): 2026-11-14 Russian forces strike cargo ship bound for Odessa carrying military cargo",
+    "routine (significance 1 < 3): 2026-11-14 Kyiv reports Russia launched 96 drones overnight, 81 intercepted",
+    "routine (significance 1 < 3): 2026-11-14 Israeli drone strike kills two Palestinians in Gaza",
+    "routine (significance 2 < 3): 2026-11-14 Three oil tankers hit Iranian naval mines and catch fire near Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-11-14 Sudanese army and joint forces announce control of El-Khoe and downing of drone over Khartoum"
   ],
   "errored": []
 }
