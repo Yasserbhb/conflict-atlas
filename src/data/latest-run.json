@@ -1,38 +1,37 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44915448115",
-  "period": "2026-11-14..2026-11-14",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45034071546",
+  "period": "2026-11-15..2026-11-15",
   "days": [
-    "2026-11-14..2026-11-14"
+    "2026-11-15..2026-11-15"
   ],
   "region": null,
-  "ran_at": "2026-11-21",
+  "ran_at": "2026-11-22",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/44915448115",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45034071546",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
     "items": 72,
-    "candidates": 0,
-    "proposals": 0,
-    "auto_approved": 0,
+    "candidates": 1,
+    "proposals": 1,
+    "auto_approved": 1,
     "needs_human": 0,
-    "dropped": 7,
+    "dropped": 6,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 58,
-    "routine": 7,
+    "triaged_out": 62,
+    "routine": 6,
     "model_failovers": 0
   },
   "added": [],
   "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-14 Russian drone strike hits train car at Lozova station, killing railway workers",
-    "routine (significance 1 < 3): 2026-11-14 171 combat clashes along Ukrainian front line",
-    "routine (significance 2 < 3): 2026-11-14 Russian forces strike cargo ship bound for Odessa carrying military cargo",
-    "routine (significance 1 < 3): 2026-11-14 Kyiv reports Russia launched 96 drones overnight, 81 intercepted",
-    "routine (significance 1 < 3): 2026-11-14 Israeli drone strike kills two Palestinians in Gaza",
-    "routine (significance 2 < 3): 2026-11-14 Three oil tankers hit Iranian naval mines and catch fire near Strait of Hormuz",
-    "routine (significance 2 < 3): 2026-11-14 Sudanese army and joint forces announce control of El-Khoe and downing of drone over Khartoum"
+    "routine (significance 2 < 3): 2026-11-15 Russia launches 158 drones against Ukrainian energy infrastructure",
+    "routine (significance 2 < 3): 2026-11-15 Ukrainian drones strike Nizhnekamskneftekhim petrochemical complex and Rostov sites",
+    "routine (significance 2 < 3): 2026-11-15 Ukrainian strikes damage road bridges over Siverskyi Donets and Mius rivers",
+    "routine (significance 2 < 3): 2026-11-15 Estonia announces closure of its border with Russia",
+    "routine (significance 1 < 3): 2026-11-15 Russian drone hits apartment building in Kharkiv",
+    "routine (significance 1 < 3): 2026-11-15 Israeli airstrike kills and wounds Palestinians in southern Gaza"
   ],
   "errored": []
 }
