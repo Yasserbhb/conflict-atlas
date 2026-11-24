@@ -1,97 +1,58 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45237407549",
-  "period": "2026-11-16..2026-11-16",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45453379800",
+  "period": "2026-11-17..2026-11-17",
   "days": [
-    "2026-11-16..2026-11-16"
+    "2026-11-17..2026-11-17"
   ],
   "region": null,
-  "ran_at": "2026-11-23",
+  "ran_at": "2026-11-24",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45237407549",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45453379800",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
-    "items": 70,
-    "candidates": 4,
-    "proposals": 4,
+    "items": 71,
+    "candidates": 1,
+    "proposals": 1,
     "auto_approved": 0,
-    "needs_human": 4,
-    "dropped": 15,
+    "needs_human": 1,
+    "dropped": 13,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 58,
-    "routine": 15,
+    "triaged_out": 56,
+    "routine": 13,
     "model_failovers": 0
   },
   "added": [],
   "held": [
     {
-      "day": "2026-11-16..2026-11-16",
-      "date": "2026-11-16",
-      "title": "Ukrainian drones strike the Kerch Strait Bridge",
-      "question": "fact-check returned 'pass' at confidence 0.20; only 73% of its claims are backed by the cited sources",
-      "confidence": 0.2,
+      "day": "2026-11-17..2026-11-17",
+      "date": "2026-11-17",
+      "title": "Ukrainian strike damages Crimean Bridge arch",
+      "question": "fact-check returned 'fail' at confidence 1.00; only 2% of its claims are backed by the cited sources",
+      "confidence": 1.0,
       "sources": [
-        "https://www.steptoe.com/en/news-publications/international-compliance-blog/weekly-sanctions-update-november-16-2026.html",
-        "https://www.steptoe.com/en/news-publications/stepwise-risk-outlook/sanctions-update-november-16-2026.html",
-        "https://www.fdd.org/overnight-brief/november-16-2026",
-        "https://www.facebook.com/groups/140192814769100/posts/1428987422556293"
-      ]
-    },
-    {
-      "day": "2026-11-16..2026-11-16",
-      "date": "2026-11-16",
-      "title": "Israel says it killed a senior Hamas commander in airstrike in southern Gaza",
-      "question": "fact-check returned 'pass' at confidence 0.28; only 72% of its claims are backed by the cited sources",
-      "confidence": 0.28,
-      "sources": [
-        "https://www.steptoe.com/en/news-publications/international-compliance-blog/weekly-sanctions-update-november-16-2026.html",
-        "https://www.steptoe.com/en/news-publications/stepwise-risk-outlook/sanctions-update-november-16-2026.html",
-        "https://www.fdd.org/overnight-brief/november-16-2026",
-        "https://www.facebook.com/groups/140192814769100/posts/1428987422556293"
-      ]
-    },
-    {
-      "day": "2026-11-16..2026-11-16",
-      "date": "2026-11-16",
-      "title": "Iranian military says three tankers hit mines in Strait of Hormuz; fire on a fourth tanker",
-      "question": "fact-check returned 'uncertain' at confidence 0.35; only 68% of its claims are backed by the cited sources",
-      "confidence": 0.35,
-      "sources": [
-        "https://www.facebook.com/groups/140192814769100/posts/1428987422556293",
-        "https://www.aljazeera.net/news/2026/11/16/%D8%A7%D9%84%D9%8A%D9%85%D9%86-98",
-        "https://www.aljazeera.com/news/2026/11/16/russian-attacks-kill-three-in-ukraine-eu-accuses-moscow-of-prolonging-war"
-      ]
-    },
-    {
-      "day": "2026-11-16..2026-11-16",
-      "date": "2026-11-16",
-      "title": "M23 rebels, backed by Rwanda, take control of key towns in Uvira offensive in eastern DR Congo",
-      "question": "fact-check returned 'uncertain' at confidence 0.26; only 49% of its claims are backed by the cited sources",
-      "confidence": 0.26,
-      "sources": [
-        "https://www.youtube.com/watch?v=Er5cE9nfXio",
-        "https://africacenter.org/spotlight/drc-congo-conflict-drivers-beyond-m23",
-        "https://www.cfr.org/global-conflict-tracker/conflict/violence-democratic-republic-congo"
+        "https://www.criticalthreats.org/analysis/iran-update-november-17-2026",
+        "https://understandingwar.org/research/middle-east/iran-update-november-17-2026",
+        "https://www.youtube.com/watch?v=YV_HKUf9l88",
+        "https://en.wikipedia.org/wiki/2026_Iran_war"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-16 Ukraine launches largest overnight drone attack on Russia; Russia reports intercepting over 1,300 drones",
-    "routine (significance 1 < 3): 2026-11-16 Russia launches 158 drones at Ukraine overnight, striking energy infrastructure in six oblasts",
-    "routine (significance 1 < 3): 2026-11-16 Russian attacks kill at least three people in Ukraine",
-    "routine (significance 2 < 3): 2026-11-16 Ukrainian drone attack kills one person in Russia's Belgorod region",
-    "routine (significance 2 < 3): 2026-11-16 Russian strikes target bridges in Kyiv and Zaporizhzhia",
-    "routine (significance 2 < 3): 2026-11-16 Ukraine claims hit on major crude-pipeline hub in Russia's Samara region",
-    "routine (significance 2 < 3): 2026-11-16 Ukraine reports completion of search operations at Komyshuvakha aid site hit by Russian November 2 airstrike that killed 72",
-    "routine (significance 2 < 3): 2026-11-16 Iran's IRGC claims drone attacks on radar positions in Bahrain; Bahrain intercepts them",
-    "routine (significance 2 < 3): 2026-11-16 Houthi forces release 600 detainees in Yemen",
-    "routine (significance 1 < 3): 2026-11-16 Saudi Arabia intercepts Houthi missiles fired toward Riyadh",
-    "routine (significance 1 < 3): 2026-11-16 Yemeni government forces target Houthi positions south of Taiz amid continued clashes in Lahj and Marib",
-    "routine (significance 2 < 3): 2026-11-16 Rights group reports Houthis kidnapped 525 civilians in Taiz in one day",
-    "routine (significance 2 < 3): 2026-11-16 Saudi king appoints chief of general staff as commander of joint forces of Yemen coalition",
-    "routine (significance 2 < 3): 2026-11-16 FARDC bombard Mikenge amid violent fighting in Uvira area",
-    "routine (significance 1 < 3): 2026-11-16 Drone strike on vehicle injures at least four civilians in North-Western Tigray, Ethiopia"
+    "routine (significance 2 < 3): 2026-11-17 IRGC drone attack on US radar at Sheikh Isa Air Base, Bahrain",
+    "routine (significance 2 < 3): 2026-11-17 US strikes IRGC missile launch site on Qeshm Island",
+    "routine (significance 2 < 3): 2026-11-17 Kuwait intercepts hostile drone attacks amid Iran-US exchanges",
+    "routine (significance 2 < 3): 2026-11-17 Tanker struck in Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-11-17 Houthis claim drone strikes on Saudi East-West Pipeline pumping stations",
+    "routine (significance 2 < 3): 2026-11-17 Houthis claim attack on Saudi early warning radar in Sharurah",
+    "routine (significance 2 < 3): 2026-11-17 Saudi-led coalition bombs over 60 Houthi targets in Sana'a and northwest Yemen",
+    "routine (significance 1 < 3): 2026-11-17 Sudanese army drone strike kills at least 13 civilians",
+    "routine (significance 2 < 3): 2026-11-17 Russian drone sinks Liberian propane tanker Gas Husky in Black Sea",
+    "routine (significance 2 < 3): 2026-11-17 Russian drones sink Somali cargo ship Betul 8 in Black Sea",
+    "routine (significance 1 < 3): 2026-11-17 Russia claims downing 1,441 Ukrainian drones overnight",
+    "routine (significance 2 < 3): 2026-11-17 Russian ballistic missile attack on Kyiv hits two bridges",
+    "routine (significance 1 < 3): 2026-11-17 Russian FPV drone attack kills driver in Zaporizhzhia"
   ],
   "errored": []
 }
