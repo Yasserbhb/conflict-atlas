@@ -1,58 +1,83 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45453379800",
-  "period": "2026-11-17..2026-11-17",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45663559823",
+  "period": "2026-11-18..2026-11-18",
   "days": [
-    "2026-11-17..2026-11-17"
+    "2026-11-18..2026-11-18"
   ],
   "region": null,
-  "ran_at": "2026-11-24",
+  "ran_at": "2026-11-25",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45453379800",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45663559823",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
-    "items": 71,
-    "candidates": 1,
-    "proposals": 1,
+    "items": 72,
+    "candidates": 3,
+    "proposals": 3,
     "auto_approved": 0,
-    "needs_human": 1,
-    "dropped": 13,
+    "needs_human": 3,
+    "dropped": 12,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 56,
-    "routine": 13,
+    "triaged_out": 52,
+    "routine": 12,
     "model_failovers": 0
   },
   "added": [],
   "held": [
     {
-      "day": "2026-11-17..2026-11-17",
-      "date": "2026-11-17",
-      "title": "Ukrainian strike damages Crimean Bridge arch",
+      "day": "2026-11-18..2026-11-18",
+      "date": "2026-11-18",
+      "title": "Israeli ground operation crosses Yellow Line in central Gaza",
+      "question": "fact-check returned 'fail' at confidence 0.91; only 5% of its claims are backed by the cited sources",
+      "confidence": 0.91,
+      "sources": [
+        "https://www.justsecurity.org/165038/early-edition-november-18-2026",
+        "https://mideastwarmap.com/en/conflicts/us-iran",
+        "https://www.criticalthreats.org/analysis/iran-update-november-18-2026",
+        "https://peaceanddiplomacy.org/conflict-watch"
+      ]
+    },
+    {
+      "day": "2026-11-18..2026-11-18",
+      "date": "2026-11-18",
+      "title": "Houthi missile hits PIF Tower in Riyadh",
+      "question": "fact-check returned 'uncertain' at confidence 0.42; only 39% of its claims are backed by the cited sources",
+      "confidence": 0.42,
+      "sources": [
+        "https://www.facebook.com/SamanthaEttus/posts/breaking-war-update-november-18-2026irans-regime-is-shaking-washington-protester/1712031160488645",
+        "https://www.justsecurity.org/165038/early-edition-november-18-2026",
+        "https://mideastwarmap.com/en/conflicts/us-iran",
+        "https://www.criticalthreats.org/analysis/iran-update-november-18-2026"
+      ]
+    },
+    {
+      "day": "2026-11-18..2026-11-18",
+      "date": "2026-11-18",
+      "title": "RSF commander Mishaal Abdulrahman Al-Nour defects to Sudanese army",
       "question": "fact-check returned 'fail' at confidence 1.00; only 2% of its claims are backed by the cited sources",
       "confidence": 1.0,
       "sources": [
-        "https://www.criticalthreats.org/analysis/iran-update-november-17-2026",
-        "https://understandingwar.org/research/middle-east/iran-update-november-17-2026",
-        "https://www.youtube.com/watch?v=YV_HKUf9l88",
-        "https://en.wikipedia.org/wiki/2026_Iran_war"
+        "https://mideastwarmap.com/en/conflicts/us-iran",
+        "https://www.criticalthreats.org/analysis/iran-update-november-18-2026",
+        "https://conflictledger.com/brief/2026-11-06",
+        "https://www.britannica.com/event/2026-Iran-war"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-17 IRGC drone attack on US radar at Sheikh Isa Air Base, Bahrain",
-    "routine (significance 2 < 3): 2026-11-17 US strikes IRGC missile launch site on Qeshm Island",
-    "routine (significance 2 < 3): 2026-11-17 Kuwait intercepts hostile drone attacks amid Iran-US exchanges",
-    "routine (significance 2 < 3): 2026-11-17 Tanker struck in Strait of Hormuz",
-    "routine (significance 2 < 3): 2026-11-17 Houthis claim drone strikes on Saudi East-West Pipeline pumping stations",
-    "routine (significance 2 < 3): 2026-11-17 Houthis claim attack on Saudi early warning radar in Sharurah",
-    "routine (significance 2 < 3): 2026-11-17 Saudi-led coalition bombs over 60 Houthi targets in Sana'a and northwest Yemen",
-    "routine (significance 1 < 3): 2026-11-17 Sudanese army drone strike kills at least 13 civilians",
-    "routine (significance 2 < 3): 2026-11-17 Russian drone sinks Liberian propane tanker Gas Husky in Black Sea",
-    "routine (significance 2 < 3): 2026-11-17 Russian drones sink Somali cargo ship Betul 8 in Black Sea",
-    "routine (significance 1 < 3): 2026-11-17 Russia claims downing 1,441 Ukrainian drones overnight",
-    "routine (significance 2 < 3): 2026-11-17 Russian ballistic missile attack on Kyiv hits two bridges",
-    "routine (significance 1 < 3): 2026-11-17 Russian FPV drone attack kills driver in Zaporizhzhia"
+    "routine (significance 2 < 3): 2026-11-18 Iranian drones target Ali Al-Salem Air Base in Kuwait",
+    "routine (significance 2 < 3): 2026-11-18 Bahrain repels Iranian aerial attacks",
+    "routine (significance 2 < 3): 2026-11-18 Two supertankers hit mines in Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-11-18 ADNOC L&S vessel attacked in Strait of Hormuz",
+    "routine (significance 2 < 3): 2026-11-18 US Navy Secretary nominee says expired Tomahawks used in Middle East",
+    "routine (significance 1 < 3): 2026-11-18 Russia strikes Naftogaz gas facility in Poltava region",
+    "routine (significance 1 < 3): 2026-11-18 Russia launches over 140 drones across five Ukrainian oblasts",
+    "routine (significance 2 < 3): 2026-11-18 Russian strikes on Odesa kill at least five, damage Catholic cathedral",
+    "routine (significance 1 < 3): 2026-11-18 Russian drone strike kills woman in Kushuhum, Zaporizhia",
+    "routine (significance 1 < 3): 2026-11-18 Russian shelling of Chuhuiv wounds Naftogaz repair worker",
+    "routine (significance 2 < 3): 2026-11-18 Ukraine strikes Kerch Bridge railway span with Neptune missiles",
+    "routine (significance 2 < 3): 2026-11-18 Sudanese army-allied Joint Force repels RSF attack in North Darfur"
   ],
   "errored": []
 }
