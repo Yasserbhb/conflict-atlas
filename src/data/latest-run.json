@@ -1,83 +1,76 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45663559823",
-  "period": "2026-11-18..2026-11-18",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45863762545",
+  "period": "2026-11-19..2026-11-19",
   "days": [
-    "2026-11-18..2026-11-18"
+    "2026-11-19..2026-11-19"
   ],
   "region": null,
-  "ran_at": "2026-11-25",
+  "ran_at": "2026-11-26",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45663559823",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45863762545",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
     "items": 72,
-    "candidates": 3,
-    "proposals": 3,
-    "auto_approved": 0,
+    "candidates": 5,
+    "proposals": 5,
+    "auto_approved": 2,
     "needs_human": 3,
-    "dropped": 12,
+    "dropped": 5,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 52,
-    "routine": 12,
+    "triaged_out": 55,
+    "routine": 5,
     "model_failovers": 0
   },
   "added": [],
   "held": [
     {
-      "day": "2026-11-18..2026-11-18",
-      "date": "2026-11-18",
-      "title": "Israeli ground operation crosses Yellow Line in central Gaza",
-      "question": "fact-check returned 'fail' at confidence 0.91; only 5% of its claims are backed by the cited sources",
-      "confidence": 0.91,
+      "day": "2026-11-19..2026-11-19",
+      "date": "2026-11-19",
+      "title": "Israel launches major ground offensive in central Gaza",
+      "question": "fact-check returned 'uncertain' at confidence 0.46; only 18% of its claims are backed by the cited sources",
+      "confidence": 0.46,
       "sources": [
-        "https://www.justsecurity.org/165038/early-edition-november-18-2026",
-        "https://mideastwarmap.com/en/conflicts/us-iran",
-        "https://www.criticalthreats.org/analysis/iran-update-november-18-2026",
-        "https://peaceanddiplomacy.org/conflict-watch"
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-20-2026",
+        "https://acleddata.com/update/ukraine-war-situation-update-7-13-november-2026",
+        "https://www.youtube.com/watch?v=QEt15d0BYx4",
+        "https://warstrikes.com/event/51673-jerusalem-daily-israel-launches-ground-offensive-in-gaza"
       ]
     },
     {
-      "day": "2026-11-18..2026-11-18",
-      "date": "2026-11-18",
-      "title": "Houthi missile hits PIF Tower in Riyadh",
-      "question": "fact-check returned 'uncertain' at confidence 0.42; only 39% of its claims are backed by the cited sources",
+      "day": "2026-11-19..2026-11-19",
+      "date": "2026-11-19",
+      "title": "M23 occupies Goma",
+      "question": "fact-check returned 'uncertain' at confidence 0.22; only 34% of its claims are backed by the cited sources",
+      "confidence": 0.22,
+      "sources": [
+        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-19-2026",
+        "https://reliefweb.int/report/occupied-palestinian-territory/ceasefire-name-deprivation-practice-one-year-gazas-failed-peace-plan-november-2026",
+        "https://face.meei.harvard.edu/timeline-of-sudan-civil-war-2026",
+        "https://africacenter.org/spotlight/drc-congo-conflict-drivers-beyond-m23"
+      ]
+    },
+    {
+      "day": "2026-11-19..2026-11-19",
+      "date": "2026-11-19",
+      "title": "Trump, Putin and Xi meet in Shenzhen",
+      "question": "fact-check returned 'pass' at confidence 0.42; only 34% of its claims are backed by the cited sources",
       "confidence": 0.42,
       "sources": [
-        "https://www.facebook.com/SamanthaEttus/posts/breaking-war-update-november-18-2026irans-regime-is-shaking-washington-protester/1712031160488645",
-        "https://www.justsecurity.org/165038/early-edition-november-18-2026",
-        "https://mideastwarmap.com/en/conflicts/us-iran",
-        "https://www.criticalthreats.org/analysis/iran-update-november-18-2026"
-      ]
-    },
-    {
-      "day": "2026-11-18..2026-11-18",
-      "date": "2026-11-18",
-      "title": "RSF commander Mishaal Abdulrahman Al-Nour defects to Sudanese army",
-      "question": "fact-check returned 'fail' at confidence 1.00; only 2% of its claims are backed by the cited sources",
-      "confidence": 1.0,
-      "sources": [
-        "https://mideastwarmap.com/en/conflicts/us-iran",
-        "https://www.criticalthreats.org/analysis/iran-update-november-18-2026",
-        "https://conflictledger.com/brief/2026-11-06",
-        "https://www.britannica.com/event/2026-Iran-war"
+        "https://www.aljazeera.com/news/2026/11/20/ukraine-strikes-kerch-bridge-as-putin-ally-declares-no-one-needs",
+        "https://www.independent.co.uk/news/world/europe/russia-ukraine-war-live-putin-drones-nuclear-weapons-casualties-b3091880.html",
+        "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)",
+        "https://modeldiplomat.com/story/sahel-insurgency-juntas-and-russias-role"
       ]
     }
   ],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-18 Iranian drones target Ali Al-Salem Air Base in Kuwait",
-    "routine (significance 2 < 3): 2026-11-18 Bahrain repels Iranian aerial attacks",
-    "routine (significance 2 < 3): 2026-11-18 Two supertankers hit mines in Strait of Hormuz",
-    "routine (significance 2 < 3): 2026-11-18 ADNOC L&S vessel attacked in Strait of Hormuz",
-    "routine (significance 2 < 3): 2026-11-18 US Navy Secretary nominee says expired Tomahawks used in Middle East",
-    "routine (significance 1 < 3): 2026-11-18 Russia strikes Naftogaz gas facility in Poltava region",
-    "routine (significance 1 < 3): 2026-11-18 Russia launches over 140 drones across five Ukrainian oblasts",
-    "routine (significance 2 < 3): 2026-11-18 Russian strikes on Odesa kill at least five, damage Catholic cathedral",
-    "routine (significance 1 < 3): 2026-11-18 Russian drone strike kills woman in Kushuhum, Zaporizhia",
-    "routine (significance 1 < 3): 2026-11-18 Russian shelling of Chuhuiv wounds Naftogaz repair worker",
-    "routine (significance 2 < 3): 2026-11-18 Ukraine strikes Kerch Bridge railway span with Neptune missiles",
-    "routine (significance 2 < 3): 2026-11-18 Sudanese army-allied Joint Force repels RSF attack in North Darfur"
+    "routine (significance 2 < 3): 2026-11-19 Ukrainian forces strike Kaleikino oil pumping station near Almetyevsk, Tatarstan",
+    "routine (significance 2 < 3): 2026-11-19 Ukraine strikes Kerch Bridge railway span with Neptune missiles for third time in days",
+    "routine (significance 2 < 3): 2026-11-19 Russian strikes hit diplomatic premises in Kyiv",
+    "routine (significance 1 < 3): 2026-11-19 Israeli drone strike on Abu Khadra Street, Gaza City",
+    "routine (significance 1 < 3): 2026-11-19 Five Palestinians killed by Israeli fire in Gaza"
   ],
   "errored": []
 }
