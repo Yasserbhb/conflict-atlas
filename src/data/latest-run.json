@@ -1,76 +1,36 @@
 {
-  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45863762545",
-  "period": "2026-11-19..2026-11-19",
+  "run_id": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/46036324272",
+  "period": "2026-11-20..2026-11-20",
   "days": [
-    "2026-11-19..2026-11-19"
+    "2026-11-20..2026-11-20"
   ],
   "region": null,
-  "ran_at": "2026-11-26",
+  "ran_at": "2026-11-27",
   "ok": true,
-  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/45863762545",
+  "run_url": "https://github.com/Yasserbhb/conflict-atlas/actions/runs/46036324272",
   "stats": {
     "queries": 6,
     "queries_dropped": 0,
     "items": 72,
-    "candidates": 5,
-    "proposals": 5,
-    "auto_approved": 2,
-    "needs_human": 3,
+    "candidates": 0,
+    "proposals": 0,
+    "auto_approved": 0,
+    "needs_human": 0,
     "dropped": 5,
     "failed": 0,
     "out_of_window": 0,
-    "triaged_out": 55,
+    "triaged_out": 59,
     "routine": 5,
     "model_failovers": 0
   },
   "added": [],
-  "held": [
-    {
-      "day": "2026-11-19..2026-11-19",
-      "date": "2026-11-19",
-      "title": "Israel launches major ground offensive in central Gaza",
-      "question": "fact-check returned 'uncertain' at confidence 0.46; only 18% of its claims are backed by the cited sources",
-      "confidence": 0.46,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-20-2026",
-        "https://acleddata.com/update/ukraine-war-situation-update-7-13-november-2026",
-        "https://www.youtube.com/watch?v=QEt15d0BYx4",
-        "https://warstrikes.com/event/51673-jerusalem-daily-israel-launches-ground-offensive-in-gaza"
-      ]
-    },
-    {
-      "day": "2026-11-19..2026-11-19",
-      "date": "2026-11-19",
-      "title": "M23 occupies Goma",
-      "question": "fact-check returned 'uncertain' at confidence 0.22; only 34% of its claims are backed by the cited sources",
-      "confidence": 0.22,
-      "sources": [
-        "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-19-2026",
-        "https://reliefweb.int/report/occupied-palestinian-territory/ceasefire-name-deprivation-practice-one-year-gazas-failed-peace-plan-november-2026",
-        "https://face.meei.harvard.edu/timeline-of-sudan-civil-war-2026",
-        "https://africacenter.org/spotlight/drc-congo-conflict-drivers-beyond-m23"
-      ]
-    },
-    {
-      "day": "2026-11-19..2026-11-19",
-      "date": "2026-11-19",
-      "title": "Trump, Putin and Xi meet in Shenzhen",
-      "question": "fact-check returned 'pass' at confidence 0.42; only 34% of its claims are backed by the cited sources",
-      "confidence": 0.42,
-      "sources": [
-        "https://www.aljazeera.com/news/2026/11/20/ukraine-strikes-kerch-bridge-as-putin-ally-declares-no-one-needs",
-        "https://www.independent.co.uk/news/world/europe/russia-ukraine-war-live-putin-drones-nuclear-weapons-casualties-b3091880.html",
-        "https://en.wikipedia.org/wiki/Sudanese_civil_war_(2023%E2%80%93present)",
-        "https://modeldiplomat.com/story/sahel-insurgency-juntas-and-russias-role"
-      ]
-    }
-  ],
+  "held": [],
   "already_known": [
-    "routine (significance 2 < 3): 2026-11-19 Ukrainian forces strike Kaleikino oil pumping station near Almetyevsk, Tatarstan",
-    "routine (significance 2 < 3): 2026-11-19 Ukraine strikes Kerch Bridge railway span with Neptune missiles for third time in days",
-    "routine (significance 2 < 3): 2026-11-19 Russian strikes hit diplomatic premises in Kyiv",
-    "routine (significance 1 < 3): 2026-11-19 Israeli drone strike on Abu Khadra Street, Gaza City",
-    "routine (significance 1 < 3): 2026-11-19 Five Palestinians killed by Israeli fire in Gaza"
+    "routine (significance 2 < 3): 2026-11-20 Russia launches largest missile and drone strike of November 2026 against Ukraine",
+    "routine (significance 2 < 3): 2026-11-20 Russian missiles and drones fired into Polish airspace during Ukraine strike",
+    "routine (significance 2 < 3): 2026-11-20 Israeli strikes in central Gaza displace over 6,000 Palestinians",
+    "routine (significance 2 < 3): 2026-11-20 RSF-aligned Tasis forces shoot down Turkish drone near Ad-Damazin",
+    "routine (significance 2 < 3): 2026-11-20 Week-long battle over dam and village ends in RSF victory"
   ],
   "errored": []
 }
